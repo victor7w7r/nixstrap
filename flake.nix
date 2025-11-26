@@ -1,6 +1,6 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
-
+  #sshfs victor7w7r@192.168.122.1:/home/victor7w7r/repositories/nixstrap /home/nixos/flakeable
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     refind-theme-catppuccin.url = "github:catppuccin/refind";
@@ -67,7 +67,7 @@
     in
     {
       nixosConfigurations = {
-        laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
+        #laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
         desktop = mkSystem inputs.nixpkgs "x86_64-linux" "desktop";
       };
     };
