@@ -40,17 +40,24 @@
     additionalFiles = {
       "themes/catppuccin" = refind-theme-catppuccin;
       "EFI/refind/refind_x64.efi" = "${pkgs.refind}/share/refind/refind_x64.efi";
-      "EFI/refind/icons"     = "${pkgs.refind}/share/refind/icons";
-      "EFI/refind/fonts"     = "${pkgs.refind}/share/refind/fonts";
+      "EFI/refind/icons" = "${pkgs.refind}/share/refind/icons";
+      "EFI/refind/fonts" = "${pkgs.refind}/share/refind/fonts";
       "EFI/refind/drivers_x64" = "${pkgs.refind}/share/refind/drivers_x64";
       "EFI/tools/memtest86.efi" = "${pkgs.memtest86-efi}/libexec/memtest.efi";
-      "EFI/tools/fwupx64.efi"   = "${pkgs.fwupd}/lib/efi/fwupdx64.efi";
-    }
+      "EFI/tools/fwupx64.efi" = "${pkgs.fwupd}/lib/efi/fwupdx64.efi";
+    };
   };
 
   boot.initrd.compressor = "xz";
-  boot.initrd.compressorArgs = [ "--check=crc32" "--lzma2=dict=6MiB" "-T0" ];
-  boot.initrd.availableKernelModules = [ "i915" "ext4" ];
+  boot.initrd.compressorArgs = [
+    "--check=crc32"
+    "--lzma2=dict=6MiB"
+    "-T0"
+  ];
+  boot.initrd.availableKernelModules = [
+    "i915"
+    "ext4"
+  ];
   boot.initrd.kernelModules = [ "i915" ];
 
   boot.initrd.systemd.enable = true;
@@ -68,5 +75,4 @@
       Cmdline = "@/etc/kernel/cmdline";
     };
   };
-
 }
