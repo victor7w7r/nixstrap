@@ -1,95 +1,75 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    refind-theme-catppuccin.url = "github:catppuccin/refind";
+    refind-theme-catppuccin.flake = false;
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      home-manager,
+      nixpkgs,
+      nur,
+      chaotic,
+      ...
+    }@inputs:
     let
-      myHosts = {
-        "macmini" = {
-          system = "x86_64-linux";
-          hostSpecificNix = ./nixos/hosts/macmini/configuration.nix;
-          hostSpecificHomeConfig = ./home-manager/hosts/macmini.nix;
-          enableGui = true;
-          enableSystem = true;
-          defaultUsername = "victor7w7r";
-        };
-        "system-test" = {
-          system = "x86_64-linux";
-          enableGui = true;
-          enableSystem = true;
-          defaultUsername = "test";
-          hostSpecificNix = { };
-        };
-        "container" = {
-          system = "x86_64-linux";
-          enableGui = false;
-          enableSystem = false;
-          defaultUsername = "root";
-        };
-      };
+      system = "x86_64-linux";
+      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      lib = nixpkgs.lib;
 
-      getUsernameForHost = hostname: hostAttrs:
-        let
-          envUser = "victor7w7r"; #builtins.getEnv "NIX_USERNAME";
-          hostDefaultUser = hostAttrs.defaultUsername;
-        in if envUser != "" then envUser else hostDefaultUser;
-
-      mkNixosSystem = hostname: hostAttrs:
-        let
-          system = hostAttrs.system;
-          username = getUsernameForHost hostname hostAttrs;
-          specialArgs = {
-            inherit inputs hostname username;
-            enableGui = hostAttrs.enableGui;
-            hostSpecificHomeConfig = hostAttrs.hostSpecificHomeConfig or null;
-          };
-        in nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
+      mkSystem =
+        pkgs: system: hostname:
+        pkgs.lib.nixosSystem {
+          system = system;
           modules = [
-            ({ pkgs, lib, ... }: { })
-            ./nixos/configuration.nix
-            hostAttrs.hostSpecificNix
+            { networking.hostName = hostname; }
+            ./modules/system/sysapps.nix
+            ./modules/system/bootloader.nix
+            ./modules/system/mount-root.nix
+            ./modules/system/configuration.nix
+            ./modules/system/security.nix
+            ./modules/system/locale.nix
+            ./modules/system/fonts.nix
+            #(./. + "/hosts/${hostname}/hardware-configuration.nix")
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              #home-manager.users.${username} = import ./home.nix;
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.backupFileExtension = "hm-backup";
+              home-manager = {
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                extraSpecialArgs = { inherit inputs; };
+                #users.notus = (./. + "/hosts/${hostname}/user.nix");
+              };
+              nixpkgs.overlays = [
+                # Add nur overlay for Firefox addons
+                #nur.overlay
+                #(import ./overlays)
+              ];
             }
           ];
+          specialArgs = { inherit inputs; };
         };
 
-      mkHomeManagerConfiguration = hostname: hostAttrs:
-        let
-          system = hostAttrs.system;
-          username = getUsernameForHost hostname hostAttrs;
-          pkgs = import nixpkgs { inherit system; };
-          specialArgs = {
-            inherit inputs username hostname;
-            enableGui = hostAttrs.enableGui;
-            hostSpecificHomeConfig = hostAttrs.hostSpecificHomeConfig or null;
-          };
-        in home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = specialArgs;
-        };
-
-      nixosHosts =
-        nixpkgs.lib.filterAttrs (name: attrs: attrs.enableSystem) myHosts;
-      homeManagerHosts =
-        nixpkgs.lib.filterAttrs (name: attrs: !attrs.enableSystem) myHosts;
-
-    in {
-      nixosConfigurations = nixpkgs.lib.mapAttrs mkNixosSystem nixosHosts;
-
-      homeConfigurations = nixpkgs.lib.mapAttrs' (hostname: hostAttrs:
-        nixpkgs.lib.nameValuePair hostname
-        (mkHomeManagerConfiguration hostname hostAttrs)) homeManagerHosts;
+    in
+    {
+      nixosConfigurations = {
+        laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
+        desktop = mkSystem inputs.nixpkgs "x86_64-linux" "desktop";
+      };
     };
+
 }
