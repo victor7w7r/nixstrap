@@ -1,10 +1,14 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
   #sshfs victor7w7r@192.168.122.1:/home/victor7w7r/repositories/nixstrap /home/nixos/flakeable
+  # cd .. && rm -rf flakeable-test && cp -r flakeable flakeable-test && cd flakeable-test
+  # sudo nixos-install --root /mnt --flake .#desktop
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    refind-theme-catppuccin.url = "github:catppuccin/refind";
-    refind-theme-catppuccin.flake = false;
+    refind-theme-catppuccin = {
+      url = "github:catppuccin/refind";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,14 +42,13 @@
           system = system;
           modules = [
             { networking.hostName = hostname; }
-            ./modules/system/sysapps.nix
-            ./modules/system/bootloader.nix
-            ./modules/system/mount-root.nix
-            ./modules/system/configuration.nix
-            ./modules/system/security.nix
-            ./modules/system/locale.nix
-            ./modules/system/fonts.nix
-            #(./. + "/hosts/${hostname}/hardware-configuration.nix")
+            ./system/apps.nix
+            ./system/bootloader.nix
+            ./system/kernel.nix
+            ./system/mount-root.nix
+            ./system/config.nix
+            ./system/kernel.nix
+            ./hosts/${hostname}/hardware-configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -61,14 +64,17 @@
               ];
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            refind-theme-catppuccin = inputs.refind-theme-catppuccin;
+          };
         };
 
     in
     {
       nixosConfigurations = {
         #laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
-        desktop = mkSystem inputs.nixpkgs "x86_64-linux" "7w7r-desktop";
+        desktop = mkSystem inputs.nixpkgs "x86_64-linux" "desktop";
       };
     };
 

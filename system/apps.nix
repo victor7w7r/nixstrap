@@ -1,5 +1,14 @@
 { pkgs, ... }:
 {
+
+  nixpkgs.config.allowUnfree = true;
+
+  programs.zsh.enable = true;
+  programs.bat.enable = true;
+  programs.less.enable = true;
+  programs.skim.enable = true;
+  programs.bash.blesh.enable = true;
+
   environment.defaultPackages = [ ];
   environment.systemPackages = with pkgs; [
     microcode-intel
@@ -11,16 +20,18 @@
     sshs
     ncdu
     sig
+    sbctl
     inetutils
     linux-firmware
     ananicy-rules-cachyos
     edk2-uefi-shell
     memtest86plus
     arch-install-scripts
+    efibootmgr
     busybox
+    refind
     sshfs
     fdupes
-    sbctl
     tpm2-tools
     mokutil
     terminus_font
@@ -73,10 +84,5 @@
     bluetuith
   ];
 
-  programs.zsh.enable = true;
-  programs.bat.enable = true;
-  programs.less.enable = true;
-  programs.skim.enable = true;
-  programs.bash.blesh.enable = true;
   #services.displayManager.ly.enable = true;
 }
