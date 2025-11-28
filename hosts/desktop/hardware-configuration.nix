@@ -1,21 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
+{ config, lib, modulesPath, ... }:
 
 {
-    imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
-    
-   maindevice = "/dev/vda1";
-      mockdisk = "/dev/mapper/vg0-fstemp";
-      systemdisk = "/dev/mapper/vg0-system";
-      homedisk = "/dev/mapper/vg0-home";
-      varDisk = "/dev/mapper/vg0-var";
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
   boot.initrd.availableKernelModules = [
     "ahci"
     "xhci_pci"
@@ -24,7 +11,7 @@
     "sr_mod"
     "virtio_blk"
   ];
-  
+
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
 
@@ -101,6 +88,5 @@
 
   swapDevices = [ ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
-
   hardware = {
     bluetooth = {
       enable = true;
@@ -18,5 +17,4 @@
       pulse.enable = true;
     };
   };
-
 }

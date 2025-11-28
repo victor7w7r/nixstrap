@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mockdisk, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   console = {
@@ -62,7 +62,7 @@
       "lsm=landlock,yama,integrity,apparmor,bpf"
       "rw"
       "add_efi_memmap"
-      "root=${mockdisk}"
+      "root=${config.setupDisks.mockdisk}"
       "rootfstype=ext4"
       "rootflags=noatime,lazytime,nobarrier,nodiscard,commit=120"
       "intel_pstate=disable"

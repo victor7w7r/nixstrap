@@ -1,7 +1,5 @@
 { pkgs, ... }:
-
 {
-
   fontconfig = {
     enable = true;
     hinting.autohint = true;
@@ -20,5 +18,4 @@
     nerd-fonts.symbols-only
     font-awesome
   ];
-
 }

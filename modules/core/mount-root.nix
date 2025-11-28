@@ -1,4 +1,4 @@
-{ systemdisk, homedisk, varDisk, ... }:
+{ config, ... }:
 
 {
   boot.initrd.systemd.services.rootmount = {
@@ -19,9 +19,9 @@
 
       NEWROOT=/sysroot
 
-      if ! e2fsck -n ${systemdisk}; then e2fsck -y ${systemdisk}; fi
-      if ! e2fsck -n ${homedisk}; then e2fsck -y ${homedisk}; fi
-      if ! e2fsck -n ${varDisk}; then e2fsck -y ${varDisk}; fi
+      if ! e2fsck -n ${config.setupDisks.systemdisk}; then e2fsck -y ${config.setupDisks.systemdisk}; fi
+      if ! e2fsck -n ${config.setupDisks.homedisk}; then e2fsck -y ${config.setupDisks.homedisk}; fi
+      if ! e2fsck -n ${config.setupDisks.varDisk}; then e2fsck -y ${config.setupDisks.varDisk}; fi
 
       mkdir -p /run/troot
       mount --make-private "$NEWROOT" 2>> /run/.root.log
@@ -41,9 +41,9 @@
       OPTS=noatime,lazytime,nobarrier,nodiscard,commit=120
 
       #mount -t vfat /dev/disk/by-label/EFI "$NEWROOT"/boot
-      mount -t ext4 -o $OPTS ${systemdisk} "$NEWROOT"/.rootfs
-      mount -t ext4 -o $OPTS ${homedisk} "$NEWROOT"/media/ext
-      mount -t ext4 -o $OPTS ${varDisk} "$NEWROOT"/.varfs
+      mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} "$NEWROOT"/.rootfs
+      mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} "$NEWROOT"/media/ext
+      mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} "$NEWROOT"/.varfs
 
       mount --bind "$NEWROOT"/.rootfs/etc "$NEWROOT"/etc
       mount --bind "$NEWROOT"/.rootfs/nix "$NEWROOT"/nix

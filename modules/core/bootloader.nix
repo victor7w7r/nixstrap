@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  maindevice,
-  ...
-}:
+{ pkgs, inputs, config, ... }:
 {
   boot.loader = {
     efi = {
@@ -82,7 +77,7 @@
           ${pkgs.efibootmgr}/bin/efibootmgr -b "$entry" -B &> /dev/null
         done
       ${pkgs.efibootmgr}/bin/efibootmgr --create \
-        --disk ${maindevice} --part 1 \
+        --disk ${config.setupDisks.maindevice} --part 1 \
         --loader /EFI/refind/refind_x64.efi \
         --label "rEFInd" \
         --unicode &> /dev/null
