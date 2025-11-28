@@ -1,10 +1,6 @@
 { pkgs, ... }:
 {
-  fonts.fontconfig = {
-    enable = true;
-    hinting.autohint = true;
-  };
-
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     roboto
     openmoji-color
