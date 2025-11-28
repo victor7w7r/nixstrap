@@ -1,13 +1,23 @@
 { pkgs, ... }:
 {
 
-  nixpkgs.config.allowUnfree = true;
-
-  programs.zsh.enable = true;
-  programs.bat.enable = true;
-  programs.less.enable = true;
-  programs.skim.enable = true;
-  programs.bash.blesh.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [];
+    zsh.enable = true;
+    bat.enable = true;
+    less.enable = true;
+    skim.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+    #bash.blesh.enable = true;
+  };
 
   environment.defaultPackages = [ ];
   environment.systemPackages = with pkgs; [
@@ -16,6 +26,7 @@
     git
     zoxide
     lsof
+    blueman
     lvm2
     sshs
     ncdu
@@ -83,6 +94,4 @@
     bluetui
     bluetuith
   ];
-
-  #services.displayManager.ly.enable = true;
 }

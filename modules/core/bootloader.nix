@@ -1,6 +1,7 @@
 {
   pkgs,
-  refind-theme-catppuccin,
+  inputs,
+  maindevice,
   ...
 }:
 {
@@ -12,34 +13,25 @@
     systemd-boot.enable = false;
     grub.enable = false;
   };
-  boot.postBootCommands = ''
-    DEVMGR="/dev/nvme0n1"
 
-    efibootmgr --create \
-      --disk "$DEVMGR" --part 1 \
-      --loader /EFI/refind/refind_x64.efi \
-      --label "rEFInd" \
-      --unicode
-  '';
   system.activationScripts.installManualRefind = {
     text = ''
       mkdir -p /boot/EFI/refind/drivers_x64
-      mkdir /boot/EFI/refind/themes
-      mkdir /boot/EFI/refind/icons
-      mkdir /boot/EFI/refind/fonts
-      mkdir /boot/EFI/tools
-      mkdir /boot/EFI/Linux
+      mkdir -p /boot/EFI/refind/themes
+      mkdir -p /boot/EFI/refind/icons
+      mkdir -p /boot/EFI/refind/fonts
+      mkdir -p /boot/EFI/tools
+      mkdir -p /boot/EFI/Linux
 
       cp ${pkgs.refind}/share/refind/refind_x64.efi /boot/EFI/refind/refind_x64.efi
 
       cp -r ${pkgs.refind}/share/refind/drivers_x64/* /boot/EFI/refind/drivers_x64/
-      cp -r ${pkgs.refind}/share/refind/themes/* /boot/EFI/refind/themes/
       cp -r ${pkgs.refind}/share/refind/icons/* /boot/EFI/refind/icons/
       cp -r ${pkgs.refind}/share/refind/fonts/* /boot/EFI/refind/fonts/
 
       cp ${pkgs.memtest86-efi}/BOOTX64.efi /boot/EFI/tools/memtest86.efi
       cp ${pkgs.fwupd-efi}/libexec/fwupd/efi/fwupdx64.efi /boot/EFI/tools/fwupx64.efi
-      cp -r ${pkgs.refind-theme-catppuccin} /boot/EFI/refind/themes/catppuccin/
+      cp -r ${inputs.catppuccin-refind} /boot/EFI/refind/themes/catppuccin/
     '';
     deps = [ "specialfs" ];
   };
@@ -64,7 +56,7 @@
         dont_scan_files grubx64.efi
 
         menuentry "NixOS" {
-          icon /EFI/refind/icons/os_arch.png
+          icon /EFI/refind/icons/os_nixos.png
           loader /EFI/Linux/nixos.efi
           ostype "Linux"
           submenuentry "Single User" {
@@ -78,4 +70,24 @@
     '';
     deps = [ "installManualRefind" ];
   };
+
+  system.activationScripts.cleanupRefind = {
+    text = ''
+      ${pkgs.efibootmgr}/bin/efibootmgr \
+        | grep -i "rEFind" \
+        | ${pkgs.gawk}/bin/awk '{print $1}' \
+        | ${pkgs.gnused}/bin/sed 's/Boot//' \
+        | ${pkgs.gnused}/bin/sed 's/\*//' \
+        | while read entry; do
+          ${pkgs.efibootmgr}/bin/efibootmgr -b "$entry" -B &> /dev/null
+        done
+      ${pkgs.efibootmgr}/bin/efibootmgr --create \
+        --disk ${maindevice} --part 1 \
+        --loader /EFI/refind/refind_x64.efi \
+        --label "rEFInd" \
+        --unicode &> /dev/null
+    '';
+    deps = [ "writeRefindConfig" ];
+  };
+
 }
