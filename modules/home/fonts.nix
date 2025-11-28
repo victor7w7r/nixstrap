@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  fontconfig = {
+  fonts.fontconfig = {
     enable = true;
     hinting.autohint = true;
   };
