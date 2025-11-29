@@ -34,10 +34,10 @@
     in
     {
       nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
+        vm = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ (import ./hosts/desktop) ];
-          specialArgs = { host="desktop"; inherit self inputs username ; };
+          modules = [ (import ./hosts/vm) ];
+          specialArgs = { host="vm"; inherit self inputs username ; };
         };
       };
     };
