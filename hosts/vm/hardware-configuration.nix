@@ -24,7 +24,17 @@
     ];
   };
 
-  swapDevices = [ ];
+  fileSystems."/" = {
+    device = "/dev/mapper/vg0-fstemp";
+    fsType = "ext4";
+    options = [
+      "noatime"
+      "lazytime"
+      "nobarrier"
+      "nodiscard"
+      "commit=120"
+    ];
+  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

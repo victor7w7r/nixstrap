@@ -27,7 +27,7 @@
       ];
       kernelModules = [ "i915" ];
       services.lvm.enable = true;
-      extraFiles."/syskey.key".source = "/run/secrets/syskey.key";
+      #extraFiles."/syskey.key".source = "/run/secrets/syskey.key";
       #"/extkey.key" = "/run/secrets/extkey.key";
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
@@ -36,7 +36,7 @@
       luks.devices = {
         system = {
           device = "/dev/disk/by-label/SYSTEM";
-          keyFile = "/syskey.key";
+          #keyFile = "/syskey.key";
           allowDiscards = true;
           preLVM = true;
         };

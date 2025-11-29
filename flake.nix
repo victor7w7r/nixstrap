@@ -37,7 +37,7 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ (import ./hosts/vm) ];
-          specialArgs = { host="vm"; inherit self inputs username ; };
+          specialArgs = { host="vm"; inherit self inputs username; };
         };
       };
     };
