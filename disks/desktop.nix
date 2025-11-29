@@ -31,7 +31,17 @@ in
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = [
+                  "relatime"
+                  "fmask=0022"
+                  "dmask=0022"
+                  "umask=0077"
+                  "codepage=437"
+                  "iocharset=iso8859-1"
+                  "shortname=mixed"
+                  "utf8"
+                  "errors=remount-ro"
+                  ];
               };
             };
             luks = {
@@ -88,7 +98,6 @@ in
               mountOptions = commonOptions;
               postMountHook = ''
                 mkdir -p /home/.root /home/common
-                chown -R wheel:users /home/common
                 mount --bind /home/.root /root
               '';
             };

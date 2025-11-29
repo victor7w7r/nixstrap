@@ -43,6 +43,7 @@
       mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} "$NEWROOT"/nix
       mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} "$NEWROOT"/home
       mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} "$NEWROOT"/var
+      #chown -R wheel:users /home/common
 
       mount --bind "$NEWROOT"/home/.root "$NEWROOT"/root
       mount --bind "$NEWROOT"/nix/.etc "$NEWROOT"/etc
