@@ -1,8 +1,6 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
-  # sshfs victor7w7r@192.168.122.1:/home/victor7w7r/repositories/nixstrap /home/nixos/flakeable && cd flakeable-test
   # cd .. && rm -rf flakeable-test && cp -r flakeable flakeable-test && cd flakeable-test
-  # sudo nixos-install --root /mnt --flake .#desktop
   #jovian.nixosModules.default
   #chaotic.nixosModules.default
   #home-manager.nixosModules.home-manager

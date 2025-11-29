@@ -24,6 +24,7 @@
       cp -r ${pkgs.refind}/share/refind/icons/* /boot/EFI/refind/icons/
       cp -r ${pkgs.refind}/share/refind/fonts/* /boot/EFI/refind/fonts/
 
+      cp ${pkgs.edk2-uefi-shell}/shell.efi /boot/EFI/tools/shellx64.efi
       cp ${pkgs.memtest86-efi}/BOOTX64.efi /boot/EFI/tools/memtest86.efi
       cp ${pkgs.fwupd-efi}/libexec/fwupd/efi/fwupdx64.efi /boot/EFI/tools/fwupx64.efi
       cp -r ${inputs.catppuccin-refind} /boot/EFI/refind/themes/catppuccin/

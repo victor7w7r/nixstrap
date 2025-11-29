@@ -6,7 +6,6 @@ with lib;
   options.setupDisks = mkOption {
     type = types.attrsOf types.str;
     description = "Rutas de los discos principales del sistema.";
-    # Aquí mismo pones tus valores
     default = {
       maindevice = "/dev/vda1";
       mockdisk = "/dev/mapper/vg0-fstemp";
