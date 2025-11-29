@@ -26,6 +26,7 @@ in
             ESP = {
               size = "500M";
               type = "EF00";
+              name = "EFI";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -38,13 +39,10 @@ in
               content = {
                 type = "luks";
                 name = "SYSTEM";
-                settings = {
-                  keyFile = "/tmp/secret.key";
-                  allowDiscards = true;
-                };
+                settings.allowDiscards = true;
                 content = {
                   type = "lvm_pv";
-                  vg = "pool";
+                  vg = "vg0";
                 };
               };
             };
@@ -53,7 +51,7 @@ in
       };
     };
     lvm_vg = {
-      pool = {
+      vg0 = {
         type = "lvm_vg";
         lvs = {
           fstemp = {
@@ -64,10 +62,9 @@ in
               mountpoint = "/";
               extraArgs = commonArgs ++ [ "-L"  "fstemp" ];
               mountOptions = commonOptions;
-              postCreateHook = ''
-                mkdir -p /mnt/media/vm \
-                /mnt/usr /mnt/etc /mnt/root /mnt/var /mnt/home /mnt/opt /mnt/.rootfs \
-                /mnt/.varfs /mnt/nix /mnt/boot /mnt/media/ext/.fs
+              postMountHook = ''
+                mkdir -p /mnt/kvm /mnt/usr /mnt/nix
+                mkdir -p /mnt/etc /mnt/root /mnt/opt
               '';
             };
           };
@@ -76,13 +73,9 @@ in
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/.varfs";
+              mountpoint = "/var";
               extraArgs = commonArgs ++ [ "-L"  "var" ];
               mountOptions = commonOptions;
-              postCreateHook = ''
-                mkdir -p /mnt/.varfs/root && \
-                mkdir -p /mnt/.varfs/var
-              '';
             };
           };
           home = {
@@ -90,34 +83,29 @@ in
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/mnt/media/ext";
+              mountpoint = "/home";
               extraArgs = commonArgs ++ [ "-L"  "home" ];
               mountOptions = commonOptions;
-              postCreateHook = ''
-                mkdir -p /mnt/media/ext/.fs/home && \
-                mkdir -p /mnt/media/ext/.fs/opt
+              postMountHook = ''
+                mkdir -p /home/.root /home/common
+                chown -R wheel:users /home/common
+                mount --bind /home/.root /root
               '';
             };
           };
-          root = {
+          system = {
             size = "100%";
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/.rootfs";
+              mountpoint = "/nix";
               extraArgs = commonArgs ++ [ "-L"  "system" ];
               mountOptions = commonOptions;
-              postCreateHook = ''
-                mkdir -p /mnt/.rootfs/etc && \
-                mkdir -p /mnt/.rootfs/nix
-                mount --bind /mnt/.rootfs/etc /mnt/etc && \
-                mount --bind /mnt/.rootfs/usr /mnt/usr && \
-                mount --bind /mnt/.rootfs/nix /mnt/nix && \
-                mount --bind /mnt/.varfs/root /mnt/root && \
-                mount --bind /mnt/.varfs/var /mnt/var && \
-                mount --bind /mnt/media/ext/.fs/home /mnt/home && \
-                mount --bind /mnt/media/ext/.fs/opt /mnt/opt
-              '';
+              postMountHook = ''
+                mkdir -p /mnt/nix/.etc /mnt/nix/.opt
+                mount --bind /mnt/nix/.etc /mnt/etc
+                mount --bind /mnt/nix/.opt /mnt/opt
+                '';
             };
           };
         };

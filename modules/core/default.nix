@@ -3,7 +3,7 @@
   imports =
     [ (import ./bootloader.nix) ]
     ++ [ (import ./kernel.nix) ]
-    ++ [ (import ./mount-root.nix) ]
+    ++ [ (import ./mounts.nix) ]
     ++ [ (import ./software.nix) ]
     ++ [ (import ./hardware.nix) ]
     ++ [ (import ./security.nix) ]

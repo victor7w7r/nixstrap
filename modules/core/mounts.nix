@@ -1,8 +1,8 @@
 { config, ... }:
 
 {
-  boot.initrd.systemd.services.rootmount = {
-    description = "Mount root";
+  boot.initrd.systemd.services.fsmount = {
+    description = "Mount filesystems";
     unitConfig.DefaultDependencies = false;
     serviceConfig = {
       Type = "oneshot";
@@ -32,7 +32,7 @@
       cp -a -r "$NEWROOT/bin" "/run/troot/"
       cp -a -r "$NEWROOT/lib64" "/run/troot/"
 
-      for dir in .varfs .rootfs media/ext media/vm home etc usr nix mnt root var opt boot tmp; do
+      for dir in boot kvm etc nix root var home opt usr; do
         mkdir -p "/run/troot/$dir"
       done
 
@@ -40,18 +40,15 @@
 
       OPTS=noatime,lazytime,nobarrier,nodiscard,commit=120
 
-      #mount -t vfat /dev/disk/by-label/EFI "$NEWROOT"/boot
-      mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} "$NEWROOT"/.rootfs
-      mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} "$NEWROOT"/media/ext
-      mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} "$NEWROOT"/.varfs
+      mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} "$NEWROOT"/nix
+      mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} "$NEWROOT"/home
+      mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} "$NEWROOT"/var
 
-      mount --bind "$NEWROOT"/.rootfs/etc "$NEWROOT"/etc
-      mount --bind "$NEWROOT"/.rootfs/nix "$NEWROOT"/nix
-      mount --bind "$NEWROOT"/.varfs/var "$NEWROOT"/var
-      mount --bind "$NEWROOT"/.varfs/root "$NEWROOT"/root
+      mount --bind "$NEWROOT"/home/.root "$NEWROOT"/root
+      mount --bind "$NEWROOT"/nix/.etc "$NEWROOT"/etc
+      mount --bind "$NEWROOT"/nix/.opt "$NEWROOT"/opt
 
-      mount --bind "$NEWROOT"/media/ext/.fs/home "$NEWROOT"/home
-      mount --bind "$NEWROOT"/media/ext/.fs/opt "$NEWROOT"/opt
+      mount --bind "$NEWROOT"/home/common "$NEWROOT"/home
       mount -t tmpfs -o mode=0777 tmpfs "$NEWROOT"/tmp || true
       mount -t tmpfs -o mode=0777 tmpfs "$NEWROOT"/var/tmp || true
       mount -t tmpfs -o mode=0777 tmpfs "$NEWROOT"/var/cache || true
