@@ -15,7 +15,7 @@
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
   nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
-  
+
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
