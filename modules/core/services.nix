@@ -7,6 +7,7 @@
     fwupd.enable = true;
     openssh.enable = true;
     dbus.enable = true;
+    #preload.enable = true;
     fstrim.enable = true;
     scx.enable = true;
     kmscon = {

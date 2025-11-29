@@ -10,7 +10,7 @@ in
         content = {
           type = "gpt";
           partitions = {
-            inherit (common) ESP luks;
+            inherit (common) ESP SYSTEM;
           };
         };
       };
@@ -69,7 +69,7 @@ in
                 mkdir -p /mnt/nix/.etc /mnt/nix/.opt
                 mount --bind /mnt/nix/.etc /mnt/etc
                 mount --bind /mnt/nix/.opt /mnt/opt
-                '';
+              '';
             };
           };
         };

@@ -1,4 +1,5 @@
 {
+  #"echo -n "password" > /tmp/pass.key"
   ESP = {
     size = "500M";
     type = "EF00";
@@ -21,16 +22,27 @@
     };
   };
 
-  luks = {
+  SYSTEM = {
     size = "100%";
     content = {
       type = "luks";
-      name = "SYSTEM";
-      settings.allowDiscards = true;
+      name = "cryptsystem";
+      settings = {
+        keyFile = "/tmp/pass.key";
+        allowDiscards = true;
+      };
       content = {
         type = "lvm_pv";
         vg = "vg0";
       };
+      preCreateHook = ''
+        dd if=/dev/urandom of=/tmp/keygen.key bs=1 count=64
+        chmod 0400 /tmp/keygen.key
+      '';
+      postCreateHook = ''
+        cryptsetup config /dev/disk/by-partlabel/disk-main-SYSTEM --label "SYSTEM"
+        cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-SYSTEM /tmp/keygen.key -d /tmp/pass.key
+      '';
     };
   };
 
