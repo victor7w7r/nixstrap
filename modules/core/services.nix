@@ -2,7 +2,9 @@
 {
   services = {
     gvfs.enable = true;
+    cockpit.enable = true;
     udisks2.enable = true;
+    fwupd.enable = true;
     openssh.enable = true;
     dbus.enable = true;
     fstrim.enable = true;

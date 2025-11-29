@@ -1,8 +1,12 @@
 { ... }:
 {
   security = {
+    apparmor = {
+      enable = true;
+      enableCache = true;
+    };
     rtkit.enable = true;
-    sudo = {
+    sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
     };

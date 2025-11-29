@@ -22,7 +22,7 @@
     firewall = {
       enable = true;
       logRefusedPackets = true;
-      allowedTCPPorts = [ 22 80 443 59010 59011 53317 ];
+      allowedTCPPorts = [ 22 80 443 3389 5900 9090 ];
       allowedUDPPorts = [ 59010 59011 53317 4501 5353 ];
     };
   };
