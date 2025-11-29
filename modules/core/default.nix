@@ -11,6 +11,6 @@
     ++ [ (import ./system.nix) ]
     ++ [ (import ./user.nix) ]
     #++ [ (import ./wayland.nix) ]
-    ++ [ (import ./kvm.nix) ];
+    #++ [ (import ./kvm.nix) ];
     #++ [ (import ./overlays.nix) ]
 }
