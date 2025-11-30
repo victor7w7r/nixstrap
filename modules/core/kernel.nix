@@ -13,11 +13,15 @@
     font = "spleen-8x16";
     keyMap = "us";
   };
-
   boot = {
+    kernelModules = [ "ntsync" ];
     tmp.cleanOnBoot = true;
     tmp.useTmpfs = true;
-    kernelPackages = pkgs.linuxPackages_latest;
+    modprobeConfig.enable = true;
+    extraModprobeConfig = ''
+      blacklist iTCO_wdt
+    '';
+    kernelPackages = pkgs.linuxPackages;
     initrd = {
       enable = true;
       compressor = "xz";
@@ -32,6 +36,20 @@
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
         #"/syskey.key" = null;
+      };
+      kernel.sysctl = {
+        "vm.swappiness" = 60;
+        "vm.vfs_cache_pressure" = 50;
+        "vm.dirty_bytes" = 268435456;
+        "vm.page-cluster" = 0;
+        "vm.dirty_background_bytes" = 67108864;
+        "vm.dirty_writeback_centisecs" = 1500;
+        "kernel.nmi_watchdog" = 0;
+        "kernel.unprivileged_userns_clone" = 1;
+        "kernel.printk" = "3 3 3 3";
+        "kernel.kptr_restrict" = 2;
+        "net.core.netdev_max_backlog" = 4096;
+        "fs.file-max" = 2097152;
       };
       luks.devices = {
         system = {
@@ -50,11 +68,15 @@
         enable = true;
         emergencyAccess = true;
         extraBin = {
+          ip = "${pkgs.iproute2}/bin/ip";
           bash = "${pkgs.bash}/bin/bash";
           find = "${pkgs.findutils}/bin/find";
           coreutils = "${pkgs.coreutils-full}/bin/coreutils";
           grep = "${pkgs.gnugrep}/bin/grep";
+          ping = "${pkgs.iputils}/bin/ping";
           busybox = "${pkgs.busybox}/bin/busybox";
+          users.root.shell = "${pkgs.bashInteractive}/bin/bash";
+          storePaths = [ "${pkgs.bashInteractive}/bin/bash" ];
         };
       };
     };

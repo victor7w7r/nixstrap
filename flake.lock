@@ -826,10 +826,6 @@
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
-        "jovian": [
-          "chaotic",
-          "jovian"
-        ],
         "nixpkgs": "nixpkgs_4",
         "nur": "nur",
         "pyprland": "pyprland"

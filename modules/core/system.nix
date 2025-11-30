@@ -20,11 +20,14 @@
 
   networking = {
     hostName = "${host}";
-    networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
-    #nameservers = [ "8.8.8.8" ];
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      #wifi.powersave = true;
+    };
     firewall = {
-      enable = false;
+      #allowPing = true;
+      #enable = false;
       #logRefusedPackets = true;
       allowedTCPPorts = [
         22
@@ -53,6 +56,13 @@
     LC_PAPER = "es_ES.UTF-8";
     LC_TELEPHONE = "es_ES.UTF-8";
     LC_TIME = "es_ES.UTF-8";
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 70;
   };
 
 }

@@ -3,11 +3,11 @@
   services = {
     #opensnitch.enable = true;
     logrotate.enable = true;
-    clamav = {
-      daemon.enable = true;
-      updater.enable = true;
-      scanner.enable = true;
-    };
+    #clamav = {
+    #  daemon.enable = true;
+    #  updater.enable = true;
+    #  scanner.enable = true;
+    #};
   };
   security = {
     apparmor = {

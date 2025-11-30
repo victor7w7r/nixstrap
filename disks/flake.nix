@@ -6,7 +6,11 @@
   };
 
   outputs =
-    { nixpkgs, disko }:
+    {
+      nixpkgs,
+      disko,
+      self,
+    }:
     {
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {

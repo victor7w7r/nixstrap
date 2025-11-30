@@ -1,8 +1,7 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
-  # sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
-  #jovian.nixosModules.default
-  #chaotic.nixosModules.default
+  # sudo sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     catppuccin-refind = {
@@ -25,11 +24,15 @@
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     };
-    jovian.follows = "chaotic/jovian";
   };
 
   outputs =
-    { nixpkgs, self, ... }@inputs:
+    {
+      nixpkgs,
+      chaotic,
+      self,
+      ...
+    }@inputs:
     let
       username = "victor7w7r";
     in
@@ -37,7 +40,10 @@
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./hosts/vm ];
+          modules = [
+            ./hosts/vm
+            chaotic.nixosModules.default
+          ];
           specialArgs = {
             host = "vm";
             inherit self inputs username;

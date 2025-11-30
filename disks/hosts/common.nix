@@ -6,9 +6,12 @@
     name = "EFI";
     content = {
       type = "filesystem";
-      label = "EFI";
       format = "vfat";
       mountpoint = "/boot";
+      extraArgs = [
+        "-n"
+        "EFI"
+      ];
       mountOptions = [
         "relatime"
         "fmask=0022"

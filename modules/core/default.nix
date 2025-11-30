@@ -8,6 +8,7 @@
     (import ./security.nix)
     (import ./services.nix)
     (import ./system.nix)
+    (import ./systemd.nix)
     (import ./login-manager.nix)
     (import ./user.nix)
   ]
