@@ -12,7 +12,7 @@
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./vm.nix
+            ./hosts/vm.nix
             disko.nixosModules.disko
           ];
         };
