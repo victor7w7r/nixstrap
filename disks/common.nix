@@ -6,6 +6,7 @@
     name = "EFI";
     content = {
       type = "filesystem";
+      label = "EFI";
       format = "vfat";
       mountpoint = "/boot";
       mountOptions = [
@@ -18,7 +19,7 @@
         "shortname=mixed"
         "utf8"
         "errors=remount-ro"
-        ];
+      ];
     };
   };
 

@@ -2,7 +2,7 @@
 {
   programs = {
     nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [];
+    nix-ld.libraries = [ ];
     zsh.enable = true;
     less.enable = true;
     skim.enable = true;

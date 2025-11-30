@@ -1,4 +1,9 @@
-{ pkgs, inputs, config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   boot.loader = {
     efi = {
@@ -52,14 +57,14 @@
         dont_scan_files grubx64.efi
 
         menuentry "NixOS" {
-          icon /EFI/refind/icons/os_nixos.png
-          loader /EFI/Linux/nixos.efi
+          icon /EFI/refind/themes/catppuccin/assets/mocha/icons/os_nixos.png
+          loader /EFI/nixos.efi
           ostype "Linux"
           submenuentry "Single User" {
-            loader /EFI/Linux/arch-linux-single.efi
+            loader /EFI/arch-linux-single.efi
           }
           submenuentry "Multi User" {
-            loader /EFI/Linux/arch-linux-multi.efi
+            loader /EFI/arch-linux-multi.efi
           }
         }
       EOF

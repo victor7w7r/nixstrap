@@ -1,4 +1,10 @@
-{ pkgs, inputs, username, host, ...}:
+{
+  pkgs,
+  inputs,
+  username,
+  host,
+  ...
+}:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
   home-manager = {
@@ -7,9 +13,9 @@
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
       imports = [ ./../home ];
-        #if (host == "desktop") then
-        # [ ./../home/default.desktop.nix ]
-        #else
+      #if (host == "desktop") then
+      # [ ./../home/default.desktop.nix ]
+      #else
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
       home.stateVersion = "24.05";
@@ -32,8 +38,16 @@
       "users"
       "video"
       "wheel"
-      ];
+    ];
     shell = pkgs.zsh;
   };
+
   nix.settings.allowed-users = [ "${username}" ];
+
+  system.activationScripts.setupHomeCommon = {
+    text = ''
+      mkdir -p /home/common
+      chown -R ${username}:wheel /home/common
+    '';
+  };
 }

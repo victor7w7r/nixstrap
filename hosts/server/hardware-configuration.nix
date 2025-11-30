@@ -25,26 +25,31 @@
   boot = {
     initrd = {
       availableKernelModules = [
-        "ahci"
-        "xhci_pci"
-        "virtio_pci"
-        "virtio_scsi"
-        "sr_mod"
-        "virtio_blk"
-        #"i915"
-        #"ext4"
+        "i915"
+        "ext4"
       ];
       kernelModules = [ "dm-snapshot" ];
       kernelParams = [
-        #"intel_pstate=disable"
-        #"i915.enable_guc=2"
-        #"i915.enable_psr=0"
+        "intel_pstate=disable"
+        "i915.enable_guc=2"
+        "i915.enable_psr=0"
         "kvm.ignore_msrs=1"
-        #"kvm.nx_huge_pages=off"
-        #"kvm.report_ignored_msrs=0"
-        #"kvm_intel.emulate_invalid_guest_state=0"
-        #"kvm_intel.nested=1"
+        "kvm.nx_huge_pages=off"
+        "kvm.report_ignored_msrs=0"
+        "kvm_intel.emulate_invalid_guest_state=0"
+        "kvm_intel.nested=1"
       ];
+    };
+  };
+
+  services = {
+    pulseaudio.enable = false;
+    blueman.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
     };
   };
 

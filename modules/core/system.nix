@@ -3,7 +3,10 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     gc = {
       automatic = true;
@@ -18,12 +21,13 @@
   networking = {
     hostName = "${host}";
     networkmanager.enable = true;
-    nameservers = [ "8.8.8.8" ];
+    networkmanager.dns = "systemd-resolved";
+    #nameservers = [ "8.8.8.8" ];
     firewall = {
-      enable = true;
-      logRefusedPackets = true;
-      allowedTCPPorts = [ 22 80 443 3389 5900 9090 ];
-      allowedUDPPorts = [ 59010 59011 53317 4501 5353 ];
+      enable = false;
+      #logRefusedPackets = true;
+      #allowedTCPPorts = [ 22 53 67 80 3389 5900 9090 ];
+      #allowedUDPPorts = [ 59010 59011 53317 4501 5353 ];
     };
   };
 
