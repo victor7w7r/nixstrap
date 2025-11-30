@@ -1,6 +1,6 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
-  # cd .. && rm -rf flakeable-test && cp -r flakeable flakeable-test && cd flakeable-test
+  # sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
   #jovian.nixosModules.default
   #chaotic.nixosModules.default
   inputs = {
@@ -32,13 +32,12 @@
     { nixpkgs, self, ... }@inputs:
     let
       username = "victor7w7r";
-      system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/vm) ];
+          system = "x86_64-linux";
+          modules = [ ./hosts/vm ];
           specialArgs = {
             host = "vm";
             inherit self inputs username;

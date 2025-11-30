@@ -23,6 +23,16 @@
   };
 
   boot = {
+    kernelParams = [
+      #"intel_pstate=disable"
+      #"i915.enable_guc=2"
+      #"i915.enable_psr=0"
+      "kvm.ignore_msrs=1"
+      #"kvm.nx_huge_pages=off"
+      #"kvm.report_ignored_msrs=0"
+      #"kvm_intel.emulate_invalid_guest_state=0"
+      #"kvm_intel.nested=1"
+    ];
     initrd = {
       availableKernelModules = [
         "ahci"
@@ -35,16 +45,6 @@
         #"ext4"
       ];
       kernelModules = [ "dm-snapshot" ];
-      kernelParams = [
-        #"intel_pstate=disable"
-        #"i915.enable_guc=2"
-        #"i915.enable_psr=0"
-        "kvm.ignore_msrs=1"
-        #"kvm.nx_huge_pages=off"
-        #"kvm.report_ignored_msrs=0"
-        #"kvm_intel.emulate_invalid_guest_state=0"
-        #"kvm_intel.nested=1"
-      ];
     };
   };
 

@@ -1,8 +1,13 @@
 { ... }:
 {
   services = {
-    opensnitch.enable = true;
+    #opensnitch.enable = true;
     logrotate.enable = true;
+    clamav = {
+      daemon.enable = true;
+      updater.enable = true;
+      scanner.enable = true;
+    };
   };
   security = {
     apparmor = {
@@ -10,11 +15,6 @@
       enableCache = true;
     };
     rtkit.enable = true;
-    clamav = {
-      daemon.enable = true;
-      updater.enable = true;
-      scanner.enable = true;
-    };
     #clamav-gui clamav-unofficial-sigs
     sudo-rs = {
       enable = true;

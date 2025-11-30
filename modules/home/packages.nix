@@ -12,15 +12,15 @@
       capitaine-cursors
       capitaine-cursors-themed
 
-      bottles
-      dosbox
-      goverlay
-      vkbasalt
-      inotify-tools
+      #bottles
+      #dosbox
+      #goverlay
+      #vkbasalt
+      #inotify-tools
       #nyrna
-      protonup-qt
-      umu-launcher
-      vkd3d-proton
+      #protonup-qt
+      #umu-launcher
+      #vkd3d-proton
     ]
   );
   #xorg-xwininfo
