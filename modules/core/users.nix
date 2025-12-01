@@ -7,6 +7,7 @@
 }:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
+  nix.settings.allowed-users = [ "${username}" ];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -16,9 +17,11 @@
       #if (host == "desktop") then
       # [ ./../home/default.desktop.nix ]
       #else
-      home.username = "${username}";
-      home.homeDirectory = "/home/${username}";
-      home.stateVersion = "24.05";
+      home = {
+        username = "${username}";
+        homeDirectory = "/home/${username}";
+        stateVersion = "24.05";
+      };
       programs.home-manager.enable = true;
     };
   };
@@ -33,6 +36,7 @@
       "networkmanager"
       "input"
       "power"
+      "libvirtd"
       "storage"
       "tty"
       "users"
@@ -40,14 +44,5 @@
       "wheel"
     ];
     shell = pkgs.zsh;
-  };
-
-  nix.settings.allowed-users = [ "${username}" ];
-
-  system.activationScripts.setupHomeCommon = {
-    text = ''
-      mkdir -p /home/common
-      chown -R ${username}:wheel /home/common
-    '';
   };
 }

@@ -2,6 +2,8 @@
 {
   services = {
     gvfs.enable = true;
+    locate.enable = true;
+    logrotate.enable = true;
     cockpit.enable = true;
     udisks2.enable = true;
     fwupd.enable = true;
@@ -11,6 +13,12 @@
     #preload.enable = true;
     fstrim.enable = true;
     scx.enable = true;
+    #opensnitch.enable = true;
+    #clamav = {
+    #  daemon.enable = true;
+    #  updater.enable = true;
+    #  scanner.enable = true;
+    #};
     kmscon = {
       enable = true;
       hwRender = false;
@@ -27,7 +35,6 @@
         palette-background=30, 30, 46
       '';
     };
-    journald.extraConfig = "SystemMaxUse=50M";
     timesyncd = {
       enable = true;
       extraConfig = ''
@@ -67,5 +74,6 @@
           ATTRS{id/bus}=="ata", RUN+="${pkgs.hdparm}/bin/hdparm -B 254 -S 0 /dev/%k"
       DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
     '';
+    journald.extraConfig = "SystemMaxUse=50M";
   };
 }

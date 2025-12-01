@@ -4,10 +4,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    catppuccin-refind = {
-      url = "github:catppuccin/refind";
-      flake = false;
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +19,10 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
+    };
+    catppuccin-refind = {
+      url = "github:catppuccin/refind";
+      flake = false;
     };
   };
 
@@ -51,5 +51,4 @@
         };
       };
     };
-
 }

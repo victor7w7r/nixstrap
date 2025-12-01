@@ -3,15 +3,13 @@ let
 in
 {
   disko.devices = {
-    disk = {
-      main = {
-        type = "disk";
-        device = "/dev/vda";
-        content = {
-          type = "gpt";
-          partitions = {
-            inherit (common) ESP SYSTEM;
-          };
+    disk.main = {
+      type = "disk";
+      device = "/dev/vda";
+      content = {
+        type = "gpt";
+        partitions = {
+          inherit (common) ESP SYSTEM;
         };
       };
     };

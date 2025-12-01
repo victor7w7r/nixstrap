@@ -2,7 +2,7 @@
 
 {
   boot.initrd.systemd.services.fsmount = {
-    description = "Mount filesystems";
+    description = "Custom Filesystem Mount";
     unitConfig.DefaultDependencies = false;
     serviceConfig = {
       Type = "oneshot";
@@ -11,7 +11,6 @@
     wantedBy = [ "initrd.target" ];
     before = [ "initrd-find-nixos-closure.service" ];
     after = [ "sysroot.mount" ];
-
     script = ''
       #!/bin/sh
       set -e

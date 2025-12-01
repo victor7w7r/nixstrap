@@ -1,25 +1,20 @@
-{
-  config,
-  lib,
-  modulesPath,
-  ...
-}:
-
+{ modulesPath, ... }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-partlabel/disk-main-EFI";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  fileSystems."/" = {
-    device = "/dev/mapper/vg0-fstemp";
-    fsType = "ext4";
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-partlabel/disk-main-EFI";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
+    "/" = {
+      device = "/dev/mapper/vg0-fstemp";
+      fsType = "ext4";
+    };
   };
 
   boot = {

@@ -5,47 +5,12 @@
   ...
 }:
 {
-  console = {
-    enable = true;
-    packages = [ pkgs.spleen ];
-    earlySetup = true;
-    font = "spleen-8x16";
-    keyMap = "us";
-  };
   boot = {
     kernelModules = [ "ntsync" ];
-    tmp.cleanOnBoot = true;
-    tmp.useTmpfs = true;
-    modprobeConfig.enable = true;
-    extraModprobeConfig = ''
-      blacklist iTCO_wdt
-    '';
     kernelPackages = pkgs.linuxPackages;
-    kernel.sysctl = {
-      "vm.swappiness" = 60;
-      "vm.vfs_cache_pressure" = 50;
-      "vm.dirty_bytes" = 268435456;
-      "vm.page-cluster" = 0;
-      "vm.dirty_background_bytes" = 67108864;
-      "vm.dirty_writeback_centisecs" = 1500;
-      "kernel.nmi_watchdog" = 0;
-      "kernel.unprivileged_userns_clone" = 1;
-      "kernel.printk" = "3 3 3 3";
-      "kernel.kptr_restrict" = 2;
-      "net.core.netdev_max_backlog" = 4096;
-      "fs.file-max" = 2097152;
-    };
     initrd = {
       enable = true;
-      compressor = "xz";
-      compressorArgs = [
-        "--check=crc32"
-        "--lzma2=dict=6MiB"
-        "-T0"
-      ];
       services.lvm.enable = true;
-      #extraFiles."/syskey.key".source = "/run/secrets/syskey.key";
-      #"/extkey.key" = "/run/secrets/extkey.key";
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
         #"/syskey.key" = null;
@@ -57,11 +22,6 @@
           allowDiscards = true;
           preLVM = true;
         };
-        #storage = {
-        #  device = "/dev/disk/by-label/STORAGE";
-        #  keyFile = "/extkey.key";
-        #  preLVM = true;
-        #};
       };
       systemd = {
         enable = true;
@@ -76,6 +36,12 @@
           busybox = "${pkgs.busybox}/bin/busybox";
         };
       };
+      compressor = "xz";
+      compressorArgs = [
+        "--check=crc32"
+        "--lzma2=dict=6MiB"
+        "-T0"
+      ];
     };
 
     kernelParams = lib.mkAfter [
@@ -105,33 +71,37 @@
     ];
   };
 
-  system.activationScripts.installUKI = {
-    text = ''
-      set -euo pipefail
-
-      if [ -L /run/current-system ]; then
-        TOPLEVEL=$(readlink -f /run/current-system)
-      else
-        TOPLEVEL=$(readlink -f /nix/var/nix/profiles/system)
-      fi
-
-      echo $TOPLEVEL
-
-      ${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify build \
-        --linux="${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" \
-        --initrd="${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" \
-        --cmdline="init=$TOPLEVEL/init ${toString config.boot.kernelParams}" \
-        --uname="${config.boot.kernelPackages.kernel.modDirVersion}" \
-        --os-release="${config.system.build.etc}/etc/os-release" \
-        --output=/boot/EFI/nixos.efi
-        #--signtool=systemd-sbsign \
-        #--secureboot-private-key /var/lib/sbctl/db/db.key \
-        #--secureboot-certificate /var/lib/sbctl/db/db.pem \
-
-      if command -v sbctl >/dev/null 2>&1; then
-        sbctl sign /boot/EFI/nixos.efi || echo "sbctl sign failed"
-      fi
-    '';
+  kernel.sysctl = {
+    "vm.swappiness" = 60;
+    "vm.vfs_cache_pressure" = 50;
+    "vm.dirty_bytes" = 268435456;
+    "vm.page-cluster" = 0;
+    "vm.dirty_background_bytes" = 67108864;
+    "vm.dirty_writeback_centisecs" = 1500;
+    "kernel.nmi_watchdog" = 0;
+    "kernel.unprivileged_userns_clone" = 1;
+    "kernel.printk" = "3 3 3 3";
+    "kernel.kptr_restrict" = 2;
+    "net.core.netdev_max_backlog" = 4096;
+    "fs.file-max" = 2097152;
   };
 
+  loader = {
+    efi = {
+      efiSysMountPoint = "/boot/EFI";
+      canTouchEfiVariables = true;
+    };
+    systemd-boot.enable = false;
+    grub.enable = false;
+  };
+
+  modprobeConfig.enable = true;
+  extraModprobeConfig = ''
+    blacklist iTCO_wdt
+  '';
+
+  tmp = {
+    cleanOnBoot = true;
+    useTmpfs = true;
+  };
 }

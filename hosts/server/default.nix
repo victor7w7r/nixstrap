@@ -1,9 +1,10 @@
 { ... }:
 {
   imports = [
-    ./hardware-configuration.nix
-    ./env.nix
+    ./hardware-configuration
+    ./env
     ./../../modules/core
+    ./system
   ];
 
   powerManagement.cpuFreqGovernor = "ondemand";

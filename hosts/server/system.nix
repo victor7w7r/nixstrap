@@ -50,6 +50,14 @@
     };
   };
 
+  xserver = {
+    enable = true;
+    desktopManager.xfce.enable = true;
+    excludePackages = with pkgs; [
+      xterm
+    ];
+  };
+
   programs = {
     dconf.enable = true;
     thunar = {
@@ -60,14 +68,6 @@
         thunar-volman
       ];
     };
-  };
-
-  xserver = {
-    enable = true;
-    desktopManager.xfce.enable = true;
-    excludePackages = with pkgs; [
-      xterm
-    ];
   };
 
 }
