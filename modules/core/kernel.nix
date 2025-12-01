@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 {
   console = {
     enable = true;
@@ -22,6 +21,20 @@
       blacklist iTCO_wdt
     '';
     kernelPackages = pkgs.linuxPackages;
+    kernel.sysctl = {
+      "vm.swappiness" = 60;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_bytes" = 268435456;
+      "vm.page-cluster" = 0;
+      "vm.dirty_background_bytes" = 67108864;
+      "vm.dirty_writeback_centisecs" = 1500;
+      "kernel.nmi_watchdog" = 0;
+      "kernel.unprivileged_userns_clone" = 1;
+      "kernel.printk" = "3 3 3 3";
+      "kernel.kptr_restrict" = 2;
+      "net.core.netdev_max_backlog" = 4096;
+      "fs.file-max" = 2097152;
+    };
     initrd = {
       enable = true;
       compressor = "xz";
@@ -36,20 +49,6 @@
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
         #"/syskey.key" = null;
-      };
-      kernel.sysctl = {
-        "vm.swappiness" = 60;
-        "vm.vfs_cache_pressure" = 50;
-        "vm.dirty_bytes" = 268435456;
-        "vm.page-cluster" = 0;
-        "vm.dirty_background_bytes" = 67108864;
-        "vm.dirty_writeback_centisecs" = 1500;
-        "kernel.nmi_watchdog" = 0;
-        "kernel.unprivileged_userns_clone" = 1;
-        "kernel.printk" = "3 3 3 3";
-        "kernel.kptr_restrict" = 2;
-        "net.core.netdev_max_backlog" = 4096;
-        "fs.file-max" = 2097152;
       };
       luks.devices = {
         system = {
@@ -75,8 +74,6 @@
           grep = "${pkgs.gnugrep}/bin/grep";
           ping = "${pkgs.iputils}/bin/ping";
           busybox = "${pkgs.busybox}/bin/busybox";
-          users.root.shell = "${pkgs.bashInteractive}/bin/bash";
-          storePaths = [ "${pkgs.bashInteractive}/bin/bash" ];
         };
       };
     };
@@ -117,6 +114,8 @@
       else
         TOPLEVEL=$(readlink -f /nix/var/nix/profiles/system)
       fi
+
+      echo $TOPLEVEL
 
       ${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify build \
         --linux="${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" \
