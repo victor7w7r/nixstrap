@@ -6,8 +6,12 @@
 }:
 {
   boot = {
-    kernelModules = [ "ntsync" ];
+    kernelModules = lib.mkAfter [ "ntsync" ];
     kernelPackages = pkgs.linuxPackages;
+    binfmt = {
+      enable = true;
+      emulatedSystems = [ "aarch64-linux" ];
+    };
     initrd = {
       enable = true;
       services.lvm.enable = true;
@@ -69,39 +73,45 @@
       #"kvmfr.static_size_mb=128"
       #systemd.unit=multi-user.target single
     ];
-  };
 
-  kernel.sysctl = {
-    "vm.swappiness" = 60;
-    "vm.vfs_cache_pressure" = 50;
-    "vm.dirty_bytes" = 268435456;
-    "vm.page-cluster" = 0;
-    "vm.dirty_background_bytes" = 67108864;
-    "vm.dirty_writeback_centisecs" = 1500;
-    "kernel.nmi_watchdog" = 0;
-    "kernel.unprivileged_userns_clone" = 1;
-    "kernel.printk" = "3 3 3 3";
-    "kernel.kptr_restrict" = 2;
-    "net.core.netdev_max_backlog" = 4096;
-    "fs.file-max" = 2097152;
-  };
-
-  loader = {
-    efi = {
-      efiSysMountPoint = "/boot/EFI";
-      canTouchEfiVariables = true;
+    kernel.sysctl = {
+      "vm.swappiness" = 60;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_bytes" = 268435456;
+      "vm.page-cluster" = 0;
+      "vm.dirty_background_bytes" = 67108864;
+      "vm.dirty_writeback_centisecs" = 1500;
+      "vm.max_map_count" = 2147483642;
+      "kernel.nmi_watchdog" = 0;
+      "kernel.split_lock_mitigate" = 0;
+      "kernel.unprivileged_userns_clone" = 1;
+      "kernel.printk" = "3 3 3 3";
+      "kernel.kptr_restrict" = 2;
+      "net.core.netdev_max_backlog" = 4096;
+      "fs.file-max" = 2097152;
     };
-    systemd-boot.enable = false;
-    grub.enable = false;
-  };
 
-  modprobeConfig.enable = true;
-  extraModprobeConfig = ''
-    blacklist iTCO_wdt
-  '';
+    loader = {
+      efi = {
+        efiSysMountPoint = "/boot/EFI";
+        canTouchEfiVariables = true;
+      };
+      systemd-boot.enable = false;
+      grub.enable = false;
+    };
 
-  tmp = {
-    cleanOnBoot = true;
-    useTmpfs = true;
+    modprobeConfig.enable = true;
+    extraModprobeConfig = ''
+      blacklist iTCO_wdt
+      blacklist joydev
+      blacklist mousedev
+      blacklist mac_hid
+      blacklist intel_hid
+    '';
+
+    tmp = {
+      cleanOnBoot = true;
+      useTmpfs = true;
+    };
   };
 }

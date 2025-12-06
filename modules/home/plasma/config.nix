@@ -1,11 +1,5 @@
 { ... }:
-
 {
-  services.displayManager = {
-    defaultSession = "plasma";
-    sddm.wayland.enable = true;
-  };
-
   programs.plasma = {
     enable = true;
     configFile = {

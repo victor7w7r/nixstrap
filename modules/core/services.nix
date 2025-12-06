@@ -1,24 +1,51 @@
 { pkgs, ... }:
 {
   services = {
+    aria2.enable = true;
+    cockpit.enable = true;
+    dnsmasq.enable = true;
+    fstrim.enable = true;
+    fwupd.enable = true;
     gvfs.enable = true;
+    irqbalance.enable = true;
     locate.enable = true;
     logrotate.enable = true;
-    cockpit.enable = true;
-    udisks2.enable = true;
-    fwupd.enable = true;
-    resolved.enable = false;
+    memavaild.enable = true;
     openssh.enable = true;
-    dbus.enable = true;
-    #preload.enable = true;
-    fstrim.enable = true;
+    preload.enable = true;
+    prelockd.enable = true;
+    resolved.enable = false;
+    udisks2.enable = true;
+    uresourced.enable = true;
     scx.enable = true;
+    tlp.enable = true;
     #opensnitch.enable = true;
     #clamav = {
     #  daemon.enable = true;
     #  updater.enable = true;
     #  scanner.enable = true;
     #};
+
+    ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
+      extraRules = [
+        {
+          "name" = "gamescope";
+          "nice" = -20;
+        }
+      ];
+    };
+
+    dbus = {
+      enable = true;
+      packages = with pkgs; [
+        nohang
+        uresourced
+      ];
+    };
+
     kmscon = {
       enable = true;
       hwRender = false;
@@ -35,6 +62,12 @@
         palette-background=30, 30, 46
       '';
     };
+
+    nohang = {
+      enable = true;
+      desktop = true;
+    };
+
     timesyncd = {
       enable = true;
       extraConfig = ''
@@ -42,6 +75,7 @@
         FallbackNTP=time.google.com 0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org
       '';
     };
+
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
           RUN+="${pkgs.bash}/bin/bash -c 'touch /run/udev/snd-hda-intel-powersave; \
@@ -74,6 +108,14 @@
           ATTRS{id/bus}=="ata", RUN+="${pkgs.hdparm}/bin/hdparm -B 254 -S 0 /dev/%k"
       DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
     '';
-    journald.extraConfig = "SystemMaxUse=50M";
+
+    journald.extraConfig = ''
+      Compress=yes
+      SystemMaxUse=100M
+      ForwardToConsole=yes
+      MaxLevelConsole=debug
+      TTYPath=/dev/tty12
+    '';
+
   };
 }

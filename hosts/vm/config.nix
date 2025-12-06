@@ -1,8 +1,25 @@
-{ modulesPath, ... }:
+{ lib, ... }:
+with lib;
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  powerManagement.cpuFreqGovernor = "ondemand";
+
+  options.setupDisks = mkOption {
+    type = types.attrsOf types.str;
+    description = "Rutas de los discos principales del sistema.";
+    default = {
+      maindevice = "/dev/vda";
+      mockdisk = "/dev/mapper/vg0-fstemp";
+      systemdisk = "/dev/mapper/vg0-system";
+      homedisk = "/dev/mapper/vg0-home";
+      varDisk = "/dev/mapper/vg0-var";
+    };
+  };
 
   fileSystems = {
+    "/" = {
+      device = "/dev/mapper/vg0-fstemp";
+      fsType = "ext4";
+    };
     "/boot" = {
       device = "/dev/disk/by-partlabel/disk-main-EFI";
       fsType = "vfat";
@@ -10,10 +27,6 @@
         "fmask=0022"
         "dmask=0022"
       ];
-    };
-    "/" = {
-      device = "/dev/mapper/vg0-fstemp";
-      fsType = "ext4";
     };
   };
 
@@ -43,6 +56,8 @@
     };
   };
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
 }

@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
 
   programs = {
     nix-ld.enable = true;
     nix-ld.libraries = [ ];
+    rclone.enable = true;
     zsh.enable = true;
     less.enable = true;
     skim.enable = true;
@@ -19,63 +19,54 @@
     };
   };
 
-  environment = {
-    defaultPackages = [ ];
-    systemPackages = with pkgs; [
+  environment.systemPackages =
+    with pkgs;
+    lib.mkAfter [
+      #texoxide
+      #pcp
+      #https://github.com/trmckay/fzf-open
+      gnused
+      brush
+      desed
+      sd
+      sig
+      tre-command
       tmux
       git
-      zoxide
       lsof
-      blueman
-      sshs
+      cod
       ncdu
-      sig
-      sbctl
-      inetutils
-      ananicy-rules-cachyos
-      sshfs
+      zoxide
+      jump
+      rsyncy
+      mmv-go
+      lnav
+      emacs-nox
+      fclones
       fdupes
-      tpm2-tools
-      mokutil
+      duff
+      rdfind
+      rnr
+      cyme
       lshw
+      smartmontools
+      usbutils
+      cpulimit
       gpart
+      sshfs
       exfatprogs
       f2fs-tools
       mtools
-      fuse-overlayfs
-      usbutils
-      cyme
-      smartmontools
-      ethtool
-      iptables
-      hblock
-      slirp4netns
-      zip
-      unzip
-      p7zip
-      rar
-      desed
-      clolcat
-      fortune
-      xclip
-      cod
-      xsel
-      sscg
-      rrdtool
       luksmeta
-      emacs-nox
-      tre-command
-      mommy
+      mokutil
+      imgcat
+      lsix
       jfbview
-      brush
-      dotter
+      timg
       emptty
-      rnr
-      alsa-plugins
-      alsa-utils
-      alsa-firmware
-      bluetui
-      bluetuith
+      veracrypt
+      vtm
+      sscg
+      p7zip
     ];
-  };
 }

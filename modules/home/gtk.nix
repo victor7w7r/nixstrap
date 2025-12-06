@@ -16,6 +16,7 @@
         gtk-application-prefer-dark-theme=1
       '';
     };
+    #appmenu-gtk-module
     #gtk4.extraConfig = {
     #  Settings = ''
     #    gtk-application-prefer-dark-theme=1

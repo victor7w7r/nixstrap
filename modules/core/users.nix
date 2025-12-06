@@ -3,20 +3,21 @@
   inputs,
   username,
   host,
+  plasma-manager,
   ...
 }:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   nix.settings.allowed-users = [ "${username}" ];
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
       imports = [ ./../home ];
-      #if (host == "desktop") then
-      # [ ./../home/default.desktop.nix ]
-      #else
+      modules = [ plasma-manager.homeModules.plasma-manager ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
@@ -29,20 +30,22 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
+    shell = pkgs.zsh;
     extraGroups = [
       "audio"
       "input"
       "kvm"
-      "networkmanager"
-      "input"
-      "power"
       "libvirtd"
+      "libvirt-qemu"
+      "networkmanager"
+      "power"
+      "qemu"
+      "realtime"
       "storage"
       "tty"
       "users"
       "video"
       "wheel"
     ];
-    shell = pkgs.zsh;
   };
 }

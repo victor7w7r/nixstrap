@@ -2,23 +2,61 @@
   description = "victor7w7r nixtrap config for common and specific hosts";
   # sudo sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
 
+  nixConfig = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://install.determinate.systems"
+    ];
+    extra-substituters = [
+      "https://chaotic-nyx.cachix.org"
+      "https://nix-gaming.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+    ];
+  };
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    hardware.url = "github:nixos/nixos-hardware";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
     catppuccin-refind = {
       url = "github:catppuccin/refind";
@@ -29,23 +67,28 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       chaotic,
       self,
+      nur,
       ...
     }@inputs:
     let
       username = "victor7w7r";
+      system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           modules = [
+            ./pkgs
             ./hosts/vm
             chaotic.nixosModules.default
+            nur.modules.nixos.default
           ];
           specialArgs = {
-            host = "vm";
+            host = "v7w7r-nixvm";
             inherit self inputs username;
           };
         };

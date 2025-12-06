@@ -11,7 +11,5 @@
     (import ./users.nix)
     (import ./post-scripts.nix)
   ]
-  ++ (if (host != "vm") then [ (import ./kvm.nix) ] else [ ]);
-  #++ [ (import ./wayland.nix) ]
-  #++ [ (import ./overlays.nix) ]
+  ++ (if (host != "vm") then [ (import ./virt.nix) ] else [ ]);
 }

@@ -1,10 +1,8 @@
-{ ... }:
+{ modulesPath, ... }:
 {
   imports = [
-    ./hardware-configuration
-    ./env
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./config
     ./../../modules/core
   ];
-
-  powerManagement.cpuFreqGovernor = "ondemand";
 }

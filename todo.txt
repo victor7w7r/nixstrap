@@ -1,0 +1,30 @@
+# /usr/lib/tmpfiles.d/cpu-governor.conf
+w /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor - - - - performance
+
+# /usr/lib/tmpfiles.d/energy_performance_preference.conf
+w /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference - - - - performance
+
+# /usr/lib/tmpfiles.d/pcie_aspm_performance.conf
+w /sys/module/pcie_aspm/parameters/policy - - - - performance
+
+# /usr/lib/tmpfiles.d/power_dpm_state.conf
+w /sys/class/drm/card0/device/power_dpm_state - - - - performance
+
+# /usr/lib/udev/rules.d/30-amdgpu-pm.rule SOLO AMD
+KERNEL=="card0", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_state}="performance"
+
+/*
+hidden partial modifier_keys
+xkb_symbols "ctrl_modifier" {
+		  key <CAPS> {
+		      type="ALPHABETIC",
+		      repeat=No,
+		      symbols[Group1]= [ Caps_Lock, Caps_Lock ],
+		      actions[Group1]= [ LockMods(modifiers=Lock),
+		                         LockMods(modifiers=Shift+Lock,affect=unlock) ]
+		  };
+};*/
+
+#Gnome Tweaks -> Teclado -> Opciones Adicionales de distribución ->
+#Comportamiento de Bloq. Mayus -> Hacer ... una tecla Ctrl adicional, pero se
+#mantiene como Bloquen Mayus

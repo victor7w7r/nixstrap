@@ -10,6 +10,7 @@
     xarchiver
     xclip
     xcolor
+    xsel
     xfce.catfish
     xfce.gigolo
     xfce.ristretto
