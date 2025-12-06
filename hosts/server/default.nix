@@ -4,6 +4,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./config
     ./../../modules/core
+    ./../../modules/home
     ./xserver
   ];
 }

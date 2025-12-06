@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   services = {
-    aria2.enable = true;
-    cockpit.enable = true;
-    dnsmasq.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
@@ -11,7 +8,6 @@
     locate.enable = true;
     logrotate.enable = true;
     memavaild.enable = true;
-    openssh.enable = true;
     preload.enable = true;
     prelockd.enable = true;
     resolved.enable = false;
