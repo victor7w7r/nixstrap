@@ -6,5 +6,5 @@
     (import ./hooks.nix)
     (import ./params.nix)
     (import ./sysctl.nix)
-  ]
+  ];
 }

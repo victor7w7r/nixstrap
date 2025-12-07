@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 {
   boot = {
     kernelModules = lib.mkAfter [ "ntsync" ];
@@ -35,6 +31,14 @@
       blacklist mac_hid
       blacklist intel_hid
     '';
-
   };
+
+  console = {
+    enable = true;
+    packages = [ pkgs.spleen ];
+    earlySetup = true;
+    font = "spleen-8x16";
+    keyMap = "us";
+  };
+
 }

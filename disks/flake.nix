@@ -5,11 +5,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
-    {
-      nixpkgs,
-      disko,
-      self,
-    }:
+    { nixpkgs, disko }:
     {
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {

@@ -1,15 +1,11 @@
 { host, ... }:
 {
   imports = [
-    (import ./kernel.nix)
-    (import ./fsmount.nix)
-    (import ./services.nix)
-    (import ./networking.nix)
-    (import ./system.nix)
-    (import ./packages.nix)
-    (import ./login-manager.nix)
-    (import ./users.nix)
-    (import ./post-scripts.nix)
+    (import ./kernel)
+    (import ./packages)
+    (import ./networking)
+    #(import ./pentesting)
+    (import ./system)
   ]
-  ++ (if (host != "vm") then [ (import ./virt.nix) ] else [ ]);
+  ++ (if (host != "vm") then [ (import ./virt) ] else [ ]);
 }

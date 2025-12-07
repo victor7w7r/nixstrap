@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   username,
   host,
@@ -9,55 +8,39 @@
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  nix.settings.allowed-users = [ "${username}" ];
-
-  /*  imports = [
-
-  ]
-  ++ (if (host != "vm") || (host != "server") then [ (import ./gaming.nix) ] else [ ]);
-  #if (host == "desktop") then [ ./../home/default.desktop.nix ]*/
-
   home-manager = {
+    extraSpecialArgs = { inherit inputs username host; };
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs username host; };
+    modules = [ plasma-manager.homeModules.plasma-manager ];
+    home = {
+      username = "${username}";
+      homeDirectory = "/home/${username}";
+      stateVersion = "24.05";
+    };
+    programs.home-manager.enable = true;
     users.${username} = {
       imports = [
-       ./bat
-       ./btop
-       ./fonts
-       ./packages
-       ./plasma
-      ];
-      modules = [ plasma-manager.homeModules.plasma-manager ];
-      home = {
-        username = "${username}";
-        homeDirectory = "/home/${username}";
-        stateVersion = "24.05";
-      };
-      programs.home-manager.enable = true;
+        ./system
+        ./dev
+        ./disks
+        ./net
+        ./theme
+      ]
+      ++ (
+        if (host != "vm") || (host != "server") then
+          [
+            ./eq
+            ./gaming
+            ./multimedia
+            ./hypr
+            ./plasma
+            ./post-production
+            ./util
+          ]
+        else
+          [ ]
+      );
     };
-  };
-
-  users.users.${username} = {
-    isNormalUser = true;
-    description = "${username}";
-    shell = pkgs.zsh;
-    extraGroups = [
-      "audio"
-      "input"
-      "kvm"
-      "libvirtd"
-      "libvirt-qemu"
-      "networkmanager"
-      "power"
-      "qemu"
-      "realtime"
-      "storage"
-      "tty"
-      "users"
-      "video"
-      "wheel"
-    ];
   };
 }
