@@ -2,14 +2,12 @@
 {
   services = {
     croc.enable = true;
-    fstrim.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
     locate.enable = true;
     logrotate.enable = true;
     pueue.enable = true;
     sysstat.enable = true;
-    tlp.enable = true;
     udisks2.enable = true;
 
     #opensnitch.enable = true;

@@ -69,13 +69,18 @@ with lib;
         enable = true;
         powerOnBoot = true;
       };
-      cpu.amd.updateMicrocode = true;
-      enableRedistributableFirmware = true;
     };
+
+    systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
     services = {
       pulseaudio.enable = false;
       blueman.enable = true;
+      supergfxd.enable = true;
+      asusd = {
+        enable = true;
+        enableUserService = true;
+      };
       pipewire = {
         enable = true;
         pulse.enable = true;
@@ -86,12 +91,5 @@ with lib;
         extraConfig.pipewire."10-clock-quantum"."context.properties"."default.clock.min-quantum" = 1024;
       };
     };
-
-    # boot.initrd.luks.devices.storage = {
-    #  device = "/dev/disk/by-label/STORAGE";
-    #  keyFile = "/extkey.key";
-    #  preLVM = true;
-    #};
-    #
   };
 }

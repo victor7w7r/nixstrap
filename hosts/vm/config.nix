@@ -33,6 +33,14 @@ with lib;
     };
   };
 
+  /*
+    hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    };
+  */
+
   boot = {
     kernelParams = [
       #"intel_pstate=disable"
@@ -68,10 +76,5 @@ with lib;
       };
       kernelModules = [ "dm-snapshot" ];
     };
-  };
-
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    enableRedistributableFirmware = true;
   };
 }

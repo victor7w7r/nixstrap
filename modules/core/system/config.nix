@@ -5,11 +5,6 @@
 
   hardware = {
     ksm.enable = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
     sensor.hddtemp.enable = true;
   };
 

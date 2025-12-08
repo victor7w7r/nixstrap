@@ -30,6 +30,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     hardware.url = "github:nixos/nixos-hardware";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
@@ -71,6 +72,7 @@
       chaotic,
       self,
       nur,
+      nixos-hardware,
       ...
     }@inputs:
     let
@@ -83,6 +85,7 @@
           inherit system;
           modules = [
             ./pkgs
+            nixos-hardware.nixosModules.apple-t2
             ./hosts/macmini
             chaotic.nixosModules.default
             nur.modules.nixos.default
@@ -97,6 +100,9 @@
           inherit system;
           modules = [
             ./pkgs
+            nixos-hardware.nixosModules.common-pc-ssd
+            nixos-hardware.nixosModules.common-laptop
+            nixos-hardware.nixosModules.common-cpu-intel
             ./hosts/laptop
             chaotic.nixosModules.default
             nur.modules.nixos.default
@@ -111,6 +117,7 @@
           inherit system;
           modules = [
             ./pkgs
+            nixos-hardware.nixosModules.asus-ally-rc71l
             ./hosts/rogally
             chaotic.nixosModules.default
             nur.modules.nixos.default
@@ -125,6 +132,8 @@
           inherit system;
           modules = [
             ./pkgs
+            nixos-hardware.nixosModules.common-pc-ssd
+            nixos-hardware.nixosModules.common-cpu-intel
             ./hosts/server
             chaotic.nixosModules.default
             nur.modules.nixos.default
@@ -139,6 +148,8 @@
           inherit system;
           modules = [
             ./pkgs
+            nixos-hardware.nixosModules.common-pc-ssd
+            nixos-hardware.nixosModules.common-cpu-intel
             ./hosts/vm
             chaotic.nixosModules.default
             nur.modules.nixos.default

@@ -84,8 +84,6 @@ with lib;
       powerOnBoot = true;
     };
     intel-gpu-tools = true;
-    cpu.intel.updateMicrocode = true;
-    enableRedistributableFirmware = true;
   };
 
   services = {
