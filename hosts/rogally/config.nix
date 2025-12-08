@@ -6,12 +6,18 @@ with lib;
   options.setupDisks = mkOption {
     type = types.attrsOf types.str;
     description = "Rutas de los discos principales del sistema.";
-    default = {
-      maindevice = "/dev/vda";
+    default = rec {
+      maindevice = "/dev/nvme0n1";
       mockdisk = "/dev/mapper/vg0-fstemp";
       systemdisk = "/dev/mapper/vg0-system";
       homedisk = "/dev/mapper/vg0-home";
       varDisk = "/dev/mapper/vg0-var";
+      gameDisk = "/dev/disk/by-partlabel/disk-main-games";
+      kvmDisk = "";
+      extraDir = "games";
+      extraMount = ''
+        mount -t btrfs -o noatime,lazytime,nodiscard,compress-force=zstd:3,commit=60 ${gameDisk} /sysroot/games
+      '';
     };
 
     fileSystems = {
@@ -26,6 +32,22 @@ with lib;
           "fmask=0022"
           "dmask=0022"
         ];
+      };
+    };
+
+    boot = {
+      initrd = {
+        luks.devices = {
+          system = {
+            device = "/dev/disk/by-label/SYSTEM";
+            #keyFile = "/syskey.key";
+            allowDiscards = true;
+            preLVM = true;
+          };
+        };
+        secrets = {
+          #"/syskey.key" = /run/secrets/syskey.key;
+        };
       };
     };
 

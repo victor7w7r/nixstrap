@@ -79,6 +79,62 @@
     in
     {
       nixosConfigurations = {
+        macmini = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./pkgs
+            ./hosts/macmini
+            chaotic.nixosModules.default
+            nur.modules.nixos.default
+          ];
+          specialArgs = {
+            host = "v7w7r-macmini81";
+            inherit self inputs username;
+          };
+        };
+
+        laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./pkgs
+            ./hosts/laptop
+            chaotic.nixosModules.default
+            nur.modules.nixos.default
+          ];
+          specialArgs = {
+            host = "v7w7r-dynabook";
+            inherit self inputs username;
+          };
+        };
+
+        rogally = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./pkgs
+            ./hosts/rogally
+            chaotic.nixosModules.default
+            nur.modules.nixos.default
+          ];
+          specialArgs = {
+            host = "v7w7r-rc71l";
+            inherit self inputs username;
+          };
+        };
+
+        server = nixpkgs-stable.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./pkgs
+            ./hosts/server
+            chaotic.nixosModules.default
+            nur.modules.nixos.default
+          ];
+          specialArgs = {
+            host = "v7w7r-youyeetoox1";
+            inherit self inputs username;
+          };
+        };
+
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [

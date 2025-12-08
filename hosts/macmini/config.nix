@@ -10,14 +10,19 @@ with lib;
       maindevice = "/dev/nvme0n1";
       mockdisk = "/dev/mapper/vg0-fstemp";
       systemdisk = "/dev/mapper/vg0-system";
-      homedisk = "/dev/mapper/vg0-home";
-      varDisk = "/dev/mapper/vg0-var";
-      kvmDisk = "/dev/mapper/vg0-kvm";
+      homedisk = "/dev/mapper/vg1-home";
+      varDisk = "/dev/mapper/vg1-var";
+      kvmDisk = "/dev/mapper/vg2-kvm";
+      nvmeStorageDisk = "/dev/mapper/vg0-nvmestorage";
+      docsDisk = "/dev/mapper/vg3-disk";
       extraFsck = ''
         if ! e2fsck -n ${kvmDisk}; then e2fsck -y ${kvmDisk}; fi
       '';
-      extraDir = "";
-      extraMount = "";
+      extraDir = "media/nvmestorage media/docs";
+      extraMount = ''
+        mount -t btrfs -o noatime,lazytime,nodiscard,compress-force=zstd:3,commit=60 ${nvmeStorageDisk} /sysroot/media/nvmestorage
+        mount -t btrfs -o noatime,lazytime,nodiscard,compress-force=zstd:3,commit=60 ${docsDisk} /sysroot/media/docs
+      '';
     };
   };
 
@@ -60,9 +65,15 @@ with lib;
           allowDiscards = true;
           preLVM = true;
         };
+        storage = {
+          device = "/dev/disk/by-label/storage";
+          #keyFile = "/extkey.key";
+          preLVM = true;
+        };
       };
       secrets = {
         #"/syskey.key" = /run/secrets/syskey.key;
+        #"/extkey.key" = /run/secrets/extkey.key;
       };
     };
   };

@@ -1,20 +1,20 @@
-{ pkgs, ... }:
 {
-  boot.initrd = {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  boot.initrd = lib.mkAfter {
     enable = true;
     services.lvm.enable = true;
-    secrets = {
-      #"/extkey.key" = /run/secrets/extkey.key;
-      #"/syskey.key" = null;
-    };
-    luks.devices = {
-      system = {
-        device = "/dev/disk/by-label/SYSTEM";
-        #keyFile = "/syskey.key";
-        allowDiscards = true;
-        preLVM = true;
-      };
-    };
+    compressor = "xz";
+    compressorArgs = [
+      "--check=crc32"
+      "--lzma2=dict=6MiB"
+      "-T0"
+    ];
+
     systemd = {
       enable = true;
       emergencyAccess = true;
@@ -27,12 +27,76 @@
         ping = "${pkgs.iputils}/bin/ping";
         busybox = "${pkgs.busybox}/bin/busybox";
       };
+      services.fsmount = {
+        description = "Custom Filesystem Mount";
+        unitConfig.DefaultDependencies = false;
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
+        wantedBy = [ "initrd.target" ];
+        before = [ "initrd-find-nixos-closure.service" ];
+        after = [ "sysroot.mount" ];
+        script = ''
+          OPTS=noatime,lazytime,nobarrier,nodiscard,commit=120
+
+          if ! e2fsck -n ${config.setupDisks.systemdisk}; then e2fsck -y ${config.setupDisks.systemdisk}; fi
+          if ! e2fsck -n ${config.setupDisks.homedisk}; then e2fsck -y ${config.setupDisks.homedisk}; fi
+          if ! e2fsck -n ${config.setupDisks.varDisk}; then e2fsck -y ${config.setupDisks.varDisk}; fi
+
+          ${if config.setupDisks.extraFsck != "" then config.setupDisks.extraFsck else ""}
+
+          mkdir -p /run/troot
+          mount --make-private /sysroot 2>> /run/.root.log
+          mount --make-private / 2>> /run/.root.log
+          mount --make-private /run 2>> /run/.root.log
+          mount -t tmpfs -o size=4G,mode=1755 tmpfs /run/troot
+
+          cp -a -r "/sysroot/bin" "/run/troot/"
+          cp -a -r "/sysroot/lib64" "/run/troot/"
+
+          for dir in boot etc nix root var home opt usr .nix tmp; do
+            mkdir -p "/run/troot/$dir"
+          done
+
+          ${if config.setupDisks.kvmDisk != "" then ''mkdir -p "/run/troot/kvm'' else ""}
+          ${
+            if config.setupDisks.extraDir != "" then
+              ''
+                for secDir in ${config.setupDisks.extraDir}; do
+                  mkdir -p "/run/troot/$secDir"
+                done
+              ''
+            else
+              ""
+          }
+
+          mount --move /run/troot /sysroot
+
+          mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} /sysroot/.nix
+          mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} /sysroot/home
+          mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} /sysroot/var
+
+          ${
+            if config.setupDisks.kvmDisk != "" then
+              ''
+                mount -t ext4 -o $OPTS ${config.setupDisks.kvmDisk} /sysroot/kvm
+              ''
+            else
+              ""
+          }
+          ${if config.setupDisks.extraMount != "" then config.setupDisks.extraMount else ""}
+
+          mount --bind /sysroot/.nix/root /sysroot/root
+          mount --bind /sysroot/.nix/etc /sysroot/etc
+          mount --bind /sysroot/.nix/opt /sysroot/opt
+          mount --bind /sysroot/.nix/nix /sysroot/nix
+
+          mount -t tmpfs -o mode=1777 tmpfs /sysroot/tmp || true
+          mount -t tmpfs -o mode=1777 tmpfs /sysroot/var/tmp || true
+          mount -t tmpfs -o mode=1777 tmpfs /sysroot/var/cache || true
+        '';
+      };
     };
-    compressor = "xz";
-    compressorArgs = [
-      "--check=crc32"
-      "--lzma2=dict=6MiB"
-      "-T0"
-    ];
   };
 }

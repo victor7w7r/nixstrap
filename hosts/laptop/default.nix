@@ -5,5 +5,6 @@
     ./config
     ./../../modules/core
     ./../../modules/home
+    ./xserver
   ];
 }
