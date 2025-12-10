@@ -1,6 +1,12 @@
-{ pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
     kdePackages.ark
     kdePackages.audiotube
     kdePackages.baloo-widgets

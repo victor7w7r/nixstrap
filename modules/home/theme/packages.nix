@@ -7,7 +7,6 @@
   home.packages = (
     with pkgs;
     [
-      #inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor TO CORE
       layan-gtk-theme
       colloid-icon-theme
       capitaine-cursors

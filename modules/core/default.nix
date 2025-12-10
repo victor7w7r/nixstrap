@@ -4,6 +4,7 @@
     (import ./kernel)
     (import ./packages)
     (import ./networking)
+    (import ./plasma)
     #(import ./pentesting)
     (import ./system)
   ]

@@ -2,6 +2,6 @@
 {
   imports = [
     (import ./config.nix)
-    #(import ./custom.nix)
+    (import ./packages.nix)
   ];
 }
