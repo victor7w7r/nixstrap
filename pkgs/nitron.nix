@@ -1,20 +1,15 @@
-{
-  pkgs,
-  stdenv,
-  fetchFromGitHub,
-  ...
-}:
+{ pkgs, lib, ... }:
 
 let
   nitron = pkgs.stdenv.mkDerivation rec {
     pname = "nitronx";
-    version = "1.2.0";
+    version = "1.2";
 
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "UsiFX";
       repo = "OpenNitroN";
-      rev = "v${version}";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      rev = "${version}";
+      sha256 = "sha256-vF1HKJ5yL5ptBFRbhlKGVgtRDpP1pv9ruUWPu46O00M=";
     };
 
     installPhase = ''
@@ -24,14 +19,14 @@ let
 
       install -m 755 nitrond $out/usr/bin/nitrond
       install -m 644 nitronapi.sh $out/usr/include/nitronapi.sh
-      install -m 644 nitrond.1.gz $out/usr/share/man/man1/nitrond.1.gz
+      install -m 644 nitrond.1 $out/usr/share/man/man1/nitrond.1
     '';
 
-    meta = {
+    meta = with lib; {
       description = "Extensive, enhanced Linux kernel tweaker written in Bash";
       homepage = "https://github.com/UsiFX/OpenNitroN";
-      license = stdenv.lib.licenses.gpl3;
-      platforms = stdenv.lib.platforms.linux;
+      license = licenses.gpl3;
+      platforms = platforms.linux;
     };
   };
 in

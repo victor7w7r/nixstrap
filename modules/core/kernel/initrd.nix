@@ -1,12 +1,10 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 {
-  boot.initrd = lib.mkAfter {
-    enable = true;
+  boot.initrd = {
     services.lvm.enable = true;
     compressor = "xz";
     compressorArgs = [

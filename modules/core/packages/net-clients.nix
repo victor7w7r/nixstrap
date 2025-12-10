@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = (
+  environment.systemPackages =
     with pkgs;
-    [
+    lib.mkAfter [
       discordo
       nchat
       reader
@@ -15,14 +15,7 @@
       #https://github.com/wynwxst/DisCli
       #https://github.com/fetchcord/FetchCord
       #https://github.com/sparklost/endcord
-
       #pkgtop
-    ]
-  );
+    ];
 
-  programs = {
-    rtorrent.enable = true;
-    himalaya.enable = true;
-    topgrade.enable = true;
-  };
 }

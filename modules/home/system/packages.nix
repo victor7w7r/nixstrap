@@ -9,12 +9,11 @@
       cpu-x
       czkawka-full
       distroshelf
-      fclones-bin
+      fclones-gui
       fortune
       inxi
       mommy
       rclone-browser
-      stacer
       warehouse
       #mission-center
       #https://github.com/trmckay/fzf-open
@@ -23,16 +22,26 @@
   );
 
   programs = {
-    coolercontrol.enable = true;
-    corectrl.enable = true;
-    fzf.enable = true;
+    bottom.enable = true;
+    broot.enable = true;
     eza.enable = true;
+    fastfetch.enable = true;
+    nnn.enable = true;
+    navi.enable = true;
+    tealdeer.enable = true;
+    fzf.enable = true;
+    hwatch.enable = true;
     fd.enable = true;
+    mc.enable = true;
+    #lazydocker.enable = true;
+    looking-glass-client.enable = true;
     lsd.enable = true;
     ripgrep-all.enable = true;
     rclone.enable = true;
+    vifm.enable = true;
+    xplr.enable = true;
   };
 
-  services.lact.enable = true;
-  services.rustdesk.enable = true;
+  services.pueue.enable = true;
+
 }

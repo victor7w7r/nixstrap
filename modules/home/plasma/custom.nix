@@ -2,8 +2,6 @@
   pkgs,
   lib,
   pkg-config,
-  fetchFromGitHub,
-  fetchFromGitLab,
   ...
 }:
 
@@ -16,7 +14,7 @@ let
   appimage-thumbnailer = pkgs.stdenv.mkDerivation {
     pname = "appimage-thumbnailer";
     version = "1.0.0";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "realmazharhussain";
       repo = "appimage-thumbnailer";
       rev = "HEAD";
@@ -40,7 +38,7 @@ let
   kf6-servicemenus-rootactions = pkgs.stdenv.mkDerivation {
     pname = "kf6-servicemenus-rootactions";
     version = "1.0.0";
-    src = fetchFromGitLab {
+    src = pkgs.fetchFromGitLab {
       owner = "stefanwimmer128";
       repo = "kf6-servicemenus-rootactions";
       rev = "HEAD";
@@ -68,7 +66,7 @@ let
   jar-thumbnailer = pkgs.stdenv.mkDerivation {
     pname = "jar-thumbnailer";
     version = "1.0.0";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "realmazharhussain";
       repo = "jar-thumbnailer";
       rev = "HEAD";
@@ -93,7 +91,7 @@ let
   ffmpeg-audio-thumbnailer = pkgs.stdenv.mkDerivation {
     pname = "ffmpeg-audio-thumbnailer";
     version = "1.0.0";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "saltedcoffii";
       repo = "ffmpeg-audio-thumbnailer";
       rev = "HEAD";
@@ -114,7 +112,7 @@ let
   kde-thumbnailer-apk = pkgs.stdenv.mkDerivation {
     pname = "kde-thumbnailer-apk";
     version = "1.0.0";
-    src = fetchFromGitLab {
+    src = pkgs.fetchFromGitLab {
       owner = "z3ntu";
       repo = "kde-thumbnailer-apk";
       rev = "HEAD";
@@ -140,7 +138,7 @@ let
     dolphin-quick-view = pkgs.stdenv.mkDerivation {
     pname = "kde-thumbnailer-apk";
     version = "1.0.0";
-    src = fetchFromGitLab {
+    src = pkgs.fetchFromGitLab {
       owner = "z3ntu";
       repo = "kde-thumbnailer-apk";
       rev = "HEAD";

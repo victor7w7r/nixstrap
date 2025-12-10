@@ -1,4 +1,4 @@
 { inputs, ... }:
 {
-  imports = [ (import ./hyprland.nix) ] ++ [ inputs.hyprland.homeManagerModules.default ];
+  imports = [ (import ./hypr.nix) ] ++ [ inputs.hyprland.homeManagerModules.default ];
 }

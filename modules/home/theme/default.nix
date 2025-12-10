@@ -1,8 +1,8 @@
 { ... }:
 {
   imports = [
-    (import ./fonts)
-    (import ./gtk)
-    (import ./packages)
+    (import ./fonts.nix)
+    (import ./gtk.nix)
+    (import ./packages.nix)
   ];
 }

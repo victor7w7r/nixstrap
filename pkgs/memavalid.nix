@@ -15,7 +15,7 @@ let
   pkg = pkgs.stdenv.mkDerivation rec {
     pname = "memavaild";
     version = "v0.5-de0870e";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "hakavlad";
       repo = pname;
       rev = "55352fe";
@@ -109,7 +109,7 @@ in
       group = "memavaild";
     };
     users.groups.memavaild = { };
-    systemd.packages = [ pkgs.memavaild ];
+    systemd.packages = [ cfg.package ];
     systemd.services.memavaild.wantedBy = [ "multi-user.target" ];
     systemd.services.memavaild.restartTriggers = [ confFile ];
     environment.etc."memavaild.conf".source = confFile;

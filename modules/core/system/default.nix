@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    (import ./config)
-    (import ./services)
-    (import ./systemd)
-    (import ./performance)
-    (import ./dm)
-    (import ./udev)
-    (import ./bootlaoder)
+    (import ./config.nix)
+    (import ./services.nix)
+    (import ./systemd.nix)
+    (import ./performance.nix)
+    (import ./dm.nix)
+    (import ./udev.nix)
+    (import ./bootloader.nix)
   ];
 }

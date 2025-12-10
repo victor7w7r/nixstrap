@@ -8,7 +8,7 @@
       lsp-plugins
       calf
       zam-plugins
-      mda-lv2
+      mda_lv2
     ]
   );
 

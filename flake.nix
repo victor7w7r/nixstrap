@@ -1,6 +1,8 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
-  # sudo sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
+  # mkdir -p nixstrap nixtemp && sudo sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
+  # cd nixtemp
+  # cd .. && rm -rf nixtemp && cp -r nixstrap nixtemp && cd nixtemp
 
   nixConfig = {
     experimental-features = [
@@ -84,9 +86,9 @@
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./pkgs
+            (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
-            ./hosts/macmini
+            (import ./hosts/macmini)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -99,11 +101,11 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./pkgs
+            (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
-            ./hosts/laptop
+            (import ./hosts/laptop)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -116,9 +118,9 @@
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./pkgs
+            (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
-            ./hosts/rogally
+            (import ./hosts/rogally)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -131,10 +133,10 @@
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
-            ./pkgs
+            (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
-            ./hosts/server
+            (import ./hosts/server)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -147,10 +149,10 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./pkgs
+            (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
-            ./hosts/vm
+            (import ./hosts/vm)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];

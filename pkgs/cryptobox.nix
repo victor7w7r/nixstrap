@@ -1,7 +1,7 @@
 {
-  fetchFromGitHub,
   lib,
   libsodium,
+  pkgs,
   pkg-config,
   rustPlatform,
   stdenv,
@@ -12,7 +12,7 @@ let
     version = "2019-06-17";
     nativeBuildInputs = [ pkg-config ];
     buildInputs = [ libsodium ];
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "wireapp";
       repo = "cryptobox-c";
       rev = "4067ad96b125942545dbdec8c1a89f1e1b65d013";

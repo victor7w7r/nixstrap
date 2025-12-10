@@ -80,14 +80,12 @@ rec {
       size ? "400M",
       mountpoint ? "/",
       postMountHook ? "",
-      name ? "fstemp",
     }:
     {
       size = size;
       content = {
         type = "filesystem";
         format = "ext4";
-        name = name;
         mountpoint = mountpoint;
         extraArgs = extCommonArgs ++ [
           "-L"

@@ -12,7 +12,7 @@
     hyprutils
     hyprviz
     grimblast
-    pyprland.packages."x86_64-linux".pyprland
+    #pyprland.packages."x86_64-linux".pyprland
     rofi-bluetooth
     rofi-calc
     rofi-emoji
@@ -42,7 +42,7 @@
     hyprpolkitagent.enable = true;
     hyprpaper.enable = true;
     hyprshell.enable = true;
-    hyprshot.enable = true;
+    #hyprshot.enable = true;
     hyprsunset.enable = true;
     network-manager-applet.enable = true;
     wob.enable = true;
@@ -50,9 +50,9 @@
 
   programs = {
     wlogout.enable = true;
-    uwsm.enable = true;
+    #uwsm.enable = true;
     bemenu.enable = true;
-    iio-hyprland.enable = true;
+    #iio-hyprland.enable = true;
     tofi.enable = true;
     waybar.enable = true;
   };

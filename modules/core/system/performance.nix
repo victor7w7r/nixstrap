@@ -3,7 +3,7 @@
   services = {
     irqbalance.enable = true;
     memavaild.enable = true;
-    preload.enable = true;
+    #preload.enable = true;
     prelockd.enable = true;
     resolved.enable = false;
     uresourced.enable = true;

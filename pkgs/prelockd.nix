@@ -15,7 +15,7 @@ let
   pkg = pkgs.stdenv.mkDerivation rec {
     pname = "prelockd";
     version = "v0.9-de0870e";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "hakavlad";
       repo = pname;
       rev = "de0870e";
@@ -91,7 +91,7 @@ in
       group = "prelockd";
     };
     users.groups.prelockd = { };
-    systemd.packages = [ pkgs.prelockd ];
+    systemd.packages = [ cfg.package ];
     systemd.services.prelockd.wantedBy = [ "multi-user.target" ];
     systemd.services.prelockd.restartTriggers = [ confFile ];
     environment.etc."prelockd.conf".source = confFile;

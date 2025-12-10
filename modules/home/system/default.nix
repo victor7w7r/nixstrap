@@ -1,8 +1,8 @@
 { ... }:
 {
   imports = [
-    (import ./bat)
-    (import ./btop)
-    (import ./packages)
+    (import ./bat.nix)
+    (import ./btop.nix)
+    (import ./packages.nix)
   ];
 }

@@ -1,22 +1,22 @@
 { host, ... }:
 {
   imports = [
-    (import ./system)
-    (import ./net)
-    (import ./dev)
-    (import ./hardware)
-    (import ./watchers)
-    (import ./files)
-    (import ./disks)
-    (import ./games)
-    (import ./net-clients)
-    (import ./fetch)
+    (import ./system.nix)
+    (import ./net.nix)
+    (import ./dev.nix)
+    (import ./hardware.nix)
+    (import ./watchers.nix)
+    (import ./files.nix)
+    (import ./disks.nix)
+    (import ./games.nix)
+    (import ./net-clients.nix)
+    (import ./fetch.nix)
   ]
   ++ (
     if (host != "vm") || (host != "server") then
       [
-        (import ./android)
-        (import ./multimedia)
+        (import ./android.nix)
+        (import ./multimedia.nix)
       ]
     else
       [ ]

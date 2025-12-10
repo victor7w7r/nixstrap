@@ -18,9 +18,9 @@ let
   pkg = pkgs.stdenv.mkDerivation {
     pname = "nohang";
     version = "v0.2.0-bf477da";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "hakavlad";
-      repo = pname;
+      repo = "nohang";
       rev = "bf477da";
       sha256 = "sha256-gCGjQoSxY/MprrcpdFrJ4VrsNyruqsUSPrHoy+R07Io=";
     };
@@ -704,7 +704,7 @@ in
       group = "nohang";
     };
     users.groups.nohang = { };
-    systemd.packages = [ pkgs.nohang ];
+    systemd.packages = [ cfg.package ];
     systemd.services.${serviceName} = {
       wantedBy = [ "multi-user.target" ];
       restartTriggers = [ confFile ];

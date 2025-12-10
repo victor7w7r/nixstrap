@@ -105,7 +105,7 @@
         };
         PreviewSettings = {
           EnableRemoteFolderThumbnail = false;
-          PreviewSettings.MaximumRemoteSize = 0;
+          MaximumRemoteSize = 0;
         };
         WM = {
           activeBackground = "54,56,62";

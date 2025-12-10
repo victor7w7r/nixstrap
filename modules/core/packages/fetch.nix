@@ -33,9 +33,4 @@
       #https://github.com/Dr-Noob/gpufetch
       #https://github.com/hexisXz/hexfetch
     ];
-
-  programs.fastfetch = {
-    enable = true;
-  };
-
 }

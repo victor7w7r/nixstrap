@@ -48,9 +48,7 @@
       enableSSHSupport = true;
     };
     less.enable = true;
-    navi.enable = true;
     skim.enable = true;
-    tealdeer.enable = true;
     zsh.enable = true;
   };
 }

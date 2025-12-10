@@ -1,13 +1,15 @@
 { ... }:
 {
   services = {
-    aria2.enable = true;
+    #aria2.enable = true; NEEDS KEY
     cockpit.enable = true;
     dnsmasq.enable = true;
     openssh.enable = true;
-    pbgopy.enable = true;
     tailscale.enable = true;
-    ttyd.enable = true;
+    ttyd = {
+      enable = true;
+      writeable = true;
+    };
     #openvpn.package = true;
   };
 }

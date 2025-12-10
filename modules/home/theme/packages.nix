@@ -1,7 +1,5 @@
 {
   pkgs,
-  system,
-  nixos-conf-editor,
   ...
 }:
 {
@@ -9,7 +7,7 @@
   home.packages = (
     with pkgs;
     [
-      nixos-conf-editor.packages.${system}.nixos-conf-editor
+      #inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor TO CORE
       layan-gtk-theme
       colloid-icon-theme
       capitaine-cursors

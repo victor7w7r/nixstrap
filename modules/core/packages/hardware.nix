@@ -14,4 +14,8 @@
       smartmontools
       usbutils
     ];
+
+  programs.corectrl.enable = true;
+  programs.coolercontrol.enable = true;
+
 }

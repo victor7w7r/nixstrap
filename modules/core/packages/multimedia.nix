@@ -42,10 +42,4 @@
       #https://github.com/SathyaBhat/spotify-dl
       #https://github.com/foresterre/imagineer
     ];
-
-  programs = {
-    asciinema.enable = true;
-    cava.enable = true;
-    ncspot.enable = true;
-  };
 }

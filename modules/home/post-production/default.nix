@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    (import ./packages)
+    (import ./packages.nix)
   ];
 }

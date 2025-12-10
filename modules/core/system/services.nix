@@ -4,11 +4,12 @@
     croc.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
+    lact.enable = true;
     locate.enable = true;
     logrotate.enable = true;
-    pueue.enable = true;
     sysstat.enable = true;
     udisks2.enable = true;
+    #rustdesk.enable = true;
 
     #opensnitch.enable = true;
     #clamav = {
@@ -20,8 +21,8 @@
     dbus = {
       enable = true;
       packages = with pkgs; [
-        nohang
-        uresourced
+        #nohang
+        #uresourced
       ];
     };
 

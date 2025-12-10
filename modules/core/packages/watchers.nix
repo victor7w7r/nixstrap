@@ -23,11 +23,10 @@
     ];
 
   programs = {
-    bottom.enable = true;
     corefreq.enable = true;
-    glances.enable = true;
-    hwatch.enable = true;
     iotop.enable = true;
     usbtop.enable = true;
   };
+
+  services.glances.enable = true;
 }

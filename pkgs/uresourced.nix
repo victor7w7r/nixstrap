@@ -15,7 +15,7 @@ let
   pkg = pkgs.stdenv.mkDerivation {
     pname = "uresourced";
     version = "0.5.4-907d9198";
-    src = fetchgit {
+    src = pkgs.fetchgit {
       url = "https://gitlab.freedesktop.org/benzea/uresourced.git";
       rev = "907d91989f50842caaf9d681e82a9d6791701927";
       sha256 = "sha256-WTTQYk8tADY9BIfeQ5kFuBbODbRWW8/YCw3vp6O032o=";
@@ -113,7 +113,7 @@ in
       group = "uresourced";
     };
     users.groups.uresourced = { };
-    systemd.packages = [ pkgs.uresourced ];
+    systemd.packages = [ cfg.package ];
     systemd.services.uresourced.wantedBy = [ "multi-user.target" ];
     environment.etc."uresourced.conf".source = confFile;
   };

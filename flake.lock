@@ -306,12 +306,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1765202646,
-        "narHash": "sha256-Cgceqa+xPgI8JiS1fMaviGw4dthTeW2RqE6RUR4OcS8=",
-        "rev": "caa47b637d877124ac891a64abc14de09fce1675",
-        "revCount": 5893,
+        "lastModified": 1765217760,
+        "narHash": "sha256-BVVyAodLcAD8KOtR3yCStBHSE0WAH/xQWH9f0qsxbmk=",
+        "rev": "e5b1f87841810fc24772bf4389f9793702000c9b",
+        "revCount": 5894,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.5893%2Brev-caa47b637d877124ac891a64abc14de09fce1675/019afe47-a7c9-7ceb-b9a7-311249972c98/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.5894%2Brev-e5b1f87841810fc24772bf4389f9793702000c9b/019aff2e-823c-7bca-ad53-23357595ecc0/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -1043,11 +1043,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765208968,
-        "narHash": "sha256-Jsy1iwMopZh32iLeYAmnfW6Q5K4q+cNCmQqZrGctGA4=",
+        "lastModified": 1765227461,
+        "narHash": "sha256-n3kQ91jDVWgQ2yT6sXEW/HbHbLjtSFOpr5N6mgL/Yek=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "fc1082166fb62176aebc9791c7c290bd2fab5ba6",
+        "rev": "350fb634c89b94c4f6142ca6263fcbee5169ca31",
         "type": "github"
       },
       "original": {
@@ -1135,11 +1135,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1764971517,
-        "narHash": "sha256-MZmpesAar9ooNS466LY4oa1hHOztIPhK4C63xHpqCpk=",
+        "lastModified": 1765222906,
+        "narHash": "sha256-hS4CcZZV+VueSwNvud+7ZYjvXC6+PpNEzdppHJH7KG8=",
         "owner": "hyprland-community",
         "repo": "pyprland",
-        "rev": "a18b3de1a41bcccc81db54365c047e7e32209b17",
+        "rev": "499039279aecad50b2e4e34f80fe392cb87a1a85",
         "type": "github"
       },
       "original": {

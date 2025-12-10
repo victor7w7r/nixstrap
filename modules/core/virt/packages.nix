@@ -15,7 +15,7 @@
     #cockpit-storaged
     fuse-overlayfs
     freerdp
-    lxtui
+    #lxtui
     nemu
     netcat-openbsd
     oxker
@@ -36,8 +36,6 @@
   ];
 
   programs = {
-    looking-glass-client.enable = true;
     mdevctl.enable = true;
-    lazydocker.enable = true;
   };
 }

@@ -5,7 +5,7 @@
 
   hardware = {
     ksm.enable = true;
-    sensor.hddtemp.enable = true;
+    #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
   };
 
   time.timeZone = "America/Guayaquil";
@@ -71,6 +71,16 @@
       "wheel"
     ];
   };
+
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    #"ventoy-qt5-1.1.07"
+    #"qtwebengine-5.15.19"
+  ];
 
   nix = {
     settings = {

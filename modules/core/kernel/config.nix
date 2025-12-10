@@ -2,13 +2,9 @@
 {
   boot = {
     kernelModules = lib.mkAfter [ "ntsync" ];
-    kernelPackages = pkgs.linuxPackages;
     modprobeConfig.enable = true;
 
-    binfmt = {
-      enable = true;
-      emulatedSystems = [ "aarch64-linux" ];
-    };
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     loader = {
       efi = {

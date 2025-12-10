@@ -29,12 +29,6 @@
     ];
 
   programs = {
-    broot.enable = true;
-    mc.enable = true;
-    nnn.enable = true;
-    rclone.enable = true;
-    vifm.enable = true;
     yazi.enable = true;
-    xplr.enable = true;
   };
 }

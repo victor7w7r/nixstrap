@@ -1,14 +1,20 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
-  ...
-}:
+{ lib, pkgs, ... }:
 
 let
-  lxtui = rustPlatform.buildRustPackage rec {
-    pname = "lxtui";
-    version = "0.1.1";
+  inherit (pkgs) rustPlatform fetchFromGitHub;
+  pname = "lxtui";
+  version = "0.1.1";
+  lxtui = rustPlatform.buildRustPackage {
+
+    inherit pname version;
+
+    buildInputs = [
+      pkgs.openssl
+    ];
+
+    nativeBuildInputs = [
+      pkgs.pkg-config
+    ];
 
     src = fetchFromGitHub {
       owner = "FoleyBridge-Solutions";
@@ -17,9 +23,7 @@ let
       sha256 = "sha256-szDsxkkJRYnQ73iemi/DjArO3Z5kIAEoLoPkToHoRtM=";
     };
 
-    cargoSha256 = "0000000000000000000000000000000000000000000000000000";
-
-    buildInputs = [ ];
+    cargoHash = "sha256-Rs9NQRlDv0Vt4NQGYs0jvFnlnlJ+wvgwBA4n1ZZ++io=";
 
     meta = with lib; {
       description = "LXD/LXC TUI Manager";

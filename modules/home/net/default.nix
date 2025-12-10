@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    (import ./packages)
-    #(import ./zen)
+    (import ./packages.nix)
+    #(import ./zen.nix)
   ];
 }

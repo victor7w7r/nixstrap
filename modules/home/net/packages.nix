@@ -4,13 +4,13 @@
     with pkgs;
     [
       axel
-      discord-screenaudio
       franz
       lan-mouse
       legcord
       mailspring
       mtr-gui
       music-discord-rpc
+      vesktop
       #https://github.com/almahdi/nix-thorium
       #https://aur.archlinux.org/packages/jdownloader2-jre
       #https://github.com/Tyrrrz/DiscordChatExporter
@@ -18,4 +18,7 @@
       #https://github.com/opeolluwa/beats
     ]
   );
+  services.pbgopy.enable = true;
+  programs.topgrade.enable = true;
+  programs.himalaya.enable = true;
 }

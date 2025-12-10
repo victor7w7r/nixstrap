@@ -1,17 +1,16 @@
 {
-  stdenv,
-  fetchurl,
+  pkgs,
   lib,
   ...
 }:
 
 let
-  open = stdenv.mkDerivation rec {
+  open = pkgs.stdenv.mkDerivation rec {
     pname = "open";
     version = "0.0.3";
 
-    srcs = {
-      openScript = fetchurl {
+    src = {
+      openScript = pkgs.fetchurl {
         url = "https://github.com/witt-bit/pc-guide/releases/download/v${version}/open.sh";
         sha256 = "d9d0ae0225817945f4c8cf8a37741ce884226c6b8f66066a557f122c4d3c2305";
       };
@@ -22,9 +21,8 @@ let
       mkdir -p $out/usr/share/open
       mkdir -p $out/usr/bin
       mkdir -p $out/usr/share/licenses/${pname}
-      install -m755 ${srcs.openScript} $out/usr/share/open/open.sh
+      install -m755 ${src.openScript} $out/usr/share/open/open.sh
       ln -s ../share/open/open.sh $out/usr/bin/open
-      install -m644 ${srcs.licenseFile} $out/usr/share/licenses/${pname}/LICENSE
     '';
 
     meta = {

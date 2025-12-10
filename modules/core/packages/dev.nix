@@ -19,7 +19,6 @@
       xh
       httpie
       curlie
-      http-prompt
       posting
       glow
       jless
@@ -45,12 +44,6 @@
     #aichat.enable = true;
     #aider-chat.enable = true;
     direnv.enable = true;
-    gitui.enable = true;
-    difftastic.enable = true;
     lazygit.enable = true;
-    lazysql.enable = true;
-    mods.enable = true;
-    meli.enable = true;
-    visidata.enable = true;
   };
 }
