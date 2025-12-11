@@ -67,8 +67,8 @@ rec {
         preCreateHook = ''
           dd if=/dev/urandom of=/root/nixstrap/syskey.key bs=1 count=64
           chmod 0400 /root/nixstrap/syskey.key
-          git config --global user.email "nixos@flake.com"
-          git config --global user.name "nixosflake"
+          git config --global user.email "nixos@flake.com" && \
+          git config --global user.name "nixosflake" && \
           git config --global --add safe.directory /root/nixstrap
           cd /root/nixstrap && git add . && git commit -m "Add Key"
         '';

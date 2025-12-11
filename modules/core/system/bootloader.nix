@@ -72,7 +72,6 @@
 
     cleanupRefind = {
       text = ''
-        set -x
         ${pkgs.efibootmgr}/bin/efibootmgr \
           | grep -i "rEFind" \
           | ${pkgs.gawk}/bin/awk '{print $1}' \

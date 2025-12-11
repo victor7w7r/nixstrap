@@ -3,7 +3,8 @@
   boot = {
     kernelModules = lib.mkAfter [ "ntsync" ];
     modprobeConfig.enable = true;
-
+    supportedFilesystems = [ "btrfs" ];
+    initrd.supportedFilesystems = [ "btrfs" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     loader = {
