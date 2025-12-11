@@ -101,7 +101,6 @@ rec {
     {
       size,
       mountpoint,
-      name,
       extraOptions ? [
         "compress-force=zstd:7"
       ],
@@ -109,7 +108,6 @@ rec {
     {
       size = size;
       content = {
-        name = name;
         type = "btrfs";
         extraArgs = [ "-f" ];
         mountpoint = mountpoint;

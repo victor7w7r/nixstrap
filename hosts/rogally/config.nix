@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  self,
+  ...
+}:
 with lib;
 {
   powerManagement.cpuFreqGovernor = "ondemand";
@@ -22,13 +27,13 @@ with lib;
     luks.devices = {
       system = {
         device = "/dev/disk/by-label/SYSTEM";
-        #keyFile = "/syskey.key";
+        keyFile = "/syskey.key";
         allowDiscards = true;
         preLVM = true;
       };
     };
     secrets = {
-      #"/syskey.key" = /run/secrets/syskey.key;
+      "/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
     };
   };
 

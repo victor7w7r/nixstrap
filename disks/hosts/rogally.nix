@@ -18,9 +18,8 @@ in
             };
           };
           SYSTEM = common.CRYPT { size = "70G"; };
-          Games = common.btrfspart {
+          games = common.btrfspart {
             size = "100%";
-            name = "games";
             mountpoint = "/games";
           };
         };
