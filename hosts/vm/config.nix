@@ -1,4 +1,5 @@
-{ ... }:
+{ self, ... }:
+
 {
   powerManagement.cpuFreqGovernor = "ondemand";
 
@@ -50,13 +51,13 @@
     luks.devices = {
       system = {
         device = "/dev/disk/by-label/SYSTEM";
-        #keyFile = "/syskey.key";
+        keyFile = "/syskey.key";
         allowDiscards = true;
         preLVM = true;
       };
     };
     secrets = {
-      #"/syskey.key" = /run/secrets/syskey.key;
+      "/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
     };
     kernelModules = [ "dm-snapshot" ];
   };

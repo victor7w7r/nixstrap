@@ -94,7 +94,12 @@
           ];
           specialArgs = {
             host = "v7w7r-macmini81";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
           };
         };
 
@@ -111,7 +116,12 @@
           ];
           specialArgs = {
             host = "v7w7r-dynabook";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
           };
         };
 
@@ -126,7 +136,12 @@
           ];
           specialArgs = {
             host = "v7w7r-rc71l";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
           };
         };
 
@@ -142,7 +157,12 @@
           ];
           specialArgs = {
             host = "v7w7r-youyeetoox1";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
           };
         };
 
@@ -158,7 +178,12 @@
           ];
           specialArgs = {
             host = "v7w7r-nixvm";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
           };
         };
       };

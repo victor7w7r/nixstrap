@@ -39,10 +39,12 @@
     kdePackages.ksystemlog
     kdePackages.merkuro
     kdePackages.okular
+    kdePackages.plasma-workspace
     kdePackages.partitionmanager
     kdePackages.qtstyleplugin-kvantum
     kdePackages.sweeper
     kdePackages.yakuake
+    kdePackages.wayland
     heaptrack
     ffmpegthumbnailer
     graphviz

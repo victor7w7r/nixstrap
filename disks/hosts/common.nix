@@ -65,12 +65,13 @@ rec {
           vg = vg;
         };
         preCreateHook = ''
-          dd if=/dev/urandom of=/tmp/keygen.key bs=1 count=64
-          chmod 0400 /tmp/keygen.key
+          dd if=/dev/urandom of=/root/nixstrap/syskey.key bs=1 count=64
+          chmod 0400 /root/nixstrap/syskey.key
+          cd /root/nixstrap && git add . && git commit -m "Add Key"
         '';
         postCreateHook = ''
           cryptsetup config /dev/disk/by-partlabel/disk-main-SYSTEM --label "SYSTEM"
-          cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-SYSTEM /tmp/keygen.key -d /tmp/pass.key
+          cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-SYSTEM /root/nixstrap/syskey.key -d /tmp/pass.key
         '';
       };
     };

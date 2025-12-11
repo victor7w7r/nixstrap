@@ -41,7 +41,7 @@
     vifm.enable = true;
     xplr.enable = true;
   };
-
+  services.kdeconnect.enable = true;
   services.pueue.enable = true;
 
 }

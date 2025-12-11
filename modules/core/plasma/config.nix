@@ -1,38 +1,47 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      kdePackages.xdg-desktop-portal-kde # Portal
+    ];
+  };
+
   services = {
-    kdeconnect.enable = true;
+    libinput.enable = true;
     fprintd.enable = true;
+    xserver.enable = true;
     xserver.xkb = {
       layout = "us";
       variant = "workman";
       options = "caps:ctrl_modifier";
     };
-    displayManager = {
+    displayManager.defaultSession = "plasma";
+    desktopManager = {
       plasma6 = {
         enable = true;
-        enableQt5Integration.enable = true;
-      };
-      sddm = {
-        wayland.enable = true;
+        enableQt5Integration = true;
       };
     };
 
     flatpak = {
-      packages = [
-        "io.github.DenysMb.Kontainer"
-        "io.github.nyre221.kiview"
-        "org.kde.kommit"
-        "com.github.d4nj1.tlpui"
-        "in.srev.guiscrcpy"
-        "com.github.vikdevelop.photopea_app"
-        "com.github.tchx84.Flatseal"
-        "io.emeric.toolblex"
-      ];
-      update.auto = {
-        enable = true;
-        onCalendar = "weekly";
-      };
+      enable = true;
+      /*
+        packages = [
+          "io.github.DenysMb.Kontainer"
+          "io.github.nyre221.kiview"
+          "org.kde.kommit"
+          "com.github.d4nj1.tlpui"
+          "in.srev.guiscrcpy"
+          "com.github.vikdevelop.photopea_app"
+          "com.github.tchx84.Flatseal"
+          "io.emeric.toolblex"
+        ];
+        update.auto = {
+          enable = true;
+          onCalendar = "weekly";
+          };
+      */
     };
   };
 }
