@@ -39,8 +39,16 @@
           OPTS=noatime,lazytime,nobarrier,nodiscard,commit=120
 
           if ! e2fsck -n ${config.setupDisks.systemdisk}; then e2fsck -y ${config.setupDisks.systemdisk}; fi
-          if ! e2fsck -n ${config.setupDisks.homedisk}; then e2fsck -y ${config.setupDisks.homedisk}; fi
           if ! e2fsck -n ${config.setupDisks.varDisk}; then e2fsck -y ${config.setupDisks.varDisk}; fi
+
+           ${
+             if config.setupDisks.homeDisk != "" then
+               ''
+                 if ! e2fsck -n ${config.setupDisks.homedisk}; then e2fsck -y ${config.setupDisks.homedisk}; fi
+               ''
+             else
+               ""
+           }
 
           ${if config.setupDisks.extraFsck != "" then config.setupDisks.extraFsck else ""}
 
@@ -70,9 +78,16 @@
           }
 
           mount --move /run/troot /sysroot
-
           mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} /sysroot/.nix
-          mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} /sysroot/home
+
+          ${
+            if config.setupDisks.homeDisk != "" then
+              ''
+                mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} /sysroot/home
+              ''
+            else
+              ""
+          }
           mount -t ext4 -o $OPTS ${config.setupDisks.varDisk} /sysroot/var
 
           ${
@@ -89,6 +104,15 @@
           mount --bind /sysroot/.nix/etc /sysroot/etc
           mount --bind /sysroot/.nix/opt /sysroot/opt
           mount --bind /sysroot/.nix/nix /sysroot/nix
+
+          ${
+            if config.setupDisks.homeDisk == "" then
+              ''
+                mount --bind /sysroot/.nix/home /sysroot/home
+              ''
+            else
+              ""
+          }
 
           mount -t tmpfs -o mode=1777 tmpfs /sysroot/tmp || true
           mount -t tmpfs -o mode=1777 tmpfs /sysroot/var/tmp || true

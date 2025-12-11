@@ -15,6 +15,10 @@ in
             content = {
               type = "filesystem";
               format = "ntfs";
+              extraArgs = [
+                "-f"
+                "-Q"
+              ];
             };
           };
           SYSTEM = common.CRYPT { size = "70G"; };
@@ -31,7 +35,7 @@ in
         lvs = {
           fstemp = common.extpart {
             postMountHook = ''
-              mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt /mnt/games
+              mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt /mnt/games /mnt/home
             '';
           };
           var = common.extpart {

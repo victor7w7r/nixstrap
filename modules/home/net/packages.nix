@@ -4,7 +4,7 @@
     with pkgs;
     [
       axel
-      franz
+      #franz
       lan-mouse
       legcord
       mailspring

@@ -14,7 +14,6 @@
         mkdir -p /boot/EFI/refind/icons
         mkdir -p /boot/EFI/refind/fonts
         mkdir -p /boot/EFI/tools
-        mkdir -p /boot/EFI/Linux
 
         cp ${pkgs.refind}/share/refind/refind_x64.efi /boot/EFI/refind/refind_x64.efi
 
