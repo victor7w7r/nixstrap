@@ -59,6 +59,12 @@
               loader /EFI/arch-linux-multi.efi
             }
           }
+
+          menuentry "Windows 11" {
+            icon /EFI/refind/themes/catppuccin/assets/mocha/icons/os_win10.png
+            loader /EFI/Microsoft/Boot/bootmgfw.efi
+            ostype Windows
+          }
         EOF
       '';
       deps = [ "installManualRefind" ];
@@ -66,6 +72,7 @@
 
     cleanupRefind = {
       text = ''
+        set -x
         ${pkgs.efibootmgr}/bin/efibootmgr \
           | grep -i "rEFind" \
           | ${pkgs.gawk}/bin/awk '{print $1}' \

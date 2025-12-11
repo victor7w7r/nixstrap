@@ -4,7 +4,7 @@
     "lsm=landlock,yama,integrity,apparmor,bpf"
     "rw"
     "add_efi_memmap"
-    "root=${config.setupDisks.mockdisk}"
+    "root=${config.setupDisks.mockDisk}"
     "rootfstype=ext4"
     "rootflags=noatime,lazytime,nobarrier,nodiscard,commit=120"
     "loglevel=3"

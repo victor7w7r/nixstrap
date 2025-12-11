@@ -1,10 +1,23 @@
 { ... }:
 {
   systemd = {
+    network.wait-online = false;
     settings.Manager = {
       DefaultTimeoutStartSec = "15s";
       DefaultTimeoutStopSec = "10s";
+
       DefaultLimitNOFILE = "2048:2097152";
+    };
+    services.systemd-timesyncd = {
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+      unitConfig.ConditionACPower = false;
+    };
+    services.systemd-oomd.serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 2;
     };
     tmpfiles.rules = [
       "d /tmp       0777 root root 1d"

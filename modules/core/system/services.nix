@@ -10,7 +10,6 @@
     sysstat.enable = true;
     udisks2.enable = true;
     #rustdesk.enable = true;
-
     #opensnitch.enable = true;
     #clamav = {
     #  daemon.enable = true;

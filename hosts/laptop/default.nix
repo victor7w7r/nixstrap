@@ -6,9 +6,9 @@ with lib;
     description = "Rutas de los discos principales del sistema.";
     default = {
       maindevice = "/dev/nvme0n1";
-      mockdisk = "/dev/mapper/vg0-fstemp";
+      mockDisk = "/dev/mapper/vg0-fstemp";
       systemdisk = "/dev/mapper/vg0-system";
-      homedisk = "/dev/mapper/vg0-home";
+      homeDisk = "/dev/mapper/vg0-home";
       varDisk = "/dev/mapper/vg0-var";
       kvmDisk = "";
       extraFsck = "";

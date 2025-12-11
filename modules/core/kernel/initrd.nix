@@ -38,18 +38,14 @@
         script = ''
           OPTS=noatime,lazytime,nobarrier,nodiscard,commit=120
 
-          if ! e2fsck -n ${config.setupDisks.systemdisk}; then e2fsck -y ${config.setupDisks.systemdisk}; fi
+          if ! e2fsck -n ${config.setupDisks.systemDisk}; then e2fsck -y ${config.setupDisks.systemDisk}; fi
           if ! e2fsck -n ${config.setupDisks.varDisk}; then e2fsck -y ${config.setupDisks.varDisk}; fi
-
            ${
              if config.setupDisks.homeDisk != "" then
-               ''
-                 if ! e2fsck -n ${config.setupDisks.homedisk}; then e2fsck -y ${config.setupDisks.homedisk}; fi
-               ''
+               "if ! e2fsck -n ${config.setupDisks.homeDisk}; then e2fsck -y ${config.setupDisks.homeDisk}; fi"
              else
                ""
            }
-
           ${if config.setupDisks.extraFsck != "" then config.setupDisks.extraFsck else ""}
 
           mkdir -p /run/troot
@@ -61,30 +57,21 @@
           cp -a -r "/sysroot/bin" "/run/troot/"
           cp -a -r "/sysroot/lib64" "/run/troot/"
 
-          for dir in boot etc nix root var home opt usr .nix tmp; do
-            mkdir -p "/run/troot/$dir"
-          done
+          for dir in boot etc nix root var home opt usr .nix tmp; do mkdir -p "/run/troot/$dir"; done
 
           ${if config.setupDisks.kvmDisk != "" then ''mkdir -p "/run/troot/kvm'' else ""}
           ${
             if config.setupDisks.extraDir != "" then
-              ''
-                for secDir in ${config.setupDisks.extraDir}; do
-                  mkdir -p "/run/troot/$secDir"
-                done
-              ''
+              ''for secDir in ${config.setupDisks.extraDir}; do mkdir -p "/run/troot/$secDir"; done''
             else
               ""
           }
 
           mount --move /run/troot /sysroot
-          mount -t ext4 -o $OPTS ${config.setupDisks.systemdisk} /sysroot/.nix
-
+          mount -t ext4 -o $OPTS ${config.setupDisks.systemDisk} /sysroot/.nix
           ${
             if config.setupDisks.homeDisk != "" then
-              ''
-                mount -t ext4 -o $OPTS ${config.setupDisks.homedisk} /sysroot/home
-              ''
+              "mount -t ext4 -o $OPTS ${config.setupDisks.homeDisk} /sysroot/home"
             else
               ""
           }
@@ -92,9 +79,7 @@
 
           ${
             if config.setupDisks.kvmDisk != "" then
-              ''
-                mount -t ext4 -o $OPTS ${config.setupDisks.kvmDisk} /sysroot/kvm
-              ''
+              "mount -t ext4 -o $OPTS ${config.setupDisks.kvmDisk} /sysroot/kvm"
             else
               ""
           }
@@ -104,15 +89,7 @@
           mount --bind /sysroot/.nix/etc /sysroot/etc
           mount --bind /sysroot/.nix/opt /sysroot/opt
           mount --bind /sysroot/.nix/nix /sysroot/nix
-
-          ${
-            if config.setupDisks.homeDisk == "" then
-              ''
-                mount --bind /sysroot/.nix/home /sysroot/home
-              ''
-            else
-              ""
-          }
+          ${if config.setupDisks.homeDisk == "" then "mount --bind /sysroot/.nix/home /sysroot/home" else ""}
 
           mount -t tmpfs -o mode=1777 tmpfs /sysroot/tmp || true
           mount -t tmpfs -o mode=1777 tmpfs /sysroot/var/tmp || true

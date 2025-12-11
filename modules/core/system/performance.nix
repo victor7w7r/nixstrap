@@ -28,7 +28,10 @@
 
     journald.extraConfig = ''
       Compress=yes
-      SystemMaxUse=100M
+      MaxLevelStore=debug
+      SystemMaxUse=500M
+      RuntimeMaxUse=200M
+      LogLevel=debug
       ForwardToConsole=yes
       MaxLevelConsole=debug
       TTYPath=/dev/tty12
