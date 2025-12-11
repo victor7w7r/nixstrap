@@ -9,6 +9,7 @@ in
       content = {
         type = "gpt";
         partitions = {
+          ESP = common.ESP { size = "400M"; };
           win = {
             size = "100G";
             content = {
@@ -16,7 +17,6 @@ in
               format = "ntfs";
             };
           };
-          ESP = common.ESP { size = "400M"; };
           SYSTEM = common.CRYPT { size = "70G"; };
           Games = common.btrfspart {
             size = "100%";
