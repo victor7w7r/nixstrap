@@ -1,11 +1,10 @@
 { ... }:
 {
   systemd = {
-    network.wait-online = false;
+    network.wait-online.enable = false;
     settings.Manager = {
       DefaultTimeoutStartSec = "15s";
       DefaultTimeoutStopSec = "10s";
-
       DefaultLimitNOFILE = "2048:2097152";
     };
     services.systemd-timesyncd = {
