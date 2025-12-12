@@ -32,7 +32,7 @@
     writeRefindConfig = {
       text = ''
         cat > /boot/EFI/refind/refind.conf << EOF
-          timeout 3
+          timeout 2
           screensaver 300
           use_nvram false
           showtools shell, memtest, bootorder, apple_recovery, windows_recovery

@@ -40,6 +40,7 @@
     kdePackages.merkuro
     kdePackages.okular
     kdePackages.plasma-workspace
+    kdePackages.plasma-desktop
     kdePackages.partitionmanager
     kdePackages.qtstyleplugin-kvantum
     kdePackages.sddm-kcm
