@@ -16,7 +16,6 @@
       variant = "workman";
       options = "caps:ctrl_modifier";
     };
-    displayManager.defaultSession = "plasma";
     desktopManager = {
       plasma6 = {
         enable = true;

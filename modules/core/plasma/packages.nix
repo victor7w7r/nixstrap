@@ -42,6 +42,7 @@
     kdePackages.plasma-workspace
     kdePackages.partitionmanager
     kdePackages.qtstyleplugin-kvantum
+    kdePackages.sddm-kcm
     kdePackages.sweeper
     kdePackages.yakuake
     kdePackages.wayland
@@ -59,5 +60,6 @@
     maliit-keyboard
     okteta
     ulauncher
+    wayland
   ];
 }
