@@ -13,7 +13,7 @@
     (import ./fetch.nix)
   ]
   ++ (
-    if (host != "vm") || (host != "server") then
+    if (host != "v7w7r-nixvm") || (host != "v7w7r-youyeetoox1") then
       [
         (import ./android.nix)
         (import ./multimedia.nix)

@@ -8,5 +8,5 @@
     #(import ./pentesting)
     (import ./system)
   ]
-  ++ (if (host != "vm") then [ (import ./virt) ] else [ ]);
+  ++ (if (host != "v7w7r-nixvm") then [ (import ./virt) ] else [ ]);
 }
