@@ -3,23 +3,10 @@
   systemd = {
     enableEmergencyMode = true;
     network.wait-online.enable = false;
-    additionalUpstreamSystemUnits = [ "debug-shell.service" ];
     settings.Manager = {
       DefaultTimeoutStartSec = "15s";
       DefaultTimeoutStopSec = "10s";
       DefaultLimitNOFILE = "2048:2097152";
-    };
-    services.systemd-journald.serviceConfig = {
-      OnFailure = "emergency.target"
-    };
-    services.systemd-timesyncd = {
-      serviceConfig = {
-        OnFailure = "emergency.target"
-      };
-      unitConfig.ConditionACPower = false;
-    };
-    services.systemd-oomd.serviceConfig = {
-      OnFailure = "emergency.target"
     };
     tmpfiles.rules = [
       "d /tmp       0777 root root 1d"

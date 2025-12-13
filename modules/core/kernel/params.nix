@@ -7,7 +7,7 @@
     "root=${config.setupDisks.mockDisk}"
     "rootfstype=ext4"
     "rootflags=noatime,lazytime,nobarrier,nodiscard,commit=120"
-    "loglevel=7"
+    "loglevel=3"
     "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
     "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
     "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
@@ -23,10 +23,7 @@
     "tsc=reliable"
     "srbds=off"
     "systemd.debug-shell=1"
-    "systemd.log_level=debug"
-    "systemd.show_status=true"
-    "systemd.log_target=kmsg"
-    "udev.log_level=debug"
+    "systemd.unit=rescue.target"
     #"kvmfr.static_size_mb=128"
     #systemd.unit=multi-user.target single
   ];

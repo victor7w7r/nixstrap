@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   boot = {
-    kernelModules = lib.mkAfter [ "ntsync" ];
+    #kernelModules = lib.mkAfter [ "ntsync" ];
     modprobeConfig.enable = true;
     supportedFilesystems = [ "btrfs" ];
     initrd.supportedFilesystems = [ "btrfs" ];
