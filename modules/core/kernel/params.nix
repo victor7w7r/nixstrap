@@ -24,7 +24,9 @@
     "srbds=off"
     "systemd.debug-shell=1"
     "systemd.log_level=debug"
+    "systemd.show_status=true"
     "systemd.log_target=kmsg"
+    "udev.log_level=debug"
     #"kvmfr.static_size_mb=128"
     #systemd.unit=multi-user.target single
   ];
