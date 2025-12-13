@@ -22,6 +22,9 @@
     "page_alloc.shuffle=1"
     "tsc=reliable"
     "srbds=off"
+    "systemd.debug-shell=1"
+    "systemd.log_level=debug"
+    "systemd.log_target=kmsg"
     #"kvmfr.static_size_mb=128"
     #systemd.unit=multi-user.target single
   ];

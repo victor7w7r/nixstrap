@@ -58,6 +58,7 @@
     krename
     krita
     krusader
+    onboard
     maliit-keyboard
     okteta
     ulauncher

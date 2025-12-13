@@ -19,7 +19,7 @@
     };
     firewall = {
       allowPing = true;
-      enable = true;
+      enable = false;
       logRefusedPackets = true;
       #allowedUDPPorts = [ 59010 59011 53317 4501 5353 ];
       allowedTCPPorts = [

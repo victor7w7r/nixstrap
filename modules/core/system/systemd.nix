@@ -7,16 +7,17 @@
       DefaultTimeoutStopSec = "10s";
       DefaultLimitNOFILE = "2048:2097152";
     };
+    services.systemd-journald.serviceConfig = {  
+      OnFailure = "emergency.target"
+    };
     services.systemd-timesyncd = {
       serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = 5;
+        OnFailure = "emergency.target"
       };
       unitConfig.ConditionACPower = false;
     };
-    services.systemd-oomd.serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = 2;
+    services.systemd-oomd.serviceConfig = {  
+      OnFailure = "emergency.target"
     };
     tmpfiles.rules = [
       "d /tmp       0777 root root 1d"

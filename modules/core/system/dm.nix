@@ -2,13 +2,14 @@
 {
   services.displayManager = {
     sddm = {
-      enable = host == "v7w7r-rc71l";
-      wayland.enable = true;
+      enable = false;
+      wayland.enable = false;
     };
-    gdm.enable = false;
+    gdm.enable = true;
+    gdm.wayland = true;
     defaultSession = "plasma";
     ly = {
-      enable = host != "v7w7r-rc71l";
+      enable = false;
       settings = {
         allow_empty_password = true;
         # matrix   -> CMatrix
