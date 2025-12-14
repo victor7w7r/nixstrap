@@ -1,20 +1,31 @@
 let
-  common = import ./common.nix;
+  boot = import ../modules/boot.nix;
+  linux = import ../modules/linux.nix;
+
+  esp = boot.esp { };
+  vault = boot.vault { };
+  cryptsys = linux.cryptsys { };
+
+  msr = winmod.msr { };
+  recovery = winmod.recovery { };
+  win = winmod.win { size = "100%"; };
+
+  fstemp = linux.mockpart { };
+  home = linux.homepart { };
+  var = linux.varpart { };
+  system = linux.syspart { };
+
+  partitions = { inherit esp vault cryptsys; };
+  satapartitions = { inherit msr recovery win; };
+  lvs = { inherit fstemp home var system; };
 in
 {
   disko.devices = {
-
     disk = {
       stick = {
         type = "disk";
         device = "/dev/nvme0n1";
-        content = {
-          type = "gpt";
-          partitions = {
-            ESP = common.ESP { };
-            SYSTEM = common.CRYPT { };
-          };
-        };
+        content = { type = "gpt"; inherit partitions; };
       };
       sata = {
         type = "disk";

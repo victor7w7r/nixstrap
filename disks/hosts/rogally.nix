@@ -1,61 +1,38 @@
 let
-  common = import ./common.nix;
+  boot = import ../modules/boot.nix;
+  winmod = import ../modules/win.nix;
+  linux = import ../modules/linux.nix;
+
+  esp = boot.esp { };
+  msr = winmod.msr { };
+  vault = boot.vault { };
+  recovery = winmod.recovery { };
+  win = winmod.win { };
+  cryptsys = linux.cryptsys { size = "90G"; };
+  games = linux.shared { mountpoint = "/games"; };
+
+  fstemp = linux.mockpart { extraDirs = "/mnt/games /mnt/home"; };
+  var = linux.varpart { };
+  system = linux.syspart {
+    extraDirs = "/mnt/games /mnt/home";
+    extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
+  };
+
+  partitions = {
+    inherit esp msr vault recovery win cryptsys games;
+  };
+
+  lvs = { inherit fstemp var system; };
 in
 {
   disko.devices = {
     disk.main = {
       type = "disk";
       device = "/dev/nvme0n1";
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = common.ESP { size = "400M"; };
-          win = {
-            size = "100G";
-            content = {
-              type = "filesystem";
-              format = "ntfs";
-              extraArgs = [
-                "-f"
-                "-Q"
-              ];
-            };
-          };
-          SYSTEM = common.CRYPT { size = "70G"; };
-          games = common.btrfspart {
-            size = "100%";
-            mountpoint = "/games";
-          };
-        };
-      };
+      content = { type = "gpt"; inherit partitions; };
     };
     lvm_vg = {
-      vg0 = {
-        type = "lvm_vg";
-        lvs = {
-          fstemp = common.extpart {
-            postMountHook = ''
-              mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt /mnt/games /mnt/home
-            '';
-          };
-          var = common.extpart {
-            size = "5G";
-            mountpoint = "/var";
-          };
-          system = common.extpart {
-            size = "100%";
-            mountpoint = "/.nix";
-            postMountHook = ''
-              mkdir -p /mnt/.nix/etc /mnt/.nix/opt /mnt/.nix/nix /mnt/.nix/root /mnt/.nix/home
-              mount --bind /mnt/.nix/root /mnt/root
-              mount --bind /mnt/.nix/home /mnt/home
-              mount --bind /mnt/.nix/etc /mnt/etc
-              mount --bind /mnt/.nix/opt /mnt/opt
-              mount --bind /mnt/.nix/nix /mnt/nix
-            '';
-          };
-        };
-      };
+      vg0 = { type = "lvm_vg"; inherit lvs; };
     };
   };
 }

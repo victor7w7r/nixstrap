@@ -1,0 +1,51 @@
+{
+  esp = { size ? "500M" }:
+    {
+      inherit size;
+      name = "EFI";
+      type = "EF00";
+      content = {
+        type = "filesystem";
+        format = "vfat";
+        mountpoint = "/boot";
+        extraArgs = [
+          "-F32"
+          "-n"
+          "EFI"
+        ];
+        mountOptions = [
+          "relatime"
+          "fmask=0022"
+          "dmask=0022"
+          "umask=0077"
+          "codepage=437"
+          "iocharset=iso8859-1"
+          "shortname=mixed"
+          "nofail"
+          "utf8"
+          "errors=remount-ro"
+        ];
+      };
+    };
+
+  vault = {
+    size ? "2G",
+    name ? "Vault",
+    mountpoint ? "/boot/vault"
+  }: {
+    inherit name size;
+    type = "8300";
+    content = {
+      type = "btrfs";
+      extraArgs = [ "-f" ];
+      inherit mountpoint;
+      mountOptions = [
+        "lazytime"
+        "nodiscard"
+        "commit=60"
+        "noatime"
+        "compress-force=zstd:7"
+      ];
+    };
+  };
+}
