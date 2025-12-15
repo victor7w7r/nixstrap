@@ -5,10 +5,13 @@ let
 
   esp = boot.esp { };
   msr = winmod.msr { };
-  vault = boot.vault { };
+  vault = boot.vault { priority = 3; };
   recovery = winmod.recovery { };
   win = winmod.win { };
-  cryptsys = linux.cryptsys { size = "90G"; };
+  cryptsys = linux.cryptsys {
+    size = "90G";
+    priority = 6;
+  };
   games = linux.shared {
     name = "games";
     mountpoint = "/games";

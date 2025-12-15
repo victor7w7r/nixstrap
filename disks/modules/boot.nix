@@ -1,9 +1,13 @@
 {
-  esp = { size ? "500M" }:
+  esp =
+    {
+      size ? "500M",
+    }:
     {
       inherit size;
       name = "EFI";
       type = "EF00";
+      priority = 1;
       content = {
         type = "filesystem";
         format = "vfat";
@@ -28,24 +32,27 @@
       };
     };
 
-  vault = {
-    size ? "2G",
-    name ? "Vault",
-    mountpoint ? "/boot/vault"
-  }: {
-    inherit name size;
-    type = "8300";
-    content = {
-      type = "btrfs";
-      extraArgs = [ "-f" ];
-      inherit mountpoint;
-      mountOptions = [
-        "lazytime"
-        "nodiscard"
-        "commit=60"
-        "noatime"
-        "compress-force=zstd:7"
-      ];
+  vault =
+    {
+      size ? "2G",
+      name ? "Vault",
+      mountpoint ? "/boot/vault",
+      priority ? 2,
+    }:
+    {
+      inherit name size priority;
+      type = "8300";
+      content = {
+        type = "btrfs";
+        extraArgs = [ "-f" ];
+        inherit mountpoint;
+        mountOptions = [
+          "lazytime"
+          "nodiscard"
+          "commit=60"
+          "noatime"
+          "compress-force=zstd:7"
+        ];
+      };
     };
-  };
 }

@@ -39,9 +39,10 @@ rec {
       size ? "100%",
       name ? "Shared",
       mountpoint ? "/media/shared",
+      priority ? 100,
     }:
     {
-      inherit name size;
+      inherit name size priority;
       type = "8300";
       content = {
         type = "btrfs";
@@ -64,9 +65,10 @@ rec {
       keyFile ? "/tmp/pass.key",
       index ? "0",
       group ? "vg",
+      priority ? 3,
     }:
     {
-      inherit size;
+      inherit size priority;
       content = {
         type = "luks";
         inherit name;
