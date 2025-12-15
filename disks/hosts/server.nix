@@ -13,9 +13,9 @@ let
 
   fstemp = linux.mockpart { extraDirs = "/mnt/kvm /mnt/media"; };
   home = linux.homepart { };
-  var = linux.varpart { };
+  var = linux.varpart;
   system = linux.syspart { size = "70G"; };
-  kvm = linux.kvmpart { };
+  kvm = linux.kvmpart;
 
   partitions = { inherit esp vault cryptsys; };
   satapartitions = { inherit msr recovery win; };

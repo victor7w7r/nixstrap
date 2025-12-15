@@ -8,7 +8,7 @@ let
 
   fstemp = linux.mockpart { };
   home = linux.homepart { };
-  var = linux.varpart { };
+  var = linux.varpart;
   system = linux.syspart { };
 
   partitions = { inherit esp vault cryptsys; };

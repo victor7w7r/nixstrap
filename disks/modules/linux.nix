@@ -115,13 +115,17 @@ rec {
     mountpoint = "/var";
   };
 
-  homepart = linuxpart {
-    name = "home";
-    size = "10G";
-    label = "home";
-    mountpoint = "/home";
-    postMountHook = "mkdir -p /home/common";
-  };
+  homepart =
+    {
+      size ? "10G",
+    }:
+    linuxpart {
+      inherit size;
+      name = "home";
+      label = "home";
+      mountpoint = "/home";
+      postMountHook = "mkdir -p /home/common";
+    };
 
   kvmpart = linuxpart {
     name = "kvm";

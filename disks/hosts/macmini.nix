@@ -20,7 +20,7 @@ let
   };
   system = linux.syspart { };
 
-  var = linux.varpart { };
+  var = linux.varpart;
   home = linux.homepart { size = "100%"; };
 
   partitions = {
