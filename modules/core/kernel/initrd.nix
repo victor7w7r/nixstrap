@@ -57,7 +57,7 @@
           cp -a -r "/sysroot/bin" "/run/troot/"
           cp -a -r "/sysroot/lib64" "/run/troot/"
 
-          for dir in boot etc nix root var home opt usr .nix tmp; do mkdir -p "/run/troot/$dir"; done
+          for dir in boot etc nix root var home usr .nix tmp; do mkdir -p "/run/troot/$dir"; done
 
           ${if config.setupDisks.kvmDisk != "" then ''mkdir -p "/run/troot/kvm'' else ""}
           ${
@@ -87,7 +87,6 @@
 
           mount --bind /sysroot/.nix/root /sysroot/root
           mount --bind /sysroot/.nix/etc /sysroot/etc
-          mount --bind /sysroot/.nix/opt /sysroot/opt
           mount --bind /sysroot/.nix/nix /sysroot/nix
           ${if config.setupDisks.homeDisk == "" then "mount --bind /sysroot/.nix/home /sysroot/home" else ""}
 
