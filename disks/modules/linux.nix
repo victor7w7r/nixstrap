@@ -5,13 +5,12 @@ rec {
       size,
       label,
       mountpoint,
-      type ? "",
       postMountHook ? "",
       extraArgs ? [ ],
       mountOptions ? [ ],
     }:
     {
-      inherit name size type;
+      inherit name size;
       content = {
         type = "filesystem";
         format = "ext4";
