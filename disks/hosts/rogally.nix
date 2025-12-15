@@ -17,7 +17,7 @@ let
   fstemp = linux.mockpart { extraDirs = "/mnt/games /mnt/home"; };
   var = linux.varpart;
   system = linux.syspart {
-    extraDirs = "/mnt/games /mnt/home";
+    extraDirs = "/mnt/games /mnt/home /mnt/.nix/home";
     extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
   };
 
