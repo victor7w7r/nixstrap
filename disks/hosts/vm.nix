@@ -12,17 +12,30 @@ let
   system = linux.syspart { };
 
   partitions = { inherit esp vault cryptsys; };
-  lvs = { inherit fstemp home var system; };
+  lvs = {
+    inherit
+      fstemp
+      home
+      var
+      system
+      ;
+  };
 in
 {
   disko.devices = {
     disk.main = {
       type = "disk";
       device = "/dev/vda";
-      content = { type = "gpt"; inherit partitions; };
+      content = {
+        type = "gpt";
+        inherit partitions;
+      };
     };
     lvm_vg = {
-      vg0 = { type = "lvm_vg"; inherit lvs; };
+      vg0 = {
+        type = "lvm_vg";
+        inherit lvs;
+      };
     };
   };
 }

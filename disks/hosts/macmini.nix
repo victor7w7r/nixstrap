@@ -1,5 +1,51 @@
 let
-  common = import ./common.nix;
+  boot = import ../modules/boot.nix;
+  winmod = import ../modules/win.nix;
+  linux = import ../modules/linux.nix;
+
+  esp = boot.esp { };
+  msr = winmod.msr { };
+  vault = boot.vault { };
+  macos = {
+    name = "macos";
+    size = "110G";
+  };
+  recovery = winmod.recovery { };
+  win = winmod.win { };
+  cryptsys = linux.cryptsys { size = "90G"; };
+  shared = linux.shared { };
+
+  fstemp = linux.mockpart {
+    extraDirs = "/mnt/kvm /mnt/media/nvmestorage /mnt/media/docs";
+  };
+  system = linux.syspart { };
+
+  var = linux.varpart { };
+  home = linux.homepart { size = "100%"; };
+
+  partitions = {
+    inherit
+      esp
+      msr
+      vault
+      macos
+      recovery
+      win
+      cryptsys
+      shared
+      ;
+  };
+
+  storagepartitions = {
+    storage = cryptsys {
+      name = "cryptstorage";
+      index = "1";
+      group = "vg";
+    };
+  };
+
+  lvs = { inherit fstemp system; };
+  storagelvs = { inherit var home; };
 in
 {
   disko.devices = {
@@ -9,24 +55,7 @@ in
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
-          partitions = {
-            ESP = common.ESP { };
-            macos = {
-              size = "110G";
-              content = {
-                type = "filesystem";
-                format = "apfs";
-              };
-            };
-            win = {
-              size = "80G";
-              content = {
-                type = "filesystem";
-                format = "ntfs";
-              };
-            };
-            SYSTEM = common.CRYPT { };
-          };
+          inherit partitions;
         };
       };
       storage = {
@@ -34,54 +63,18 @@ in
         device = "/dev/sda";
         content = {
           type = "gpt";
-          partitions = {
-            STORAGE = common.CRYPT { vg = "vg1"; };
-          };
+          partitions = storagepartitions;
         };
       };
     };
-
     lvm_vg = {
       vg0 = {
         type = "lvm_vg";
-        lvs = {
-          fstemp = common.extpart {
-            postMountHook = ''
-              mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt /mnt/kvm
-              mkdir -p /mnt/media/nvmestorage /mnt/media/docs
-            '';
-          };
-          system = common.extpart {
-            size = "60G";
-            mountpoint = "/.nix";
-            postMountHook = ''
-              mkdir -p /mnt/.nix/etc /mnt/.nix/opt /mnt/.nix/nix /mnt/.nix/root
-              mount --bind /mnt/.nix/root /mnt/root
-              mount --bind /mnt/.nix/etc /mnt/etc
-              mount --bind /mnt/.nix/opt /mnt/opt
-              mount --bind /mnt/.nix/nix /mnt/nix
-            '';
-          };
-          nvmestorage = common.btrfspart {
-            size = "100%";
-            mountpoint = "/media/nvmestorage";
-            extraOptions = [ "compress-force=zstd:3" ];
-          };
-        };
+        inherit lvs;
       };
       vg1 = {
         type = "lvm_vg";
-        lvs = {
-          var = common.extpart {
-            size = "5G";
-            mountpoint = "/var";
-          };
-          home = common.extpart {
-            size = "100%";
-            mountpoint = "/home";
-            postMountHook = "mkdir -p /home/common";
-          };
-        };
+        lvs = storagelvs;
       };
     };
   };

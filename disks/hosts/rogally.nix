@@ -9,7 +9,10 @@ let
   recovery = winmod.recovery { };
   win = winmod.win { };
   cryptsys = linux.cryptsys { size = "90G"; };
-  games = linux.shared { mountpoint = "/games"; };
+  games = linux.shared {
+    name = "games";
+    mountpoint = "/games";
+  };
 
   fstemp = linux.mockpart { extraDirs = "/mnt/games /mnt/home"; };
   var = linux.varpart { };
@@ -19,7 +22,15 @@ let
   };
 
   partitions = {
-    inherit esp msr vault recovery win cryptsys games;
+    inherit
+      esp
+      msr
+      vault
+      recovery
+      win
+      cryptsys
+      games
+      ;
   };
 
   lvs = { inherit fstemp var system; };
@@ -29,10 +40,16 @@ in
     disk.main = {
       type = "disk";
       device = "/dev/nvme0n1";
-      content = { type = "gpt"; inherit partitions; };
+      content = {
+        type = "gpt";
+        inherit partitions;
+      };
     };
     lvm_vg = {
-      vg0 = { type = "lvm_vg"; inherit lvs; };
+      vg0 = {
+        type = "lvm_vg";
+        inherit lvs;
+      };
     };
   };
 }
