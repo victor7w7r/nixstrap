@@ -102,6 +102,7 @@
           TOPLEVEL=$(readlink -f /nix/var/nix/profiles/system)
         fi
         BASE=$(basename $TOPLEVEL)
+        echo $TOPLEVEL
         ${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify build \
           --linux="${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" \
           --initrd="${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" \
