@@ -21,7 +21,10 @@
     };
     useUserPackages = true;
     useGlobalPkgs = true;
-    sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+    sharedModules = [
+      inputs.plasma-manager.homeModules.plasma-manager
+      inputs.zen-browser.homeModules.beta
+    ];
 
     users.${username} = {
       home = {
