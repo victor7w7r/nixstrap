@@ -1,15 +1,17 @@
 { host, ... }:
 {
   services.displayManager = {
+    defaultSession = "plasma";
     sddm = {
       enable = false;
       wayland.enable = false;
     };
-    gdm.enable = true;
-    gdm.wayland = true;
-    defaultSession = "plasma";
+    gdm = {
+      enable = host == "v7w7r-rc71l";
+      wayland = true;
+    };
     ly = {
-      enable = false;
+      enable = host != "v7w7r-rc71l";
       settings = {
         allow_empty_password = true;
         # matrix   -> CMatrix
@@ -73,5 +75,4 @@
       };
     };
   };
-
 }

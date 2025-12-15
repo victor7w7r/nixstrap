@@ -5,7 +5,6 @@
     (import ./services.nix)
     (import ./systemd.nix)
     (import ./performance.nix)
-    (import ./dm.nix)
     (import ./udev.nix)
     (import ./bootloader.nix)
   ];

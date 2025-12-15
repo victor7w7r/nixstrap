@@ -10,7 +10,6 @@
   services = {
     libinput.enable = true;
     fprintd.enable = true;
-    xserver.enable = true;
     xserver.xkb = {
       layout = "us";
       variant = "workman";

@@ -105,7 +105,7 @@ rec {
       label = "fstemp";
       mountpoint = "/";
       postMountHook = ''
-        mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt ${extraDirs}
+        mkdir -p /mnt/nix /mnt/etc /mnt/root ${extraDirs}
       '';
     };
 
@@ -146,10 +146,9 @@ rec {
       label = "system";
       mountpoint = "/.nix";
       postMountHook = ''
-        mkdir -p /mnt/.nix/etc /mnt/.nix/opt /mnt/.nix/nix /mnt/.nix/root ${extraDirs}
+        mkdir -p /mnt/.nix/etc /mnt/.nix/nix /mnt/.nix/root ${extraDirs}
         mount --bind /mnt/.nix/root /mnt/root
         mount --bind /mnt/.nix/etc /mnt/etc
-        mount --bind /mnt/.nix/opt /mnt/opt
         mount --bind /mnt/.nix/nix /mnt/nix
         ${extraBinds}
       '';

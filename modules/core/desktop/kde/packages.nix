@@ -62,6 +62,5 @@
     maliit-keyboard
     okteta
     ulauncher
-    wayland
   ];
 }

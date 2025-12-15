@@ -2,14 +2,6 @@
 {
   #programs.gamemode.enable = true;
   #programs.mangohud.enable = true;
-  /*
-    programs.steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      extraCompatPackages = with pkgs; [ proton-ge-bin ];
-      protontricks.enable = true;
-    }; #TO CORE
-  */
 
   services.ludusavi.enable = true;
 

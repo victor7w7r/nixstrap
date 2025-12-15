@@ -9,6 +9,10 @@
   system.activationScripts = {
     installManualRefind = {
       text = ''
+        #if [ ! -f /boot/EFI/refind/refind_x64.efi ]; then
+        # exit 0
+        #fi
+
         mkdir -p /boot/EFI/refind/drivers_x64
         mkdir -p /boot/EFI/refind/themes
         mkdir -p /boot/EFI/refind/icons
@@ -52,12 +56,12 @@
             icon /EFI/refind/themes/catppuccin/assets/mocha/icons/os_nixos.png
             loader /EFI/nixos.efi
             ostype "Linux"
-            submenuentry "Single User" {
-              loader /EFI/arch-linux-single.efi
-            }
-            submenuentry "Multi User" {
-              loader /EFI/arch-linux-multi.efi
-            }
+            #submenuentry "Single User" {
+            #  loader /EFI/single.efi
+            #}
+            #submenuentry "Multi User" {
+            #  loader /EFI/multi.efi
+            #}
           }
 
           menuentry "Windows 11" {
@@ -97,7 +101,6 @@
         else
           TOPLEVEL=$(readlink -f /nix/var/nix/profiles/system)
         fi
-        echo $TOPLEVEL
         ${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify build \
           --linux="${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" \
           --initrd="${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" \
@@ -108,6 +111,8 @@
           #--signtool=systemd-sbsign \
           #--secureboot-private-key /var/lib/sbctl/db/db.key \
           #--secureboot-certificate /var/lib/sbctl/db/db.pem \
+
+        cp /boot/EFI/nixos.efi /boot/vault/nixos_$TOPLEVEL.efi
 
         if command -v sbctl >/dev/null 2>&1; then
           sbctl sign /boot/EFI/nixos.efi || echo "sbctl sign failed"

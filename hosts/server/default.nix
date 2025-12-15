@@ -24,6 +24,5 @@ with lib;
     (import ./config.nix)
     (import ./../../modules/core)
     (import ./../../modules/home)
-    (import ./xserver.nix)
   ];
 }

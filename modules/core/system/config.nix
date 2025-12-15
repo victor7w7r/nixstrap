@@ -78,11 +78,6 @@
     "/share/xdg-desktop-portal"
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    #"ventoy-qt5-1.1.07"
-    #"qtwebengine-5.15.19"
-  ];
-
   nix = {
     settings = {
       auto-optimise-store = true;
