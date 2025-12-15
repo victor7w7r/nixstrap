@@ -101,6 +101,7 @@ rec {
     linuxpart {
       name = "fstemp";
       size = "100M";
+      label = "fstemp";
       mountpoint = "/";
       postMountHook = ''
         mkdir -p /mnt/nix /mnt/etc /mnt/root /mnt/opt ${extraDirs}
