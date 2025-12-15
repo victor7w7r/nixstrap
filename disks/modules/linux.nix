@@ -87,8 +87,8 @@ rec {
           cd /root/nixstrap && git add . && git commit -m "Add Key"
         '';
         postCreateHook = ''
-          cryptsetup config /dev/disk/by-partlabel/disk-main-SYSTEM --label "SYSTEM"
-          cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-SYSTEM /root/nixstrap/syskey.key -d /tmp/pass.key
+          cryptsetup config /dev/disk/by-partlabel/disk-main-cryptsys --label "SYSTEM"
+          cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-cryptsys /root/nixstrap/syskey.key -d /tmp/pass.key
         '';
       };
     };
