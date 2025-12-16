@@ -13,6 +13,17 @@
       "-T0"
     ];
 
+    network = {
+      enable = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        authorizedKeys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJWCZ9+MLQa24ySonjLfwdsV7DfBi40EkpZ+EswLEG+ arkano036@gmail.com"
+        ];
+      };
+    };
+
     systemd = {
       enable = true;
       emergencyAccess = true;
@@ -21,6 +32,7 @@
         bash = "${pkgs.bash}/bin/bash";
         find = "${pkgs.findutils}/bin/find";
         coreutils = "${pkgs.coreutils-full}/bin/coreutils";
+        gping = "${pkgs.gping}/bin/gping";
         grep = "${pkgs.gnugrep}/bin/grep";
         busybox = "${pkgs.busybox}/bin/busybox";
       };

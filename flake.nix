@@ -145,6 +145,26 @@
           };
         };
 
+        rogallyvm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            (import ./pkgs)
+            nixos-hardware.nixosModules.asus-ally-rc71l
+            (import ./hosts/rogallyvm)
+            chaotic.nixosModules.default
+            nur.modules.nixos.default
+          ];
+          specialArgs = {
+            host = "v7w7r-rc71l";
+            inherit
+              self
+              inputs
+              username
+              system
+              ;
+          };
+        };
+
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
