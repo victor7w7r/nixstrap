@@ -37,7 +37,7 @@ in
     disk = {
       esp = {
         type = "disk";
-        device = "/dev/sda1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = { inherit esp; };
@@ -45,7 +45,7 @@ in
       };
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           inherit partitions;
