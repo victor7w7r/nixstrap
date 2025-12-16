@@ -1,4 +1,17 @@
-{
+rec {
+  fatOptions = [
+    "relatime"
+    "fmask=0022"
+    "dmask=0022"
+    "umask=0077"
+    "codepage=437"
+    "iocharset=iso8859-1"
+    "shortname=mixed"
+    "nofail"
+    "utf8"
+    "errors=remount-ro"
+  ];
+
   esp =
     {
       size ? "500M",
@@ -17,18 +30,7 @@
           "-n"
           "EFI"
         ];
-        mountOptions = [
-          "relatime"
-          "fmask=0022"
-          "dmask=0022"
-          "umask=0077"
-          "codepage=437"
-          "iocharset=iso8859-1"
-          "shortname=mixed"
-          "nofail"
-          "utf8"
-          "errors=remount-ro"
-        ];
+        mountOptions = fatOptions;
       };
     };
 
@@ -41,18 +43,17 @@
     }:
     {
       inherit name size priority;
-      type = "8300";
+      type = "0700";
       content = {
-        type = "btrfs";
-        extraArgs = [ "-f" ];
-        inherit mountpoint;
-        mountOptions = [
-          "lazytime"
-          "nodiscard"
-          "commit=60"
-          "noatime"
-          "compress-force=zstd:7"
+        type = "filesystem";
+        format = "vfat";
+        extraArgs = [
+          "-F32"
+          "-n"
+          "Vault"
         ];
+        inherit mountpoint;
+        mountOptions = fatOptions;
       };
     };
 }

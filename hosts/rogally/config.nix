@@ -26,13 +26,13 @@ with lib;
     };
     "/boot/vault" = {
       device = "/dev/disk/by-partlabel/disk-main-vault";
-      fsType = "btrfs";
+      fsType = "vfat";
       options = [
-        "lazytime"
-        "nodiscard"
-        "commit=60"
-        "noatime"
-        "compress-force=zstd:7"
+        "relatime"
+        "fmask=0022"
+        "dmask=0022"
+        "umask=0077"
+        "nofail"
       ];
     };
   };

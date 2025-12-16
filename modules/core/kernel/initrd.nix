@@ -22,7 +22,6 @@
         find = "${pkgs.findutils}/bin/find";
         coreutils = "${pkgs.coreutils-full}/bin/coreutils";
         grep = "${pkgs.gnugrep}/bin/grep";
-        ping = "${pkgs.iputils}/bin/ping";
         busybox = "${pkgs.busybox}/bin/busybox";
       };
       services.fsmount = {
