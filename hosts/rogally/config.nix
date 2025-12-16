@@ -17,24 +17,34 @@ with lib;
       device = "/dev/disk/by-partlabel/disk-main-EFI";
       fsType = "vfat";
       options = [
+        "relatime"
         "fmask=0022"
         "dmask=0022"
+        "umask=0077"
+        "nofail"
+      ];
+    };
+    "/boot/vault" = {
+      device = "/dev/disk/by-partlabel/disk-main-vault";
+      fsType = "btrfs";
+      options = [
+        "lazytime"
+        "nodiscard"
+        "commit=60"
+        "noatime"
+        "compress-force=zstd:7"
       ];
     };
   };
 
   boot.initrd = {
-    luks.devices = {
-      system = {
-        device = "/dev/disk/by-label/SYSTEM";
-        keyFile = "/syskey.key";
-        allowDiscards = true;
-        preLVM = true;
-      };
+    luks.devices.system = {
+      device = "/dev/disk/by-label/SYSTEM";
+      keyFile = "/syskey.key";
+      allowDiscards = true;
+      preLVM = true;
     };
-    secrets = {
-      "/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
-    };
+    secrets."/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
   };
 
   environment.defaultPackages = [ ];

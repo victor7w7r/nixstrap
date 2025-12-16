@@ -1,11 +1,12 @@
 { host, ... }:
 {
   imports = [
-    (import ./desktop)
     (import ./kernel)
-    (import ./packages)
     (import ./networking)
+    (import ./packages)
     (import ./system)
+    (import ./desktop)
+    (import ./gaming)
   ]
   ++ (if (host != "v7w7r-nixvm") then [ (import ./virt) ] else [ ]);
 }

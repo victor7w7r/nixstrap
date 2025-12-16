@@ -1,10 +1,9 @@
 { pkgs, ... }:
 {
   boot = {
-    #kernelModules = lib.mkAfter [ "ntsync" ];
     modprobeConfig.enable = true;
-    supportedFilesystems = [ "btrfs" ];
-    initrd.supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = [ "btrfs" "ext4" "f2fs" ];
+    initrd.supportedFilesystems = [ "btrfs" "ext4" "f2fs" ];
     #binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     loader = {

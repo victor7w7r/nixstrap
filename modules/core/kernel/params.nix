@@ -23,7 +23,6 @@
     "tsc=reliable"
     "srbds=off"
     "systemd.debug-shell=1"
-    "systemd.unit=rescue.target"
     #"kvmfr.static_size_mb=128"
     #systemd.unit=multi-user.target single
   ];
