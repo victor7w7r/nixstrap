@@ -46,7 +46,7 @@ with lib;
     };
     #ssh-keygen -t ed25519 -N "" -f ./ssh_host_ed25519_key
     #ssh-keygen -t rsa -N "" -f ./ssh_host_rsa_key
-    secrets + {
+    secrets = {
      "/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
      "/etc/secrets/initrd/ssh_host_ed25519_key" = builtins.path { path = "${self}/ssh_host_ed25519_key"; };
      "/etc/secrets/initrd/ssh_host_rsa_key" = builtins.path { path = "${self}/ssh_host_rsa_key"; };
