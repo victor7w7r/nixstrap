@@ -12,7 +12,8 @@
       "--lzma2=dict=6MiB"
       "-T0"
     ];
-
+    #ssh-keygen -t ed25519 -N "" -f ./ssh_host_ed25519_key
+    #ssh-keygen -t rsa -N "" -f ./ssh_host_rsa_key
     network = {
       enable = true;
       ssh = {
