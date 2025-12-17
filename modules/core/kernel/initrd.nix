@@ -18,6 +18,12 @@
       ssh = {
         enable = true;
         port = 2222;
+        #ssh-keygen -t ed25519 -N "" -f ,/ssh_host_ed25519_key
+        #ssh-keygen -t rsa -N "" -f ./ssh_host_rsa_key
+        hostKeys = [
+          "/etc/secrets/initrd/ssh_host_rsa_key" = builtins.path { path = "${self}/ssh_host_rsa_key"; };
+          "/etc/secrets/initrd/ssh_host_ed25519_key" = builtins.path { path = "${self}/ssh_host_ed25519_key"; };
+        ];
         authorizedKeys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJWCZ9+MLQa24ySonjLfwdsV7DfBi40EkpZ+EswLEG+ arkano036@gmail.com"
         ];
