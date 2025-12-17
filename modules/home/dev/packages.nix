@@ -14,7 +14,6 @@
   );
 
   programs = {
-    zed-editor.enable = true;
     difftastic.enable = true;
     gitui.enable = true;
     lazysql.enable = true;
