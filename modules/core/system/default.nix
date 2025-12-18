@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    (import ./kernel.nix)
     (import ./config.nix)
     (import ./services.nix)
     (import ./systemd.nix)

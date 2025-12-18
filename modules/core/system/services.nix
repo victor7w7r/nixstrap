@@ -57,7 +57,7 @@
       RuntimeMaxUse=200M
       ForwardToConsole=yes
       MaxLevelConsole=debug
-      TTYPath=/dev/tty12
+      TTYPath=/dev/ttyS0
     '';
   };
 }

@@ -1,50 +1,36 @@
+{ pkgs, modulesPath, ... }:
+let
+  systems = import ./common/filesystems.nix;
+  params = import ./common/params.nix;
+  security = import ./common/security.nix;
+  options = import ./common/options.nix;
+in
 {
-  pkgs,
-  lib,
-  self,
-  ...
-}:
-with lib;
-{
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    (import ./../../modules/core)
+    (import ./../../modules/home)
+  ];
+
   powerManagement.cpuFreqGovernor = "ondemand";
 
   fileSystems = {
-    "/" = {
-      device = "/dev/mapper/vg0-fstemp";
-      fsType = "ext4";
+    "/games" = {
+      device = "/dev/disk/by-partlabel/disk-main-games";
+      fsType = "btrfs";
+      options = options.btrfsOptions;
     };
-    "/boot" = {
-      device = "/dev/disk/by-partlabel/disk-main-EFI";
-      fsType = "vfat";
-      options = [
-        "relatime"
-        "fmask=0022"
-        "dmask=0022"
-        "umask=0077"
-        "nofail"
-      ];
-    };
-    "/boot/vault" = {
-      device = "/dev/disk/by-partlabel/disk-main-vault";
-      fsType = "vfat";
-      options = [
-        "relatime"
-        "fmask=0022"
-        "dmask=0022"
-        "umask=0077"
-        "nofail"
-      ];
-    };
-  };
+  }
+  // systems { homeDisk = ""; };
 
-  boot.initrd = {
-    luks.devices.system = {
-      device = "/dev/disk/by-label/SYSTEM";
-      keyFile = "/syskey.key";
-      allowDiscards = true;
-      preLVM = true;
+  boot = {
+    kernelParams = [ ] ++ params { };
+    initrd = {
+      secrets = security.secrets;
+      luks.devices = {
+        system = security.system;
+      };
     };
-    secrets."/syskey.key" = builtins.path { path = "${self}/syskey.key"; };
   };
 
   environment.defaultPackages = [ ];

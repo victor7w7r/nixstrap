@@ -1,8 +1,7 @@
 {
   description = "victor7w7r nixtrap config for common and specific hosts";
   # mkdir -p nixstrap nixtemp && sudo sshfs victor7w7r@192.168.122.1:repositories/nixstrap nixstrap
-  # cd nixtemp
-  # cd .. && rm -rf nixtemp && cp -r nixstrap nixtemp && cd nixtemp
+  # cd nixtemp && cd .. && rm -rf nixtemp && cp -r nixstrap nixtemp && cd nixtemp
 
   nixConfig = {
     experimental-features = [
@@ -88,7 +87,7 @@
           modules = [
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
-            (import ./hosts/macmini)
+            (import ./hosts/macmini.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -110,7 +109,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
-            (import ./hosts/laptop)
+            (import ./hosts/laptop.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -130,7 +129,7 @@
           modules = [
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
-            (import ./hosts/rogally)
+            (import ./hosts/rogally.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -150,7 +149,7 @@
           modules = [
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
-            (import ./hosts/rogallyvm)
+            (import ./hosts/rogallyvm.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -171,7 +170,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
-            (import ./hosts/server)
+            (import ./hosts/server.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -192,7 +191,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
-            (import ./hosts/vm)
+            (import ./hosts/vm.nix)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];

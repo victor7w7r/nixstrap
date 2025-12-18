@@ -78,6 +78,14 @@
     "/share/xdg-desktop-portal"
   ];
 
+  console = {
+    enable = true;
+    packages = [ pkgs.spleen ];
+    earlySetup = true;
+    font = "spleen-8x16";
+    keyMap = "us";
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;
