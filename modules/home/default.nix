@@ -2,6 +2,7 @@
   inputs,
   username,
   host,
+  pkgs,
   system,
   ...
 }:
@@ -19,7 +20,7 @@
         system
         ;
     };
-    backupFileExtension = "backup";
+    backupCommand = "${pkgs.trash-cli}/bin/trash";
     useUserPackages = true;
     useGlobalPkgs = true;
     sharedModules = [
