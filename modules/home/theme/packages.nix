@@ -8,7 +8,7 @@
     with pkgs;
     [
       layan-gtk-theme
-      layan-kde
+      #layan-kde
       (pkgs.colloid-icon-theme.override {
         schemeVariants = [ "catppuccin" ];
         colorVariants = [ "purple" ];
