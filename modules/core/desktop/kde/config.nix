@@ -11,10 +11,6 @@ with lib;
   services = {
     libinput.enable = true;
     fprintd.enable = true;
-    gpg-agent = {
-      pinentry.package = lib.mkForce pkgs.kwalletcli;
-      extraConfig = "pinentry-program ${pkgs.kwalletcli}/bin/pinentry-kwallet";
-    };
     xserver.xkb = {
       layout = "us";
       variant = "workman";

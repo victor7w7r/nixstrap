@@ -1,5 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 {
+
+  services.gpg-agent = {
+    pinentry.package = pkgs.kwalletcli;
+    extraConfig = "pinentry-program ${pkgs.kwalletcli}/bin/pinentry-kwallet";
+  };
+
   programs.plasma = {
     enable = true;
     overrideConfig = true;
