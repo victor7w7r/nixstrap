@@ -1,14 +1,10 @@
-{ host, ... }:
+{ ... }:
 {
   services.displayManager = {
     defaultSession = "plasma";
     sddm = {
-      enable = false;
-      wayland.enable = false;
-    };
-    gdm = {
       enable = true;
-      wayland = true;
+      wayland.enable = true;
     };
     ly = {
       enable = false;

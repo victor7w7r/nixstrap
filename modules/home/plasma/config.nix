@@ -2,11 +2,129 @@
 {
   programs.plasma = {
     enable = true;
+    overrideConfig = true;
 
     workspace = {
+      enableMiddleClickPaste = false;
       lookAndFeel = "com.github.vinceliuice.Layan";
-      iconTheme = "Colloid-Purple-Dark";
       cursor.theme = "capitaine-cursors";
+      splashScreen.engine = "none";
+      splashScreen.theme = "none";
+      tooltipDelay = 1;
+    };
+
+    fonts = {
+      general = {
+        family = "Ubuntu";
+        pointSize = 10;
+      };
+
+      fixedWidth = {
+        family = "JetBrainsMonoNL Nerd Font Mono";
+        pointSize = 10;
+      };
+
+      small = {
+        family = "Ubuntu";
+        pointSize = 8;
+      };
+
+      toolbar = {
+        family = "Ubuntu";
+        pointSize = 10;
+      };
+
+      menu = {
+        family = "Ubuntu";
+        pointSize = 10;
+      };
+
+      windowTitle = {
+        family = "Ubuntu";
+        pointSize = 10;
+      };
+    };
+
+    kscreenlocker = {
+      appearance.showMediaControls = false;
+      autoLock = false;
+      timeout = 0;
+    };
+
+    session = {
+      general.askForConfirmationOnLogout = false;
+      #sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+    };
+
+    kwin = {
+      borderlessMaximizedWindows = true;
+      effects = {
+        blur = {
+          enable = false;
+          strength = 2;
+          noiseStrength = 2;
+        };
+        translucency.enable = true;
+      };
+      nightLight = {
+        enable = true;
+        mode = "constant";
+        temperature = {
+          day = 3600;
+          night = 4300;
+        };
+      };
+      tiling.padding = 4;
+      titlebarButtons = {
+        left = [
+          "close"
+          "minimize"
+          "maximize"
+        ];
+        right = [ "keep-above-windows" ];
+      };
+    };
+
+    input = {
+      keyboard = {
+        layouts = [
+          {
+            layout = "us";
+            displayName = "us";
+            variant = "workman-intl";
+          }
+          {
+            layout = "latam";
+            displayName = "es";
+          }
+        ];
+        options = [ "caps:ctrl_modifier" ];
+      };
+
+      mice = [
+        {
+          accelerationProfile = "none";
+          name = "ydotoold virtual device";
+        }
+      ];
+
+      touchpads = [
+        {
+          accelerationProfile = "none";
+          enable = true;
+          leftHanded = false;
+          middleButtonEmulation = true;
+          name = "Wacom Intuos5 touch S Finger";
+          naturalScroll = true;
+          pointerSpeed = 0;
+          productId = "056a";
+          rightClickMethod = "twoFingers";
+          scrollMethod = "twoFingers";
+          tapAndDrag = false;
+          tapToClick = true;
+          vendorId = "0026";
+        }
+      ];
     };
 
     panels = [
@@ -39,6 +157,7 @@
           "org.kde.plasma.trash"
         ];
       }
+
       {
         location = "top";
         alignment = "center";
@@ -82,6 +201,36 @@
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
           {
+            systemTray = {
+              icons.scaleToFit = true;
+              items = {
+                showAll = false;
+                shown = [
+                  "org.kde.plasma.keyboardlayout"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.volume"
+                ];
+                hidden = [
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.mediacontroller"
+                  "plasmashell_microphone"
+                  "xdg-desktop-portal-kde"
+                  "zoom"
+                ];
+                configs = {
+                  "org.kde.plasma.notifications".config = {
+                    Shortcuts = {
+                      global = "Meta+N";
+                    };
+                  };
+                };
+              };
+            };
+          }
+          {
             digitalClock = {
               date = {
                 enable = true;
@@ -94,7 +243,26 @@
       }
     ];
 
+    powerdevil = {
+      AC = {
+        autoSuspend.action = "nothing";
+        dimDisplay.enable = false;
+        powerButtonAction = "shutDown";
+        turnOffDisplay.idleTimeout = "never";
+      };
+      battery = {
+        autoSuspend.action = "nothing";
+        dimDisplay.enable = false;
+        powerButtonAction = "shutDown";
+        turnOffDisplay.idleTimeout = "never";
+      };
+    };
+
     configFile = {
+      baloofilerc."Basic Settings"."Indexing-Enabled" = false;
+      gwenviewrc.ThumbnailView.AutoplayVideos = true;
+      plasma-localerc.Formats.LANG = "es_ES.UTF-8";
+      kded5rc.Module-device_automounter.autoload = false;
       dolphinrc = {
         ContentDisplay.UsePermissionsFormat = "NumericFormat";
         ContextMenu = {
@@ -143,34 +311,15 @@
         "ButtonRebinds/TabletTool/Wacom Intuos5 touch S Pen"."1" = "MouseButton,273";
         "ButtonRebinds/TabletTool/Wacom Intuos5 touch S Pen"."331" = "MouseButton,274";
         "ButtonRebinds/TabletTool/Wacom Intuos5 touch S Pen"."332" = "MouseButton,273";
-        "Libinput/0/0/DP-3".PointerAccelerationProfile = 1;
         "Libinput/1241/41119/E-Signal USB Gaming Mouse".PointerAccelerationProfile = 1;
-        "Libinput/1386/38/Wacom Intuos5 touch S (WL) Finger".NaturalScroll = true;
-        "Libinput/1386/38/Wacom Intuos5 touch S (WL) Finger".PointerAccelerationProfile = 1;
-        "Libinput/1386/38/Wacom Intuos5 touch S (WL) Finger".TapAndDrag = false;
         "Libinput/1386/38/Wacom Intuos5 touch S (WL) Pen".MapToWorkspace = true;
-        "Libinput/1386/38/Wacom Intuos5 touch S Finger".NaturalScroll = true;
-        "Libinput/1386/38/Wacom Intuos5 touch S Finger".PointerAccelerationProfile = 1;
         "Libinput/1386/38/Wacom Intuos5 touch S Pen".MapToWorkspace = true;
-        "Libinput/1739/33391/SYNA3081:00 06CB:826F Mouse".PointerAcceleration = "-1.000";
-        "Libinput/1739/33391/SYNA3081:00 06CB:826F Mouse".PointerAccelerationProfile = 1;
-        "Libinput/1739/33391/SYNA3081:00 06CB:826F Mouse".ScrollFactor = 0.1;
-        "Libinput/9011/26214/ydotoold virtual device".PointerAccelerationProfile = 1;
-        Mouse.X11LibInputXAccelProfileFlat = true;
-        Mouse.cursorTheme = "capitaine-cursors";
       };
-      kded5rc.Module-device_automounter.autoload = false;
       kdeglobals = {
         General = {
-          TerminalApplication = "wezterm";
-          TerminalService = "wezterm.desktop";
-          XftHintStyle = "hintslight";
-          XftSubPixel = "none";
-          fixed = "JetBrainsMonoNL Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-          font = "Ubuntu,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-          menuFont = "Ubuntu,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-          smallestReadableFont = "Ubuntu,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-          toolBarFont = "Ubuntu,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+          BrowserApplication = "zen.desktop";
+          TerminalApplication = "kitty";
+          TerminalService = "kitty.desktop";
         };
         Icons.Theme = "Colloid-Purple-Dark";
         KDE = {
@@ -183,7 +332,7 @@
           "Automatically select filename extension" = true;
           "Breadcrumb Navigation" = true;
           "Decoration position" = 2;
-          "Show Full Path" = false;
+          "Show Full Path" = true;
           "Show Inline Previews" = true;
           "Show Preview" = false;
           "Show Speedbar" = true;
@@ -195,21 +344,15 @@
           "Speedbar Width" = 143;
           "View Style" = "DetailTree";
         };
-        PreviewSettings = {
-          EnableRemoteFolderThumbnail = false;
-          MaximumRemoteSize = 0;
-        };
         WM = {
           activeBackground = "54,56,62";
           activeBlend = "59,62,68";
-          activeFont = "Ubuntu,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
           activeForeground = "221,221,221";
           inactiveBackground = "62,65,71";
           inactiveBlend = "67,71,77";
           inactiveForeground = "120,120,120";
         };
       };
-      kgammarc.ConfigFile.use = "kgammarc";
       kiorc = {
         Confirmations.ConfirmDelete = false;
         Confirmations.ConfirmEmptyTrash = false;
@@ -246,8 +389,6 @@
         "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".UseTimeLimit = false;
       };
       kwinrc = {
-        Effect-blur.BlurStrength = 5;
-        Effect-blur.NoiseStrength = 2;
         Effect-blurplus.BlurDecorations = true;
         Effect-blurplus.BlurDocks = true;
         Effect-blurplus.WindowClasses = "dolphin\norg.wezfurlong.wezterm";
@@ -256,57 +397,45 @@
         Effect-translucency.MoveResize = 100;
         Effect-translucency.PopupMenus = 18;
         Effect-translucency.TornOffMenus = 19;
-        Effect-zoom.InitialZoom = 1.3410667881629732;
         Input.TabletMode = "off";
-        NightColor.Active = true;
-        NightColor.DayTemperature = 3600;
-        NightColor.Mode = "Constant";
-        NightColor.NightTemperature = 4300;
-        Plugins.blurEnabled = true;
-        Plugins.contrastEnabled = true;
-        Plugins.desktopchangeosdEnabled = false;
-        Plugins.dimscreenEnabled = true;
-        Plugins.forceblurEnabled = true;
-        Plugins.forceblur_x11Enabled = true;
-        Plugins.fullscreenifyEnabled = false;
-        Plugins.kzonesEnabled = true;
-        Plugins.macsimize6Enabled = false;
-        Plugins.minimizeallEnabled = true;
-        Plugins.mousemarkEnabled = true;
-        Plugins.screenedgeEnabled = false;
-        Plugins.sticky-window-snappingEnabled = true;
-        Plugins.temporary-virtual-desktopsEnabled = false;
-        Plugins.translucencyEnabled = true;
-        Plugins.truely-maximizedEnabled = true;
-        Plugins.ultrawidewindowsEnabled = false;
-        Plugins.virtual-desktops-only-on-primaryEnabled = true;
-        Plugins.zoomEnabled = false;
+        Plugins = {
+          blurEnabled = true;
+          contrastEnabled = true;
+          desktopchangeosdEnabled = false;
+          dimscreenEnabled = true;
+          forceblurEnabled = true;
+          forceblur_x11Enabled = true;
+          fullscreenifyEnabled = false;
+          kzonesEnabled = true;
+          macsimize6Enabled = false;
+          minimizeallEnabled = true;
+          mousemarkEnabled = true;
+          screenedgeEnabled = false;
+          sticky-window-snappingEnabled = true;
+          temporary-virtual-desktopsEnabled = false;
+          translucencyEnabled = true;
+          truely-maximizedEnabled = true;
+          ultrawidewindowsEnabled = false;
+          virtual-desktops-only-on-primaryEnabled = true;
+          zoomEnabled = false;
+        };
         TabBox.HighlightWindows = false;
         TabBox.LayoutName = "thumbnail_grid";
         TabBoxAlternative.ActivitiesMode = 0;
         TabBoxAlternative.DesktopMode = 0;
         TabBoxAlternative.MultiScreenMode = 1;
-        Tiling.padding = 4;
         Wayland.EnablePrimarySelection = false;
-        Windows.BorderlessMaximizedWindows = true;
-        Xwayland.Scale = 1;
-        "org.kde.kdecoration2".ButtonsOnLeft = "XIA";
-        "org.kde.kdecoration2".ButtonsOnRight = "F";
       };
-      kxkbrc.Layout = {
-        DisplayNames = ",lat";
-        LayoutList = "us,latam";
-        Options = "caps:ctrl_modifier";
-        ResetOldOptions = true;
-        Use = true;
-        VariantList = ",";
-      };
-      plasma-localerc.Formats.LANG = "es_ES.UTF-8";
       plasmanotifyrc = {
-        "Applications/motrix".Seen = true;
-        "Applications/org.kde.konsole".ShowBadges = false;
-        "Applications/org.kde.konsole".ShowInHistory = false;
-        "Applications/org.kde.konsole".ShowPopups = false;
+        DoNotDisturb = {
+          WhenFullscreen = false;
+          WhenScreenSharing = false;
+          WhenScreensMirrored = false;
+        };
+        Notifications = {
+          PopupPosition = "TopRight";
+          PopupTimeout = 3000;
+        };
         "Applications/zen".Seen = true;
         "Services/powerdevil".ShowInHistory = false;
         "Services/powerdevil".ShowPopups = false;
@@ -317,7 +446,6 @@
         VolumeOsd = false;
         VolumeStep = 2;
       };
-      spectaclerc.Annotations.annotationToolType = 2;
     };
   };
 }
