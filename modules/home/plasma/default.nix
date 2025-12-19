@@ -15,7 +15,6 @@
     (import ./config/panels.nix)
     (import ./config/input.nix)
     (import ./config/fonts.nix)
-    (import ./custom)
   ];
 
   home.packages = [
