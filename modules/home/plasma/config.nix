@@ -2,6 +2,42 @@
 {
   programs.plasma = {
     enable = true;
+
+    panels = [
+      {
+        location = "top";
+        alignment = "center";
+        lengthMode = "fill";
+        floating = true;
+        height = 32;
+        hiding = "none";
+        screen = "all";
+        opacity = "adaptive";
+        widgets = [
+          "org.kde.plasma.panelspacer"
+          {
+            digitalClock = {
+              date.enable = false;
+            };
+          }
+        ];
+      }
+      {
+        location = "bottom";
+        alignment = "center";
+        lengthMode = "fit";
+        floating = true;
+        height = 44;
+        hiding = "autohide";
+        screen = 0;
+        opacity = "translucent";
+        widgets = [
+          "org.kde.plasma.icontasks"
+          "org.kde.plasma.trash"
+        ];
+      }
+    ];
+
     configFile = {
       dolphinrc = {
         ContentDisplay.UsePermissionsFormat = "NumericFormat";
