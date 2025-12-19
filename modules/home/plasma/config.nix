@@ -175,38 +175,40 @@ with lib;
         screen = "all";
         opacity = "adaptive";
         widgets = [
-          {
-            /*
-              applicationTitleBar = {
-              layout.elements = [ ];
-              windowControlButtons = {
-                iconSource = "breeze";
-                buttonsAspectRatio = 95;
-                buttonsMargin = 0;
-              };
-              windowTitle = {
-                source = "appName";
-                hideEmptyTitle = true;
-                undefinedWindowTitle = "";
-                margins = {
-                  left = 5;
-                  right = 5;
-                };
-              };
-              overrideForMaximized = {
-                enable = true;
-                elements = [
-                  "windowCloseButton"
-                  "windowMaximizeButton"
-                  "windowMinimizeButton"
-                  "windowIcon"
-                  "windowTitle"
-                ];
-                source = "appName";
-              };
-              };
-            */
-          }
+          /*
+            {
+
+             applicationTitleBar = {
+             layout.elements = [ ];
+             windowControlButtons = {
+               iconSource = "breeze";
+               buttonsAspectRatio = 95;
+               buttonsMargin = 0;
+             };
+             windowTitle = {
+               source = "appName";
+               hideEmptyTitle = true;
+               undefinedWindowTitle = "";
+               margins = {
+                 left = 5;
+                 right = 5;
+               };
+             };
+             overrideForMaximized = {
+               enable = true;
+               elements = [
+                 "windowCloseButton"
+                 "windowMaximizeButton"
+                 "windowMinimizeButton"
+                 "windowIcon"
+                 "windowTitle"
+               ];
+               source = "appName";
+             };
+             };
+
+             }
+          */
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
           {
