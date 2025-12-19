@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+with lib;
 {
 
   services.gpg-agent = {
@@ -406,7 +407,7 @@
         Effect-translucency.PopupMenus = 18;
         Effect-translucency.TornOffMenus = 19;
         Input.TabletMode = "off";
-        Plugins = {
+        Plugins = mkForce {
           blurEnabled = true;
           contrastEnabled = true;
           desktopchangeosdEnabled = false;
