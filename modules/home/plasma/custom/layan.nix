@@ -2,8 +2,6 @@
   stdenv,
   lib,
   fetchFromGitHub,
-  plasma-framework,
-  plasma-workspace,
   gitUpdater,
 }:
 stdenv.mkDerivation rec {
@@ -16,11 +14,6 @@ stdenv.mkDerivation rec {
     rev = "7ab7cd7461dae8d8d6228d3919efbceea5f4272c";
     hash = "sha256-Wh8tZcQEdTTlgtBf4ovapojHcpPBZDDkWOclmxZv9zA=";
   };
-
-  propagatedUserEnvPkgs = [
-    plasma-framework
-    plasma-workspace
-  ];
 
   postPatch = ''
     patchShebangs install.sh
