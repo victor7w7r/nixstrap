@@ -3,6 +3,12 @@
   programs.plasma = {
     enable = true;
 
+    workspace = {
+      lookAndFeel = "com.github.vinceliuice.Layan";
+      iconTheme = "Colloid-Purple-Dark";
+      cursor.theme = "capitaine-cursors";
+    };
+
     panels = [
       {
         location = "top";
