@@ -2,7 +2,6 @@
   stdenv,
   lib,
   fetchFromGitHub,
-  kdeclarative,
   plasma-framework,
   plasma-workspace,
   gitUpdater,
@@ -19,7 +18,6 @@ stdenv.mkDerivation rec {
   };
 
   propagatedUserEnvPkgs = [
-    kdeclarative.bin
     plasma-framework
     plasma-workspace
   ];
