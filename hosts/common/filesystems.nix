@@ -30,7 +30,7 @@ in
     device = "tmpfs";
     fsType = "tmpfs";
     neededForBoot = true;
-    options = [ "mode=1777" ];
+    options = [ "mode=0755" ];
   };
   "/.nix" = {
     device = "/dev/mapper/vg0-system";
@@ -55,13 +55,11 @@ in
     options = options.fatOptions;
     depends = [ "/boot" ];
   };
-
   "/var" = {
     device = varDisk;
     fsType = "ext4";
     options = options.ext4Options;
   };
-
   "/tmp" = tmpMap { };
   "/var/tmp" = tmpMap { depends = [ "/var" ]; };
   "/var/cache" = tmpMap { depends = [ "/var" ]; };
