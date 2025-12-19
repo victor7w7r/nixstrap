@@ -1,14 +1,14 @@
-{ modulesPath, ... }:
+{ modulesPath, self, ... }:
 let
   systems = import ./common/filesystems.nix;
   params = import ./common/params.nix;
   security = import ./common/security.nix;
+
+  sec = security { inherit self; };
 in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    (import ./../../modules/core)
-    (import ./../../modules/home)
   ];
 
   fileSystems = systems { };
@@ -36,9 +36,9 @@ in
         "virtio_console"
         "8250_pci"
       ];
-      secrets = security.secrets;
+      secrets = sec.secrets;
       luks.devices = {
-        system = security.system;
+        system = sec.system;
       };
     };
   };

@@ -1,7 +1,6 @@
 { host, ... }:
 {
   imports = [
-    (import ./kernel)
     (import ./networking)
     (import ./packages)
     (import ./system)

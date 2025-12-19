@@ -88,6 +88,8 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
             (import ./hosts/macmini.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -110,6 +112,8 @@
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
             (import ./hosts/laptop.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -130,6 +134,8 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogally.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -150,6 +156,8 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogallyvm.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -171,6 +179,8 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             (import ./hosts/server.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];
@@ -192,6 +202,8 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             (import ./hosts/vm.nix)
+            (import ./modules/core)
+            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
           ];

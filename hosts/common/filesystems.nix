@@ -27,9 +27,10 @@ let
 in
 {
   "/" = {
-    device = "none";
+    device = "tmpfs";
     fsType = "tmpfs";
-    options = [ "noauto" ];
+    neededForBoot = true;
+    options = [ "mode=1777" ];
   };
   "/.nix" = {
     device = "/dev/mapper/vg0-system";

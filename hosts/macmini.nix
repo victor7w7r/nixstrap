@@ -1,15 +1,15 @@
-{ modulesPath, ... }:
+{ modulesPath, self, ... }:
 let
   systems = import ./common/filesystems.nix;
   params = import ./common/params.nix;
   security = import ./common/security.nix;
   options = import ./common/options.nix;
+
+  sec = security { inherit self; };
 in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    (import ./../../modules/core)
-    (import ./../../modules/home)
   ];
 
   fileSystems = {
@@ -57,9 +57,9 @@ in
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
       }
-      // security.secrets;
+      // sec.secrets;
       luks.devices = {
-        system = security.system;
+        system = sec.system;
         /*
           storage = {
           device = "/dev/disk/by-label/storage";

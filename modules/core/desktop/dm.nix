@@ -7,11 +7,11 @@
       wayland.enable = false;
     };
     gdm = {
-      enable = host == "v7w7r-rc71l";
+      enable = true;
       wayland = true;
     };
     ly = {
-      enable = host != "v7w7r-rc71l";
+      enable = false;
       settings = {
         allow_empty_password = true;
         # matrix   -> CMatrix

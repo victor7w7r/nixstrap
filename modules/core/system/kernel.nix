@@ -42,30 +42,6 @@ in
           pkgs.gnugrep
           pkgs.findutils
         ];
-        services.setuptmpfs = {
-          description = "Setup Root tmpfs";
-          unitConfig.DefaultDependencies = false;
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-          };
-          wantedBy = [ "initrd.target" ];
-          before = [ "initrd-find-nixos-closure.service" ];
-          after = [
-            "sysroot.mount"
-            "fsck.target"
-          ];
-          script = ''
-            mkdir -p /run/troot
-            #mount --make-private /sysroot 2>> /run/.root.log
-            #mount --make-private / 2>> /run/.root.log
-            #mount --make-private /run 2>> /run/.root.log
-            mount -t tmpfs -o size=100M,mode=1755 tmpfs /run/troot
-            cp -a -r "/sysroot/bin" "/run/troot/"
-            cp -a -r "/sysroot/lib64" "/run/troot/"
-            mount --move /run/troot /sysroot
-          '';
-        };
       };
     };
 
@@ -93,9 +69,9 @@ in
       "net.core.netdev_max_backlog" = 4096;
       "fs.file-max" = 2097152;
     };
-  };
 
-  tmp.cleanOnBoot = true;
-  tmp.useTmpfs = true;
+    tmp.cleanOnBoot = true;
+    tmp.useTmpfs = true;
+  };
   #binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
