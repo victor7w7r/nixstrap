@@ -8,7 +8,11 @@
     with pkgs;
     [
       layan-gtk-theme
-      colloid-icon-theme
+      layan-kde
+      (pkgs.colloid-icon-theme.override {
+        schemeVariants = [ "catppuccin" ];
+        colorVariants = [ "purple" ];
+      })
       capitaine-cursors
       capitaine-cursors-themed
       #gtk-engines

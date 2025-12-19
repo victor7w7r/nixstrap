@@ -10,10 +10,9 @@ with lib;
 
   services = {
     libinput.enable = true;
-    fprintd.enable = true;
     xserver.xkb = {
       layout = "us";
-      variant = "workman";
+      variant = "intl-unicode";
       options = "caps:ctrl_modifier";
     };
     desktopManager = {

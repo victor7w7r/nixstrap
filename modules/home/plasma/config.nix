@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 with lib;
 {
-
   services.gpg-agent = {
     pinentry.package = pkgs.kwalletcli;
     extraConfig = "pinentry-program ${pkgs.kwalletcli}/bin/pinentry-kwallet";
@@ -13,7 +12,8 @@ with lib;
 
     workspace = {
       enableMiddleClickPaste = false;
-      lookAndFeel = "com.github.vinceliuice.Layan";
+      iconTheme = "Colloid-Dark";
+      lookAndFeel = "org.kde.breezedark.desktop";
       cursor.theme = "capitaine-cursors";
       tooltipDelay = 1;
     };
@@ -96,7 +96,7 @@ with lib;
           {
             layout = "us";
             displayName = "us";
-            variant = "workman-intl";
+            variant = "intl-unicode";
           }
           {
             layout = "latam";
@@ -176,7 +176,8 @@ with lib;
         opacity = "adaptive";
         widgets = [
           {
-            applicationTitleBar = {
+            /*
+              applicationTitleBar = {
               layout.elements = [ ];
               windowControlButtons = {
                 iconSource = "breeze";
@@ -203,7 +204,8 @@ with lib;
                 ];
                 source = "appName";
               };
-            };
+              };
+            */
           }
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
@@ -328,7 +330,6 @@ with lib;
           TerminalApplication = "kitty";
           TerminalService = "kitty.desktop";
         };
-        Icons.Theme = "Colloid-Purple-Dark";
         KDE = {
           AnimationDurationFactor = 0;
           ShowDeleteCommand = true;

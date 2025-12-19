@@ -2,6 +2,7 @@
   pkgs,
   modulesPath,
   self,
+  username,
   ...
 }:
 let
@@ -58,6 +59,14 @@ in
 
   systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
+  security.pam.services.ly = {
+    name = "ly";
+    enable = true;
+    startSession = true;
+    allowNullPassword = false;
+    fprintAuth = true;
+  };
+
   services = {
     pulseaudio.enable = false;
     blueman.enable = true;
@@ -65,6 +74,17 @@ in
     asusd = {
       enable = true;
       enableUserService = true;
+    };
+    handheld-daemon = {
+      enable = true;
+      user = username;
+    };
+    fprintd = {
+      enable = true;
+      tod = {
+        enable = true;
+        driver = pkgs.libfprint-focaltech;
+      };
     };
     pipewire = {
       enable = true;
