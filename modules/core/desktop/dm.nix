@@ -18,7 +18,7 @@
       };
     };
     ly = {
-      enable = false;
+      enable = true;
       settings = {
         animation = "colormix"; # matrix, CMatrix
         auth_fails = 3;
