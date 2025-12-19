@@ -11,24 +11,6 @@
 
     panels = [
       {
-        location = "top";
-        alignment = "center";
-        lengthMode = "fill";
-        floating = true;
-        height = 32;
-        hiding = "none";
-        screen = "all";
-        opacity = "adaptive";
-        widgets = [
-          "org.kde.plasma.panelspacer"
-          {
-            digitalClock = {
-              date.enable = false;
-            };
-          }
-        ];
-      }
-      {
         location = "bottom";
         alignment = "center";
         lengthMode = "fit";
@@ -38,8 +20,76 @@
         screen = 0;
         opacity = "translucent";
         widgets = [
-          "org.kde.plasma.icontasks"
+          {
+            iconTasks = {
+              appearance = {
+                showTooltips = true;
+                highlightWindows = true;
+                indicateAudioStreams = true;
+                fill = true;
+              };
+              launchers = [
+                "preferred://filemanager"
+                "applications:zen.desktop"
+                "applications:kitty.desktop"
+                "applications:dev.zed.Zed.desktop"
+              ];
+            };
+          }
           "org.kde.plasma.trash"
+        ];
+      }
+      {
+        location = "top";
+        alignment = "center";
+        lengthMode = "fill";
+        floating = true;
+        height = 32;
+        hiding = "none";
+        screen = "all";
+        opacity = "adaptive";
+        widgets = [
+          {
+            applicationTitleBar = {
+              layout.elements = [ ];
+              windowControlButtons = {
+                iconSource = "breeze";
+                buttonsAspectRatio = 95;
+                buttonsMargin = 0;
+              };
+              windowTitle = {
+                source = "appName";
+                hideEmptyTitle = true;
+                undefinedWindowTitle = "";
+                margins = {
+                  left = 5;
+                  right = 5;
+                };
+              };
+              overrideForMaximized = {
+                enable = true;
+                elements = [
+                  "windowCloseButton"
+                  "windowMaximizeButton"
+                  "windowMinimizeButton"
+                  "windowIcon"
+                  "windowTitle"
+                ];
+                source = "appName";
+              };
+            };
+          }
+          "org.kde.plasma.appmenu"
+          "org.kde.plasma.panelspacer"
+          {
+            digitalClock = {
+              date = {
+                enable = true;
+                position = "besideTime";
+              };
+              time.showSeconds = "always";
+            };
+          }
         ];
       }
     ];
