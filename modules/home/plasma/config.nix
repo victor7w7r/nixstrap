@@ -15,8 +15,6 @@ with lib;
       enableMiddleClickPaste = false;
       lookAndFeel = "com.github.vinceliuice.Layan";
       cursor.theme = "capitaine-cursors";
-      splashScreen.engine = "none";
-      splashScreen.theme = "none";
       tooltipDelay = 1;
     };
 

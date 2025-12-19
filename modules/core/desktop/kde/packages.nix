@@ -46,7 +46,6 @@
     kdePackages.sddm-kcm
     kdePackages.sweeper
     kdePackages.yakuake
-    kdePackages.wayland
     heaptrack
     ffmpegthumbnailer
     graphviz
