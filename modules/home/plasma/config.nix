@@ -108,10 +108,12 @@
       };
 
       mice = [
-        {
+        /*
+          {
           accelerationProfile = "none";
           name = "ydotoold virtual device";
-        }
+          }
+        */
       ];
 
       touchpads = [
