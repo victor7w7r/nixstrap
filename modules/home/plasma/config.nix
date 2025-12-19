@@ -14,6 +14,7 @@ with lib;
       enableMiddleClickPaste = false;
       iconTheme = "Colloid-Dark";
       lookAndFeel = "org.kde.breezedark.desktop";
+      colorScheme = "Layan";
       cursor.theme = "capitaine-cursors";
       tooltipDelay = 1;
     };
@@ -141,7 +142,8 @@ with lib;
         lengthMode = "fit";
         floating = true;
         height = 44;
-        hiding = "autohide";
+        hiding = "none";
+        #hiding = "autohide";
         screen = 0;
         opacity = "translucent";
         widgets = [

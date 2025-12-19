@@ -37,6 +37,7 @@
       programs.home-manager.enable = true;
 
       imports = [
+        (import ./config)
         (import ./system)
         (import ./dev)
         (import ./disks)

@@ -7,5 +7,5 @@
       close_on_child_death = true;
       cursor_blink_interval = 400;
     };
-  }
+  };
 }
