@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     ./install.sh
     if [ -d sddm ]; then
         mkdir -p $out/share/sddm/themes
-        cp -ra sddm/Layan* $out/share/sddm/themes/
+        cp -ra sddm/Layan* $out/share/sddm/themes
     fi
     runHook postInstall
   '';
