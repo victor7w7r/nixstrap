@@ -4,7 +4,7 @@
     workspace = {
       enableMiddleClickPaste = false;
       iconTheme = "Colloid-Purple-Catppuccin-Dark";
-      lookAndFeel = "org.kde.breezedark.desktop";
+      lookAndFeel = "com.github.vinceliuice.Layan";
       colorScheme = "Layan";
       cursor.theme = "capitaine-cursors";
       tooltipDelay = 1;
