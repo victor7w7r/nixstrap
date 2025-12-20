@@ -18,17 +18,24 @@ stdenv.mkDerivation rec {
   postPatch = ''
     patchShebangs install.sh
     substituteInPlace install.sh \
+      --replace 'if [ "$UID" -eq "$ROOT_UID" ]; then' 'if [ false ]; then'
+    substituteInPlace install.sh \
       --replace '$HOME/.local' $out \
       --replace '$HOME/.config' $out/share
-    substituteInPlace sddm/*/Main.qml \
-      --replace /usr $out
+
+    if [ -d sddm ]; then
+      find sddm -name "*.qml" -exec sed -i "s|/usr|$out|g" {} +
+    fi
   '';
 
   installPhase = ''
     runHook preInstall
-    name= ./install.sh --dest $out/share/themes
     mkdir -p $out/share/sddm/themes
-    cp -a sddm/Layan* $out/share/sddm/themes/
+    ./install.sh
+    if [ -d sddm ]; then
+        mkdir -p $out/share/sddm/themes
+        cp -ra sddm/Layan* $out/share/sddm/themes/
+    fi
     runHook postInstall
   '';
 

@@ -7,6 +7,7 @@
       lookAndFeel = "com.github.vinceliuice.Layan";
       colorScheme = "Layan";
       cursor.theme = "capitaine-cursors";
+      theme = "Layan";
       tooltipDelay = 1;
     };
 
