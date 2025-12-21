@@ -13,6 +13,9 @@
       opacity = "translucent";
       widgets = [
         {
+          name = "p-connor.plasma-drawer";
+        }
+        {
           iconTasks = {
             appearance = {
               showTooltips = true;
