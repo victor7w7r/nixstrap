@@ -17,7 +17,6 @@ stdenv.mkDerivation {
   };
 
   postPatch = ''
-    # This may as well be an official change
     substituteInPlace Makefile \
       --replace-fail 'kpackagetool6 -t Plasma/Applet' 'kpackagetool6'
 

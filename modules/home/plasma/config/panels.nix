@@ -79,6 +79,9 @@
 
            }
         */
+        {
+          name = "org.51n7.kMenu";
+        }
         "org.kde.plasma.appmenu"
         "org.kde.plasma.panelspacer"
         {
@@ -113,11 +116,20 @@
         }
         {
           digitalClock = {
+            time = {
+              showSeconds = "onlyInTooltip";
+              format = "12h";
+            };
             date = {
               enable = true;
+              format = {
+                custom = "ddd. dd/MM";
+              };
               position = "besideTime";
             };
-            time.showSeconds = "always";
+            calendar = {
+              firstDayOfWeek = "monday";
+            };
           };
         }
       ];
