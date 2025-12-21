@@ -19,5 +19,6 @@
 
   home.packages = [
     (pkgs.callPackage ./custom/layan.nix { })
+    (pkgs.callPackage ./custom/plasma-drawer.nix { })
   ];
 }
