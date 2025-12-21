@@ -18,6 +18,7 @@
   ];
 
   home.packages = [
+    pkgs.application-title-bar
     (pkgs.callPackage ./custom/layan.nix { })
     (pkgs.callPackage ./custom/kmenu.nix { })
     (pkgs.callPackage ./custom/plasma-drawer.nix { })

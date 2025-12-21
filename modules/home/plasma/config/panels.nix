@@ -82,6 +82,12 @@
         {
           name = "org.51n7.kMenu";
         }
+        {
+          name = "com.github.antroids.application-title-bar";
+        }
+        {
+          name = "org.kde.plasma.appmenu";
+        }
         "org.kde.plasma.appmenu"
         "org.kde.plasma.panelspacer"
         {
@@ -122,14 +128,10 @@
             };
             date = {
               enable = true;
-              format = {
-                custom = "ddd. dd/MM";
-              };
-              position = "besideTime";
+              format.custom = "ddd.   dd/MM";
+              position = "belowTime";
             };
-            calendar = {
-              firstDayOfWeek = "monday";
-            };
+            calendar.firstDayOfWeek = "monday";
           };
         }
       ];
