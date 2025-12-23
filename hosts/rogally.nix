@@ -83,7 +83,7 @@ in
       enable = true;
       tod = {
         enable = true;
-        driver = pkgs.libfprint-focaltech-2808-a658;
+        #driver = pkgs.libfprint-focaltech-2808-a658;
       };
     };
     pipewire = {
