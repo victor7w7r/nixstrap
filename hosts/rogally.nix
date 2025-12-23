@@ -81,10 +81,12 @@ in
     };
     fprintd = {
       enable = true;
-      tod = {
-        enable = true;
+      /*
+        tod = {
+        enable = false;
         driver = pkgs.libfprint-tod;
-      };
+        };
+      */
     };
     pipewire = {
       enable = true;
