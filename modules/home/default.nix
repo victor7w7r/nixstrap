@@ -44,6 +44,7 @@
         (import ./net)
         (import ./plasma)
         (import ./theme)
+        (import ./zen)
       ]
       ++ (
         if (host != "v7w7r-nixvm") || (host != "v7w7r-youyeetoox1") then

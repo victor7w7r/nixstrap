@@ -25,6 +25,8 @@ with lib;
     flatpak = {
       enable = true;
       /*
+      KDiskFree
+      OptiImage
         packages = [
           "io.github.DenysMb.Kontainer"
           "io.github.nyre221.kiview"

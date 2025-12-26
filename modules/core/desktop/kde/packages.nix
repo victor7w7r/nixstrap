@@ -27,12 +27,15 @@
     kdePackages.kdenetwork-filesharing
     kdePackages.kdf
     kdePackages.kfind
+    kdePackages.kget
     kdePackages.kgpg
     kdePackages.kjournald
     kdePackages.kmix
     kdePackages.koko
+    kdePackages.kolourpaint
     kdePackages.kompare
     kdePackages.konsole
+    kdePackages.kontrast
     kdePackages.krdc
     kdePackages.krdp
     kdePackages.ktorrent
@@ -57,9 +60,11 @@
     krename
     krita
     krusader
-    onboard
     maliit-keyboard
+    onboard
+    qpwgraph
     okteta
+    systemdgenie
     ulauncher
   ];
 }

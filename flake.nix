@@ -36,6 +36,14 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -59,6 +67,10 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-refind = {
       url = "github:catppuccin/refind";
