@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   programs.zen-browser = {
     enable = true;
     languagePacks = [ "es-ES" ];
-    nativeMessagingHosts = [pkgs.firefoxpwa];
+    nativeMessagingHosts = [ pkgs.firefoxpwa ];
     profiles.default = {
       id = 0;
       name = "default";
@@ -11,16 +11,8 @@
       pinsForce = true;
       pins = {
         "GitHub" = {
-          id = "7fb14076-a147-4d09-8487-bdd830332b61";
-          workspace = spaces."DefaultSpace".id;
+          id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
           url = "https://github.com";
-          position = 100;
-          isEssential = true;
-        };
-        "Deepseek" = {
-          id = "4ecfbb32-81eb-4a5f-ab1a-68b3ebf1f5fa";
-          workspace = spaces."DefaultSpace".id;
-          url = "https://chat.deepseek.com/";
           position = 101;
           isEssential = true;
         };
