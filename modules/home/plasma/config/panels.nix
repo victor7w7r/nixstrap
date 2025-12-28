@@ -34,7 +34,6 @@
         "org.kde.plasma.trash"
       ];
     }
-
     {
       location = "top";
       alignment = "center";

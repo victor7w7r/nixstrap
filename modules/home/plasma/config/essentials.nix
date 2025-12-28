@@ -11,6 +11,17 @@
       tooltipDelay = 1;
     };
 
+    desktop.widgets = [
+      {
+        config = { };
+        name = "luisbocanegra.desktop.wallpaper.effects";
+        position = {
+          horizontal = 51;
+          vertical = 100;
+        };
+      }
+    ];
+
     kscreenlocker = {
       appearance.showMediaControls = false;
       autoLock = false;
