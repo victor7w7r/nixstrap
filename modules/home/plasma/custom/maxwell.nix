@@ -13,7 +13,7 @@ stdenv.mkDerivation {
   };
 
   installPhase = ''
-    mkdir -p $out/share/plasma/plasmoids
-    mv . $out/share/plasma/plasmoids/maxwell
+    mkdir -p $out/share/plasma/plasmoids/maxwell
+    mv * $out/share/plasma/plasmoids/maxwell/
   '';
 }
