@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
     mv ./plasma/desktoptheme/common $PLASMA_DIR/Layan
     mv ./plasma/desktoptheme/Layan/* $PLASMA_DIR/Layan/
     cp -f ./color-schemes/LayanLight.colors $SCHEMES_DIR/
-    mv ./color-schemes/LayanLight.colors $PLASMA_DIR/Layan/colors/
+    mv ./color-schemes/LayanLight.colors $PLASMA_DIR/Layan/colors
     mv ./plasma/look-and-feel/com.github.vinceliuice.Layan $LOOKFEEL_DIR/
     mv ./wallpaper/Layan $WALLPAPER_DIR/
 
