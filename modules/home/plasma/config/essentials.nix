@@ -24,6 +24,18 @@
           width = 250;
         };
       }
+      {
+        config = { };
+        name = "maxwell";
+        position = {
+          horizontal = 51;
+          vertical = 100;
+        };
+        size = {
+          height = 250;
+          width = 250;
+        };
+      }
     ];
 
     kscreenlocker = {

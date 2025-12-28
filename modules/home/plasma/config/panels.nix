@@ -120,6 +120,9 @@
           };
         }
         {
+          name = "KdeControlStation";
+        }
+        {
           digitalClock = {
             time = {
               showSeconds = "onlyInTooltip";

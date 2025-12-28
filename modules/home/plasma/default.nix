@@ -19,10 +19,11 @@
 
   home.packages = [
     pkgs.application-title-bar
+    (pkgs.callPackage ./custom/kde-control-station.nix { })
     (pkgs.callPackage ./custom/kmenu.nix { })
     (pkgs.callPackage ./custom/kurve.nix { })
     (pkgs.callPackage ./custom/layan.nix { })
-    (pkgs.callPackage ./custom/kde-control-station.nix { })
+    (pkgs.callPackage ./custom/maxwell.nix { })
     (pkgs.callPackage ./custom/panel-spacer-extended.nix { })
     (pkgs.callPackage ./custom/plasma-drawer.nix { })
     (pkgs.callPackage ./custom/wallpaper-effects.nix { })

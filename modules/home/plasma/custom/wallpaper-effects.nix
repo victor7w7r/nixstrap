@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "luisbocanegra";
     repo = "plasma-wallpaper-effects";
     rev = "refs/tags/v${version}";
-    hash = "sha256-pZiPH38E9CSaBOnutZM/QeQnst6Ppvxhd4An+n21vr8=";
+    hash = "sha256-fhVxhJESbCkm0WItBCEN83RvSwzjYGgCVyX/3j51uhA=";
   };
 
   dontBuild = true;
