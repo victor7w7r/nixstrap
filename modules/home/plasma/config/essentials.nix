@@ -19,6 +19,10 @@
           horizontal = 51;
           vertical = 100;
         };
+        size = {
+          height = 250;
+          width = 250;
+        };
       }
     ];
 
