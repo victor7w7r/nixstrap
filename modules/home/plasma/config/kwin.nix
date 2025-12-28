@@ -44,8 +44,6 @@
         contrastEnabled = true;
         desktopchangeosdEnabled = false;
         dimscreenEnabled = true;
-        forceblurEnabled = true;
-        forceblur_x11Enabled = true;
         fullscreenifyEnabled = false;
         kzonesEnabled = true;
         macsimize6Enabled = false;
@@ -56,7 +54,6 @@
         temporary-virtual-desktopsEnabled = false;
         translucencyEnabled = true;
         truely-maximizedEnabled = true;
-        ultrawidewindowsEnabled = false;
         virtual-desktops-only-on-primaryEnabled = true;
         zoomEnabled = false;
       };

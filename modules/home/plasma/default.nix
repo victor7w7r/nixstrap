@@ -22,10 +22,13 @@
     (pkgs.callPackage ./custom/kde-control-station.nix { })
     (pkgs.callPackage ./custom/kmenu.nix { })
     (pkgs.callPackage ./custom/kurve.nix { })
+    (pkgs.callPackage ./custom/kzones.nix { })
     (pkgs.callPackage ./custom/layan.nix { })
     (pkgs.callPackage ./custom/maxwell.nix { })
     (pkgs.callPackage ./custom/panel-spacer-extended.nix { })
     (pkgs.callPackage ./custom/plasma-drawer.nix { })
+    (pkgs.callPackage ./custom/sticky-window-snapping.nix { })
+    (pkgs.callPackage ./custom/virtual-desktops-only-on-primary.nix { })
     (pkgs.callPackage ./custom/wallpaper-effects.nix { })
   ];
 }
