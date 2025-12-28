@@ -1,34 +1,29 @@
 {
-  stdenv,
-  lib,
+  stdenvNoCC,
   fetchFromGitHub,
+  nix-update-script,
 }:
-stdenv.mkDerivation rec {
-  pname = "plasma-wallpaper-effects";
-  version = "v2.0.0";
+
+stdenvNoCC.mkDerivation rec {
+  pname = "kde-wallpaper-effects-widget";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "luisbocanegra";
-    repo = pname;
-    rev = "HEAD";
-    hash = "sha256-Wh8tZcQEdTTlgtBf4ovapojHcpPBZDDkWOclmxZv9zA=";
+    repo = "plasma-wallpaper-effects";
+    rev = "refs/tags/v${version}";
+    hash = "sha256-pZiPH38E9CSaBOnutZM/QeQnst6Ppvxhd4An+n21vr8=";
   };
 
-  postPatch = ''
-    patchShebangs install.sh
-    substituteInPlace install.sh --replace '$HOME/.local' $out
-  '';
+  dontBuild = true;
+  dontWrapQtApps = true;
 
   installPhase = ''
     runHook preInstall
-    ./install.sh
+    mkdir -p $out/share/plasma/plasmoids/luisbocanegra.desktop.wallpaper.effects
+    cp -r $src/package/* $out/share/plasma/plasmoids/luisbocanegra.desktop.wallpaper.effects
     runHook postInstall
   '';
 
-  meta = with lib; {
-    description = "KDE Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins";
-    homepage = "https://github.com/luisbocanegra/plasma-wallpaper-effects";
-    license = licenses.gpl3Only;
-    platforms = platforms.all;
-  };
+  passthru.updateScript = nix-update-script { };
 }
