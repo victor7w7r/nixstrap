@@ -8,6 +8,17 @@
     extraConfig = "pinentry-program ${pkgs.kwalletcli}/bin/pinentry-kwallet";
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum-dark";
+  };
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=LayanDark
+  '';
+
   imports = [
     (import ./config/essentials.nix)
     (import ./config/kwin.nix)
