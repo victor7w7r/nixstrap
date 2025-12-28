@@ -81,12 +81,10 @@ in
     };
     fprintd = {
       enable = true;
-      /*
-        tod = {
-        enable = false;
-        driver = pkgs.libfprint-tod;
-        };
-      */
+      tod = {
+        enable = true;
+        driver = pkgs.nur.repos.Vortriz.libfprint-focaltech-2808-a658-alt;
+      };
     };
     pipewire = {
       enable = true;

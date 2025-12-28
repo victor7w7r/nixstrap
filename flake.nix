@@ -85,6 +85,7 @@
       chaotic,
       self,
       nur,
+      sops-nix,
       nixos-hardware,
       ...
     }@inputs:
@@ -97,6 +98,7 @@
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
             (import ./hosts/macmini.nix)
@@ -104,11 +106,13 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             host = "v7w7r-macmini81";
             inherit
               self
+              sops-nix
               inputs
               username
               system
@@ -119,6 +123,7 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
@@ -128,11 +133,13 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             host = "v7w7r-dynabook";
             inherit
               self
+              sops-nix
               inputs
               username
               system
@@ -143,6 +150,7 @@
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogally.nix)
@@ -150,11 +158,14 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
+            nur.legacyPackages."${system}".repos.Vortriz.libfprint-focaltech-2808-a658-alt
           ];
           specialArgs = {
             host = "v7w7r-rc71l";
             inherit
               self
+              sops-nix
               inputs
               username
               system
@@ -165,6 +176,7 @@
         rogallyvm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogallyvm.nix)
@@ -172,11 +184,13 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             host = "v7w7r-rc71l";
             inherit
               self
+              sops-nix
               inputs
               username
               system
@@ -187,6 +201,7 @@
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
@@ -195,11 +210,13 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             host = "v7w7r-youyeetoox1";
             inherit
               self
+              sops-nix
               inputs
               username
               system
@@ -210,6 +227,7 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            #(import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
@@ -218,11 +236,13 @@
             (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             host = "v7w7r-nixvm";
             inherit
               self
+              sops-nix
               inputs
               username
               system

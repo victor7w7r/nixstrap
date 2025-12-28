@@ -3,6 +3,7 @@
   environment.systemPackages =
     with pkgs;
     lib.mkAfter [
+      age
       atool
       brush
       cheat
@@ -22,8 +23,10 @@
       progress
       pv
       sampler
+      ssh-to-age
       sd
       sig
+      sops
       tre-command
       tmux
       veracrypt
