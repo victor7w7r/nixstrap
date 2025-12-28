@@ -24,8 +24,8 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
+    mkdir -p $out/share
     runHook preInstall
-    mkdir -p $out/share/sddm
     ./install.sh
     runHook postInstall
   '';
