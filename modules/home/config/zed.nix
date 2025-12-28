@@ -57,35 +57,35 @@
         metrics = false;
       };
 
-      /*node = {
-        path = lib.getExe pkgs.nodejs;
-        npm_path = lib.getExe' pkgs.nodejs "npm";
-      };
+      /*
+        node = {
+          path = lib.getExe pkgs.nodejs;
+          npm_path = lib.getExe' pkgs.nodejs "npm";
+        };
 
-      "context_servers": {
-        "mcp-server-github": {
-          "enabled": true,
-          "settings": {
-            "github_personal_access_token": ""
+        "context_servers": {
+          "mcp-server-github": {
+            "enabled": true,
+            "settings": {
+              "github_personal_access_token": ""
+            }
+          }
+        },
+        "agent": {
+          "default_model": {
+            "provider": "copilot_chat",
+            "model": "gpt-5-mini"
+          },
+          "model_parameters": []
+        },
+        "agent_servers": {
+          "Auggie CLI": {
+            "type": "custom",
+            "command": "auggie",
+            "args": ["--acp"],
+            "env": {}
           }
         }
-      },
-      "agent": {
-        "default_model": {
-          "provider": "copilot_chat",
-          "model": "gpt-5-mini"
-        },
-        "model_parameters": []
-      },
-      "agent_servers": {
-        "Auggie CLI": {
-          "type": "custom",
-          "command": "auggie",
-          "args": ["--acp"],
-          "env": {}
-        }
-      }
-
       */
 
       hour_format = "hour24";
@@ -123,10 +123,10 @@
         nixd = {
           binary = {
             path = "/home/victor7w7r/.nix-profile/bin/nixd";
-          },
+          };
           initialization_options = {
             formatting = {
-              command = ["nixfmt"];
+              command = [ "nixfmt" ];
             };
           };
         };
@@ -136,7 +136,7 @@
         Nix = {
           formatter = "language_server";
           format_on_save = "on";
-          language_servers = ["nixd"];
+          language_servers = [ "nixd" ];
           tab_size = 2;
         };
       };
