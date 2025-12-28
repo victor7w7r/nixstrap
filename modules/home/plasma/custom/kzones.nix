@@ -1,8 +1,7 @@
 {
   stdenv,
   fetchFromGitHub,
-  kpackage,
-  kwin,
+  kdePackages,
   zip,
 }:
 
@@ -18,10 +17,10 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
-    kpackage
+    kdePackages.kpackage
     zip
   ];
-  buildInputs = [ kwin ];
+  buildInputs = [ kdePackages.kwin ];
   dontWrapQtApps = true;
 
   buildFlags = [ "build" ];
