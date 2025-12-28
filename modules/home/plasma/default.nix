@@ -22,5 +22,6 @@
     (pkgs.callPackage ./custom/layan.nix { })
     (pkgs.callPackage ./custom/kmenu.nix { })
     (pkgs.callPackage ./custom/plasma-drawer.nix { })
+    (pkgs.callPackage ./custom/wallpaper-effects.nix { })
   ];
 }
