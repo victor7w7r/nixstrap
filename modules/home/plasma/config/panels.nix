@@ -75,73 +75,73 @@
             PreloadWeight = 100;
             popupHeight = 319;
             popupWidth = 240;
-          };
-          Appearance = {
-            cmdList = [
-              "kinfocenter"
-              "separator"
-              "systemsettings"
-              "missioncenter"
-              "bauh"
-              "separator"
-              "systemctl suspend -f"
-              "systemctl reboot"
-              "systemctl soft-reboot"
-              "systemctl poweroff"
-              "separator"
-              "qdbus6 org.freedesktop.ScreenSaver /ScreenSaver Lock"
-              "qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptLogout"
-            ];
-            icon = "/home/victor7w7r/Imágenes/linuxarch.png";
-            iconList = [
-              "help-hint"
-              "filename-dash-amarok"
-              "settings-configure"
-              "view-process-all-tree"
-              "update-none"
-              "filename-dash-amarok"
-              "system-suspend"
-              "system-reboot"
-              "system-reboot-symbolic"
-              "system-shutdown"
-              "filename-dash-amarok"
-              "system-lock-screen"
-              "system-log-out"
-            ];
-            labelList = [
-              "Acerca De Esta PC..."
-              "separator"
-              "Configuración del Sistema..."
-              "Administrador de tareas..."
-              "Aplicaciones..."
-              "separator"
-              "Reposo"
-              "Reiniciar"
-              "Reinicio Suave"
-              "Apagar"
-              "separator"
-              "Bloquear"
-              "Cerrar Sesión"
-            ];
-            separatorList = [
-              false
-              true
-              false
-              false
-              false
-              true
-              false
-              false
-              false
-              false
-              true
-              false
-              false
-            ];
-          };
-          ConfigDialog = {
-            DialogHeight = 540;
-            DialogWidth = 720;
+            Appearance = {
+              cmdList = [
+                "kinfocenter"
+                "separator"
+                "systemsettings"
+                "missioncenter"
+                "bauh"
+                "separator"
+                "systemctl suspend -f"
+                "systemctl reboot"
+                "systemctl soft-reboot"
+                "systemctl poweroff"
+                "separator"
+                "qdbus6 org.freedesktop.ScreenSaver /ScreenSaver Lock"
+                "qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptLogout"
+              ];
+              icon = "/home/victor7w7r/Imágenes/linuxarch.png";
+              iconList = [
+                "help-hint"
+                "filename-dash-amarok"
+                "settings-configure"
+                "view-process-all-tree"
+                "update-none"
+                "filename-dash-amarok"
+                "system-suspend"
+                "system-reboot"
+                "system-reboot-symbolic"
+                "system-shutdown"
+                "filename-dash-amarok"
+                "system-lock-screen"
+                "system-log-out"
+              ];
+              labelList = [
+                "Acerca De Esta PC..."
+                "separator"
+                "Configuración del Sistema..."
+                "Administrador de tareas..."
+                "Aplicaciones..."
+                "separator"
+                "Reposo"
+                "Reiniciar"
+                "Reinicio Suave"
+                "Apagar"
+                "separator"
+                "Bloquear"
+                "Cerrar Sesión"
+              ];
+              separatorList = [
+                false
+                true
+                false
+                false
+                false
+                true
+                false
+                false
+                false
+                false
+                true
+                false
+                false
+              ];
+            };
+            ConfigDialog = {
+              DialogHeight = 540;
+              DialogWidth = 720;
+            };
           };
         }
         {
