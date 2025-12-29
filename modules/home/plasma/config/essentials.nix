@@ -14,27 +14,38 @@
 
     desktop.widgets = [
       {
-        config = { };
+        config = {
+          General = {
+            GrainMode = 4;
+            PixelateMode = 4;
+            hideWidget = true;
+            isEnabled = false;
+          };
+        };
         name = "luisbocanegra.desktop.wallpaper.effects";
         position = {
           horizontal = 51;
           vertical = 100;
         };
         size = {
-          height = 250;
-          width = 250;
+          height = 25;
+          width = 25;
         };
       }
       {
-        config = { };
         name = "maxwell";
+        config = {
+          General = {
+            speed = 2.2;
+          };
+        };
         position = {
           horizontal = 51;
           vertical = 100;
         };
         size = {
-          height = 250;
-          width = 250;
+          height = 100;
+          width = 100;
         };
       }
     ];
