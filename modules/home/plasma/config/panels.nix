@@ -45,8 +45,6 @@
             appearance = {
               showTooltips = true;
               highlightWindows = true;
-              showOnlyCurrentActivity = false;
-              showOnlyCurrentScreen = true;
               indicateAudioStreams = true;
               fill = true;
             };
