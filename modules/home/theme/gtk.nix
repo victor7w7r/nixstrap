@@ -2,28 +2,30 @@
 
 {
   gtk = {
+    #appmenu-gtk-module
     enable = true;
     iconTheme = {
-      name = "elementary-Xfce-dark";
-      package = pkgs.elementary-xfce-icon-theme;
+      name = "Colloid-Purple-Catppuccin-Dark";
+      package = (
+        pkgs.colloid-icon-theme.override {
+          schemeVariants = [ "catppuccin" ];
+          colorVariants = [ "purple" ];
+        }
+      );
     };
     theme = {
-      name = "zukitre-dark";
-      package = pkgs.zuki-themes;
+      name = "Layan-Dark";
+      package = pkgs.layan-gtk-theme;
     };
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
       '';
     };
-    #appmenu-gtk-module
-    #gtk4.extraConfig = {
-    #  Settings = ''
-    #    gtk-application-prefer-dark-theme=1
-    #  '';
-    #};
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
-
-  programs.gpg.enable = true;
-  services.gpg-agent.enable = true;
 }

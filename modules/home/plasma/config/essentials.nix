@@ -80,6 +80,7 @@
           AnimationDurationFactor = 0;
           ShowDeleteCommand = true;
           SmoothScroll = false;
+          widgetStyle = "kvantum-dark";
         };
         "KFileDialog Settings" = {
           "Allow Expansion" = false;
