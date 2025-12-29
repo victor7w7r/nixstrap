@@ -2,14 +2,14 @@
 {
   programs.plasma = {
     workspace = {
-      enableMiddleClickPaste = false;
       colorScheme = "Layan";
       cursor.theme = "capitaine-cursors";
-      theme = "Layan";
-      windowDecorations.library = "com.github.vinceliuice.Layan";
-      windowDecorations.theme = "Layan";
+      enableMiddleClickPaste = false;
       iconTheme = "Colloid-Purple-Catppuccin-Dark";
+      theme = "Layan";
       tooltipDelay = 1;
+      windowDecorations.library = "org.kde.kwin.aurorae";
+      windowDecorations.theme = "__aurorae__svg__Layan";
     };
 
     desktop.widgets = [
