@@ -45,6 +45,7 @@
     kdePackages.plasma-workspace
     kdePackages.plasma-desktop
     kdePackages.partitionmanager
+    kdePackages.qtmultimedia
     kdePackages.qtstyleplugin-kvantum
     kdePackages.sddm-kcm
     kdePackages.sweeper
