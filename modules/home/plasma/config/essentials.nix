@@ -3,11 +3,12 @@
   programs.plasma = {
     workspace = {
       enableMiddleClickPaste = false;
-      iconTheme = "Colloid-Purple-Catppuccin-Dark";
-      lookAndFeel = "com.github.vinceliuice.Layan";
       colorScheme = "Layan";
       cursor.theme = "capitaine-cursors";
       theme = "Layan";
+      windowDecorations.library = "com.github.vinceliuice.Layan";
+      windowDecorations.theme = "Layan";
+      iconTheme = "Colloid-Purple-Catppuccin-Dark";
       tooltipDelay = 1;
     };
 
