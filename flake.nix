@@ -128,12 +128,12 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
-            (import ./hosts/laptop.nix)
-            (import ./modules/core)
-            (import ./modules/home)
             chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
+            (import ./hosts/laptop.nix)
+            (import ./modules/core)
+            (import ./modules/home)
           ];
           specialArgs = {
             host = "v7w7r-dynabook";

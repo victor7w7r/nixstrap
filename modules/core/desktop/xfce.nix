@@ -1,5 +1,35 @@
 { pkgs, ... }:
 {
+  security.pam.services.gdm.enableGnomeKeyring = true;
+
+  xserver = {
+    enable = true;
+    desktopManager.xfce.enable = true;
+    excludePackages = with pkgs; [ xterm ];
+  };
+
+  programs = {
+    dconf.enable = true;
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        thunar-volman
+      ];
+    };
+  };
+
+  services = {
+    network-manager-applet.enable = true;
+    displayManager.defaultSession = "xfce";
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "xfce4-session";
+      openFirewall = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     blueman
     deja-dup
@@ -39,16 +69,4 @@
     #thunar-shares-plugin
     #gtkhash-thunar
   ];
-
-  programs = {
-    dconf.enable = true;
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-        thunar-volman
-      ];
-    };
-  };
 }

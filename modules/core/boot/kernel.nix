@@ -74,4 +74,12 @@ in
     tmp.useTmpfs = true;
   };
   #binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 70;
+  };
+
 }

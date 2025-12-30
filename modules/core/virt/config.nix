@@ -34,4 +34,8 @@
   };
 
   users.extraGroups.podman.members = [ username ];
+
+  programs = {
+    mdevctl.enable = true;
+  };
 }

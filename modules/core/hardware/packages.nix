@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;
-    lib.mkAfter [
+    [
       go-mtpfs
       exfatprogs
       f2fs-tools
@@ -43,5 +43,18 @@
 
       #https://aur.archlinux.org/packages/r-linux
       #https://github.com/davispuh/btrfs-data-recovery
+    ]
+    ++ [
+      cpulimit
+      cyme
+      dysk
+      fan2go
+      i2c-tools
+      hwinfo
+      lshw
+      read-edid
+      smartmontools
+      usbutils
     ];
+
 }

@@ -33,4 +33,9 @@
       ];
     };
   };
+
+  programs = {
+    bandwhich.enable = true;
+    trippy.enable = true;
+  };
 }

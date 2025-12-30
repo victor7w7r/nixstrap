@@ -1,11 +1,23 @@
 { host, ... }:
 {
   imports = [
-    (import ./networking)
-    (import ./packages)
+    (import ./boot)
     (import ./system)
+    (import ./hardware)
+    (import ./networking)
+    (import ./security)
     (import ./desktop)
-    (import ./gaming)
+    (import ./dev)
   ]
-  ++ (if (host != "v7w7r-nixvm") then [ (import ./virt) ] else [ ]);
+  ++ (if (host != "v7w7r-nixvm") then [ (import ./virt) ] else [ ])
+  ++ (
+    if (host != "v7w7r-nixvm") || (host != "v7w7r-youyeetoox1") then
+      [
+        (import ./android)
+        (import ./misc)
+        (import ./multimedia)
+      ]
+    else
+      [ ]
+  );
 }

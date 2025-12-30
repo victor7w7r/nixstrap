@@ -1,20 +1,13 @@
 { pkgs, ... }:
 {
   services = {
-    fwupd.enable = true;
     gvfs.enable = true;
-    lact.enable = true;
+    glances.enable = true;
     locate.enable = true;
     logrotate.enable = true;
-    sysstat.enable = true;
-    udisks2.enable = true;
+    yazi.enable = true;
+
     #rustdesk.enable = true;
-    #opensnitch.enable = true;
-    #clamav = {
-    #  daemon.enable = true;
-    #  updater.enable = true;
-    #  scanner.enable = true;
-    #};
 
     dbus = {
       enable = true;
@@ -47,6 +40,31 @@
         NTP=time.cloudflare.com
         FallbackNTP=time.google.com 0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org
       '';
+    };
+
+    irqbalance.enable = true;
+    memavaild.enable = true;
+    #preload.enable = true;
+    prelockd.enable = true;
+    resolved.enable = false;
+    uresourced.enable = true;
+    scx.enable = true;
+
+    ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
+      extraRules = [
+        {
+          "name" = "gamescope";
+          "nice" = -20;
+        }
+      ];
+    };
+
+    nohang = {
+      enable = true;
+      desktop = true;
     };
 
     journald.extraConfig = ''

@@ -1,13 +1,5 @@
 { pkgs, username, ... }:
 {
-  system.stateVersion = "25.05";
-  nixpkgs.config.allowUnfree = true;
-
-  hardware = {
-    ksm.enable = true;
-    #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
-  };
-
   time.timeZone = "America/Guayaquil";
   i18n = {
     defaultLocale = "es_ES.UTF-8";
@@ -23,32 +15,6 @@
       LC_TELEPHONE = "es_ES.UTF-8";
       LC_TIME = "es_ES.UTF-8";
     };
-  };
-
-  security = {
-    apparmor = {
-      enable = true;
-      enableCache = true;
-    };
-    polkit.enable = true;
-    rtkit.enable = true;
-    #clamav-gui clamav-unofficial-sigs
-    sudo-rs = {
-      enable = true;
-      wheelNeedsPassword = false;
-    };
-  };
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 100;
-    priority = 70;
-  };
-
-  programs = {
-    nix-ld.enable = true;
-    nix-ld.libraries = [ ];
   };
 
   users.users.${username} = {
@@ -73,11 +39,6 @@
     ];
   };
 
-  environment.pathsToLink = [
-    "/share/applications"
-    "/share/xdg-desktop-portal"
-  ];
-
   console = {
     enable = true;
     packages = [ pkgs.spleen ];
@@ -86,19 +47,20 @@
     keyMap = "us";
   };
 
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      allowed-users = [ "${username}" ];
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+  programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+    #bash.blesh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
+
+    yazi.enable = true;
+    less.enable = true;
+    skim.enable = true;
+    zsh.enable = true;
   };
 }

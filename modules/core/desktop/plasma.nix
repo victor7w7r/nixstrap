@@ -5,6 +5,19 @@
   ...
 }:
 {
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  };
+
+  services = {
+    displayManager.defaultSession = "plasma";
+    desktopManager.plasma6 = {
+      enable = true;
+      enableQt5Integration = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
     kdePackages.ark
@@ -68,4 +81,26 @@
     systemdgenie
     ulauncher
   ];
+
+  flatpak = {
+    enable = true;
+    /*
+      KDiskFree
+      OptiImage
+        packages = [
+          "io.github.DenysMb.Kontainer"
+          "io.github.nyre221.kiview"
+          "org.kde.kommit"
+          "com.github.d4nj1.tlpui"
+          "in.srev.guiscrcpy"
+          "com.github.vikdevelop.photopea_app"
+          "com.github.tchx84.Flatseal"
+          "io.emeric.toolblex"
+        ];
+        update.auto = {
+          enable = true;
+          onCalendar = "weekly";
+          };
+    */
+  };
 }

@@ -34,8 +34,4 @@
     win-spice
     yad
   ];
-
-  programs = {
-    mdevctl.enable = true;
-  };
 }
