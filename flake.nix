@@ -98,7 +98,7 @@
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
             (import ./hosts/macmini.nix)
@@ -123,7 +123,7 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
@@ -150,7 +150,7 @@
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogally.nix)
@@ -176,7 +176,7 @@
         rogallyvm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             (import ./hosts/rogallyvm.nix)
@@ -201,7 +201,7 @@
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
@@ -227,7 +227,7 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            (import ./configuration)
+            (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
