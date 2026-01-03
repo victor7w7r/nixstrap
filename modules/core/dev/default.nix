@@ -4,6 +4,6 @@
     (import ./config.nix)
     (import ./packages.nix)
 
-    (import ./ugm.nix)
+    (import ./custom/ugm.nix)
   ];
 }
