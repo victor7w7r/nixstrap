@@ -5,8 +5,6 @@
     glances.enable = true;
     locate.enable = true;
     logrotate.enable = true;
-    yazi.enable = true;
-
     #rustdesk.enable = true;
 
     dbus = {
