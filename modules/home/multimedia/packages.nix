@@ -13,12 +13,25 @@
       #https://github.com/Shabinder/SpotiFlyer
       #https://davidepucci.it/doc/spotitube/#installation
     ]
+    ++ [
+      easyeffects
+      # easyeffects-bundy01-presets easyeffects-jtrv-presets-git
+      lsp-plugins
+      calf
+      zam-plugins
+      mda_lv2
+    ]
+    ++ [
+      #davinci-resolve
+      #inkscape-with-extensions
+      #lightworks
+      #lunacy
+      #natron
+      #sonic-visualiser
+      tenacity
+      # https://github.com/paulpacifico/shutter-encoder
+      #https://github.com/tkmxqrdxddd/davinci-video-converter
+      #https://tahoma2d.org/
+    ]
   );
-
-  programs = {
-    asciinema.enable = true;
-    cava.enable = true;
-    ncspot.enable = true;
-    rtorrent.enable = true;
-  };
 }

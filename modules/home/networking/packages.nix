@@ -18,7 +18,5 @@
       #https://github.com/opeolluwa/beats
     ]
   );
-  services.pbgopy.enable = true;
-  programs.topgrade.enable = true;
-  programs.himalaya.enable = true;
+
 }

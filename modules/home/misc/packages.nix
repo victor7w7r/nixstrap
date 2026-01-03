@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   home.packages = (
     with pkgs;
@@ -11,9 +10,4 @@
       sticky-notes
     ]
   );
-
-  programs = {
-    onlyoffice.enable = true;
-  };
-
 }

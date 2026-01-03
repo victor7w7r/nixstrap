@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-  #programs.gamemode.enable = true;
-  #programs.mangohud.enable = true;
-
-  services.ludusavi.enable = true;
-
   home.packages = with pkgs; [
     bottles
     dosbox
@@ -21,7 +16,6 @@
     winetricks
   ];
 }
-
 /*
   wineWowPackages.staging
     wineWowPackages.waylandFull

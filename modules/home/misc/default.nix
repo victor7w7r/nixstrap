@@ -2,7 +2,8 @@
 {
   imports = [
     (import ./config.nix)
+    (import ./gaming.nix)
     (import ./packages.nix)
-    (import ./zed.nix)
+    (import ./services.nix)
   ];
 }

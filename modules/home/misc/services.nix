@@ -1,0 +1,4 @@
+{ ... }:
+{
+  services.ludusavi.enable = true;
+}

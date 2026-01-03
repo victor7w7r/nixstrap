@@ -37,24 +37,18 @@
       programs.home-manager.enable = true;
 
       imports = [
-        (import ./config)
-        (import ./system)
+        (import ./desktop)
         (import ./dev)
-        (import ./disks)
-        (import ./net)
-        (import ./plasma)
-        (import ./theme)
+        (import ./hardware)
+        (import ./networking)
+        (import ./system)
         (import ./zen)
       ]
       ++ (
         if (host != "v7w7r-nixvm") || (host != "v7w7r-youyeetoox1") then
           [
-            (import ./eq)
-            (import ./gaming)
+            (import ./misc)
             (import ./multimedia)
-            #(import ./hypr)
-            (import ./post-production)
-            (import ./util)
           ]
         else
           [ ]

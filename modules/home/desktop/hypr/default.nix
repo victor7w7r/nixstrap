@@ -1,0 +1,4 @@
+{ ... }:
+{
+  imports = [ (import ./hypr.nix) ] ++ [ ];
+}
