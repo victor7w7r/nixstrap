@@ -227,7 +227,7 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            #(import ./configuration)
+            (import ./configuration)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel

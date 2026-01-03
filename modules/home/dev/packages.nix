@@ -1,11 +1,5 @@
 { pkgs, lib, ... }:
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "jetbrains.datagrip"
-    ];
-
   home.packages = (
     with pkgs;
     [
@@ -13,6 +7,7 @@
       cool-retro-term
       git-credential-manager
       lazygit
+      jetbrains.datagrip
       #notepadqq
       windterm
     ]

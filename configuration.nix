@@ -24,7 +24,7 @@
     nix-ld.libraries = [ ];
   };
 
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  sops.defaultSopsFile = ./secrets/example.yaml;
-  sops.secrets."example" = { };
+  #sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  #sops.defaultSopsFile = ./secrets/example.yaml;
+  #sops.secrets."example" = { };
 }
