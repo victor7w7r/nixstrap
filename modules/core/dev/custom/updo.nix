@@ -4,11 +4,11 @@
   ...
 }:
 stdenv.mkDerivation {
-  pname = "ugm";
+  pname = "updo";
   version = "latest";
 
   src = fetchurl {
-    url = "https://github.com/ariasmn/ugm/releases/download/v1.8.0/ugm_1.8.0_linux_amd64";
+    url = "https://github.com/Owloops/updo/releases/download/v0.4.5/updo_Linux_x86_64";
     sha256 = "sha256-wAvgbRQubjtmxjI4Z6pNy2LDTJXvpSghFBWX/9tjXC4=";
   };
 
@@ -16,7 +16,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/ugm
-    chmod +x $out/bin/ugm
+    cp $src $out/bin/updo
+    chmod +x $out/bin/updo
   '';
 }

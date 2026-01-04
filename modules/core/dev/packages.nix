@@ -28,8 +28,6 @@
     #https://github.com/jwt-rs/jwt-ui
     #https://crates.io/crates/loc
     #https://crates.io/crates/kyun
-    #https://github.com/ariasmn/ugm
-    #https://github.com/Owloops/updo
 
     dblab
     gobang
