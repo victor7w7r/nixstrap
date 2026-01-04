@@ -2,6 +2,7 @@
   pkgs,
   stdenv,
   fetchurl,
+  ...
 }:
 stdenv.mkDerivation {
   pname = "ugm";
