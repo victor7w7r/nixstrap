@@ -1,9 +1,13 @@
-{ pkgs, ... }:
-pkgs.stdenv.mkDerivation {
+{
+  pkgs,
+  stdenv,
+  fetchurl,
+}:
+stdenv.mkDerivation {
   pname = "ugm";
   version = "latest";
 
-  src = pkgs.fetchurl {
+  src = fetchurl {
     url = "https://github.com/ariasmn/ugm/releases/download/v1.8.0/ugm_1.8.0_linux_amd64";
     sha256 = "sha256-0000000000000000000000000000000000000000000=";
   };
