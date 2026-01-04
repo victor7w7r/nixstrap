@@ -9,12 +9,10 @@
     hub
     just
     zsh-forgit
-    #https://github.com/GianlucaP106/mynav
 
     github-copilot-cli
     jan
     ollama-rocm
-    #uv pip elia-chat gpterminator
 
     atac
     xh
@@ -25,19 +23,21 @@
     jless
     dos2unix
     lemmeknow
-    #https://github.com/jwt-rs/jwt-ui
-    #https://crates.io/crates/loc
-    #https://crates.io/crates/kyun
 
     dblab
     gobang
     rainfrog
-
     ktlint
     shellcheck
-
     tracexec
 
+    (pkgs.callPackage ./custom/elia-chat.nix { })
+    (pkgs.callPackage ./custom/gpterminator.nix { })
+    (pkgs.callPackage ./custom/jwt-ui.nix { })
+    (pkgs.callPackage ./custom/kyun.nix { })
+    (pkgs.callPackage ./custom/loc.nix { })
+    (pkgs.callPackage ./custom/mynav.nix { })
     (pkgs.callPackage ./custom/ugm.nix { })
+    (pkgs.callPackage ./custom/updo.nix { })
   ];
 }

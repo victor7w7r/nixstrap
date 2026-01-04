@@ -4,19 +4,17 @@
   ...
 }:
 stdenv.mkDerivation {
-  pname = "updo";
+  pname = "jwt-ui";
   version = "latest";
 
   src = fetchurl {
-    url = "https://github.com/Owloops/updo/releases/download/v0.4.5/updo_Linux_x86_64";
+    url = "https://github.com/jwt-rs/jwt-ui/releases/download/v1.3.0/jwtui-linux.tar.gz";
     sha256 = "sha256-1B+T9UBjh9Pad+b0xNbVGGo/6tkiNz+ngfA+7KfQN24=";
   };
 
-  dontUnpack = true;
-
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/updo
-    chmod +x $out/bin/updo
+    cp $src $out/bin/jwtui
+    chmod +x $out/bin/jwtui
   '';
 }

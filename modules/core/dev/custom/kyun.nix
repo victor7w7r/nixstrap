@@ -4,11 +4,11 @@
   ...
 }:
 stdenv.mkDerivation {
-  pname = "updo";
+  pname = "kyun";
   version = "latest";
 
   src = fetchurl {
-    url = "https://github.com/Owloops/updo/releases/download/v0.4.5/updo_Linux_x86_64";
+    url = "https://github.com/lennart-finke/kyun/releases/download/v0.02/kyun";
     sha256 = "sha256-1B+T9UBjh9Pad+b0xNbVGGo/6tkiNz+ngfA+7KfQN24=";
   };
 
@@ -16,7 +16,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/updo
-    chmod +x $out/bin/updo
+    cp $src $out/bin/kyun
+    chmod +x $out/bin/kyun
   '';
 }

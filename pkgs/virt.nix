@@ -1,5 +1,4 @@
 { lib, pkgs, ... }:
-
 let
   inherit (pkgs) rustPlatform fetchFromGitHub;
   pname = "lxtui";
@@ -7,14 +6,8 @@ let
   lxtui = rustPlatform.buildRustPackage {
 
     inherit pname version;
-
-    buildInputs = [
-      pkgs.openssl
-    ];
-
-    nativeBuildInputs = [
-      pkgs.pkg-config
-    ];
+    buildInputs = [ pkgs.openssl ];
+    nativeBuildInputs = [ pkgs.pkg-config ];
 
     src = fetchFromGitHub {
       owner = "FoleyBridge-Solutions";
