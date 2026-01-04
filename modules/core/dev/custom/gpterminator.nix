@@ -8,12 +8,14 @@ python3Packages.buildPythonApplication rec {
   inherit pname version;
 
   doCheck = false;
+  format = "setuptools";
   src = python3Packages.fetchPypi {
     inherit pname version;
     sha256 = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";
   };
 
   propagatedBuildInputs = with python3Packages; [
+    setuptools
     requests
   ];
 
