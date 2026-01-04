@@ -39,5 +39,7 @@
     shellcheck
 
     tracexec
+
+    (pkgs.callPackage ./custom/ugm.nix { })
   ];
 }
