@@ -9,12 +9,14 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://github.com/jwt-rs/jwt-ui/releases/download/v1.3.0/jwtui-linux.tar.gz";
-    sha256 = "sha256-1B+T9UBjh9Pad+b0xNbVGGo/6tkiNz+ngfA+7KfQN24=";
+    sha256 = "sha256-5FZhWACUI8ZrgoA/vKeV2VTAB199vcuf9D6Cv3W2dEs=";
   };
+
+  dontUnpack = true;
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/jwtui
+    tar -xvf $src -C $out/bin
     chmod +x $out/bin/jwtui
   '';
 }

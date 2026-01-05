@@ -1,20 +1,21 @@
-{ pkgs, ... }:
-let
-  inherit (pkgs) rustPlatform fetchFromGitHub;
+{
+  stdenv,
+  fetchurl,
+  ...
+}:
+stdenv.mkDerivation {
   pname = "loc";
-  version = "0.4.1";
-in
-rustPlatform.buildRustPackage {
-  inherit pname version;
-
-  nativeBuildInputs = [ pkgs.pkg-config ];
-
-  src = fetchFromGitHub {
-    owner = pname;
-    repo = "loc";
-    rev = "v${version}";
-    sha256 = "1i9dlhw0xk1viglyhail9fb36v1awrypps8jmhrkz8k1bhx98ci3";
+  version = "latest";
+  src = fetchurl {
+    url = "https://github.com/cgag/loc/releases/download/v0.3.4/loc-v0.3.4-x86_64-unknown-linux-gnu.tar.gz";
+    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
   };
 
-  cargoHash = "sha256-Afr3ShCXDCwTQNdeCZbA5/aosRt+KFpGfT1mrob6cog=";
+  dontUnpack = true;
+
+  installPhase = ''
+    mkdir -p $out/bin
+    tar -xvf $src -C $out/bin
+    chmod +x $out/bin/loc
+  '';
 }
