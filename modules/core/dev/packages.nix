@@ -31,8 +31,8 @@
     shellcheck
     tracexec
 
-    (pkgs.callPackage ./custom/elia-chat.nix { })
-    (pkgs.callPackage ./custom/gpterminator.nix { })
+    #(pkgs.callPackage ./custom/elia-chat.nix { })
+    #(pkgs.callPackage ./custom/gpterminator.nix { })
     (pkgs.callPackage ./custom/jwt-ui.nix { })
     (pkgs.callPackage ./custom/kyun.nix { })
     (pkgs.callPackage ./custom/loc.nix { })

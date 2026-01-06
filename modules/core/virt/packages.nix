@@ -8,14 +8,13 @@
     distrobuilder
     dive
     #cockpit-files
-    #cockpit-sensors
+    cockpit-machines
     #cockpit-machines
     #cockpit-navigator
     #cockpit-podman
     #cockpit-storaged
     fuse-overlayfs
     freerdp
-    #lxtui
     nemu
     netcat-openbsd
     oxker
@@ -33,5 +32,7 @@
     waydroid-helper
     win-spice
     yad
+
+    (pkgs.callPackage ./custom/lxtui.nix { })
   ];
 }

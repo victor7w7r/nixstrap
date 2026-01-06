@@ -19,6 +19,7 @@
       p7zip
       progress
       pv
+      (python3.withPackages (p: [ p.pipx ]))
       sampler
       ssh-to-age
       sd
