@@ -19,7 +19,6 @@
       p7zip
       progress
       pv
-      (python3.withPackages (p: [ p.pipx ]))
       sampler
       ssh-to-age
       sd
@@ -31,11 +30,12 @@
       vtm
       wtfutil
       zoxide
-      #https://github.com/nvbn/thefuck
-      #https://github.com/napisani/procmux
-      #https://github.com/kattouf/ProgressLine
-      #https://github.com/Miserlou/Loop
-      #texoxide
+
+      (pkgs.callPackage ./custom/hf.nix { })
+      (pkgs.callPackage ./custom/loop.nix { })
+      (pkgs.callPackage ./custom/progressline.nix { })
+      (pkgs.callPackage ./custom/texoxide.nix { })
+      #(pkgs.callPackage ./custom/procmux.nix { })
     ]
     ++ [
       superfile
@@ -44,16 +44,13 @@
       trash-cli
       tuifimanager
       walk
-      #https://github.com/mananapr/cfiles
       #https://codeberg.org/sylphenix/sff
-      #https://github.com/nore-dev/fman
-      #https://github.com/sorairolake/hf
+      (pkgs.callPackage ./custom/fman.nix { })
 
       dust
       dua
       gdu
       ncdu
-      #diskonaut
 
       duff
       fclones
@@ -61,6 +58,8 @@
       fdupes
       rdfind
       rnr
+
+      (pkgs.callPackage ./custom/diskonaut.nix { })
     ]
     ++ [
       fatrace
@@ -73,7 +72,6 @@
       sysz
       watchexec
       zps
-      #iotop-c
       #pcp
       #https://github.com/codervijo/journalview
       #https://github.com/jasonwitty/socktop

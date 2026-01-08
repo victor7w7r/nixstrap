@@ -58,7 +58,9 @@
       enableSSHSupport = true;
     };
 
+    pay-respects.enable = true;
     yazi.enable = true;
+    iotop.enable = true;
     less.enable = true;
     skim.enable = true;
     zsh.enable = true;

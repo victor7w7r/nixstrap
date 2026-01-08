@@ -7,12 +7,6 @@
     distrobox-tui
     distrobuilder
     dive
-    #cockpit-files
-    cockpit-machines
-    cockpit-machines
-    #cockpit-navigator
-    cockpit-podman
-    cockpit-storaged
     fuse-overlayfs
     freerdp
     nemu
@@ -34,5 +28,11 @@
     yad
 
     (pkgs.callPackage ./custom/lxtui.nix { })
+
+    #cockpit-files
+    #cockpit-machines
+    #cockpit-navigator
+    #cockpit-podman
+    #cockpit-storaged
   ];
 }
