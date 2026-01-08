@@ -2,19 +2,18 @@
 let
   inherit (pkgs) rustPlatform fetchFromGitHub;
   pname = "loop";
-  version = "latest";
+  version = "HEAD";
 in
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage rec {
   inherit pname version;
-  buildInputs = [ pkgs.openssl ];
   nativeBuildInputs = [ pkgs.pkg-config ];
 
   src = fetchFromGitHub {
     owner = "Miserlou";
     repo = pname;
-    rev = "v${version}";
-    sha256 = "sha256-szDsxkkJRYnQ73iemi/DjArO3Z5kIAEoLoPkToHoRtM=";
+    rev = version;
+    sha256 = "sha256-0nUZP7PRhsw+BOnDF3E7Mb8qngUVHjFdh8PFgJbDFy0=";
   };
 
-  cargoHash = "sha256-Rs9NQRlDv0Vt4NQGYs0jvFnlnlJ+wvgwBA4n1ZZ++io=";
+  cargoHash = "03gfc9g7fr99zshpc8sny9m73vhvn08f5jwi0sby847ypbsgvak4";
 }

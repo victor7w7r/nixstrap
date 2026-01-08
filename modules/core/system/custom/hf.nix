@@ -4,17 +4,16 @@ let
   pname = "hf";
   version = "0.5.1";
 in
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage rec {
   inherit pname version;
-  buildInputs = [ pkgs.openssl ];
   nativeBuildInputs = [ pkgs.pkg-config ];
 
   src = fetchFromGitHub {
     owner = "sorairolake";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-szDsxkkJRYnQ73iemi/DjArO3Z5kIAEoLoPkToHoRtM=";
+    sha256 = "sha256-NFBFZ4o5HG5iVFgkH2XOq7pc03vRXbScU2NFQwz3oiA=";
   };
 
-  cargoHash = "sha256-Rs9NQRlDv0Vt4NQGYs0jvFnlnlJ+wvgwBA4n1ZZ++io=";
+  cargoLock.lockFile = "${src}/Cargo.lock";
 }
