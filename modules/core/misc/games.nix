@@ -13,44 +13,47 @@
       terminaltexteffects
       ternimal
       tmatrix
-
+    ]
+    ++ [
       aalib
       cfonts
       toilet
-
+    ]
+    ++ [
       chess-tui
       nbsdgames
       tty-solitaire
-
+    ]
+    ++ [
       cointop
       ticker
+      (pkgs.callPackage ./custom/cli-of-life.nix { })
+      (pkgs.callPackage ./custom/cemetery-escape.nix { })
+      (pkgs.callPackage ./custom/clidle.nix { })
+      (pkgs.callPackage ./custom/cowsay.nix { })
+      (pkgs.callPackage ./custom/dvdbounce.nix { })
+      (pkgs.callPackage ./custom/go-life.nix { })
+      (pkgs.callPackage ./custom/neo.nix { })
+      (pkgs.callPackage ./custom/paclear.nix { })
+      (pkgs.callPackage ./custom/sandscreen.nix { })
+      (pkgs.callPackage ./custom/scope-tui.nix { })
+      (pkgs.callPackage ./custom/sxtetris.nix { })
 
-      # https://github.com/Code-Hex/Neo-cowsay
-      #https://github.com/st3w/neo
       #https://github.com/bartobri/no-more-secrets
       #https://github.com/roberte777/rbonsai
       #https://github.com/cxreiff/lifecycler
-      #https://github.com/gabe565/cli-of-life
-      #https://github.com/sachaos/go-life
+      #https://github.com/roberte777/rbonsai
       #https://github.com/cdkw2/conway-screensaver
       #https://github.com/forumplayer/dvdts
-      #https://github.com/frostyarchtide/sandscreen
       #https://aur.archlinux.org/packages/termsaver-git
       #https://github.com/nthnd/tuime
-      #https://github.com/alemidev/scope-tui
       #https://github.com/Chleba/tui-slides
       #https://github.com/tree-s/ncmatrix
-      #dra download -o ~/.local/bin -a George-lewis/DVDBounce --install-file dvdbounce
-      #https://crates.io/crates/gof-rs/0.2.1
-      #git clone https://github.com/in3rsha/sha256-animation
+      #https://github.com/omagdy7/gof-rs
+      #https://github.com/in3rsha/sha256-animation
       #podman run -it docker.io/akiva/bollywood
       #npm i -g chalk-animation
-      #https://crates.io/crates/gof-rs/0.2.1
       #https://github.com/poetaman/arttime
-      #https://github.com/orangekame3/paclear
-      #https://github.com/ajeetdsouza/clidle
-      #https://github.com/shixinhuang99/sxtetris
-      #dra download -a -i tom-on-the-internet/cemetery-escape
       #dra download -a -i maaslalani/pom
       #https://github.com/wheaney/breezy-desktop
 

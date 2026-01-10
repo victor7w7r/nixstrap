@@ -12,6 +12,7 @@
     spytrap-adb
     scrcpy
     universal-android-debloater
+
     #https://github.com/JeffLIrion/adb_shell
     #https://github.com/AKotov-dev/adbmanager
     #https://github.com/Aldeshov/ADBFileExplorer

@@ -30,12 +30,11 @@
       vtm
       wtfutil
       zoxide
-
-      (pkgs.callPackage ./custom/hf.nix { })
-      (pkgs.callPackage ./custom/loop.nix { })
+      #(pkgs.callPackage ./custom/hf.nix { })
+      #(pkgs.callPackage ./custom/loop.nix { })
+      #(pkgs.callPackage ./custom/procmux.nix { })
       (pkgs.callPackage ./custom/progressline.nix { })
       (pkgs.callPackage ./custom/texoxide.nix { })
-      #(pkgs.callPackage ./custom/procmux.nix { })
     ]
     ++ [
       superfile
@@ -46,19 +45,18 @@
       walk
       #https://codeberg.org/sylphenix/sff
       (pkgs.callPackage ./custom/fman.nix { })
-
+    ]
+    ++ [
       dust
       dua
       gdu
       ncdu
-
       duff
       fclones
       mmv-go
       fdupes
       rdfind
       rnr
-
       (pkgs.callPackage ./custom/diskonaut.nix { })
     ]
     ++ [
@@ -72,11 +70,11 @@
       sysz
       watchexec
       zps
-      #pcp
-      #https://github.com/codervijo/journalview
+      nvtopPackages.full
+      (pkgs.callPackage ./custom/journalview.nix { })
       #https://github.com/jasonwitty/socktop
       #https://github.com/XhuyZ/lazysys
+      #pcp
       #uv pip install tiptop
-      #nvtopPackages.intel
     ];
 }

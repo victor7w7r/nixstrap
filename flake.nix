@@ -40,6 +40,14 @@
       url = "github:yokoffing/Betterfox";
       flake = false;
     };
+    batfetch = {
+      url = "github:ashish-kus/batfetch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    swiftfetch = {
+      url = "github:ly-sec/swiftfetch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +93,7 @@
       chaotic,
       self,
       nur,
+      nix-flatpak,
       sops-nix,
       nixos-hardware,
       ...
@@ -101,6 +110,7 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
+            nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/macmini.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -129,6 +139,7 @@
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
             chaotic.nixosModules.default
+            nix-flatpak.nixosModules.nix-flatpak
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
             (import ./hosts/laptop.nix)
@@ -153,6 +164,7 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
+            nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/rogally.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -179,6 +191,7 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
+            nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/rogallyvm.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -205,6 +218,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
+            nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/server.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -231,6 +245,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
+            nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/vm.nix)
             (import ./modules/core)
             (import ./modules/home)

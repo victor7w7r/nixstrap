@@ -17,23 +17,23 @@
       slirp4netns
       sshs
       speedtest-cli
-      #https://crates.io/crates/aim
-      #https://github.com/grafviktor/goto
+      (pkgs.callPackage ./custom/aim.nix { })
+      (pkgs.callPackage ./custom/goto.nix { })
       #https://github.com/akinoiro/ssh-list
     ]
     ++ [
-      #discordo
       nchat
       reader
       stig
-      #https://github.com/smmr-software/mabel
-      #uv pip install tewi-transmission
-      #https://github.com/Owloops/updo
-      #https://github.com/fathyb/carbonyl
-      #https://github.com/qnkhuat/termishare
-      #https://github.com/wynwxst/DisCli
+      (pkgs.callPackage ./custom/updo.nix { })
+      (pkgs.callPackage ./custom/carbonyl.nix { })
+      (pkgs.callPackage ./custom/discli.nix { })
+      (pkgs.callPackage ./custom/termishare.nix { })
+      #https://github.com/ayn2op/discordo
       #https://github.com/fetchcord/FetchCord
       #https://github.com/sparklost/endcord
+      #https://github.com/smmr-software/mabel
+      #uv pip install tewi-transmission
       #pkgtop
     ];
 }

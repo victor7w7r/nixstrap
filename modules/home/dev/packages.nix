@@ -9,7 +9,6 @@
       git-credential-manager
       lazygit
       jetbrains.datagrip
-      #notepadqq
       windterm
     ]
   );

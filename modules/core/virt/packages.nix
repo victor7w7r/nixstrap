@@ -26,7 +26,6 @@
     waydroid-helper
     win-spice
     yad
-
     (pkgs.callPackage ./custom/lxtui.nix { })
 
     #cockpit-files
