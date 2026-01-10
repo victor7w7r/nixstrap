@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;
-    lib.mkAfter [
+    [
       asciiquarium-transparent
       astroterm
       cmatrix

@@ -1,10 +1,9 @@
 {
-  pkgs,
   stdenv,
   fetchurl,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "audiosource";
   version = "latest";
   src = fetchurl {

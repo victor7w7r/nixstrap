@@ -1,10 +1,9 @@
 {
-  pkgs,
   stdenv,
-  fetchFromGitHub,
+  fetchurl,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "audio-share";
   version = "latest";
   src = fetchurl {
@@ -16,7 +15,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src $out/bin/audio-share
+    tar -xvf $src -C $out/bin
     chmod +x $out/bin/audio-share
   '';
 
