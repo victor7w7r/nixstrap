@@ -14,13 +14,15 @@ stdenv.mkDerivation rec {
     owner = "driizzyy";
     repo = pname;
     rev = version;
-    sha256 = "sha256-NFBFZ4o5HG5iVFgkH2XOq7pc03vRXbScU2NFQwz3oiA=";
+    sha256 = "sha256-QXNkKGSolReq6F0PnNfBHj2RbwC6+8qgNUD4rJZXWBU=";
   };
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin
-    cp $src/AeroFetch.sh $out/bin/aerofetch.sh
-    chmod +x $out/bin/aerofetch.sh
+    install -Dm755 $src/AeroFetch.sh $out/bin/aerofetch
+    runHook postInstall
   '';
 
 }

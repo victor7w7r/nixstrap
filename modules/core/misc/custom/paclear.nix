@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/orangekame3/paclear/releases/download/v0.0.13/paclear_Linux_x86_64.tar.gz";
-    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
+    sha256 = "sha256-MILLv5GoqJXYc0vU5mSCBpLJFi+9YC+jZ1t/kkB1asM=";
   };
 
   dontUnpack = true;

@@ -10,7 +10,7 @@ stdenv.mkDerivation {
     owner = "Flupp";
     repo = "sticky-window-snapping";
     rev = "master";
-    sha256 = "sha256-zC096vsVCyDAEFpASU2gj0qRgWKYR1m9G6hPZL+61Wo=";
+    sha256 = "sha256-5xkKNgwzItnpdqk2z/HiCtXNm/ZyjXflSJcT1dAn6nU=";
   };
 
   installPhase = ''

@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
     owner = "nachoparker";
     repo = pname;
     rev = version;
-    sha256 = "sha256-NFBFZ4o5HG5iVFgkH2XOq7pc03vRXbScU2NFQwz3oiA=";
+    sha256 = "sha256-5A/WDZkWs1fmwQilukYDC9Fug1vG+LPUQWe79ZwSW1M=";
   };
 
   installPhase = ''

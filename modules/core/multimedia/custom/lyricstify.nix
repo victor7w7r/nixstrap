@@ -1,5 +1,4 @@
 {
-  pkgs,
   stdenv,
   fetchurl,
   ...
@@ -9,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/lyricstify/lyricstify/releases/download/v1.1.2/lyricstify-linux";
-    sha256 = "sha256-6aZuKn1LpsEhX23V9O2Y08zbZM2SckAh3R5uI+0isKE=";
+    sha256 = "sha256-VukOghkBZ3OKZUYfnoFeRcM6DdGVZaKWYqbwO/d95sw=";
   };
 
   dontUnpack = true;

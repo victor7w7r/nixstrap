@@ -33,7 +33,7 @@
       (pkgs.callPackage ./custom/cowsay.nix { })
       (pkgs.callPackage ./custom/dvdbounce.nix { })
       (pkgs.callPackage ./custom/go-life.nix { })
-      (pkgs.callPackage ./custom/neo.nix { })
+      #(pkgs.callPackage ./custom/neo.nix { })
       (pkgs.callPackage ./custom/paclear.nix { })
       (pkgs.callPackage ./custom/sandscreen.nix { })
       (pkgs.callPackage ./custom/scope-tui.nix { })
