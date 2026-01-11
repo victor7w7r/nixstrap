@@ -26,7 +26,7 @@
       reader
       stig
       (pkgs.callPackage ./custom/updo.nix { })
-      (pkgs.callPackage ./custom/carbonyl.nix { })
+      #(pkgs.callPackage ./custom/carbonyl.nix { })
       (pkgs.callPackage ./custom/discli.nix { })
       (pkgs.callPackage ./custom/termishare.nix { })
       #https://github.com/ayn2op/discordo

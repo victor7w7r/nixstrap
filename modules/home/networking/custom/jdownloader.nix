@@ -17,7 +17,7 @@ let
 
   src = fetchurl {
     url = "https://installer.jdownloader.org/JDownloader.jar";
-    sha256 = "9951b786e24fc3777a0df0a7b516ba53d0c8e778d6a69ebc29dcff86ee6b5829";
+    sha256 = "sha256-OIodAo5ly8Y5M6d43bySZ8FOfnhYOJzjGhC+cwit60A=";
   };
 
   wrapper = writeScript "jdownloader" ''

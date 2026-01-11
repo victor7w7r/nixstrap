@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/ajeetdsouza/clidle/releases/download/v0.1.0/clidle_Linux_x86_64.tar.gz";
-    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
+    sha256 = "sha256-eM2kyGhnR1UsY9so4uTXrHLJN1uEtloRyzwixqaVU1E=";
   };
 
   dontUnpack = true;

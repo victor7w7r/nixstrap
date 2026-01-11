@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/tom-on-the-internet/cemetery-escape/releases/download/0.0.7/cemetery-escape_0.0.7_linux_amd64.tar.gz";
-    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
+    sha256 = "sha256-V1xiv81ybdGTIuzA0alSiGMJWAJ7KK6/5ncPuiryNgA=";
   };
 
   dontUnpack = true;

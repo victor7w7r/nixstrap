@@ -9,7 +9,7 @@ stdenv.mkDerivation {
   version = "0.0.41";
   src = fetchurl {
     url = "https://github.com/George-lewis/DVDBounce/releases/download/v1.31/Linux-Release-v1.31-x64.zip";
-    sha256 = "sha256-6aZuKn1LpsEhX23V9O2Y08zbZM2SckAh3R5uI+0isKE=";
+    sha256 = "sha256-4WM1ABAFvsCt987uN2HsOdDLO5LS+pWG+0CzlRuGQb4=";
   };
 
   nativeBuildInputs = with pkgs; [ unzip ];

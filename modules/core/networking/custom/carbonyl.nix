@@ -4,12 +4,12 @@
   fetchurl,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "carbonyl";
   version = "latest";
   src = fetchurl {
     url = "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip";
-    sha256 = "sha256-6aZuKn1LpsEhX23V9O2Y08zbZM2SckAh3R5uI+0isKE=";
+    sha256 = "sha256-RqkC6im7Mvdz+07jQUI3BbkjRagQQiuN+T6upqHsetI=";
   };
 
   nativeBuildInputs = with pkgs; [ unzip ];

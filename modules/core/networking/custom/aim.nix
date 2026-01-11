@@ -1,15 +1,14 @@
 {
-  pkgs,
   stdenv,
   fetchurl,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "aim";
   version = "latest";
   src = fetchurl {
     url = "https://github.com/mihaigalos/aim/releases/download/1.8.6/aim-1.8.6-x86_64-unknown-linux-gnu.tar.gz";
-    sha256 = "sha256-6aZuKn1LpsEhX23V9O2Y08zbZM2SckAh3R5uI+0isKE=";
+    sha256 = "sha256-8b8T0NS071S6zH6HAqxzptvWbUnPkkUbkaMAIuYX7E8=";
   };
 
   dontUnpack = true;

@@ -16,7 +16,7 @@
     inputs.swiftfetch.packages.${pkgs.system}.swiftfetch
     (pkgs.callPackage ./custom/aerofetch.nix { })
     (pkgs.callPackage ./custom/cargofetch.nix { })
-    (pkgs.callPackage ./custom/customfetch.nix { })
+    #(pkgs.callPackage ./custom/customfetch.nix { })
     (pkgs.callPackage ./custom/envfetch.nix { })
     (pkgs.callPackage ./custom/treefetch.nix { })
 

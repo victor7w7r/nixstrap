@@ -8,12 +8,12 @@ stdenv.mkDerivation {
   version = "latest";
   src1 = fetchurl {
     url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map";
-    sha256 = "sha256-Ww5sr1mloEHF3DAx8ae4ytdyDPByNbSnF/otqgzHBiY=";
+    sha256 = "sha256-dRzKq1c/JMxX25CXIz5xzSszfXm5A24rovZ01b/kZUQ=";
   };
 
   src2 = fetchurl {
     url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner";
-    sha256 = "sha256-Ww5sr1mloEHF3DAx8ae4ytdyDPByNbSnF/otqgzHBiY=";
+    sha256 = "sha256-oV4StV9TPeGEToU9qtKIfyAx2UzTwWLpVutn/FLGMVE=";
   };
 
   dontUnpack = true;

@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/ankddev/envfetch/releases/download/v2.1.2/envfetch-linux-amd64";
-    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
+    sha256 = "sha256-LTw9eIaPHXWEZuMYUhwt3lxKoqHH3+i0A69oqcD5nVY=";
   };
 
   dontUnpack = true;

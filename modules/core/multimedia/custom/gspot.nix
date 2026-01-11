@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/abs3ntdev/gspot/releases/download/v0.0.35/gspot_Linux_x86_64.tar.gz";
-    sha256 = "sha256-Ww5sr1mloEHF3DAx8ae4ytdyDPByNbSnF/otqgzHBiY=";
+    sha256 = "sha256-OZOeF5g/jVYLgd0ibnkzXBSTqhgeHuwUJIkTg5JoBUE=";
   };
 
   dontUnpack = true;

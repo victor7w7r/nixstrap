@@ -71,7 +71,7 @@
       watchexec
       zps
       nvtopPackages.full
-      (pkgs.callPackage ./custom/journalview.nix { })
+      #(pkgs.callPackage ./custom/journalview.nix { })
       #https://github.com/jasonwitty/socktop
       #https://github.com/XhuyZ/lazysys
       #pcp

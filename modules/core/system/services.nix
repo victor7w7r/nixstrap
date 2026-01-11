@@ -62,7 +62,7 @@
 
     nohang = {
       enable = true;
-      desktop = true;
+      #desktop = true;
     };
 
     journald.extraConfig = ''

@@ -9,7 +9,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/wynwxst/DisCli/releases/download/Discli-1.0/DisCliNux";
-    sha256 = "sha256-6aZuKn1LpsEhX23V9O2Y08zbZM2SckAh3R5uI+0isKE=";
+    sha256 = "sha256-7QDDO/cP3FOLNMYWrv6Ly5I/m0qABe+lrrpm50kqJP0=";
   };
 
   nativeBuildInputs = with pkgs; [ unzip ];
