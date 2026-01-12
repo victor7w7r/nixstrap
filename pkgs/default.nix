@@ -7,6 +7,6 @@
     #(import ./nohang.nix)
     #(import ./open.nix)
     (import ./prelockd.nix)
-    (import ./uresourced.nix)
+    #(import ./uresourced.nix)
   ];
 }

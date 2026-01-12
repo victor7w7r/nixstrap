@@ -45,7 +45,7 @@
     #preload.enable = true;
     prelockd.enable = true;
     resolved.enable = false;
-    uresourced.enable = true;
+    #uresourced.enable = true;
     scx.enable = true;
 
     ananicy = {

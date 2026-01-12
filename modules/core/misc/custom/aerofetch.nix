@@ -19,7 +19,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-
     mkdir -p $out/bin
     install -Dm755 $src/AeroFetch.sh $out/bin/aerofetch
     runHook postInstall

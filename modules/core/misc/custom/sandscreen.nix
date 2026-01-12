@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "latest";
   src = fetchurl {
     url = "https://github.com/frostyarchtide/sandscreen/releases/download/v1.0.2/sandscreen";
-    sha256 = "sha256-GDQlhkDQbirJTsp3mJJ0j62gjFPmLAO6GaxssxvfBMM=";
+    sha256 = "sha256-aBj9ya1u3SnI0u0pxEkk+GYlyvbA8lVU1chxBaORLEs=";
   };
 
   dontUnpack = true;

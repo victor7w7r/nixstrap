@@ -14,8 +14,9 @@ stdenv.mkDerivation {
   dontUnpack = true;
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/bin
-    unzip $src -d $out/bin/
-    chmod +x $out/bin/lyricstify
+    install -Dm755 $src $out/bin/lyricstify
+    runHook postInstall
   '';
 }
