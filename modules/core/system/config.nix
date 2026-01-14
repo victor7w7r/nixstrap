@@ -80,6 +80,7 @@
         show_symlink = true;
       };
     };
+    zsh.enable = true;
     less.enable = true;
     skim.enable = true;
   };
