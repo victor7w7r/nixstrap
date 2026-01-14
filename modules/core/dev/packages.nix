@@ -5,6 +5,7 @@
     [
       gh
       gh-dash
+      git
       git-lfs
       git-extras
       delta

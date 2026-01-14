@@ -47,6 +47,8 @@
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
         "https://install.determinate.systems"
+      ];
+      extra-substituters = [
         "https://chaotic-nyx.cachix.org"
         "https://nix-gaming.cachix.org"
       ];
