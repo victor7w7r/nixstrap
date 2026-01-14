@@ -33,9 +33,14 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    compose2nix = {
+      url = "github:aksiksi/compose2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nix-search-tv.url = "github:3timeslazy/nix-search-tv";
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;

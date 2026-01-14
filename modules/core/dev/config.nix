@@ -1,9 +1,53 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs = {
     #aichat.enable = true;
     #aider-chat.enable = true;
-    direnv.enable = true;
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     lazygit.enable = true;
+
+    git = {
+      enable = true;
+      userName = "victor7w7r";
+      userEmail = "arkano036@gmail.com";
+      lfs.enable = true;
+      extraConfig = {
+        init.defaultBranch = "main";
+        credential.helper = "store";
+      };
+      settings = {
+        core.pager = "${pkgs.delta}/bin/delta";
+        delta = {
+          hyperlinks = true;
+          keep-plus-minus-markers = true;
+          line-numbers = true;
+          navigate = true;
+          side-by-side = true;
+          syntax-theme = "TwoDark";
+          tabs = 4;
+        };
+        difftool.prompt = true;
+        init.defaultBranch = "main";
+        merge.conflictstyle = "diff3";
+        mergetool.prompt = true;
+        rebase.autostash = true;
+        pull.rebase = true;
+        push.autoSetupRemote = true;
+        alias = {
+          unstash = "stash pop";
+          s = "status";
+          tags = "tag -l";
+          t = "tag -s -m ''";
+          fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --gpg-sign --autostash --autosquash $TARGET^; }; f'';
+          commit-reuse-message = ''!git commit --edit --file "$(git rev-parse --git-dir)"/COMMIT_EDITMSG'';
+        };
+      };
+    };
   };
 }

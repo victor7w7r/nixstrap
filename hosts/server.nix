@@ -1,9 +1,10 @@
 { modulesPath, self, ... }:
 let
-  systems = import ./common/filesystems.nix;
+  intelParams = import ./common/intel-params.nix;
+  options = import ./common/options.nix;
   params = import ./common/params.nix;
   security = import ./common/security.nix;
-  options = import ./common/options.nix;
+  systems = import ./common/filesystems.nix;
 
   sec = security { inherit self; };
 in
@@ -25,15 +26,9 @@ in
 
   boot = {
     kernelParams = [
-      "intel_pstate=disable"
-      "i915.enable_guc=2"
-      "i915.enable_psr=0"
-      "kvm.ignore_msrs=1"
-      "kvm.nx_huge_pages=off"
-      "kvm.report_ignored_msrs=0"
-      "kvm_intel.emulate_invalid_guest_state=0"
-      "kvm_intel.nested=1"
+      "intel_iommu=on"
     ]
+    ++ intelParams
     ++ params { };
 
     initrd = {
@@ -48,25 +43,5 @@ in
     };
   };
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-    intel-gpu-tools = true;
-  };
-
-  services = {
-    pulseaudio.enable = false;
-    blueman.enable = true;
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      extraConfig.pipewire."10-clock-quantum"."context.properties"."default.clock.min-quantum" = 1024;
-    };
-  };
+  hardware.intel-gpu-tools = true;
 }

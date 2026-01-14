@@ -7,6 +7,7 @@
       exfatprogs
       f2fs-tools
       mtools
+      viddy
       simple-mtpfs
       sshfs
     ]
@@ -38,6 +39,7 @@
       myrescue
       safecopy
       scrounge-ntfs
+      stresss
       testdisk
       #https://aur.archlinux.org/packages/r-linux
       (pkgs.callPackage ./custom/btrfs-du.nix { })
@@ -46,12 +48,19 @@
     ++ [
       cpulimit
       cyme
+      dippi
       dysk
+      dmidecode
+      edid-decode
+      edid-generator
+      fanctl
       fan2go
       i2c-tools
       hwinfo
+      lm_sensors
       lshw
       read-edid
+      rwedid
       smartmontools
       usbutils
     ];

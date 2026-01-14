@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;
     [
-      git
+      gh
+      gh-dash
+      git-lfs
       git-extras
+      delta
+      devbox
       emacs-nox
     ]
     ++ [
@@ -20,14 +24,14 @@
     ]
     ++ [
       atac
-      xh
       httpie
       curlie
-      posting
-      glow
-      jless
       dos2unix
       lemmeknow
+      glow
+      jless
+      posting
+      xh
     ]
     ++ [
       dblab
@@ -38,6 +42,7 @@
       tracexec
     ]
     ++ [
+      inputs.nix-search-tv.packages.x86_64-linux.default
       #(pkgs.callPackage ./custom/elia-chat.nix { })
       #(pkgs.callPackage ./custom/gpterminator.nix { })
       (pkgs.callPackage ./custom/jwt-ui.nix { })

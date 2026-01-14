@@ -5,11 +5,6 @@
   ...
 }:
 {
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
-  };
-
   services = {
     displayManager.defaultSession = "plasma";
     desktopManager.plasma6 = {
@@ -58,6 +53,8 @@
     kdePackages.plasma-workspace
     kdePackages.plasma-desktop
     kdePackages.partitionmanager
+    kdePackages.polkit-qt-1
+    kdePackages.polkit-kde-agent-1
     kdePackages.qtmultimedia
     kdePackages.qtstyleplugin-kvantum
     kdePackages.sddm-kcm

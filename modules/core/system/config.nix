@@ -18,11 +18,16 @@
   };
 
   users.users.${username} = {
-    isNormalUser = true;
+    autoSubUidGidRange = false;
     description = "${username}";
+    group = "users";
+    isNormalUser = true;
+    initialPassword = "password";
     shell = pkgs.zsh;
+    uid = 1000;
     extraGroups = [
       "audio"
+      "gamemode"
       "input"
       "kvm"
       "libvirtd"
@@ -30,6 +35,8 @@
       "networkmanager"
       "power"
       "qemu"
+      "qemu-libvirtd"
+      "plugdev"
       "realtime"
       "storage"
       "tty"
@@ -41,10 +48,17 @@
 
   console = {
     enable = true;
-    packages = [ pkgs.spleen ];
     earlySetup = true;
-    font = "spleen-8x16";
+    font = "JetBrainsMono Nerd Font";
     keyMap = "us";
+  };
+
+  environment = {
+    enableAllTerminfo = true;
+    sessionVariables = {
+      LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
+      NIXOS_OZONE_WL = "1";
+    };
   };
 
   programs = {
@@ -56,12 +70,17 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-tty;
     };
-
     pay-respects.enable = true;
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      settings.manager = {
+        show_hidden = true;
+        show_symlink = true;
+      };
+    };
     less.enable = true;
     skim.enable = true;
-    zsh.enable = true;
   };
 }

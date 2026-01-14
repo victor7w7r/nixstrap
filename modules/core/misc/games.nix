@@ -26,6 +26,7 @@
     ]
     ++ [
       cointop
+      clock-rs
       ticker
       (pkgs.callPackage ./custom/cli-of-life.nix { })
       (pkgs.callPackage ./custom/cemetery-escape.nix { })
@@ -36,8 +37,8 @@
       #(pkgs.callPackage ./custom/neo.nix { })
       (pkgs.callPackage ./custom/paclear.nix { })
       (pkgs.callPackage ./custom/sandscreen.nix { })
-      (pkgs.callPackage ./custom/scope-tui.nix { })
-      (pkgs.callPackage ./custom/sxtetris.nix { })
+      #(pkgs.callPackage ./custom/scope-tui.nix { })
+      #(pkgs.callPackage ./custom/sxtetris.nix { })
 
       #https://github.com/bartobri/no-more-secrets
       #https://github.com/roberte777/rbonsai

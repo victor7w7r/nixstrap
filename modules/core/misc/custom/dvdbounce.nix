@@ -12,6 +12,11 @@ stdenv.mkDerivation {
     sha256 = "sha256-4WM1ABAFvsCt987uN2HsOdDLO5LS+pWG+0CzlRuGQb4=";
   };
 
+  buildInputs = with pkgs; [
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+  ];
   nativeBuildInputs = with pkgs; [ unzip ];
   dontUnpack = true;
 

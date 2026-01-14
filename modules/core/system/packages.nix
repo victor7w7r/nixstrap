@@ -5,20 +5,29 @@
     [
       age
       atool
+      brightnessctl
       brush
       cheat
+      choose
       cmd-wrapped
       cod
       emptty
       gnused
+      file
+      fzf-zsh
+      hexyl
       jump
       lsof
       luksmeta
+      keyd
+      killall
       mokutil
       rsyncy
       p7zip
+      phraze
       progress
       pv
+      rage
       sampler
       ssh-to-age
       sd
@@ -29,11 +38,10 @@
       veracrypt
       vtm
       wtfutil
-      zoxide
       #(pkgs.callPackage ./custom/hf.nix { })
       #(pkgs.callPackage ./custom/loop.nix { })
       #(pkgs.callPackage ./custom/procmux.nix { })
-      (pkgs.callPackage ./custom/progressline.nix { })
+      #(pkgs.callPackage ./custom/progressline.nix { })
       (pkgs.callPackage ./custom/texoxide.nix { })
     ]
     ++ [
@@ -76,5 +84,31 @@
       #https://github.com/XhuyZ/lazysys
       #pcp
       #uv pip install tiptop
+    ]
+    ++ [
+      alejandra
+      cached-nix-shell
+      comma
+      deadnix
+      lorri
+      fh
+      manix
+      namaka
+      niv
+      nix-alien
+      nix-diff
+      nix-du
+      nix-health
+      nix-init # !!!!!
+      nix-melt
+      nix-output-monitor
+      nixpkgs-review
+      nix-search-cli
+      nix-tree
+      nix-update
+      nixfmt
+      nvd
+      optnix
+      statix
     ];
 }

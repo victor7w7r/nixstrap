@@ -6,4 +6,5 @@
     ncspot.enable = true;
     rtorrent.enable = true;
   };
+
 }

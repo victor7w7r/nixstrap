@@ -6,7 +6,15 @@
   ];
 
   services = {
-    libinput.enable = true;
+    libinput = {
+      enabled = true;
+      touchpad = {
+        naturalScrolling = true;
+        accelProfile = "flat";
+        accelSpeed = "0.75";
+      };
+      mouse.accelProfile = "flat";
+    };
     xserver.xkb = {
       layout = "us";
       variant = "intl-unicode";

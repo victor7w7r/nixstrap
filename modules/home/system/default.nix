@@ -7,5 +7,6 @@
     (import ./kitty.nix)
     (import ./packages.nix)
     (import ./services.nix)
+    (import ./starship.nix)
   ];
 }

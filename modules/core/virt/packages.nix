@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    arion
     bridge-utils
     ctop
     dialog
@@ -26,6 +27,7 @@
     waydroid-helper
     win-spice
     yad
+    inputs.compose2nix.packages.x86_64-linux.default
     (pkgs.callPackage ./custom/lxtui.nix { })
 
     #cockpit-files

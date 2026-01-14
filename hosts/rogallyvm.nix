@@ -5,10 +5,10 @@
   ...
 }:
 let
-  systems = import ./common/filesystems.nix;
-  params = import ./common/params.nix;
-  security = import ./common/security.nix;
   options = import ./common/options.nix;
+  params = import ./common/params.nix;
+  systems = import ./common/filesystems.nix;
+  security = import ./common/security.nix;
 
   sec = security { inherit self; };
 in
@@ -29,7 +29,11 @@ in
   // systems { homeDisk = ""; };
 
   boot = {
-    kernelParams = [ ] ++ params { };
+    kernelParams = [
+      "amd_pstate=active"
+      "amd_iommu=on"
+    ]
+    ++ params { };
     initrd = {
       secrets = sec.secrets;
       luks.devices = {
@@ -49,31 +53,11 @@ in
     amdgpu_top
   ];
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
-
   systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
-  services = {
-    pulseaudio.enable = false;
-    blueman.enable = true;
-    supergfxd.enable = true;
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      extraConfig.pipewire."10-clock-quantum"."context.properties"."default.clock.min-quantum" = 1024;
-    };
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
   };
+
 }

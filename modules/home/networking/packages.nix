@@ -4,11 +4,14 @@
     with pkgs;
     [
       axel
+      ayugram-desktop
       lan-mouse
       legcord
       mailspring
+      media-downloader
       mtr-gui
       music-discord-rpc
+      persepolis
       vesktop
       (pkgs.callPackage ./custom/jdownloader.nix { })
       #franz

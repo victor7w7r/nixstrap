@@ -13,6 +13,7 @@
       tuicam
     ]
     ++ [
+      asak
       kew
       linuxwave
       musikcube
@@ -31,7 +32,7 @@
       slides
       ttygif
       vhs
-      (pkgs.callPackage ./custom/audio-share.nix { })
+      #(pkgs.callPackage ./custom/audio-share.nix { }) SOUND
       (pkgs.callPackage ./custom/cliwrap.nix { })
       (pkgs.callPackage ./custom/lyricstify.nix { })
       (pkgs.callPackage ./custom/gspot.nix { })

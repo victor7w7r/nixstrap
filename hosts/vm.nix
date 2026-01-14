@@ -1,7 +1,7 @@
 { modulesPath, self, ... }:
 let
-  systems = import ./common/filesystems.nix;
   params = import ./common/params.nix;
+  systems = import ./common/filesystems.nix;
   security = import ./common/security.nix;
 
   sec = security { inherit self; };

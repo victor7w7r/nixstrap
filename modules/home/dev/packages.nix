@@ -9,6 +9,7 @@
       git-credential-manager
       lazygit
       jetbrains.datagrip
+      rustup
       windterm
     ]
   );

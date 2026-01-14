@@ -1,4 +1,5 @@
 {
+  pkgs,
   stdenv,
   fetchurl,
   ...
@@ -17,6 +18,8 @@ stdenv.mkDerivation {
   };
 
   dontUnpack = true;
+
+  buildInputs = with pkgs; [ sqlite ];
 
   installPhase = ''
     mkdir -p $out/bin

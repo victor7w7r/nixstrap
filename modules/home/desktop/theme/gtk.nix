@@ -4,6 +4,10 @@
   gtk = {
     #appmenu-gtk-module
     enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 11;
+    };
     iconTheme = {
       name = "Colloid-Purple-Catppuccin-Dark";
       package = (

@@ -1,4 +1,5 @@
 {
+  pkgs,
   stdenv,
   fetchurl,
   ...
@@ -12,6 +13,12 @@ stdenv.mkDerivation {
   };
 
   dontUnpack = true;
+
+  buildInputs = with pkgs; [
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+  ];
 
   installPhase = ''
     runHook preInstall

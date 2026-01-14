@@ -7,6 +7,7 @@
   virtualisation = {
     waydroid.enable = true;
     spiceUSBRedirection.enable = true;
+    kvmgt.enable = true;
     podman = {
       enable = true;
       autoPrune.enable = true;
@@ -26,6 +27,7 @@
         swtpm.enable = true;
       };
     };
+    lxd.enable = true;
     lxc = {
       enable = true;
       lxcfs.enable = true;
