@@ -96,7 +96,6 @@
       namaka
       niv
       inputs.nix-alien.packages.${system}.nix-alien
-      nix-alien
       nix-diff
       nix-du
       nix-health

@@ -14,7 +14,7 @@ in
     consoleLogLevel = 4;
     modprobeConfig.enable = true;
     inherit supportedFilesystems;
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
     loader = {
       efi.efiSysMountPoint = "/boot/EFI";
       efi.canTouchEfiVariables = true;

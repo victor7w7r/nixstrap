@@ -75,10 +75,12 @@
     pay-respects.enable = true;
     yazi = {
       enable = true;
-      settings.manager = {
+      /*
+        settings.manager = {
         show_hidden = true;
         show_symlink = true;
-      };
+        };
+      */
     };
     zsh.enable = true;
     less.enable = true;
