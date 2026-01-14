@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  fonts.fontconfig.monospace = [ "JetBrainsMono Nerd Font" ];
+  fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono Nerd Font" ];
 
   home.packages = with pkgs; [
     corefonts

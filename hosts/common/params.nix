@@ -9,7 +9,6 @@
   "rootfstype=ext4"
   "threadirqs"
   "preempt=full"
-  "systemd.unified_cgroup_hierarchy=1"
   "boot.shell_on_fail"
   "rootflags=noatime,lazytime,nobarrier,nodiscard,commit=120"
   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"

@@ -13,7 +13,6 @@
     "loongarch64-linux"
     "wasm32-wasi"
     "wasm64-wasi"
-    "x86_64-linux"
     "x86_64-windows"
   ];
 }

@@ -1,8 +1,6 @@
-{ lib, ... }:
+{ ... }:
 {
   systemd = {
-    enableUnifiedCgroupHierarchy = lib.mkForce true;
-    enableCgroupAccounting = lib.mkForce true;
     enableEmergencyMode = true;
     network.wait-online.enable = false;
     settings.Manager = {
