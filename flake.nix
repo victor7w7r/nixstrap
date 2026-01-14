@@ -40,6 +40,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nix-alien.url = "github:thiagokokada/nix-alien";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
     betterfox = {
       url = "github:yokoffing/Betterfox";

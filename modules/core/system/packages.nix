@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;
@@ -95,6 +95,7 @@
       manix
       namaka
       niv
+      inputs.nix-alien.packages.${system}.nix-alien
       nix-alien
       nix-diff
       nix-du
