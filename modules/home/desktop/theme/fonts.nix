@@ -1,17 +1,6 @@
 { pkgs, ... }:
 {
-  fonts = {
-    fontDir.enable = true;
-    enableDefaultPackages = true;
-    fontconfig = {
-      enable = true;
-      useEmbeddedBitmaps = true;
-      subpixel.rgba = "rgb";
-      defaultFonts = {
-        monospace = [ "JetBrainsMono Nerd Font" ];
-      };
-    };
-  };
+  fonts.fontconfig.monospace = [ "JetBrainsMono Nerd Font" ];
 
   home.packages = with pkgs; [
     corefonts

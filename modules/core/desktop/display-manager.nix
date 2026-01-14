@@ -5,6 +5,16 @@
     "/share/xdg-desktop-portal"
   ];
 
+  fonts = {
+    fontDir.enable = true;
+    enableDefaultPackages = true;
+    fontconfig = {
+      enable = true;
+      useEmbeddedBitmaps = true;
+      subpixel.rgba = "rgb";
+    };
+  };
+
   services = {
     libinput = {
       touchpad = {
