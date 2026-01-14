@@ -9,15 +9,13 @@
 
     git = {
       enable = true;
-      userName = "victor7w7r";
-      userEmail = "arkano036@gmail.com";
       lfs.enable = true;
-      extraConfig = {
-        init.defaultBranch = "main";
-        credential.helper = "store";
-      };
       settings = {
         core.pager = "${pkgs.delta}/bin/delta";
+        userName = "victor7w7r";
+        userEmail = "arkano036@gmail.com";
+        init.defaultBranch = "main";
+        credential.helper = "store";
         delta = {
           hyperlinks = true;
           keep-plus-minus-markers = true;
@@ -28,7 +26,6 @@
           tabs = 4;
         };
         difftool.prompt = true;
-        init.defaultBranch = "main";
         merge.conflictstyle = "diff3";
         mergetool.prompt = true;
         rebase.autostash = true;

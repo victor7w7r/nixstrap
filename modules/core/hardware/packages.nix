@@ -39,7 +39,7 @@
       myrescue
       safecopy
       scrounge-ntfs
-      stresss
+      stress
       testdisk
       #https://aur.archlinux.org/packages/r-linux
       (pkgs.callPackage ./custom/btrfs-du.nix { })
