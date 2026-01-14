@@ -7,7 +7,6 @@
 
   services = {
     libinput = {
-      enabled = true;
       touchpad = {
         naturalScrolling = true;
         accelProfile = "flat";

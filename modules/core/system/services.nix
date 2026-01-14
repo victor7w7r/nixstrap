@@ -4,7 +4,7 @@
     gvfs.enable = true;
     glances.enable = true;
     locate.enable = true;
-    restic.enable = true;
+    #restic.enable = true;
     logrotate.enable = true;
     #rustdesk.enable = true;
 
@@ -14,12 +14,6 @@
         #nohang
         #uresourced
       ];
-    };
-
-    home-manager.autoExpire = {
-      enable = true;
-      frequency = "monthly";
-      timestamp = "-30 days";
     };
 
     kmscon = {

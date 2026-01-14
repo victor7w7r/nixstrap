@@ -11,10 +11,9 @@
     sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
-      security.sudo.extraConfig = ''
+      extraConfig = ''
         Defaults lecture = never
       '';
-
     };
   };
 }

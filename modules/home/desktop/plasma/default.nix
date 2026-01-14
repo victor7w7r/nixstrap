@@ -13,7 +13,7 @@
     platformTheme.name = "kvantum";
     style.name = "kvantum-dark";
   };
-
+  xdg.configFile."mimeapps.list".force = true;
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
     theme=LayanDark

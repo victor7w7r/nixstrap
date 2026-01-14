@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   xdg = {
-    configFile."mimeapps.list".force = true;
     portal = {
       enable = true;
       extraPortals = with pkgs; [
