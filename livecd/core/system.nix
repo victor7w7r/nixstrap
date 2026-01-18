@@ -2,6 +2,7 @@
 with lib;
 {
   environment.variables.GC_INITIAL_HEAP_SIZE = "1M";
+  environment.stub-ld.enable = false;
   environment.etc."systemd/pstore.conf".text = ''
     [PStore]
     Unlink=no
@@ -26,7 +27,7 @@ with lib;
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.jetbrains-mono
     nerd-fonts.ubuntu
   ];
@@ -50,18 +51,21 @@ with lib;
     "nixstrap"
   ];
 
-  users.users.nixstrap = {
+  users.users = {
+    nixstrap = {
+      initialHashedPassword = lib.mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
+      isNormalUser = true;
+      extraGroups = [
+        "input"
+        "networkmanager"
+        "power"
+        "tty"
+        "storage"
+        "video"
+        "wheel"
+      ];
+    };
     root.initialHashedPassword = lib.mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
-    initialHashedPassword = lib.mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
-    isNormalUser = true;
-    extraGroups = [
-      "input"
-      "networkmanager"
-      "power"
-      "tty"
-      "storage"
-      "video"
-      "wheel"
-    ];
   };
+
 }

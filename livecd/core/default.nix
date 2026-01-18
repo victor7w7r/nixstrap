@@ -1,10 +1,10 @@
 {
   imports = [
-    (import ./boot)
-    (import ./hardware)
-    (import ./networking)
-    (import ./packages)
-    (import ./services)
-    (import ./system)
+    (import ./boot.nix)
+    (import ./hardware.nix)
+    (import ./networking.nix)
+    (import ./packages.nix)
+    (import ./services.nix)
+    (import ./system.nix)
   ];
 }

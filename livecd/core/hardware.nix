@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 {
   hardware = {
     bluetooth = {
@@ -13,8 +13,12 @@
         };
       };
     };
-    bolt.enable = true;
-    enableRedistributableFirmware = true;
+    enableAllFirmware = lib.mkForce false;
+    firmware = with pkgs; [
+      linux-firmware
+      rtl8192su-firmware
+      rtl8761b-firmware
+    ];
     cpu = {
       amd.updateMicrocode = true;
       intel.updateMicrocode = true;

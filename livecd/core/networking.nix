@@ -6,7 +6,6 @@ with lib;
     dhcpcd.enable = true;
     networkmanager = {
       enable = true;
-      wireless.enable = mkImageMediaOverride true;
       dhcp = "dhcpcd";
     };
     firewall = {
@@ -15,5 +14,6 @@ with lib;
       logRefusedConnections = mkDefault false;
       logReversePathDrops = true;
     };
+    wireless.enable = mkImageMediaOverride true;
   };
 }

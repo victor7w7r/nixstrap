@@ -30,6 +30,8 @@
         ]
       );
 
+      services.network-manager-applet.enable = true;
+
       imports = [
         (import ./config.nix)
         (import ./starship.nix)
@@ -38,9 +40,7 @@
         if (flavor == "graphical") then
           [
             (import ./desktop.nix)
-            (import ./kitty.nix)
             (import ./packages.nix)
-            (import ./zed.nix)
           ]
         else
           [ ]

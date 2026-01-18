@@ -1,13 +1,6 @@
 { ... }:
 {
   programs = {
-    bat = {
-      enable = true;
-      config = {
-        pager = "less -FR";
-        theme = "Dracula";
-      };
-    };
     btop = {
       enable = true;
       settings = {
@@ -29,7 +22,6 @@
     };
     ripgrep-all.enable = true;
     nnn.enable = true;
-    tealdeer.enable = true;
     zoxide = {
       enable = true;
       options = [ "--cmd cd" ];

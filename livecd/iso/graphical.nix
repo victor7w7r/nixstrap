@@ -30,36 +30,33 @@ with lib;
       };
     };
 
-    network-manager-applet.enable = true;
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
-    xe-guest-utilities.enable = pkgs.stdenv.hostPlatform.isx86;
+    xe-guest-utilities.enable = false;
   };
 
   virtualisation = {
-    vmware.guest.enable = pkgs.stdenv.hostPlatform.isx86;
+    vmware.guest.enable = true;
     virtualbox.guest.enable = false;
   };
 
   environment = {
     defaultPackages = with pkgs; [
       gparted
+      mousepad
       firefox
       xarchiver
-      xfce.xfce4-cpufreq-plugin
-      xfce.xfce4-cpugraph-plugin
-      xfce.xfce4-sensors-plugin
-      xfce.xfce4-taskmanager
-      xfce.xfce4-whiskermenu-plugin
-      xfce.xfce4-xkb-plugin
-      xfce.xfdashboard
+      xfce4-taskmanager
+      xfce4-whiskermenu-plugin
+      xfce4-xkb-plugin
+      xfdashboard
     ];
     pathsToLink = [ "/share/backgrounds" ];
   };
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
     ];

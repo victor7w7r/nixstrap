@@ -1,5 +1,6 @@
 {
   config,
+  flavor,
   lib,
   options,
   pkgs,
@@ -16,20 +17,27 @@ with lib;
     "${modulesPath}/installer/scan/not-detected.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
-
-    (import ./core)
-    (import ./home)
   ];
 
   system.stateVersion = "24.05";
-  system.nixos.variant_id = lib.mkDefault "installer";
+  system.nixos.variant_id = lib.mkDefault flavor;
 
   console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
 
   isoImage = {
-    isoName = "nixstrap-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
+    isoName = "nixstrap-${config.system.nixos.label}.iso";
+    configurationName = flavor;
+    makeBiosBootable = false;
     makeEfiBootable = true;
     makeUsbBootable = true;
+    squashfsCompression = "zstd -Xcompression-level 19";
+  };
+
+  documentation = {
+    enable = false;
+    nixos.enable = false;
+    man.enable = false;
+    doc.enable = false;
   };
 
   swapDevices = mkImageMediaOverride [ ];
@@ -45,5 +53,10 @@ with lib;
       esac
     done
   '';
+
+  nix.settings = {
+    max-jobs = 1;
+    cores = 2;
+  };
 
 }

@@ -8,6 +8,8 @@
       nssmdns = true;
     };
 
+    hardware.bolt.enable = true;
+
     unbound = {
       enable = true;
       settings.server = {
