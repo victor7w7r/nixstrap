@@ -1,19 +1,18 @@
 { lib, ... }:
-with lib;
 {
   networking = {
-    hostName = "nixos";
     dhcpcd.enable = true;
+    hostName = "nixos";
+    firewall = {
+      checkReversePath = "loose";
+      enable = true;
+      logRefusedConnections = lib.mkDefault false;
+      logReversePathDrops = true;
+    };
     networkmanager = {
       enable = true;
       dhcp = "dhcpcd";
     };
-    firewall = {
-      checkReversePath = "loose";
-      enable = true;
-      logRefusedConnections = mkDefault false;
-      logReversePathDrops = true;
-    };
-    wireless.enable = mkImageMediaOverride true;
+    wireless.enable = lib.mkImageMediaOverride true;
   };
 }

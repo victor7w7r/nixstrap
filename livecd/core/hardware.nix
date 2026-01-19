@@ -3,17 +3,15 @@
   hardware = {
     bluetooth = {
       enable = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-          FastConnectable = "true";
-          JustWorksRepairing = "always";
-          MultiProfile = "multiple";
-          Experimental = true;
-        };
+      settings.General = {
+        Enable = "Source,Sink,Media,Socket";
+        FastConnectable = "true";
+        JustWorksRepairing = "always";
+        MultiProfile = "multiple";
       };
     };
     enableAllFirmware = lib.mkForce false;
+    enableRedistributableFirmware = lib.mkForce false;
     firmware = with pkgs; [
       linux-firmware
       rtl8192su-firmware
@@ -23,6 +21,5 @@
       amd.updateMicrocode = true;
       intel.updateMicrocode = true;
     };
-    opengl.enable = true;
   };
 }

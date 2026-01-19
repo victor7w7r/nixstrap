@@ -5,16 +5,10 @@
     busybox
     cmatrix
     genact
-    dos2unix
     exfatprogs
-    file
     f2fs-tools
-    gnused
-    inetutils
     lavat
     lm_sensors
-    lshw
-    lsof
     nbsdgames
     ncdu
     nix-du
@@ -23,18 +17,8 @@
     progress
     rsyncy
     sl
-    superfile
     ternimal
     tmux
-    tty-solitaire
-    wget
-    wget2
   ];
 
-  system.extraDependencies = with pkgs; [
-    stdenv
-    stdenvNoCC
-    jq
-    makeInitrdNGTool
-  ];
 }

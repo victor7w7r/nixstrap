@@ -2,12 +2,10 @@
   config,
   flavor,
   lib,
-  options,
   pkgs,
   modulesPath,
   ...
 }:
-with lib;
 {
   imports = [
     "${modulesPath}/profiles/base.nix"
@@ -19,18 +17,20 @@ with lib;
     "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
-  system.stateVersion = "24.05";
-  system.nixos.variant_id = lib.mkDefault flavor;
+  system = {
+    extraDependencies = lib.mkForce [ ];
+    nixos.variant_id = lib.mkDefault flavor;
+    stateVersion = "24.05";
+  };
 
-  console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
+  image.fileName = "nixstrap-${config.system.nixos.label}.iso";
 
   isoImage = {
-    isoName = "nixstrap-${config.system.nixos.label}.iso";
     configurationName = flavor;
     makeBiosBootable = false;
     makeEfiBootable = true;
     makeUsbBootable = true;
-    squashfsCompression = "zstd -Xcompression-level 19";
+    squashfsCompression = "xz -Xbcj x86 -Xdict-size 100% -b 128K -limit 75 -percentage";
   };
 
   documentation = {
@@ -40,8 +40,8 @@ with lib;
     doc.enable = false;
   };
 
-  swapDevices = mkImageMediaOverride [ ];
-  fileSystems = mkImageMediaOverride config.lib.isoFileSystems;
+  swapDevices = lib.mkImageMediaOverride [ ];
+  fileSystems = lib.mkImageMediaOverride config.lib.isoFileSystems;
 
   boot.postBootCommands = ''
     for o in $(</proc/cmdline); do
@@ -57,6 +57,10 @@ with lib;
   nix.settings = {
     max-jobs = 1;
     cores = 2;
+    trusted-users = [
+      "root"
+      "nixstrap"
+    ];
   };
 
 }

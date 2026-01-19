@@ -20,7 +20,7 @@
 
   programs = {
     corectrl.enable = true;
-    corefreq.enable = true;
+    #corefreq.enable = true;
     iotop.enable = true;
     usbtop.enable = true;
     coolercontrol.enable = true;

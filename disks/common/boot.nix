@@ -14,7 +14,7 @@ rec {
 
   esp =
     {
-      size ? "500M",
+      size ? "300M",
     }:
     {
       inherit size;

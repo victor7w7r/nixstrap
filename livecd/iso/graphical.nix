@@ -2,8 +2,11 @@
 with lib;
 {
   imports = [ ./base.nix ];
+
   isoImage.edition = "xfce";
   powerManagement.enable = true;
+
+  hardware.graphics.enable = true;
 
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {

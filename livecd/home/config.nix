@@ -20,7 +20,6 @@
       ];
       defaultCommand = "rg --files --hidden --glob=!.git/";
     };
-    ripgrep-all.enable = true;
     nnn.enable = true;
     zoxide = {
       enable = true;

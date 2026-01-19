@@ -29,10 +29,10 @@
 
   outputs =
     {
+      home-manager,
       chaotic,
       nixpkgs,
       self,
-      ...
     }:
     {
       nixosConfigurations = {
@@ -41,6 +41,7 @@
           system = "x86_64-linux";
           modules = [
             ./iso/minimal.nix
+            home-manager.nixosModules.home-manager
             chaotic.nixosModules.default
             ./core
             ./home
@@ -52,6 +53,7 @@
           system = "x86_64-linux";
           modules = [
             ./iso/graphical.nix
+            home-manager.nixosModules.home-manager
             chaotic.nixosModules.default
             ./core
             ./home

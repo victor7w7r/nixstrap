@@ -4,7 +4,10 @@
 
   xserver = {
     enable = true;
-    desktopManager.xfce.enable = true;
+    desktopManager.xfce = {
+      enable = true;
+      enableScreensaver = false;
+    };
     excludePackages = with pkgs; [ xterm ];
   };
 

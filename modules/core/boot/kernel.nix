@@ -26,9 +26,11 @@ in
       checkJournalingFS = true;
       compressor = "xz";
       compressorArgs = [
-        "--check=crc32"
-        "--lzma2=dict=6MiB"
-        "-T0"
+        "-v"
+        "-T4"
+        "-8"
+        "--x86"
+        "--lzma2=dict=256MiB"
       ];
       network.enable = true;
       inherit supportedFilesystems;
