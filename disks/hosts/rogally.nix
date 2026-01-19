@@ -1,7 +1,7 @@
 let
-  boot = import ./common/boot.nix;
-  winmod = import ./common/win.nix;
-  linux = import ./common/linux.nix;
+  boot = import ./lib/boot.nix;
+  winmod = import ./lib/win.nix;
+  linux = import ./lib/linux.nix;
 
   esp = boot.esp { };
   msr = winmod.msr { };
@@ -12,21 +12,27 @@ let
     size = "90G";
     priority = 6;
   };
+  games = linux.shared {
+    name = "games";
+    mountpoint = "/games";
+  };
 
-  fstemp = linux.mockpart { extraDirs = "/mnt/home"; };
+  fstemp = linux.mockpart { extraDirs = "/mnt/games /mnt/home"; };
   var = linux.varpart;
   system = linux.syspart {
-    extraDirs = "/mnt/home /mnt/.nix/home";
+    extraDirs = "/mnt/games /mnt/home /mnt/.nix/home";
     extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
   };
 
   partitions = {
     inherit
+      esp
       msr
       vault
       recovery
       win
       cryptsys
+      games
       ;
   };
 
@@ -34,22 +40,12 @@ let
 in
 {
   disko.devices = {
-    disk = {
-      esp = {
-        type = "disk";
-        device = "/dev/sda";
-        content = {
-          type = "gpt";
-          partitions = { inherit esp; };
-        };
-      };
-      main = {
-        type = "disk";
-        device = "/dev/sdb";
-        content = {
-          type = "gpt";
-          inherit partitions;
-        };
+    disk.main = {
+      type = "disk";
+      device = "/dev/nvme0n1";
+      content = {
+        type = "gpt";
+        inherit partitions;
       };
     };
     lvm_vg = {

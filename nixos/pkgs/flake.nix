@@ -34,27 +34,30 @@
       nixpkgs,
       self,
     }:
-    let
-      system = "x86_64-linux";
-      commonModules = [
-        home-manager.nixosModules.home-manager
-        chaotic.nixosModules.default
-        ./core
-        ./home
-      ];
-    in
     {
       nixosConfigurations = {
         # nix build .#nixosConfigurations.minimallive.config.system.build.isoImage
         minimallive = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./iso/minimal.nix ] ++ commonModules;
+          system = "x86_64-linux";
+          modules = [
+            ./iso/minimal.nix
+            home-manager.nixosModules.home-manager
+            chaotic.nixosModules.default
+            ./core
+            ./home
+          ];
           specialArgs.flavor = "minimal";
         };
         # nix build .#nixosConfigurations.graphicallive.config.system.build.isoImage
         graphicallive = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./iso/graphical.nix ] ++ commonModules;
+          system = "x86_64-linux";
+          modules = [
+            ./iso/graphical.nix
+            home-manager.nixosModules.home-manager
+            chaotic.nixosModules.default
+            ./core
+            ./home
+          ];
           specialArgs.flavor = "graphical";
         };
       };

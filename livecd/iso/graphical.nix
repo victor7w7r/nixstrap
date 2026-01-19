@@ -5,7 +5,6 @@ with lib;
 
   isoImage.edition = "xfce";
   powerManagement.enable = true;
-
   hardware.graphics.enable = true;
 
   security.polkit.extraConfig = ''
@@ -25,11 +24,8 @@ with lib;
         enableScreensaver = false;
       };
       displayManager = {
+        autoLogin = true;
         lightdm.enable = true;
-        autoLogin = {
-          enable = true;
-          user = "nixstrap";
-        };
       };
     };
 
@@ -45,14 +41,15 @@ with lib;
 
   environment = {
     defaultPackages = with pkgs; [
+      ddrescueview
       gparted
       mousepad
-      firefox
+      epiphany
+      usbimager
       xarchiver
       xfce4-taskmanager
       xfce4-whiskermenu-plugin
       xfce4-xkb-plugin
-      xfdashboard
     ];
     pathsToLink = [ "/share/backgrounds" ];
   };

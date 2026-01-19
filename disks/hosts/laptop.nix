@@ -1,6 +1,6 @@
 let
-  boot = import ./common/boot.nix;
-  linux = import ./common/linux.nix;
+  boot = import ./lib/boot.nix;
+  linux = import ./lib/linux.nix;
 
   esp = boot.esp { };
   vault = boot.vault { };

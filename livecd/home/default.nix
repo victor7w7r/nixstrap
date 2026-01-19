@@ -7,7 +7,6 @@
 
     users.nixstrap = {
       programs.home-manager.enable = true;
-      services.network-manager-applet.enable = true;
       home = {
         username = "nixstrap";
         homeDirectory = "/home/nixstrap";
@@ -26,11 +25,18 @@
         if (flavor == "graphical") then
           [
             (import ./desktop.nix)
-            (import ./packages.nix)
           ]
         else
           [ ]
       );
-    };
+    }
+    // (
+      if (flavor == "graphical") then
+        {
+          services.network-manager-applet.enable = true;
+        }
+      else
+        { }
+    );
   };
 }
