@@ -8,6 +8,7 @@
       settings.PermitRootLogin = "yes";
     };
     vnstat.enable = true;
+    speechd.enable = false;
     timesyncd.enable = true;
     xserver.exportConfiguration = true;
   };

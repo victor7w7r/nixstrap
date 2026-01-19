@@ -5,7 +5,10 @@ with lib;
 
   isoImage.edition = "xfce";
   powerManagement.enable = true;
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
@@ -16,22 +19,40 @@ with lib;
   '';
 
   services = {
-    xserver = {
-      excludePackages = with pkgs; [ xterm ];
-      enable = true;
-      desktopManager.xfce = {
-        enable = true;
-        enableScreensaver = false;
-      };
-      displayManager = {
-        autoLogin = true;
-        lightdm.enable = true;
-      };
-    };
-
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
     xe-guest-utilities.enable = false;
+    libinput = {
+      touchpad = {
+        naturalScrolling = true;
+        accelProfile = "flat";
+        accelSpeed = "0.75";
+      };
+      mouse.accelProfile = "flat";
+    };
+    xserver = {
+      excludePackages = with pkgs; [ xterm ];
+      enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        xfce = {
+          enable = true;
+          enableScreensaver = false;
+        };
+      };
+      xkb = {
+        layout = "us";
+        variant = "intl-unicode";
+        options = "caps:ctrl_modifier";
+      };
+      displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "nixstrap";
+        };
+        lightdm.enable = true;
+      };
+    };
   };
 
   virtualisation = {
@@ -40,12 +61,23 @@ with lib;
   };
 
   environment = {
+    sessionVariables.ADW_DEBUG_COLOR_SCHEME = "prefer-dark";
+    xfce.excludePackages = with pkgs; [
+      gnome-themes-extra
+      parole
+      pavucontrol
+      ristretto
+      xfce4-appfinder
+      xfce4-notifyd
+      xfce4-screensaver
+      xfce4-screenshooter
+      xfce4-terminal
+      xfce4-volumed-pulse
+    ];
     defaultPackages = with pkgs; [
       ddrescueview
       gparted
-      mousepad
       epiphany
-      usbimager
       xarchiver
       xfce4-taskmanager
       xfce4-whiskermenu-plugin

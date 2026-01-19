@@ -1,6 +1,10 @@
 { pkgs, username, ... }:
 {
-  time.timeZone = "America/Guayaquil";
+  time = {
+    hardwareClockInLocalTime = true;
+    timeZone = "America/Guayaquil";
+  };
+
   i18n = {
     defaultLocale = "es_ES.UTF-8";
     extraLocales = [ "en_US.UTF-8/UTF-8" ];

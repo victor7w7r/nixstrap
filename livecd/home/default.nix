@@ -25,6 +25,9 @@
         if (flavor == "graphical") then
           [
             (import ./desktop.nix)
+            (import ./kitty.nix)
+            (import ./theme.nix)
+            (import ./xfce-panel.nix)
           ]
         else
           [ ]

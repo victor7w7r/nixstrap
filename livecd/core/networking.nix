@@ -1,7 +1,11 @@
 { lib, ... }:
 {
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking = {
-    dhcpcd.enable = true;
+    dhcpcd = {
+      enable = true;
+      wait = "background";
+    };
     hostName = "nixos";
     firewall = {
       checkReversePath = "loose";

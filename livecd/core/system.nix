@@ -14,9 +14,16 @@
     '';
   };
 
-  console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
+  console = {
+    packages = options.console.packages.default ++ [ pkgs.terminus_font ];
+    keyMap = "us-acentos";
+  };
 
-  time.timeZone = "America/Guayaquil";
+  time = {
+    hardwareClockInLocalTime = true;
+    timeZone = "America/Guayaquil";
+  };
+
   i18n = {
     defaultLocale = "es_ES.UTF-8";
     extraLocales = [ "en_US.UTF-8/UTF-8" ];
@@ -33,12 +40,37 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-color-emoji
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.ubuntu
-  ];
+  fonts = {
+    enableDefaultPackages = true;
+    fontDir.enable = true;
+    fontconfig = {
+      cache32Bit = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "UbuntuMono Nerd Font"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Ubuntu Nerd Font"
+          "Noto Color Emoji"
+        ];
+        serif = [
+          "Ubuntu Nerd Font"
+          "Noto Color Emoji"
+        ];
+      };
+    };
+
+    packages = with pkgs; [
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.jetbrains-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
+  };
 
   security.sudo-rs = {
     enable = lib.mkDefault true;
@@ -47,6 +79,7 @@
 
   programs = {
     git.enable = lib.mkDefault true;
+    nano.enable = false;
     less.enable = true;
     zsh.enable = true;
   };

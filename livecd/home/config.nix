@@ -9,6 +9,7 @@
         update_ms = 500;
       };
     };
+    fastfetch.enable = true;
     fzf = {
       enable = true;
       defaultOptions = [
