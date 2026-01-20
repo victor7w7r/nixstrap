@@ -18,7 +18,12 @@
   ];
 
   system = {
-    extraDependencies = lib.mkForce [ ];
+    extraDependencies = lib.mkForce [
+      pkgs.stdenvNoCC
+      pkgs.jq
+      pkgs.busybox
+      pkgs.makeInitrdNGTool
+    ];
     nixos.variant_id = lib.mkDefault flavor;
     stateVersion = "24.05";
   };

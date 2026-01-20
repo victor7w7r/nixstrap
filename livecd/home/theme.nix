@@ -4,7 +4,7 @@
     enable = true;
     cursorTheme = {
       package = pkgs.capitaine-cursors;
-      theme = "capitaine-cursors";
+      name = "capitaine-cursors";
       size = 24;
     };
     iconTheme = {
