@@ -1,7 +1,7 @@
 let
-  boot = import ./lib/boot.nix;
-  winmod = import ./lib/win.nix;
-  linux = import ./lib/linux.nix;
+  boot = import ../lib/boot.nix;
+  winmod = import ../lib/win.nix;
+  linux = import ../lib/linux.nix;
 
   esp = boot.esp { };
   msr = winmod.msr { };

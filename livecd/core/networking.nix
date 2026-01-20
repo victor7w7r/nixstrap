@@ -15,8 +15,16 @@
     };
     networkmanager = {
       enable = true;
+      insertNameservers = [
+        "8.8.8.8"
+        "8.8.4.4"
+      ];
       dhcp = "dhcpcd";
     };
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
     wireless.enable = mkImageMediaOverride true;
   };
 }
