@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   systemd.services.NetworkManager-wait-online.enable = false;
-  networking = {
+  networking = with lib; {
     dhcpcd = {
       enable = true;
       wait = "background";
@@ -10,13 +10,13 @@
     firewall = {
       checkReversePath = "loose";
       enable = true;
-      logRefusedConnections = lib.mkDefault false;
+      logRefusedConnections = mkDefault false;
       logReversePathDrops = true;
     };
     networkmanager = {
       enable = true;
       dhcp = "dhcpcd";
     };
-    wireless.enable = lib.mkImageMediaOverride true;
+    wireless.enable = mkImageMediaOverride true;
   };
 }

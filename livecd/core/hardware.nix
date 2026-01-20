@@ -11,7 +11,7 @@
     })
   ];
 
-  hardware = {
+  hardware = with lib; {
     bluetooth = {
       enable = true;
       settings.General = {
@@ -21,8 +21,8 @@
         MultiProfile = "multiple";
       };
     };
-    enableAllFirmware = lib.mkForce false;
-    enableRedistributableFirmware = lib.mkForce false;
+    enableAllFirmware = mkForce false;
+    enableRedistributableFirmware = mkForce false;
     firmware = with pkgs; [
       linux-firmware
       rtl8192su-firmware

@@ -1,7 +1,8 @@
-{ ... }:
+{ lib, ... }:
 {
   services = {
     hardware.bolt.enable = true;
+    logrotate.enable = lib.mkDefault false;
     getty.autologinUser = "nixstrap";
     openssh = {
       enable = true;

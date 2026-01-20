@@ -9,25 +9,14 @@
 {
   imports = [
     "${modulesPath}/profiles/base.nix"
-    "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/profiles/clone-config.nix"
-    "${modulesPath}/installer/scan/detected.nix"
-    "${modulesPath}/installer/scan/not-detected.nix"
+    "${modulesPath}/profiles/qemu-guest.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
-  system = {
-    extraDependencies = lib.mkForce [
-      pkgs.stdenvNoCC
-      pkgs.jq
-      pkgs.busybox
-      pkgs.makeInitrdNGTool
-    ];
-    nixos.variant_id = lib.mkDefault flavor;
-    stateVersion = "24.05";
-  };
-
+  swapDevices = lib.mkImageMediaOverride [ ];
+  fileSystems = lib.mkImageMediaOverride config.lib.isoFileSystems;
   image.fileName = "nixstrap-${config.system.nixos.label}.iso";
 
   isoImage = {
@@ -35,18 +24,17 @@
     makeBiosBootable = false;
     makeEfiBootable = true;
     makeUsbBootable = true;
-    squashfsCompression = "xz -Xbcj x86 -Xdict-size 100% -b 128K -limit 75 -percentage";
+    squashfsCompression = "xz -Xbcj x86 -Xdict-size 100% -b 512K -limit 75 -percentage";
   };
 
-  documentation = {
-    enable = false;
-    nixos.enable = false;
-    man.enable = false;
-    doc.enable = false;
+  documentation = with lib; {
+    man.man-db.enable = mkDefault false;
+    enable = mkDefault false;
+    doc.enable = mkDefault false;
+    info.enable = mkDefault false;
+    man.enable = mkDefault false;
+    nixos.enable = mkDefault false;
   };
-
-  swapDevices = lib.mkImageMediaOverride [ ];
-  fileSystems = lib.mkImageMediaOverride config.lib.isoFileSystems;
 
   boot.postBootCommands = ''
     for o in $(</proc/cmdline); do
@@ -58,6 +46,14 @@
       esac
     done
   '';
+
+  nixpkgs.overlays = [
+    (_: prev: {
+      mbrola-voices = prev.mbrola-voices.override {
+        languages = [ "*1" ];
+      };
+    })
+  ];
 
   nix.settings = {
     max-jobs = 1;

@@ -1,11 +1,24 @@
 {
   pkgs,
+  flavor,
   lib,
   options,
   ...
 }:
 {
+  system = with lib; {
+    extraDependencies = mkForce [
+      pkgs.stdenvNoCC
+      pkgs.jq
+      pkgs.busybox
+      pkgs.makeInitrdNGTool
+    ];
+    nixos.variant_id = mkDefault flavor;
+    stateVersion = "24.05";
+  };
+
   environment = {
+    defaultPackages = lib.mkDefault [ ];
     variables.GC_INITIAL_HEAP_SIZE = "1M";
     stub-ld.enable = false;
     etc."systemd/pstore.conf".text = ''
@@ -40,53 +53,26 @@
     };
   };
 
-  fonts = {
-    enableDefaultPackages = true;
-    fontDir.enable = true;
-    fontconfig = {
-      cache32Bit = true;
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [
-          "UbuntuMono Nerd Font"
-          "Noto Color Emoji"
-        ];
-        sansSerif = [
-          "Ubuntu Nerd Font"
-          "Noto Color Emoji"
-        ];
-        serif = [
-          "Ubuntu Nerd Font"
-          "Noto Color Emoji"
-        ];
-      };
+  security = {
+    polkit.enable = true;
+    sudo-rs = {
+      enable = lib.mkDefault true;
+      wheelNeedsPassword = lib.mkImageMediaOverride false;
     };
-
-    packages = with pkgs; [
-      nerd-fonts.ubuntu
-      nerd-fonts.ubuntu-mono
-      nerd-fonts.jetbrains-mono
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-    ];
   };
 
-  security.sudo-rs = {
-    enable = lib.mkDefault true;
-    wheelNeedsPassword = lib.mkImageMediaOverride false;
-  };
-
-  programs = {
-    git.enable = lib.mkDefault true;
+  programs = with lib; {
+    git.enable = mkDefault true;
     nano.enable = false;
     less.enable = true;
     zsh.enable = true;
+    command-not-found.enable = mkDefault false;
+    fish.generateCompletions = mkDefault false;
   };
 
-  users.users = {
+  users.users = with lib; {
     nixstrap = {
-      initialHashedPassword = lib.mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
+      initialHashedPassword = mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = [
@@ -100,7 +86,7 @@
       ];
     };
     root = {
-      initialHashedPassword = lib.mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
+      initialHashedPassword = mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
       shell = pkgs.zsh;
     };
   };

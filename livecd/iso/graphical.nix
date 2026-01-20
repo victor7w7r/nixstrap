@@ -1,13 +1,46 @@
-{ lib, pkgs, ... }:
-with lib;
+{ pkgs, ... }:
 {
   imports = [ ./base.nix ];
 
   isoImage.edition = "xfce";
+
   powerManagement.enable = true;
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+  };
+
+  fonts = {
+    enableDefaultPackages = true;
+    fontDir.enable = true;
+    fontconfig = {
+      cache32Bit = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "UbuntuMono Nerd Font"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Ubuntu Nerd Font"
+          "Noto Color Emoji"
+        ];
+        serif = [
+          "Ubuntu Nerd Font"
+          "Noto Color Emoji"
+        ];
+      };
+    };
+
+    packages = with pkgs; [
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.jetbrains-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
   };
 
   security.polkit.extraConfig = ''
