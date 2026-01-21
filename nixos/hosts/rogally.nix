@@ -1,6 +1,5 @@
 {
   pkgs,
-  modulesPath,
   self,
   username,
   ...
@@ -14,10 +13,6 @@ let
   sec = security { inherit self; };
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   powerManagement.cpuFreqGovernor = "ondemand";
 
   fileSystems = {

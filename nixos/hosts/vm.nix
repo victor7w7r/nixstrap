@@ -7,10 +7,7 @@ let
   sec = security { inherit self; };
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
+  imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
   fileSystems = systems { };
   powerManagement.cpuFreqGovernor = "ondemand";
 
@@ -26,15 +23,7 @@ in
       availableKernelModules = [
         "ahci"
         "xhci_pci"
-        "virtio_pci"
-        "virtio_scsi"
         "sr_mod"
-        "virtio_blk"
-      ];
-      kernelModules = [
-        "dm-snapshot"
-        "virtio_console"
-        "8250_pci"
       ];
       secrets = sec.secrets;
       luks.devices = {

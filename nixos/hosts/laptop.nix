@@ -1,4 +1,4 @@
-{ modulesPath, self, ... }:
+{ self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
   params = import ./common/params.nix;
@@ -8,10 +8,6 @@ let
   sec = security { inherit self; };
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   fileSystems = systems { };
   powerManagement.cpuFreqGovernor = "ondemand";
 

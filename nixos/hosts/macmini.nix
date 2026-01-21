@@ -1,9 +1,4 @@
-{
-  modulesPath,
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
   options = import ./common/options.nix;
@@ -14,10 +9,6 @@ let
   sec = security { inherit self; };
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   fileSystems = {
     "/kvm" = {
       device = "/dev/mapper/vg2-kvm";
@@ -43,11 +34,7 @@ in
   powerManagement.cpuFreqGovernor = "ondemand";
 
   boot = {
-    kernelParams = [
-      "intel_iommu=on"
-    ]
-    ++ intelParams
-    ++ params { };
+    kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
 
     initrd = {
       availableKernelModules = [
@@ -83,5 +70,4 @@ in
   ];
 
   hardware.intel-gpu-tools = true;
-
 }

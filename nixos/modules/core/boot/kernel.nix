@@ -24,14 +24,16 @@ in
 
     initrd = {
       checkJournalingFS = true;
-      compressor = "xz";
-      compressorArgs = [
-        "-v"
-        "-T4"
-        "-8"
-        "--x86"
-        "--lzma2=dict=256MiB"
-      ];
+      /*
+        compressor = "xz";
+        compressorArgs = [
+          "-T0"
+          #"-8"
+          #"--x86"
+          "--lzma2=dict=6MiB"
+          "--check=crc64"
+          ];
+      */
       network.enable = true;
       inherit supportedFilesystems;
       services.lvm.enable = true;
@@ -70,8 +72,11 @@ in
       options kvm ignore_msrs=1
     '';
 
-    tmp.cleanOnBoot = true;
-    tmp.useTmpfs = true;
+    tmp = {
+      cleanOnBoot = true;
+      useTmpfs = true;
+    };
+
   };
 
   zramSwap = {

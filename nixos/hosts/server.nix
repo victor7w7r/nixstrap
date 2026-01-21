@@ -1,4 +1,4 @@
-{ modulesPath, self, ... }:
+{ self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
   options = import ./common/options.nix;
@@ -9,10 +9,6 @@ let
   sec = security { inherit self; };
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   fileSystems = {
     "/kvm" = {
       device = "/dev/mapper/vg0-kvm";
