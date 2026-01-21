@@ -9,7 +9,7 @@
       "--ultra"
       "-T0"
       "--progress"
-      "--check=crc64"
+      "--check"
     ];
     kernelParams = [
       "add_efi_memmap"

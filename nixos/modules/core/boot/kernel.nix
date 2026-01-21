@@ -29,7 +29,7 @@ in
         "--ultra"
         "-T0"
         "--progress"
-        "--check=crc64"
+        "--check"
       ];
       network.enable = true;
       inherit supportedFilesystems;
