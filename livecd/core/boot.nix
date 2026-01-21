@@ -4,6 +4,13 @@
     loader.grub.memtest86.enable = true;
     kernelModules = [ "rtl8821cu" ];
     kernel.sysctl."vm.overcommit_memory" = "1";
+    initrd.compressorArgs = [
+      "-19"
+      "--ultra"
+      "-T0"
+      "--progress"
+      "--check=crc64"
+    ];
     kernelParams = [
       "add_efi_memmap"
       "mitigations=off"
