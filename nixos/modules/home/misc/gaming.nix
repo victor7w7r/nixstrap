@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     bottles
-    dosbox
     umu-launcher
     goverlay
     inotify-info

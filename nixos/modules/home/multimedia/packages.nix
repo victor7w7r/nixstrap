@@ -7,7 +7,6 @@
       media-downloader
       spotify-qt
       vlc
-      vlc-bittorrent
       (pkgs.callPackage ./custom/ytdl.nix { })
       #vlc-pause-click-plugin vlc-plugin-pipewire vlc-plugin vlc-plugins-all vlc-plugin-ytdl-git
       #https://github.com/Shabinder/SpotiFlyer

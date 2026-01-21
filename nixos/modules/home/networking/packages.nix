@@ -11,8 +11,6 @@
       media-downloader
       mtr-gui
       music-discord-rpc
-      persepolis
-      vesktop
       (pkgs.callPackage ./custom/jdownloader.nix { })
       #franz
       #https://github.com/almahdi/nix-thorium

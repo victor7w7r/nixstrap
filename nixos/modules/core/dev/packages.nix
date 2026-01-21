@@ -20,8 +20,8 @@
     ]
     ++ [
       github-copilot-cli
-      jan
-      ollama-rocm
+      #jan
+      #ollama-rocm
     ]
     ++ [
       atac

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   services = {
     gvfs.enable = true;
@@ -6,6 +6,7 @@
     locate.enable = true;
     #restic.enable = true;
     logrotate.enable = true;
+    orca.enable = lib.mkDefault false;
     #rustdesk.enable = true;
 
     dbus = {
