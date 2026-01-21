@@ -5,7 +5,7 @@
     fwupd.enable = true;
     lact.enable = true;
     sysstat.enable = true;
-    smartd.enable = true;
+    smartd.enable = false;
     thermald.enable = true;
     udisks2.enable = true;
 
