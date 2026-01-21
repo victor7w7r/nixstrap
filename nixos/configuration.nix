@@ -53,16 +53,16 @@
       ];
       trusted-substituters = [
         "https://cache.nixos.org"
+        "https://cache.garnix.io"
         "https://nix-community.cachix.org"
         "https://install.determinate.systems"
       ];
       extra-substituters = [
         "https://chaotic-nyx.cachix.org"
-        "https://attic.xuyh0120.win/lantian"
         "https://nix-gaming.cachix.org"
       ];
       trusted-public-keys = [
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

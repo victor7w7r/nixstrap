@@ -14,7 +14,6 @@
       emptty
       gnused
       file
-      fzf-zsh
       hexyl
       jump
       lsof
