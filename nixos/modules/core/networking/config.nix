@@ -1,4 +1,4 @@
-{ host, ... }:
+{ lib, host, ... }:
 {
   networking = {
     hostName = "${host}";
@@ -7,6 +7,7 @@
       settings.main.rc-manager = "resolvconf";
       wifi.powersave = true;
     };
+    modemmanager.enable = lib.mkOverride 999 false;
     resolvconf = {
       enable = true;
       useLocalResolver = true;

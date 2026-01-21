@@ -18,9 +18,11 @@ in
     users = {
       root = {
         programs.home-manager.enable = true;
-        home = { inherit packages; };
+        home = {
+          inherit packages;
+          stateVersion = "24.05";
+        };
         imports = commonImports;
-        stateVersion = "24.05";
       };
       nixstrap = {
         programs.home-manager.enable = true;

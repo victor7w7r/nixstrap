@@ -13,6 +13,7 @@
       logRefusedConnections = mkDefault false;
       logReversePathDrops = true;
     };
+    modemmanager.enable = lib.mkOverride 999 false;
     networkmanager = {
       enable = true;
       insertNameservers = [
