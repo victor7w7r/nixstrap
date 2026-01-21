@@ -10,36 +10,36 @@
     ];
     trusted-substituters = [
       "https://cache.nixos.org"
+      "https://attic.xuyh0120.win/lantian"
       "https://nix-community.cachix.org"
       "https://install.determinate.systems"
     ];
     extra-substituters = [
-      "https://chaotic-nyx.cachix.org"
       "https://nix-gaming.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
   };
 
   inputs = {
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    hardware.url = "github:nixos/nixos-hardware";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.7.0";
     compose2nix = {
-      url = "github:aksiksi/compose2nix";
+      url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
     betterfox = {
       url = "github:yokoffing/Betterfox";
@@ -57,7 +57,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,14 +74,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/0.53";
     pyprland.url = "github:hyprland-community/pyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-refind = {
@@ -95,8 +94,8 @@
     {
       nixpkgs,
       nixpkgs-stable,
-      chaotic,
       self,
+      nix-cachyos-kernel,
       nur,
       nix-flatpak,
       sops-nix,
@@ -112,6 +111,12 @@
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
@@ -119,7 +124,6 @@
             (import ./hosts/macmini.nix)
             (import ./modules/core)
             (import ./modules/home)
-            chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
           ];
@@ -138,12 +142,17 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
-            chaotic.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
@@ -166,6 +175,12 @@
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
@@ -173,7 +188,6 @@
             (import ./hosts/rogally.nix)
             (import ./modules/core)
             (import ./modules/home)
-            chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
             nur.legacyPackages."${system}".repos.Vortriz.libfprint-focaltech-2808-a658-alt
@@ -193,6 +207,12 @@
         rogallyvm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
@@ -200,7 +220,6 @@
             (import ./hosts/rogallyvm.nix)
             (import ./modules/core)
             (import ./modules/home)
-            chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
           ];
@@ -219,6 +238,12 @@
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
@@ -227,7 +252,6 @@
             (import ./hosts/server.nix)
             (import ./modules/core)
             (import ./modules/home)
-            chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
           ];
@@ -246,6 +270,12 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
@@ -254,7 +284,6 @@
             (import ./hosts/vm.nix)
             (import ./modules/core)
             (import ./modules/home)
-            chaotic.nixosModules.default
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
           ];

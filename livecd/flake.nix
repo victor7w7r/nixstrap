@@ -6,20 +6,19 @@
     ];
     trusted-substituters = [
       "https://cache.nixos.org"
+      "https://attic.xuyh0120.win/lantian"
       "https://nix-community.cachix.org"
-      "https://chaotic-nyx.cachix.org"
     ];
     trusted-public-keys = [
-      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
     ];
   };
 
   inputs = {
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";
@@ -30,15 +29,20 @@
   outputs =
     {
       home-manager,
-      chaotic,
+      nix-cachyos-kernel,
       nixpkgs,
       self,
     }:
     let
       system = "x86_64-linux";
       commonModules = [
+        (
+          { ... }:
+          {
+            nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+          }
+        )
         home-manager.nixosModules.home-manager
-        chaotic.nixosModules.default
         ./core
         ./home
       ];

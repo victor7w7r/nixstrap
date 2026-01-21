@@ -6,7 +6,7 @@
     locate.enable = true;
     #restic.enable = true;
     logrotate.enable = true;
-    orca.enable = lib.mkDefault false;
+    orca.enable = lib.mkForce false;
     #rustdesk.enable = true;
 
     dbus = {
