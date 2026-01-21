@@ -8,6 +8,14 @@
   system.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (_: prev: {
+      mbrola-voices = prev.mbrola-voices.override {
+        languages = [ "*1" ];
+      };
+    })
+  ];
+
   programs = {
     nix-ld.enable = true;
     nix-ld.libraries = [ ];
