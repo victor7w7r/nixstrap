@@ -1,25 +1,23 @@
 let
-  boot = import ../lib/boot.nix;
-  winmod = import ../lib/win.nix;
-  linux = import ../lib/linux.nix;
+  winmod = import ../filesystems/windows.nix;
 
-  esp = boot.esp { };
+  esp = (import ../lib/esp.nix) { };
   msr = winmod.msr { };
-  vault = boot.vault { priority = 3; };
+  emergency = (import ../lib/emergency.nix) { priority = 3; };
   recovery = winmod.recovery { };
   win = winmod.win { };
-  cryptsys = linux.cryptsys {
+
+  cryptsys = (import ../filesystems/system.nix) {
     size = "90G";
     priority = 6;
   };
-  games = linux.shared {
+  games = (import ../filesystems/shared.nix) {
     name = "games";
     mountpoint = "/games";
   };
-
-  fstemp = linux.mockpart { extraDirs = "/mnt/games /mnt/home"; };
-  var = linux.varpart;
-  system = linux.syspart {
+  fstemp = (import ../filesystems/mock.nix) { extraDirs = "/mnt/games /mnt/home"; };
+  var = (import ../filesystems/var.nix);
+  system = (import ../filesystems/system.nix) {
     extraDirs = "/mnt/games /mnt/home /mnt/.nix/home";
     extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
   };
@@ -28,7 +26,7 @@ let
     inherit
       esp
       msr
-      vault
+      emergency
       recovery
       win
       cryptsys

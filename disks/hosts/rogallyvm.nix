@@ -1,21 +1,19 @@
 let
-  boot = import ../lib/boot.nix;
   winmod = import ../lib/win.nix;
-  linux = import ../lib/linux.nix;
 
-  esp = boot.esp { };
+  esp = (import ../lib/esp.nix) { };
   msr = winmod.msr { };
-  vault = boot.vault { priority = 3; };
+  emergency = (import ../lib/emergency.nix) { priority = 3; };
   recovery = winmod.recovery { };
   win = winmod.win { };
-  cryptsys = linux.cryptsys {
+
+  cryptsys = (import ../filesystems/system.nix) {
     size = "90G";
     priority = 6;
   };
-
-  fstemp = linux.mockpart { extraDirs = "/mnt/home"; };
-  var = linux.varpart;
-  system = linux.syspart {
+  fstemp = (import ../filesystems/mock.nix) { extraDirs = "/mnt/home"; };
+  var = (import ../filesystems/var.nix);
+  system = (import ../filesystems/system.nix) {
     extraDirs = "/mnt/home /mnt/.nix/home";
     extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
   };
@@ -23,7 +21,7 @@ let
   partitions = {
     inherit
       msr
-      vault
+      emergency
       recovery
       win
       cryptsys

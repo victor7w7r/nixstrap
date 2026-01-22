@@ -1,23 +1,21 @@
 let
-  boot = import ../lib/boot.nix;
-  winmod = import ../lib/win.nix;
-  linux = import ../lib/linux.nix;
+  winmod = import ../filesystems/windows.nix;
 
-  esp = boot.esp { };
-  vault = boot.vault { };
-  cryptsys = linux.cryptsys { };
+  esp = (import ../lib/esp.nix) { };
+  emergency = (import ../lib/emergency.nix) { };
+  cryptsys = (import ../filesystems/system.nix) { };
 
   msr = winmod.msr { };
   recovery = winmod.recovery { };
   win = winmod.win { size = "100%"; };
 
-  fstemp = linux.mockpart { extraDirs = "/mnt/kvm /mnt/media"; };
-  home = linux.homepart { };
-  var = linux.varpart;
-  system = linux.syspart { size = "70G"; };
-  kvm = linux.kvmpart;
+  fstemp = (import ../filesystems/mock.nix) { extraDirs = "/mnt/kvm /mnt/media"; };
+  home = (import ../filesystems/home.nix);
+  var = (import ../filesystems/var.nix);
+  system = (import ../filesystems/system.nix) { size = "70G"; };
+  kvm = (import ../filesystems/kvm.nix);
 
-  partitions = { inherit esp vault cryptsys; };
+  partitions = { inherit esp emergency cryptsys; };
   satapartitions = { inherit msr recovery win; };
   lvs = {
     inherit

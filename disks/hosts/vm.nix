@@ -1,17 +1,14 @@
 let
-  boot = import ../lib/boot.nix;
-  linux = import ../lib/linux.nix;
+  esp = (import ../lib/esp.nix) { };
+  emergency = (import ../lib/emergency.nix) { };
+  cryptsys = (import ../filesystems/system.nix) { };
 
-  esp = boot.esp { };
-  vault = boot.vault { };
-  cryptsys = linux.cryptsys { };
+  fstemp = (import ../filesystems/mock.nix) { };
+  home = (import ../filesystems/home.nix);
+  var = (import ../filesystems/var.nix);
+  system = (import ../filesystems/system.nix) { };
 
-  fstemp = linux.mockpart { };
-  home = linux.homepart { };
-  var = linux.varpart;
-  system = linux.syspart { };
-
-  partitions = { inherit esp vault cryptsys; };
+  partitions = { inherit esp emergency cryptsys; };
   lvs = {
     inherit
       fstemp

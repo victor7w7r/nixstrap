@@ -11,14 +11,45 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      disko,
-      self,
-    }:
+  outputs = { disko, nixpkgs, self }:
     {
       nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/laptop.nix
+          ];
+        };
+        macmini = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/macmini.nix
+          ];
+        };
+        rogally = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/rogally.nix
+          ];
+        };
+        rogallyvm = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/rogallyvm.nix
+          ];
+        };
+        server = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/server.nix
+          ];
+        };
+        vm = nixpkgs.lib.nixosSystem {
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/vm.nix
+          ];
+        };
       };
       packages."x86_64-linux" =
         (builtins.mapAttrs (n: v: v.config.system.build.isoImage) self.nixosConfigurations)

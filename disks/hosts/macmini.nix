@@ -1,33 +1,31 @@
 let
-  boot = import ../lib/boot.nix;
   winmod = import ../lib/win.nix;
-  linux = import ../lib/linux.nix;
 
-  esp = boot.esp { };
+  esp = (import ../lib/esp.nix) { };
   msr = winmod.msr { };
-  vault = boot.vault { };
+  emergency = (import ../lib/emergency.nix) { };
   macos = {
     name = "macos";
     size = "110G";
   };
   recovery = winmod.recovery { };
   win = winmod.win { };
-  cryptsys = linux.cryptsys { size = "90G"; };
-  shared = linux.shared { };
 
-  fstemp = linux.mockpart {
+  cryptsys = (import ../filesystems/system.nix) { size = "90G"; };
+
+  shared = (import ../filesystems/shared.nix) { };
+  fstemp = (import ../filesystems/mock.nix) {
     extraDirs = "/mnt/kvm /mnt/media/nvmestorage /mnt/media/docs";
   };
-  system = linux.syspart { };
-
-  var = linux.varpart;
-  home = linux.homepart { size = "100%"; };
+  system = (import ../filesystems/system.nix) { };
+  var = (import ../filesystems/var.nix);
+  home = (import ../filesystems/home.nix) { size = "100%"; };
 
   partitions = {
     inherit
       esp
       msr
-      vault
+      emergency
       macos
       recovery
       win
