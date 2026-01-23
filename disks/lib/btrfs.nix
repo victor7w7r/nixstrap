@@ -23,6 +23,7 @@
       "lazytime"
       "noatime"
       "discard=async"
+      "space_cache=v2"
     ];
   };
 }
