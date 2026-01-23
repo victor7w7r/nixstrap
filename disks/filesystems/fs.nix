@@ -6,8 +6,8 @@
   size = "5G";
   label = "fs";
   mountOptions = [
-    "nodatasum"
     "nodatacow"
+    "commit=60"
   ];
   subvolumes = {
     "/var".mountpoint = "/var";

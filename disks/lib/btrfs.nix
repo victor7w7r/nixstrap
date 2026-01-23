@@ -4,7 +4,10 @@
   label,
   mountpoint ? null,
   postMountHook ? "",
-  mountOptions ? [ "compress-force=zstd:3" ],
+  mountOptions ? [
+    "compress-force=zstd:3"
+    "commit=80"
+  ],
   subvolumes ? null,
 }:
 {
@@ -19,9 +22,7 @@
     mountOptions = mountOptions ++ [
       "lazytime"
       "noatime"
-      "commit=80"
       "discard=async"
-      "space_cache=v2"
     ];
   };
 }

@@ -1,11 +1,5 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  lib,
-  nix-cachyos-kernel,
-  ...
-}:
-{
-  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
   boot = {
     loader.grub.memtest86.enable = true;
     kernelModules = [ "rtl8821cu" ];
