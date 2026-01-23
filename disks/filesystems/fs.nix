@@ -5,15 +5,23 @@
   name = "fs";
   size = "5G";
   label = "fs";
-  mountOptions = [ "commit=60" ];
+  mountOptions = [ ];
   subvolumes = {
     "/var" = {
       mountpoint = "/var";
-      mountOptions = [ "nodatacow" ];
+      mountOptions = [
+        "nodatacow"
+        "lazytime"
+        "noatime"
+      ];
     };
     "/rootfs" = {
       mountpoint = "/";
-      mountOptions = [ "nodatacow" ];
+      mountOptions = [
+        "nodatacow"
+        "lazytime"
+        "noatime"
+      ];
     };
   };
   postMountHook = ''
