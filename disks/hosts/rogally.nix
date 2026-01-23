@@ -12,7 +12,8 @@ let
   };
   games = (import ../filesystems/shared.nix) {
     name = "games";
-    mountpoint = "/games";
+    mountContent = "/games";
+    mountSnap = "/games.snap";
   };
 
   fs = (import ../filesystems/fs.nix) { extraDirs = "/mnt/games /mnt/home"; };

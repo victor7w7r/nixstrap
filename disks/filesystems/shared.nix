@@ -1,7 +1,8 @@
 {
   size ? "100%",
   name ? "Shared",
-  mountpoint ? "/media/shared",
+  mountContent ? "/media/shared",
+  mountSnap ? "/media/.shared-snapshots",
   priority ? 100,
   label ? "shared",
 }:
@@ -14,14 +15,16 @@
       "-f"
       "-L ${label}"
     ];
-    inherit mountpoint;
     mountOptions = [
       "lazytime"
       "noatime"
-      "commit=60"
       "discard=async"
       "space_cache=v2"
       "compress-force=zstd:2"
     ];
+    subvolumes = {
+      mountContent.mountpoint = mountContent;
+      mountSnap.mountpoint = mountSnap;
+    };
   };
 }
