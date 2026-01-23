@@ -1,24 +1,25 @@
 let
   winmod = import ../lib/win.nix;
-
   esp = (import ../lib/esp.nix) { };
   msr = winmod.msr { };
-  emergency = (import ../lib/emergency.nix) { };
+  emergency = (import ../lib/emergency.nix) { priority = 3; };
+  recovery = winmod.recovery { };
   macos = {
     name = "macos";
     size = "110G";
+    priority = 5;
   };
-  recovery = winmod.recovery { };
-  win = winmod.win { };
-
-  cryptsys = (import ../filesystems/system.nix) { size = "90G"; };
-
+  win = winmod.win { priority = 6; };
+  cryptsys = (import ../lib/cryptsys.nix) {
+    size = "90G";
+    priority = 7;
+  };
   shared = (import ../filesystems/shared.nix) { };
-  fstemp = (import ../filesystems/mock.nix) {
+
+  fs = (import ../filesystems/mock.nix) {
     extraDirs = "/mnt/kvm /mnt/media/nvmestorage /mnt/media/docs";
   };
-  system = (import ../filesystems/system.nix) { };
-  var = (import ../filesystems/var.nix);
+  system = (import ../filesystems/system-btrfs.nix) { };
   home = (import ../filesystems/home.nix) { size = "100%"; };
 
   partitions = {
@@ -42,8 +43,8 @@ let
     };
   };
 
-  lvs = { inherit fstemp system; };
-  storagelvs = { inherit var home; };
+  lvs = { inherit fs system; };
+  storagelvs = { inherit home; };
 in
 {
   disko.devices = {

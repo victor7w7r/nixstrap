@@ -2,7 +2,7 @@
   extraDirs ? "",
   extraBinds ? "",
 }:
-(import ../lib/btrfs.nix) {
+(import ../lib/xfs.nix) {
   name = "system";
   size = "100%";
   label = "system";

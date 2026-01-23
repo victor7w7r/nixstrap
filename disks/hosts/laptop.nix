@@ -1,22 +1,25 @@
 let
+  winmod = import ../lib/windows.nix;
   esp = (import ../lib/esp.nix) { };
+  msr = winmod.msr { };
   emergency = (import ../lib/emergency.nix) { };
-  cryptsys = (import ../filesystems/system.nix) { };
+  cryptsys = (import ../lib/cryptsys.nix) { };
 
-  fstemp = (import ../filesystems/mock.nix) { };
-  home = (import ../filesystems/home.nix);
-  var = (import ../filesystems/var.nix);
-  system = (import ../filesystems/system.nix) { };
+  fs = (import ../filesystems/fs.nix) { extraDirs = "/mnt/games /mnt/home"; };
+  system = (import ../filesystems/system-xfs.nix) {
+    extraDirs = "/mnt/home /mnt/.nix/home";
+    extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
+  };
 
-  partitions = { inherit esp emergency cryptsys; };
-  lvs = {
+  partitions = {
     inherit
-      fstemp
-      home
-      var
-      system
+      esp
+      msr
+      emergency
+      cryptsys
       ;
   };
+  lvs = { inherit fs system; };
 in
 {
   disko.devices = {

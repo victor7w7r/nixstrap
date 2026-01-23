@@ -3,13 +3,17 @@
   name ? "Shared",
   mountpoint ? "/media/shared",
   priority ? 100,
+  label ? "shared",
 }:
 {
   inherit name size priority;
   type = "8300";
   content = {
     type = "btrfs";
-    extraArgs = [ "-f" ];
+    extraArgs = [
+      "-f"
+      "-L ${label}"
+    ];
     inherit mountpoint;
     mountOptions = [
       "lazytime"
@@ -17,7 +21,7 @@
       "commit=60"
       "discard=async"
       "space_cache=v2"
-      "compress-force=zstd:6"
+      "compress-force=zstd:2"
     ];
   };
 }

@@ -6,6 +6,7 @@
     (import ./esp.nix)
     (import ./ext4.nix)
     (import ./f2fs.nix)
+    (import ./windows.nix)
     (import ./xfs.nix)
   ];
 }

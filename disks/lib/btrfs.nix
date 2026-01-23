@@ -2,9 +2,10 @@
   name,
   size,
   label,
-  mountpoint,
+  mountpoint ? null,
   postMountHook ? "",
   mountOptions ? [ "compress-force=zstd:3" ],
+  subvolumes ? null,
 }:
 {
   inherit name size;
@@ -12,9 +13,9 @@
     type = "btrfs";
     extraArgs = [
       "-f"
-      "L ${label}"
+      "-L ${label}"
     ];
-    inherit mountpoint postMountHook;
+    inherit mountpoint postMountHook subvolumes;
     mountOptions = mountOptions ++ [
       "lazytime"
       "noatime"

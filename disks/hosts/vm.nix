@@ -1,22 +1,14 @@
 let
   esp = (import ../lib/esp.nix) { };
   emergency = (import ../lib/emergency.nix) { };
-  cryptsys = (import ../filesystems/system.nix) { };
+  cryptsys = (import ../lib/cryptsys.nix) { };
 
-  fstemp = (import ../filesystems/mock.nix) { };
+  fs = (import ../filesystems/fs.nix) { };
   home = (import ../filesystems/home.nix);
-  var = (import ../filesystems/var.nix);
-  system = (import ../filesystems/system.nix) { };
+  system = (import ../filesystems/system-btrfs.nix) { };
 
   partitions = { inherit esp emergency cryptsys; };
-  lvs = {
-    inherit
-      fstemp
-      home
-      var
-      system
-      ;
-  };
+  lvs = { inherit fs home system; };
 in
 {
   disko.devices = {

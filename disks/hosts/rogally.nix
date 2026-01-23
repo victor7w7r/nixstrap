@@ -1,13 +1,12 @@
 let
-  winmod = import ../filesystems/windows.nix;
+  winmod = import ../lib/windows.nix;
 
   esp = (import ../lib/esp.nix) { };
   msr = winmod.msr { };
   emergency = (import ../lib/emergency.nix) { priority = 3; };
   recovery = winmod.recovery { };
   win = winmod.win { };
-
-  cryptsys = (import ../filesystems/system.nix) {
+  cryptsys = (import ../lib/cryptsys.nix) {
     size = "90G";
     priority = 6;
   };
@@ -15,9 +14,9 @@ let
     name = "games";
     mountpoint = "/games";
   };
-  fstemp = (import ../filesystems/mock.nix) { extraDirs = "/mnt/games /mnt/home"; };
-  var = (import ../filesystems/var.nix);
-  system = (import ../filesystems/system.nix) {
+
+  fs = (import ../filesystems/fs.nix) { extraDirs = "/mnt/games /mnt/home"; };
+  system = (import ../filesystems/system-xfs.nix) {
     extraDirs = "/mnt/games /mnt/home /mnt/.nix/home";
     extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
   };
@@ -34,7 +33,7 @@ let
       ;
   };
 
-  lvs = { inherit fstemp var system; };
+  lvs = { inherit fs system; };
 in
 {
   disko.devices = {
