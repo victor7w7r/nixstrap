@@ -2,8 +2,7 @@
   name = "cloudraid";
   label = "cloudraid";
   size = "100%";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   mountpoint = "/run/media/cloudraid";
   extraArgs = [
     "-l"

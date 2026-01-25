@@ -23,8 +23,7 @@ in
   name = "rootfs";
   size = if hasVar then "5G" else "100M";
   label = "rootfs";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   mountOptions = [ ];
   postMountHook = ''
     mkdir -p /mnt/nix /mnt/etc /mnt/root ${extraDirs} ${if hasVar then "/mnt/var" else ""}

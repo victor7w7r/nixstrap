@@ -6,8 +6,7 @@
   inherit size isSolid;
   name = "var";
   label = "var";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   mountpoint = "/var";
   mountOptions = [
     "nodatacow"

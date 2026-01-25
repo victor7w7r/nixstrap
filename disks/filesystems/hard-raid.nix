@@ -2,8 +2,7 @@
   name = "hardraid";
   label = "hardraid";
   size = "100%";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   mountpoint = "/run/media/hardraid";
   extraArgs = [
     "-l"

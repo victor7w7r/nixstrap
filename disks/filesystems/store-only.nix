@@ -5,7 +5,6 @@
   inherit size;
   name = "store";
   label = "store";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   mountpoint = "/nix";
 }

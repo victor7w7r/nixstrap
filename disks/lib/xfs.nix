@@ -2,20 +2,14 @@
   name,
   size,
   label,
-  lvm_type ? null,
-  pool ? null,
+  lvmPool ? "",
   mountpoint,
   postMountHook ? "",
   extraArgs ? [ ],
   mountOptions ? [ ],
 }:
 {
-  inherit
-    name
-    size
-    lvm_type
-    pool
-    ;
+  inherit name size;
   content = {
     type = "filesystem";
     format = "xfs";
@@ -37,3 +31,12 @@
     ];
   };
 }
+// (
+  if lvmPool != "" then
+    {
+      lvm_type = "thinlv";
+      pool = lvmPool;
+    }
+  else
+    { }
+)

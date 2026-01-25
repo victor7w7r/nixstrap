@@ -5,8 +5,7 @@
 (import ../lib/xfs.nix) {
   name = "system";
   size = "100%";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   label = "system";
   mountpoint = "/.nix";
   postMountHook = ''

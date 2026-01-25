@@ -6,8 +6,7 @@
   inherit size;
   name = "system";
   label = "system";
-  lvm_type = "thinlv";
-  pool = "thinpool";
+  lvmPool = "thinpool";
   postMountHook = if hasHome then "mkdir -p /home/common" else null;
   subvolumes = {
     "/etc".mountpoint = "/etc";
