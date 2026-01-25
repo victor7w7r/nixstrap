@@ -3,22 +3,21 @@
   size,
   label,
   mountpoint ? null,
-  priority ? null,
   type ? null,
+  priority ? null,
   lvmPool ? "",
   postMountHook ? null,
   mountOptions ? [
     "compress-force=zstd:3"
     "commit=80"
   ],
-  subvolumes ? null,
+  subvolumes ? { },
   isSolid ? true,
 }:
 {
   inherit
     name
     size
-    priority
     ;
   content = {
     inherit mountpoint postMountHook subvolumes;
@@ -46,6 +45,6 @@
     }
   else
     {
-      inherit type;
+      inherit priority type;
     }
 )
