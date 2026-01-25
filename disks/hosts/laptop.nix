@@ -1,25 +1,24 @@
 let
   winmod = import ../lib/windows.nix;
-  esp = (import ../lib/esp.nix) { };
-  msr = winmod.msr { };
-  emergency = (import ../lib/emergency.nix) { };
-  cryptsys = (import ../lib/cryptsys.nix) { };
-
-  fs = (import ../filesystems/fs.nix) { extraDirs = "/mnt/games /mnt/home"; };
-  system = (import ../filesystems/system-xfs.nix) {
-    extraDirs = "/mnt/home /mnt/.nix/home";
-    extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
-  };
 
   partitions = {
-    inherit
-      esp
-      msr
-      emergency
-      cryptsys
-      ;
+    esp = (import ../lib/esp.nix) { };
+    msr = winmod.msr { };
+    emergency = (import ../filesystems/emergency.nix) { priority = 3; };
+    systempv = (import ../lib/luks-lvm.nix) { };
   };
-  lvs = { inherit fs system; };
+
+  lvs = {
+    thinpool = {
+      size = "100%";
+      lvm_type = "thin-pool";
+    };
+    rootfs = (import ../filesystems/rootfs.nix) { extraDirs = "/mnt/home"; };
+    system = (import ../filesystems/system-xfs.nix) {
+      hasHome = true;
+      hasStore = true;
+    };
+  };
 in
 {
   disko.devices = {
@@ -31,11 +30,9 @@ in
         inherit partitions;
       };
     };
-    lvm_vg = {
-      vg0 = {
-        type = "lvm_vg";
-        inherit lvs;
-      };
+    lvm_vg.vg0 = {
+      type = "lvm_vg";
+      inherit lvs;
     };
   };
 }

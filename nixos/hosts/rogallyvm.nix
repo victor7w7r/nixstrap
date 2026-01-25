@@ -1,23 +1,29 @@
 { pkgs, self, ... }:
 let
-  options = import ./common/options.nix;
-  params = import ./common/params.nix;
-  systems = import ./common/filesystems.nix;
-  security = import ./common/security.nix;
-
   sec = security { inherit self; };
+  params = import ./lib/kernel-params.nix;
+  security = import ./lib/security.nix;
+
+  root-var = (import ./filesystems/root-var.nix) { };
+  boot = import ./filesystems/boot.nix;
+  tmp = import ./filesystems/tmp.nix;
+  system = (import ./filesystems/system-xfs.nix) {
+    dir = "home";
+  };
 in
 {
-  powerManagement.cpuFreqGovernor = "ondemand";
-
   fileSystems = {
-    "/games" = {
-      device = "/dev/disk/by-partlabel/disk-main-games";
-      fsType = "btrfs";
-      options = options.btrfsOptions;
-    };
-  }
-  // systems { homeDisk = ""; };
+    inherit (root-var) "/" "/var";
+    inherit (boot) "/boot/emergency";
+    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
+    inherit (system)
+      "/.nix"
+      "/nix"
+      "/etc"
+      "/root"
+      "/home"
+      ;
+  };
 
   boot = {
     kernelParams = [

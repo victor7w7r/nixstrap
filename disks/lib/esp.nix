@@ -14,18 +14,19 @@
       "-F32"
       "-n"
       "EFI"
+      "-S"
+      "4096"
     ];
     mountOptions = [
-      "relatime"
-      "fmask=0022"
-      "dmask=0022"
+      "lazytime"
+      "noatime"
       "umask=0077"
+      "dmask=0077"
       "codepage=437"
-      "iocharset=iso8859-1"
+      "iocharset=ascii"
       "shortname=mixed"
-      "nofail"
-      "utf8"
       "errors=remount-ro"
+      "nofail"
     ];
   };
 }

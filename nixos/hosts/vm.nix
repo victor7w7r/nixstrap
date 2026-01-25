@@ -1,14 +1,30 @@
 { modulesPath, self, ... }:
 let
-  params = import ./common/params.nix;
-  systems = import ./common/filesystems.nix;
-  security = import ./common/security.nix;
-
   sec = security { inherit self; };
+  params = import ./lib/kernel-params.nix;
+  security = import ./lib/security.nix;
+
+  root-var = (import ./filesystems/root-var.nix) { };
+  boot = import ./filesystems/boot.nix;
+  system = (import ./filesystems/system-btrfs.nix) { };
+  tmp = import ./filesystems/tmp.nix;
+
 in
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
-  fileSystems = systems { };
+
+  fileSystems = {
+    inherit (root-var) "/" "/var";
+    inherit (boot) "/boot" "/boot/emergency";
+    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
+    inherit (system)
+      "/.nix"
+      "/nix"
+      "/etc"
+      "/root"
+      "/home"
+      ;
+  };
   powerManagement.cpuFreqGovernor = "ondemand";
 
   boot = {

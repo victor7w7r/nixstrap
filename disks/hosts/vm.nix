@@ -1,14 +1,22 @@
 let
-  esp = (import ../lib/esp.nix) { };
-  emergency = (import ../lib/emergency.nix) { };
-  cryptsys = (import ../lib/cryptsys.nix) { };
+  partitions = {
+    esp = (import ../lib/esp.nix) { };
+    emergency = (import ../filesystems/emergency.nix) { };
+    systempv = (import ../lib/luks-lvm.nix) { };
+  };
 
-  fs = (import ../filesystems/fs.nix) { };
-  home = (import ../filesystems/home.nix);
-  system = (import ../filesystems/system-btrfs.nix) { };
-
-  partitions = { inherit esp emergency cryptsys; };
-  lvs = { inherit fs home system; };
+  lvs = {
+    thinpool = {
+      size = "100%";
+      lvm_type = "thin-pool";
+    };
+    rootfs = (import ../filesystems/rootfs.nix) { };
+    system = (import ../filesystems/system-btrfs.nix) {
+      hasHome = true;
+      size = "20G";
+    };
+    store = (import ../filesystems/store-only) { size = "100%"; };
+  };
 in
 {
   disko.devices = {
@@ -20,11 +28,9 @@ in
         inherit partitions;
       };
     };
-    lvm_vg = {
-      vg0 = {
-        type = "lvm_vg";
-        inherit lvs;
-      };
+    lvm_vg.vg0 = {
+      type = "lvm_vg";
+      inherit lvs;
     };
   };
 }

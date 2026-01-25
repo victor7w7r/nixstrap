@@ -1,33 +1,28 @@
 let
-  winmod = import ../lib/win.nix;
-
-  esp = (import ../lib/esp.nix) { };
-  msr = winmod.msr { };
-  emergency = (import ../lib/emergency.nix) { priority = 3; };
-  recovery = winmod.recovery { };
-  win = winmod.win { };
-  cryptsys = (import ../lib/cryptsys.nix) {
-    size = "90G";
-    priority = 6;
-  };
-
-  fs = (import ../filesystems/fs.nix) { extraDirs = "/mnt/games /mnt/home"; };
-  system = (import ../filesystems/system-xfs.nix) {
-    extraDirs = "/mnt/home /mnt/.nix/home";
-    extraBinds = "mount --bind /mnt/.nix/home /mnt/home";
-  };
+  winmod = import ../lib/windows.nix;
 
   partitions = {
-    inherit
-      msr
-      emergency
-      recovery
-      win
-      cryptsys
-      ;
+    msr = winmod.msr { };
+    emergency = (import ../filesystems/emergency.nix) { priority = 3; };
+    recovery = winmod.recovery { };
+    win = winmod.win { };
+    systempv = (import ../lib/luks-lvm.nix) {
+      size = "90G";
+      priority = 6;
+    };
   };
 
-  lvs = { inherit fs system; };
+  lvs = {
+    thinpool = {
+      size = "100%";
+      lvm_type = "thin-pool";
+    };
+    rootfs = (import ../filesystems/rootfs.nix) { extraDirs = "/mnt/games /mnt/home"; };
+    system = (import ../filesystems/system-xfs.nix) {
+      hasHome = true;
+      hasStore = true;
+    };
+  };
 in
 {
   disko.devices = {
@@ -37,7 +32,9 @@ in
         device = "/dev/sda";
         content = {
           type = "gpt";
-          partitions = { inherit esp; };
+          partitions = {
+            esp = (import ../lib/esp.nix) { };
+          };
         };
       };
       main = {
@@ -49,11 +46,9 @@ in
         };
       };
     };
-    lvm_vg = {
-      vg0 = {
-        type = "lvm_vg";
-        inherit lvs;
-      };
+    lvm_vg.vg0 = {
+      type = "lvm_vg";
+      inherit lvs;
     };
   };
 }

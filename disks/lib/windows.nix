@@ -1,9 +1,9 @@
 {
   win =
     {
-      size ? "100G",
-      name ? "Win",
+      name ? "win",
       priority ? 5,
+      size ? "100G",
     }:
     {
       inherit name size priority;
@@ -12,23 +12,23 @@
 
   msr =
     {
-      size ? "16M",
-      name ? "msr",
+      priority ? 2,
     }:
     {
-      inherit name size;
-      priority = 2;
+      inherit priority;
       type = "0C01";
+      name = "msr";
+      size = "16M";
     };
 
   recovery =
     {
-      size ? "1G",
-      name ? "Recovery",
+      name ? "winrecovery",
+      priority ? 4,
     }:
     {
-      inherit name size;
-      priority = 4;
+      inherit name priority;
       type = "2700";
+      size = "1G";
     };
 }
