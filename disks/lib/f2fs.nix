@@ -3,12 +3,19 @@
   size,
   label,
   mountpoint,
+  lvm_type ? null,
+  pool ? null,
   postMountHook ? "",
   extraArgs ? [ ],
   mountOptions ? [ ],
 }:
 {
-  inherit name size;
+  inherit
+    name
+    size
+    lvm_type
+    pool
+    ;
   content = {
     type = "filesystem";
     format = "f2fs";

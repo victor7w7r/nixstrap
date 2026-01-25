@@ -2,13 +2,20 @@
   name,
   size,
   label,
+  lvm_type ? null,
+  pool ? null,
   mountpoint,
   postMountHook ? "",
   extraArgs ? [ ],
   mountOptions ? [ ],
 }:
 {
-  inherit name size;
+  inherit
+    name
+    size
+    lvm_type
+    pool
+    ;
   content = {
     type = "filesystem";
     format = "xfs";
