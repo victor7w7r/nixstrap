@@ -18,7 +18,6 @@
   inherit
     name
     size
-    type
     priority
     ;
   content = {
@@ -46,5 +45,7 @@
       pool = lvmPool;
     }
   else
-    { }
+    {
+      inherit type;
+    }
 )
