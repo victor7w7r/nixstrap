@@ -4,16 +4,17 @@ let
   params = import ./lib/kernel-params.nix;
   security = import ./lib/security.nix;
 
-  root-var = (import ./filesystems/root-var.nix) { };
-  boot = import ./filesystems/boot.nix;
+  rootfs = (import ./filesystems/rootfs.nix) { };
+  boot = (import ./filesystems/boot.nix) { };
   tmp = import ./filesystems/tmp.nix;
   system = (import ./filesystems/system-xfs.nix) {
-    dir = "home";
+    hasHome = true;
+    hasStore = true;
   };
 in
 {
   fileSystems = {
-    inherit (root-var) "/" "/var";
+    inherit (rootfs) "/" "/var";
     inherit (boot) "/boot/emergency";
     inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
     inherit (system)

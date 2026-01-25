@@ -4,28 +4,29 @@ let
   params = import ./lib/kernel-params.nix;
   security = import ./lib/security.nix;
 
-  root-var = (import ./filesystems/root-var.nix) { };
-  boot = import ./filesystems/boot.nix;
-  system = (import ./filesystems/system-btrfs.nix) { };
+  rootfs = (import ./filesystems/rootfs.nix) { };
+  boot = import ./filesystems/boot.nix { };
+  system = (import ./filesystems/system-btrfs.nix) {
+    hasHome = true;
+  };
+  store = (import ./filesystems/store-only.nix) { };
   tmp = import ./filesystems/tmp.nix;
-
 in
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
 
   fileSystems = {
-    inherit (root-var) "/" "/var";
+    inherit (rootfs) "/" "/var";
     inherit (boot) "/boot" "/boot/emergency";
     inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
+    inherit (store) "/nix";
     inherit (system)
-      "/.nix"
-      "/nix"
       "/etc"
       "/root"
       "/home"
+      "/.snaps"
       ;
   };
-  powerManagement.cpuFreqGovernor = "ondemand";
 
   boot = {
     kernelParams = [

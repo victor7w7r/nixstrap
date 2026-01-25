@@ -49,7 +49,7 @@ let
       hasVar = false;
       extraDirs = "/mnt/kvm /run/media/extssd /run/media/docs";
     };
-
+    system = (import ../filesystems/system-btrfs.nix) { };
   };
 
   hardlvs = {
@@ -66,6 +66,11 @@ let
     thinpool = {
       size = "100%";
       lvm_type = "thin-pool";
+    };
+    lightdocs = (import ../filesystems/xfs.nix) {
+      name = "lightdocs";
+      label = "lightdocs";
+      size = "100G";
     };
     docs = (import ../filesystems/btrfs.nix) {
       name = "docs";

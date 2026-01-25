@@ -11,6 +11,7 @@
     "commit=80"
   ],
   subvolumes ? null,
+  isSolid ? true,
 }:
 {
   inherit
@@ -27,11 +28,13 @@
       "-L"
       "${label}"
     ];
-    mountOptions = mountOptions ++ [
-      "lazytime"
-      "noatime"
-      "discard=async"
-      "space_cache=v2"
-    ];
+    mountOptions =
+      mountOptions
+      ++ [
+        "lazytime"
+        "noatime"
+        "space_cache=v2"
+      ]
+      ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
   };
 }

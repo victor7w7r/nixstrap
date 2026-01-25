@@ -1,15 +1,32 @@
 { self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
-  params = import ./common/params.nix;
-  systems = import ./common/filesystems.nix;
   security = import ./common/security.nix;
-
   sec = security { inherit self; };
+  params = import ./lib/kernel-params.nix;
+
+  rootfs = (import ./filesystems/rootfs.nix) { };
+  boot = (import ./filesystems/boot.nix) { };
+  tmp = import ./filesystems/tmp.nix;
+  system = (import ./filesystems/system-xfs.nix) {
+    hasHome = true;
+    hasStore = true;
+  };
+
 in
 {
-  fileSystems = systems { };
-  powerManagement.cpuFreqGovernor = "ondemand";
+  fileSystems = {
+    inherit (rootfs) "/" "/var";
+    inherit (boot) "/boot" "/boot/emergency";
+    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
+    inherit (system)
+      "/.nix"
+      "/nix"
+      "/etc"
+      "/root"
+      "/home"
+      ;
+  };
 
   boot = {
     kernelParams = [

@@ -1,9 +1,11 @@
+{
+  hasHome ? false,
+}:
 let
   builder = subvol: {
-    device = "/dev/mapper/vg0-fs";
+    device = "/dev/mapper/vg0-system";
     fsType = "btrfs";
     options = [
-      "nodatacow"
       "lazytime"
       "noatime"
       "discard=async"
@@ -16,4 +18,6 @@ in
 {
   "/etc" = builder "/etc";
   "/root" = builder "/root";
+  "/.snaps" = builder "/snaps";
 }
+// (if hasHome then { "/home" = builder "/home"; } else { })

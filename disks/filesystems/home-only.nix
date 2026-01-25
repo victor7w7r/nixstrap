@@ -1,8 +1,9 @@
 {
   size ? "10G",
+  isSolid ? false,
 }:
 (import ../lib/btrfs.nix) {
-  inherit size;
+  inherit size isSolid;
   name = "home";
   label = "home";
   lvm_type = "thinlv";

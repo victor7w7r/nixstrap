@@ -11,9 +11,15 @@ let
     };
 in
 {
-  dir ? "",
+  hasHome ? false,
+  hasStore ? false,
 }:
 {
+  "/etc" = nixBind { dir = "etc"; };
+  "/root" = nixBind {
+    dir = "root";
+    neededForBoot = false;
+  };
   "/.nix" = {
     device = "/dev/mapper/vg0-system";
     fsType = "xfs";
@@ -27,17 +33,20 @@ in
       "inode64"
     ];
   };
-  "/nix" = nixBind { dir = "nix"; };
-  "/etc" = nixBind { dir = "etc"; };
-  "/root" = nixBind {
-    dir = "root";
-    neededForBoot = false;
-  };
+
 }
 // (
-  if (dir != "") then
+  if hasHome then
     {
-      "/${dir}" = nixBind { inherit dir; };
+      "/home" = nixBind { dir = "home"; };
+    }
+  else
+    { }
+)
+// (
+  if hasStore then
+    {
+      "/nix" = nixBind { dir = "nix"; };
     }
   else
     { }

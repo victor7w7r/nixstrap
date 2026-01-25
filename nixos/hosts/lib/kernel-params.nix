@@ -1,5 +1,5 @@
 {
-  mockDisk ? "/dev/mapper/vg0-fs",
+  mockDisk ? "/dev/mapper/vg0-rootfs",
   rootfs ? "btrfs",
   rootflags ? "noatime,lazytime,nobarrier,discard=async,commit=30,subvol=/rootfs",
 }:

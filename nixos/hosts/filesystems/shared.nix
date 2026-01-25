@@ -1,6 +1,9 @@
-{ sharedDir ? "/shared", partlabel ? "shared" }:
 {
-  sharedDir = {
+  sharedDir ? "/run/media/shared",
+  partlabel ? "shared",
+}:
+{
+  "${sharedDir}" = {
     device = "/dev/disk/by-partlabel/disk-main-${partlabel}";
     fsType = "btrfs";
     options = [

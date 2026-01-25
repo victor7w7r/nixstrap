@@ -1,37 +1,34 @@
 { pkgs, self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
-  options = import ./common/options.nix;
   params = import ./common/params.nix;
-  systems = import ./common/filesystems.nix;
   security = import ./common/security.nix;
-
   sec = security { inherit self; };
+
+  rootfs = (import ./filesystems/rootfs.nix) {
+    hasVar = false;
+  };
+  boot = import ./filesystems/boot.nix { disk = "TODO"; };
+  system = (import ./filesystems/system-btrfs.nix) { };
+  home = (import ./filesystems/home-only.nix) { name = "TODO"; };
+  store = (import ./filesystems/store-only.nix) { name = "TODO"; };
+  tmp = import ./filesystems/tmp.nix;
+  shared = import (import ./filesystems/shared.nix) { };
 in
 {
   fileSystems = {
-    "/kvm" = {
-      device = "/dev/mapper/vg2-kvm";
-      fsType = "ext4";
-      options = options.ext4Options;
-    };
-    "/media/nvmestorage" = {
-      device = "/dev/mapper/vg2-kvm";
-      fsType = "btrfs";
-      options = options.btrfsOptions;
-    };
-    "/media/docs" = {
-      device = "/dev/mapper/vg3-docs";
-      fsType = "btrfs";
-      options = options.btrfsOptions;
-    };
-  }
-  // systems {
-    homeDisk = "/dev/mapper/vg1-home";
-    varDisk = "/dev/mapper/vg1-var";
+    inherit (rootfs) "/";
+    inherit (boot) "/boot" "/boot/emergency";
+    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
+    inherit (store) "/nix";
+    inherit (home) "/home" "/.homesnaps";
+    inherit (system)
+      "/etc"
+      "/root"
+      "/.snaps"
+      ;
+    inherit (shared) "/run/media/shared";
   };
-
-  powerManagement.cpuFreqGovernor = "ondemand";
 
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
