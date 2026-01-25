@@ -21,6 +21,7 @@ let
     system = (import ../filesystems/system-xfs.nix) {
       hasHome = true;
       hasStore = true;
+      size = "90G";
     };
   };
 in

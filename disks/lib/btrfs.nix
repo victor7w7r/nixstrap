@@ -6,7 +6,7 @@
   type ? null,
   priority ? null,
   lvmPool ? "",
-  postMountHook ? null,
+  postMountHook ? "",
   mountOptions ? [
     "compress-force=zstd:3"
     "commit=80"

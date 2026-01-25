@@ -37,7 +37,7 @@
             cryptsetup config /dev/disk/by-partlabel/disk-main-${name} \
               --label "${label}"
             cryptsetup luksAddKey /dev/disk/by-partlabel/disk-main-${name} \
-              /root/nixstrap/syskey.key -d ${keyFile}
+              /root/nixstrap/${randomKeyName} -d ${keyFile}
           ''
         else
           ""

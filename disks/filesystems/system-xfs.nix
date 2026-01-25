@@ -1,10 +1,11 @@
 {
   hasHome ? false,
   hasStore ? false,
+  size
 }:
 (import ../lib/xfs.nix) {
+  inherit size;
   name = "system";
-  size = "100%";
   lvmPool = "thinpool";
   label = "system";
   mountpoint = "/.nix";

@@ -8,7 +8,7 @@ let
     recovery = winmod.recovery { };
     win = winmod.win { };
     systempv = (import ../lib/luks-lvm.nix) {
-      size = "90G";
+      size = "100G";
       priority = 6;
     };
     games = (import ../filesystems/shared.nix) {
@@ -27,6 +27,7 @@ let
     system = (import ../filesystems/system-xfs.nix) {
       hasHome = true;
       hasStore = true;
+      size = "90G";
     };
   };
 in

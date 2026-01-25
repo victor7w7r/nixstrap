@@ -59,7 +59,7 @@ let
     };
     var = (import ../filesystems/var-only.nix) { };
     store = (import ../filesystems/store-only.nix) { size = "100G"; };
-    home = (import ../filesystems/home-only.nix) { size = "100%"; };
+    home = (import ../filesystems/home-only.nix) { size = "400G"; };
   };
 
   extssdlvs = {
@@ -74,7 +74,7 @@ let
     };
     docs = (import ../filesystems/btrfs.nix) {
       name = "docs";
-      size = "100%";
+      size = "200G";
       subvolumes = {
         "/docs".mountpoint = "/run/media/docs";
         "/docsnaps".mountpoint = "/run/media/.docsnaps";

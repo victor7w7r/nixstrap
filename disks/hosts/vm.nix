@@ -15,7 +15,7 @@ let
       hasHome = true;
       size = "20G";
     };
-    store = (import ../filesystems/store-only) { size = "100%"; };
+    store = (import ../filesystems/store-only) { };
   };
 in
 {
