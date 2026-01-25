@@ -18,8 +18,8 @@
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
       "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
     ];
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
-
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    kernelPackages = pkgs.linuxPackages_6_12;
     supportedFilesystems = lib.mkForce [
       "btrfs"
       "ext4"

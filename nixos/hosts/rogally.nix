@@ -5,7 +5,7 @@
   ...
 }:
 let
-  sharedDir = "/games";
+  sharedDir = "/run/media/games";
   security = import ./lib/security.nix;
   sec = security { inherit self; };
   params = import ./lib/kernel-params.nix;
