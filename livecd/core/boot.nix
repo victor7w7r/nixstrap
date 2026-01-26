@@ -3,11 +3,10 @@
   boot = {
     loader.grub.memtest86.enable = true;
     kernelModules = [
-      "rtl8821cu"
-      "dm-thin-pool"
-    ];
+      "rtl8821cu"    ];
     kernel.sysctl."vm.overcommit_memory" = "1";
     initrd = {
+      availableKernelModules = [ "dm-thin-pool" "dm-snapshot" ];
       services.lvm.enable = true;
       compressorArgs = [
         "-19"
