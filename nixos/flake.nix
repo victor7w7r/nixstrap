@@ -51,10 +51,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -176,7 +172,6 @@
             (import ./modules/home)
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
-            nur.legacyPackages.x86_64-linux.repos.Vortriz.libfprint-focaltech-2808-a658-alt
           ];
           specialArgs = {
             host = "v7w7r-rc71l";

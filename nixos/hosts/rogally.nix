@@ -9,6 +9,7 @@ let
   security = import ./lib/security.nix;
   sec = security { inherit self; };
   params = import ./lib/kernel-params.nix;
+  focaltech = import ./custom/focaltech.nix;
 
   rootfs = (import ./filesystems/rootfs.nix) { };
   boot = (import ./filesystems/boot.nix) { };
@@ -89,7 +90,7 @@ in
       enable = true;
       tod = {
         enable = true;
-        driver = pkgs.nur.repos.Vortriz.libfprint-focaltech-2808-a658-alt;
+        driver = focaltech;
       };
     };
   };
