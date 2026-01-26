@@ -8,10 +8,7 @@
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
     initrd = {
-      services.lvm = {
-        enable = true;
-        boot.thin.enable = true;
-      };
+      services.lvm.enable = true;
       compressorArgs = [
         "-19"
         "--ultra"
