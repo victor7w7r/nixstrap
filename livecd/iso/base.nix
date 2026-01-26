@@ -46,22 +46,4 @@
       esac
     done
   '';
-
-  nixpkgs.overlays = [
-    (_: prev: {
-      mbrola-voices = prev.mbrola-voices.override {
-        languages = [ "*1" ];
-      };
-    })
-  ];
-
-  nix.settings = {
-    max-jobs = 1;
-    cores = 2;
-    trusted-users = [
-      "root"
-      "nixstrap"
-    ];
-  };
-
 }
