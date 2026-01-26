@@ -176,7 +176,7 @@
             (import ./modules/home)
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
-            nur.legacyPackages."${system}".repos.Vortriz.libfprint-focaltech-2808-a658-alt
+            nur.legacyPackages.x86_64-linux.repos.Vortriz.libfprint-focaltech-2808-a658-alt
           ];
           specialArgs = {
             host = "v7w7r-rc71l";
