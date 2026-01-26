@@ -33,7 +33,10 @@ in
       ];
       network.enable = true;
       inherit supportedFilesystems;
-      services.lvm.enable = true;
+      services.lvm = {
+        enable = true;
+        boot.thin.enable = true;
+      };
       verbose = true;
       systemd = {
         enable = true;

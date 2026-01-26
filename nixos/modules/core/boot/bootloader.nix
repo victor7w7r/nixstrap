@@ -89,7 +89,7 @@
       #--secureboot-private-key /var/lib/sbctl/db/db.key \
       #--secureboot-certificate /var/lib/sbctl/db/db.pem \
 
-    ${pkgs.coreutils}/bin/cp /boot/EFI/nixos.efi /boot/vault/$BASE.efi
+    ${pkgs.coreutils}/bin/cp /boot/EFI/nixos.efi /boot/emergency/$BASE.efi
     echo "$BASE" > /boot/EFI/nixos.txt
 
     #if command -v sbctl >/dev/null 2>&1; then

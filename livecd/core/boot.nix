@@ -7,13 +7,19 @@
       "dm-thin-pool"
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
-    initrd.compressorArgs = [
-      "-19"
-      "--ultra"
-      "-T0"
-      "--progress"
-      "--check"
-    ];
+    initrd = {
+      services.lvm = {
+        enable = true;
+        boot.thin.enable = true;
+      };
+      compressorArgs = [
+        "-19"
+        "--ultra"
+        "-T0"
+        "--progress"
+        "--check"
+      ];
+    };
     kernelParams = [
       "add_efi_memmap"
       "mitigations=off"
