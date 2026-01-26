@@ -1,21 +1,10 @@
 {
   nixConfig = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    trusted-substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
     extra-substituters = [
-      #"https://attic.xuyh0120.win/lantian"
+      "https://attic.xuyh0120.win/lantian"
     ];
     extra-trusted-public-keys = [
-      #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcM="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
 
@@ -23,7 +12,7 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -73,16 +73,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1769378644,
-        "narHash": "sha256-OrYAwxvnFY1IblA4JoOMb01zQ4+qZ5W+wkCGSe07ihc=",
-        "rev": "963734815334d2e9ccbbdedb7aa5bb9b84917705",
-        "revCount": 6150,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.6150%2Brev-963734815334d2e9ccbbdedb7aa5bb9b84917705/019bf730-7732-717e-9551-e2a13b30f63e/source.tar.gz"
+        "lastModified": 1769381762,
+        "narHash": "sha256-Mf/8jPJvFXIL8s/gtSrU8PgXJy5Vz7seIU4D7WJmG0M=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2590268ca7627a3ec1a9c9422983495cea51e2e1",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/nix-community/home-manager/0.1"
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
       }
     },
     "nix-cachyos-kernel": {

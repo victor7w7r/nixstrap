@@ -20,7 +20,7 @@ in
         programs.home-manager.enable = true;
         home = {
           inherit packages;
-          stateVersion = "24.05";
+          stateVersion = "25.11";
         };
         imports = commonImports;
       };
@@ -30,7 +30,7 @@ in
           inherit packages;
           username = "nixstrap";
           homeDirectory = "/home/nixstrap";
-          stateVersion = "24.05";
+          stateVersion = "25.11";
         };
         imports =
           commonImports
