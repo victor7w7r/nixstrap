@@ -86,9 +86,8 @@ in
     };
     fprintd = {
       enable = true;
-      tod = {
-        enable = true;
-        driver = (pkgs.callPackage ./custom/focaltech.nix { })
+      package = pkgs.fprintd.override {
+        libfprint = (pkgs.callPackage ./custom/focaltech.nix { });
       };
     };
   };
