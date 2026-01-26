@@ -44,6 +44,7 @@ in
     ++ params { };
     initrd = {
       secrets = sec.secrets;
+      availableKernelModules = [ "dm-snapshot" "dm-thin-pool" ];
       luks.devices = {
         system = sec.system;
       };

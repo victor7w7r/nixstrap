@@ -41,7 +41,7 @@ in
         # "vfio_iommu_type1"
         # "vfi"
       ];
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [ "dm-snapshot" "dm-thin-pool" ];
       secrets = {
         #"/extkey.key" = /run/secrets/extkey.key;
       }

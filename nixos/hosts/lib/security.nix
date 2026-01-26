@@ -1,4 +1,4 @@
-{ device ? "systempv" key ? "syskey.key", self, ... }:
+{ device ? "systempv", key ? "syskey.key", self, ... }:
 {
   system = {
     device = "/dev/disk/by-label/${device}";
@@ -7,6 +7,6 @@
     preLVM = true;
   };
   secrets = {
-    "/${key}" = builtins.path { path = "${self}/nixos/${key}"; };
+    "/${key}" = builtins.path { path = "${self}/${key}"; };
   };
 }
