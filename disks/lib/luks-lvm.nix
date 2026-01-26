@@ -25,7 +25,6 @@
         ''
           dd if=/dev/urandom of=/root/nixstrap/${randomKeyName} bs=1 count=64
           chmod 0400 /root/nixstrap/${randomKeyName}
-          git config --global --add safe.directory /root/nixstrap
           cd /root/nixstrap && git add . && git commit -m "Add Key"
         ''
       else

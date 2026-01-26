@@ -9,7 +9,7 @@ let
     hasVar = false;
   };
   boot = import ./filesystems/boot.nix { disk = "TODO"; };
-  system = (import ./filesystems/system-btrfs.nix) { };
+  systembtrfs = (import ./filesystems/system-btrfs.nix) { };
   home = (import ./filesystems/home-only.nix) { name = "TODO"; };
   store = (import ./filesystems/store-only.nix) { name = "TODO"; };
   tmp = import ./filesystems/tmp.nix;
@@ -22,7 +22,7 @@ in
     inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
     inherit (store) "/nix";
     inherit (home) "/home" "/.homesnaps";
-    inherit (system)
+    inherit (systembtrfs)
       "/etc"
       "/root"
       "/.snaps"

@@ -6,7 +6,7 @@ let
 
   rootfs = (import ./filesystems/rootfs.nix) { };
   boot = import ./filesystems/boot.nix { };
-  system = (import ./filesystems/system-btrfs.nix) {
+  systembtrfs = (import ./filesystems/system-btrfs.nix) {
     hasHome = true;
   };
   store = (import ./filesystems/store-only.nix) { };
@@ -20,7 +20,7 @@ in
     inherit (boot) "/boot" "/boot/emergency";
     inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
     inherit (store) "/nix";
-    inherit (system)
+    inherit (systembtrfs)
       "/etc"
       "/root"
       "/home"

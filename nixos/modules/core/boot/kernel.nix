@@ -49,6 +49,7 @@ in
     };
     kernelModules = [
       "tcp_bbr"
+      "dm-thin-pool"
       "veth"
       "xt_comment"
       "xt_CHECKSUM"

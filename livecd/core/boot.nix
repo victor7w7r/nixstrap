@@ -2,7 +2,10 @@
 {
   boot = {
     loader.grub.memtest86.enable = true;
-    kernelModules = [ "rtl8821cu" ];
+    kernelModules = [
+      "rtl8821cu"
+      "dm-thin-pool"
+    ];
     kernel.sysctl."vm.overcommit_memory" = "1";
     initrd.compressorArgs = [
       "-19"
