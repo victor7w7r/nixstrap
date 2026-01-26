@@ -24,6 +24,7 @@ in
 
     initrd = {
       checkJournalingFS = true;
+      availableKernelModules = [ "dm-thin-pool" "dm-snapshot" ];
       compressorArgs = [
         "-19"
         "--ultra"
@@ -33,10 +34,7 @@ in
       ];
       network.enable = true;
       inherit supportedFilesystems;
-      services.lvm = {
-        enable = true;
-        boot.thin.enable = true;
-      };
+      services.lvm.enable = true;
       verbose = true;
       systemd = {
         enable = true;

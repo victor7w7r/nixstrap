@@ -4,6 +4,7 @@
     gvfs.enable = true;
     glances.enable = true;
     locate.enable = true;
+    lvm.boot.thin.enable = true;
     #restic.enable = true;
     logrotate.enable = true;
     orca.enable = lib.mkForce false;
