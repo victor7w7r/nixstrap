@@ -5,7 +5,6 @@
   ...
 }:
 let
-  sharedDir = "/run/media/games";
   security = import ./lib/security.nix;
   sec = security { inherit self; };
   params = import ./lib/kernel-params.nix;
@@ -19,7 +18,7 @@ let
     hasStore = true;
   };
   shared = (import ./filesystems/shared.nix) {
-    inherit sharedDir;
+    sharedDir = "/run/media/games";
     partlabel = "games";
   };
 in
@@ -35,7 +34,7 @@ in
       "/root"
       "/home"
       ;
-    inherit (shared) sharedDir;
+    inherit (shared) "/run/media/games";
   };
 
   boot = {
