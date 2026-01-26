@@ -18,7 +18,7 @@ let
     hasHome = true;
     hasStore = true;
   };
-  shared = import (import ./filesystems/shared.nix) {
+  shared = (import ./filesystems/shared.nix) {
     inherit sharedDir;
     partlabel = "games";
   };

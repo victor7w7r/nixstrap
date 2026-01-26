@@ -13,7 +13,7 @@ let
   home = (import ./filesystems/home-only.nix) { name = "TODO"; };
   store = (import ./filesystems/store-only.nix) { name = "TODO"; };
   tmp = import ./filesystems/tmp.nix;
-  shared = import (import ./filesystems/shared.nix) { };
+  shared = (import ./filesystems/shared.nix) { };
 in
 {
   fileSystems = {
