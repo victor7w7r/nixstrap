@@ -27,7 +27,7 @@
         swtpm.enable = true;
       };
     };
-    lxd.enable = true;
+    #lxd.enable = true;
     lxc = {
       enable = true;
       lxcfs.enable = true;

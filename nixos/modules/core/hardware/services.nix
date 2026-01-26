@@ -9,10 +9,10 @@
     thermald.enable = true;
     udisks2.enable = true;
 
-    pulseaudio = {
+    /*pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
-    };
+      };*/
 
     pipewire = {
       enable = (host != "v7w7r-nixvm");
