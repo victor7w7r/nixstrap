@@ -4,10 +4,10 @@
   rootflags ? "noatime,lazytime,nobarrier,discard=async,commit=30,subvol=/rootfs",
 }:
 [
-  "root=${mockDisk}"
-  "rootfstype=${rootfs}"
-  "rootflags=${rootflags}"
-  "lsm=landlock,yama,integrity,apparmor,bpf"
+  #"root=${mockDisk}"
+  #"rootfstype=${rootfs}"
+  #"rootflags=${rootflags}"
+  #"lsm=landlock,yama,integrity,apparmor,bpf"
   "add_efi_memmap"
   "threadirqs"
   "preempt=full"

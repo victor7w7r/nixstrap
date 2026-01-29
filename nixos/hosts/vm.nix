@@ -1,32 +1,43 @@
-{ modulesPath, self, ... }:
+{ modulesPath, ... }:
 let
-  sec = security { inherit self; };
   params = import ./lib/kernel-params.nix;
-  security = import ./lib/security.nix;
-
-  rootfs = (import ./filesystems/rootfs.nix) { };
   boot = import ./filesystems/boot.nix { };
-  systembtrfs = (import ./filesystems/system-btrfs.nix) {
-    hasHome = true;
-  };
-  store = (import ./filesystems/store-only.nix) { };
   tmp = import ./filesystems/tmp.nix;
+  builder =
+    {
+      subvol,
+      isNix ? false,
+      depends ? [ ],
+    }:
+    {
+      device = "/dev/mapper/syscrypt";
+      fsType = "btrfs";
+      options = [
+        "lazytime"
+        "noatime"
+        "compress=ztd"
+        (if isNix then "noacl" else "")
+        "subvol=@${subvol}"
+      ];
+      inherit depends;
+      neededForBoot = true;
+    };
 in
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
 
   fileSystems = {
-    inherit (rootfs) "/" "/var";
     inherit (boot) "/boot" "/boot/emergency";
-    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
-    inherit (store) "/nix";
-    inherit (systembtrfs)
-      "/etc"
-      "/root"
-      "/home"
-      "/.snaps"
-      ;
+    inherit (tmp) "/tmp" "/var/tmp";
+    "/" = builder { subvol = ""; };
+    "/nix" = builder { subvol = "nix"; };
+    "/nix/persist" = builder {
+      subvol = "persist";
+      depends = [ "/nix" ];
+    };
   };
+
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   boot = {
     kernelParams = [
@@ -42,10 +53,6 @@ in
         "xhci_pci"
         "sr_mod"
       ];
-      secrets = sec.secrets;
-      luks.devices = {
-        system = sec.system;
-      };
     };
   };
 }

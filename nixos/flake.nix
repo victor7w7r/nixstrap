@@ -24,6 +24,7 @@
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
@@ -81,6 +82,7 @@
       self,
       nix-cachyos-kernel,
       nur,
+      impermanence,
       nix-flatpak,
       sops-nix,
       nixos-hardware,
@@ -263,6 +265,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
+            impermanence.nixosModules.impermanence
             nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/vm.nix)
             (import ./modules/core)
