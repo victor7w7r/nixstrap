@@ -5,7 +5,7 @@ let
     esp = (import ../lib/esp.nix) { };
     msr = winmod.msr { };
     emergency = (import ../filesystems/emergency.nix) { priority = 3; };
-    systempv = (import ../lib/luks-lvm.nix) { };
+    systempv = (import ../lib/lvm.nix) { };
   };
 
   lvs = {

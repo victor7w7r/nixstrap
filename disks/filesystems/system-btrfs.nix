@@ -13,5 +13,15 @@
     "/root".mountpoint = "/root";
     "/snaps".mountpoint = "/.snaps";
   }
-  // (if hasHome then { "/home".mountpoint = "/home"; } else { });
+  // (
+    if hasHome then
+      {
+        "/home" = {
+          mountpoint = "/home";
+          postMountHook = "mkdir -p /home/.secured /home/.data";
+        };
+      }
+    else
+      { }
+  );
 }

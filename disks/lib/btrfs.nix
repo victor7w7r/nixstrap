@@ -7,18 +7,11 @@
   priority ? null,
   lvmPool ? "",
   postMountHook ? "",
-  mountOptions ? [
-    "compress-force=zstd:3"
-    "commit=80"
-  ],
   subvolumes ? { },
   isSolid ? true,
 }:
 {
-  inherit
-    name
-    size
-    ;
+  inherit name size;
   content = {
     inherit mountpoint postMountHook subvolumes;
     type = "btrfs";
@@ -27,14 +20,11 @@
       "-L"
       "${label}"
     ];
-    mountOptions =
-      mountOptions
-      ++ [
-        "lazytime"
-        "noatime"
-        "space_cache=v2"
-      ]
-      ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
+    mountOptions = [
+      "lazytime"
+      "noatime"
+    ]
+    ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
   };
 }
 // (

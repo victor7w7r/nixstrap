@@ -1,7 +1,7 @@
 {
   hasHome ? false,
   hasStore ? false,
-  size
+  size,
 }:
 (import ../lib/xfs.nix) {
   inherit size;
@@ -17,6 +17,6 @@
     mount --bind /mnt/.nix/etc /mnt/etc
     ${if hasHome then "mount --bind /mnt/.nix/home /mnt/home" else ""}
     ${if hasStore then "mount --bind /mnt/.nix/nix /mnt/nix" else ""}
-    ${if hasHome then "mkdir -p /home/common" else ""}
+    ${if hasHome then "mkdir -p /home/.secured /home/.data" else ""}
   '';
 }

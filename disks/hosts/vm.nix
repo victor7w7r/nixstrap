@@ -1,21 +1,22 @@
 let
-  partitions = {
-    esp = (import ../lib/esp.nix) { };
-    emergency = (import ../filesystems/emergency.nix) { };
-    systempv = (import ../lib/luks-lvm.nix) { };
-  };
-
-  lvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
+  esp = (import ../lib/esp.nix) { };
+  emergency = (import ../filesystems/emergency.nix) { };
+  subvolumes = {
+    "@" = {
+      mountpoint = "/";
+      mountOptions = [ "compress=zstd" ];
     };
-    rootfs = (import ../filesystems/rootfs.nix) { };
-    system = (import ../filesystems/system-btrfs.nix) {
-      hasHome = true;
-      size = "20G";
+    "@nix" = {
+      mountpoint = "/nix";
+      mountOptions = [
+        "compress=zstd"
+        "noacl"
+      ];
     };
-    store = (import ../filesystems/store-only) { };
+    "@persist" = {
+      mountpoint = "/nix/persist";
+      mountOptions = [ "compress=zstd" ];
+    };
   };
 in
 {
@@ -25,12 +26,32 @@ in
       device = "/dev/vda";
       content = {
         type = "gpt";
-        inherit partitions;
+        partitions = {
+          inherit esp emergency;
+          syscrypt = (import ../lib/luks.nix) {
+            allowDiscards = false;
+            content = {
+              swap = {
+                size = "4G";
+                content = {
+                  type = "swap";
+                  randomEncryption = true;
+                  priority = 1;
+                };
+              };
+              system = (import ../lib/btrfs.nix) {
+                name = "system";
+                size = "100%";
+                label = "system";
+                type = "8300";
+                priority = 2;
+                isSolid = false;
+                inherit subvolumes;
+              };
+            };
+          };
+        };
       };
-    };
-    lvm_vg.vg0 = {
-      type = "lvm_vg";
-      inherit lvs;
     };
   };
 }

@@ -3,11 +3,12 @@ let
 
   nvmepartitions = {
     esp = (import ../lib/esp.nix) { };
-    vmmeta = (import ../lib/lvm.nix) {
+    /*
+      vmmeta = (import ../lib/lvm.nix) {
       vg = "vgsrv0";
       size = "1G";
       priority = 2;
-    };
+    */
     vmcache = (import ../lib/lvm.nix) {
       vg = "vgsrv0";
       size = "32G";
@@ -18,7 +19,7 @@ let
       size = "120G";
       priority = 4;
     };
-    systempv = (import ../lib/luks-lvm.nix) {
+    systempv = (import ../lib/lvm.nix) {
       vg = "vgsrv0";
       priority = 5;
     };
@@ -28,7 +29,7 @@ let
     msr = winmod.msr { priority = 1; };
     emergency = (import ../lib/emergency.nix) { priority = 2; };
     recovery = winmod.recovery { priority = 3; };
-    cloudmeta = (import ../lib/lvm.nix) {
+    cloudmeta = (import ../lib/luks-lvm.nix) {
       vg = "vgsrv1";
       size = "4G";
       priority = 4;

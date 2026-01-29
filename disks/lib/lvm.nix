@@ -2,7 +2,7 @@
   postHook ? null,
   priority ? 4,
   vg ? "vg0",
-  size,
+  size ? "100%",
 }:
 {
   content = {

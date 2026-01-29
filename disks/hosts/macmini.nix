@@ -5,33 +5,24 @@ let
     esp = (import ../lib/esp.nix) { };
     msr = winmod.msr { };
     recovery = winmod.recovery { priority = 3; };
-    meta = (import ../lib/lvm.nix) {
-      vg = "vg1";
-      size = "2G";
-      priority = 4;
-    };
     macos = {
       name = "macos";
       size = "110G";
+      priority = 4;
+    };
+    systempv = (import ../lib/lvm.nix) {
+      size = "6G";
       priority = 5;
     };
-    systempv = (import ../lib/luks-lvm.nix) {
-      size = "6G";
-      priority = 6;
-    };
-    win = winmod.win { priority = 7; };
+    win = winmod.win { priority = 6; };
     shared = (import ../filesystems/shared.nix) { };
   };
 
   extssdpartitions = {
-    cache = (import ../lib/lvm.nix) {
-      vg = "vg1";
-      size = "100G";
-      priority = 1;
-    };
     extssdpv = (import ../lib/luks-lvm.nix) {
+      vg = "vg1";
       size = "100%";
-      priority = 2;
+      priority = 1;
     };
   };
 
@@ -58,6 +49,10 @@ let
       lvm_type = "thin-pool";
     };
     var = (import ../filesystems/var-only.nix) { };
+    swap = {
+      size = "100%";
+      content.type = "swap";
+    };
     store = (import ../filesystems/store-only.nix) { size = "100G"; };
     home = (import ../filesystems/home-only.nix) { size = "400G"; };
   };

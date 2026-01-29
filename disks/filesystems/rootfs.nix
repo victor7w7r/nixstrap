@@ -14,6 +14,7 @@ let
         "/var" = {
           mountpoint = "/var";
           inherit mountOptions;
+          postMountHook = "mkdir -p /var/.secured /var/.data";
         };
       }
     else
