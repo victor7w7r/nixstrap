@@ -5,7 +5,7 @@ let
   tmp = import ./filesystems/tmp.nix;
   builder =
     {
-      subvol,
+      subvol ? "",
       isNix ? false,
       depends ? [ ],
     }:
@@ -16,9 +16,9 @@ let
         "lazytime"
         "noatime"
         "compress=ztd"
-        "subvol=${subvol}"
+        "subvol=@${subvol}"
       ]
-      ++ (if isNix then [ "noacl" ] else [ "" ]);
+      ++ (if isNix then [ "noacl" ] else null);
       inherit depends;
       neededForBoot = true;
     };
@@ -29,10 +29,10 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (tmp) "/tmp" "/var/tmp";
-    "/" = builder { subvol = "@"; };
-    "/nix" = builder { subvol = "@nix"; };
+    "/" = builder { };
+    "/nix" = builder { subvol = "nix"; };
     "/nix/persist" = builder {
-      subvol = "@persist";
+      subvol = "persist";
       depends = [ "/nix" ];
     };
   };
