@@ -28,25 +28,25 @@ in
         type = "gpt";
         partitions = {
           inherit esp emergency;
+          swapcrypt = (import ../lib/luks.nix) {
+            allowDiscards = false;
+            priority = 1;
+            size = "4G";
+            content = {
+              type = "swap";
+              size = "4G";
+              randomEncryption = true;
+            };
+          };
           syscrypt = (import ../lib/luks.nix) {
             allowDiscards = false;
-            content = {
-              swap = {
-                size = "4G";
-                content = {
-                  type = "swap";
-                  randomEncryption = true;
-                  priority = 1;
-                };
-              };
-              system = (import ../lib/btrfs.nix) {
-                name = "system";
-                size = "100%";
-                label = "system";
-                priority = 2;
-                isSolid = false;
-                inherit subvolumes;
-              };
+            priority = 2;
+            content = (import ../lib/btrfs.nix) {
+              name = "system";
+              size = "100%";
+              label = "system";
+              isSolid = false;
+              inherit subvolumes;
             };
           };
         };
