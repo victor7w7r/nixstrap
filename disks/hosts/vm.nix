@@ -41,7 +41,6 @@ in
       content = (import ../lib/btrfs.nix) {
         label = "system";
         isIsolated = true;
-        isSolid = false;
         inherit subvolumes;
       };
     };
