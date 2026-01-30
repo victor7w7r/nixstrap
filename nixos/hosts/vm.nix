@@ -16,7 +16,7 @@ let
         "lazytime"
         "noatime"
         "compress=ztd"
-        "subvol=@${subvol}"
+        "subvol=${subvol}"
       ]
       ++ (if isNix then [ "noacl" ] else [ "" ]);
       inherit depends;
@@ -29,10 +29,10 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (tmp) "/tmp" "/var/tmp";
-    "/" = builder { subvol = ""; };
-    "/nix" = builder { subvol = "nix"; };
+    "/" = builder { subvol = "@"; };
+    "/nix" = builder { subvol = "@nix"; };
     "/nix/persist" = builder {
-      subvol = "persist";
+      subvol = "@persist";
       depends = [ "/nix" ];
     };
   };
