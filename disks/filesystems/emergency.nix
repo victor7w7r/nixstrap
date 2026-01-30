@@ -13,5 +13,5 @@
     ;
   label = "emergency";
   type = "8300";
-  mountOptions = [ "compress-force=zstd" ];
+  enableCompress = true;
 }

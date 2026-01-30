@@ -7,6 +7,7 @@
   priority ? null,
   lvmPool ? "",
   postMountHook ? "",
+  enableCompress ? false,
   subvolumes ? { },
   isSolid ? true,
 }:
@@ -22,9 +23,11 @@
     ];
     mountOptions = [
       "lazytime"
+      enableCompress
       "noatime"
     ]
-    ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
+    ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ])
+    ++ (if enableCompress then [ "compress=zstd" ] else [ ]);
   };
 }
 // (
