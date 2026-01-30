@@ -48,15 +48,14 @@ in
     ++ params { };
 
     initrd = {
-      secrets."/keyinit" = config.sops.secrets.seckey-d.path;
       luks.devices = {
         syscrypt = {
           device = "/dev/mapper/syscrypt";
-          keyFile = "/keyinit";
+          keyFile = config.sops.secrets.seckey-d.path;
         };
         swapcrypt = {
           device = "/dev/mapper/swapcrypt";
-          keyFile = "/keyinit";
+          keyFile = config.sops.secrets.seckey-d.path;
         };
       };
       availableKernelModules = [
