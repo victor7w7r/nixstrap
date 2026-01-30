@@ -10,7 +10,6 @@
     keyFile = "/syskey.key";
     allowDiscards = true;
     preLVM = true;
-
   };
   secrets = {
     "/${key}" = builtins.path { path = "${self}/${key}"; };

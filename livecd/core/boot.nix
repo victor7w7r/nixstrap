@@ -6,8 +6,12 @@
       "rtl8821cu"
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
+    #zfs.package = config.boot.kernelPackages.zfs_cachyos;
     initrd = {
-      availableKernelModules = [ "dm-thin-pool" "dm-snapshot" ];
+      availableKernelModules = [
+        "dm-thin-pool"
+        "dm-snapshot"
+      ];
       services.lvm.enable = true;
       compressorArgs = [
         "-19"
@@ -24,7 +28,8 @@
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
       "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
     ];
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    kernelPackages = pkgs.linuxPackages_6_12;
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     supportedFilesystems = lib.mkForce [
       "btrfs"
       "ext4"
@@ -33,6 +38,7 @@
       "ntfs"
       "vfat"
       "xfs"
+      "zfs"
     ];
   };
 }

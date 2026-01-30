@@ -75,6 +75,9 @@
       initialHashedPassword = mkForce "$6$zjvJDfGSC93t8SIW$AHhNB.vDDPMoiZEG3Mv6UYvgUY6eya2UY5E2XA1lF7mOg6nHXUaaBmJYAMMQhvQcA54HJSLdkJ/zdy8UKX3xL1";
       isNormalUser = true;
       shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJfxc7Zd0lk/x02sH8OK5lNIQ3aQP/EzBQKAEkGQN1d6 arkano036@gmail.com"
+      ];
       extraGroups = [
         "input"
         "networkmanager"

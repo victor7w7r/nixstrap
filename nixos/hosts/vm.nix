@@ -1,4 +1,4 @@
-{ modulesPath, ... }:
+{ config, modulesPath, ... }:
 let
   params = import ./lib/kernel-params.nix;
   boot = import ./filesystems/boot.nix { };
@@ -48,6 +48,11 @@ in
     ++ params { };
 
     initrd = {
+      secrets."/keyinit" = config.sops.secrets.seckey-d.path;
+      luks.devices.syscrypt = {
+        device = "/dev/disk/by-label/systempv";
+        keyFile = "/keyinit";
+      };
       availableKernelModules = [
         "ahci"
         "xhci_pci"

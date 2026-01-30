@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   environment.defaultPackages = with pkgs; [
+    age
     asciiquarium-transparent
     busybox
     cmatrix
@@ -16,7 +17,9 @@
     pipes-rs
     progress
     rsyncy
+    ssh-to-age
     sl
+    sops
     ternimal
     tmux
   ];
