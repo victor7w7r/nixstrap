@@ -35,9 +35,11 @@
       lvm_type = "thinlv";
       pool = lvmPool;
     }
-  else
+  else if priority != null then
     {
       inherit priority;
-      type = "8300";
+      type = 8300;
     }
+  else
+    { }
 )
