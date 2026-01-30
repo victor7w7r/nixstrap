@@ -38,6 +38,6 @@
   else
     {
       inherit priority;
-      type = 8300;
+      type = "8300";
     }
 )
