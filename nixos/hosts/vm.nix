@@ -37,7 +37,7 @@ in
     };
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [ { device = "/dev/mapper/swapcrypt"; } ];
 
   boot = {
     kernelParams = [
@@ -49,9 +49,15 @@ in
 
     initrd = {
       secrets."/keyinit" = config.sops.secrets.seckey-d.path;
-      luks.devices.syscrypt = {
-        device = "/dev/disk/by-label/systempv";
-        keyFile = "/keyinit";
+      luks.devices = {
+        syscrypt = {
+          device = "/dev/mapper/syscrypt";
+          keyFile = "/keyinit";
+        };
+        swapcrypt = {
+          device = "/dev/mapper/swapcrypt";
+          keyFile = "/keyinit";
+        };
       };
       availableKernelModules = [
         "ahci"
