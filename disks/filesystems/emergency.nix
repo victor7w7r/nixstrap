@@ -12,6 +12,5 @@
     mountpoint
     ;
   label = "emergency";
-  type = "8300";
   enableCompress = true;
 }
