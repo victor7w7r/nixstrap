@@ -31,6 +31,7 @@ in
           swapcrypt = (import ../lib/luks.nix) {
             allowDiscards = false;
             priority = 1;
+            name = "swapcrypt";
             size = "4G";
             content = {
               type = "swap";

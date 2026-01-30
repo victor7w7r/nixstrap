@@ -2,7 +2,6 @@
   allowDiscards ? true,
   content,
   keyFile ? "/tmp/key.txt",
-  label ? "syscrypt",
   name ? "syscrypt",
   priority ? 3,
   size ? "100%",
@@ -14,7 +13,7 @@
     inherit name content;
     settings = { inherit keyFile allowDiscards; };
     postCreateHook = ''
-      cryptsetup config /dev/disk/by-partlabel/disk-main-${name} --label "${label}"
+      cryptsetup config /dev/disk/by-partlabel/disk-main-${name} --label "${name}"
     '';
   };
 }
