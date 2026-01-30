@@ -1,7 +1,7 @@
 {
-  name,
-  size,
   label,
+  name ? null,
+  size ? null,
   mountpoint ? null,
   priority ? null,
   lvmPool ? "",
