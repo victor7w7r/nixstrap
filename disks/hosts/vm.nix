@@ -41,9 +41,8 @@ in
             allowDiscards = false;
             priority = 2;
             content = (import ../lib/btrfs.nix) {
-              name = "system";
-              size = "100%";
               label = "system";
+              isIsolated = true;
               isSolid = false;
               inherit subvolumes;
             };

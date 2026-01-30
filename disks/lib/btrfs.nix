@@ -8,10 +8,10 @@
   postMountHook ? "",
   enableCompress ? false,
   subvolumes ? { },
+  isIsolated ? false,
   isSolid ? true,
 }:
-{
-  inherit name size;
+let
   content = {
     inherit mountpoint postMountHook subvolumes;
     type = "btrfs";
@@ -28,18 +28,19 @@
     ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ])
     ++ (if enableCompress then [ "compress=zstd" ] else [ ]);
   };
-}
-// (
-  if lvmPool != "" then
-    {
-      lvm_type = "thinlv";
-      pool = lvmPool;
-    }
-  else if priority != null then
-    {
-      inherit priority;
-      type = 8300;
-    }
-  else
-    { }
-)
+  part = { inherit name size content; };
+in
+if !isIsolated && lvmPool != "" then
+  part
+  // {
+    lvm_type = "thinlv";
+    pool = lvmPool;
+  }
+else if !isIsolated && priority != null then
+  part
+  // {
+    inherit priority;
+    type = 8300;
+  }
+else
+  content
