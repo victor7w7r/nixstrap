@@ -16,9 +16,9 @@ let
         "lazytime"
         "noatime"
         "compress=ztd"
-        (if isNix then "noacl" else "")
         "subvol=@${subvol}"
-      ];
+      ]
+      ++ (if isNix then [ "noacl" ] else [ "" ]);
       inherit depends;
       neededForBoot = true;
     };
