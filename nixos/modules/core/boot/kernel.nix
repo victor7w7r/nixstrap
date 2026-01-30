@@ -14,7 +14,8 @@ in
     consoleLogLevel = 4;
     modprobeConfig.enable = true;
     inherit supportedFilesystems;
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       efi.efiSysMountPoint = "/boot/EFI";
       efi.canTouchEfiVariables = true;
@@ -24,7 +25,10 @@ in
 
     initrd = {
       checkJournalingFS = true;
-      availableKernelModules = [ "dm-thin-pool" "dm-snapshot" ];
+      availableKernelModules = [
+        "dm-thin-pool"
+        "dm-snapshot"
+      ];
       compressorArgs = [
         "-19"
         "--ultra"
