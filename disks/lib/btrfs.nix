@@ -3,7 +3,6 @@
   size,
   label,
   mountpoint ? null,
-  type ? null,
   priority ? null,
   lvmPool ? "",
   postMountHook ? "",
@@ -38,6 +37,7 @@
     }
   else
     {
-      inherit priority type;
+      inherit priority;
+      type = 8300;
     }
 )

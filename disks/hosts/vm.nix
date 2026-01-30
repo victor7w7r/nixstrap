@@ -43,7 +43,6 @@ in
                 name = "system";
                 size = "100%";
                 label = "system";
-                type = "8300";
                 priority = 2;
                 isSolid = false;
                 inherit subvolumes;
