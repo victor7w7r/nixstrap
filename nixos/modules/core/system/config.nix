@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 {
   time = {
     hardwareClockInLocalTime = true;
@@ -21,33 +26,39 @@
     };
   };
 
-  users.users.${username} = {
-    autoSubUidGidRange = false;
-    description = "${username}";
-    group = "users";
-    isNormalUser = true;
-    initialPassword = "password";
-    shell = pkgs.zsh;
-    uid = 1000;
-    extraGroups = [
-      "audio"
-      "gamemode"
-      "input"
-      "kvm"
-      "libvirtd"
-      "libvirt-qemu"
-      "networkmanager"
-      "power"
-      "qemu"
-      "qemu-libvirtd"
-      "plugdev"
-      "realtime"
-      "storage"
-      "tty"
-      "users"
-      "video"
-      "wheel"
-    ];
+  users.users = {
+    root = {
+      password = config.sops.secrets.rootpass.path;
+      shell = pkgs.zsh;
+    };
+    ${username} = {
+      autoSubUidGidRange = false;
+      description = "${username}";
+      group = "users";
+      isNormalUser = true;
+      password = config.sops.secrets.userpass.path;
+      shell = pkgs.zsh;
+      uid = 1000;
+      extraGroups = [
+        "audio"
+        "gamemode"
+        "input"
+        "kvm"
+        "libvirtd"
+        "libvirt-qemu"
+        "networkmanager"
+        "power"
+        "qemu"
+        "qemu-libvirtd"
+        "plugdev"
+        "realtime"
+        "storage"
+        "tty"
+        "users"
+        "video"
+        "wheel"
+      ];
+    };
   };
 
   console = {
