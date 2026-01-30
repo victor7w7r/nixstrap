@@ -19,5 +19,4 @@
     (if isSolid then "discard=async" else "autodefrag")
     "compress=zstd"
   ];
-  enableCompress = true;
 }
