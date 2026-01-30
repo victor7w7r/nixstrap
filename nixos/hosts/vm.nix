@@ -18,7 +18,7 @@ let
         "compress=ztd"
         "subvol=@${subvol}"
       ]
-      ++ (if isNix then [ "noacl" ] else null);
+      ++ (if isNix then [ "noacl" ] else [ ]);
       inherit depends;
       neededForBoot = true;
     };
