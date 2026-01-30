@@ -22,11 +22,10 @@ let
     ];
     mountOptions = [
       "lazytime"
-      enableCompress
       "noatime"
-    ]
-    ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ])
-    ++ (if enableCompress then [ "compress=zstd" ] else [ ]);
+      (if isSolid then "discard=async" else "autodefrag")
+      (if enableCompress then "compress=zstd" else "")
+    ];
   };
   part = { inherit name size content; };
 in
