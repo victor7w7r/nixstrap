@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, username, ... }:
 {
   boot.initrd.postResumeCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
@@ -35,7 +35,7 @@
       "/etc/NetworkManager/system-connections"
     ];
     files = [ "/etc/machine-id" ];
-    users.gatien = {
+    users."${username}" = {
       directories = [
         ".ssh"
         "Documents"
