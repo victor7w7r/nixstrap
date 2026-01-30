@@ -8,9 +8,4 @@
   label = "var";
   lvmPool = "thinpool";
   mountpoint = "/var";
-  mountOptions = [
-    "nodatacow"
-    "lazytime"
-    "noatime"
-  ];
 }
