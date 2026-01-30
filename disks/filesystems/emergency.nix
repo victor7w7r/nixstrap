@@ -2,6 +2,7 @@
   size ? "3G",
   name ? "emergency",
   mountpoint ? "/boot/emergency",
+  isSolid ? true,
   priority ? 2,
 }:
 (import ../lib/btrfs.nix) {
@@ -12,5 +13,11 @@
     mountpoint
     ;
   label = "emergency";
+  mountOptions = [
+    "lazytime"
+    "noatime"
+    (if isSolid then "discard=async" else "autodefrag")
+    "compress=zstd"
+  ];
   enableCompress = true;
 }

@@ -1,54 +1,48 @@
 let
-  esp = (import ../lib/esp.nix) { };
-  emergency = (import ../filesystems/emergency.nix) { };
+  mountOptions = [
+    "lazytime"
+    "noatime"
+    "autodefrag"
+    "compress=zstd"
+  ];
   subvolumes = {
     "@" = {
       mountpoint = "/";
-      mountOptions = [ "compress=zstd" ];
+      inherit mountOptions;
     };
     "@nix" = {
       mountpoint = "/nix";
-      mountOptions = [
-        "compress=zstd"
-        "noacl"
-      ];
+      mountOptions = mountOptions ++ [ "noacl" ];
     };
     "@persist" = {
       mountpoint = "/nix/persist";
-      mountOptions = [ "compress=zstd" ];
+      inherit mountOptions;
     };
   };
 in
-{
-  disko.devices = {
-    disk.main = {
-      type = "disk";
-      device = "/dev/vda";
+(import ../lib/disko-main.nix) {
+  device = "vda";
+  partitions = {
+    esp = (import ../lib/esp.nix) { };
+    emergency = (import ../filesystems/emergency.nix) { isSolid = false; };
+    swapcrypt = (import ../lib/luks.nix) {
+      allowDiscards = false;
+      priority = 1;
+      name = "swapcrypt";
+      size = "4G";
       content = {
-        type = "gpt";
-        partitions = {
-          inherit esp emergency;
-          swapcrypt = (import ../lib/luks.nix) {
-            allowDiscards = false;
-            priority = 1;
-            name = "swapcrypt";
-            size = "4G";
-            content = {
-              type = "swap";
-              randomEncryption = true;
-            };
-          };
-          syscrypt = (import ../lib/luks.nix) {
-            allowDiscards = false;
-            priority = 2;
-            content = (import ../lib/btrfs.nix) {
-              label = "system";
-              isIsolated = true;
-              isSolid = false;
-              inherit subvolumes;
-            };
-          };
-        };
+        type = "swap";
+        randomEncryption = true;
+      };
+    };
+    syscrypt = (import ../lib/luks.nix) {
+      allowDiscards = false;
+      priority = 2;
+      content = (import ../lib/btrfs.nix) {
+        label = "system";
+        isIsolated = true;
+        isSolid = false;
+        inherit subvolumes;
       };
     };
   };

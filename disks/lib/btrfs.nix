@@ -5,26 +5,24 @@
   mountpoint ? null,
   priority ? null,
   lvmPool ? "",
+  mountOptions ? [ ],
   postMountHook ? "",
-  enableCompress ? false,
   subvolumes ? { },
   isIsolated ? false,
-  isSolid ? true,
 }:
 let
   content = {
-    inherit mountpoint postMountHook subvolumes;
+    inherit
+      mountpoint
+      postMountHook
+      subvolumes
+      mountOptions
+      ;
     type = "btrfs";
     extraArgs = [
       "-f"
       "-L"
       "${label}"
-    ];
-    mountOptions = [
-      "lazytime"
-      "noatime"
-      (if isSolid then "discard=async" else "autodefrag")
-      (if enableCompress then "compress=zstd" else "")
     ];
   };
   part = { inherit name size content; };
