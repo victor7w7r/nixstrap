@@ -34,7 +34,6 @@ in
             size = "4G";
             content = {
               type = "swap";
-              size = "4G";
               randomEncryption = true;
             };
           };
