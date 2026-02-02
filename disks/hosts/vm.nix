@@ -27,6 +27,7 @@ let
     };
     swapcrypt = {
       name = "swapcrypt";
+      lvmPool = "thinpool";
       size = "4G";
       content.type = "swap";
     };
