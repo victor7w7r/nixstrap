@@ -33,6 +33,7 @@ let
     syscrypt = (import ../lib/btrfs.nix) {
       label = "system";
       lvmPool = "thinpool";
+      size = "90G";
       inherit subvolumes;
     };
   };

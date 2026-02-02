@@ -46,8 +46,4 @@
       esac
     done
   '';
-
-  system.activationScripts.postActivation.text = ''
-    git clone http://github.com/victor7w7r/nixstrap /root/nixstrap
-  '';
 }
