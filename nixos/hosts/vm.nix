@@ -10,7 +10,7 @@ let
       depends ? [ ],
     }:
     {
-      device = "/dev/mapper/syscrypt";
+      device = "/dev/vg0/system";
       fsType = "btrfs";
       options = [
         "lazytime"
@@ -37,7 +37,7 @@ in
     };
   };
 
-  swapDevices = [ { device = "/dev/mapper/swapcrypt"; } ];
+  swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
 
   boot = {
     kernelParams = [
@@ -48,15 +48,9 @@ in
     ++ params { };
 
     initrd = {
-      luks.devices = {
-        syscrypt = {
-          device = "/dev/mapper/syscrypt";
-          preLVM = true;
-        };
-        swapcrypt = {
-          device = "/dev/mapper/swapcrypt";
-          preLVM = true;
-        };
+      luks.devices.syscrypt = {
+        device = "/dev/mapper/systempv";
+        preLVM = true;
       };
       availableKernelModules = [
         "ahci"

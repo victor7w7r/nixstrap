@@ -5,6 +5,38 @@ let
     "autodefrag"
     "compress=zstd"
   ];
+
+  partitions = {
+    esp = (import ../lib/esp.nix) { };
+    emergency = (import ../filesystems/emergency.nix) { isSolid = false; };
+    systempv = (import ../lib/luks.nix) {
+      allowDiscards = false;
+      content = {
+        vg = "vg0";
+        type = "lvm_pv";
+      };
+      size = "100G";
+      isForTest = true;
+    };
+  };
+
+  lvs = {
+    thinpool = {
+      size = "100%";
+      lvm_type = "thin-pool";
+    };
+    swapcrypt = {
+      name = "swapcrypt";
+      size = "4G";
+      content.type = "swap";
+    };
+    syscrypt = (import ../lib/btrfs.nix) {
+      label = "system";
+      lvmPool = "thinpool";
+      inherit subvolumes;
+    };
+  };
+
   subvolumes = {
     "@" = {
       mountpoint = "/";
@@ -20,31 +52,19 @@ let
     };
   };
 in
-(import ../lib/disko-main.nix) {
-  device = "vda";
-  partitions = {
-    esp = (import ../lib/esp.nix) { };
-    emergency = (import ../filesystems/emergency.nix) { isSolid = false; };
-    swapcrypt = (import ../lib/luks.nix) {
-      allowDiscards = false;
-      priority = 1;
-      name = "swapcrypt";
-      size = "4G";
-      isForTest = true;
+{
+  disko.devices = {
+    disk.main = {
+      type = "disk";
+      device = "/dev/vda";
       content = {
-        type = "swap";
-        randomEncryption = true;
+        type = "gpt";
+        inherit partitions;
       };
     };
-    syscrypt = (import ../lib/luks.nix) {
-      allowDiscards = false;
-      priority = 2;
-      isForTest = true;
-      content = (import ../lib/btrfs.nix) {
-        label = "system";
-        isIsolated = true;
-        inherit subvolumes;
-      };
+    lvm_vg.vg0 = {
+      type = "lvm_vg";
+      inherit lvs;
     };
   };
 }
