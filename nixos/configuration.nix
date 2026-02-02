@@ -74,7 +74,7 @@
   sops = {
     defaultSopsFile = ./secrets/sec.yaml;
     age = {
-      #sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
       keyFile = "/nix/persist/var/lib/sops-nix/key.txt";
     };
     secrets = {
