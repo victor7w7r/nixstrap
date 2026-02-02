@@ -30,6 +30,7 @@ in
       priority = 1;
       name = "swapcrypt";
       size = "4G";
+      isForTest = true;
       content = {
         type = "swap";
         randomEncryption = true;
@@ -38,6 +39,7 @@ in
     syscrypt = (import ../lib/luks.nix) {
       allowDiscards = false;
       priority = 2;
+      isForTest = true;
       content = (import ../lib/btrfs.nix) {
         label = "system";
         isIsolated = true;

@@ -49,14 +49,8 @@ in
 
     initrd = {
       luks.devices = {
-        syscrypt = {
-          device = "/dev/mapper/syscrypt";
-          keyFile = config.sops.secrets.seckey-d.path;
-        };
-        swapcrypt = {
-          device = "/dev/mapper/swapcrypt";
-          keyFile = config.sops.secrets.seckey-d.path;
-        };
+        syscrypt.device = "/dev/mapper/syscrypt";
+        swapcrypt.device = "/dev/mapper/swapcrypt";
       };
       availableKernelModules = [
         "ahci"
