@@ -1,4 +1,4 @@
-{ config, modulesPath, ... }:
+{ modulesPath, ... }:
 let
   params = import ./lib/kernel-params.nix;
   boot = import ./filesystems/boot.nix { };
@@ -49,8 +49,14 @@ in
 
     initrd = {
       luks.devices = {
-        syscrypt.device = "/dev/mapper/syscrypt";
-        swapcrypt.device = "/dev/mapper/swapcrypt";
+        syscrypt = {
+          device = "/dev/mapper/syscrypt";
+          preLVM = true;
+        };
+        swapcrypt = {
+          device = "/dev/mapper/swapcrypt";
+          preLVM = true;
+        };
       };
       availableKernelModules = [
         "ahci"
