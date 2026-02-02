@@ -31,6 +31,7 @@ let
       content.type = "swap";
     };
     syscrypt = (import ../lib/btrfs.nix) {
+      name = "system";
       label = "system";
       lvmPool = "thinpool";
       size = "90G";
