@@ -18,6 +18,7 @@
     progress
     rsyncy
     ssh-to-age
+    sbctl
     sl
     sops
     ternimal
