@@ -104,10 +104,10 @@ in
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/tools/fwupx64.efi
     fi
 
-    if [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
+    [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
     cp ${kernel} ${efi}/kernel
 
-    if [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
+    [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
     cp ${initrd} ${efi}/initrd
 
     ${cp} ${kernel} ${initrd} /boot/emergency/
