@@ -38,6 +38,7 @@
       "/etc/ssh"
       "/var/log"
       "/var/lib/nixos"
+      "/var/lib/sbctl"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
     ];

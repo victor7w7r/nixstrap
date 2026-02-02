@@ -4,96 +4,132 @@
   config,
   ...
 }:
+let
+  efi = "/boot/EFI";
+  cat = "${pkgs.coreutils}/bin/cat";
+  cp = "${pkgs.coreutils}/bin/cp";
+  mkdir = "${pkgs.coreutils}/bin/mkdir";
+  refind = "${pkgs.refind}/share/refind";
+  awk = "${pkgs.gawk}/bin/awk";
+  sbctl = "${pkgs.sbctl}/bin/sbctl";
+  edk2 = pkgs.edk2-uefi-shell;
+  memtest = pkgs.memtest86-efi;
+  head = "${pkgs.coreutils}/bin/head";
+  fwupd = "${pkgs.fwupd-efi}/libexec/fwupd/efi";
+  grep = "${pkgs.gnugrep}/bin/grep";
+  efibootmgr = "${pkgs.efibootmgr}/bin/efibootmgr";
+  lsblk = "${pkgs.util-linux}/bin/lsblk";
+  sed = "${pkgs.gnused}/bin/sed";
+  basename = "${pkgs.coreutils}/bin/basename";
+  icons = "/EFI/refind/themes/catppuccin/assets/mocha/icons";
+  kernel = "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}";
+  initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
+
+  refind-opts = ''
+    banner themes/catppuccin/assets/mocha/background.png
+    banner_scale fillscreen
+    dont_scan_files grubx64.efi
+    dont_scan_dirs +,EFI
+    enable_touch
+    enable_mouse
+    icons_dir themes/catppuccin/assets/mocha/icons
+    hideui hwtest,arrows,badges
+    screensaver 300
+    scanfor manual,external
+    showtools shell, memtest, bootorder, apple_recovery, windows_recovery
+    selection_big themes/catppuccin/assets/mocha/selection_big.png
+    selection_small themes/catppuccin/assets/mocha/selection_small.png
+    timeout 2
+    use_nvram false
+  '';
+
+  debugFlags = "boot.trace=1 debug udev.log_level=7 rd.systemd.show_status=true";
+
+  entries = ''
+    menuentry "NixOS" {
+      icon ${icons}/os_nixos.png
+      loader /EFI/kernel
+      initrd /EFI/initrd
+      submenuentry "Verbose" {
+        add_options "${debugFlags}"
+      }
+      submenuentry "Console Only" {
+        add_options "systemd.unit=multi-user.target"
+      }
+      submenuentry "Rescue" {
+        add_options "systemd.unit=rescue.target ${debugFlags}"
+      }
+    }
+
+    menuentry "Windows 11" {
+      icon ${icons}/os_win10.png
+      loader /EFI/Microsoft/Boot/bootmgfw.efi
+      ostype Windows
+    }
+  '';
+in
 {
   system.boot.loader.id = "refind";
   system.build.installBootLoader = pkgs.writeScript "installBootLoader.sh" ''
     #!${pkgs.bash}/bin/bash
 
-    ${pkgs.coreutils}/bin/mkdir -p /boot/EFI/tools /boot/EFI/BOOT /boot/EFI/refind/themes
+    TOPLEVEL=$1
+    EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
+      | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
+    DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
+    BASE=$(${basename} $TOPLEVEL)
 
-    ${pkgs.coreutils}/bin/cp ${pkgs.refind}/share/refind/refind_x64.efi /boot/EFI/refind/refind_x64.efi
-    ${pkgs.coreutils}/bin/cp ${pkgs.refind}/share/refind/refind_x64.efi /boot/EFI/BOOT/BOOTX64.efi
-    ${pkgs.coreutils}/bin/cp -r ${pkgs.refind}/share/refind/drivers_x64 /boot/EFI/refind/drivers_x64
-    ${pkgs.coreutils}/bin/cp -r ${pkgs.refind}/share/refind/icons /boot/EFI/refind/icons
-    ${pkgs.coreutils}/bin/cp -r ${pkgs.refind}/share/refind/fonts /boot/EFI/refind/fonts
+    ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
+      | ${sed} 's/Boot//' | ${sed} 's/\*//' \
+      | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
 
-    ${pkgs.coreutils}/bin/cp ${pkgs.edk2-uefi-shell}/shell.efi /boot/EFI/tools/shellx64.efi
-    ${pkgs.coreutils}/bin/cp ${pkgs.memtest86-efi}/BOOTX64.efi /boot/EFI/tools/memtest86.efi
-    ${pkgs.coreutils}/bin/cp ${pkgs.fwupd-efi}/libexec/fwupd/efi/fwupdx64.efi /boot/EFI/tools/fwupx64.efi
-    ${pkgs.coreutils}/bin/cp -r ${inputs.catppuccin-refind} /boot/EFI/refind/themes/catppuccin
-
-    ${pkgs.coreutils}/bin/cat > /boot/EFI/refind/refind.conf << EOF
-      timeout 2
-      screensaver 300
-      use_nvram false
-      showtools shell, memtest, bootorder, apple_recovery, windows_recovery
-      enable_touch
-      enable_mouse
-      hideui hwtest,arrows,badges
-      icons_dir themes/catppuccin/assets/mocha/icons
-      banner themes/catppuccin/assets/mocha/background.png
-      banner_scale fillscreen
-      scanfor manual,external
-      dont_scan_dirs +,EFI/Linux
-      selection_big themes/catppuccin/assets/mocha/selection_big.png
-      selection_small themes/catppuccin/assets/mocha/selection_small.png
-      dont_scan_files grubx64.efi
-
-      menuentry "NixOS" {
-        icon /EFI/refind/themes/catppuccin/assets/mocha/icons/os_nixos.png
-        loader /EFI/nixos.efi
-        ostype "Linux"
-        #submenuentry "Single User" {
-        #  loader /EFI/single.efi
-        #}
-        #submenuentry "Multi User" {
-        #  loader /EFI/multi.efi
-        #}
-      }
-
-      menuentry "Windows 11" {
-        icon /EFI/refind/themes/catppuccin/assets/mocha/icons/os_win10.png
-        loader /EFI/Microsoft/Boot/bootmgfw.efi
-        ostype Windows
-      }
-    EOF
-
-    EFI_INFO=$(${pkgs.util-linux}/bin/lsblk -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE | \
-      ${pkgs.gnugrep}/bin/grep -i "EFI" | ${pkgs.gnugrep}/bin/grep -i "vfat" | ${pkgs.coreutils}/bin/head -n1)
-    DISK=$(echo "$EFI_INFO" | ${pkgs.gawk}/bin/awk '{print $3}')
-
-    ${pkgs.efibootmgr}/bin/efibootmgr \
-      | ${pkgs.gnugrep}/bin/grep -i "rEFind" \
-      | ${pkgs.gawk}/bin/awk '{print $1}' \
-      | ${pkgs.gnused}/bin/sed 's/Boot//' \
-      | ${pkgs.gnused}/bin/sed 's/\*//' \
-      | while read entry; do
-        ${pkgs.efibootmgr}/bin/efibootmgr -b "$entry" -B &> /dev/null
-      done
-    ${pkgs.efibootmgr}/bin/efibootmgr --create \
-      --disk /dev/$DISK --part 1 \
-      --loader /EFI/refind/refind_x64.efi \
-      --label "rEFInd" \
+    ${efibootmgr} --create --disk /dev/$DISK --part 1 \
+      --loader /EFI/refind/refind_x64.efi --label "rEFInd" \
       --unicode &> /dev/null
 
-    TOPLEVEL=$1
-    BASE=$(${pkgs.coreutils}/bin/basename $TOPLEVEL)
-    ${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify build \
-      --linux="${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" \
-      --initrd="${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" \
-      --cmdline="init=$TOPLEVEL/init ${toString config.boot.kernelParams}" \
-      --uname="${config.boot.kernelPackages.kernel.modDirVersion}" \
-      --os-release="${config.system.build.etc}/etc/os-release" \
-      --output=/boot/EFI/nixos.efi
-      #--signtool=systemd-sbsign \
-      #--secureboot-private-key /var/lib/sbctl/db/db.key \
-      #--secureboot-certificate /var/lib/sbctl/db/db.pem \
+    if [ ! -d ${efi}/refind ]; then
+      ${mkdir} -p ${efi}/BOOT ${efi}/refind/themes
+      ${cp} ${refind}/refind_x64.efi ${efi}/refind/refind_x64.efi
+      ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
+      ${cp} -r ${refind}/drivers_x64 ${efi}/refind/drivers_x64
+      ${cp} -r ${refind}/icons ${efi}/refind/icons
+      ${cp} -r ${refind}/fonts ${efi}/refind/fonts
+      ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
+    fi
 
-    ${pkgs.coreutils}/bin/cp /boot/EFI/nixos.efi /boot/emergency/$BASE.efi
-    echo "$BASE" > /boot/EFI/nixos.txt
+    if [ ! -d ${efi}/tools ]; then
+      ${mkdir} -p ${efi}/tools
+      ${cp} ${edk2}/shell.efi ${efi}/tools/shellx64.efi
+      ${cp} ${memtest}/BOOTX64.efi ${efi}/tools/memtest86.efi
+      ${cp} ${fwupd}/fwupdx64.efi ${efi}/tools/fwupx64.efi
+    fi
 
-    #if command -v sbctl >/dev/null 2>&1; then
-    #  sbctl sign /boot/EFI/nixos.efi || echo "sbctl sign failed"
-    #fi
+    if [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
+    cp ${kernel} ${efi}/kernel
+
+    if [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
+    cp ${initrd} ${efi}/initrd
+
+    ${cp} ${kernel} ${initrd} /boot/emergency/
+    echo "$BASE" > /boot/emergency/actual.txt
+
+    ${cat} > ${efi}/refind/refind.conf << EOF
+      ${refind-opts}
+
+      ${entries}
+    EOF
+
+    if [ -d /nix/persist/var/lib/sbctl ]; then
+      ${sbctl} sign -s ${efi}/refind/refind_x64.efi
+      ${sbctl} sign -s ${efi}/tools/shellx64.efi
+      ${sbctl} sign -s ${efi}/tools/memtest86.efi
+      ${sbctl} sign -s ${efi}/tools/fwupx64.efi
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/ext4_x64.efi
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/iso9660_x64.efi
+      ${sbctl} sign -s ${efi}/initrd
+      ${sbctl} sign -s ${efi}/kernel
+    fi
   '';
+  #--cmdline="init=$TOPLEVEL/init ${toString config.boot.kernelParams}" \
 }

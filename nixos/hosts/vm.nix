@@ -49,7 +49,7 @@ in
 
     initrd = {
       luks.devices.syscrypt = {
-        device = "/dev/mapper/systempv";
+        device = "/dev/disk/by-partlabel/disk-main-systempv";
         preLVM = true;
       };
       availableKernelModules = [

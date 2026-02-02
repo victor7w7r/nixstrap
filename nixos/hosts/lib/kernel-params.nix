@@ -39,16 +39,10 @@
   "tsc=reliable"
   "srbds=off"
   "verbose=1"
-  #"udev.log_level=7"
-  #"debug"
-  #"rd.udev.log_level=7"
-  #"rd.systemd.show_status=true"
   #"systemd.log_level=debug"
-  #"boot.trace=1"
   #"console=tty0"
   #"console=ttyS0,115200n8"
   #"earlyprintk=ttyS0,11520"
   #"systemd.log_target=console"
   #"kvmfr.static_size_mb=128"
-  #systemd.unit=multi-user.target single
 ]
