@@ -1,6 +1,6 @@
 keys:
   - &main_machine age1st29vxtalmuzw4je4w3hfcnz8dtadcjf3ksx0742qv0lm5qf7pasw3w3pl
-  - &vm_machine age1wfgtzn2qqjz9ktmfc82zqe70d5awjmtz779tgp5apw5r7quhc3nsje456y
+  - &vm_machine age1gzpr4f8nfrlfly7wy9rsyt8nlvh4yeefa5mh37eks4t0j04aq3nq90ld0w
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
