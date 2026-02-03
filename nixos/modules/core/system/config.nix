@@ -27,14 +27,14 @@
   };
 
   users.users = {
-    root.shell = pkgs.bash;
+    root.shell = pkgs.zsh;
     ${username} = {
       autoSubUidGidRange = false;
       description = "${username}";
       group = "users";
       isNormalUser = true;
       password = config.sops.secrets.userpass.path;
-      shell = pkgs.bash;
+      shell = pkgs.zsh;
       uid = 1000;
       extraGroups = [
         "audio"
