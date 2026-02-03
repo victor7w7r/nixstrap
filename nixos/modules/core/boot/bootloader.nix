@@ -120,13 +120,13 @@ in
     EOF
 
     if [ -d /nix/persist/var/lib/sbctl ]; then
-      ${sbctl} sign -s ${efi}/refind/refind_x64.efi
-      ${sbctl} sign -s ${efi}/tools/shellx64.efi
-      ${sbctl} sign -s ${efi}/tools/memtest86.efi
-      ${sbctl} sign -s ${efi}/tools/fwupx64.efi
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/ext4_x64.efi
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/iso9660_x64.efi
+      ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/tools/fwupx64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/ext4_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/iso9660_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
