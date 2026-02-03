@@ -9,7 +9,7 @@ let
     options = [
       "lazytime"
       "noatime"
-      "compress-force=ztd:2"
+      "compress-force=zstd:2"
       "subvol=/${subvol}"
     ]
     ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);

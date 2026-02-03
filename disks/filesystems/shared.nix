@@ -14,7 +14,7 @@
     label
     ;
   type = "8300";
-  mountOptions = [ "compress-force=ztd:2" ];
+  mountOptions = [ "compress-force=zstd:2" ];
   subvolumes = {
     "/${mountContent}".mountpoint = "/run/media/${mountContent}";
     "/.${mountSnap}".mountpoint = "/run/media/.${mountSnap}";

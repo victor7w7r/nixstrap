@@ -9,7 +9,7 @@ let
       "lazytime"
       "noatime"
       "discard=async"
-      "compress-force=ztd:2"
+      "compress-force=zstd:2"
       "subvol=/${subvol}"
     ];
     neededForBoot = true;
