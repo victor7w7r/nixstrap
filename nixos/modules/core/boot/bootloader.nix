@@ -127,9 +127,9 @@ in
       ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ext4_x64.efi
       ${sbctl} sign -s ${efi}/refind/drivers_x64/iso9660_x64.efi
-      ${sbctl} sign -s ${efi}/initrd
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
+  #${sbctl} sign -s ${efi}/initrd
   #--cmdline="init=$TOPLEVEL/init ${toString config.boot.kernelParams}" \
 }
