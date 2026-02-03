@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ host, pkgs, ... }:
 {
   environment.pathsToLink = [
     "/share/applications"
     "/share/xdg-desktop-portal"
+    "/share/zsh"
   ];
 
   fonts = {
@@ -51,7 +52,6 @@
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
-          battery_id = "BAT0";
           bg = "0x00000000";
           bigclock = "en";
           blank_box = true;
@@ -75,7 +75,15 @@
           text_in_center = true;
           xinitrc = "null";
           tty = 1;
-        };
+        }
+        // (
+          if (host == "v7w7r-rogally" || host == "v7w7r-laptop") then
+            {
+              battery_id = "BAT0";
+            }
+          else
+            { }
+        );
       };
     };
   };

@@ -163,7 +163,7 @@ in
       }
     EOF
 
-    if [ -d /var/lib/sbctl ]; then
+    if [ -d /var/lib/sbctl/keys ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
@@ -173,7 +173,7 @@ in
       ${sbctl} sign -s ${efi}/refind/drivers_x64/f2fs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/zfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/kernel
+      ${sbctl} sign -s ${efi}/kerne
     fi
   '';
 

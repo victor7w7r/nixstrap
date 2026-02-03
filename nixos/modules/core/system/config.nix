@@ -25,16 +25,14 @@
       LC_TIME = "es_ES.UTF-8";
     };
   };
-
+  users.defaultUserShell = pkgs.zsh;
   users.users = {
-    root.shell = pkgs.zsh;
     ${username} = {
       autoSubUidGidRange = false;
       description = "${username}";
       group = "users";
       isNormalUser = true;
       password = config.sops.secrets.userpass.path;
-      shell = pkgs.zsh;
       uid = 1000;
       extraGroups = [
         "audio"
@@ -66,7 +64,6 @@
 
   environment = {
     enableAllTerminfo = true;
-    pathsToLink = [ "/share/zsh" ];
     sessionVariables = {
       LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
       NIXOS_OZONE_WL = "1";
