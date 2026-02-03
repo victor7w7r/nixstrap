@@ -10,7 +10,6 @@
       "lazytime"
       "noatime"
       "discard=async"
-      "space_cache=v2"
       "compress-force=zstd:2"
     ];
   };

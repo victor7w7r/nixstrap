@@ -10,8 +10,12 @@ let
       size = "110G";
       priority = 4;
     };
-    systempv = (import ../lib/lvm.nix) {
+    systempv = (import ../lib/luks.nix) {
       size = "6G";
+      content = {
+        vg = "vg0";
+        type = "lvm_pv";
+      };
       priority = 5;
     };
     win = winmod.win { priority = 6; };
@@ -19,16 +23,33 @@ let
   };
 
   extssdpartitions = {
-    extssdpv = (import ../lib/luks-lvm.nix) {
-      vg = "vg1";
-      size = "100%";
-      priority = 1;
+    extssdpv = (import ../lib/luks.nix) {
+      content = {
+        vg = "vg0";
+        type = "lvm_pv";
+      };
     };
   };
 
   hardpartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
-    hardpv = (import ../lib/luks-lvm.nix) { vg = "vg1"; };
+    swapcrypt = {
+      name = "swapcrypt";
+      size = "32G";
+      priority = 2;
+      content = {
+        type = "swap";
+        randomEncryption = true;
+      };
+    };
+    hardpv = (import ../lib/luks.nix) {
+      allowDiscards = false;
+      content = {
+        vg = "vg1";
+        type = "lvm_pv";
+      };
+      priority = 3;
+    };
   };
 
   lvs = {
@@ -36,11 +57,13 @@ let
       size = "100%";
       lvm_type = "thin-pool";
     };
-    rootfs = (import ../filesystems/rootfs.nix) {
-      hasVar = false;
-      extraDirs = "/mnt/kvm /run/media/extssd /run/media/docs";
+    syscrypt = (import ../lib/btrfs.nix) {
+      name = "system";
+      label = "system";
+      lvmPool = "thinpool";
+      size = "5G";
+      inherit subvolumes;
     };
-    system = (import ../filesystems/system-btrfs.nix) { };
   };
 
   hardlvs = {
@@ -48,12 +71,6 @@ let
       size = "100%";
       lvm_type = "thin-pool";
     };
-    var = (import ../filesystems/var-only.nix) { };
-    swap = {
-      size = "100%";
-      content.type = "swap";
-    };
-    store = (import ../filesystems/store-only.nix) { size = "100G"; };
     home = (import ../filesystems/home-only.nix) { size = "400G"; };
   };
 

@@ -3,6 +3,7 @@
   size ? "100%",
   label ? "shared",
   priority ? 100,
+  isSolid ? true,
   mountContent ? "shared",
   mountSnap ? "sharedsnaps",
 }:
@@ -13,8 +14,13 @@
     priority
     label
     ;
-  type = "8300";
-  mountOptions = [ "compress-force=zstd:2" ];
+  mountOptions = [
+    "lazytime"
+    "noatime"
+    "compress-force=zstd:2"
+  ]
+  ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
+
   subvolumes = {
     "/${mountContent}".mountpoint = "/run/media/${mountContent}";
     "/.${mountSnap}".mountpoint = "/run/media/.${mountSnap}";

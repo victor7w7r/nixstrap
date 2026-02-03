@@ -1,27 +1,39 @@
-{ pkgs, self, ... }:
+{ pkgs, username, ... }:
 let
-  sec = security { inherit self; };
   params = import ./lib/kernel-params.nix;
-  security = import ./lib/security.nix;
 
-  rootfs = (import ./filesystems/rootfs.nix) { };
+  params = import ./lib/kernel-params.nix;
   boot = (import ./filesystems/boot.nix) { };
-  systemxfs = (import ./filesystems/system-xfs.nix) {
-    hasHome = true;
-    hasStore = true;
-  };
+  builder =
+    {
+      subvol ? "",
+      isNix ? false,
+      depends ? [ ],
+    }:
+    {
+      device = "/dev/vg0/system";
+      fsType = "btrfs";
+      options = [
+        "lazytime"
+        "noatime"
+        "compress=zstd"
+        "discard=async"
+        "subvol=@${subvol}"
+      ]
+      ++ (if isNix then [ "noacl" ] else [ ]);
+      inherit depends;
+      neededForBoot = true;
+    };
 in
 {
   fileSystems = {
-    inherit (rootfs) "/" "/var";
     inherit (boot) "/boot/emergency";
-    inherit (systemxfs)
-      "/.nix"
-      "/nix"
-      "/etc"
-      "/root"
-      "/home"
-      ;
+    "/" = builder { };
+    "/nix" = builder { subvol = "nix"; };
+    "/nix/persist" = builder {
+      subvol = "persist";
+      depends = [ "/nix" ];
+    };
   };
 
   boot = {
@@ -30,11 +42,9 @@ in
       "amd_iommu=on"
     ]
     ++ params { };
-    initrd = {
-      secrets = sec.secrets;
-      luks.devices = {
-        system = sec.system;
-      };
+    initrd.luks.devices.syscrypt = {
+      device = "/dev/disk/by-partlabel/disk-main-systempv";
+      preLVM = true;
     };
   };
 

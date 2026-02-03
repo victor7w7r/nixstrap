@@ -1,11 +1,4 @@
 let
-  mountOptions = [
-    "lazytime"
-    "noatime"
-    "autodefrag"
-    "compress=zstd"
-  ];
-
   partitions = {
     esp = (import ../lib/esp.nix) { };
     emergency = (import ../filesystems/emergency.nix) { isSolid = false; };
@@ -34,7 +27,6 @@ let
       size = "100%";
       lvm_type = "thin-pool";
     };
-
     syscrypt = (import ../lib/btrfs.nix) {
       name = "system";
       label = "system";
@@ -43,6 +35,13 @@ let
       inherit subvolumes;
     };
   };
+
+  mountOptions = [
+    "lazytime"
+    "noatime"
+    "autodefrag"
+    "compress=zstd"
+  ];
 
   subvolumes = {
     "@" = {
@@ -60,18 +59,16 @@ let
   };
 in
 {
-  disko.devices = {
-    disk.main = {
-      type = "disk";
-      device = "/dev/vda";
-      content = {
-        type = "gpt";
-        inherit partitions;
-      };
+  disko.devices.disk.main = {
+    type = "disk";
+    device = "/dev/vda";
+    content = {
+      type = "gpt";
+      inherit partitions;
     };
-    lvm_vg.vg0 = {
-      type = "lvm_vg";
-      inherit lvs;
-    };
+  };
+  lvm_vg.vg0 = {
+    type = "lvm_vg";
+    inherit lvs;
   };
 }
