@@ -66,6 +66,7 @@
 
   environment = {
     enableAllTerminfo = true;
+    pathsToLink = [ "/share/zsh" ];
     sessionVariables = {
       LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
       NIXOS_OZONE_WL = "1";

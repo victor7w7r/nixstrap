@@ -36,6 +36,7 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
       "/var/log"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
