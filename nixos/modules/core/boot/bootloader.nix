@@ -8,6 +8,7 @@ let
   efi = "/boot/EFI";
   cat = "${pkgs.coreutils}/bin/cat";
   cp = "${pkgs.coreutils}/bin/cp";
+  rm = "${pkgs.coreutils}/bin/rm";
   mkdir = "${pkgs.coreutils}/bin/mkdir";
   refind = "${pkgs.refind}/share/refind";
   awk = "${pkgs.gawk}/bin/awk";
@@ -141,13 +142,13 @@ in
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/tools/fwupx64.efi
     fi
 
-    [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
-    cp ${latest}/${kernelFile} ${efi}/kernel
+    [[ -f ${efi}/kernel ]] && ${rm} ${efi}/kernel
+    ${cp} ${latest}/${kernelFile} ${efi}/kernel
 
-    [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
-    cp ${initrd} ${efi}/initrd
+    [[ -f ${efi}/initrd ]] && ${rm} ${efi}/initrd
+    ${cp} ${initrd} ${efi}/initrd
 
-    mkdir -p /boot/emergency/cache
+    ${mkdir} -p /boot/emergency/cache
     ${cp} ${latest}/${kernelFile} /boot/emergency/cache/kernel-$BASE
     ${cp} ${initrd} /boot/emergency/cache/initrd-$BASE
     echo "$BASE" > /boot/emergency/actual.txt
@@ -162,7 +163,7 @@ in
       }
     EOF
 
-    if [ -d /nix/persist/var/lib/sbctl ]; then
+    if [ -d /var/lib/sbctl ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null

@@ -35,7 +35,7 @@ in
     };
   };
 
-  swapDevices = [ { device = "/dev/disk/by-partlabel/disk-main-swapcrypt"; } ];
+  #swapDevices = [ { device = "/dev/disk/by-partlabel/disk-main-swapcrypt"; } ];
 
   boot = {
     kernelParams = [
