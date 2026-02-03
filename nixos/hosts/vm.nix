@@ -2,7 +2,6 @@
 let
   params = import ./lib/kernel-params.nix;
   boot = import ./filesystems/boot.nix { };
-  tmp = import ./filesystems/tmp.nix;
   builder =
     {
       subvol ? "",
@@ -28,7 +27,6 @@ in
 
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    inherit (tmp) "/tmp" "/var/tmp";
     "/" = builder { };
     "/nix" = builder { subvol = "nix"; };
     "/nix/persist" = builder {

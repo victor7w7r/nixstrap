@@ -6,7 +6,6 @@ let
 
   rootfs = (import ./filesystems/rootfs.nix) { };
   boot = (import ./filesystems/boot.nix) { };
-  tmp = import ./filesystems/tmp.nix;
   systemxfs = (import ./filesystems/system-xfs.nix) {
     hasHome = true;
     hasStore = true;
@@ -16,7 +15,6 @@ in
   fileSystems = {
     inherit (rootfs) "/" "/var";
     inherit (boot) "/boot/emergency";
-    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
     inherit (systemxfs)
       "/.nix"
       "/nix"

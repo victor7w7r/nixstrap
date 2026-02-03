@@ -64,7 +64,7 @@
   console = {
     enable = true;
     earlySetup = true;
-    font = "JetBrainsMono Nerd Font";
+    font = "Lat2-Terminus16";
     keyMap = "us";
   };
 

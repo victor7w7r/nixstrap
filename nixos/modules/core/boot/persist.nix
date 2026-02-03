@@ -8,7 +8,7 @@
     serviceConfig.Type = "oneshot";
     script = ''
       mkdir /btrfs_tmp
-      mount /dev/mapper/syscrypt /btrfs_tmp
+      mount /dev/vg0/system /btrfs_tmp
       if [[ -e /btrfs_tmp/root ]]; then
           mkdir -p /btrfs_tmp/old_roots
           timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
@@ -35,26 +35,36 @@
   environment.persistence."/nix/persist" = {
     hideMounts = true;
     directories = [
-      "/etc/ssh"
-      "/var/log"
-      "/var/lib/nixos"
-      "/var/lib/sbctl"
-      "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      {
+        directory = "/var/lib/sbctl";
+        mode = "0700";
+      }
+      "/var/lib/systemd/coredump"
+      "/var/lib/NetworkManager"
+      "/var/lib/tpm2-tss"
     ];
-    files = [ "/etc/machine-id" ];
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+    ];
     users."${username}" = {
       directories = [
+        "Documentos"
+        "Descargas"
+        "Imágenes"
+        "repositories"
         ".ssh"
-        "Documents"
-        "Downloads"
-        "Games"
-        "NixFlakes"
         ".zen"
-        ".vscode"
+        ".doom.d"
         ".config/sops"
         ".steam"
-        ".local/share/PrismLauncher"
         #".cache"
       ];
       files = [

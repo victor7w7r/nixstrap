@@ -1,8 +1,4 @@
-{
-  mockDisk ? "/dev/mapper/vg0-rootfs",
-  rootfs ? "btrfs",
-  rootflags ? "noatime,lazytime,nobarrier,discard=async,commit=30,subvol=/rootfs",
-}:
+{ }:
 [
   #"root=${mockDisk}"
   #"rootfstype=${rootfs}"

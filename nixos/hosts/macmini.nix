@@ -12,14 +12,12 @@ let
   systembtrfs = (import ./filesystems/system-btrfs.nix) { };
   home = (import ./filesystems/home-only.nix) { name = "TODO"; };
   store = (import ./filesystems/store-only.nix) { name = "TODO"; };
-  tmp = import ./filesystems/tmp.nix;
   shared = (import ./filesystems/shared.nix) { };
 in
 {
   fileSystems = {
     inherit (rootfs) "/";
     inherit (boot) "/boot" "/boot/emergency";
-    inherit (tmp) "/tmp" "/var/tmp" "/var/cache";
     inherit (store) "/nix";
     inherit (home) "/home" "/.homesnaps";
     inherit (systembtrfs)

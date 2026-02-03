@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  /*
+    ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
+    ATTR{link_power_management_policy}=="*", \
+    ATTR{link_power_management_policy}="max_performance"
+  */
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
       RUN+="${pkgs.bash}/bin/bash -c 'touch /run/udev/snd-hda-intel-powersave; \
@@ -17,9 +22,6 @@
       RUN+="${pkgs.bash}/bin/sh -c 'echo N > /sys/module/zswap/parameters/enabled'"
     KERNEL=="rtc0", GROUP="audio"
     KERNEL=="hpet", GROUP="audio"
-    ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
-      ATTR{link_power_management_policy}=="*", \
-      ATTR{link_power_management_policy}="max_performance"
     ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
     ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
       ATTR{queue/scheduler}="mq-deadline"
