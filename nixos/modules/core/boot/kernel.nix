@@ -10,19 +10,19 @@ let
   ];
 in
 {
+  specialisation = {
+    zen.configuration.boot.kernelPackages = pkgs.linuxPackages_zen;
+    lqx.configuration.boot.kernelPackages = pkgs.linuxPackages_lqx;
+    lts.configuration.boot.kernelPackages = pkgs.linuxPackages_6_12;
+    hardened.configuration.boot.kernelPackages = pkgs.linuxPackages_hardened;
+  };
+
   boot = {
     consoleLogLevel = 4;
     modprobeConfig.enable = true;
     inherit supportedFilesystems;
     #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
     kernelPackages = pkgs.linuxPackages_latest;
-
-    specialisation = {
-      zen.configuration.boot.kernelPackages = pkgs.linuxPackages_zen;
-      lqx.configuration.boot.kernelPackages = pkgs.linuxPackages_lqx;
-      lts.configuration.boot.kernelPackages = pkgs.linuxPackages_6_12;
-      hardened.configuration.boot.kernelPackages = pkgs.linuxPackages_hardened;
-    };
 
     loader = {
       efi.efiSysMountPoint = "/boot/EFI";
