@@ -21,6 +21,8 @@ let
   lsblk = "${pkgs.util-linux}/bin/lsblk";
   sed = "${pkgs.gnused}/bin/sed";
   basename = "${pkgs.coreutils}/bin/basename";
+  wget = "${pkgs.wget2}/bin/wget2";
+  efifs = "https://github.com/pbatard/EfiFs/releases/download/v1.11";
   icons = "/EFI/refind/themes/catppuccin/assets/mocha/icons";
   kernel = "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}";
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
@@ -89,13 +91,17 @@ in
       --unicode &> /dev/null
 
     if [ ! -d ${efi}/refind ]; then
-      ${mkdir} -p ${efi}/BOOT ${efi}/refind/themes
+      ${mkdir} -p ${efi}/BOOT ${efi}/refind/themes ${efi}/refind/drivers_x64
       ${cp} ${refind}/refind_x64.efi ${efi}/refind/refind_x64.efi
       ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
-      ${cp} -r ${refind}/drivers_x64 ${efi}/refind/drivers_x64
       ${cp} -r ${refind}/icons ${efi}/refind/icons
       ${cp} -r ${refind}/fonts ${efi}/refind/fonts
       ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/exfat_x64.efi
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi
     fi
 
     if [ ! -d ${efi}/tools ]; then
@@ -125,8 +131,10 @@ in
       ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/fwupx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/ext4_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/iso9660_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/exfat_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/f2fs_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/drivers_x64/zfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
