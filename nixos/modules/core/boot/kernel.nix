@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   supportedFilesystems = [
     "btrfs"
@@ -10,12 +10,14 @@ let
   ];
 in
 {
-  specialisation = with lib; {
+  /*
+    specialisation = with lib; {
     zen-mode.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_zen;
     lqx.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_lqx;
     lts.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_6_12;
     secure.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_hardened;
-  };
+    };
+  */
 
   boot = {
     consoleLogLevel = 4;
