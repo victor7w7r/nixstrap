@@ -50,7 +50,7 @@ let
       icon ${icons}/os_nixos.png
       loader /EFI/kernel
       initrd /EFI/initrd
-      options init=$TOPLEVEL/init ${toString config.boot.kernelParams}
+      options "init=$TOPLEVEL/init ${toString config.boot.kernelParams}"
       submenuentry "Verbose" {
         add_options "${debugFlags}"
       }
@@ -116,7 +116,6 @@ in
 
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
-
       ${entries}
     EOF
 
