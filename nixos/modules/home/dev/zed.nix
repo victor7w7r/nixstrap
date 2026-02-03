@@ -109,7 +109,7 @@
         env.TERM = "kitty";
         font_family = "JetBrainsMono Nerd Font";
         line_height = "comfortable";
-        shell = "szsh";
+        shell = "zsh";
         toolbar.title = true;
       };
 

@@ -28,7 +28,7 @@
 
     nix-index = {
       enable = true;
-      enableZshIntegration = false;
+      #enableZshIntegration = false;
       #nix-index-database.comma.enable = true;
     };
   };

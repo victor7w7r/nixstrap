@@ -30,12 +30,12 @@
     zoxide = {
       enable = true;
       options = [ "--cmd cd" ];
-      enableZshIntegration = true;
+      #enableZshIntegration = true;
     };
 
     eza = {
       enable = true;
-      enableZshIntegration = true;
+      #enableZshIntegration = true;
       colors = "always";
       extraOptions = [
         "--group-directories-first"

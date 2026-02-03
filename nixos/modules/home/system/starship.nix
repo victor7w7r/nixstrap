@@ -2,7 +2,7 @@
 {
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
+    #enableZshIntegration = true;
 
     settings = {
       add_newline = true;
@@ -18,12 +18,12 @@
       character = {
         success_symbol = ''[\$](bold #cc8afc)'';
         error_symbol = ''[\$](bold #cc8afc)'';
-        vimcmd_symbol = ''[](bold turquoise)'';
+        vimcmd_symbol = "[](bold turquoise)";
       };
 
       os = {
         disabled = false;
-        format = ''[$symbol]($style)'';
+        format = "[$symbol]($style)";
         style = "bold #7088ff";
         symbols = {
           Windows = " ";
@@ -40,7 +40,7 @@
 
       username = {
         disabled = false;
-        format = ''(black bold)[$user]($style)'';
+        format = "(black bold)[$user]($style)";
         show_always = true;
         style_user = "bold #2BB7FB";
         style_root = "bold #ff5990";
@@ -48,19 +48,19 @@
 
       hostname = {
         disabled = false;
-        format = ''[$hostname ]($style)'';
+        format = "[$hostname ]($style)";
         ssh_only = false;
         style = "bold #2BB7FB";
       };
 
       jobs = {
-        format = ''[$symbol$number]($style) '';
+        format = "[$symbol$number]($style) ";
         style = "bold #83e6ff";
         symbol = "[▶](#83e6ff)";
       };
 
       directory = {
-        format = ''[$path]($style)[$read_only ]($read_only_style)'';
+        format = "[$path]($style)[$read_only ]($read_only_style)";
         home_symbol = "~";
         read_only = "  ";
         style = "italic #83e6ff";
@@ -84,7 +84,7 @@
 
       cmd_duration = {
         disabled = false;
-        format = ''[ $duration]($style) '';
+        format = "[ $duration]($style) ";
         style = "dimmed #cc8afc";
       };
 
@@ -99,16 +99,16 @@
 
       localip = {
         disabled = false;
-        format = ''[$localipv4]($style)[ 󰋑  ](#cc8afc)'';
+        format = "[$localipv4]($style)[ 󰋑  ](#cc8afc)";
         style = "italic dimmed #7088ff";
         ssh_only = false;
       };
 
       time = {
         disabled = false;
-        format = ''[$time]($style)'';
+        format = "[$time]($style)";
         style = "italic #83e6ff";
-        time_format = ''%I:%M:%S'';
+        time_format = "%I:%M:%S";
         use_12hr = true;
         utc_time_offset = "local";
       };
