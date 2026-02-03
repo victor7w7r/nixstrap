@@ -50,6 +50,7 @@ let
       icon ${icons}/os_nixos.png
       loader /EFI/kernel
       initrd /EFI/initrd
+      options init=$TOPLEVEL/init ${toString config.boot.kernelParams}
       submenuentry "Verbose" {
         add_options "${debugFlags}"
       }
