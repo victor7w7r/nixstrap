@@ -27,7 +27,7 @@ let
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
-  zen = config.specialisation.zen.configuration.boot.kernelPackages.kernel;
+  zenboost = config.specialisation.zen.configuration.boot.kernelPackages.kernel;
   lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
   lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
   secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
@@ -144,7 +144,7 @@ in
     [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
     cp ${latest}/${kernelFile} ${efi}/kernel
 
-    cp ${zen}/${kernelFile} ${efi}/kernel-zen
+    cp ${zenboost}/${kernelFile} ${efi}/kernel-zen
     cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
     cp ${lts}/${kernelFile} ${efi}/kernel-lts
     cp ${secure}/${kernelFile} ${efi}/kernel-hardened
