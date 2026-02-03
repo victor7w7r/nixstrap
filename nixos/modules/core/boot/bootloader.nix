@@ -27,10 +27,10 @@ let
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
-  zen = config.specialisation.zen-mode.configuration.boot.kernelPackages.kernel;
-  lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
-  lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
-  secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
+  #zen = config.specialisation."zen-mode".configuration.boot.kernelPackages.kernel;
+  #lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
+  #lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
+  #secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
 
   refind-opts = ''
     banner ${mocha}/background.png
@@ -65,26 +65,26 @@ let
         submenuentry "Rescue" {
           add_options "systemd.unit=rescue.target ${debugFlags}"
         }
-        submenuentry "LTS" {
-          loader /EFI/kernel-lts
-          initrd
-          options
-        }
-        submenuentry "LQX" {
-          loader /EFI/kernel-lqx
-          initrd
-          options
-        }
-        submenuentry "Zen" {
-          loader /EFI/kernel-zen
-          initrd
-          options
-        }
-        submenuentry "Hardened" {
-          loader /EFI/kernel-hardened
-          initrd
-          options
-        }
+        #submenuentry "LTS" {
+        #  loader /EFI/kernel-lts
+        #  initrd
+        #  options
+        #}
+        #submenuentry "LQX" {
+        #  loader /EFI/kernel-lqx
+        #  initrd
+        #  options
+        #}
+        #submenuentry "Zen" {
+        #  loader /EFI/kernel-zen
+        #  initrd
+        #  options
+        #}
+        #submenuentry "Hardened" {
+        #  loader /EFI/kernel-hardened
+        #  initrd
+        #  options
+        #}
       '',
     }:
     ''
@@ -144,11 +144,6 @@ in
     [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
     cp ${latest}/${kernelFile} ${efi}/kernel
 
-    cp ${zen}/${kernelFile} ${efi}/kernel-zen
-    cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
-    cp ${lts}/${kernelFile} ${efi}/kernel-lts
-    cp ${secure}/${kernelFile} ${efi}/kernel-hardened
-
     [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
     cp ${initrd} ${efi}/initrd
 
@@ -180,4 +175,11 @@ in
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
+
+  /*
+    cp ${zen}/${kernelFile} ${efi}/kernel-zen
+    cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
+    cp ${lts}/${kernelFile} ${efi}/kernel-lts
+    cp ${secure}/${kernelFile} ${efi}/kernel-hardened
+  */
 }
