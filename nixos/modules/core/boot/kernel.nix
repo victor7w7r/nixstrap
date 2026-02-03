@@ -14,7 +14,7 @@ in
     zen.configuration.boot.kernelPackages = pkgs.linuxPackages_zen;
     lqx.configuration.boot.kernelPackages = pkgs.linuxPackages_lqx;
     lts.configuration.boot.kernelPackages = pkgs.linuxPackages_6_12;
-    hardened.configuration.boot.kernelPackages = pkgs.linuxPackages_hardened;
+    secure.configuration.boot.kernelPackages = pkgs.linuxPackages_hardened;
   };
 
   boot = {

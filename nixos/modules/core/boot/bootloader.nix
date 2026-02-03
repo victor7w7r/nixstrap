@@ -30,7 +30,7 @@ let
   zen = config.specialisation.zen.configuration.boot.kernelPackages.kernel;
   lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
   lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
-  hardened = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
+  secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
 
   refind-opts = ''
     banner ${mocha}/background.png
@@ -147,7 +147,7 @@ in
     cp ${zen}/${kernelFile} ${efi}/kernel-zen
     cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
     cp ${lts}/${kernelFile} ${efi}/kernel-lts
-    cp ${hardened}/${kernelFile} ${efi}/kernel-hardened
+    cp ${secure}/${kernelFile} ${efi}/kernel-hardened
 
     [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
     cp ${initrd} ${efi}/initrd
