@@ -29,6 +29,7 @@
       rage
       sampler
       ssh-to-age
+      sbctl
       sd
       sig
       sops
