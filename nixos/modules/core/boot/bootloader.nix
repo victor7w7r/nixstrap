@@ -23,53 +23,80 @@ let
   basename = "${pkgs.coreutils}/bin/basename";
   wget = "${pkgs.wget2}/bin/wget2";
   efifs = "https://github.com/pbatard/EfiFs/releases/download/v1.11";
-  icons = "/EFI/refind/themes/catppuccin/assets/mocha/icons";
-  kernel = "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}";
+  mocha = "themes/catppuccin/assets/mocha";
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
+  latest = config.boot.kernelPackages.kernel;
+  kernelFile = config.system.boot.loader.kernelFile;
+  zen = config.specialisation.zen.configuration.boot.kernelPackages.kernel;
+  lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
+  lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
+  hardened = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
 
   refind-opts = ''
-    banner themes/catppuccin/assets/mocha/background.png
+    banner ${mocha}/background.png
     banner_scale fillscreen
-    dont_scan_files grubx64.efi
     dont_scan_dirs +,EFI
     enable_touch
     enable_mouse
-    icons_dir themes/catppuccin/assets/mocha/icons
+    icons_dir ${mocha}/icons
     hideui hwtest,arrows,badges
-    screensaver 300
     scanfor manual,external
     showtools shell, memtest, bootorder, apple_recovery, windows_recovery
-    selection_big themes/catppuccin/assets/mocha/selection_big.png
-    selection_small themes/catppuccin/assets/mocha/selection_small.png
+    selection_big ${mocha}/selection_big.png
+    selection_small ${mocha}/selection_small.png
     timeout 2
     use_nvram false
   '';
 
   debugFlags = "boot.trace=1 debug udev.log_level=7 rd.systemd.show_status=true";
 
-  entries = ''
-    menuentry "NixOS" {
-      icon ${icons}/os_nixos.png
-      loader /EFI/kernel
-      initrd /EFI/initrd
-      options "init=$TOPLEVEL/init ${toString config.boot.kernelParams}"
-      submenuentry "Verbose" {
-        add_options "${debugFlags}"
+  nixosBuilder =
+    {
+      name ? "NixOS",
+      loader ? "/EFI/kernel",
+      initrd ? "/EFI/initrd",
+      subentries ? ''
+        submenuentry "Verbose" {
+          add_options "${debugFlags}"
+        }
+        submenuentry "Console Only" {
+          add_options "systemd.unit=multi-user.target"
+        }
+        submenuentry "Rescue" {
+          add_options "systemd.unit=rescue.target ${debugFlags}"
+        }
+        submenuentry "LTS" {
+          loader /EFI/kernel-lts
+          initrd
+          options
+        }
+        submenuentry "LQX" {
+          loader /EFI/kernel-lqx
+          initrd
+          options
+        }
+        submenuentry "Zen" {
+          loader /EFI/kernel-zen
+          initrd
+          options
+        }
+        submenuentry "Hardened" {
+          loader /EFI/kernel-hardened
+          initrd
+          options
+        }
+      '',
+    }:
+    ''
+      menuentry "${name}" {
+        icon /EFI/refind/${mocha}/icons/os_nixos.png
+        loader ${loader}
+        initrd ${initrd}
+        ostype Linux
+        options "init=$TOPLEVEL/init ${toString config.boot.kernelParams}"
+        ${subentries}
       }
-      submenuentry "Console Only" {
-        add_options "systemd.unit=multi-user.target"
-      }
-      submenuentry "Rescue" {
-        add_options "systemd.unit=rescue.target ${debugFlags}"
-      }
-    }
-
-    menuentry "Windows 11" {
-      icon ${icons}/os_win10.png
-      loader /EFI/Microsoft/Boot/bootmgfw.efi
-      ostype Windows
-    }
-  '';
+    '';
 in
 {
   system.boot.loader.id = "refind";
@@ -82,6 +109,7 @@ in
     DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
     BASE=$(${basename} $TOPLEVEL)
 
+    echo "Setup EFI Entries..."
     ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
       | ${sed} 's/Boot//' | ${sed} 's/\*//' \
       | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
@@ -91,20 +119,22 @@ in
       --unicode &> /dev/null
 
     if [ ! -d ${efi}/refind ]; then
+      echo "Setup Refind, downloading drivers..."
       ${mkdir} -p ${efi}/BOOT ${efi}/refind/themes ${efi}/refind/drivers_x64
       ${cp} ${refind}/refind_x64.efi ${efi}/refind/refind_x64.efi
       ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
       ${cp} -r ${refind}/icons ${efi}/refind/icons
       ${cp} -r ${refind}/fonts ${efi}/refind/fonts
       ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/exfat_x64.efi
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi &> /dev/null
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/exfat_x64.efi &> /dev/null
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi &> /dev/null
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
+      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi &> /dev/null
     fi
 
     if [ ! -d ${efi}/tools ]; then
+      echo "Setup Tools..."
       ${mkdir} -p ${efi}/tools
       ${cp} ${edk2}/shell.efi ${efi}/tools/shellx64.efi
       ${cp} ${memtest}/BOOTX64.efi ${efi}/tools/memtest86.efi
@@ -112,17 +142,29 @@ in
     fi
 
     [[ -f ${efi}/kernel ]] && rm ${efi}/kernel
-    cp ${kernel} ${efi}/kernel
+    cp ${latest}/${kernelFile} ${efi}/kernel
+
+    cp ${zen}/${kernelFile} ${efi}/kernel-zen
+    cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
+    cp ${lts}/${kernelFile} ${efi}/kernel-lts
+    cp ${hardened}/${kernelFile} ${efi}/kernel-hardened
 
     [[ -f ${efi}/initrd ]] && rm ${efi}/initrd
     cp ${initrd} ${efi}/initrd
 
-    ${cp} ${kernel} ${initrd} /boot/emergency/
+    mkdir -p /boot/emergency/cache
+    ${cp} ${latest}/${kernelFile} /boot/emergency/cache/kernel-$BASE
+    ${cp} ${initrd} /boot/emergency/cache/initrd-$BASE
     echo "$BASE" > /boot/emergency/actual.txt
 
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
-      ${entries}
+      ${nixosBuilder { }}
+      menuentry "Windows 11" {
+        icon /EFI/refind/${mocha}/icons/os_win10.png
+        loader /EFI/Microsoft/Boot/bootmgfw.efi
+        ostype Windows
+      }
     EOF
 
     if [ -d /nix/persist/var/lib/sbctl ]; then
@@ -138,6 +180,4 @@ in
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
-  #${sbctl} sign -s ${efi}/initrd
-  #--cmdline="init=$TOPLEVEL/init ${toString config.boot.kernelParams}" \
 }

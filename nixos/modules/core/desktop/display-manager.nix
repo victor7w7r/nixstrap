@@ -63,6 +63,8 @@
           #colormix_col2 = "0x402F4F4F";
           #colormix_col3 = "0x406495ED";
           gameoflife_fg = "0x0000FF00";
+          gameoflife_frame_delay = 9;
+          gameoflife_entropy_interval = 5;
           default_input = "login";
           error_bg = "0x00000000";
           error_fg = "0x01FF0000";
