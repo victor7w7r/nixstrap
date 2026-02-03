@@ -9,6 +9,14 @@
       DefaultTimeoutAbortSec = "5s";
       DefaultLimitNOFILE = "2048:2097152";
     };
+    services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+      "getty@tty7".enable = false;
+      "autovt@tty7".enable = false;
+      "kmsconvt@tty1".enable = false;
+      "kmsconvt@tty7".enable = false;
+    };
     tmpfiles.rules = [
       "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
       "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"

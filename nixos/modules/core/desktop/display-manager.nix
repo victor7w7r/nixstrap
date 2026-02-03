@@ -49,8 +49,9 @@
       ly = {
         enable = true;
         settings = {
-          animation = "colormix"; # matrix, CMatrix
+          animation = "gameoflife";
           auth_fails = 3;
+          battery_id = "BAT0";
           bg = "0x00000000";
           bigclock = "en";
           blank_box = true;
@@ -58,9 +59,10 @@
           brightness_down_cmd = "${pkgs.brightnessctl}/bin/brightnessctl -q s 10%-";
           brightness_up_cmd = "${pkgs.brightnessctl}/bin/brightnessctl -q s +10%";
           clock = "%c";
-          colormix_col1 = "0x402F4F4F";
-          colormix_col2 = "0x402F4F4F";
-          colormix_col3 = "0x406495ED";
+          #colormix_col1 = "0x402F4F4F";
+          #colormix_col2 = "0x402F4F4F";
+          #colormix_col3 = "0x406495ED";
+          gameoflife_fg = "0x0000FF00";
           default_input = "login";
           error_bg = "0x00000000";
           error_fg = "0x01FF0000";
@@ -69,6 +71,8 @@
           lang = "es";
           sleep_cmd = "systemd suspend";
           text_in_center = true;
+          xinitrc = "null";
+          tty = 1;
         };
       };
     };
