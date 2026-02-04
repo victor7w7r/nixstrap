@@ -1,7 +1,7 @@
 keys:
   - &main_machine age1st29vxtalmuzw4je4w3hfcnz8dtadcjf3ksx0742qv0lm5qf7pasw3w3pl
   - &vm_machine age1gzpr4f8nfrlfly7wy9rsyt8nlvh4yeefa5mh37eks4t0j04aq3nq90ld0w
-  - &rogally_machine age1jpmffrx6ywa2g3w20tnhxy4ea58rq4y6kzfept8y39e9lp5rgu7saexkjf
+  - &rogally_machine age1cn8acargf6lfdmg2lpwqwm66aegegpdywxen6rgkaeehpkkulp6qn44znr
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
