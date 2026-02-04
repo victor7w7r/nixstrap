@@ -20,7 +20,7 @@ let
       label = "games";
       mountContent = "games";
       mountSnap = "gamessnap";
-    }
+    };
   };
 
   lvs = {
