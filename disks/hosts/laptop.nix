@@ -52,16 +52,18 @@ let
   };
 in
 {
-  disko.devices.disk.main = {
-    type = "disk";
-    device = "/dev/nvme0n1";
-    content = {
-      type = "gpt";
-      inherit partitions;
+  disko.devices = {
+    disk.main = {
+      type = "disk";
+      device = "/dev/nvme0n1";
+      content = {
+        type = "gpt";
+        inherit partitions;
+      };
     };
-  };
-  lvm_vg.vg0 = {
-    type = "lvm_vg";
-    inherit lvs;
+    lvm_vg.vg0 = {
+      type = "lvm_vg";
+      inherit lvs;
+    };
   };
 }
