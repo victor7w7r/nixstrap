@@ -39,8 +39,8 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    daemonCPUSchedPolicy = "batch";
-    daemonIOSchedPriority = 5;
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedPriority = 7;
     distributedBuilds = true;
     optimise.automatic = true;
     package = lib.mkDefault (pkgs.lix);
