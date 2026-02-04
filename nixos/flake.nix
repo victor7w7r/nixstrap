@@ -115,6 +115,7 @@
             (import ./modules/core)
             (import ./modules/home)
             nur.modules.nixos.default
+            impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
           specialArgs = {
@@ -144,6 +145,7 @@
             nixos-hardware.nixosModules.common-laptop
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
+            impermanence.nixosModules.impermanence
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
             (import ./hosts/laptop.nix)
@@ -179,6 +181,7 @@
             (import ./modules/core)
             (import ./modules/home)
             nur.modules.nixos.default
+            impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
           specialArgs = {
@@ -210,6 +213,7 @@
             (import ./modules/core)
             (import ./modules/home)
             nur.modules.nixos.default
+            impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
           specialArgs = {
