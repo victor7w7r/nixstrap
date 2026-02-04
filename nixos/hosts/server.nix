@@ -29,12 +29,8 @@ in
   };
 
   boot = {
-    kernelParams = [
-      "intel_iommu=on"
-    ]
-    ++ intelParams
-    ++ params { };
-
+    kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
     initrd = {
       availableKernelModules = [
         "i915"

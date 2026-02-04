@@ -30,7 +30,7 @@ in
 
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-
+    kernelPackages= pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto-x86_64-v3;
     initrd = {
       availableKernelModules = [
         "i915"
