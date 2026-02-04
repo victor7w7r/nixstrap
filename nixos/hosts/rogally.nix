@@ -47,9 +47,9 @@ in
     kernelParams = [
       "amd_pstate=active"
       "amd_iommu=on"
-    ];
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
+    ]
     ++ params { };
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
     initrd.luks.devices.syscrypt = {
       device = "/dev/disk/by-partlabel/disk-main-systempv";
       preLVM = true;
