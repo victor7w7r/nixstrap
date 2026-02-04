@@ -47,7 +47,7 @@ in
     kernelParams = [
       "amd_pstate=active"
       "amd_iommu=on"
-    ]
+    ];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
     ++ params { };
     initrd.luks.devices.syscrypt = {
