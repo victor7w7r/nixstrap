@@ -23,8 +23,6 @@ in
     consoleLogLevel = 4;
     modprobeConfig.enable = true;
     inherit supportedFilesystems;
-
-
     loader = {
       efi.efiSysMountPoint = "/boot/EFI";
       efi.canTouchEfiVariables = true;
@@ -58,6 +56,9 @@ in
           ip = "${pkgs.iproute2}/bin/ip";
           ping = "${pkgs.iputils}/bin/ping";
           cryptsetup = "${pkgs.cryptsetup}/bin/cryptsetup";
+          busybox = "${pkgs.busybox-sandbox-shell}/bin/busybox";
+          find = "${pkgs.findutils}/bin/find";
+          grep = "${pkgs.gnugrep}/bin/grep";
         };
       };
     };

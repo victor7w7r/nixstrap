@@ -51,9 +51,15 @@ in
     ]
     ++ params { };
     kernelPackages = pkgs.linuxPackages-v7w7r-handheld;
-    initrd.luks.devices.syscrypt = {
-      device = "/dev/disk/by-partlabel/disk-main-systempv";
-      preLVM = true;
+    initrd = {
+      availableKernelModules = [
+        "autofs"
+        "tpm-tis"
+      ];
+      luks.devices.syscrypt = {
+        device = "/dev/disk/by-partlabel/disk-main-systempv";
+        preLVM = true;
+      };
     };
   };
 

@@ -22,6 +22,7 @@
     sl
     sops
     ternimal
+    thin-provisioning-tools
     tmux
   ];
 
