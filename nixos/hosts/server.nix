@@ -1,4 +1,4 @@
-{ self, ... }:
+{ config, self, ... }:
 let
   intelParams = import ./common/intel-params.nix;
   params = import ./common/params.nix;
@@ -15,6 +15,7 @@ let
   shared = (import ./filesystems/shared.nix) { };
 in
 {
+  imports = [ import ./kernels ];
   fileSystems = {
     inherit (rootfs) "/";
     inherit (boot) "/boot" "/boot/emergency";
@@ -30,7 +31,8 @@ in
 
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+    kernelPackages = pkgs.linuxPackages-v7w7r-server;
+    zfs.package = config.boot.kernelPackages.zfs_cachyos;
     initrd = {
       availableKernelModules = [
         "i915"

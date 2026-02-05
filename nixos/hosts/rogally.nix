@@ -32,6 +32,7 @@ let
   };
 in
 {
+  imports = [ import ./kernels ];
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
@@ -49,7 +50,7 @@ in
       "amd_iommu=on"
     ]
     ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
+    kernelPackages = pkgs.linuxPackages-v7w7r-handheld;
     initrd.luks.devices.syscrypt = {
       device = "/dev/disk/by-partlabel/disk-main-systempv";
       preLVM = true;

@@ -1,12 +1,6 @@
-{
-  lib,
-  final,
-  inputs,
-  helpers,
-  cachyosKernels,
-}:
+{ pkgs, inputs }:
 let
-  kernel = cachyosKernels.linux-cachyos-lts.override {
+  kernel = pkgs.cachyosKernels.linux-cachyos-lts.override {
     pname = "linux-v7w7r-server";
     lto = "thin";
     processorOpt = "x86_64-v3";
@@ -16,12 +10,9 @@ let
     bbr3 = true;
     hardened = true;
   };
-  packages = (helpers.kernelModuleLLVMOverride (final.linuxKernel.packagesFor kernel)).extend (
-    _self: _super: {
-      zfs_cachyos = cachyosKernels.zfs-cachyos-lto.override {
-        kernel = kernel;
-      };
-    }
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel}/helpers.nix" { };
+  packages = (helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
+    _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
   );
 in
 {
