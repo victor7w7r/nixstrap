@@ -173,7 +173,7 @@ in
       ${sbctl} sign -s ${efi}/refind/drivers_x64/f2fs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/zfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/kerne
+      ${sbctl} sign -s ${efi}/kernel
     fi
   '';
 
