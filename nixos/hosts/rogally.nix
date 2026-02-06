@@ -32,10 +32,6 @@ let
   };
 in
 {
-  imports = [
-    import
-    ./kernels
-  ];
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
