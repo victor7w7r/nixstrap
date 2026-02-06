@@ -10,6 +10,7 @@
     f2fs-tools
     lavat
     lm_sensors
+    lshw
     nbsdgames
     ncdu
     nix-du

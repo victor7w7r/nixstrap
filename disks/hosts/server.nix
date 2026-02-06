@@ -88,7 +88,7 @@ let
         lvcreate --yes -l 100%FREE -n root lvm ${hdd}-part1
         lvconvert --yes --type cache --cachepolicy smq --cachepool lvm/root-cache-data lvm/root
         mkfs.btrfs /dev/lvm/root
-        mount /dev/lvm/root /mnt -o compress=zstd,noatime
+        mount /dev/lvm/root /mnt -o compress=zstd:1,noatime
     '';
 
     lvconvert --type cache \

@@ -33,7 +33,7 @@ let
     "lazytime"
     "noatime"
     "discard=async"
-    "compress=zstd"
+    "compress=zstd:1"
   ];
 
   subvolumes = {

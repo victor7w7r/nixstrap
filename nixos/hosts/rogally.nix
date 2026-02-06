@@ -18,7 +18,7 @@ let
       options = [
         "lazytime"
         "noatime"
-        "compress=zstd"
+        "compress=zstd:1"
         "discard=async"
         "subvol=@${subvol}"
       ]

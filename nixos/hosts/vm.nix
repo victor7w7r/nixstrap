@@ -14,7 +14,7 @@ let
       options = [
         "lazytime"
         "noatime"
-        "compress=zstd"
+        "compress=zstd:1"
         "subvol=@${subvol}"
       ]
       ++ (if isNix then [ "noacl" ] else [ ]);

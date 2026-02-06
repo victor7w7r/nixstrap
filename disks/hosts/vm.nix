@@ -40,7 +40,7 @@ let
     "lazytime"
     "noatime"
     "autodefrag"
-    "compress=zstd"
+    "compress=zstd:1"
   ];
 
   subvolumes = {

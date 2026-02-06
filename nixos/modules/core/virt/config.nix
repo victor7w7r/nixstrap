@@ -28,11 +28,11 @@
       };
     };
     #lxd.enable = true;
-    lxc = {
-      enable = true;
-      lxcfs.enable = true;
-      unprivilegedContainers = true;
-    };
+    #lxc = {
+    #  enable = true;
+    #  lxcfs.enable = true;
+    #  unprivilegedContainers = true;
+    #};
   };
 
   users.extraGroups.podman.members = [ username ];
