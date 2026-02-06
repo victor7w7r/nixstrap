@@ -32,7 +32,10 @@ let
   };
 in
 {
-  imports = [ import ./kernels ];
+  imports = [
+    import
+    ./kernels
+  ];
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
@@ -50,7 +53,7 @@ in
       "amd_iommu=on"
     ]
     ++ params { };
-    kernelPackages = pkgs.linuxPackages-v7w7r-handheld;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-deckify-lto;
     initrd = {
       availableKernelModules = [
         "autofs"
