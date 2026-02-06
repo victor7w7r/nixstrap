@@ -1,4 +1,9 @@
-{ host, ... }:
+{
+  host,
+  pkgs,
+  lib,
+  ...
+}:
 {
   nixpkgs.overlays = [
     (pkgs: prev: {
@@ -12,6 +17,13 @@
   ];
 
   hardware = {
+    enableAllFirmware = lib.mkForce false;
+    enableRedistributableFirmware = lib.mkForce false;
+    firmware = with pkgs; [
+      linux-firmware
+      rtl8192su-firmware
+      rtl8761b-firmware
+    ];
     ksm.enable = true;
     #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
     bluetooth = {
