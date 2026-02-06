@@ -49,7 +49,7 @@ in
       "amd_iommu=on"
     ]
     ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-deckify-lto;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
     initrd = {
       availableKernelModules = [
         "autofs"
