@@ -46,6 +46,8 @@
       kdePackages.krdp
       kdePackages.ktorrent
       kdePackages.ksystemlog
+      kdePackages.kwallet
+      kdePackages.kwallet-pam
       kdePackages.okular
       kdePackages.plasma-workspace
       kdePackages.plasma-desktop
@@ -72,6 +74,7 @@
       onboard
       qpwgraph
       okteta
+      pinentry-qt
       systemdgenie
       ulauncher
     ];

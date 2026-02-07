@@ -66,6 +66,7 @@
         ".doom.d"
         ".config/sops"
         ".steam"
+        ".tmux"
         #".cache"
       ];
       files = [

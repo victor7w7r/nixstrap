@@ -98,7 +98,15 @@ let
       vgdata/lv_hdd \
       vgdata/lv_cache
   */
-
+zfsFor = {
+  zfs = {
+    size = "100%";
+    content = {
+      type = "zfs";
+      pool = "zroot";
+    };
+  };
+};
 in
 {
   disko.devices = {
@@ -108,7 +116,7 @@ in
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
-          partitions = nvmepartitions;
+          partitions = zfsFor;
         };
       };
       sata = {

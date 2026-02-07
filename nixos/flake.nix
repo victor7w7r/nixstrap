@@ -44,6 +44,10 @@
       url = "github:ly-sec/swiftfetch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "";
+    };
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";

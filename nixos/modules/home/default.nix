@@ -26,6 +26,7 @@
     sharedModules = [
       inputs.plasma-manager.homeModules.plasma-manager
       inputs.zen-browser.homeModules.beta
+      inputs.nix-doom-emacs-unstraightened.homeModule
     ];
 
     users.${username} = {
