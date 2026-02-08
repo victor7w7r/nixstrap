@@ -1,138 +1,104 @@
 let
-  winmod = import ../lib/windows.nix;
-
-  nvmepartitions = {
-    esp = (import ../lib/esp.nix) { };
-    /*
-      vmmeta = (import ../lib/lvm.nix) {
-      vg = "vgsrv0";
-      size = "1G";
-      priority = 2;
-    */
-    vmcache = (import ../lib/lvm.nix) {
-      vg = "vgsrv0";
-      size = "32G";
-      priority = 3;
-    };
-    cloudcache = (import ../lib/lvm.nix) {
-      vg = "vgsrv1";
-      size = "120G";
-      priority = 4;
-    };
-    systempv = (import ../lib/lvm.nix) {
-      vg = "vgsrv0";
-      priority = 5;
-    };
-  };
-
-  satapartitions = {
-    msr = winmod.msr { priority = 1; };
-    emergency = (import ../lib/emergency.nix) { priority = 2; };
-    recovery = winmod.recovery { priority = 3; };
-    cloudmeta = (import ../lib/luks-lvm.nix) {
-      vg = "vgsrv1";
-      size = "4G";
-      priority = 4;
-    };
-    win = winmod.win {
-      size = "100%";
-      priority = 5;
-    };
-  };
-
-  vmpartitions = {
-    vmpv = (import ../lib/luks-lvm.nix) {
-      allowDiscards = false;
-      keyFile = "/tmp/vmkey.key";
-      name = "vmpv";
-      priority = 1;
-      label = "vmpv";
-      randomKeyName = "vmentropykey.key";
-      vg = "vgsrv0";
-    };
-  };
-
-  cloudpartitions = {
-    cloudpv = (import ../lib/luks-lvm.nix) {
-      allowDiscards = false;
-      keyFile = "/tmp/cloudkey.key";
-      name = "cloudpv";
-      priority = 1;
-      label = "cloudpv";
-      randomKeyName = "cloudentropykey.key";
-      vg = "vgsrv1";
-    };
-  };
-
-  lvsystem = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-    rootfs = (import ../filesystems/rootfs.nix) { };
-    home = (import ../filesystems/home-only.nix) { };
-    store = (import ../filesystems/store-only.nix) { };
-    system = (import ../filesystems/system-btrfs.nix) { };
-    var = (import ../filesystems/var-only.nix) { };
-  };
-
-  /*
-    TODO:
-      - Setup partitions for every disk with coherence
-      - Put nix store in hdd
-      - Setup the cache and the meta in desired space
-    postCreateHook = ''
-        lvcreate --yes -l 5%FREE -n root-cache-meta lvm ${ssd}-part3
-        lvcreate --yes -l 100%FREE -n root-cache-data lvm ${ssd}-part3
-        lvconvert --yes --type cache-pool --cachemode writeback --poolmetadata lvm/root-cache-meta lvm/root-cache-data
-        lvcreate --yes -l 100%FREE -n root lvm ${hdd}-part1
-        lvconvert --yes --type cache --cachepolicy smq --cachepool lvm/root-cache-data lvm/root
-        mkfs.btrfs /dev/lvm/root
-        mount /dev/lvm/root /mnt -o compress=zstd:1,noatime
-    '';
-
-    lvconvert --type cache \
-      --cachemode writeback \
-      --cachepolicy smq \
-      --chunksize 512K \
-      vgdata/lv_hdd \
-      vgdata/lv_cache
-  */
-zfsFor = {
-  zfs = {
-    size = "100%";
+  zfsFor: {
+    pool ? "zroot",
+    size ? "100%"
+  } = {
+    inherit size;
     content = {
       type = "zfs";
-      pool = "zroot";
+      inherit pool;
     };
   };
-};
+
+  hddFor: {
+    device,
+    pool ? "zcloud",
+  } = {
+    type = "disk";
+    device = "/dev/disk/by-id/${device}";
+    content = {
+      type = "gpt";
+      partitions = zfsFor { inherit pool; };
+    };
+  };
+
+  mmcpartitions = {
+    esp = (import ../lib/esp.nix) { };
+    system = (import ../lib/f2fs.nix) {
+      label = "serversys";
+      name = "serversys";
+      size = "100%";
+      isIsolated = true;
+      priority = 2;
+    };
+  };
+
+  nvmepartitions = {
+    emergency = (import ../filesystems/emergency.nix) { priority = 1; };
+    zfssystem = zfsFor { size = "120G"; }; #Log, 2GB -> #Special 40GB, #Cache 78GB
+    zfscloud =  zfsFor { pool = "zcloud"; };  #Log, 16GB -> #Special 100GB, #Cache 120GB, #Shared rest
+  };
 in
 {
   disko.devices = {
     disk = {
-      stick = {
+      emmc = {
+        type = "disk";
+        device = "/dev/mmcblk0";
+        content = {
+          type = "gpt";
+          partitions = mmcpartitions;
+        };
+      };
+      nvme = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
-          partitions = zfsFor;
+          partitions = nvmepartitions;
         };
       };
-      sata = {
-        type = "disk";
-        device = "/dev/sda";
-        content = {
-          type = "gpt";
-          partitions = satapartitions;
-        };
+      cloud1 = hddFor {
+        device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X";
+      };
+      cloud2 = hddFor {
+        device = "ata-MM1000GBKAL_9XG3YGXQ";
+      };
+      cloud3 = hddFor {
+        device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
+      };
+      cloud4 = hddFor {
+        device = "ata-TOSHIBA_MQ01ABD100_46G8SH1BST";
+      };
+      store = hddFor {
+        device = "ata-ST500LT012-1DG142_S3PMCMHT";
+        pool = "zroot";
       };
     };
-
-    lvm_vg = {
-      vgsrv0 = {
-        type = "lvm_vg";
-        lvs = lvsystem;
+    zpool = {
+      zroot = {
+        type = "zpool";
+        mode = "mirror";
+        mountpoint = "/storage";
+        datasets = {
+          dataset = {
+            type = "zfs_fs";
+            mountpoint = "/storage/dataset";
+          };
+        };
+      };
+      zcloud = {
+        type = "zpool";
+        mountpoint = "/storage2";
+        rootFsOptions = {
+          canmount = "off";
+        };
+        datasets = {
+          dataset = {
+            type = "zfs_fs";
+            mountpoint = "/storage2/dataset";
+          };
+        };
       };
     };
   };

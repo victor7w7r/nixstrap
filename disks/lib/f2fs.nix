@@ -1,38 +1,63 @@
 {
-  name,
-  size,
   label,
-  mountpoint,
+  mountpoint ? "/",
+  name ? null,
+  size ? null,
+  priority ? null,
   lvmPool ? "",
-  postMountHook ? "",
-  extraArgs ? [ ],
-  mountOptions ? [ ],
+  isIsolated ? false,
 }:
-{
-  inherit name size;
-  content = {
-    type = "filesystem";
-    format = "f2fs";
-    inherit mountpoint postMountHook;
-    mountOptions = mountOptions ++ [ ];
-    extraArgs = extraArgs ++ [
-      "-f"
-      "-O"
-      "extra_attr"
-      "inode_checksum"
-      "flexible_inline_xattr"
-      "sb_checksum"
-      "-l"
-      label
-    ];
+let
+  mountOptions = [
+    "lazytime"
+    "noatime"
+    "compress_chksum"
+    "compress_algorithm=zstd:3"
+    "age_extent_cache"
+    "compress_extension=so"
+    "inline_xattr"
+    "inline_data"
+    "inline_dentry"
+    "errors=remount-ro"
+    "compress_extension=bin"
+    "atgc"
+    "flush_merge"
+    "discard"
+    "checkpoint_merge"
+    "gc_merge"
+  ];
+  extraArgs = [
+    "-f"
+    "-O"
+    "extra_attr"
+    "inode_checksum"
+    "compression"
+    "flexible_inline_xattr"
+    "lost_found"
+    "sb_checksum"
+    "-l"
+    label
+  ];
+  part = {
+    inherit name size;
+    content = {
+      type = "filesystem";
+      format = "f2fs";
+      inherit mountpoint mountOptions extraArgs;
+    };
   };
-}
-// (
-  if lvmPool != "" then
-    {
-      lvm_type = "thinlv";
-      pool = lvmPool;
-    }
-  else
-    { }
-)
+in
+if !isIsolated && lvmPool != "" then
+  part
+  // {
+    lvm_type = "thinlv";
+    pool = lvmPool;
+  }
+else if !isIsolated && priority != null then
+  part
+  // {
+    inherit priority;
+    type = "8300";
+  }
+else
+  part

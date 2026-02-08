@@ -57,6 +57,7 @@ in
       ];
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-main-systempv";
+        crypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
     };

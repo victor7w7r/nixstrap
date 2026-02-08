@@ -35,6 +35,8 @@ in
       availableKernelModules = [
         "dm-thin-pool"
         "dm-snapshot"
+        "tpm_tis"
+        "tpm_crb"
       ];
       compressorArgs = [
         "-19"
