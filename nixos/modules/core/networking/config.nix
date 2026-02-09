@@ -2,6 +2,7 @@
 {
   networking = {
     hostName = "${host}";
+    hostId = "314e119c";
     networkmanager = {
       enable = true;
       settings.main.rc-manager = "resolvconf";
