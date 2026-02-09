@@ -2,15 +2,6 @@
 {
   security.pam.services.gdm.enableGnomeKeyring = true;
 
-  xserver = {
-    enable = true;
-    desktopManager.xfce = {
-      enable = true;
-      enableScreensaver = false;
-    };
-    excludePackages = with pkgs; [ xterm ];
-  };
-
   programs = {
     dconf.enable = true;
     thunar = {
@@ -25,6 +16,14 @@
 
   services = {
     displayManager.defaultSession = "xfce";
+    xserver = {
+      enable = true;
+      desktopManager.xfce = {
+        enable = true;
+        enableScreensaver = false;
+      };
+      excludePackages = with pkgs; [ xterm ];
+    };
     xrdp = {
       enable = true;
       defaultWindowManager = "xfce4-session";
