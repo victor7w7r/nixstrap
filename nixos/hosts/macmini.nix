@@ -3,7 +3,7 @@ let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/params.nix;
   boot = (import ./lib/boot.nix) { };
-  btrfs = (import ./lib/btrfs.nix) { };
+  btrfs = (import ./lib/btrfs.nix);
   zfs = import ./lib/zfs.nix;
   shared = (import ./lib/shared.nix) { };
 in

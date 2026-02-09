@@ -3,7 +3,7 @@ let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
   boot = import ./lib/boot.nix { };
-  btrfs = (import ./lib/btrfs.nix) { };
+  btrfs = (import ./lib/btrfs.nix);
 in
 {
   fileSystems = {

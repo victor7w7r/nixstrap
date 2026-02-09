@@ -2,7 +2,7 @@
 let
   params = import ./lib/kernel-params.nix;
   boot = import ./filesystems/boot.nix { };
-  btrfs = (import ./lib/btrfs.nix) { };
+  btrfs = (import ./lib/btrfs.nix);
 in
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];

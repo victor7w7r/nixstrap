@@ -2,7 +2,7 @@
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
-  btrfs = (import ./lib/btrfs.nix) { };
+  btrfs = (import ./lib/btrfs.nix);
 in
 {
   fileSystems = {
