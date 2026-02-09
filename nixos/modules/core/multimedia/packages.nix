@@ -15,7 +15,7 @@
     ++ [
       asak
       kew
-      linuxwave
+      #linuxwave
       musikcube
       playerctl
       psst
