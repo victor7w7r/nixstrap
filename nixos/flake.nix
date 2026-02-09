@@ -244,6 +244,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
+            impermanence.nixosModules.impermanence
             (import ./hosts/server.nix)
             (import ./modules/core)
             (import ./modules/home)
