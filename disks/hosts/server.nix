@@ -22,7 +22,7 @@ let
   };
 
   nvmepartitions = {
-    emergency = (import ../filesystems/emergency.nix) { priority = 1; };
+    emergency = (import ../lib/emergency.nix) { priority = 1; };
     swapcrypt = {
       name = "swapcrypt";
       size = "8G";

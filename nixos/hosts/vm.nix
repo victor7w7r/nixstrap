@@ -1,7 +1,7 @@
 { pkgs, modulesPath, ... }:
 let
   params = import ./lib/kernel-params.nix;
-  boot = import ./filesystems/boot.nix { };
+  boot = import ./lib/boot.nix { };
   btrfs = (import ./lib/btrfs.nix);
 in
 {
