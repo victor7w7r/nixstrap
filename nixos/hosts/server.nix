@@ -70,5 +70,5 @@ in
     };
   };
 
-  hardware.intel-gpu-tools = true;
+  #hardware.intel-gpu-tools = true;
 }
