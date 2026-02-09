@@ -24,7 +24,6 @@
   };
 
   services = {
-    network-manager-applet.enable = true;
     displayManager.defaultSession = "xfce";
     xrdp = {
       enable = true;
