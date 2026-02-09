@@ -150,7 +150,6 @@ in
             xattr = "sa";
           };
           postCreateHook = ''
-            zfs set keylocation="prompt" $name;
             if ! zfs list -t snap zroot/local/root@empty; then
                 zfs snapshot zroot/local/root@empty
             fi
