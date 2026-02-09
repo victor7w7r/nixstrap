@@ -116,7 +116,7 @@ in
         device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
       };
       cloud4 = hdd-init {
-        device = "ata-TOSHIBA_MQ01ABD100_46G8SH1BST";
+        device = "ata-TOSHIBA_MQ01ABD100_46G8SH1BS";
       };
       sysroot = hdd-init {
         device = "ata-ST500LT012-1DG142_S3PMCMHT";
@@ -156,7 +156,7 @@ in
           '';
           mode.topology = {
             type = "topology";
-            vdev = [ { members = [ "sysroot" ]; } ];
+            vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
             log = [ { members = [ "${partlabel}/disk-nvme-syslog" ]; } ];
             special = [ { members = [ "${partlabel}/disk-nvme-sysspecial" ]; } ];
             cache = [ "${partlabel}/disk-nvme-syscache" ];
@@ -233,7 +233,7 @@ in
                   "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
                   "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
                   "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
-                  "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BST"
+                  "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BS"
                 ];
               }
             ];
