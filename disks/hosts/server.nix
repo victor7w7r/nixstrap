@@ -167,6 +167,7 @@ in
               options = {
                 atime = "off";
                 canmount = "on";
+                keylocation = "none";
                 compression = "zstd";
               };
               mountpoint = "/";
@@ -182,6 +183,7 @@ in
               options = {
                 atime = "off";
                 canmount = "on";
+                keylocation = "none";
                 compression = "zstd";
                 "com.sun:auto-snapshot" = "true";
               };
