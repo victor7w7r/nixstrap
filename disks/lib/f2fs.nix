@@ -29,12 +29,7 @@ let
   extraArgs = [
     "-f"
     "-O"
-    "extra_attr"
-    "inode_checksum"
-    "compression"
-    "flexible_inline_xattr"
-    "lost_found"
-    "sb_checksum"
+    "extra_attr,inode_checksum,compression,flexible_inline_xattr,lost_found,sb_checksum"
     "-l"
     label
   ];
