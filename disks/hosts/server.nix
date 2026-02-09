@@ -29,12 +29,21 @@ let
 
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
-    system = (import ../lib/f2fs.nix) {
-      label = "serversys";
-      name = "serversys";
-      size = "100%";
+    sysetc = (import ../lib/f2fs.nix) {
+      label = "sysetc";
+      name = "sysetc";
+      size = "2G";
+      mountpoint = "/nix/persist/etc";
       isIsolated = true;
       priority = 2;
+    };
+    shared = (import ../lib/f2fs.nix) {
+      label = "shared";
+      name = "shared";
+      size = "100%";
+      mountpoint = "/nix/persist/shared";
+      isIsolated = true;
+      priority = 3;
     };
   };
 
