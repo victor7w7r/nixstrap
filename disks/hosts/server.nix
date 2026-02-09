@@ -149,7 +149,7 @@ in
             vdev = [ { members = [ "sysroot" ]; } ];
             log = [ { members = [ "${partlabel}/disk-nvme-syslog" ]; } ];
             special = [ { members = [ "${partlabel}/disk-nvme-sysspecial" ]; } ];
-            cache = [ { members = [ "${partlabel}/disk-nvme-syscache" ]; } ];
+            cache = [ "${partlabel}/disk-nvme-syscache" ];
           };
           datasets = {
             "local/root" = {
@@ -229,7 +229,7 @@ in
             ];
             log = [ { members = [ "${partlabel}/disk-nvme-cloudlog" ]; } ];
             special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
-            cache = [ { members = [ "${partlabel}/disk-nvme-cloudcache" ]; } ];
+            cache = [ "${partlabel}/disk-nvme-cloudcache" ];
           };
           options.ashift = "12";
           datasets."local/cloud" = {
