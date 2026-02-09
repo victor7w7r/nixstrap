@@ -68,7 +68,8 @@ in
     shutdownRamfs.storePaths = [ "${config.boot.zfs.package}/bin/zfs" ];
   };
 
-  impermanence.ignorePaths = [
+  /*
+    impermanence.ignorePaths = [
     "/etc/NIXOS"
     "/etc/.clean"
     "/etc/.updated"
@@ -80,7 +81,8 @@ in
     "/etc/group"
     "/etc/passwd"
     "/root/.nix-channels"
-  ];
+    ];
+  */
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
