@@ -144,6 +144,7 @@ in
             compression = "zstd";
             canmount = "off";
             checksum = "edonr";
+            keylocation = "none";
             normalization = "formD";
             dnodesize = "auto";
             xattr = "sa";
