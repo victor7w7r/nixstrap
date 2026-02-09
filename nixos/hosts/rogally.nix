@@ -22,7 +22,6 @@ in
 
   boot = {
     kernelParams = [
-      "amd_pstate=active"
       "amd_iommu=on"
     ]
     ++ params { };
@@ -73,6 +72,7 @@ in
     handheld-daemon = {
       enable = true;
       user = username;
+      ui.enable = true;
     };
     fprintd = {
       enable = true;

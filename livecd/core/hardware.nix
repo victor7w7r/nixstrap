@@ -15,7 +15,7 @@
     bluetooth = {
       enable = true;
       settings.General = {
-        Enable = "Source,Sink,Media,Socket";
+        #Enable = "Source,Sink,Media,Socket";
         FastConnectable = "true";
         JustWorksRepairing = "always";
         MultiProfile = "multiple";
