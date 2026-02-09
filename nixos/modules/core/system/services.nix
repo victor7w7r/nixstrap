@@ -63,10 +63,12 @@
       ];
     };
 
-    nohang = {
+    /*
+      nohang = {
       enable = true;
       #desktop = true;
-    };
+      };
+    */
 
     journald.extraConfig = ''
       Storage=persistent
