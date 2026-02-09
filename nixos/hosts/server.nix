@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  intelParams = import ./common/intel-params.nix;
-  params = import ./common/params.nix;
+  intelParams = import ./lib/intel-params.nix;
+  params = import ./lib/kernel-params.nix;
   boot = (import ./filesystems/boot.nix) { };
   builder =
     {
