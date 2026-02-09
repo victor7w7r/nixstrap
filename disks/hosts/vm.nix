@@ -1,7 +1,7 @@
 let
   partitions = {
     esp = (import ../lib/esp.nix) { };
-    emergency = (import ../filesystems/emergency.nix) { isSolid = false; };
+    emergency = (import ../lib/emergency.nix) { isSolid = false; };
     swapcrypt = {
       name = "swapcrypt";
       size = "4G";
@@ -22,40 +22,12 @@ let
     };
   };
 
-  lvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-    syscrypt = (import ../lib/btrfs.nix) {
-      name = "system";
-      label = "system";
-      lvmPool = "thinpool";
-      size = "90G";
-      inherit subvolumes;
-    };
-  };
-
-  mountOptions = [
-    "lazytime"
-    "noatime"
-    "autodefrag"
-    "compress=zstd:1"
-  ];
-
-  subvolumes = {
-    "@" = {
-      mountpoint = "/";
-      inherit mountOptions;
-    };
-    "@nix" = {
-      mountpoint = "/nix";
-      mountOptions = mountOptions ++ [ "noacl" ];
-    };
-    "@persist" = {
-      mountpoint = "/nix/persist";
-      inherit mountOptions;
-    };
+  syscrypt = (import ../lib/btrfs.nix) {
+    name = "system";
+    label = "system";
+    lvmPool = "thinpool";
+    size = "90G";
+    subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
   };
 in
 {
@@ -68,9 +40,8 @@ in
         inherit partitions;
       };
     };
-    lvm_vg.vg0 = {
-      type = "lvm_vg";
-      inherit lvs;
-    };
+  }
+  // (import ../lib/lvs.nix) {
+    content = syscrypt;
   };
 }

@@ -1,35 +1,17 @@
-{ modulesPath, ... }:
+{ pkgs, modulesPath, ... }:
 let
   params = import ./lib/kernel-params.nix;
   boot = import ./filesystems/boot.nix { };
-  builder =
-    {
-      subvol ? "",
-      isNix ? false,
-      depends ? [ ],
-    }:
-    {
-      device = "/dev/vg0/system";
-      fsType = "btrfs";
-      options = [
-        "lazytime"
-        "noatime"
-        "compress=zstd:1"
-        "subvol=@${subvol}"
-      ]
-      ++ (if isNix then [ "noacl" ] else [ ]);
-      inherit depends;
-      neededForBoot = true;
-    };
+  btrfs = (import ./lib/btrfs.nix) { };
 in
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
 
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    "/" = builder { };
-    "/nix" = builder { subvol = "nix"; };
-    "/nix/persist" = builder {
+    "/" = btrfs { };
+    "/nix" = btrfs { subvol = "nix"; };
+    "/nix/persist" = btrfs {
       subvol = "persist";
       depends = [ "/nix" ];
     };

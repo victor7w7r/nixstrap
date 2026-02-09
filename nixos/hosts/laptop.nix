@@ -1,35 +1,16 @@
-{ ... }:
+{ pkgs, ... }:
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
-  boot = import ./filesystems/boot.nix { };
-  builder =
-    {
-      subvol ? "",
-      isNix ? false,
-      depends ? [ ],
-    }:
-    {
-      device = "/dev/vg0/system";
-      fsType = "btrfs";
-      options = [
-        "lazytime"
-        "noatime"
-        "compress=zstd:1"
-        "subvol=@${subvol}"
-      ]
-      ++ (if isNix then [ "noacl" ] else [ ]);
-      inherit depends;
-      neededForBoot = true;
-    };
-
+  boot = import ./lib/boot.nix { };
+  btrfs = (import ./lib/btrfs.nix) { };
 in
 {
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    "/" = builder { };
-    "/nix" = builder { subvol = "nix"; };
-    "/nix/persist" = builder {
+    "/" = btrfs { };
+    "/nix" = btrfs { subvol = "nix"; };
+    "/nix/persist" = btrfs {
       subvol = "persist";
       depends = [ "/nix" ];
     };

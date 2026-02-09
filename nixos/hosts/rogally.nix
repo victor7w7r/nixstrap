@@ -1,32 +1,9 @@
-{
-  pkgs,
-  username,
-  ...
-}:
+{ pkgs, username, ... }:
 let
   params = import ./lib/kernel-params.nix;
-  boot = (import ./filesystems/boot.nix) { };
-  builder =
-    {
-      subvol ? "",
-      isNix ? false,
-      depends ? [ ],
-    }:
-    {
-      device = "/dev/vg0/system";
-      fsType = "btrfs";
-      options = [
-        "lazytime"
-        "noatime"
-        "compress=zstd:1"
-        "discard=async"
-        "subvol=@${subvol}"
-      ]
-      ++ (if isNix then [ "noacl" ] else [ ]);
-      inherit depends;
-      neededForBoot = true;
-    };
-  shared = (import ./filesystems/shared.nix) {
+  boot = (import ./lib/boot.nix) { };
+  btrfs = (import ./lib/btrfs.nix) { };
+  shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
     partlabel = "games";
   };
@@ -35,9 +12,9 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
-    "/" = builder { };
-    "/nix" = builder { subvol = "nix"; };
-    "/nix/persist" = builder {
+    "/" = btrfs { };
+    "/nix" = btrfs { subvol = "nix"; };
+    "/nix/persist" = btrfs {
       subvol = "persist";
       depends = [ "/nix" ];
     };

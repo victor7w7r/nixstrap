@@ -16,7 +16,7 @@
   mountOptions = [
     "lazytime"
     "noatime"
-    "compress=zstd:1"
+    "compress=zstd:2"
   ]
   ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
 }

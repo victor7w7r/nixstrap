@@ -1,31 +1,5 @@
 let
-  zfs-part =
-    {
-      priority,
-      pool ? "zroot",
-      size ? "100%",
-    }:
-    {
-      inherit size priority;
-      content = {
-        type = "zfs";
-        inherit pool;
-      };
-    };
-
-  hdd-init =
-    {
-      device,
-      pool ? "zcloud",
-    }:
-    {
-      type = "disk";
-      device = "/dev/disk/by-id/${device}";
-      content = {
-        type = "zfs";
-        inherit pool;
-      };
-    };
+  zfs = import ../lib/zfs.nix;
 
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
@@ -58,32 +32,109 @@ let
         randomEncryption = true;
       };
     };
-    syslog = zfs-part {
+    syslog = zfs.partition {
       size = "2G";
       priority = 3;
     };
-    cloudlog = zfs-part {
+    cloudlog = zfs.partition {
       size = "16G";
       pool = "zcloud";
       priority = 4;
     };
-    sysspecial = zfs-part {
+    sysspecial = zfs.partition {
       size = "40G";
       priority = 5;
     };
-    cloudspecial = zfs-part {
+    cloudspecial = zfs.partition {
       size = "100G";
       pool = "zcloud";
       priority = 6;
     };
-    syscache = zfs-part {
+    syscache = zfs.partition {
       size = "78G";
       priority = 7;
     };
-    cloudcache = zfs-part {
+    cloudcache = zfs.partition {
       priority = 8;
       size = "120G";
       pool = "zcloud";
+    };
+  };
+
+  partlabel = "/dev/disk/by-partlabel";
+  idpart = "/dev/disk/by-id";
+
+  zroot = zfs.pool {
+    isRoot = true;
+    vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
+    log = [ { members = [ "${partlabel}/disk-nvme-syslog" ]; } ];
+    special = [ { members = [ "${partlabel}/disk-nvme-sysspecial" ]; } ];
+    cache = [ "${partlabel}/disk-nvme-syscache" ];
+    datasets =
+      zfs.dataset {
+        isRoot = true;
+        options = {
+          canmount = "on";
+          compression = "zstd";
+        };
+      }
+      // zfs.dataset {
+        name = "nix";
+        mountpoint = "/nix";
+        options = {
+          canmount = "on";
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "true";
+        };
+      }
+      // zfs.dataset {
+        name = "persist";
+        mountpoint = "/nix/persist";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
+      }
+      // zfs.dataset {
+        name = "vm";
+        mountpoint = "/nix/persist/var/lib/libvirt/images";
+        options = {
+          recordsize = "64K";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
+      };
+  };
+
+  zcloud = zfs.pool {
+    vdev = [
+      {
+        mode = "raidz1";
+        members = [
+          "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
+          "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
+          "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
+          "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BS"
+        ];
+      }
+    ];
+    log = [ { members = [ "${partlabel}/disk-nvme-cloudlog" ]; } ];
+    special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
+    cache = [ "${partlabel}/disk-nvme-cloudcache" ];
+    datasets = zfs.dataset {
+      pool = "zcloud";
+      name = "cloud";
+      mountpoint = "/nix/persist/cloud";
+      options = {
+        encryption = "aes-256-gcm";
+        keyformat = "passphrase";
+        keylocation = "prompt";
+        "com.sun:auto-snapshot" = "true";
+      };
     };
   };
 in
@@ -106,158 +157,23 @@ in
           partitions = nvmepartitions;
         };
       };
-      cloud1 = hdd-init {
+      cloud1 = zfs.entireDisk {
         device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X";
       };
-      cloud2 = hdd-init {
+      cloud2 = zfs.entireDisk {
         device = "ata-MM1000GBKAL_9XG3YGXQ";
       };
-      cloud3 = hdd-init {
+      cloud3 = zfs.entireDisk {
         device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
       };
-      cloud4 = hdd-init {
+      cloud4 = zfs.entireDisk {
         device = "ata-TOSHIBA_MQ01ABD100_46G8SH1BS";
       };
-      sysroot = hdd-init {
+      sysroot = zfs.entireDisk {
         device = "ata-ST500LT012-1DG142_S3PMCMHT";
         pool = "zroot";
       };
     };
-    zpool =
-      let
-        partlabel = "/dev/disk/by-partlabel";
-        idpart = "/dev/disk/by-id";
-        emptySnapshot =
-          name: "zfs list -t snapshot -H -o name | grep -E '^${name}@empty$' || zfs snapshot ${name}@empty";
-      in
-      {
-        zroot = {
-          type = "zpool";
-          options = {
-            ashift = "12";
-            autotrim = "on";
-          };
-          rootFsOptions = {
-            acltype = "posixacl";
-            atime = "off";
-            mountpoint = "none";
-            compression = "zstd";
-            canmount = "off";
-            checksum = "edonr";
-            keylocation = "none";
-            normalization = "formD";
-            dnodesize = "auto";
-            xattr = "sa";
-          };
-          postCreateHook = ''
-            if ! zfs list -t snap zroot/local/root@empty; then
-                zfs snapshot zroot/local/root@empty
-            fi
-          '';
-          mode.topology = {
-            type = "topology";
-            vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
-            log = [ { members = [ "${partlabel}/disk-nvme-syslog" ]; } ];
-            special = [ { members = [ "${partlabel}/disk-nvme-sysspecial" ]; } ];
-            cache = [ "${partlabel}/disk-nvme-syscache" ];
-          };
-          datasets = {
-            "local/root" = {
-              type = "zfs_fs";
-              options = {
-                atime = "off";
-                canmount = "on";
-                keylocation = "none";
-                compression = "zstd";
-              };
-              mountpoint = "/";
-              postCreateHook = ''
-                zfs snapshot zroot/local/root@empty;
-                zfs snapshot zroot/local/root@lastboot;
-              '';
-            };
-            "local/nix" = {
-              type = "zfs_fs";
-              options.mountpoint = "legacy";
-              mountpoint = "/nix";
-              options = {
-                atime = "off";
-                canmount = "on";
-                keylocation = "none";
-                compression = "zstd";
-                "com.sun:auto-snapshot" = "true";
-              };
-              postCreateHook = emptySnapshot "zroot/local/nix";
-            };
-            "local/persist" = {
-              type = "zfs_fs";
-              mountpoint = "/nix/persist";
-              options = {
-                mountpoint = "legacy";
-                atime = "off";
-                "com.sun:auto-snapshot" = "true";
-                encryption = "aes-256-gcm";
-                keyformat = "passphrase";
-                keylocation = "prompt";
-              };
-              postCreateHook = emptySnapshot "zroot/local/persist";
-            };
-            "local/vm" = {
-              type = "zfs_fs";
-              options = {
-                mountpoint = "legacy";
-                atime = "off";
-                recordsize = "64K";
-                "com.sun:auto-snapshot" = "true";
-                encryption = "aes-256-gcm";
-                keyformat = "passphrase";
-                keylocation = "prompt";
-              };
-              mountpoint = "/nix/persist/var/lib/libvirt/images";
-              postCreateHook = emptySnapshot "zroot/local/vm";
-            };
-          };
-        };
-        zcloud = {
-          type = "zpool";
-          rootFsOptions = {
-            mountpoint = "none";
-            compression = "zstd";
-            acltype = "posixacl";
-            xattr = "sa";
-          };
-          mode.topology = {
-            type = "topology";
-            vdev = [
-              {
-                mode = "raidz1";
-                members = [
-                  "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
-                  "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
-                  "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
-                  "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BS"
-                ];
-              }
-            ];
-            log = [ { members = [ "${partlabel}/disk-nvme-cloudlog" ]; } ];
-            special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
-            cache = [ "${partlabel}/disk-nvme-cloudcache" ];
-          };
-          options.ashift = "12";
-          datasets."local/cloud" = {
-            type = "zfs_fs";
-            mountpoint = "/nix/persist/cloud";
-            options = {
-              mountpoint = "legacy";
-              atime = "off";
-              encryption = "aes-256-gcm";
-              keyformat = "passphrase";
-              keylocation = "prompt";
-              "com.sun:auto-snapshot" = "true";
-            };
-            postCreateHook = emptySnapshot "zcloud/local/cloud";
-          };
-        };
-      };
+    zpool = { inherit zroot zcloud; };
   };
 }

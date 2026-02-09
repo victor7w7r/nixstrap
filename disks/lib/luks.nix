@@ -3,7 +3,7 @@
   content,
   isForTest ? false,
   keyFile ? "/tmp/key.txt",
-  name ? "systempv",
+  name ? "syscrypt",
   priority ? 3,
   size ? "100%",
 }:

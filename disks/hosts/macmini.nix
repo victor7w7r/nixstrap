@@ -1,7 +1,8 @@
 let
   winmod = import ../lib/windows.nix;
+  zfs = import ../lib/zfs.nix;
 
-  nvmepartitions = {
+  internalpartitions = {
     esp = (import ../lib/esp.nix) { };
     msr = winmod.msr { };
     recovery = winmod.recovery { priority = 3; };
@@ -10,28 +11,20 @@ let
       size = "110G";
       priority = 4;
     };
-    systempv = (import ../lib/luks.nix) {
-      size = "6G";
-      content = {
-        vg = "vg0";
-        type = "lvm_pv";
-      };
+    sysetc = (import ../lib/btrfs.nix) {
+      label = "sysetc";
+      name = "sysetc";
+      size = "2G";
+      isSolid = true;
+      mountpoint = "/nix/persist/etc";
+      isIsolated = true;
       priority = 5;
     };
     win = winmod.win { priority = 6; };
-    shared = (import ../filesystems/shared.nix) { };
+    shared = (import ../lib/shared.nix) { };
   };
 
-  extssdpartitions = {
-    extssdpv = (import ../lib/luks.nix) {
-      content = {
-        vg = "vg0";
-        type = "lvm_pv";
-      };
-    };
-  };
-
-  hardpartitions = {
+  ssdpartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
     swapcrypt = {
       name = "swapcrypt";
@@ -42,58 +35,92 @@ let
         randomEncryption = true;
       };
     };
-    hardpv = (import ../lib/luks.nix) {
-      allowDiscards = false;
-      content = {
-        vg = "vg1";
-        type = "lvm_pv";
-      };
+    syslog = zfs.partition {
+      size = "2G";
       priority = 3;
     };
+    szlog = zfs.partition {
+      size = "2G";
+      priority = 4;
+    };
+    sysspecial = zfs.partition {
+      size = "40G";
+      priority = 5;
+    };
+    szspecial = zfs.partition {
+      size = "40G";
+      priority = 6;
+    };
+    syscache = zfs.partition {
+      size = "70G";
+      priority = 7;
+    };
+    szcache = zfs.partition {
+      size = "70G";
+      priority = 8;
+    };
+    szshared = zfs.partition {
+      size = "180G";
+      priority = 9;
+    };
   };
 
-  lvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-    syscrypt = (import ../lib/btrfs.nix) {
-      name = "system";
-      label = "system";
-      lvmPool = "thinpool";
-      size = "5G";
-      inherit subvolumes;
-    };
+  partlabel = "/dev/disk/by-partlabel";
+  idpart = "/dev/disk/by-id";
+
+  zroot = zfs.pool {
+    isRoot = true;
+    vdev = [ { members = [ "${idpart}/ata-TOSHIBA_MQ01ABD050V_34HES5WXS" ]; } ];
+    log = [ { members = [ "${partlabel}/disk-ssd-syslog" ]; } ];
+    special = [ { members = [ "${partlabel}/disk-ssd-sysspecial" ]; } ];
+    cache = [ "${partlabel}/disk-ssd-syscache" ];
+    datasets =
+      zfs.dataset {
+        isRoot = true;
+        options = {
+          canmount = "on";
+          compression = "zstd";
+        };
+      }
+      // zfs.dataset {
+        name = "nix";
+        mountpoint = "/nix";
+        options = {
+          canmount = "on";
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "true";
+        };
+      }
+      // zfs.dataset {
+        name = "persist";
+        mountpoint = "/nix/persist";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
+      };
   };
 
-  hardlvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-    home = (import ../filesystems/home-only.nix) { size = "400G"; };
-  };
-
-  extssdlvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-    lightdocs = (import ../filesystems/xfs.nix) {
-      name = "lightdocs";
-      label = "lightdocs";
-      size = "100G";
-    };
-    docs = (import ../filesystems/btrfs.nix) {
-      name = "docs";
-      size = "200G";
-      subvolumes = {
-        "/docs".mountpoint = "/run/media/docs";
-        "/docsnaps".mountpoint = "/run/media/.docsnaps";
+  sz = zfs.pool {
+    isRoot = true;
+    vdev = [ { members = [ "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK" ]; } ];
+    log = [ { members = [ "${partlabel}/disk-ssd-szlog" ]; } ];
+    special = [ { members = [ "${partlabel}/disk-ssd-szspecial" ]; } ];
+    cache = [ "${partlabel}/disk-ssd-szcache" ];
+    datasets = zfs.dataset {
+      pool = "sz";
+      name = "storage";
+      mountpoint = "/nix/persist/storage";
+      options = {
+        encryption = "aes-256-gcm";
+        keyformat = "passphrase";
+        keylocation = "prompt";
+        "com.sun:auto-snapshot" = "true";
       };
     };
   };
-
 in
 {
   disko.devices = {
@@ -103,27 +130,24 @@ in
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
-          inherit nvmepartitions;
+          partitions = internalpartitions;
         };
       };
-      storage = {
+      ssd = {
         type = "disk";
-        device = "/dev/sda";
+        device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = {
           type = "gpt";
-          partitions = hardpartitions;
+          partitions = ssdpartitions;
         };
       };
-    };
-    lvm_vg = {
-      vg0 = {
-        type = "lvm_vg";
-        inherit lvs;
+      sysroot = zfs.entireDisk {
+        device = "ata-TOSHIBA_MQ01ABD050V_34HES5WXS";
       };
-      vg1 = {
-        type = "lvm_vg";
-        lvs = hardlvs;
+      szdev = zfs.entireDisk {
+        device = "ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
       };
     };
+    zpool = { inherit zroot sz; };
   };
 }

@@ -1,36 +1,32 @@
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 let
-  intelParams = import ./common/intel-params.nix;
-  params = import ./common/params.nix;
-  security = import ./common/security.nix;
-  sec = security { inherit self; };
-
-  rootfs = (import ./filesystems/rootfs.nix) {
-    hasVar = false;
-  };
-  boot = import ./filesystems/boot.nix { disk = "TODO"; };
-  systembtrfs = (import ./filesystems/system-btrfs.nix) { };
-  home = (import ./filesystems/home-only.nix) { name = "TODO"; };
-  store = (import ./filesystems/store-only.nix) { name = "TODO"; };
-  shared = (import ./filesystems/shared.nix) { };
+  intelParams = import ./lib/intel-params.nix;
+  params = import ./lib/params.nix;
+  boot = (import ./lib/boot.nix) { };
+  btrfs = (import ./lib/btrfs.nix) { };
+  zfs = import ./lib/zfs.nix;
+  shared = (import ./lib/shared.nix) { };
 in
 {
   fileSystems = {
-    inherit (rootfs) "/";
     inherit (boot) "/boot" "/boot/emergency";
-    inherit (store) "/nix";
-    inherit (home) "/home" "/.homesnaps";
-    inherit (systembtrfs)
-      "/etc"
-      "/root"
-      "/.snaps"
-      ;
     inherit (shared) "/run/media/shared";
+    "/" = zfs { };
+    "/nix" = zfs { dataset = "nix"; };
+    "/nix/persist" = zfs { dataset = "persist"; };
+    "/nix/persist/etc" = btrfs {
+      hasSubvol = false;
+      device = "/dev/disk/by-partlabel/disk-main-sysetc";
+    };
+    "/nix/persist/storage" = zfs {
+      pool = "sz";
+      dataset = "storage";
+    };
   };
 
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages= pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto-x86_64-v3;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto-x86_64-v3;
     initrd = {
       availableKernelModules = [
         "i915"
@@ -39,20 +35,6 @@ in
         # "vfio_iommu_type1"
         # "vfi"
       ];
-      secrets = {
-        #"/extkey.key" = /run/secrets/extkey.key;
-      }
-      // sec.secrets;
-      luks.devices = {
-        system = sec.system;
-        /*
-          storage = {
-          device = "/dev/disk/by-label/storage";
-          keyFile = "/extkey.key";
-          preLVM = true;
-          };
-        */
-      };
     };
   };
 

@@ -4,8 +4,9 @@ let
   partitions = {
     esp = (import ../lib/esp.nix) { };
     msr = winmod.msr { };
-    emergency = (import ../filesystems/emergency.nix) { priority = 3; };
-    systempv = (import ../lib/lvm.nix) {
+    emergency = (import ../lib/emergency.nix) { priority = 3; };
+    systempv = (import ../lib/luks.nix) {
+      size = "100G";
       content = {
         vg = "vg0";
         type = "lvm_pv";
@@ -14,41 +15,12 @@ let
     };
   };
 
-  lvs = {
-    thinpool = {
-      size = "100%";
-      lvm_type = "thin-pool";
-    };
-
-    syscrypt = (import ../lib/btrfs.nix) {
-      name = "system";
-      label = "system";
-      lvmPool = "thinpool";
-      size = "200G";
-      inherit subvolumes;
-    };
-  };
-
-  mountOptions = [
-    "lazytime"
-    "noatime"
-    "discard=async"
-    "compress=zstd:1"
-  ];
-
-  subvolumes = {
-    "@" = {
-      mountpoint = "/";
-      inherit mountOptions;
-    };
-    "@nix" = {
-      mountpoint = "/nix";
-      mountOptions = mountOptions ++ [ "noacl" ];
-    };
-    "@persist" = {
-      mountpoint = "/nix/persist";
-      inherit mountOptions;
-    };
+  syscrypt = (import ../lib/btrfs.nix) {
+    name = "system";
+    label = "system";
+    lvmPool = "thinpool";
+    size = "200G";
+    subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
   };
 in
 {
@@ -61,9 +33,8 @@ in
         inherit partitions;
       };
     };
-    lvm_vg.vg0 = {
-      type = "lvm_vg";
-      inherit lvs;
-    };
+  }
+  // (import ../lib/lvs.nix) {
+    content = syscrypt;
   };
 }
