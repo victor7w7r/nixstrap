@@ -61,7 +61,7 @@
         "https://cache.garnix.io"
       ];
       trusted-public-keys = [
-         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
       extra-substituters = [
         "https://nix-gaming.cachix.org"
@@ -86,7 +86,6 @@
       seckey-d = { };
       ssh-vm-pub = { };
       userpass = { };
-      rootpass = { };
       ssh-vm-key = { };
       age-vm-key = { };
     };
