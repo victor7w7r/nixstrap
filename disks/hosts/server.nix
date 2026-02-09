@@ -126,6 +126,7 @@ in
     zpool =
       let
         partlabel = "/dev/disk/by-partlabel";
+        idpart = "/dev/disk/by-id";
         emptySnapshot =
           name: "zfs list -t snapshot -H -o name | grep -E '^${name}@empty$' || zfs snapshot ${name}@empty";
       in
@@ -229,10 +230,10 @@ in
               {
                 mode = "raidz1";
                 members = [
-                  "cloud1"
-                  "cloud2"
-                  "cloud3"
-                  "cloud4"
+                  "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
+                  "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
+                  "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
+                  "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BST"
                 ];
               }
             ];
