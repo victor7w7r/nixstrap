@@ -1,4 +1,9 @@
-{ lib, host, ... }:
+{
+  config,
+  lib,
+  host,
+  ...
+}:
 {
   networking = {
     hostName = "${host}";
@@ -7,6 +12,13 @@
       enable = true;
       settings.main.rc-manager = "resolvconf";
       wifi.powersave = true;
+    };
+    wireless = {
+      secretsFile = config.sops.secrets.wireless.path;
+      networks = {
+        "TP-LINK_5GHz_FF0A59".pskRaw = "ext:pass_main";
+        "v7w7r-dir615".pskRaw = "ext:pass_tech";
+      };
     };
     modemmanager.enable = lib.mkOverride 999 false;
     resolvconf = {
