@@ -145,10 +145,6 @@ in
       ${if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then winEntry else ""}
     EOF
 
-    if [ ! -d /etc/logo.svg ]; then
-      ${wget} -P /nix/persist/etc/logo.svg ${icon} &> /dev/null
-    fi
-
     if [ -d /var/lib/sbctl/keys ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null

@@ -90,7 +90,7 @@
                 "qdbus6 org.freedesktop.ScreenSaver /ScreenSaver Lock"
                 "qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptLogout"
               ];
-              icon = "/etc/logo.svg";
+              icon = "/etc/nixos/logo.svg";
               iconList = [
                 "help-hint"
                 "filename-dash-amarok"
