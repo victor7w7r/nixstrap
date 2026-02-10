@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg:svg
+   viewBox="-4228.0574 -2992.9838 2323.1149 2323.303"
+   version="1.1"
+   id="svg27"
+   sodipodi:docname="nixos-logo-rainbow-gradient-black-regular-vertical-recommended.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   width="2323.115"
+   height="2323.303"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview27"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.24185183"
+     inkscape:cx="849.69381"
+     inkscape:cy="1186.677"
+     inkscape:window-width="1600"
+     inkscape:window-height="868"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg27" />
+  <svg:defs
+     id="defs18">
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-44584babfef90c4cb32c8ee42b1193ba"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#9e0000"
+         id="stop1" />
+      <svg:stop
+         offset="25%"
+         stop-color="#af0000"
+         id="stop2" />
+      <svg:stop
+         offset="100%"
+         stop-color="#c10100"
+         id="stop3" />
+    </svg:linearGradient>
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-96af2d924a4fbf5b015c244addc578a8"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#dc5500"
+         id="stop4" />
+      <svg:stop
+         offset="25%"
+         stop-color="#ee5e00"
+         id="stop5" />
+      <svg:stop
+         offset="100%"
+         stop-color="#ff6705"
+         id="stop6" />
+    </svg:linearGradient>
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-33ff75d118a188d564af252422e7cc92"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#db9917"
+         id="stop7" />
+      <svg:stop
+         offset="25%"
+         stop-color="#eca412"
+         id="stop8" />
+      <svg:stop
+         offset="100%"
+         stop-color="#fdb00b"
+         id="stop9" />
+    </svg:linearGradient>
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-2a0b6b52f041088f95dc76196e6b4d88"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#007f2d"
+         id="stop10" />
+      <svg:stop
+         offset="25%"
+         stop-color="#008d34"
+         id="stop11" />
+      <svg:stop
+         offset="100%"
+         stop-color="#029b3b"
+         id="stop12" />
+    </svg:linearGradient>
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-c6751d2115edfa2506ed6789e247b928"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#0270a8"
+         id="stop13" />
+      <svg:stop
+         offset="25%"
+         stop-color="#007cba"
+         id="stop14" />
+      <svg:stop
+         offset="100%"
+         stop-color="#0088cc"
+         id="stop15" />
+    </svg:linearGradient>
+    <svg:linearGradient
+       gradientUnits="userSpaceOnUse"
+       id="linear-gradient-6b2d1737e4a2ebfe17f3769056568c22"
+       x1="-320"
+       x2="128"
+       y1="-554.25629"
+       y2="221.7025">
+      <svg:stop
+         offset="0%"
+         stop-color="#452397"
+         id="stop16" />
+      <svg:stop
+         offset="25%"
+         stop-color="#4f2da8"
+         id="stop17" />
+      <svg:stop
+         offset="100%"
+         stop-color="#5a37bb"
+         id="stop18" />
+    </svg:linearGradient>
+  </svg:defs>
+  <svg:polygon
+     fill="url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="translate(-3383.0325,-1312.9924)"
+     id="polygon18"
+     style="fill:url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)" />
+  <svg:polygon
+     fill="url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="rotate(60,-234.43146,-4140.5453)"
+     id="polygon19"
+     style="fill:url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)" />
+  <svg:polygon
+     fill="url(#linear-gradient-33ff75d118a188d564af252422e7cc92)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="rotate(120,-992.48797,-2187.3506)"
+     id="polygon20"
+     style="fill:url(#linear-gradient-33ff75d118a188d564af252422e7cc92)" />
+  <svg:polygon
+     fill="url(#linear-gradient-2a0b6b52f041088f95dc76196e6b4d88)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="rotate(180,-1371.5162,-1210.7524)"
+     id="polygon21"
+     style="fill:url(#linear-gradient-2a0b6b52f041088f95dc76196e6b4d88)" />
+  <svg:polygon
+     fill="url(#linear-gradient-c6751d2115edfa2506ed6789e247b928)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="rotate(-120,-1750.543,-234.1551)"
+     id="polygon22"
+     style="fill:url(#linear-gradient-c6751d2115edfa2506ed6789e247b928)" />
+  <svg:polygon
+     fill="url(#linear-gradient-6b2d1737e4a2ebfe17f3769056568c22)"
+     points="-320,332.55376 -128,0 -304,-304.84094 -176,-526.54345 384,443.40501 128,443.40501 -4.0726089e-14,221.7025 -128,443.40501 -256,443.40501 "
+     transform="rotate(-60,-2508.5996,1719.0404)"
+     id="polygon23"
+     style="fill:url(#linear-gradient-6b2d1737e4a2ebfe17f3769056568c22)" />
+  <script />
+  <link />
+</svg:svg>
