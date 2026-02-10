@@ -15,8 +15,6 @@ let
   lvs = {
     syscrypt = (import ../lib/btrfs.nix) {
       name = "system";
-      label = "system";
-      lvmPool = "thinpool";
       size = "90G";
       subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
     };

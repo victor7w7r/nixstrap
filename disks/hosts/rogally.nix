@@ -14,7 +14,6 @@ let
     };
     games = (import ../lib/shared.nix) {
       name = "games";
-      label = "games";
       mountContent = "games";
       mountSnap = "gamessnap";
     };
