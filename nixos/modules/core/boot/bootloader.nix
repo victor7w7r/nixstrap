@@ -22,11 +22,12 @@ let
   efibootmgr = "${pkgs.efibootmgr}/bin/efibootmgr";
   lsblk = "${pkgs.util-linux}/bin/lsblk";
   sed = "${pkgs.gnused}/bin/sed";
+  ukify = "${pkgs.buildPackages.systemdUkify}/lib/systemd/ukify";
   basename = "${pkgs.coreutils}/bin/basename";
   wget = "${pkgs.wget2}/bin/wget2";
   efifs = "https://github.com/pbatard/EfiFs/releases/download/v1.11";
   mocha = "themes/catppuccin/assets/mocha";
-  initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
+  initrd = "${initrd}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
   #secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
@@ -60,8 +61,7 @@ let
   nixosBuilder =
     {
       name ? "NixOS",
-      loader ? "/EFI/kernel",
-      initrd ? "/EFI/initrd",
+      loader ? "/EFI/nixos.efi",
       subentries ? ''
         submenuentry "Verbose" {
           add_options "${debugFlags}"
@@ -72,18 +72,12 @@ let
         submenuentry "Rescue" {
           add_options "systemd.unit=rescue.target ${debugFlags}"
         }
-        #submenuentry "Hardened" {
-        #  loader /EFI/kernel-hardened
-        #  initrd
-        #  options
-        #}
       '',
     }:
     ''
       menuentry "${name}" {
         icon /EFI/refind/${mocha}/icons/os_nixos.png
         loader ${loader}
-        initrd ${initrd}
         ostype Linux
         options "init=$TOPLEVEL/init ${toString config.boot.kernelParams}"
         ${subentries}
@@ -96,19 +90,7 @@ in
     #!${pkgs.bash}/bin/bash
 
     TOPLEVEL=$1
-    EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
-      | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
-    DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
     BASE=$(${basename} $TOPLEVEL)
-
-    echo "Setup EFI Entries..."
-    ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
-      | ${sed} 's/Boot//' | ${sed} 's/\*//' \
-      | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
-
-    ${efibootmgr} --create --disk /dev/$DISK --part 1 \
-      --loader /EFI/refind/refind_x64.efi --label "rEFInd" \
-      --unicode &> /dev/null
 
     if [ ! -d ${efi}/refind ]; then
       echo "Setup Refind, downloading drivers..."
@@ -123,6 +105,18 @@ in
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi &> /dev/null
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi &> /dev/null
+
+      EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
+        | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
+      DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
+      echo "Setup EFI Entries..."
+      ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
+        | ${sed} 's/Boot//' | ${sed} 's/\*//' \
+        | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
+
+      ${efibootmgr} --create --disk /dev/$DISK --part 1 \
+        --loader /EFI/refind/refind_x64.efi --label "rEFInd" \
+        --unicode &> /dev/null
     fi
 
     if [ ! -d ${efi}/tools ]; then
@@ -133,15 +127,18 @@ in
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/tools/fwupx64.efi
     fi
 
-    [[ -f ${efi}/kernel ]] && ${rm} ${efi}/kernel
-    ${cp} ${latest}/${kernelFile} ${efi}/kernel
+    [[ -f ${efi}/nixos.efi ]] && ${rm} ${efi}/nixos.efi
 
-    [[ -f ${efi}/initrd ]] && ${rm} ${efi}/initrd
-    ${cp} ${initrd} ${efi}/initrd
+    ${ukify} build --linux="${latest}/${kernelFile}" --initrd="${initrd}" \
+      --uname="${latest.modDirVersion}" \
+      --os-release="${config.system.build.etc}/etc/os-release" \
+      --output=${efi}/nixos.efi \
+      --signtool=systemd-sbsign \
+      --secureboot-private-key /var/lib/sbctl/db/db.key \
+      --secureboot-certificate /var/lib/sbctl/db/db.pem
 
     ${mkdir} -p /boot/emergency/cache
-    ${cp} ${latest}/${kernelFile} /boot/emergency/cache/kernel-$BASE
-    ${cp} ${initrd} /boot/emergency/cache/initrd-$BASE
+    ${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
     echo "$BASE" > /boot/emergency/actual.txt
 
     ${cat} > ${efi}/refind/refind.conf << EOF
