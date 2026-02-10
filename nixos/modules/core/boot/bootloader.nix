@@ -132,10 +132,7 @@ in
     ${ukify} build --linux="${latest}/${kernelFile}" --initrd="${initrd}" \
       --uname="${latest.modDirVersion}" \
       --os-release="${config.system.build.etc}/etc/os-release" \
-      --output=${efi}/nixos.efi \
-      --signtool=systemd-sbsign \
-      --secureboot-private-key /var/lib/sbctl/db/db.key \
-      --secureboot-certificate /var/lib/sbctl/db/db.pem
+      --output=${efi}/nixos.efi
 
     ${mkdir} -p /boot/emergency/cache
     ${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
@@ -149,6 +146,7 @@ in
 
     if [ -d /var/lib/sbctl/keys ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/fwupx64.efi &> /dev/null
@@ -157,7 +155,7 @@ in
       ${sbctl} sign -s ${efi}/refind/drivers_x64/f2fs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/zfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/kernel
+      ${sbctl} sign -s ${efi}/nixos.efi
     fi
   '';
   # cp ${secure}/${kernelFile} ${efi}/kernel-hardened
