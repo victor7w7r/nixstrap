@@ -2,10 +2,9 @@
 rec {
   helpers = pkgs.callPackage "${nix-cachyos-kernel}/helpers.nix" { };
   packages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
-  kernel = pkgs.cachyosKernels.linux-cachyos-lts.override {
+  kernel = pkgs.cachyosKernels.linux-cachyos-deckify.override {
     pname = "linux-v7w7r-handheld";
-    configVariant = "linux-cachyos-lts";
-    version = "6.12.68";
+    configVariant = "linux-cachyos-deckify";
     lto = "thin";
     processorOpt = "zen4";
     handheld = true;
