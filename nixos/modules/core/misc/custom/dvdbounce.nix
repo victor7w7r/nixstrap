@@ -13,9 +13,9 @@ stdenv.mkDerivation {
   };
 
   buildInputs = with pkgs; [
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
+    libx11
+    libxext
+    libxrender
   ];
   nativeBuildInputs = with pkgs; [ unzip ];
   dontUnpack = true;

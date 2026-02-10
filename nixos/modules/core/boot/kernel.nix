@@ -12,9 +12,6 @@ in
 {
   /*
     specialisation = with lib; {
-    zen-mode.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_zen;
-    lqx.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_lqx;
-    lts.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_6_12;
     secure.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_hardened;
     };
   */
@@ -33,6 +30,7 @@ in
     initrd = {
       checkJournalingFS = true;
       availableKernelModules = [
+        "autofs"
         "dm-thin-pool"
         "dm-snapshot"
         "tpm_tis"
@@ -54,6 +52,12 @@ in
         emergencyAccess = true;
         users.root.shell = "${pkgs.bashInteractive}/bin/bash";
         storePaths = [ "${pkgs.bashInteractive}/bin/bash" ];
+        settings.Manager = {
+          DefaultTimeoutStartSec = "15s";
+          DefaultTimeoutStopSec = "10s";
+          DefaultTimeoutAbortSec = "5s";
+          DefaultLimitNOFILE = "2048:2097152";
+        };
         extraBin = {
           ip = "${pkgs.iproute2}/bin/ip";
           ping = "${pkgs.iputils}/bin/ping";

@@ -29,13 +29,9 @@ in
     ++ params { };
     kernelPackages = pkgs.linuxPackages_6_12;
     initrd = {
-      availableKernelModules = [
-        "autofs"
-        "tpm-tis"
-      ];
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-main-systempv";
-        crypttabExtraOpts = [ "tpm2-device=auto" ];
+        #crypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
     };

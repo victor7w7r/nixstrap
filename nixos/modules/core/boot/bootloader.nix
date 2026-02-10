@@ -1,5 +1,6 @@
 {
   pkgs,
+  host,
   inputs,
   config,
   ...
@@ -28,9 +29,6 @@ let
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
-  #zen = config.specialisation."zen-mode".configuration.boot.kernelPackages.kernel;
-  #lqx = config.specialisation.lqx.configuration.boot.kernelPackages.kernel;
-  #lts = config.specialisation.lts.configuration.boot.kernelPackages.kernel;
   #secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
 
   refind-opts = ''
@@ -51,6 +49,14 @@ let
 
   debugFlags = "boot.trace=1 debug udev.log_level=7 rd.systemd.show_status=true";
 
+  winEntry = ''
+    menuentry "Windows 11" {
+      icon /EFI/refind/${mocha}/icons/os_win10.png
+      loader /EFI/Microsoft/Boot/bootmgfw.efi
+      ostype Windows
+    }
+  '';
+
   nixosBuilder =
     {
       name ? "NixOS",
@@ -66,21 +72,6 @@ let
         submenuentry "Rescue" {
           add_options "systemd.unit=rescue.target ${debugFlags}"
         }
-        #submenuentry "LTS" {
-        #  loader /EFI/kernel-lts
-        #  initrd
-        #  options
-        #}
-        #submenuentry "LQX" {
-        #  loader /EFI/kernel-lqx
-        #  initrd
-        #  options
-        #}
-        #submenuentry "Zen" {
-        #  loader /EFI/kernel-zen
-        #  initrd
-        #  options
-        #}
         #submenuentry "Hardened" {
         #  loader /EFI/kernel-hardened
         #  initrd
@@ -156,11 +147,7 @@ in
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
       ${nixosBuilder { }}
-      menuentry "Windows 11" {
-        icon /EFI/refind/${mocha}/icons/os_win10.png
-        loader /EFI/Microsoft/Boot/bootmgfw.efi
-        ostype Windows
-      }
+      ${if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then winEntry else ""}
     EOF
 
     if [ -d /var/lib/sbctl/keys ]; then
@@ -176,11 +163,5 @@ in
       ${sbctl} sign -s ${efi}/kernel
     fi
   '';
-
-  /*
-    cp ${zen}/${kernelFile} ${efi}/kernel-zen
-    cp ${lqx}/${kernelFile} ${efi}/kernel-lqx
-    cp ${lts}/${kernelFile} ${efi}/kernel-lts
-    cp ${secure}/${kernelFile} ${efi}/kernel-hardened
-  */
+  # cp ${secure}/${kernelFile} ${efi}/kernel-hardened
 }
