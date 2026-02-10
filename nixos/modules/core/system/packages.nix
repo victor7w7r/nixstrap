@@ -3,11 +3,6 @@
   environment.systemPackages =
     with pkgs;
     [
-      (pkgs.systemdUkify.overrideAttrs (oldAttrs: {
-        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
-          (pkgs.python3.withPackages (ps: [ ps.cryptography ]))
-        ];
-      }))
       age
       atool
       brightnessctl
