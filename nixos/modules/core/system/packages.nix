@@ -37,6 +37,7 @@
       tpm2-tools
       tmux
       veracrypt
+      systemdUkify
       vtm
       wtfutil
       #(pkgs.callPackage ./custom/hf.nix { })
