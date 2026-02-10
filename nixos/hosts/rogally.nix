@@ -27,13 +27,12 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
-  kernelPackages = kernel.packages;
   boot = {
     kernelParams = [
       "amd_iommu=on"
     ]
     ++ params { };
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = kernel.packages;
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-main-syscrypt";
