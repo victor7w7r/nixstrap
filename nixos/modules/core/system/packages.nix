@@ -3,7 +3,7 @@
   environment.systemPackages =
     with pkgs;
     [
-      (systemUkify.overrideAttrs (oldAttrs: {
+      (pkgs.systemUkify.overrideAttrs (oldAttrs: {
         buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
           (pkgs.python3.withPackages (ps: [ ps.cryptography ]))
         ];
