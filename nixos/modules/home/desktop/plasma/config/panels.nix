@@ -87,8 +87,8 @@
                 "systemctl reboot --firmware-setup"
                 "systemctl poweroff"
                 "separator"
-                "qdbus6 org.freedesktop.ScreenSaver /ScreenSaver Lock"
-                "qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptLogout"
+                "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"
+                "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"
               ];
               icon = "/etc/nixos/logo.svg";
               iconList = [
