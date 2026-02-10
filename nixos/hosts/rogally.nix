@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  nix-cachyos-kernel,
+  pkgs,
+  username,
+  ...
+}:
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
@@ -7,6 +12,7 @@ let
     sharedDir = "/run/media/games";
     partlabel = "games";
   };
+  kernel = (import ./kernels/handheld.nix { inherit pkgs nix-cachyos-kernel; });
 in
 {
   fileSystems = {
@@ -21,7 +27,7 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
-
+  kernelPackages = kernel.packages;
   boot = {
     kernelParams = [
       "amd_iommu=on"

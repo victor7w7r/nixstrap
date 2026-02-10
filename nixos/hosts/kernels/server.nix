@@ -1,8 +1,12 @@
 { pkgs, inputs }:
-let
+rec {
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel}/helpers.nix" { };
+  packages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
   kernel = pkgs.cachyosKernels.linux-cachyos-lts.override {
     pname = "linux-v7w7r-server";
+    configVariant = "linux-cachyos-lts";
     lto = "thin";
+    version = "6.12.68";
     processorOpt = "x86_64-v2";
     cpusched = "eevdf";
     hzTicks = "300";
@@ -10,11 +14,4 @@ let
     bbr3 = true;
     hardened = true;
   };
-  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel}/helpers.nix" { };
-  packages = (helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
-    _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
-  );
-in
-{
-  inherit kernel packages;
 }
