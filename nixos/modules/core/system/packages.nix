@@ -3,6 +3,11 @@
   environment.systemPackages =
     with pkgs;
     [
+      (systemUkify.overrideAttrs (oldAttrs: {
+        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
+          (pkgs.python3.withPackages (ps: [ ps.cryptography ]))
+        ];
+      }))
       age
       atool
       brightnessctl
@@ -37,7 +42,7 @@
       tpm2-tools
       tmux
       veracrypt
-      systemdUkify
+
       vtm
       wtfutil
       #(pkgs.callPackage ./custom/hf.nix { })
