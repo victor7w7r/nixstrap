@@ -21,6 +21,8 @@
         {
           accelerationProfile = "none";
           name = "Telink Wireless Receiver Mouse";
+          vendorId = "248a";
+          productId = "8367";
         }
       ];
       touchpads = [
