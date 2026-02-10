@@ -27,7 +27,7 @@ let
   wget = "${pkgs.wget2}/bin/wget2";
   efifs = "https://github.com/pbatard/EfiFs/releases/download/v1.11";
   mocha = "themes/catppuccin/assets/mocha";
-  initrd = "${initrd}";
+  initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
   #secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
