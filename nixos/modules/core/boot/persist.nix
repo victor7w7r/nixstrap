@@ -118,6 +118,9 @@ in
         "repositories"
         ".ssh"
         ".zen"
+        ".local/share/baloo"
+        ".local/share/kwalletd"
+        ".local/share/Trash"
         ".doom.d"
         ".config/sops"
         ".steam"
@@ -126,6 +129,7 @@ in
       ];
       files = [
         ".bash_history"
+        ".config/kwinoutputconfig.json"
         ".zsh_history"
       ];
     };
