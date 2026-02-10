@@ -2,7 +2,7 @@ let
   partitions = {
     esp = (import ../lib/esp.nix) { };
     emergency = (import ../lib/emergency.nix) { isSolid = false; };
-    systempv = (import ../lib/luks-lvm.nix) {
+    syscrypt = (import ../lib/luks-lvm.nix) {
       allowDiscards = false;
       content = {
         vg = "vg0";

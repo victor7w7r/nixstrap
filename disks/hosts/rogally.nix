@@ -7,7 +7,7 @@ let
     emergency = (import ../lib/emergency.nix) { priority = 3; };
     recovery = winmod.recovery { };
     win = winmod.win { };
-    systempv = (import ../lib/luks-lvm.nix) {
+    syscrypt = (import ../lib/luks-lvm.nix) {
       size = "100G";
       vg = "vg0";
       priority = 6;

@@ -4,7 +4,7 @@ let
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
     system = zfs.partition {
-      size = "80G";
+      size = "100G";
       priority = 2;
     };
     shared = zfs.partition {
@@ -43,11 +43,26 @@ let
 
   zroot = zfs.pool {
     isRoot = true;
-    vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
-    log = [ { members = [ "${partlabel}/disk-nvme-syslog" ]; } ];
-    special = [ { members = [ "${partlabel}/disk-nvme-sysspecial" ]; } ];
-    cache = [ "${partlabel}/disk-nvme-syscache" ];
-    datasets =
+    mode = "";
+    datasets = zfs.volume {
+      name = "swap";
+      options = {
+        volblocksize = "4096";
+        compression = "zle";
+        logbias = "throughput";
+        encryption = "aes-256-gcm";
+        keyformat = "passphrase";
+        sync = "always";
+        primarycache = "metadata";
+        secondarycache = "none";
+        "com.sun:auto-snapshot" = "false";
+      };
+      content = {
+        type = "swap";
+        discardPolicy = "both";
+      };
+    };
+    /*
       zfs.dataset {
         isRoot = true;
         options = {
@@ -84,7 +99,8 @@ let
           keylocation = "prompt";
           "com.sun:auto-snapshot" = "true";
         };
-      };
+        };
+    */
   };
 
   zcloud = zfs.pool {
