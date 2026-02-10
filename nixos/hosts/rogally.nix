@@ -20,6 +20,8 @@ in
     };
   };
 
+  swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+
   boot = {
     kernelParams = [
       "amd_iommu=on"
