@@ -30,8 +30,8 @@ in
     kernelPackages = pkgs.linuxPackages_6_12;
     initrd = {
       luks.devices.syscrypt = {
-        device = "/dev/disk/by-partlabel/disk-main-systempv";
-        #crypttabExtraOpts = [ "tpm2-device=auto" ];
+        device = "/dev/disk/by-partlabel/disk-main-syscrypt";
+        crypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
     };

@@ -51,6 +51,7 @@ in
         enable = true;
         emergencyAccess = true;
         users.root.shell = "${pkgs.bashInteractive}/bin/bash";
+        initrdBin = [ pkgs.coreutils ];
         storePaths = [ "${pkgs.bashInteractive}/bin/bash" ];
         settings.Manager = {
           DefaultTimeoutStartSec = "15s";
@@ -64,6 +65,9 @@ in
           cryptsetup = "${pkgs.cryptsetup}/bin/cryptsetup";
           busybox = "${pkgs.busybox-sandbox-shell}/bin/busybox";
           find = "${pkgs.findutils}/bin/find";
+          fdisk = "${pkgs.util-linux}/bin/fdisk";
+          lsblk = "${pkgs.util-linux}/bin/lsblk";
+          lspci = "${pkgs.pciutils}/bin/lspci";
           grep = "${pkgs.gnugrep}/bin/grep";
         };
       };
