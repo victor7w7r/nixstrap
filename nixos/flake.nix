@@ -193,6 +193,7 @@
             inherit
               self
               sops-nix
+              nix-cachyos-kernel
               inputs
               username
               system
