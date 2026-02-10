@@ -12,7 +12,6 @@
     priority
     mountpoint
     ;
-  label = "emergency";
   mountOptions = [
     "lazytime"
     "noatime"

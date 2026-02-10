@@ -198,38 +198,6 @@
           };
         };
 
-        rogallyvm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
-              }
-            )
-            (import ./configuration.nix)
-            (import ./pkgs)
-            nixos-hardware.nixosModules.asus-ally-rc71l
-            nix-flatpak.nixosModules.nix-flatpak
-            (import ./hosts/rogallyvm.nix)
-            (import ./modules/core)
-            (import ./modules/home)
-            nur.modules.nixos.default
-            impermanence.nixosModules.impermanence
-            sops-nix.nixosModules.sops
-          ];
-          specialArgs = {
-            host = "v7w7r-rc71l";
-            inherit
-              self
-              sops-nix
-              inputs
-              username
-              system
-              ;
-          };
-        };
-
         server = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [

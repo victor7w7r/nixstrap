@@ -1,20 +1,16 @@
 {
-  label,
-  name ? null,
+  name,
   size ? null,
   mountpoint ? null,
   priority ? null,
-  lvmPool ? "",
   mountOptions ? [ ],
-  postMountHook ? "",
   subvolumes ? { },
-  isIsolated ? false,
 }:
-let
+{
+  inherit name size;
   content = {
     inherit
       mountpoint
-      postMountHook
       subvolumes
       mountOptions
       ;
@@ -22,22 +18,16 @@ let
     extraArgs = [
       "-f"
       "-L"
-      "${label}"
+      "${name}"
     ];
   };
-  part = { inherit name size content; };
-in
-if !isIsolated && lvmPool != "" then
-  part
-  // {
-    lvm_type = "thinlv";
-    pool = lvmPool;
-  }
-else if !isIsolated && priority != null then
-  part
-  // {
-    inherit priority;
-    type = "8300";
-  }
-else
-  content
+}
+// (
+  if priority != null then
+    {
+      inherit priority;
+      type = "8300";
+    }
+  else
+    { }
+)

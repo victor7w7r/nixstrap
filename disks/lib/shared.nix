@@ -1,7 +1,6 @@
 {
   name ? "shared",
   size ? "100%",
-  label ? "shared",
   priority ? 100,
   isSolid ? true,
   mountContent ? "shared",
@@ -12,7 +11,6 @@
     name
     size
     priority
-    label
     ;
   mountOptions = [
     "lazytime"

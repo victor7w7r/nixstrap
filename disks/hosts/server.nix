@@ -3,61 +3,38 @@ let
 
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
-    sysetc = (import ../lib/f2fs.nix) {
-      label = "sysetc";
-      name = "sysetc";
-      size = "2G";
-      mountpoint = "/nix/persist/etc";
-      isIsolated = true;
+    system = zfs.partition {
+      size = "80G";
       priority = 2;
     };
-    shared = (import ../lib/f2fs.nix) {
-      label = "shared";
-      name = "shared";
+    shared = zfs.partition {
       size = "100%";
-      mountpoint = "/nix/persist/shared";
-      isIsolated = true;
+      pool = "zshared";
       priority = 3;
     };
   };
 
   nvmepartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
-    swapcrypt = {
-      name = "swapcrypt";
+    swap = zfs.partition {
       size = "8G";
+      pool = "zswap";
       priority = 2;
-      content = {
-        type = "swap";
-        randomEncryption = true;
-      };
-    };
-    syslog = zfs.partition {
-      size = "2G";
-      priority = 3;
     };
     cloudlog = zfs.partition {
       size = "16G";
       pool = "zcloud";
-      priority = 4;
-    };
-    sysspecial = zfs.partition {
-      size = "40G";
-      priority = 5;
+      priority = 3;
     };
     cloudspecial = zfs.partition {
-      size = "100G";
+      size = "50G";
       pool = "zcloud";
-      priority = 6;
-    };
-    syscache = zfs.partition {
-      size = "78G";
-      priority = 7;
+      priority = 4;
     };
     cloudcache = zfs.partition {
-      priority = 8;
-      size = "120G";
+      size = "100G";
       pool = "zcloud";
+      priority = 5;
     };
   };
 

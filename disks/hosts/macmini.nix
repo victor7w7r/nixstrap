@@ -4,64 +4,62 @@ let
 
   internalpartitions = {
     esp = (import ../lib/esp.nix) { };
-    msr = winmod.msr { };
-    recovery = winmod.recovery { priority = 3; };
     macos = {
       name = "macos";
       size = "110G";
       priority = 4;
     };
-    sysetc = (import ../lib/btrfs.nix) {
-      label = "sysetc";
-      name = "sysetc";
+    sysetc = zfs.partition {
       size = "2G";
-      isSolid = true;
-      mountpoint = "/nix/persist/etc";
-      isIsolated = true;
+      pool = "zetc";
       priority = 5;
     };
-    win = winmod.win { priority = 6; };
-    shared = (import ../lib/shared.nix) { };
+    shared = zfs.partition {
+      size = "100%";
+      pool = "zshared";
+    };
   };
 
   ssdpartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
-    swapcrypt = {
-      name = "swapcrypt";
-      size = "32G";
-      priority = 2;
-      content = {
-        type = "swap";
-        randomEncryption = true;
-      };
+    msr = winmod.msr { };
+    recovery = winmod.recovery { priority = 3; };
+    win = winmod.win { priority = 4; };
+    swap = zfs.partition {
+      size = "2G";
+      pool = "zswap";
+      priority = 3;
     };
     syslog = zfs.partition {
       size = "2G";
-      priority = 3;
-    };
-    szlog = zfs.partition {
-      size = "2G";
       priority = 4;
+    };
+    datalog = zfs.partition {
+      size = "2G";
+      pool = "zdata";
+      priority = 5;
     };
     sysspecial = zfs.partition {
       size = "40G";
-      priority = 5;
-    };
-    szspecial = zfs.partition {
-      size = "40G";
       priority = 6;
+    };
+    dataspecial = zfs.partition {
+      size = "40G";
+      pool = "zdata";
+      priority = 7;
     };
     syscache = zfs.partition {
       size = "70G";
-      priority = 7;
-    };
-    szcache = zfs.partition {
-      size = "70G";
       priority = 8;
     };
-    szshared = zfs.partition {
-      size = "180G";
+    datacache = zfs.partition {
+      size = "70G";
+      pool = "zdata";
       priority = 9;
+    };
+    ssdshared = zfs.partition {
+      size = "100%";
+      pool = "zssdshared";
     };
   };
 
@@ -103,14 +101,13 @@ let
       };
   };
 
-  sz = zfs.pool {
-    isRoot = true;
+  zdata = zfs.pool {
     vdev = [ { members = [ "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK" ]; } ];
     log = [ { members = [ "${partlabel}/disk-ssd-szlog" ]; } ];
     special = [ { members = [ "${partlabel}/disk-ssd-szspecial" ]; } ];
     cache = [ "${partlabel}/disk-ssd-szcache" ];
     datasets = zfs.dataset {
-      pool = "sz";
+      pool = "zdata";
       name = "storage";
       mountpoint = "/nix/persist/storage";
       options = {
@@ -118,6 +115,52 @@ let
         keyformat = "passphrase";
         keylocation = "prompt";
         "com.sun:auto-snapshot" = "true";
+      };
+    };
+  };
+
+  zetc = zfs.pool {
+    mode = "";
+    datasets = zfs.dataset {
+      pool = "zetc";
+      name = "etc";
+      mountpoint = "/nix/persist/etc";
+    };
+  };
+  zshared = zfs.pool {
+    mode = "";
+    datasets = zfs.dataset {
+      pool = "zshared";
+      name = "shared";
+      mountpoint = "/nix/persist/shared";
+    };
+  };
+  zssdshared = zfs.pool {
+    mode = "";
+    datasets = zfs.dataset {
+      pool = "zssdshared";
+      name = "sshshared";
+      mountpoint = "/nix/persist/sshshared";
+    };
+  };
+  zswap = zfs.pool {
+    mode = "";
+    datasets = zfs.volume {
+      name = "swap";
+      options = {
+        volblocksize = "4096";
+        compression = "zle";
+        logbias = "throughput";
+        encryption = "aes-256-gcm";
+        keyformat = "passphrase";
+        sync = "always";
+        primarycache = "metadata";
+        secondarycache = "none";
+        "com.sun:auto-snapshot" = "false";
+      };
+      content = {
+        type = "swap";
+        discardPolicy = "both";
       };
     };
   };
@@ -142,12 +185,21 @@ in
         };
       };
       sysroot = zfs.entireDisk {
-        device = "ata-TOSHIBA_MQ01ABD050V_34HES5WXS";
+        device = "ata-TOSHIBA_MQ01ABD050V_34HES5WXS"; # CHANGE
       };
       szdev = zfs.entireDisk {
         device = "ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
       };
     };
-    zpool = { inherit zroot sz; };
+    zpool = {
+      inherit
+        zroot
+        zdata
+        zetc
+        zshared
+        zssdshared
+        zswap
+        ;
+    };
   };
 }

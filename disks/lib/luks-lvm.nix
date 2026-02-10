@@ -1,17 +1,21 @@
 {
+  name ? "syscrypt",
+  vg ? "vg0",
   allowDiscards ? true,
-  content,
+  size ? "100%",
   isForTest ? false,
   keyFile ? "/tmp/key.txt",
-  name ? "syscrypt",
   priority ? 3,
-  size ? "100%",
 }:
 {
   inherit size priority;
   content = {
+    inherit name;
     type = "luks";
-    inherit name content;
+    content = {
+      inherit vg;
+      type = "lvm_pv";
+    };
     settings = { inherit keyFile allowDiscards; };
     preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
     postCreateHook = ''

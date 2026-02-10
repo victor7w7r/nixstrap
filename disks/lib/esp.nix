@@ -14,8 +14,6 @@
       "-F32"
       "-n"
       "EFI"
-      "-S"
-      "4096"
     ];
     mountOptions = [
       "lazytime"
@@ -25,8 +23,6 @@
       "codepage=437"
       "iocharset=ascii"
       "shortname=mixed"
-      "errors=remount-ro"
-      "nofail"
     ];
   };
 }

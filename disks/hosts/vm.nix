@@ -2,32 +2,24 @@ let
   partitions = {
     esp = (import ../lib/esp.nix) { };
     emergency = (import ../lib/emergency.nix) { isSolid = false; };
-    swapcrypt = {
-      name = "swapcrypt";
-      size = "4G";
-      priority = 3;
-      content = {
-        type = "swap";
-        randomEncryption = true;
-      };
-    };
-    systempv = (import ../lib/luks.nix) {
+    systempv = (import ../lib/luks-lvm.nix) {
       allowDiscards = false;
       content = {
         vg = "vg0";
         type = "lvm_pv";
       };
-      priority = 4;
+      priority = 3;
       isForTest = true;
     };
   };
-
-  syscrypt = (import ../lib/btrfs.nix) {
-    name = "system";
-    label = "system";
-    lvmPool = "thinpool";
-    size = "90G";
-    subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
+  lvs = {
+    syscrypt = (import ../lib/btrfs.nix) {
+      name = "system";
+      label = "system";
+      lvmPool = "thinpool";
+      size = "90G";
+      subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
+    };
   };
 in
 {
@@ -40,8 +32,9 @@ in
         inherit partitions;
       };
     };
-  }
-  // (import ../lib/lvs.nix) {
-    content = syscrypt;
+    lvm_vg."vg0" = {
+      type = "lvm_vg";
+      inherit lvs;
+    };
   };
 }

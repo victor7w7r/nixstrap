@@ -1,7 +1,7 @@
 {
   partition =
     {
-      priority,
+      priority ? "100",
       pool ? "zroot",
       size ? "100%",
     }:
@@ -31,6 +31,7 @@
     {
       datasets,
       isRoot ? false,
+      mode ? null,
       vdev ? [ ],
       log ? [ ],
       special ? [ ],
@@ -64,15 +65,22 @@
         dnodesize = "auto";
         xattr = "sa";
       };
-      mode.topology = {
-        type = "topology";
-        inherit
-          vdev
-          log
-          special
-          cache
-          ;
-      };
+      mode = (
+        if mode == null then
+          {
+            topology = {
+              type = "topology";
+              inherit
+                vdev
+                log
+                special
+                cache
+                ;
+            };
+          }
+        else
+          mode
+      );
     };
 
   dataset =
@@ -104,6 +112,20 @@
               | grep -E '^${pool}/local/${name}@empty$' \
               || zfs snapshot ${pool}/local/${name}@empty
             '';
+      };
+    };
+
+  volume =
+    {
+      name,
+      content,
+      size ? "100%",
+      options ? { },
+    }:
+    {
+      "local/${name}" = {
+        type = "zfs_volume";
+        inherit size options content;
       };
     };
 }
