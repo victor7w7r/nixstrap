@@ -34,6 +34,7 @@
       sig
       sops
       tre-command
+      tpm2-tools
       tmux
       veracrypt
       vtm

@@ -18,12 +18,13 @@
     pipes-rs
     progress
     rsyncy
+    smartmontools
     ssh-to-age
     sbctl
     sl
     sops
     ternimal
-    thin-provisioning-tools
+    tpm2-tools
     tmux
   ];
 
