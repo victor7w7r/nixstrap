@@ -118,7 +118,6 @@ let
       };
     };
   };
-
   zetc = zfs.pool {
     mode = "";
     datasets = zfs.dataset {
@@ -139,7 +138,7 @@ let
     mode = "";
     datasets = zfs.dataset {
       pool = "zssdshared";
-      name = "sshshared";
+      name = "ssdshared";
       mountpoint = "/nix/persist/sshshared";
     };
   };
