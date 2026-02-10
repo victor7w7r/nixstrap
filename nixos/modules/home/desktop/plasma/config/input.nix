@@ -18,12 +18,10 @@
       };
 
       mice = [
-        /*
-          {
+        {
           accelerationProfile = "none";
-          name = "ydotoold virtual device";
-          }
-        */
+          name = "Telink Wireless Receiver Mouse";
+        }
       ];
       touchpads = [
         {
