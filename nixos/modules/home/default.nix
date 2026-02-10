@@ -46,7 +46,7 @@
         (import ./zen)
       ]
       ++ (
-        if (host != "v7w7r-nixvm") || (host != "v7w7r-youyeetoox1") then
+        if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then
           [
             (import ./misc)
             (import ./multimedia)

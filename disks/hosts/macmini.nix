@@ -7,12 +7,12 @@ let
     macos = {
       name = "macos";
       size = "110G";
-      priority = 4;
+      priority = 2;
     };
     sysetc = zfs.partition {
       size = "2G";
       pool = "zetc";
-      priority = 5;
+      priority = 3;
     };
     shared = zfs.partition {
       size = "100%";
@@ -28,34 +28,34 @@ let
     swap = zfs.partition {
       size = "2G";
       pool = "zswap";
-      priority = 3;
+      priority = 5;
     };
     syslog = zfs.partition {
       size = "2G";
-      priority = 4;
+      priority = 6;
     };
     datalog = zfs.partition {
       size = "2G";
       pool = "zdata";
-      priority = 5;
+      priority = 7;
     };
     sysspecial = zfs.partition {
       size = "40G";
-      priority = 6;
+      priority = 8;
     };
     dataspecial = zfs.partition {
       size = "40G";
       pool = "zdata";
-      priority = 7;
+      priority = 9;
     };
     syscache = zfs.partition {
       size = "70G";
-      priority = 8;
+      priority = 10;
     };
     datacache = zfs.partition {
       size = "70G";
       pool = "zdata";
-      priority = 9;
+      priority = 11;
     };
     ssdshared = zfs.partition {
       size = "100%";

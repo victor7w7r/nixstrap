@@ -38,8 +38,8 @@
           qtmultimedia
           qtvirtualkeyboard
         ];
-        enable = false;
-        wayland.enable = false;
+        enable = true;
+        wayland.enable = true;
         enableHidpi = false;
         settings = {
           General = {
@@ -48,7 +48,7 @@
         };
       };
       ly = {
-        enable = true;
+        enable = false;
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
