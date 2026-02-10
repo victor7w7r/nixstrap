@@ -21,6 +21,7 @@
     hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.7.0";
     compose2nix = {
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
@@ -88,6 +89,7 @@
       self,
       nix-cachyos-kernel,
       nur,
+      proxmox-nixos,
       impermanence,
       nix-flatpak,
       sops-nix,
@@ -204,12 +206,16 @@
             (
               { ... }:
               {
-                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+                nixpkgs.overlays = [
+                  nix-cachyos-kernel.overlays.pinned
+                  proxmox-nixos.overlays.${system}
+                ];
               }
             )
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
+            proxmox-nixos.nixosModules.proxmox-ve
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence

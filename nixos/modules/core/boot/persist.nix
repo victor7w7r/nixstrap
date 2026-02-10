@@ -91,6 +91,7 @@ in
       "/etc/nixos"
       "/var/log"
       "/var/lib/bluetooth"
+      "/var/lib/pve-cluster"
       "/var/lib/nixos"
       {
         directory = "/var/lib/sbctl";
