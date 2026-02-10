@@ -45,21 +45,16 @@ let
     isRoot = true;
     mode = "";
     datasets = zfs.volume {
-      name = "swap";
+      name = "system";
+      size = "70G";
       options = {
         volblocksize = "4096";
-        compression = "zle";
-        logbias = "throughput";
+        compression = "lz4";
         encryption = "aes-256-gcm";
         keyformat = "passphrase";
-        sync = "always";
-        primarycache = "metadata";
-        secondarycache = "none";
         "com.sun:auto-snapshot" = "false";
       };
       content = {
-        type = "swap";
-        discardPolicy = "both";
       };
     };
     /*
