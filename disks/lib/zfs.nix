@@ -119,7 +119,7 @@
     {
       name,
       content,
-      size ? "100%",
+      size,
       options ? { },
       postCreateHook ? "",
     }:

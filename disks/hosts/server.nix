@@ -1,6 +1,5 @@
 let
   zfs = import ../lib/zfs.nix;
-  f2fs-args = import ../lib/f2fs-args.nix;
 
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
@@ -77,7 +76,7 @@ let
         }
         // zfs.volume {
           name = "root";
-          size = "100%";
+          size = "60G";
           inherit options;
           content = {
             type = "filesystem";
@@ -125,6 +124,7 @@ let
     mode = "";
     datasets = zfs.volume {
       name = "swap";
+      size = "8G";
       options = {
         volblocksize = "4096";
         compression = "zle";
