@@ -38,7 +38,7 @@
           qtmultimedia
           qtvirtualkeyboard
         ];
-        enable = true;
+        enable = false;
         wayland.enable = true;
         enableHidpi = false;
         settings = {
