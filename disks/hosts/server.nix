@@ -67,7 +67,7 @@ let
             type = "filesystem";
             format = "f2fs";
             mountpoint = "/nix";
-            mountOptions = f2fs-args { name = "system"; }.mountOptions;
+            #mountOptions = f2fs-args { name = "system"; }.mountOptions;
           };
           postCreateHook = ''
             mkfs.f2fs -f -l system \
@@ -83,7 +83,7 @@ let
             type = "filesystem";
             format = "f2fs";
             mountpoint = "/";
-            mountOptions = f2fs-args { name = "root"; }.mountOptions;
+            #mountOptions = f2fs-args { name = "root"; }.mountOptions;
           };
           postCreateHook = ''
             mkfs.f2fs -f -l root \
