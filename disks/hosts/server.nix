@@ -206,11 +206,11 @@ in
     };
     zpool = {
       inherit
-        zroot
-        zcloud
-        zswap
-        zpersist
         zshared
+        zpersist
+        zswap
+        zcloud
+        zroot
         ;
     };
   };
