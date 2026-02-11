@@ -170,7 +170,7 @@ in
     disk = {
       emmc = {
         type = "disk";
-        device = "/dev/mmcblk0";
+        device = "/dev/disk/by-id/mmc-SCA256_0x3870d703";
         content = {
           type = "gpt";
           partitions = mmcpartitions;
