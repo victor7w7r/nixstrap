@@ -6,7 +6,7 @@ rec {
     pname = "linux-v7w7r-handheld";
     configVariant = "linux-cachyos-deckify";
     lto = "thin";
-    processorOpt = "v4";
+    processorOpt = "x86_64-v4";
     handheld = true;
     acpiCall = true;
   };
