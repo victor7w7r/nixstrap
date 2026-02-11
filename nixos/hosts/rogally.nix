@@ -12,7 +12,7 @@ let
     sharedDir = "/run/media/games";
     partlabel = "games";
   };
-  kernel = (import ./kernels/handheld.nix { inherit pkgs nix-cachyos-kernel; });
+  #kernel = (import ./kernels/handheld.nix { inherit pkgs nix-cachyos-kernel; });
 in
 {
   fileSystems = {

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   username,
+  host,
   ...
 }:
 {
@@ -33,49 +34,53 @@
     };
   };
 
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+  nix =
+    let
+      is-term-hosts = host == "v7w7r-rc71l" || host == "v7w7r-youyeetoox1";
+    in
+    {
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+      };
+      daemonCPUSchedPolicy = if is-term-hosts then "batch" else "else";
+      daemonIOSchedPriority = if is-term-hosts then 3 else 5;
+      distributedBuilds = true;
+      optimise.automatic = true;
+      package = lib.mkDefault (pkgs.lix);
+      settings = {
+        max-jobs = if is-term-hosts then "auto" else 2;
+        cores = if is-term-hosts then 0 else 4;
+        auto-optimise-store = true;
+        allowed-users = [ "@wheel" ];
+        trusted-users = [
+          "root"
+          username
+        ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        substituters = [
+          "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
+        extra-substituters = [
+          "https://nix-gaming.cachix.org"
+          "https://nix-community.cachix.org"
+          "https://attic.xuyh0120.win/lantian"
+        ];
+        extra-trusted-public-keys = [
+          "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        ];
+        http-connections = 100;
+      };
     };
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedPriority = 7;
-    distributedBuilds = true;
-    optimise.automatic = true;
-    package = lib.mkDefault (pkgs.lix);
-    settings = {
-      max-jobs = 1;
-      cores = 2;
-      auto-optimise-store = true;
-      allowed-users = [ "@wheel" ];
-      trusted-users = [
-        "root"
-        username
-      ];
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      substituters = [
-        "https://cache.garnix.io"
-      ];
-      trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      ];
-      extra-substituters = [
-        "https://nix-gaming.cachix.org"
-        "https://nix-community.cachix.org"
-        "https://attic.xuyh0120.win/lantian"
-      ];
-      extra-trusted-public-keys = [
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      ];
-      http-connections = 100;
-    };
-  };
 
   sops = {
     defaultSopsFile = ./secrets/sec.yaml;
