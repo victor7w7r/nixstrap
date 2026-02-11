@@ -68,11 +68,6 @@ let
             mountpoint = "/nix";
             #mountOptions = f2fs-args { name = "system"; }.mountOptions;
           };
-          postCreateHook = ''
-            mkfs.f2fs -f -l system \
-                -O extra_attr,inode_checksum,compression,flexible_inline_xattr,lost_found,sb_checksum \
-                /dev/zvol/zroot/local/system
-          '';
         }
         // zfs.volume {
           name = "root";
@@ -84,11 +79,6 @@ let
             mountpoint = "/";
             #mountOptions = f2fs-args { name = "root"; }.mountOptions;
           };
-          postCreateHook = ''
-            mkfs.f2fs -f -l root \
-                -O extra_attr,inode_checksum,compression,flexible_inline_xattr,lost_found,sb_checksum \
-                /dev/zvol/zroot/local/root
-          '';
         };
     };
 
