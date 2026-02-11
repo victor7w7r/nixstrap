@@ -229,7 +229,7 @@
               lowPrioritySensorIds = [
                 "cpu/all/maximumTemperature"
                 "cpu/all/minimumTemperature"
-                "cpu/cpu\\\\d+/temperature"
+                "cpu/cpud+/temperature"
               ];
               totalSensors = [ "cpu/all/averageTemperature" ];
             };
@@ -244,7 +244,7 @@
                 245
                 86
               ];
-              "cpu/cpu\\d+/temperature" = [
+              "cpu/cpud+/temperature" = [
                 119
                 245
                 86

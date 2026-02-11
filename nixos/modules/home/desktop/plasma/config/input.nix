@@ -22,6 +22,7 @@
           accelerationProfile = "none";
           name = "Telink Wireless Receiver Mouse";
           vendorId = "248a";
+          pointerSpeed = -0.4;
           productId = "8367";
         }
       ];

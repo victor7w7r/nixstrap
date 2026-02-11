@@ -32,8 +32,8 @@ in
       "amd_iommu=on"
     ]
     ++ params { };
-    kernelPackages = pkgs.linuxPackages_lqx;
-    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
+    #kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify;
     #kernel.packages;
     initrd = {
       luks.devices.syscrypt = {

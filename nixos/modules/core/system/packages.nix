@@ -13,6 +13,7 @@
       cod
       emptty
       gnused
+      inotify-tools
       file
       hexyl
       jump
@@ -37,7 +38,6 @@
       tpm2-tools
       tmux
       veracrypt
-
       vtm
       wtfutil
       #(pkgs.callPackage ./custom/hf.nix { })
