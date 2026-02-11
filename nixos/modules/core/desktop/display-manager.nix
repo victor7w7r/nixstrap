@@ -38,7 +38,7 @@
           qtmultimedia
           qtvirtualkeyboard
         ];
-        enable = false;
+        enable = host == "v7w7r-rc71l";
         wayland.enable = true;
         enableHidpi = false;
         settings = {
@@ -48,7 +48,7 @@
         };
       };
       ly = {
-        enable = host != "v7w7r-youyeetoox1";
+        enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-rc71l";
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
