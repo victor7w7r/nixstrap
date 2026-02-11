@@ -85,7 +85,6 @@ let
         */
       };
   };
-
   zcloud = zfs.pool {
     vdev = [
       {
@@ -109,6 +108,7 @@ let
         name = "cloud";
         mountpoint = "/nix/persist/cloud";
         options = {
+          compression = "zstd";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
           keylocation = "file:///media/secret.key";
@@ -130,6 +130,7 @@ let
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
           sync = "always";
+          keylocation = "file:///media/secret.key";
           primarycache = "metadata";
           secondarycache = "none";
         };
@@ -148,6 +149,7 @@ let
         name = "persist";
         mountpoint = "/nix/persist";
         options = {
+          compression = "zstd";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
           keylocation = "file:///media/secret.key";
@@ -159,10 +161,19 @@ let
     mode = "";
     datasets =
       zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zshared";
+      // zfs.volume {
         name = "shared";
+        size = "150G";
+        options.compression = "lz4";
         mountpoint = "/nix/persist/shared";
+        /*
+          content = {
+          type = "filesystem";
+          format = "f2fs";
+          mountpoint = "/";
+          #mountOptions = f2fs-args { name = "root"; }.mountOptions;
+          };
+        */
       };
   };
 in
