@@ -165,7 +165,6 @@ let
         name = "shared";
         size = "150G";
         options.compression = "lz4";
-        mountpoint = "/nix/persist/shared";
         /*
           content = {
           type = "filesystem";
