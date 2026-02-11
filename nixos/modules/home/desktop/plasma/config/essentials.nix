@@ -112,12 +112,12 @@
             idleTimeout = if is-gole then 30 else 60;
           };
           turnOffDisplay = {
-            idleTimeout = if is-gole then 15 else 30;
+            idleTimeout = if is-gole then 25 else 30;
             idleTimeoutWhenLocked = "immediately";
           };
           dimDisplay = {
             enable = true;
-            idleTimeout = if is-gole then 5 else 10;
+            idleTimeout = if is-gole then 20 else 25;
           };
           powerButtonAction = "hibernate";
           whenLaptopLidClosed = "sleep";
