@@ -77,7 +77,7 @@
           tty = 1;
         }
         // (
-          if (host == "v7w7r-rogally" || host == "v7w7r-laptop") then
+          if (host == "v7w7r-rc71l" || host == "v7w7r-higole") then
             {
               battery_id = "BAT0";
             }

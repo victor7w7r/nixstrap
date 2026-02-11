@@ -6,67 +6,68 @@
     #lact.enable = true;
     sysstat.enable = true;
     smartd.enable = false;
+    power-profiles-daemon.enable = false;
     thermald.enable = true;
     udisks2.enable = true;
-    power-profiles-daemon.enable = false;
-    /*
-      pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      };
-    */
-
     tlp = {
       enable = true;
-      settings = {
-        #DISK_IDLE_SECS_ON_AC=
-        #DISK_IDLE_SECS_ON_BAT=
-        CPU_SCALING_GOVERNOR_ON_AC = "ondemand";
-        CPU_SCALING_GOVERNOR_ON_BAT = "ondemand"; # schedutil powersave
-        #CPU_SCALING_MIN_FREQ_ON_AC=0;
-        #CPU_SCALING_MAX_FREQ_ON_AC=0;
-        #CPU_SCALING_MIN_FREQ_ON_BAT=0;
-        #CPU_SCALING_MAX_FREQ_ON_BAT=0;
+      settings =
+        let
+          is-term-hosts = host == "v7w7r-rc71l" || host == "v7w7r-youyeetoox1";
+          is-battery = host == "v7w7r-higole" || host == "v7w7r-rc71l";
+          is-gole = host == "v7w7r-higole";
+          is-mac = host == "v7w7r-macmini81";
+        in
+        {
+          CPU_SCALING_GOVERNOR_ON_AC = "ondemand";
+          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          CPU_ENERGY_PERF_POLICY_ON_AC = if is-gole then "default" else "balance_performance";
+          CPU_ENERGY_PERF_POLICY_ON_BAT = if is-gole then "power" else "balance_power";
+          CPU_BOOST_ON_AC = if is-term-hosts then 1 else 0;
+          CPU_BOOST_ON_BAT = 0;
+          CPU_HWP_DYN_BOOST_ON_AC = 1;
+          CPU_HWP_DYN_BOOST_ON_BAT = 1;
+          MEM_SLEEP_ON_AC = "s2idle";
+          MEM_SLEEP_ON_BAT = "deep";
+          PLATFORM_PROFILE_ON_BAT = "low-power";
+          WOL_DISABLE = if host != "v7w7r-youyeetoox1" then "Y" else "N";
 
-        # performance, balance_performance, default, balance_power, power.
-        #CPU_ENERGY_PERF_POLICY_ON_AC="balance_performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-        CPU_BOOST_ON_AC = 1;
-        CPU_BOOST_ON_BAT = 1;
-        CPU_HWP_DYN_BOOST_ON_AC = 1;
-        CPU_HWP_DYN_BOOST_ON_BAT = 1;
-        MEM_SLEEP_ON_AC = "s2idle";
-        MEM_SLEEP_ON_BAT = "deep";
-
-        #   min_power, med_power_with_dipm(*), medium_power, max_performance.
-        SATA_LINKPWR_ON_AC = "medium_power";
-        SATA_LINKPWR_ON_BAT = "medium_power";
-
-        # Wi-Fi power saving mode: on=enable, off=disable.
-        # Default: off (AC), on (BAT)
-
-        #WIFI_PWR_ON_AC=
-        WIFI_PWR_ON_BAT = "on";
-        #SOUND_POWER_SAVE_ON_AC=
-        SOUND_POWER_SAVE_ON_BAT = 1;
-        USB_AUTOSUSPEND = 1;
-
-        # BAT0: Main battery
-        # Default: <none>
-
-        # Battery charge level below which charging will begin.
-        #START_CHARGE_THRESH_BAT0=75;
-        # Battery charge level above which charging will stop.
-        #STOP_CHARGE_THRESH_BAT0=80;
-
-        # BAT1: Secondary battery (primary on some laptops)
-        # Default: <none>
-
-        # Battery charge level below which charging will begin.
-        #START_CHARGE_THRESH_BAT1=75;
-        # Battery charge level above which charging will stop.
-        #STOP_CHARGE_THRESH_BAT1=80;
-      };
+          # min_power, med_power_with_dipm(*), medium_power, max_performance.
+          SATA_LINKPWR_ON_AC = "medium_power";
+          SATA_LINKPWR_ON_BAT = "medium_power";
+          WIFI_PWR_ON_AC = if is-gole then "on" else "off";
+          WIFI_PWR_ON_BAT = if is-battery then "on" else "off";
+          SOUND_POWER_SAVE_ON_AC = if is-gole then 1 else 0;
+          SOUND_POWER_SAVE_ON_BAT = if is-gole then 1 else 0;
+          USB_AUTOSUSPEND = if is-battery || host == "v7w7r-youyeetoox1" then 1 else 0;
+          SCHED_POWERSAVE_ON_AC = 0;
+          SCHED_POWERSAVE_ON_BAT = 1;
+        }
+        // (
+          if is-battery then
+            {
+              STOP_CHARGE_THRESH_BAT0 = 80;
+            }
+          else
+            { }
+        )
+        // (
+          if is-mac then
+            {
+              CPU_MAX_PERF_ON_AC = 70;
+            }
+          else
+            { }
+        )
+        // (
+          if is-gole then
+            {
+              CPU_MAX_PERF_ON_BAT = 50;
+              RUNTIME_PM_ON_BAT = "auto";
+            }
+          else
+            { }
+        );
     };
 
     pipewire = {

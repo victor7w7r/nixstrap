@@ -244,61 +244,6 @@
                 245
                 86
               ];
-              "cpu/cpu1/temperature" = [
-                86
-                245
-                105
-              ];
-              "cpu/cpu10/temperature" = [
-                113
-                245
-                86
-              ];
-              "cpu/cpu11/temperature" = [
-                245
-                86
-                167
-              ];
-              "cpu/cpu2/temperature" = [
-                151
-                245
-                86
-              ];
-              "cpu/cpu3/temperature" = [
-                86
-                245
-                201
-              ];
-              "cpu/cpu4/temperature" = [
-                245
-                86
-                161
-              ];
-              "cpu/cpu5/temperature" = [
-                245
-                196
-                86
-              ];
-              "cpu/cpu6/temperature" = [
-                245
-                134
-                86
-              ];
-              "cpu/cpu7/temperature" = [
-                210
-                245
-                86
-              ];
-              "cpu/cpu8/temperature" = [
-                132
-                245
-                86
-              ];
-              "cpu/cpu9/temperature" = [
-                87
-                245
-                86
-              ];
               "cpu/cpu\\d+/temperature" = [
                 119
                 245
@@ -325,61 +270,6 @@
               totalSensors = [ "cpu/all/usage" ];
             };
             SensorColors = {
-              "cpu/cpu1/usage" = [
-                105
-                86
-                245
-              ];
-              "cpu/cpu10/usage" = [
-                154
-                86
-                245
-              ];
-              "cpu/cpu11/usage" = [
-                156
-                245
-                86
-              ];
-              "cpu/cpu2/usage" = [
-                86
-                213
-                245
-              ];
-              "cpu/cpu3/usage" = [
-                245
-                194
-                86
-              ];
-              "cpu/cpu4/usage" = [
-                86
-                138
-                245
-              ];
-              "cpu/cpu5/usage" = [
-                86
-                245
-                202
-              ];
-              "cpu/cpu6/usage" = [
-                155
-                245
-                86
-              ];
-              "cpu/cpu7/usage" = [
-                86
-                245
-                222
-              ];
-              "cpu/cpu8/usage" = [
-                129
-                245
-                86
-              ];
-              "cpu/cpu9/usage" = [
-                245
-                204
-                86
-              ];
               "cpu/cpu\\d+/usage" = [
                 236
                 86

@@ -90,11 +90,11 @@ let
       {
         mode = "raidz1";
         members = [
-          "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
           "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
+          "${idpart}/ata-ST1000LM024_HN-M101MBB_S2TBJ90C110644"
           "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
-          "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BS"
-          "${idpart}/ata-TOSHIBA_MQ01ABD100_46G8SH1BS"
+          "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
+          "${idpart}/ata-WDC_WD10JPVX-75JC3T0_WXM1E83VMA58"
         ];
       }
     ];
