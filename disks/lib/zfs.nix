@@ -121,11 +121,17 @@
       content,
       size ? "100%",
       options ? { },
+      postCreateHook ? "",
     }:
     {
       "local/${name}" = {
         type = "zfs_volume";
-        inherit size options content;
+        inherit
+          size
+          options
+          content
+          postCreateHook
+          ;
       };
     };
 }

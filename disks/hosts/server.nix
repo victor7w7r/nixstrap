@@ -77,11 +77,14 @@ let
           inherit options;
           content = {
             type = "filesystem";
-            format = "f2fs";
             mountpoint = "/";
             mountOptions = f2fs-args { name = "root"; }.mountOptions;
-            extraArgs = f2fs-args { name = "root"; }.extraArgs;
           };
+          postCreateHook = ''
+            mkfs.f2fs -f -l root \
+                -O extra_attr,inode_checksum,compression,flexible_inline_xattr,lost_found,sb_checksum \
+                /dev/zvol/zroot/local/root
+          '';
         };
     };
 
