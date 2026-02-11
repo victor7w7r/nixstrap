@@ -48,7 +48,7 @@
         };
       };
       ly = {
-        enable = true;
+        enable = host != "v7w7r-youyeetoox1";
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
