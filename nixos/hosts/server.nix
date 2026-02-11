@@ -18,7 +18,6 @@ in
       pool = "zcloud";
       dataset = "cloud";
     };
-    "/nix/persist/var/lib/libvirt/images" = zfs { dataset = "vm"; };
   };
 
   boot = {

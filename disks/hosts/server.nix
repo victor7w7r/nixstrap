@@ -113,7 +113,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///mnt/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -152,7 +152,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///mnt/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
