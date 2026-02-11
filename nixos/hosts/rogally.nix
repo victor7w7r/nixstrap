@@ -33,7 +33,7 @@ in
     ]
     ++ params { };
     #kernelPackages = pkgs.linuxPackages_lqx;
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
     #kernel.packages;
     initrd = {
       luks.devices.syscrypt = {
