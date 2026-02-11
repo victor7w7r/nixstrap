@@ -65,6 +65,7 @@ let
           inherit options;
           content = {
             type = "filesystem";
+            format = "f2fs";
             mountpoint = "/nix";
             mountOptions = f2fs-args { name = "system"; }.mountOptions;
           };
@@ -80,6 +81,7 @@ let
           inherit options;
           content = {
             type = "filesystem";
+            format = "f2fs";
             mountpoint = "/";
             mountOptions = f2fs-args { name = "root"; }.mountOptions;
           };
