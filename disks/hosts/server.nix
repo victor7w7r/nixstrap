@@ -46,41 +46,46 @@ let
   partlabel = "/dev/disk/by-partlabel";
   idpart = "/dev/disk/by-id";
 
-  zroot =
-    let
-      options = {
-        volblocksize = "4096";
-        compression = "lz4";
-        "com.sun:auto-snapshot" = "false";
-      };
-    in
-    zfs.pool {
-      isRoot = true;
-      mode = "";
-      datasets =
-        zfs.volume {
-          name = "system";
-          size = "70G";
-          inherit options;
+  zroot = zfs.pool {
+    isRoot = true;
+    mode = "";
+    postCreateHook = ''
+      mkfs.f2fs -f -O \
+        extra_attr,inode_checksum,flexible_inline_xattr,lost_found,sb_checksum \
+        -l z-system /dev/zvol/zroot/safe/root/system
+    '';
+    datasets =
+      zfs.preDataset
+      // zfs.volume {
+        name = "system";
+        preDataset = "safe";
+        size = "70G";
+        options.compression = "lz4";
+        /*
           content = {
-            type = "filesystem";
-            format = "f2fs";
-            mountpoint = "/nix";
-            #mountOptions = f2fs-args { name = "system"; }.mountOptions;
+          type = "filesystem";
+          format = "f2fs";
+          mountpoint = "/nix";
+          #mountOptions = f2fs-args { name = "system"; }.mountOptions;
           };
-        }
-        // zfs.volume {
-          name = "root";
-          size = "60G";
-          inherit options;
+        */
+      }
+      // zfs.volume {
+        name = "root";
+        size = "60G";
+        preDataset = "safe";
+        options.compression = "lz4";
+        /*
           content = {
-            type = "filesystem";
-            format = "f2fs";
-            mountpoint = "/";
-            #mountOptions = f2fs-args { name = "root"; }.mountOptions;
+          type = "filesystem";
+          format = "f2fs";
+          mountpoint = "/";
+          #mountOptions = f2fs-args { name = "root"; }.mountOptions;
           };
-        };
-    };
+        */
+      }
+      // zfs.preDataset { name = "safe"; };
+  };
 
   zcloud = zfs.pool {
     vdev = [
@@ -98,61 +103,70 @@ let
     log = [ { members = [ "${partlabel}/disk-nvme-cloudlog" ]; } ];
     special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
     cache = [ "${partlabel}/disk-nvme-cloudcache" ];
-    datasets = zfs.dataset {
-      pool = "zcloud";
-      name = "cloud";
-      mountpoint = "/nix/persist/cloud";
-      options = {
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        keylocation = "prompt";
-        "com.sun:auto-snapshot" = "true";
+    datasets =
+      zfs.preDataset { name = "safe"; }
+      // zfs.dataset {
+        pool = "zcloud";
+        name = "cloud";
+        preDataset = "safe";
+        mountpoint = "/nix/persist/cloud";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
-    };
   };
   zswap = zfs.pool {
     mode = "";
-    datasets = zfs.volume {
-      name = "swap";
-      size = "8G";
-      options = {
-        volblocksize = "4096";
-        compression = "zle";
-        logbias = "throughput";
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        sync = "always";
-        primarycache = "metadata";
-        secondarycache = "none";
-        "com.sun:auto-snapshot" = "false";
+    datasets =
+      zfs.preDataset
+      // zfs.volume {
+        name = "swap";
+        size = "8G";
+        options = {
+          compression = "zle";
+          logbias = "throughput";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          sync = "always";
+          primarycache = "metadata";
+          secondarycache = "none";
+        };
+        content = {
+          type = "swap";
+          discardPolicy = "both";
+        };
       };
-      content = {
-        type = "swap";
-        discardPolicy = "both";
-      };
-    };
   };
   zpersist = zfs.pool {
     mode = "";
-    datasets = zfs.dataset {
-      pool = "zpersist";
-      name = "persist";
-      mountpoint = "/nix/persist";
-      options = {
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        keylocation = "prompt";
-        "com.sun:auto-snapshot" = "true";
+    datasets =
+      zfs.preDataset { name = "safe"; }
+      // zfs.dataset {
+        pool = "zpersist";
+        name = "persist";
+        mountpoint = "/nix/persist";
+        preDataset = "safe";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
-    };
   };
   zshared = zfs.pool {
     mode = "";
-    datasets = zfs.dataset {
-      pool = "zshared";
-      name = "shared";
-      mountpoint = "/nix/persist/shared";
-    };
+    datasets =
+      zfs.preDataset { name = "safe"; }
+      // zfs.dataset {
+        pool = "zshared";
+        preDataset = "safe";
+        name = "shared";
+        mountpoint = "/nix/persist/shared";
+      };
   };
 in
 {

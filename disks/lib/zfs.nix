@@ -36,6 +36,7 @@
       log ? [ ],
       special ? [ ],
       cache ? [ ],
+      postCreateHook ? "",
     }:
     {
       type = "zpool";
@@ -48,7 +49,7 @@
             fi
           ''
         else
-          "";
+          postCreateHook;
       options = {
         ashift = "12";
         autotrim = "on";
@@ -83,16 +84,34 @@
       );
     };
 
+  #Parent
+  preDataset =
+    {
+      name ? "local",
+    }:
+    {
+      "${name}" = {
+        type = "zfs_fs";
+        options = {
+          mountpoint = "none";
+          canmount = "off";
+        };
+      };
+    };
+
+  #ZFS_FS Vol
   dataset =
     {
+      preDataset ? "local",
       pool ? "zroot",
       name ? "root",
       mountpoint ? "/",
       options ? { },
       isRoot ? false,
+      enableSnap ? true,
     }:
     {
-      "local/${name}" = {
+      "${preDataset}/${name}" = {
         type = "zfs_fs";
         options = {
           mountpoint = "legacy";
@@ -100,23 +119,34 @@
         }
         // options;
         inherit mountpoint;
-        postCreateHook =
-          if isRoot then
-            ''
-              zfs snapshot zroot/local/root@empty;
-              zfs snapshot zroot/local/root@lastboot;
-            ''
-          else
-            ''
-              zfs list -t snapshot -H -o name \
-              | grep -E '^${pool}/local/${name}@empty$' \
-              || zfs snapshot ${pool}/local/${name}@empty
-            '';
+        postCreateHook = ''
+          ${
+            if isRoot then
+              ''
+                zfs snapshot zroot/${preDataset}/root@empty
+                zfs snapshot zroot/${preDataset}/root@lastboot
+              ''
+            else
+              ""
+          }
+          ${
+            if enableSnap then
+              ''
+                zfs list -t snapshot -H -o name \
+                | grep -E '^${pool}/${preDataset}/${name}@empty$' \
+                || zfs snapshot ${pool}/${preDataset}/${name}@empty
+              ''
+            else
+              ""
+          }
+        '';
       };
     };
 
+  #ZVol Sparse
   volume =
     {
+      preDataset ? "local",
       name,
       content,
       size,
@@ -124,11 +154,15 @@
       postCreateHook ? "",
     }:
     {
-      "local/${name}" = {
+      "${preDataset}/${name}" = {
         type = "zfs_volume";
+        options = {
+          volblocksize = "4096";
+          "com.sun:auto-snapshot" = "false";
+        }
+        // options;
         inherit
           size
-          options
           content
           postCreateHook
           ;

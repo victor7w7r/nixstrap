@@ -20,7 +20,7 @@ in
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = ''
-        zfs rollback -r zroot/local/root@empty && echo "rollback complete"
+        zfs rollback -r zroot/local/root@empty
       '';
     };
     rollback-btrfs = lib.mkIf (!specialHosts) {
