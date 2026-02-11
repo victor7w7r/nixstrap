@@ -72,7 +72,7 @@ let
       }
       // zfs.volume {
         name = "root";
-        size = "60G";
+        size = "20G";
         preDataset = "safe";
         options.compression = "lz4";
         /*
