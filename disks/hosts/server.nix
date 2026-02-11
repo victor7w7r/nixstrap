@@ -4,7 +4,7 @@ let
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
     system = zfs.partition {
-      size = "90G";
+      size = "100G";
       priority = 2;
     };
     shared = zfs.partition {
@@ -72,7 +72,7 @@ let
       }
       // zfs.volume {
         name = "root";
-        size = "20G";
+        size = "25G";
         preDataset = "safe";
         options.compression = "lz4";
         /*
