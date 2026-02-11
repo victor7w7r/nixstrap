@@ -56,6 +56,8 @@
         auto-optimise-store = true;
         allowed-users = [ "@wheel" ];
         trusted-users = [ username ];
+        keep-derivations = true;
+        keep-outputs = true;
         experimental-features = [
           "nix-command"
           "flakes"
