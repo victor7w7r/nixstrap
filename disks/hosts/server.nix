@@ -4,7 +4,7 @@ let
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
     system = zfs.partition {
-      size = "100G";
+      size = "110G";
       priority = 2;
     };
     shared = zfs.partition {
