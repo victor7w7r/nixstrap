@@ -148,6 +148,7 @@
     {
       preDataset ? "local",
       name,
+      content ? null,
       size,
       options ? { },
       postCreateHook ? "",
@@ -162,6 +163,7 @@
         // options;
         inherit
           size
+          content
           postCreateHook
           ;
       };
