@@ -194,10 +194,10 @@ in
         device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
       };
       cloud4 = zfs.entireDisk {
-        device = "ata-TOSHIBA_MQ01ABD100_46G8SH1BS";
+        device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154";
       };
       cloud5 = zfs.entireDisk {
-        device = "ata-ST500LT012-1DG142_S3PMCMHT";
+        device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS";
       };
     };
     zpool = {
