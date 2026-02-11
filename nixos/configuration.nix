@@ -37,6 +37,7 @@
   nix =
     let
       is-term-hosts = host == "v7w7r-rc71l" || host == "v7w7r-youyeetoox1";
+      is-mac = host == "v7w7r-macmini81";
     in
     {
       gc = {
@@ -44,14 +45,14 @@
         dates = "weekly";
         options = "--delete-older-than 7d";
       };
-      daemonCPUSchedPolicy = if is-term-hosts then "batch" else "else";
-      daemonIOSchedPriority = if is-term-hosts then 3 else 5;
+      daemonCPUSchedPolicy = if is-term-hosts then "batch" else "idle";
+      daemonIOSchedPriority = if is-term-hosts then 2 else 5;
       distributedBuilds = true;
       optimise.automatic = true;
       package = lib.mkDefault (pkgs.lix);
       settings = {
-        max-jobs = if is-term-hosts then "auto" else 2;
-        cores = if is-term-hosts then 0 else 4;
+        max-jobs = if is-term-hosts then "auto" else 3;
+        cores = if is-term-hosts then 0 else (if is-mac then 6 else 4);
         auto-optimise-store = true;
         allowed-users = [ "@wheel" ];
         trusted-users = [
