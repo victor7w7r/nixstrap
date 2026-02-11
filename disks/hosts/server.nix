@@ -56,9 +56,9 @@ let
     '';
     datasets =
       zfs.preDataset { }
+      // zfs.preDataset { name = "local"; }
       // zfs.volume {
         name = "system";
-        preDataset = "safe";
         size = "70G";
         options.compression = "lz4";
         /*
@@ -73,7 +73,7 @@ let
       // zfs.volume {
         name = "root";
         size = "25G";
-        preDataset = "safe";
+        preDataset = ''local'';
         options.compression = "lz4";
         /*
           content = {
@@ -83,8 +83,7 @@ let
           #mountOptions = f2fs-args { name = "root"; }.mountOptions;
           };
         */
-      }
-      // zfs.preDataset { name = "safe"; };
+      };
   };
 
   zcloud = zfs.pool {
@@ -104,11 +103,10 @@ let
     special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
     cache = [ "${partlabel}/disk-nvme-cloudcache" ];
     datasets =
-      zfs.preDataset { name = "safe"; }
+      zfs.preDataset { }
       // zfs.dataset {
         pool = "zcloud";
         name = "cloud";
-        preDataset = "safe";
         mountpoint = "/nix/persist/cloud";
         options = {
           encryption = "aes-256-gcm";
@@ -121,9 +119,10 @@ let
   zswap = zfs.pool {
     mode = "";
     datasets =
-      zfs.preDataset { }
+      zfs.preDataset { name = "local"; }
       // zfs.volume {
         name = "swap";
+        preDataset = ''local'';
         size = "8G";
         options = {
           compression = "zle";
@@ -143,12 +142,11 @@ let
   zpersist = zfs.pool {
     mode = "";
     datasets =
-      zfs.preDataset { name = "safe"; }
+      zfs.preDataset { }
       // zfs.dataset {
         pool = "zpersist";
         name = "persist";
         mountpoint = "/nix/persist";
-        preDataset = "safe";
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
@@ -160,10 +158,9 @@ let
   zshared = zfs.pool {
     mode = "";
     datasets =
-      zfs.preDataset { name = "safe"; }
+      zfs.preDataset { }
       // zfs.dataset {
         pool = "zshared";
-        preDataset = "safe";
         name = "shared";
         mountpoint = "/nix/persist/shared";
       };

@@ -87,7 +87,7 @@
   #Parent
   preDataset =
     {
-      name ? "local",
+      name ? "safe",
     }:
     {
       "${name}" = {
@@ -102,7 +102,7 @@
   #ZFS_FS Vol
   dataset =
     {
-      preDataset ? "local",
+      preDataset ? "safe",
       pool ? "zroot",
       name ? "root",
       mountpoint ? "/",
@@ -146,7 +146,7 @@
   #ZVol Sparse
   volume =
     {
-      preDataset ? "local",
+      preDataset ? "safe",
       name,
       content ? null,
       size,
