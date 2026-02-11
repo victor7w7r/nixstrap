@@ -48,7 +48,7 @@
         };
       };
       ly = {
-        enable = false;
+        enable = true;
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
