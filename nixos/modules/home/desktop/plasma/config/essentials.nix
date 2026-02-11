@@ -97,7 +97,7 @@
           };
           turnOffDisplay = {
             idleTimeout = if is-gole then 40 else 60;
-            idleTimeoutWhenLocked = 10;
+            idleTimeoutWhenLocked = 20;
           };
           dimDisplay = {
             enable = true;
