@@ -26,7 +26,6 @@ let
   basename = "${pkgs.coreutils}/bin/basename";
   wget = "${pkgs.wget2}/bin/wget2";
   efifs = "https://github.com/pbatard/EfiFs/releases/download/v1.11";
-  icon = "https://raw.githubusercontent.com/victor7w7r/nixstrap/refs/heads/main/logo.svg";
   mocha = "themes/catppuccin/assets/mocha";
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
