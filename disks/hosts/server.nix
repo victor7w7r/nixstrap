@@ -55,7 +55,7 @@ let
         -l z-system /dev/zvol/zroot/safe/root/system
     '';
     datasets =
-      zfs.preDataset
+      zfs.preDataset { }
       // zfs.volume {
         name = "system";
         preDataset = "safe";
@@ -121,7 +121,7 @@ let
   zswap = zfs.pool {
     mode = "";
     datasets =
-      zfs.preDataset
+      zfs.preDataset { }
       // zfs.volume {
         name = "swap";
         size = "8G";
