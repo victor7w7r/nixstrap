@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   host,
   ...
@@ -8,6 +7,9 @@
   networking = {
     hostName = "${host}";
     hostId = "314e119c";
+    hosts = {
+      "64.16.239.70" = [ "us-central-1.telnyxstorage.com" ];
+    };
     networkmanager = {
       enable = true;
       settings.main.rc-manager = "resolvconf";

@@ -55,9 +55,7 @@
         cores = if is-term-hosts then 0 else (if is-mac then 6 else 4);
         auto-optimise-store = true;
         allowed-users = [ "@wheel" ];
-        trusted-users = [
-          username
-        ];
+        trusted-users = [ username ];
         experimental-features = [
           "nix-command"
           "flakes"
@@ -71,8 +69,10 @@
         extra-substituters = [
           "https://nix-gaming.cachix.org"
           "https://nix-community.cachix.org"
+          "https://attic.xuyh0120.win/lantian"
         ];
         extra-trusted-public-keys = [
+          "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
@@ -82,9 +82,7 @@
 
   sops = {
     defaultSopsFile = ./secrets/sec.yaml;
-    age = {
-      sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
-    };
+    age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       seckey-d = { };
       ssh-vm-pub = { };
