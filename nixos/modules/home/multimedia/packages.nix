@@ -13,7 +13,6 @@
       #https://davidepucci.it/doc/spotitube/#installation
     ]
     ++ [
-      easyeffects
       calf
       lsp-plugins
       zam-plugins

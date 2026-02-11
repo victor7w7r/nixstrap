@@ -53,6 +53,7 @@ in
     bluetuith
     kdePackages.plasma-thunderbolt
     radeontop
+    ryzenadj
     tbtools
     thunderbolt
   ];
