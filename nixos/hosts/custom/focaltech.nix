@@ -9,6 +9,7 @@
   libgudev,
   nss,
   libfprint,
+  lib,
   cairo,
   pkg-config,
   autoPatchelfHook,
@@ -19,39 +20,41 @@ let
   libso = "libfprint-2.so.2.0.0";
 in
 stdenv.mkDerivation rec {
-  pname = "libfprint-focaltech-2808-a658-alt";
+  pname = "libfprint-focaltech";
   version = "1.94.9";
 
   src = fetchurl {
-    url = "https://github.com/Varrkan82/RTS5811-FT9366-fingerprint-linux-driver-with-VID-2808-and-PID-a658/raw/b040ccd953c27e26c1285c456b4264e70b36bc3f/libfprint-2-2-1.94.4+tod1-FT9366_20240627.x86_64.rpm";
-    hash = "sha256-MRWHwBievAfTfQqjs1WGKBnht9cIDj9aYiT3YJ0/CUM=";
+    url = "https://web.archive.org/web/20250314121447if_/https://raw.githubusercontent.com/ftfpteams/focaltech-linux-fingerprint-driver/refs/heads/main/Fedora_Redhat/libfprint-2-2_1.94.4%2Btod1_redhat_all_x64_20250219.install";
+    sha256 = "0y7kb2mr7zd2irfgsmfgdpb0c7v33cb4hf3hfj7mndalma3xdhzn";
   };
 
   nativeBuildInputs = [
-    rpm
-    cpio
-    pkg-config
     autoPatchelfHook
     copyPkgconfigItems
+    cpio
+    pkg-config
+    rpm
   ];
 
   buildInputs = [
-    stdenv.cc.cc
+    cairo
     glib
     gusb
-    pixman
-    nss
-    libgudev
     libfprint
-    cairo
+    libgudev
+    nss
+    pixman
+    stdenv.cc.cc
   ];
 
   unpackPhase = ''
     runHook preUnpack
+    echo "Extracting embedded tar.gz using sed"
 
-    rpm2cpio $src | cpio -idmv
+    sed '1,/^main \$@/d' $src > libfprint.tar.gz
 
-    runHook postUnpack
+    mkdir extracted
+    tar -xzf libfprint.tar.gz -C .
   '';
 
   pkgconfigItems = [
@@ -84,4 +87,11 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "FocalTech libfprint driver (Fedora variant)";
+    homepage = "https://github.com/ftfpteams/focaltech-linux-fingerprint-driver";
+    platforms = platforms.linux;
+    license = licenses.unfree;
+  };
 }
