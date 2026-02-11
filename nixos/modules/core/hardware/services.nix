@@ -44,14 +44,6 @@
           SCHED_POWERSAVE_ON_BAT = 1;
         }
         // (
-          if is-battery then
-            {
-              STOP_CHARGE_THRESH_BAT0 = 80;
-            }
-          else
-            { }
-        )
-        // (
           if is-mac then
             {
               CPU_MAX_PERF_ON_AC = 70;

@@ -7,6 +7,17 @@
 }:
 {
   system.stateVersion = "26.05";
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "Sat";
+    allowReboot = true;
+    rebootWindow = {
+      lower = "02:00";
+      upper = "05:00";
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [

@@ -7,6 +7,7 @@
       atool
       brightnessctl
       brush
+      boxxy
       cheat
       choose
       cmd-wrapped
@@ -15,6 +16,7 @@
       gnused
       inotify-tools
       file
+      firejail
       hexyl
       jump
       lsof

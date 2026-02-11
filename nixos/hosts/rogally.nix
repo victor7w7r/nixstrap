@@ -1,4 +1,5 @@
 {
+  lib,
   nix-cachyos-kernel,
   pkgs,
   username,
@@ -30,12 +31,27 @@ in
   boot = {
     kernelParams = [
       "amd_iommu=on"
+      "amdgpu.sg_display=0"
     ]
     ++ params { };
     #kernelPackages = pkgs.linuxPackages_lqx;
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
     #kernel.packages;
     initrd = {
+      kernelModules = [
+        "dm-snapshot"
+        "kvm-amd"
+        "amdgpu"
+      ];
+      availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "thunderbolt"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+        "sdhci_pci"
+      ];
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-main-syscrypt";
         crypttabExtraOpts = [ "tpm2-device=auto" ];
@@ -49,17 +65,43 @@ in
     alsa-plugins
     alsa-utils
     alsa-firmware
+    asusctl
     amdgpu_top
     bluetui
     bluetuith
     kdePackages.plasma-thunderbolt
+    pciutils
+    powertop
     radeontop
     ryzenadj
     tbtools
     thunderbolt
   ];
 
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
+  /*
+    btrfs.autoScrub = {
+     enable = true;
+     fileSystems = ["/"];
+     interval = "monthly";
+     };
+  */
+
+  systemd.services = {
+    batterThreshold = {
+      script = ''
+        echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+      '';
+      wantedBy = [ "multi-user.target" ];
+      description = "Set the charge threshold to protect battery life";
+      serviceConfig = {
+        Restart = "on-failure";
+      };
+    };
+    supergfxd.path = [
+      pkgs.kmod
+      pkgs.pciutils
+    ];
+  };
 
   security.pam.services.ly = {
     name = "ly";
@@ -69,8 +111,27 @@ in
     fprintAuth = true;
   };
 
+  hardware = {
+    amdgpu.opencl.enable = true;
+    uinput.enable = true;
+  };
+
+  programs.rog-control-center.enable = true;
+
   services = {
-    supergfxd.enable = true;
+    acpid.enable = true;
+    auto-cpufreq.enable = true;
+    supergfxd = {
+      enable = true;
+      settings = {
+        vfio_enable = true;
+        vfio_save = false;
+        always_reboot = false;
+        no_logind = false;
+        logout_timeout_s = 20;
+        hotplug_type = "Asus";
+      };
+    };
     asusd = {
       enable = true;
       enableUserService = true;
@@ -79,7 +140,16 @@ in
       enable = true;
       user = username;
       ui.enable = true;
+      adjustor.enable = true;
+      adjustor.loadAcpiCallModule = true;
     };
+    inputplumber.enable = lib.mkForce false;
+    powerstation.enable = false;
+    tuned.enable = false;
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="pci", DRIVER=="amdgpu", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/%p/power_dpm_force_performance_level /sys/%p/pp_od_clk_voltage"
+      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{idVendor}=="1c7a", ATTR{idProduct}=="0588", ATTR{power/control}="auto"
+    '';
     fprintd = {
       enable = true;
       package = pkgs.fprintd.override {
