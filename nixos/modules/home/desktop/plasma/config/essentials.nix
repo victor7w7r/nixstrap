@@ -1,4 +1,4 @@
-{ ... }:
+{ host, ... }:
 {
   programs.plasma = {
     workspace = {
@@ -61,20 +61,68 @@
       #sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
     };
 
-    powerdevil = {
-      AC = {
-        autoSuspend.action = "nothing";
-        dimDisplay.enable = false;
-        powerButtonAction = "shutDown";
-        turnOffDisplay.idleTimeout = "never";
+    powerdevil =
+      let
+        is-mac = host == "v7w7r-macmini81";
+        is-battery = host == "v7w7r-higole" || host == "v7w7r-rc71l";
+        is-gole = host == "v7w7r-higole";
+      in
+      {
+        general.pausePlayersOnSuspend = true;
+        batteryLevels = {
+          criticalAction = if is-battery then "hibernate" else "sleep";
+          criticalLevel = 5;
+          lowLevel = 10;
+        };
+        AC = {
+          autoSuspend = {
+            action = "sleep";
+            idleTimeout = if is-mac then "never" else 3600;
+          };
+          turnOffDisplay = {
+            idleTimeout = if is-mac then 600 else 180;
+            idleTimeoutWhenLocked = 40;
+          };
+          dimDisplay = {
+            enable = true;
+            idleTimeout = if is-mac then 300 else 120;
+          };
+          powerButtonAction = "sleep";
+          whenLaptopLidClosed = "sleep";
+        };
+        battery = {
+          autoSuspend = {
+            action = "sleep";
+            idleTimeout = if is-gole then 120 else 300;
+          };
+          turnOffDisplay = {
+            idleTimeout = if is-gole then 40 else 60;
+            idleTimeoutWhenLocked = 10;
+          };
+          dimDisplay = {
+            enable = true;
+            idleTimeout = if is-gole then 20 else 30;
+          };
+          powerButtonAction = "sleep";
+          whenLaptopLidClosed = "sleep";
+        };
+        lowBattery = {
+          autoSuspend = {
+            action = "sleep";
+            idleTimeout = if is-gole then 30 else 60;
+          };
+          turnOffDisplay = {
+            idleTimeout = if is-gole then 15 else 30;
+            idleTimeoutWhenLocked = 5;
+          };
+          dimDisplay = {
+            enable = true;
+            idleTimeout = if is-gole then 5 else 10;
+          };
+          powerButtonAction = "hibernate";
+          whenLaptopLidClosed = "sleep";
+        };
       };
-      battery = {
-        autoSuspend.action = "nothing";
-        dimDisplay.enable = false;
-        powerButtonAction = "shutDown";
-        turnOffDisplay.idleTimeout = "never";
-      };
-    };
 
     configFile = {
       baloofilerc."Basic Settings"."Indexing-Enabled" = false;

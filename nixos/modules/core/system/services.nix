@@ -36,11 +36,14 @@
     };
 
     timesyncd = {
-      enable = false;
-      extraConfig = ''
-        NTP=time.cloudflare.com
-        FallbackNTP=time.google.com 0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org
-      '';
+      enable = true;
+      servers = [
+        "0.ec.pool.ntp.org"
+        "1.ec.pool.ntp.org"
+        "2.ec.pool.ntp.org"
+        "3.ec.pool.ntp.org"
+        "time.google.com"
+      ];
     };
 
     irqbalance.enable = true;
