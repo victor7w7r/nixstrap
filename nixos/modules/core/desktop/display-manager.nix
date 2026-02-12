@@ -50,16 +50,8 @@
     };
     displayManager = {
       sddm = {
-        extraPackages = with pkgs; [
-          kdePackages.qtdeclarative
-          kdePackages.qt5compat
-          kdePackages.qtmultimedia
-          kdePackages.qtvirtualkeyboard
-          kdePackages.qtsvg
-        ];
         enable = host == "v7w7r-rc71l";
-        wayland.enable = false;
-        package = lib.mkForce pkgs.kdePackages.sddm;
+        wayland.enable = true;
         enableHidpi = false;
         theme = "catpuccin-mocha-mauve";
         settings.General.InputMethod = "";
