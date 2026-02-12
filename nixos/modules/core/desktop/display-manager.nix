@@ -51,7 +51,7 @@
     displayManager = {
       sddm = {
         extraPackages = with pkgs; [
-          qtdeclarative
+          kdePackages.qtdeclarative
           qt5compat
           kdePackages.qtmultimedia
           kdePackages.qtvirtualkeyboard
