@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 let
   zen-package =
-    (inputs.zen-browser.packages.x86-64.default-twilight.override {
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default-twilight.override {
       #policies = cfg_orig.policies;
     }).overrideAttrs
       (prev: {
@@ -13,7 +13,6 @@ let
 in
 {
   home.file = {
-    ".zen/default/chrome" = {
       source = import ./sine.nix;
       recursive = true;
     };
