@@ -52,7 +52,7 @@
       sddm = {
         extraPackages = with pkgs; [
           kdePackages.qtdeclarative
-          qt5compat
+          kdePackages.qt5compat
           kdePackages.qtmultimedia
           kdePackages.qtvirtualkeyboard
           kdePackages.qtsvg
