@@ -39,17 +39,12 @@
           qtmultimedia
           qtvirtualkeyboard
           qtsvg
-          pkgs.sddm-astronaut
         ];
         enable = host == "v7w7r-rc71l";
         wayland.enable = true;
         enableHidpi = false;
-        theme = "sddm-astronaut-theme";
-        settings = {
-          General = {
-            InputMethod = "qtvirtualkeyboard";
-          };
-        };
+        theme = "catpuccin-mocha-mauve";
+        settings.General.InputMethod = "";
       };
       ly = {
         enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-rc71l";

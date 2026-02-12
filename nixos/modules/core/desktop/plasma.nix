@@ -64,6 +64,10 @@
       kdePackages.sddm-kcm
       kdePackages.sweeper
       kdePackages.yakuake
+      (catpuccin-sddm.override {
+        flavor = "mocha";
+        accent = "mauve";
+      })
       heaptrack
       ffmpegthumbnailer
       graphviz
