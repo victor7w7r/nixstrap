@@ -33,20 +33,17 @@
 
   services = {
     libinput = {
+      mouse.accelProfile = "flat";
       touchpad = {
         naturalScrolling = true;
         accelProfile = "flat";
         accelSpeed = "0.75";
       };
-      mouse.accelProfile = "flat";
     };
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "intl-unicode";
-        options = "caps:ctrl_modifier";
-      };
+    xserver.xkb = {
+      layout = "us";
+      variant = "intl-unicode";
+      options = "caps:ctrl_modifier";
     };
     displayManager = {
       sddm = {
@@ -54,27 +51,39 @@
         package = lib.mkForce pkgs.kdePackages.sddm;
         wayland = {
           enable = true;
-          compositor = "weston";
+          compositor = "kwin";
         };
-        enableHidpi = false;
-        autoNumlock = true;
-        theme = "catpuccin-mocha-mauve";
-        extraPackages = with pkgs; [
-          (pkgs.catppuccin-sddm.override {
-            flavor = "mocha";
-            accent = "mauve";
-            loginBackground = true;
-          })
-          kdePackages.qtsvg
-          kdePackages.qtdeclarative
-          kdePackages.qtvirtualkeyboard
-          kdePackages.qtmultimedia
-        ];
         settings = {
+          General = {
+            DisplayServer = "wayland";
+            GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
+            InputMethod = "qtvirtualkeyboard";
+          };
           Theme = {
-            Current = "catpuccin-mocha-mauve";
+            Current = "catppuccin-mocha-mauve";
+            ThemeDir = "/run/current-system/sw/share/sddm/themes";
+            FacesDir = "/var/lib/AccountsService/icons";
+            CursorTheme = "catppuccin-mocha-dark-cursors";
+            Font = "JetBrainsMono Nerd Font";
+            EnableAvatars = true;
+            DisableAvatarsThreshold = 7;
+          };
+          Wayland = {
+            CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod maliit-keyboard";
+            EnableHiDPI = false;
+          };
+          Users = {
+            DefaultPath = "/run/current-system/sw/bin";
+            HideShells = "";
+            HideUsers = "";
+            MaximumUid = 60513;
+            MinimumUid = 1000;
+            RememberLastSession = true;
+            RememberLastUser = true;
+            ReuseSession = false;
           };
         };
+        theme = "catpuccin-mocha-mauve";
       };
       ly = {
         enable = host == "v7w7r-macmini81";

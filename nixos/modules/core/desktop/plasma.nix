@@ -69,10 +69,11 @@
         accent = "mauve";
         loginBackground = true;
       })
+      libsForQt5.qt5.qtquickcontrols2
+      libsForQt5.qt5.qtgraphicaleffects
+      kdePackages.qtquick3d
+      kdePackages.qtvirtualkeyboard
       heaptrack
-      kdePackages.qtsvg
-      kdePackages.qtdeclarative
-      kdePackages.qtmultimedia
       ffmpegthumbnailer
       graphviz
       icoextract
