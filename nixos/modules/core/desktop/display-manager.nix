@@ -50,8 +50,8 @@
     };
     displayManager = {
       sddm = {
-        enable = host == "v7w7r-rc71l";
-        package = lib.mkDefault pkgs.kdePackages.sddm;
+        enable = host == "v7w7r-rc71l" || host == "v7w7r-higole";
+        package = lib.mkForce pkgs.kdePackages.sddm;
         wayland = {
           enable = true;
           compositor = "weston";
@@ -59,11 +59,16 @@
         enableHidpi = false;
         autoNumlock = true;
         theme = "catpuccin-mocha-mauve";
-        extraPackages = [
+        extraPackages = with pkgs; [
           (pkgs.catppuccin-sddm.override {
             flavor = "mocha";
             accent = "mauve";
+            loginBackground = true;
           })
+          kdePackages.qtsvg
+          kdePackages.qtdeclarative
+          kdePackages.qtvirtualkeyboard
+          kdePackages.qtmultimedia
         ];
         settings = {
           Theme = {
@@ -72,7 +77,7 @@
         };
       };
       ly = {
-        enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-rc71l";
+        enable = host == "v7w7r-macmini81";
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
@@ -99,15 +104,7 @@
           text_in_center = true;
           xinitrc = "null";
           tty = 1;
-        }
-        // (
-          if (host == "v7w7r-rc71l" || host == "v7w7r-higole") then
-            {
-              battery_id = "BAT0";
-            }
-          else
-            { }
-        );
+        };
       };
     };
   };

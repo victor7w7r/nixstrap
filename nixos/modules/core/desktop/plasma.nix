@@ -67,9 +67,11 @@
       (pkgs.catppuccin-sddm.override {
         flavor = "mocha";
         accent = "mauve";
+        loginBackground = true;
       })
       heaptrack
       kdePackages.qtsvg
+      kdePackages.qtdeclarative
       kdePackages.qtmultimedia
       ffmpegthumbnailer
       graphviz
