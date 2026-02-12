@@ -189,7 +189,7 @@
         }
         "org.kde.plasma.panelspacer"
         {
-          name = "org.kde.plasma.systemmonitor";
+          name = "org.kde.plasma.systemmonitor.memory";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
             Appearance = {
@@ -210,32 +210,27 @@
           };
         }
         {
-          name = "org.kde.plasma.systemmonitor";
+          name = "org.kde.plasma.systemmonitor.cpucore";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
-            Appearance = {
-              chartFace = "org.kde.ksysguard.piechart";
-              showTitle = true;
-              title = "CPU";
-            };
-            SensorColors = {
-              "cpu/all/averageTemperature" = "245,86,150";
-              "cpu/all/maximumTemperature" = "170,245,86";
-              "cpu/cpu.*/temperature" = "119,245,86";
-            };
-            Sensors = {
-              highPrioritySensorIds = [ ];
-              lowPrioritySensorIds = [
-                "cpu/all/maximumTemperature"
-                "cpu/all/minimumTemperature"
-                "cpu/cpu.*/temperature"
-              ];
-              totalSensors = [ "cpu/all/averageTemperature" ];
-            };
+            PreloadWeight = 95;
+            popupHeight = 240;
+            popupWidth = 244;
+            "Appearance/chartFace" = "org.kde.ksysguard.piechart";
+            "Appearance/title" = "CPU";
+            "Sensors/totalSensors" = [ "cpu/all/averageTemperature" ];
+            "Sensors/lowPrioritySensorIds" = [
+              "cpu/all/maximumTemperature"
+              "cpu/all/minimumTemperature"
+              "cpu/cpu.*/temperature"
+            ];
+            "SensorColors/cpu/all/averageTemperature"= "245,86,150";
+            "SensorColors/cpu/all/maximumTemperature"= "170,245,86";
+            "SensorColors/cpu/cpu.*/temperature"= "119,245,86";
           };
         }
         {
-          name = "org.kde.plasma.systemmonitor";
+          name = "org.kde.plasma.systemmonitor.cpucore";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
             Appearance = {
