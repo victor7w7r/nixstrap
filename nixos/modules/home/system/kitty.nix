@@ -21,6 +21,9 @@
       enable_audio_bell = false;
       enabled_layouts = "fat, tall, vertical";
 
+      remember_window_size = "no";
+      initial_window_width = "80c";
+      initial_window_height = "24c";
       foreground = "#cdd6f4";
       background = "#1e1e2e";
       selection_foreground = "#1e1e2e";
