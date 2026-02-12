@@ -1,9 +1,10 @@
 {
   dataset ? "root",
+  preDataset ? "safe",
   pool ? "zroot",
 }:
 {
-  device = "${pool}/local/${dataset}";
+  device = "${pool}/${preDataset}/${dataset}";
   fsType = "zfs";
   options = [
     "zfsutil"

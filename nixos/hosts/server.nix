@@ -9,7 +9,7 @@ in
 {
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    "/" = zfs { };
+    "/" = zfs { preDataset = "local"; };
     "/nix" = f2fs "store";
     "/nix/persist" = zfs {
       pool = "zpersist";
