@@ -1,6 +1,5 @@
 { inputs, pkgs, ... }:
 let
-  testeable = import ./sine.nix;
   zen-package =
     (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight.override {
       #policies = cfg_orig.policies;
@@ -16,7 +15,7 @@ in
   home.file = {
     ".zen/default/chrome" = {
       recursive = true;
-      source = testeable.chrome-zen;
+      source = pkgs.callPackage "./sine.nix" { };
     };
   };
   programs.zen-browser = {
