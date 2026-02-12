@@ -20,7 +20,7 @@ let
   nvmepartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
     swap = zfs.partition {
-      size = "8G";
+      size = "11G";
       pool = "zswap";
       priority = 2;
     };
