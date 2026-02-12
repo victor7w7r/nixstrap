@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 let
   zen-package =
-    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default-twilight.override {
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight.override {
       #policies = cfg_orig.policies;
     }).overrideAttrs
       (prev: {
