@@ -64,7 +64,7 @@
       kdePackages.sddm-kcm
       kdePackages.sweeper
       kdePackages.yakuake
-      (catpuccin-sddm.override {
+      (pkgs.catpuccin-sddm.override {
         flavor = "mocha";
         accent = "mauve";
       })
