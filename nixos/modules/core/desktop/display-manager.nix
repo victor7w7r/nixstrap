@@ -51,10 +51,22 @@
     displayManager = {
       sddm = {
         enable = host == "v7w7r-rc71l";
+        package = lib.mkDefault pkgs.kdePackages.sddm;
         wayland.enable = true;
         enableHidpi = false;
+        autoNumlock = true;
         theme = "catpuccin-mocha-mauve";
-        settings.General.InputMethod = "";
+        extraPackages = [
+          (pkgs.catppuccin-sddm.override {
+            flavor = "mocha";
+            accent = "mauve";
+          })
+        ];
+        settings = {
+          Theme = {
+            Current = "catpuccin-mocha-mauve";
+          };
+        };
       };
       ly = {
         enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-rc71l";
