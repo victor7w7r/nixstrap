@@ -74,6 +74,10 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  passthru = {
+    driverPath = "/lib";
+  };
+
   installPhase = ''
     runHook preInstall
 
