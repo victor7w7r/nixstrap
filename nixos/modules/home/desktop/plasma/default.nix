@@ -23,6 +23,7 @@
     (import ./config/kwin.nix)
     (import ./config/dolphin.nix)
     (import ./config/panels.nix)
+    (import ./config/menu.nix)
     (import ./config/input.nix)
     (import ./config/fonts.nix)
   ];
