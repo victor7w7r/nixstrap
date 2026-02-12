@@ -23,6 +23,7 @@
       device = "/dev/disk/by-id/${device}";
       content = {
         type = "zfs";
+        inherit pool;
       };
     };
 

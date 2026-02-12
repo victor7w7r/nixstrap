@@ -3,13 +3,17 @@ let
 
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
-    system = zfs.partition {
-      size = "110G";
+    store = (import ../lib/f2fs.nix) {
+      name = "store";
+      size = "70G";
+      mountpoint = "/nix";
       priority = 2;
     };
-    shared = zfs.partition {
+    shared = (import ../lib/f2fs.nix) {
+      name = "shared";
       size = "100%";
-      pool = "zshared";
+      mountpoint = "/nix/persist/shared";
+      priority = 3;
     };
   };
 
@@ -35,6 +39,11 @@ let
       pool = "zcloud";
       priority = 5;
     };
+    root = zfs.partition {
+      size = "30G";
+      pool = "zroot";
+      priority = 6;
+    };
     persist = zfs.partition {
       size = "100%";
       pool = "zpersist";
@@ -47,40 +56,13 @@ let
   zroot = zfs.pool {
     isRoot = true;
     mode = "";
-    postCreateHook = ''
-      mkfs.f2fs -f -O \
-        extra_attr,inode_checksum,flexible_inline_xattr,lost_found,sb_checksum \
-        -l z-system /dev/zvol/zroot/safe/root/system
-    '';
     datasets =
-      zfs.preDataset { }
-      // zfs.preDataset { name = "local"; }
-      // zfs.volume {
-        name = "system";
-        size = "70G";
-        options.compression = "lz4";
-        /*
-          content = {
-          type = "filesystem";
-          format = "f2fs";
-          mountpoint = "/nix";
-          #mountOptions = f2fs-args { name = "system"; }.mountOptions;
-          };
-        */
-      }
-      // zfs.volume {
-        name = "root";
-        size = "25G";
-        preDataset = ''local'';
-        options.compression = "lz4";
-        /*
-          content = {
-          type = "filesystem";
-          format = "f2fs";
-          mountpoint = "/";
-          #mountOptions = f2fs-args { name = "root"; }.mountOptions;
-          };
-        */
+      zfs.preDataset { name = "local"; }
+      // zfs.dataset {
+        options = {
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "false";
+        };
       };
   };
   zcloud = zfs.pool {
@@ -127,7 +109,6 @@ let
           logbias = "throughput";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          sync = "always";
           keylocation = "file:///media/secret.key";
           primarycache = "metadata";
           secondarycache = "none";
@@ -153,24 +134,6 @@ let
           keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
-      };
-  };
-  zshared = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { }
-      // zfs.volume {
-        name = "shared";
-        size = "150G";
-        options.compression = "lz4";
-        /*
-          content = {
-          type = "filesystem";
-          format = "f2fs";
-          mountpoint = "/";
-          #mountOptions = f2fs-args { name = "root"; }.mountOptions;
-          };
-        */
       };
   };
 in
@@ -211,7 +174,6 @@ in
     };
     zpool = {
       inherit
-        zshared
         zpersist
         zswap
         zcloud
