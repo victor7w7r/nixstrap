@@ -37,9 +37,11 @@
     };
     xserver = {
       enable = true;
-      layout = "us";
-      variant = "intl-unicode";
-      options = "caps:ctrl_modifier";
+      xkb = {
+        layout = "us";
+        variant = "intl-unicode";
+        options = "caps:ctrl_modifier";
+      };
     };
     displayManager = {
       sddm = {
