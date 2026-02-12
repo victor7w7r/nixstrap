@@ -19,6 +19,6 @@
       ]
     else
       [ ]
-  )
-  ++ (if host == "v7w7r-youyeetoox1" then [ (import ./system/proxmox.nix) ] else [ ]);
+  );
+  #++ (if host == "v7w7r-youyeetoox1" then [ (import ./system/proxmox.nix) ] else [ ]);
 }
