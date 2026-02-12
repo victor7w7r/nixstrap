@@ -34,8 +34,8 @@ in
       "amdgpu.sg_display=0"
     ]
     ++ params { };
-    #kernelPackages = pkgs.linuxPackages_lqx;
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
+    kernelPackages = pkgs.linuxPackages_lqx;
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
     #kernel.packages;
     initrd = {
       kernelModules = [
