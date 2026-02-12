@@ -59,6 +59,7 @@ let
     datasets =
       zfs.preDataset { name = "local"; }
       // zfs.dataset {
+        preDataset = "local";
         options = {
           compression = "zstd";
           "com.sun:auto-snapshot" = "false";
