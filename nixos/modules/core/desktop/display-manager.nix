@@ -35,12 +35,12 @@
       };
       mouse.accelProfile = "flat";
     };
-    xserver.xkb = {
+    xserver = {
+      enable = true;
       layout = "us";
       variant = "intl-unicode";
       options = "caps:ctrl_modifier";
     };
-
     displayManager = {
       sddm = {
         extraPackages = with pkgs; [
