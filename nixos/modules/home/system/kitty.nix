@@ -12,24 +12,25 @@
     };
     settings = {
       background_blur = 5;
-      background_opacity = "0.5";
+      background_opacity = "0.7";
       close_on_child_death = true;
       confirm_os_window_close = 0;
+      cursor = "#f5e0dc";
       cursor_blink_interval = 400;
+      cursor_shape = "beam";
+      cursor_trail = 0;
+      cursor_text_color = "#1e1e2e";
       dynamic_background_opacity = true;
-
       enable_audio_bell = false;
       enabled_layouts = "fat, tall, vertical";
-
-      remember_window_size = "no";
-      initial_window_width = "80c";
+      initial_window_width = "120c";
       initial_window_height = "24c";
       foreground = "#cdd6f4";
       background = "#1e1e2e";
       selection_foreground = "#1e1e2e";
       selection_background = "#f5e0dc";
-      cursor = "#f5e0dc";
-      cursor_text_color = "#1e1e2e";
+      remember_window_size = "no";
+
       url_color = "#f5e0dc";
       active_border_color = "#b4befe";
       inactive_border_color = "#6c7086";
