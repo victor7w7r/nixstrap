@@ -152,8 +152,9 @@ in
     '';
     fprintd = {
       enable = true;
-      package = pkgs.fprintd.override {
-        libfprint = (pkgs.callPackage ./custom/focaltech.nix { });
+      tod = {
+        enable = true;
+        driver = pkgs.callPackage ./custom/focaltech.nix { };
       };
     };
   };
