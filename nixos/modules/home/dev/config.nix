@@ -10,11 +10,13 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "victor7w7r";
-      userEmail = "arkano036@gmail.com";
       settings = {
         core.pager = "${pkgs.delta}/bin/delta";
         init.defaultBranch = "main";
+        user = {
+          name = "victor7w7r";
+          email = "arkano036@gmail.com";
+        };
         credential.helper = "store";
         delta = {
           hyperlinks = true;
