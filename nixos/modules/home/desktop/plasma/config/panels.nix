@@ -194,7 +194,6 @@
             CurrentPreset = "org.kde.plasma.systemmonitor";
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
-              showTitle = true;
               title = "Memoria";
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
@@ -209,55 +208,7 @@
             };
           };
         }
-        {
-          name = "org.kde.plasma.systemmonitor.cpucore";
-          config = {
-            CurrentPreset = "org.kde.plasma.systemmonitor";
-            PreloadWeight = 95;
-            popupHeight = 240;
-            popupWidth = 244;
-            Appearance = {
-              chartFace = "org.kde.ksysguard.piechart";
-              title = "CPU";
-            };
-            SensorColors = {
-              "cpu/all/averageTemperature" = "245,86,150";
-              "cpu/all/maximumTemperature" = "170,245,86";
-              "cpu/cpu.*/temperature" = "119,245,86";
-            };
-            Sensors = {
-              highPrioritySensorIds = [ ];
-              lowPrioritySensorIds = [
-                "cpu/all/maximumTemperature"
-                "cpu/all/minimumTemperature"
-                "cpu/cpu.*/temperature"
-              ];
-              totalSensors = [ "cpu/all/averageTemperature" ];
-            };
-          };
-        }
-        {
-          name = "org.kde.plasma.systemmonitor.cpucore";
-          config = {
-            CurrentPreset = "org.kde.plasma.systemmonitor";
-            Appearance = {
-              chartFace = "org.kde.ksysguard.piechart";
-              showTitle = true;
-              title = "Temperatura";
-              updateRateLimit = 2000;
-            };
-            Sensors = {
-              highPrioritySensorIds = [ "cpu/all/usage" ];
-              lowPrioritySensorIds = [
-                "cpu/cpu.*/usage"
-              ];
-              totalSensors = [ "cpu/all/usage" ];
-            };
-            SensorColors = {
-              "cpu/cpu.*/usage" = "236,86,245";
-            };
-          };
-        }
+
         {
           systemTray = {
             icons.scaleToFit = true;
