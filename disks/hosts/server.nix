@@ -10,7 +10,6 @@ let
     shared = zfs.partition {
       size = "100%";
       pool = "zshared";
-      priority = 3;
     };
   };
 
@@ -39,7 +38,6 @@ let
     persist = zfs.partition {
       size = "100%";
       pool = "zpersist";
-      priority = 6;
     };
   };
 

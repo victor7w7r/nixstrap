@@ -1,7 +1,7 @@
 {
   partition =
     {
-      priority ? "100",
+      priority ? 100,
       pool ? "zroot",
       size ? "100%",
     }:
