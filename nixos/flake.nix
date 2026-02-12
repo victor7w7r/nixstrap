@@ -80,6 +80,18 @@
       url = "github:catppuccin/refind";
       flake = false;
     };
+    sine = {
+      url = "github:CosmoCreeper/Sine/cosine";
+      flake = false;
+    };
+    sine-bootloader = {
+      url = "github:sineorg/bootloader";
+      flake = false;
+    };
+    nebula-zen = {
+      url = "github:JustAdumbPrsn/Zen-Nebula";
+      flake = false;
+    };
   };
 
   outputs =

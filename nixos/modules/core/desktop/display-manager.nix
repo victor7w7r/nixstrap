@@ -64,7 +64,7 @@
             ThemeDir = "/run/current-system/sw/share/sddm/themes";
             FacesDir = "/var/lib/AccountsService/icons";
             CursorTheme = "catppuccin-mocha-dark-cursors";
-            Font = "JetBrainsMono Nerd Font";
+            Font = "Ubuntu";
             EnableAvatars = true;
             DisableAvatarsThreshold = 7;
           };
