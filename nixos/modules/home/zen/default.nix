@@ -13,6 +13,7 @@ let
 in
 {
   home.file = {
+    ".zen/default/chrome" = {
       source = import ./sine.nix;
       recursive = true;
     };
