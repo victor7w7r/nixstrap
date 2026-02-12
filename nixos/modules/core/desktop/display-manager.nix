@@ -1,4 +1,9 @@
-{ host, pkgs, ... }:
+{
+  lib,
+  host,
+  pkgs,
+  ...
+}:
 {
   environment.pathsToLink = [
     "/share/applications"
@@ -54,7 +59,7 @@
         ];
         enable = host == "v7w7r-rc71l";
         wayland.enable = false;
-        package = pkgs.kdePackages.sddm;
+        package = lib.mkForce pkgs.kdePackages.sddm;
         enableHidpi = false;
         theme = "catpuccin-mocha-mauve";
         settings.General.InputMethod = "";
