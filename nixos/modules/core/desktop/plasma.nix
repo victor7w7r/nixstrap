@@ -69,7 +69,6 @@
         accent = "mauve";
       })
       heaptrack
-      kdePackages.qtgraphicaleffects
       kdePackages.qtsvg
       kdePackages.qtmultimedia
       ffmpegthumbnailer
