@@ -52,7 +52,10 @@
       sddm = {
         enable = host == "v7w7r-rc71l";
         package = lib.mkDefault pkgs.kdePackages.sddm;
-        wayland.enable = true;
+        wayland = {
+          enable = true;
+          compositor = "weston";
+        };
         enableHidpi = false;
         autoNumlock = true;
         theme = "catpuccin-mocha-mauve";
