@@ -216,7 +216,7 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
-            proxmox-nixos.nixosModules.proxmox-ve
+            #proxmox-nixos.nixosModules.proxmox-ve
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
