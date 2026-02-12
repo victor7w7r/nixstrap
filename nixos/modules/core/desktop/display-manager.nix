@@ -6,6 +6,16 @@
     "/share/zsh"
   ];
 
+  systemd.services.sddm.environment = {
+    QT_IM_MODULE = "qtvirtualkeyboard";
+    QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = "0";
+  };
+
+  environment.etc."sddm.conf.d/virtual-keyboard.conf".text = ''
+    [General]
+    InputMethod=qtvirtualkeyboard
+  '';
+
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = true;
@@ -33,15 +43,16 @@
 
     displayManager = {
       sddm = {
-        extraPackages = with pkgs.qt6; [
+        extraPackages = with pkgs; [
           qtdeclarative
           qt5compat
-          qtmultimedia
-          qtvirtualkeyboard
-          qtsvg
+          kdePackages.qtmultimedia
+          kdePackages.qtvirtualkeyboard
+          kdePackages.qtsvg
         ];
         enable = host == "v7w7r-rc71l";
-        wayland.enable = true;
+        wayland.enable = false;
+        package = pkgs.kdePackages.sddm;
         enableHidpi = false;
         theme = "catpuccin-mocha-mauve";
         settings.General.InputMethod = "";
