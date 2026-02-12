@@ -10,9 +10,11 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { };
-    "/nix" = zfs { dataset = "nix"; };
-    "/nix/persist" = zfs { dataset = "persist"; };
-    "/nix/persist/etc" = f2fs "sysetc";
+    "/nix" = f2fs "store";
+    "/nix/persist" = zfs {
+      pool = "zpersist";
+      dataset = "persist";
+    };
     "/nix/persist/shared" = f2fs "shared";
     "/nix/persist/cloud" = zfs {
       pool = "zcloud";
@@ -20,6 +22,7 @@ in
     };
   };
 
+  swapDevices = [ { device = "/dev/zvol/zswap/local/swap"; } ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
     kernelPackages = pkgs.linuxPackages_6_12;
