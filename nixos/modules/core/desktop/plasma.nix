@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   services = {
     displayManager.defaultSession = "plasma";
@@ -6,6 +6,11 @@
       enable = true;
       enableQt5Integration = true;
     };
+  };
+
+  security.pam.services."${username}".kwallet = {
+    enable = true;
+    package = pkgs.kdePackages.kwallet-pam;
   };
 
   environment = {
@@ -79,5 +84,4 @@
       ulauncher
     ];
   };
-
 }

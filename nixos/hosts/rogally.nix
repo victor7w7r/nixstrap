@@ -148,13 +148,12 @@ in
     tuned.enable = false;
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="pci", DRIVER=="amdgpu", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/%p/power_dpm_force_performance_level /sys/%p/pp_od_clk_voltage"
-      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{idVendor}=="1c7a", ATTR{idProduct}=="0588", ATTR{power/control}="auto"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2808", ATTR{idProduct}=="a753", MODE="0660", GROUP="input"
     '';
     fprintd = {
       enable = true;
-      tod = {
-        enable = true;
-        driver = pkgs.callPackage ./custom/focaltech.nix { };
+      package = pkgs.fprintd.override {
+        libfprint = pkgs.callPackage ./custom/focaltech.nix { };
       };
     };
   };
