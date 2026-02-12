@@ -197,6 +197,7 @@
               showTitle = true;
               title = "Memoria";
             };
+            SensorColors."memory/physical/usedPercent" = "86,245,178";
             Sensors = {
               highPrioritySensorIds = [ "memory/physical/usedPercent" ];
               lowPrioritySensorIds = [
@@ -205,13 +206,6 @@
                 "memory/swap/total"
               ];
               totalSensors = [ "memory/physical/usedPercent" ];
-            };
-            SensorColors = {
-              "memory/physical/usedPercent" = [
-                86
-                245
-                178
-              ];
             };
           };
         }
@@ -224,31 +218,19 @@
               showTitle = true;
               title = "CPU";
             };
+            SensorColors = {
+              "cpu/all/averageTemperature" = "245,86,150";
+              "cpu/all/maximumTemperature" = "170,245,86";
+              "cpu/cpu.*/temperature" = "119,245,86";
+            };
             Sensors = {
               highPrioritySensorIds = [ ];
               lowPrioritySensorIds = [
                 "cpu/all/maximumTemperature"
                 "cpu/all/minimumTemperature"
-                "cpu/cpud+/temperature"
+                "cpu/cpu.*/temperature"
               ];
               totalSensors = [ "cpu/all/averageTemperature" ];
-            };
-            SensorColors = {
-              "cpu/all/averageTemperature" = [
-                245
-                86
-                150
-              ];
-              "cpu/all/maximumTemperature" = [
-                170
-                245
-                86
-              ];
-              "cpu/cpud+/temperature" = [
-                119
-                245
-                86
-              ];
             };
           };
         }
@@ -265,16 +247,12 @@
             Sensors = {
               highPrioritySensorIds = [ "cpu/all/usage" ];
               lowPrioritySensorIds = [
-                "cpu/cpu\\\\d+/usage"
+                "cpu/cpu.*/usage"
               ];
               totalSensors = [ "cpu/all/usage" ];
             };
             SensorColors = {
-              "cpu/cpu\\d+/usage" = [
-                236
-                86
-                245
-              ];
+              "cpu/cpu.*/usage" = "236,86,245";
             };
           };
         }
