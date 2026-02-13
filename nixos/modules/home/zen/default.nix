@@ -56,13 +56,14 @@ in
   };
   programs.zen-browser = {
     enable = true;
-    package = (pkgs.wrapFirefox zen-package { icon = "zen-twilight"; }).override {
-      /*
-        extraPrefs = cfg_orig.extraPrefs;
-           extraPrefsFiles = cfg_orig.extraPrefsFiles;
-           nativeMessagingHosts = cfg_orig.nativeMessagingHosts;
-      */
-    };
+    /*
+      package = (pkgs.wrapFirefox zen-package { icon = "zen-twilight"; }).override {
+          extraPrefs = cfg_orig.extraPrefs;
+             extraPrefsFiles = cfg_orig.extraPrefsFiles;
+             nativeMessagingHosts = cfg_orig.nativeMessagingHosts;
+
+      };
+    */
     languagePacks = [ "es-ES" ];
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
     profiles.default = {
