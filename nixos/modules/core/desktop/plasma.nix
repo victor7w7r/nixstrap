@@ -67,7 +67,10 @@
       (sddm-astronaut.override {
         themeConfig = {
           # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
-          background = config.stylix.image;
+          background = pkgs.fetchurl {
+            url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
+            sha256 = theme.backgroundSha256;
+          };
           ScreenWidth = 1920;
           ScreenHeight = 1080;
           blur = false;
