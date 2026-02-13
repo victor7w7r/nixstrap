@@ -1,8 +1,13 @@
-{ inputs, pkgs, ... }:
+{
+  stdenv,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   programs.zen-browser = {
     enable = true;
-    package = pkgs.callPackage "./custom/zen.nix" { };
+    package = inputs.self.packages.${stdenv.hostPlatform.system}.zen;
     languagePacks = [ "es-ES" ];
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
     profiles.default = {
