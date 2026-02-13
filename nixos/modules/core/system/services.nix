@@ -35,17 +35,7 @@
       '';
     };
 
-    timesyncd = {
-      enable = true;
-      servers = [
-        "0.ec.pool.ntp.org"
-        "1.ec.pool.ntp.org"
-        "2.ec.pool.ntp.org"
-        "3.ec.pool.ntp.org"
-        "time.google.com"
-      ];
-    };
-
+    timesyncd.enable = true;
     irqbalance.enable = true;
     memavaild.enable = true;
     #preload.enable = true;
