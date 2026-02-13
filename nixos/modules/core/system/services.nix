@@ -35,9 +35,9 @@
       '';
     };
 
-    timesyncd.enable = true;
     irqbalance.enable = true;
     memavaild.enable = true;
+    chrony.enable = true;
     #preload.enable = true;
     prelockd.enable = true;
     resolved.enable = false;
