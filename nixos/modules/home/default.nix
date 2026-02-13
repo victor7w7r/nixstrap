@@ -4,6 +4,7 @@
   host,
   pkgs,
   system,
+  self,
   ...
 }:
 {
@@ -18,6 +19,7 @@
         username
         host
         system
+        self
         ;
     };
     backupCommand = "${pkgs.trash-cli}/bin/trash";
