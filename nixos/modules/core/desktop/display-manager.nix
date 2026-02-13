@@ -69,7 +69,7 @@
           };
           Wayland = {
             CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod maliit-keyboard";
-            EnableHiDPI = false;
+            EnableHiDPI = true;
           };
           Users = {
             DefaultPath = "/run/current-system/sw/bin";
