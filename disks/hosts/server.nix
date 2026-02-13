@@ -92,7 +92,7 @@ let
           compression = "zstd";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///mnt/boot/EFI/secret.key";
+          keylocation = "file:///tmp/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -110,7 +110,7 @@ let
           logbias = "throughput";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///mnt/boot/EFI/secret.key";
+          keylocation = "file:///tmp/secret.key";
           primarycache = "metadata";
           secondarycache = "none";
         };
@@ -132,7 +132,7 @@ let
           compression = "zstd";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///mnt/boot/EFI/secret.key";
+          keylocation = "file:///tmp/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
