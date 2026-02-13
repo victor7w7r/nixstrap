@@ -6,7 +6,7 @@
 }:
 {
   time = {
-    hardwareClockInLocalTime = true;
+    hardwareClockInLocalTime = false;
     timeZone = "America/Guayaquil";
   };
 
