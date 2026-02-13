@@ -74,7 +74,7 @@
           # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
           background = pkgs.fetchurl {
             url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
-            sha256 = lib.fakeSha256;
+            sha256 = "sha256-7CMuETntiVUCKhUIdJzX+sf3F47GvuX2a61o4xbEzww=";
           };
           ScreenWidth = 1920;
           ScreenHeight = 1080;
