@@ -1,6 +1,6 @@
-{ host, ... }:
+{ host, self, ... }:
 {
-  home.file.".face.icon".source = ./avatar.png;
+  home.file.".face.icon".source = "${self}/avatar.png";
   programs.plasma = {
     workspace = {
       colorScheme = "Layan";
