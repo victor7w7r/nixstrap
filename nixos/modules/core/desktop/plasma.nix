@@ -64,10 +64,14 @@
       kdePackages.sddm-kcm
       kdePackages.sweeper
       kdePackages.yakuake
-      (pkgs.catppuccin-sddm.override {
-        flavor = "mocha";
-        accent = "mauve";
-        loginBackground = true;
+      (sddm-astronaut.override {
+        themeConfig = {
+          # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
+          background = config.stylix.image;
+          ScreenWidth = 1920;
+          ScreenHeight = 1080;
+          blur = false;
+        };
       })
       libsForQt5.qt5.qtquickcontrols2
       libsForQt5.qt5.qtgraphicaleffects

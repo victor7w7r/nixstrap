@@ -60,10 +60,9 @@
             InputMethod = "qtvirtualkeyboard";
           };
           Theme = {
-            Current = "catppuccin-mocha-mauve";
+            theme = "sddm-astronaut-theme";
             ThemeDir = "/run/current-system/sw/share/sddm/themes";
             FacesDir = "/var/lib/AccountsService/icons";
-            CursorTheme = "catppuccin-mocha-dark-cursors";
             Font = "Ubuntu";
             EnableAvatars = true;
             DisableAvatarsThreshold = 7;
@@ -83,7 +82,7 @@
             ReuseSession = false;
           };
         };
-        theme = "catpuccin-mocha-mauve";
+        theme = "sddm-astronaut-theme";
       };
       ly = {
         enable = host == "v7w7r-macmini81";

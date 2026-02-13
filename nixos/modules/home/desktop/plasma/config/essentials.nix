@@ -1,5 +1,6 @@
 { host, ... }:
 {
+  home.file.".face.icon".source = /etc/nixos/avatar.png;
   programs.plasma = {
     workspace = {
       colorScheme = "Layan";
