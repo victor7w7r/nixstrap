@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 {
   services = {
     displayManager.defaultSession = "plasma";
@@ -69,7 +74,7 @@
           # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
           background = pkgs.fetchurl {
             url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
-            sha256 = theme.backgroundSha256;
+            sha256 = lib.fakeSha256;
           };
           ScreenWidth = 1920;
           ScreenHeight = 1080;
