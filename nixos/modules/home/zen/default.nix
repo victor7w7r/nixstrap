@@ -1,15 +1,39 @@
 {
-  stdenv,
+  config,
   inputs,
   pkgs,
+  system,
   ...
 }:
+let
+  zen = import ./custom/zen.nix { inherit system inputs; };
+  location = ".zen/default/chrome";
+in
 {
+  home.file = {
+    "${location}/JS/engine" = {
+      source = inputs.sine + "/engine";
+      recursive = true;
+    };
+    "${location}/JS/sine.sys.mjs" = {
+      source = inputs.sine + "/sine.sys.mjs";
+      recursive = false;
+    };
+    "${location}/utils" = {
+      source = inputs.sine-bootloader + "/profile/utils";
+      recursive = true;
+    };
+    "${location}/locales" = {
+      source = inputs.sine + "/locales";
+      recursive = true;
+    };
+  };
+
   programs.zen-browser = {
     enable = true;
-    package = inputs.self.packages.${stdenv.hostPlatform.system}.zen;
-    languagePacks = [ "es-ES" ];
+    package = (config.lib.nixGL.wrap ((pkgs.wrapFirefox) zen { }));
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
+    languagePacks = [ "es-ES" ];
     profiles.default = {
       id = 0;
       name = "default";
@@ -45,6 +69,8 @@
   #zen-browser-sponsorblock zen-browser-ublock-origin zen-browser-dark-reader zen-browser-violentmonkey
   imports = [
     (import ./bookmarks.nix)
+    (import ./extensions.nix)
+    (import ./mods.nix)
     (import ./policies.nix)
     (import ./settings.nix)
     (import ./search.nix)

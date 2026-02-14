@@ -11,6 +11,7 @@
       delta
       devbox
       emacs-nox
+      nixd
     ]
     ++ [
       fw

@@ -109,7 +109,7 @@
         env.TERM = "kitty";
         font_family = "JetBrainsMono Nerd Font";
         line_height = "comfortable";
-        shell = "zsh";
+        shell = "system";
         toolbar.title = true;
       };
 
@@ -122,7 +122,7 @@
 
         nixd = {
           binary = {
-            path = "/home/victor7w7r/.nix-profile/bin/nixd";
+            path = "/run/current-system/sw/bin/nixd"; #"/home/victor7w7r/.nix-profile/bin/nixd";
           };
           initialization_options = {
             formatting = {

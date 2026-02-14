@@ -53,12 +53,17 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sine = {
+      url = "github:CosmoCreeper/Sine/cosine";
+      flake = false;
+    };
+    sine-bootloader = {
+      url = "github:sineorg/bootloader";
+      flake = false;
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -81,14 +86,6 @@
     };
     catppuccin-refind = {
       url = "github:catppuccin/refind";
-      flake = false;
-    };
-    sine = {
-      url = "github:CosmoCreeper/Sine/cosine";
-      flake = false;
-    };
-    sine-bootloader = {
-      url = "github:sineorg/bootloader";
       flake = false;
     };
     nebula-zen = {

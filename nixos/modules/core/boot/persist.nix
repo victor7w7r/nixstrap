@@ -124,6 +124,7 @@ in
         ".local/share/Trash"
         ".doom.d"
         ".config/sops"
+        ".config/nix"
         ".steam"
         ".tmux"
         #".cache"

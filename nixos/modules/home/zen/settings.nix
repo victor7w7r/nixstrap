@@ -240,7 +240,7 @@ in
     "extensions.webextensions.tabhide.enabled" = true;
     "fission.autostart" = true;
 
-    "general.smoothScroll" = false;
+    "general.smoothScroll" = lock-false;
     "geo.enabled" = false;
     "gfx.canvas.accelerated.cache-items" = 32768;
     "gfx.canvas.accelerated.cache-size" = 4096;
@@ -424,7 +424,7 @@ in
     "widget.wayland.fractional-scale.enabled" = true;
 
     "zen.sidebar.enabled" = true;
-    "zen.tabs.vertical.right-side" = true;
+    "zen.tabs.vertical.right-side" = false;
     "zen.tabs.show-newtab-vertical" = false;
     "zen.themes.updated-value-observer" = true;
     "zen.urlbar.behavior" = "float";

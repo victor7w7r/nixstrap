@@ -50,7 +50,7 @@
             };
             launchers = [
               "preferred://filemanager"
-              "applications:zen-beta.desktop"
+              "applications:zen-twilight.desktop"
               "applications:kitty.desktop"
               "applications:dev.zed.Zed.desktop"
             ];
