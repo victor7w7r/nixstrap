@@ -6,8 +6,9 @@
   ...
 }:
 let
-  zen = import ./custom/zen.nix { inherit system inputs; };
+  policies = import ./policies.nix;
   location = ".zen/default/chrome";
+  zen = import ./custom/zen.nix { inherit policies system inputs; };
 in
 {
   home.file = {
@@ -71,7 +72,6 @@ in
     (import ./bookmarks.nix)
     (import ./extensions.nix)
     (import ./mods.nix)
-    (import ./policies.nix)
     (import ./settings.nix)
     (import ./search.nix)
   ];

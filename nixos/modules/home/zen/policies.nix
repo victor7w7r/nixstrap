@@ -1,4 +1,3 @@
-{ ... }:
 {
   AllowFileSelectionDialogs = true;
   AppAutoUpdate = false;

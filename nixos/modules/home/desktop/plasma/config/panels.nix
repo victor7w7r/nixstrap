@@ -7,8 +7,7 @@
       lengthMode = "fit";
       floating = true;
       height = 44;
-      hiding = "none";
-      #hiding = "autohide";
+      hiding = "none"; # "autohide";
       screen = 0;
       opacity = "translucent";
       widgets = [
@@ -198,15 +197,13 @@
               title = "Memoria";
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
-            Sensors = {
-              highPrioritySensorIds = [ "memory/physical/usedPercent" ];
-              lowPrioritySensorIds = [
-                "memory/physical/total"
-                "memory/swap/usedPercent"
-                "memory/swap/total"
-              ];
-              totalSensors = [ "memory/physical/usedPercent" ];
-            };
+             "Sensors/lowPrioritySensorIds" = [
+              "memory/physical/total"
+              "memory/swap/usedPercent"
+              "memory/swap/total"
+            ];
+            "Sensors/totalSensors" = [ "memory/physical/usedPercent" ];
+            "Sensors/highPrioritySensorIds" = [ "memory/physical/usedPercent" ];
           };
         }
         {
@@ -223,17 +220,19 @@
             SensorColors = {
               "cpu/all/averageTemperature" = "245,86,150";
               "cpu/all/maximumTemperature" = "170,245,86";
-              "cpu/cpu.*/temperature" = "119,245,86";
+              "cpu/cpu.*temperature" = "119,245,86";
             };
-            Sensors = {
-              highPrioritySensorIds = [ ];
-              lowPrioritySensorIds = [
-                "cpu/all/maximumTemperature"
-                "cpu/all/minimumTemperature"
-                "cpu/cpu.*/temperature"
-              ];
-              totalSensors = [ "cpu/all/averageTemperature" ];
-            };
+            "Sensors/totalSensors" = "cpu/all/averageTemperature";
+            /*
+              Sensors = {
+                highPrioritySensorIds = [ ];
+                lowPrioritySensorIds = [
+                  "cpu/all/maximumTemperature"
+                  "cpu/all/minimumTemperature"
+                  "cpu/cpu.*temperature"
+                ];
+              };
+            */
           };
         }
         {
@@ -246,49 +245,59 @@
               title = "Temperatura";
               updateRateLimit = 2000;
             };
-            Sensors = {
-              highPrioritySensorIds = [ "cpu/all/usage" ];
+            SensorColors = {
+              "cpu/cpu.*usage" = "236,86,245";
+            };
+            Sensors.highPrioritySensorIds = [ "cpu/all/usage" ];
+            /*
+              Sensors = {
               lowPrioritySensorIds = [
-                "cpu/cpu.*/usage"
+                "cpu/cpu.*usage"
               ];
               totalSensors = [ "cpu/all/usage" ];
-            };
-            SensorColors = {
-              "cpu/cpu.*/usage" = "236,86,245";
-            };
+              };
+            */
           };
         }
         {
-          systemTray = {
-            icons.scaleToFit = true;
-            items = {
-              showAll = false;
-              shown = [
-                "org.kde.plasma.battery"
-                "org.kde.plasma.clipboard"
-                "org.kde.plasma.keyboardlayout"
-                "org.kde.plasma.notifications"
-                "org.kde.plasma.networkmanagement"
-                "org.kde.plasma.volume"
-              ];
-              hidden = [
-                "org.kde.merkuro.contact.applet"
-                "org.kde.plasma.bluetooth"
-                "org.kde.plasma.brightness"
-                "org.kde.plasma.devicenotifier"
-                "org.kde.plasma.mediacontroller"
-                "org.kde.plasma.vault"
-                "plasmashell_microphone"
-                "xdg-desktop-portal-kde"
-              ];
-              configs = {
-                "org.kde.plasma.notifications".config = {
-                  Shortcuts = {
-                    global = "Meta+N";
-                  };
-                };
-              };
+          /*
+            configs = {
+            battery.showPercentage = true;
+            keyboardLayout.displayStyle = "label";
             };
+          */
+          name = "org.kde.plasma.systemtray";
+          config.General = rec {
+            scaleIconsToFit = true;
+            showAllItems = false;
+            spacing = 2;
+            shownItems = [
+              "org.kde.plasma.battery"
+              "org.kde.plasma.keyboardlayout"
+              "org.kde.plasma.notifications"
+              "org.kde.plasma.networkmanagement"
+              "org.kde.plasma.volume"
+            ];
+            hiddenItems = [
+              "org.kde.plasma.bluetooth"
+              "org.kde.plasma.clipboard"
+              "org.kde.plasma.devicenotifier"
+              "org.kde.plasma.manage-inputmethod"
+              "org.kde.plasma.mediacontroller"
+              "org.kde.plasma.notifications"
+              "org.kde.plasma.keyboardindicator"
+              "org.kde.plasma.keyboardlayout"
+              "org.kde.plasma.networkmanagement"
+              "org.kde.plasma.volume"
+              "org.kde.plasma.vault"
+              "org.kde.kdeconnect"
+              "org.kde.kscreen"
+              "org.kde.plasma.printmanager"
+              "org.kde.plasma.brightness"
+              "org.kde.plasma.cameraindicator"
+              "com.github.wwmm.easyeffects"
+            ];
+            #knownItems = extraItems;
           };
         }
         {
@@ -321,7 +330,7 @@
             };
             date = {
               enable = true;
-              format.custom = "ddd.   dd/MM";
+              format.custom = "ddd. dd/MM";
               position = "belowTime";
             };
             calendar.firstDayOfWeek = "monday";

@@ -1,4 +1,8 @@
-{ system, inputs }:
+{
+  policies,
+  system,
+  inputs,
+}:
 let
   sineUrl = "https://raw.githubusercontent.com/sineorg/bootloader/refs/heads/main/program";
   libNameGlob = "zen-bin-*";
@@ -16,7 +20,7 @@ let
   );
 in
 (inputs.zen-browser.packages.${system}.twilight-unwrapped.override {
-  policies = import ../policies.nix;
+  inherit policies;
 }).overrideAttrs
   (prev: {
     postInstall = (prev.postInstall or "") + ''

@@ -21,8 +21,39 @@ in
     "apz.overscroll.enabled" = false;
     "breakpad.reportURL" = "";
 
+    "arc-compact-sidebar-size" = "23em";
+    "arc-disable-tab-hover-animations" = true;
+    "arc-enable-container-styling" = 0;
+    "arc-font" = "Nunito";
+    "arc-macos-style-buttons" = true;
+    "arc-menu-icon" = true;
+    "arc-tab-loading-animation" = 4;
+    "arc-tab-switch-animation" = 0;
+    "arc-urlbar-animation" = 1;
+    "arc-urlbar-fade-in" = false;
+    "arc-workspace-style" = 0;
+    "arc.compact.sidebar-blur" = "25px";
+    "arc.compact.sidebar-opacity" = "0.25";
+    "arc.detaloadingbar.blur.enabled" = true;
+    "arc.detaloadingbar.blur.intensity" = "";
+    "arc.detaloadingbar.boxshadow.enabled" = false;
+    "arc.detaloadingbar.maincolor" = "";
+    "arc.detaloadingbar.maxwidth" = "";
+    "arc.detaloadingbar.middlecolor" = "";
+    "arc.detaloadingbar.minwidth" = "";
+    "arc.detaloadingbar.position.top" = true;
+    "arc.detaloadingbar.rightcolor" = "";
+    "arc.detaloadingbar.spacerwidth" = "";
+    "arc.detaloadingbar.thickness" = "";
+    "arc.tab-groups-disable" = 0;
+    "arc.tab.defaultValue-audio-indicator" = true;
+    "arc.urlbar.background" = true;
+    "arc.urlbar.opacity" = "0.25";
+    "arcline.url.bar" = 0;
+
     "browser.aboutConfig.showWarning" = lock-false;
     "browser.aboutwelcome.enabled" = lock-false;
+    "browser.bookmarks.addedImportButton" = true;
     "browser.bookmarks.defaultLocation" = "toolbar";
     "browser.bookmarks.restore_default_bookmarks" = false;
     "browser.cache.disk.enable" = false;
@@ -43,6 +74,7 @@ in
     "browser.ctrlTab.recentlyUsedOrder" = false;
     "browser.disableResetPrompt" = true;
     "browser.discovery.enabled" = false;
+    "browser.display.document_color_use" = 1;
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.formfill.enable" = lock-false;
     "browser.laterrun.enabled" = false;
@@ -117,6 +149,7 @@ in
     "browser.safebrowsing.provider.mozilla.reportURL" = "";
     "browser.safebrowsing.provider.mozilla.updateURL" = "";
     "browser.safebrowsing.reportPhishURL" = "";
+    "browser.search.region" = "EC";
     "browser.search.suggest.enabled" = lock-false;
     "browser.search.suggest.enabled.private" = lock-false;
     "browser.search.separatePrivateDefault" = false;
@@ -126,6 +159,7 @@ in
     "browser.shell.defaultBrowserCheckCount" = 1;
     "browser.shell.didSkipDefaultBrowserCheckOnFirstRun" = true;
     "browser.ssb.enabled" = true;
+    "browser.startup.couldRestoreSession.count" = 1;
     "browser.startup.homepage" = "";
     "browser.startup.homepage_override.mstone" = "ignore";
     "browser.startup.page" = 3;
@@ -146,21 +180,21 @@ in
     "browser.tabs.warnOnOpen" = false;
     "browser.tabs.warnOnClose" = false;
     "browser.translations.automaticallyPopup" = false;
-    "browser.theme.content-theme" = 0;
     "browser.theme.toolbar-theme" = 0;
     "browser.toolbars.bookmarks.visibility" = "always";
     "browser.topsites.contile.enabled" = false;
     "browser.uidensity" = 0;
     "browser.urlbar.autoFill.adaptiveHistory.enabled" = false;
     "browser.urlbar.showSearchSuggestionsFirst" = false;
+    "browser.urlbar.placeholderName" = true;
     "browser.urlbar.suggest.topsites" = lock-false;
     "browser.urlbar.suggest.openpage" = lock-false;
-    "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.suggest.recentsearches" = lock-false;
-    "browser.urlbar.suggest.bookmark" = true;
+    "browser.urlbar.suggest.bookmark" = false;
     "browser.urlbar.suggest.history" = true;
     "browser.urlbar.suggest.calculator" = true;
     "browser.urlbar.suggest.remotetab" = true;
+    "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.unitConversion.enabled" = true;
 
     "content.interrupt.parsing" = true;
@@ -259,7 +293,7 @@ in
     "image.mem.decode_bytes_at_a_time" = 65536;
     "image.mem.max_decoded_image_kb" = 512000;
     "image.mem.shared.unmap.min_expiration_ms" = 120000;
-    "intl.locale.requested" = "";
+    "intl.locale.requested" = "es-ES,en-US";
     "javascript.options.baselinejit.threshold" = 50;
     "javascript.options.ion.threshold" = 500;
     "javascript.options.mem.high_water_mark" = 128;
@@ -368,8 +402,16 @@ in
     "services.sync.engine.prefs.modified" = false;
     "services.sync.prefs.dangerously_allow_arbitrary" = true;
     "services.sync.prefs.sync.browser.uiCustomization.state" = true;
+    "sidebar.backupState" =
+      "{\"command\":\"\",\"panelOpen\":false,\"launcherExpanded\":false,\"launcherVisible\":false}";
+    "sidebar.visibility" = "hide-sidebar";
 
     "signon.rememberSignons" = lock-false;
+
+    "sine.fork-id" = "zen";
+    "sine.is-cosine" = true;
+    "sine.mods-reinstalled" = true;
+
     "svg.context-properties.content.enabled" = true;
     "tab.groups.add-arrow" = true;
     "tab.groups.background" = true;
@@ -427,23 +469,17 @@ in
     "zen.tabs.vertical.right-side" = false;
     "zen.tabs.show-newtab-vertical" = false;
     "zen.themes.updated-value-observer" = true;
-    "zen.urlbar.behavior" = "float";
-    "zen.urlbar.replace-newtab" = false;
-    "zen.view.compact.animate-sidebar" = false;
-    "zen.view.compact.hide-toolbar" = true;
-    "zen.view.compact.hide-tabbar" = true;
-    "zen.view.compact.toolbar-flash-popup" = true;
-    "zen.view.experimental-rounded-view" = true;
-    "zen.view.window.scheme" = 2;
-    "zen.view.sidebar-expanded" = false;
-    "zen.view.use-single-toolbar" = false;
+    "zen.ui.migration.compact-mode-button-added" = true;
+    "zen.ui.migration.version" = 6;
+    "zen.view.show-newtab-button-top" = false;
     "zen.watermark.enabled" = false;
     "zen.welcome-screen.seen" = true;
     "zen.widget.linux.transparency" = true;
     "zen.workspaces.container-specific-essentials-enabled" = true;
-    "zen.workspaces.show-workspace-indicator" = true;
     "zen.workspaces.continue-where-left-off" = true;
-    "zen.workspaces.natural-scroll" = true;
+    "zen.workspaces.indicator-name-center" = true;
+    "zen.workspaces.indicator-position" = "";
+    "zen.workspaces.show-workspace-indicator" = false;
   };
 
 }
