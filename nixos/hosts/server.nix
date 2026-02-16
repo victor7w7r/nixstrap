@@ -42,6 +42,12 @@ in
         "tpm-tis"
         "mmc_block"
         "sdhci_pci"
+        "usb_storage"
+        "uas"
+        "uhci_hcd"
+        "ehci_hcd"
+        "xhci_pci"
+        "usbcore"
         "sdhci_acpi"
         "sdhci"
       ];
