@@ -92,7 +92,7 @@ in
       violentmonkey
       #wappalyzer
       wikipedia-vector-skin
-      youtube-cards
+      #youtube-cards
       youtube-nonstop
       youtube-redux
       youtube-shorts-block
