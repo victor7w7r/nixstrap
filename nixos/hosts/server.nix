@@ -40,6 +40,10 @@ in
         "i915"
         "autofs"
         "tpm-tis"
+        "mmc_block"
+        "sdhci_pci"
+        "sdhci_acpi"
+        "sdhci"
       ];
       supportedFilesystems = [ "zfs" ];
       kernelModules = [ "" ];
