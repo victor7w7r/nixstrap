@@ -88,7 +88,7 @@ in
       terms-of-service-didnt-read
       #themesong-for-youtube-music
       ublock-origin
-      video-downloadhelper
+      #video-downloadhelper
       violentmonkey
       wappalyzer
       wikipedia-vector-skin
