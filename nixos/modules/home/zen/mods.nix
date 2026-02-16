@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  sine = {
+  programs.zen-browser.profiles.default.sine = {
     enable = true;
     mods = [
       "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
