@@ -194,14 +194,14 @@
             PreloadWeight = 100;
             popupHeight = 203;
             popupWidth = 150;
+            ConfigDialog = {
+              DialogHeight = 538;
+              DialogWidth = 720;
+            };
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               showTitle = true;
               title = "Memoria";
-              ConfigDialog = {
-                DialogHeight = 538;
-                DialogWidth = 720;
-              };
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
             "Sensors/lowPrioritySensorIds" = [
@@ -220,13 +220,13 @@
             PreloadWeight = 100;
             popupHeight = 374;
             popupWidth = 374;
+            ConfigDialog = {
+              DialogHeight = 538;
+              DialogWidth = 720;
+            };
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               title = "CPU";
-              ConfigDialog = {
-                DialogHeight = 538;
-                DialogWidth = 720;
-              };
             };
             SensorColors = {
               "cpu/all/averageTemperature" = "245,86,150";
@@ -250,6 +250,10 @@
           name = "org.kde.plasma.systemmonitor.cpucore";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
+            ConfigDialog = {
+              DialogHeight = 538;
+              DialogWidth = 720;
+            };
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               showTitle = true;
@@ -258,10 +262,6 @@
               popupWidth = 381;
               title = "Temperatura";
               updateRateLimit = 2000;
-              ConfigDialog = {
-                DialogHeight = 538;
-                DialogWidth = 720;
-              };
             };
             SensorColors = {
               "cpu/cpu.*usage" = "236,86,245";
