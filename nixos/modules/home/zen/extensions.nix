@@ -51,7 +51,7 @@ in
       edit-with-emacs
       enhanced-github
       enhanced-h264ify
-      enhancer-for-youtube
+      #enhancer-for-youtube
       facebook-container
       foxytab
       github-file-icons
