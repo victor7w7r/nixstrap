@@ -1,4 +1,8 @@
-label: {
+{
+  label,
+  neededForBoot ? true,
+}:
+{
   device = "/dev/disk/by-partlabel/disk-emmc-${label}";
   fsType = "f2fs";
   options = [
@@ -19,5 +23,5 @@ label: {
     "checkpoint_merge"
     "gc_merge"
   ];
-  neededForBoot = true;
+  inherit neededForBoot;
 }

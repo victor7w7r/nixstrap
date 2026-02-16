@@ -2,13 +2,13 @@
   dataset ? "root",
   preDataset ? "safe",
   pool ? "zroot",
+  neededForBoot ? true,
 }:
 {
   device = "${pool}/${preDataset}/${dataset}";
   fsType = "zfs";
   options = [
-    "zfsutil"
     "atime=off"
   ];
-  neededForBoot = true;
+  inherit neededForBoot;
 }
