@@ -33,7 +33,6 @@ in
     zfs = {
       enabled = true;
       allowHibernation = true;
-      enable = true;
       enableUnstable = true;
       forceImportAll = false;
       forceImportRoot = false;
