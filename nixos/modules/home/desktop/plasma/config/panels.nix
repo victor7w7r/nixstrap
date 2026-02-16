@@ -204,13 +204,13 @@
               title = "Memoria";
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
+            "Sensors/highPrioritySensorIds" = [ "memory/physical/usedPercent" ];
             "Sensors/lowPrioritySensorIds" = [
               "memory/physical/total"
               "memory/swap/usedPercent"
               "memory/swap/total"
             ];
             "Sensors/totalSensors" = [ "memory/physical/usedPercent" ];
-            "Sensors/highPrioritySensorIds" = [ "memory/physical/usedPercent" ];
           };
         }
         {
@@ -231,9 +231,13 @@
             SensorColors = {
               "cpu/all/averageTemperature" = "245,86,150";
               "cpu/all/maximumTemperature" = "170,245,86";
-              "cpu/cpu.*temperature" = "119,245,86";
+              #"cpu/cpu.*temperature" = "119,245,86";
             };
-            "Sensors/totalSensors" = "cpu/all/averageTemperature";
+            "Sensors/lowPrioritySensorIds" = [
+              "cpu/all/maximumTemperature"
+              "cpu/all/minimumTemperature"
+            ];
+            "Sensors/totalSensors" = [ "cpu/all/averageTemperature" ];
             /*
               Sensors = {
                 highPrioritySensorIds = [ ];
@@ -251,22 +255,26 @@
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
             ConfigDialog = {
-              DialogHeight = 538;
+              DialogHeight = 522;
               DialogWidth = 720;
             };
+            PreloadWeight = 100;
+            popupHeight = 393;
+            popupWidth = 381;
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
-              showTitle = true;
-              PreloadWeight = 100;
-              popupHeight = 393;
-              popupWidth = 381;
               title = "Temperatura";
               updateRateLimit = 2000;
             };
             SensorColors = {
-              "cpu/cpu.*usage" = "236,86,245";
+              "cpu/all/averageTemperature" = "236,86,245";
+              "cpu/all/maximumTemperature" = "170,245,86";
             };
-            Sensors.highPrioritySensorIds = [ "cpu/all/usage" ];
+            "Sensors/lowPrioritySensorIds" = [
+              "cpu/all/maximumTemperature"
+              "cpu/all/minimumTemperature"
+            ];
+            "Sensors/totalSensors" = [ "cpu/all/averageTemperature" ];
             /*
               Sensors = {
               lowPrioritySensorIds = [
