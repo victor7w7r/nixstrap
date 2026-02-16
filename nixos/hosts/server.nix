@@ -55,13 +55,16 @@ in
       kernelModules = [ "" ];
       systemd = with lib; {
         services.zfs-import-rpool.script = mkForce ''
+          mkdir -p /media
+          mount -t btrfs /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+
           zpool status zcloud || zpool import -f zcloud
           zpool status zswap || zpool import -f zswap
           zpool status zpersist || zpool import -f zpersist
 
-          cat /boot/EFI/secret.key | sudo zfs load-key zcloud/safe/cloud
-          cat /boot/EFI/secret.key | sudo zfs load-key zswap/local/swap
-          cat /boot/EFI/secret.key | sudo zfs load-key zpersist/safe/persist
+          cat /media/secret.key | sudo zfs load-key zcloud/safe/cloud
+          cat /media/secret.key | sudo zfs load-key zswap/local/swap
+          cat /media/secret.key | sudo zfs load-key zpersist/safe/persist
         '';
       };
     };

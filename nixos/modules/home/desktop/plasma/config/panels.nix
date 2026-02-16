@@ -195,9 +195,13 @@
               chartFace = "org.kde.ksysguard.piechart";
               showTitle = true;
               title = "Memoria";
+              ConfigDialog = {
+                DialogHeight = 538;
+                DialogWidth = 720;
+              };
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
-             "Sensors/lowPrioritySensorIds" = [
+            "Sensors/lowPrioritySensorIds" = [
               "memory/physical/total"
               "memory/swap/usedPercent"
               "memory/swap/total"
@@ -216,6 +220,10 @@
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               title = "CPU";
+              ConfigDialog = {
+                DialogHeight = 538;
+                DialogWidth = 720;
+              };
             };
             SensorColors = {
               "cpu/all/averageTemperature" = "245,86,150";
@@ -244,6 +252,10 @@
               showTitle = true;
               title = "Temperatura";
               updateRateLimit = 2000;
+              ConfigDialog = {
+                DialogHeight = 538;
+                DialogWidth = 720;
+              };
             };
             SensorColors = {
               "cpu/cpu.*usage" = "236,86,245";

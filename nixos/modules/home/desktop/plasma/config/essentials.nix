@@ -25,8 +25,8 @@
         };
         name = "luisbocanegra.desktop.wallpaper.effects";
         position = {
-          horizontal = 51;
-          vertical = 100;
+          vertical = 1080 - 32;
+          horizontal = 1920 - 51;
         };
         size = {
           height = 25;
@@ -35,11 +35,7 @@
       }
       {
         name = "maxwell";
-        config = {
-          General = {
-            speed = 2.2;
-          };
-        };
+        config.General.speed = 2.2;
         position = {
           horizontal = 51;
           vertical = 100;
