@@ -57,7 +57,6 @@ in
       livetl
       lovely-forks
       material-icons-for-github
-      mozilla-addons-to-nix
       multi-account-containers
       musescore-downloader
       no-pdf-download
