@@ -90,7 +90,7 @@ in
       ublock-origin
       #video-downloadhelper
       violentmonkey
-      wappalyzer
+      #wappalyzer
       wikipedia-vector-skin
       youtube-cards
       youtube-nonstop
