@@ -84,7 +84,7 @@ in
       ruffle_rs
       search-by-image
       sponsorblock
-      tampermonkey
+      #tampermonkey
       terms-of-service-didnt-read
       themesong-for-youtube-music
       ublock-origin
