@@ -187,6 +187,29 @@
           };
         }
         "org.kde.plasma.panelspacer"
+        /*
+          {
+            name = "org.kde.plasma.systemmonitor";
+            config = {
+              CurrentPreset = "org.kde.plasma.systemmonitor";
+              PreloadWeight = 75;
+              popupHeight = 124;
+              popupWidth = 230;
+              ConfigDialog = {
+                DialogHeight = 538;
+                DialogWidth = 720;
+              };
+              Appearance = {
+                chartFace = "org.kde.circles";
+                showTitle = true;
+                title = "Ventilador";
+              };
+              SensorColors."lmsensors/applesmc-acpi-0/temp1" = "245,161,86";
+              Sensors."highPrioritySensorIds" = "[]";
+              Sensors."totalSensors" = ''["lmsensors/applesmc-acpi-0/fan1"]'';
+            };
+          }
+        */
         {
           name = "org.kde.plasma.systemmonitor.memory";
           config = {

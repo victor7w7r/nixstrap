@@ -7,29 +7,9 @@
 }:
 let
   policies = import ./policies.nix;
-  location = ".zen/default/chrome";
   zen = import ./custom/zen.nix { inherit policies system inputs; };
 in
 {
-  home.file = {
-    "${location}/JS/engine" = {
-      source = inputs.sine + "/engine";
-      recursive = true;
-    };
-    "${location}/JS/sine.sys.mjs" = {
-      source = inputs.sine + "/sine.sys.mjs";
-      recursive = false;
-    };
-    "${location}/utils" = {
-      source = inputs.sine-bootloader + "/profile/utils";
-      recursive = true;
-    };
-    "${location}/locales" = {
-      source = inputs.sine + "/locales";
-      recursive = true;
-    };
-  };
-
   programs.zen-browser = {
     enable = true;
     package = (config.lib.nixGL.wrap ((pkgs.wrapFirefox) zen { }));
@@ -67,7 +47,6 @@ in
     };
   };
 
-  #zen-browser-sponsorblock zen-browser-ublock-origin zen-browser-dark-reader zen-browser-violentmonkey
   imports = [
     (import ./bookmarks.nix)
     (import ./extensions.nix)
