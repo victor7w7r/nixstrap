@@ -33,7 +33,6 @@ in
     zfs = {
       enabled = true;
       allowHibernation = true;
-      autoSnapshot.enable = true;
       enable = true;
       enableUnstable = true;
       forceImportAll = false;
