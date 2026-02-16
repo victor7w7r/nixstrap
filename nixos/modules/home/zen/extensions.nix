@@ -86,7 +86,7 @@ in
       sponsorblock
       #tampermonkey
       terms-of-service-didnt-read
-      themesong-for-youtube-music
+      #themesong-for-youtube-music
       ublock-origin
       video-downloadhelper
       violentmonkey
