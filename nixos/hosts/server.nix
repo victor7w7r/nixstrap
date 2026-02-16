@@ -32,7 +32,6 @@ in
     kernelPackages = pkgs.linuxPackages_6_12;
     zfs = {
       allowHibernation = true;
-      enableUnstable = true;
       forceImportAll = false;
       forceImportRoot = false;
     };
