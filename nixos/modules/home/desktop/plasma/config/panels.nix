@@ -203,11 +203,11 @@
               showTitle = true;
               title = "Memoria";
             };
-            SensorColors."memory/physical/usedPercent" = "86,245,178";
-            "Sensors/highPrioritySensorIds" = ''[ "memory/physical/usedPercent" ]'';
-            "Sensors/lowPrioritySensorIds" =
+            Sensors."highPrioritySensorIds" = ''["memory/physical/usedPercent"]'';
+            Sensors."lowPrioritySensorIds" =
               ''["memory/physical/total","memory/swap/usedPercent","memory/swap/total"]'';
-            "Sensors/totalSensors" = ''[ "memory/physical/usedPercent" ]'';
+            Sensors."totalSensors" = ''["memory/physical/usedPercent"]'';
+            SensorColors."memory/physical/usedPercent" = "86,245,178";
           };
         }
         {
@@ -218,33 +218,18 @@
             popupHeight = 374;
             popupWidth = 374;
             ConfigDialog = {
-              DialogHeight = 538;
+              DialogHeight = 540;
               DialogWidth = 720;
             };
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               title = "CPU";
+              updateRateLimit = 2000;
             };
-            SensorColors = {
-              "cpu/all/averageTemperature" = "245,86,150";
-              "cpu/all/maximumTemperature" = "170,245,86";
-              #"cpu/cpu.*temperature" = "119,245,86";
-            };
-            "Sensors/lowPrioritySensorIds" = [
-              "cpu/all/maximumTemperature"
-              "cpu/all/minimumTemperature"
-            ];
-            "Sensors/totalSensors" = [ "cpu/all/averageTemperature" ];
-            /*
-              Sensors = {
-                highPrioritySensorIds = [ ];
-                lowPrioritySensorIds = [
-                  "cpu/all/maximumTemperature"
-                  "cpu/all/minimumTemperature"
-                  "cpu/cpu.*temperature"
-                ];
-              };
-            */
+            SensorColors."cpu/all/usage" = "245,86,99";
+            Sensors."highPrioritySensorIds" = ''["cpu/all/usage"]'';
+            Sensors."lowPrioritySensorIds" = ''["cpu/cpu.*usage" ]'';
+            Sensors."totalSensors" = ''["cpu/all/usage" ]'';
           };
         }
         {
@@ -263,23 +248,11 @@
               title = "Temperatura";
               updateRateLimit = 2000;
             };
-            SensorColors = {
-              "cpu/all/averageTemperature" = "236,86,245";
-              "cpu/all/maximumTemperature" = "170,245,86";
-            };
-            "Sensors/lowPrioritySensorIds" = [
-              "cpu/all/maximumTemperature"
-              "cpu/all/minimumTemperature"
-            ];
-            "Sensors/totalSensors" = [ "cpu/all/averageTemperature" ];
-            /*
-              Sensors = {
-              lowPrioritySensorIds = [
-                "cpu/cpu.*usage"
-              ];
-              totalSensors = [ "cpu/all/usage" ];
-              };
-            */
+            SensorColors."cpu/all/averageTemperature" = "236,86,245";
+            SensorColors."cpu/all/maximumTemperature" = "170,245,86";
+            Sensors."highPrioritySensorIds" = "[]";
+            Sensors."lowPrioritySensorIds" = ''["cpu/all/maximumTemperature","cpu/all/minimumTemperature"]'';
+            Sensors."totalSensors" = ''["cpu/all/averageTemperature"]'';
           };
         }
         {
