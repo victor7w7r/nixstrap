@@ -47,7 +47,7 @@
     };
     displayManager = {
       sddm = {
-        enable = host == "v7w7r-rc71l" || host == "v7w7r-higole";
+        enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
         package = lib.mkForce pkgs.kdePackages.sddm;
         wayland = {
           enable = true;
