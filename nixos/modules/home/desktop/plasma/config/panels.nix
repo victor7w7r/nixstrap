@@ -195,7 +195,7 @@
             popupHeight = 203;
             popupWidth = 150;
             ConfigDialog = {
-              DialogHeight = 538;
+              DialogHeight = 540;
               DialogWidth = 720;
             };
             Appearance = {
@@ -204,13 +204,10 @@
               title = "Memoria";
             };
             SensorColors."memory/physical/usedPercent" = "86,245,178";
-            "Sensors/highPrioritySensorIds" = [ "memory/physical/usedPercent" ];
-            "Sensors/lowPrioritySensorIds" = [
-              "memory/physical/total"
-              "memory/swap/usedPercent"
-              "memory/swap/total"
-            ];
-            "Sensors/totalSensors" = [ "memory/physical/usedPercent" ];
+            "Sensors/highPrioritySensorIds" = ''[ "memory/physical/usedPercent" ]'';
+            "Sensors/lowPrioritySensorIds" =
+              ''["memory/physical/total","memory/swap/usedPercent","memory/swap/total"]'';
+            "Sensors/totalSensors" = ''[ "memory/physical/usedPercent" ]'';
           };
         }
         {
