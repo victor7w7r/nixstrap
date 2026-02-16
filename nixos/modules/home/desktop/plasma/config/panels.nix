@@ -191,6 +191,9 @@
           name = "org.kde.plasma.systemmonitor.memory";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
+            PreloadWeight = 100;
+            popupHeight = 203;
+            popupWidth = 150;
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               showTitle = true;
@@ -214,9 +217,9 @@
           name = "org.kde.plasma.systemmonitor.cpucore";
           config = {
             CurrentPreset = "org.kde.plasma.systemmonitor";
-            PreloadWeight = 95;
-            popupHeight = 240;
-            popupWidth = 244;
+            PreloadWeight = 100;
+            popupHeight = 374;
+            popupWidth = 374;
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               title = "CPU";
@@ -250,6 +253,9 @@
             Appearance = {
               chartFace = "org.kde.ksysguard.piechart";
               showTitle = true;
+              PreloadWeight = 100;
+              popupHeight = 393;
+              popupWidth = 381;
               title = "Temperatura";
               updateRateLimit = 2000;
               ConfigDialog = {
