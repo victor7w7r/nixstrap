@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
@@ -53,19 +53,37 @@ in
       ];
       supportedFilesystems = [ "zfs" ];
       kernelModules = [ "" ];
-      systemd = with lib; {
-        services.zfs-import-rpool.script = mkForce ''
-          mkdir -p /media
-          mount -t btrfs /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+      systemd = {
+        mounts = [
+          {
+            where = "/media";
+            what = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
+            options = "nofail,noatime,lazytime,ssd,rw,x-initrd.mount";
+            wantedBy = [ "zfs-import-setsecrets.service" ];
+            before = [ "zfs-import-setsecrets.service" ];
+          }
+        ];
+        services.zfs-import-setsecrets = {
+          wantedBy = [
+            "zfs-import-zcloud.service"
+            "zfs-import-zpersist.service"
+            "zfs-import-zswap.service"
+          ];
+          before = [
+            "zfs-import-zcloud.service"
+            "zfs-import-zpersist.service"
+            "zfs-import-zswap.service"
+          ];
+          script = ''
+            zpool status zcloud || zpool import -f zcloud
+            zpool status zswap || zpool import -f zswap
+            zpool status zpersist || zpool import -f zpersist
 
-          zpool status zcloud || zpool import -f zcloud
-          zpool status zswap || zpool import -f zswap
-          zpool status zpersist || zpool import -f zpersist
-
-          cat /media/secret.key | sudo zfs load-key zcloud/safe/cloud
-          cat /media/secret.key | sudo zfs load-key zswap/local/swap
-          cat /media/secret.key | sudo zfs load-key zpersist/safe/persist
-        '';
+            cat /media/secret.key | sudo zfs load-key zcloud/safe/cloud
+            cat /media/secret.key | sudo zfs load-key zswap/local/swap
+            cat /media/secret.key | sudo zfs load-key zpersist/safe/persist
+          '';
+        };
       };
     };
   };
