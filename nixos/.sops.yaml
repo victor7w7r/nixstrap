@@ -2,7 +2,7 @@ keys:
   - &main_machine age1st29vxtalmuzw4je4w3hfcnz8dtadcjf3ksx0742qv0lm5qf7pasw3w3pl
   - &vm_machine age1gzpr4f8nfrlfly7wy9rsyt8nlvh4yeefa5mh37eks4t0j04aq3nq90ld0w
   - &rogally_machine age15j0h5gj395yhfj6qxpxf5k3539hf9eg9u0sy2463lumlrf3qaews76tz4q
-  - &server_machine age1cdzjsfqgch8ae4vnacagu48nk4qa0n54enekmanv0m0rdgrchchq6svjff
+  - &server_machine age1ktgk5rck3lzmeg2d64wkx2l5v6yq9salpl89gvprem43zr05yyks44n365
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
