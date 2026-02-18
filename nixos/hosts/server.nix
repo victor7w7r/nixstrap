@@ -3,10 +3,8 @@ let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
-    boot = (import ./lib/boot.nix) {
-      efiDisk = "emmc";
-      emergencyDisk = "nvme";
-    };
+    efiDisk = "emmc";
+    emergencyDisk = "nvme";
   };
   zfs = import ./lib/zfs.nix;
   f2fs = import ./lib/f2fs.nix;
