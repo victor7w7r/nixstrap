@@ -12,6 +12,7 @@
     (import ./pins.nix)
     (import ./settings.nix)
     (import ./search.nix)
+    (import ./theme.nix)
   ];
 
   programs.zen-browser = {
@@ -29,8 +30,6 @@
       id = 0;
       isDefault = true;
       name = "default";
-      userChrome = builtins.readFile ./userChrome.css;
-      userContent = builtins.readFile ./userContent.css;
       extraConfig = ''
         ${builtins.readFile "${inputs.betterfox}/Fastfox.js"}
         ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
@@ -40,7 +39,7 @@
       sine = {
         enable = true;
         mods = [
-          "Arc-2.0"
+          "Nebula"
           "context-menu-icons"
           "quick-search-zen-browser"
           "quick-tabs"

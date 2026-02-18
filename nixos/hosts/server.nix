@@ -93,9 +93,9 @@ in
             zpool status zswap || zpool import -f zswap
             zpool status zpersist || zpool import -f zpersist
 
-            cat /media/secret.key | sudo zfs load-key zcloud/safe/cloud
-            cat /media/secret.key | sudo zfs load-key zswap/local/swap
-            cat /media/secret.key | sudo zfs load-key zpersist/safe/persist
+            cat /media/secret.key | zfs load-key zcloud/safe/cloud
+            cat /media/secret.key | zfs load-key zswap/local/swap
+            cat /media/secret.key | zfs load-key zpersist/safe/persist
           '';
         };
       };
