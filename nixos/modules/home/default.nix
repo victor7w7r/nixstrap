@@ -27,7 +27,7 @@
     useGlobalPkgs = true;
     sharedModules = [
       inputs.plasma-manager.homeModules.plasma-manager
-      inputs.zen-browser.homeModules.twilight-official
+      inputs.zen-browser.homeModules.default
       inputs.nix-doom-emacs-unstraightened.homeModule
     ];
 
