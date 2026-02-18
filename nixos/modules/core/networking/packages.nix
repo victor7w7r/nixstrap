@@ -17,7 +17,7 @@
       netscanner
       openresolv
       pyload-ng
-      rquickshare
+      #rquickshare
       rustscan
       slirp4netns
       sshs
