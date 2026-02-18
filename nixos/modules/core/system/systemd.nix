@@ -10,13 +10,20 @@
       DefaultLimitNOFILE = "2048:2097152";
     };
     services = {
-      "getty@tty1".enable = host == "v7w7r-youyeetoox1";
-      "autovt@tty1".enable = host == "v7w7r-youyeetoox1";
       "getty@tty7".enable = false;
       "autovt@tty7".enable = false;
       "kmsconvt@tty1".enable = false;
       "kmsconvt@tty7".enable = false;
-    };
+    }
+    // (
+      if host != "v7w7r-youyeetoox1" then
+        {
+          "getty@tty1".enable = false;
+          "autovt@tty1".enable = false;
+        }
+      else
+        { }
+    );
     tmpfiles.rules = [
       "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
       "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
