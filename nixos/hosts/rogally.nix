@@ -78,14 +78,6 @@ in
     thunderbolt
   ];
 
-  /*
-    btrfs.autoScrub = {
-     enable = true;
-     fileSystems = ["/"];
-     interval = "monthly";
-     };
-  */
-
   systemd.services = {
     batterThreshold = {
       script = ''
@@ -132,6 +124,16 @@ in
         hotplug_type = "Asus";
       };
     };
+
+    btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [
+        "/nix/persist"
+        "/nix"
+      ];
+      interval = "monthly";
+    };
+
     asusd = {
       enable = true;
       enableUserService = true;
