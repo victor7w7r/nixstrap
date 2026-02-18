@@ -1,5 +1,6 @@
 { ... }:
 {
+  #https://github.com/DocBrown101/org.kde.plasma.nixos.channelstatus
   programs.plasma.panels = [
     {
       location = "bottom";

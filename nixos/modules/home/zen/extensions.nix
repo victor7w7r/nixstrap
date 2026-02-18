@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   inputs,
   ...
@@ -27,12 +26,6 @@ let
     };
 in
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "enhancer-for-youtube"
-    ];
-
   programs.zen-browser.profiles.default.extensions.packages =
     with inputs.firefox-addons.packages."x86_64-linux";
     [
