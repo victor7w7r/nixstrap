@@ -15,7 +15,7 @@
   ];
 
   programs.zen-browser = {
-    enable = true;
+    enable = false;
     /*
       package = (
       config.lib.nixGL.wrap (
