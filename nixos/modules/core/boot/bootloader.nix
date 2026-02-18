@@ -70,7 +70,7 @@ let
           add_options "systemd.unit=multi-user.target"
         }
         submenuentry "Rescue" {
-          add_options "systemd.unit=rescue.target ${debugFlags}"
+          add_options "systemd.unit=rescue.target"
         }
       '',
     }:

@@ -1,4 +1,4 @@
-{ ... }:
+{ host, ... }:
 {
   systemd = {
     enableEmergencyMode = true;
@@ -10,8 +10,8 @@
       DefaultLimitNOFILE = "2048:2097152";
     };
     services = {
-      "getty@tty1".enable = false;
-      "autovt@tty1".enable = false;
+      "getty@tty1".enable = host == "v7w7r-youyeetoox1";
+      "autovt@tty1".enable = host == "v7w7r-youyeetoox1";
       "getty@tty7".enable = false;
       "autovt@tty7".enable = false;
       "kmsconvt@tty1".enable = false;
