@@ -16,13 +16,15 @@
 
   programs.zen-browser = {
     enable = true;
-    package = (
+    /*
+      package = (
       config.lib.nixGL.wrap (
         (pkgs.wrapFirefox) (inputs.zen-browser.packages.${system}.twilight-unwrapped.override {
           policies = import ./policies.nix;
         }) { }
       )
-    );
+      );
+    */
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
     languagePacks = [ "es-ES" ];
     profiles.default = {
