@@ -6,7 +6,7 @@
     croc.enable = true;
     dnsmasq.enable = true;
     openssh.enable = true;
-    tailscale.enable = true;
+    tailscale.enable = false;
     ttyd = {
       enable = true;
       writeable = true;

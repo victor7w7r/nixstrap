@@ -1,10 +1,11 @@
 {
-  disk ? "main",
-  name ? "emergency",
+  efiDisk ? "main",
+  emergencyDisk ? "main",
+  emergencyName ? "emergency",
 }:
 {
   "/boot" = {
-    device = "/dev/disk/by-partlabel/disk-main-EFI";
+    device = "/dev/disk/by-partlabel/disk-${efiDisk}-EFI";
     fsType = "vfat";
     options = [
       "lazytime"
@@ -19,7 +20,7 @@
     ];
   };
   "/boot/emergency" = {
-    device = "/dev/disk/by-partlabel/disk-${disk}-${name}";
+    device = "/dev/disk/by-partlabel/disk-${emergencyDisk}-${emergencyName}";
     fsType = "btrfs";
     options = [
       "lazytime"
