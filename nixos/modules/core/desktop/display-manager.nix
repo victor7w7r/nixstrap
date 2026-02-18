@@ -40,10 +40,13 @@
         accelSpeed = "0.75";
       };
     };
-    xserver.xkb = {
-      layout = "us";
-      variant = "intl-unicode";
-      options = "caps:ctrl_modifier";
+    xserver = {
+      displayManager.lightdm.enable = false;
+      xkb = {
+        layout = "us";
+        variant = "intl-unicode";
+        options = "caps:ctrl_modifier";
+      };
     };
     displayManager = {
       sddm = {

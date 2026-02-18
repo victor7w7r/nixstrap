@@ -10,23 +10,37 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
-    "/nix" = f2fs { label = "store"; };
+    "/nix" = f2fs {
+      label = "store";
+      depends = [ "/" ];
+    };
     "/nix/persist" = zfs {
       pool = "zpersist";
       dataset = "persist";
+      depends = [ "/nix" ];
     };
     "/nix/persist/shared" = f2fs {
       label = "store";
       neededForBoot = false;
+      depends = [ "/nix/persist" ];
     };
     "/nix/persist/cloud" = zfs {
       pool = "zcloud";
       dataset = "cloud";
       neededForBoot = false;
+      depends = [ "/nix/persist" ];
     };
   };
 
-  swapDevices = [ { device = "/dev/zvol/zswap/local/swap"; } ];
+  /*
+    swapDevices = [
+    {
+      device = "/dev/zvol/zswap/local/swap";
+      discardPolicy = "both";
+      options = [ "nofail" ];
+    }
+    ];
+  */
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
     kernelPackages = pkgs.linuxPackages_6_12;

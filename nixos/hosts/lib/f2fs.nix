@@ -1,6 +1,7 @@
 {
   label,
   neededForBoot ? true,
+  depends ? [ ],
 }:
 {
   device = "/dev/disk/by-partlabel/disk-emmc-${label}";
@@ -23,5 +24,5 @@
     "checkpoint_merge"
     "gc_merge"
   ];
-  inherit neededForBoot;
+  inherit neededForBoot depends;
 }
