@@ -69,26 +69,25 @@ in
       ];
       supportedFilesystems = [ "zfs" ];
       systemd = {
-        mounts = [
-          {
-            where = "/media";
-            what = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
-            options = "nofail,noatime,lazytime,ssd,rw,x-initrd.mount";
-            wantedBy = [ "zfs-import-setsecrets.service" ];
-            before = [ "zfs-import-setsecrets.service" ];
-          }
-        ];
         services.zfs-import-setsecrets = {
-          wantedBy = [
-            "zfs-import-zcloud.service"
-            "zfs-import-zpersist.service"
-            "zfs-import-zswap.service"
-          ];
           after = [ "media.mount" ];
+          wantedBy = [ "initrd-fs.target" ];
+          before = [ "initrd-fs.target" ];
+          unitConfig.DefaultDependencies = false;
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
           script = ''
-            zpool status zcloud || zpool import -f zcloud
-            zpool status zswap || zpool import -f zswap
-            zpool status zpersist || zpool import -f zpersist
+            set -e
+
+            mkdir -p /media
+            mount -t btrfs -o nofail,noatime,lazytime,ssd,rw,x-initrd.mount \
+                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /medias
+
+            zpool import -f zcloud
+            zpool import -f zswap
+            zpool import -f zpersist
 
             cat /media/secret.key | zfs load-key zcloud/safe/cloud
             cat /media/secret.key | zfs load-key zswap/local/swap
