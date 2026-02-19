@@ -63,11 +63,11 @@ in
       forceImportRoot = true;
     };
     initrd = {
-      availableKernelModules = [
-        "i915"
-        "autofs"
-        "tpm-tis"
+      availableKernelModules = [ "i915" ];
+      kernelModules = [
         "mmc_block"
+        "zfs"
+        "autofs"
         "sdhci_pci"
         "usb_storage"
         "uas"
@@ -77,6 +77,7 @@ in
         "usbcore"
         "sdhci_acpi"
         "sdhci"
+        "tpm-tis"
       ];
       supportedFilesystems = [ "zfs" ];
       systemd.services = {
@@ -94,6 +95,7 @@ in
             before = [
               "zfs-load-key.service"
               "rollback-zfs.service"
+              "sysroot.mount"
               "initrd-fs.target"
             ];
             after = [ disk ];
@@ -108,10 +110,12 @@ in
           };
 
         zfs-load-key = {
+          requiredBy = [ "sysroot.mount" ];
           wantedBy = [ "initrd.target" ];
           after = [ "zfs-setimport.service" ];
           before = [
             "rollback-zfs.service"
+            "sysroot.mount"
             "initrd-fs.target"
           ];
           path = [ config.boot.zfs.package ];
@@ -120,9 +124,9 @@ in
             DefaultDependencies = false;
           };
           script = ''
-            cat /media/secret.key | zfs load-key zswap/local/swap || true
-            cat /media/secret.key | zfs load-key zpersist/safe/persist || true
-            cat /media/secret.key | zfs load-key zcloud/safe/cloud || true
+            cat /media/secret.key | zfs load-key zswap/local/swap
+            cat /media/secret.key | zfs load-key zpersist/safe/persist
+            cat /media/secret.key | zfs load-key zcloud/safe/cloud
           '';
           serviceConfig = {
             Type = "oneshot";
