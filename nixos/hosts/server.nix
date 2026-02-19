@@ -50,7 +50,7 @@ in
     zfs = {
       allowHibernation = true;
       forceImportAll = false;
-      forceImportRoot = false;
+      forceImportRoot = true;
     };
     initrd = {
       availableKernelModules = [
@@ -69,7 +69,6 @@ in
         "sdhci"
       ];
       supportedFilesystems = [ "zfs" ];
-      kernelModules = [ "" ];
       systemd = {
         mounts = [
           {
@@ -86,11 +85,7 @@ in
             "zfs-import-zpersist.service"
             "zfs-import-zswap.service"
           ];
-          before = [
-            "zfs-import-zcloud.service"
-            "zfs-import-zpersist.service"
-            "zfs-import-zswap.service"
-          ];
+          after = [ "media.mount" ];
           script = ''
             zpool status zcloud || zpool import -f zcloud
             zpool status zswap || zpool import -f zswap
