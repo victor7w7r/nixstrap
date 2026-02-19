@@ -101,18 +101,10 @@ in
             set -e
             set -x
             mkdir -p /media
+            mount -t btrfs -o rw,noatime,ssd,discard=async \
+                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+
             zpool import -f -N -a -d /dev/disk/by-id
-
-            until mount -t btrfs -o rw,noatime,ssd,discard=async \
-                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media; do
-                echo "Waiting USB Media..."
-                sleep 1
-            done
-
-            while [ ! -f /media/secret.key ]; do
-                echo "Media Key Loading"
-                sleep 1
-            done
 
             cat /media/secret.key | zfs load-key zswap/local/swap
             cat /media/secret.key | zfs load-key zpersist/safe/persist
