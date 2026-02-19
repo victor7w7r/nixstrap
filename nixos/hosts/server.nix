@@ -58,7 +58,7 @@ in
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server;
     zfs = {
-      package = pkgs.zfs_cachyos;
+      package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;
       forceImportRoot = true;
     };
