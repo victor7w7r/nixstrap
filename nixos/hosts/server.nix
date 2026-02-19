@@ -82,6 +82,7 @@ in
           "${pkgs.btrfs-progs}/bin/btrfs"
           "${pkgs.util-linux}/bin/mount"
           "${pkgs.util-linux}/bin/umount"
+          "${pkgs.coreutils}/bin/sleep"
           "${pkgs.systemd}/bin/udevadm"
         ];
         services = {

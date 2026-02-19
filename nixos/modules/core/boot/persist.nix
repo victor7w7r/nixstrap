@@ -26,7 +26,6 @@ in
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = ''
-        umount -fl /sysroot || true
         sleep 0.5
         zfs rollback -r zroot/local/root@empty
       '';
