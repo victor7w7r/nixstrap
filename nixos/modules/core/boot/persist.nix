@@ -11,26 +11,6 @@ let
 in
 {
   boot.initrd.systemd.services = {
-    rollback-zfs = lib.mkIf specialHosts {
-      requiredBy = [ "initrd-fs.target" ];
-      wantedBy = [ "initrd.target" ];
-      before = [
-        "sysroot.mount"
-        "initrd-fs.target"
-      ];
-      after = [ "zfs-setimport.service" ];
-      path = [
-        config.boot.zfs.package
-        pkgs.util-linux
-      ];
-      unitConfig.DefaultDependencies = "no";
-      serviceConfig.Type = "oneshot";
-      script = ''
-        sleep 0.5
-        zfs rollback -r zroot/local/root@empty
-      '';
-    };
-
     rollback-btrfs = lib.mkIf (!specialHosts) {
       wantedBy = [ "initrd.target" ];
       after = [ "initrd-root-device.target" ];

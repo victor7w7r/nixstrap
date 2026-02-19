@@ -129,7 +129,7 @@ in
                 done
 
               zpool import -f -N -a -d /dev/disk/by-id
-
+              zfs rollback -r zroot/local/root@empty
               cat /media/secret.key | zfs load-key zswap/local/swap
               cat /media/secret.key | zfs load-key zpersist/safe/persist
               cat /media/secret.key | zfs load-key zcloud/safe/cloud
