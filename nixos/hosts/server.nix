@@ -113,10 +113,10 @@ in
               mkdir -p /media
               DEVICE="/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"
 
+              udevadm trigger --action=add --subsystem-match=block
               for i in {1..30}; do
                 if [ ! -e "$DEVICE" ]; then
-                    udevadm trigger --action=add --subsystem-match=block
-                    udevadm settle --timeout=1
+                    udevadm settle --timeout=3 || true
                 fi
                 if [ -e "$DEVICE" ]; then
                     echo "Appear in attempt $i"

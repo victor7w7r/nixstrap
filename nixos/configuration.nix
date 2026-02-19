@@ -99,7 +99,6 @@
     secrets = {
       seckey-d = { };
       ssh-vm-pub = { };
-      userpass = { };
       ssh-vm-key = { };
       age-vm-key = { };
     };

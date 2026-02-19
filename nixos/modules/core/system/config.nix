@@ -25,34 +25,38 @@
       LC_TIME = "es_ES.UTF-8";
     };
   };
-  users.defaultUserShell = pkgs.zsh;
-  users.users = {
-    ${username} = {
-      autoSubUidGidRange = false;
-      description = "${username}";
-      group = "users";
-      isNormalUser = true;
-      password = config.sops.secrets.userpass.path;
-      uid = 1000;
-      extraGroups = [
-        "audio"
-        "gamemode"
-        "input"
-        "kvm"
-        "libvirtd"
-        "libvirt-qemu"
-        "networkmanager"
-        "power"
-        "qemu"
-        "qemu-libvirtd"
-        "plugdev"
-        "realtime"
-        "storage"
-        "tty"
-        "users"
-        "video"
-        "wheel"
-      ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    mutableUsers = false;
+    users = {
+      root.hashedPassword = "$y$j9T$ieUYJ2thSsvR1M37kWe651$yt0z7Ga3..johS8fyA1Y9GaoddW.jfE838xXiFhcus1";
+      "${username}" = {
+        autoSubUidGidRange = false;
+        description = "${username}";
+        group = "users";
+        isNormalUser = true;
+        hashedPassword = "$y$j9T$ieUYJ2thSsvR1M37kWe651$yt0z7Ga3..johS8fyA1Y9GaoddW.jfE838xXiFhcus1";
+        uid = 1000;
+        extraGroups = [
+          "audio"
+          "gamemode"
+          "input"
+          "kvm"
+          "libvirtd"
+          "libvirt-qemu"
+          "networkmanager"
+          "power"
+          "qemu"
+          "qemu-libvirtd"
+          "plugdev"
+          "realtime"
+          "storage"
+          "tty"
+          "users"
+          "video"
+          "wheel"
+        ];
+      };
     };
   };
 
