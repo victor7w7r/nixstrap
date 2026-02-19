@@ -1,12 +1,8 @@
 {
-  nix-cachyos-kernel,
   pkgs,
   lib,
   ...
 }:
-let
-  standardKernel = (import ./kernels/standard.nix { inherit pkgs nix-cachyos-kernel; });
-in
 {
   boot = {
     loader.grub.memtest86.enable = true;
@@ -16,14 +12,7 @@ in
       "dm-snapshot"
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
-    kernelPackages = standardKernel.packages.extend (
-      self: super: {
-        zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos.override { kernel = standardKernel.kernel; };
-      }
-    );
-    zfs.package = pkgs.cachyosKernels.zfs-cachyos.override {
-      kernel = standardKernel.kernel;
-    };
+    kernelPackages = pkgs.linuxPackages_6_12;
     initrd = {
       availableKernelModules = [
         "dm-thin-pool"
