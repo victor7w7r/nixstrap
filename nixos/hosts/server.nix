@@ -96,7 +96,10 @@ in
               "initrd-fs.target"
               "sysroot.mount"
             ];
-            after = [ "systemd-modules-load.service" ];
+            after = [
+              "ystemd-udev-settle.service"
+              "systemd-modules-load.service"
+            ];
             unitConfig.DefaultDependencies = false;
             path = [
               config.boot.zfs.package
