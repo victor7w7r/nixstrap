@@ -67,22 +67,6 @@ in
     shutdownRamfs.storePaths = [ "${config.boot.zfs.package}/bin/zfs" ];
   };
 
-  /*
-    impermanence.ignorePaths = [
-    "/etc/NIXOS"
-    "/etc/.clean"
-    "/etc/.updated"
-    "/etc/.pwd.lock"
-    "/var/.updated"
-    "/etc/subgid"
-    "/etc/subuid"
-    "/etc/shadow"
-    "/etc/group"
-    "/etc/passwd"
-    "/root/.nix-channels"
-    ];
-  */
-
   environment.persistence."/nix/persist" = {
     hideMounts = true;
     directories = [
@@ -90,7 +74,16 @@ in
       "/etc/nixos"
       "/var/log"
       "/var/lib/alsa"
-      "/var/lib/bluetooth"
+      {
+        directory = "/var/lib/bluetooth";
+        mode = "u=rwx,g=,o=";
+      }
+      {
+        directory = "/var/lib/sddm";
+        user = "sddm";
+        group = "sddm";
+        mode = "u=rwx,g=,o=";
+      }
       "/var/lib/pve-cluster"
       "/var/lib/NetworkManager"
       "/var/lib/nixos"
@@ -99,14 +92,24 @@ in
         mode = "0700";
       }
       "/var/lib/systemd"
+      {
+        directory = "/var/lib/private";
+        mode = "u=rwx,g=,o=";
+      }
       "/var/lib/tailscale"
       "/var/lib/sops-nix"
       "/var/lib/tpm2-tss"
+      "/var/lib/waydroid"
     ];
     files = [
       "/etc/adjtime"
       "/etc/logo.svg"
       "/etc/machine-id"
+      "/etc/subgid"
+      "/etc/subuid"
+      "/etc/shadow"
+      "/etc/group"
+      "/etc/passwd"
       "/etc/zfs/zpool.cache"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
