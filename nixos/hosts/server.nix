@@ -82,6 +82,7 @@ in
           "${pkgs.btrfs-progs}/bin/btrfs"
           "${pkgs.util-linux}/bin/mount"
           "${pkgs.util-linux}/bin/umount"
+          "${pkgs.systemd}/bin/udevadm"
         ];
         services = {
           zfs-import-zroot.enable = false;
@@ -97,21 +98,34 @@ in
               "sysroot.mount"
             ];
             after = [
-              "ystemd-udev-settle.service"
               "systemd-modules-load.service"
             ];
             unitConfig.DefaultDependencies = false;
             path = [
               config.boot.zfs.package
               pkgs.util-linux
+              pkgs.systemd
               pkgs.coreutils
             ];
             script = ''
               set -e
-              set -x
               mkdir -p /media
-              mount -t btrfs -o rw,noatime,ssd,discard=async \
-                  /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+              DEVICE="/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"
+
+              for i in {1..30}; do
+                if [ ! -e "$DEVICE" ]; then
+                    udevadm trigger --action=add --subsystem-match=block
+                    udevadm settle --timeout=1
+                fi
+                if [ -e "$DEVICE" ]; then
+                    echo "Appear in attempt $i"
+                    if mount -t btrfs -o rw,noatime,ssd,discard=async "$DEVICE" /media; then
+                        break
+                    fi
+                fi
+                echo "Waiting SCSI/USB... ($i/30)"
+                sleep 1
+                done
 
               zpool import -f -N -a -d /dev/disk/by-id
 
