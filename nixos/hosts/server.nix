@@ -48,7 +48,6 @@ in
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
     kernelPackages = pkgs.linuxPackages_6_12;
     zfs = {
-      allowHibernation = true;
       forceImportAll = false;
       forceImportRoot = true;
     };
