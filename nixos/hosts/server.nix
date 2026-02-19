@@ -77,42 +77,49 @@ in
         "tpm-tis"
       ];
       supportedFilesystems = [ "zfs" ];
-      systemd.services = {
-        zfs-import-zroot.enable = false;
-        zfs-import-zcloud.enable = false;
-        zfs-import-zswap.enable = false;
-        zfs-import-zpersist.enable = false;
+      systemd = {
+        storePaths = [
+          "${pkgs.btrfs-progs}/bin/btrfs"
+          "${pkgs.util-linux}/bin/mount"
+          "${pkgs.util-linux}/bin/umount"
+        ];
+        services = {
+          zfs-import-zroot.enable = false;
+          zfs-import-zcloud.enable = false;
+          zfs-import-zswap.enable = false;
+          zfs-import-zpersist.enable = false;
 
-        zfs-setimport = {
-          wantedBy = [ "initrd.target" ];
-          before = [
-            "rollback-zfs.service"
-            "initrd-fs.target"
-            "sysroot.mount"
-          ];
-          after = [ "systemd-modules-load.service" ];
-          unitConfig.DefaultDependencies = false;
-          path = [
-            config.boot.zfs.package
-            pkgs.util-linux
-            pkgs.coreutils
-          ];
-          script = ''
-            set -e
-            set -x
-            mkdir -p /media
-            mount -t btrfs -o rw,noatime,ssd,discard=async \
-                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+          zfs-setimport = {
+            wantedBy = [ "initrd.target" ];
+            before = [
+              "rollback-zfs.service"
+              "initrd-fs.target"
+              "sysroot.mount"
+            ];
+            after = [ "systemd-modules-load.service" ];
+            unitConfig.DefaultDependencies = false;
+            path = [
+              config.boot.zfs.package
+              pkgs.util-linux
+              pkgs.coreutils
+            ];
+            script = ''
+              set -e
+              set -x
+              mkdir -p /media
+              mount -t btrfs -o rw,noatime,ssd,discard=async \
+                  /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
 
-            zpool import -f -N -a -d /dev/disk/by-id
+              zpool import -f -N -a -d /dev/disk/by-id
 
-            cat /media/secret.key | zfs load-key zswap/local/swap
-            cat /media/secret.key | zfs load-key zpersist/safe/persist
-            cat /media/secret.key | zfs load-key zcloud/safe/cloud
-          '';
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
+              cat /media/secret.key | zfs load-key zswap/local/swap
+              cat /media/secret.key | zfs load-key zpersist/safe/persist
+              cat /media/secret.key | zfs load-key zcloud/safe/cloud
+            '';
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
           };
         };
       };
