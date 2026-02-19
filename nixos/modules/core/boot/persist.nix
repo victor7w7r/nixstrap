@@ -13,11 +13,9 @@ in
   boot.initrd.systemd.services = {
     rollback-zfs = lib.mkIf specialHosts {
       requiredBy = [ "initrd-fs.target" ];
+      wantedBy = [ "initrd.target" ];
       before = [ "initrd-fs.target" ];
-      after = [
-        "zfs-setimport.service"
-        "zfs-load-key.service"
-      ];
+      after = [ "zfs-setimport.service" ];
       path = [ config.boot.zfs.package ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";

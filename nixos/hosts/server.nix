@@ -63,6 +63,7 @@ in
       kernelModules = [
         "mmc_block"
         "zfs"
+        "btrfs"
         "autofs"
         "sdhci_pci"
         "usb_storage"
@@ -83,37 +84,36 @@ in
         zfs-import-zpersist.enable = false;
 
         zfs-setimport = {
-          wantedBy = [ "initrd-fs.target" ];
-          before = [
-            "zfs-load-key.service"
-            "rollback-zfs.service"
-            "sysroot.mount"
-            "initrd-fs.target"
-          ];
-          unitConfig.DefaultDependencies = false;
-          path = [ config.boot.zfs.package ];
-          script = "zpool import -f -N -a -d /dev/disk/by-id";
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-          };
-        };
-
-        zfs-load-key = {
-          requiredBy = [ "initrd-fs.target" ];
-          after = [ "zfs-setimport.service" ];
+          wantedBy = [ "initrd.target" ];
           before = [
             "rollback-zfs.service"
             "initrd-fs.target"
             "sysroot.mount"
           ];
-          path = [ config.boot.zfs.package ];
+          after = [ "systemd-modules-load.service" ];
           unitConfig.DefaultDependencies = false;
-
+          path = [
+            config.boot.zfs.package
+            pkgs.util-linux
+            pkgs.coreutils
+          ];
           script = ''
+            set -e
+            set -x
             mkdir -p /media
-            mount -t btrfs -o rw,noatime,lazytime,ssd,discard=async \
-                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
+            zpool import -f -N -a -d /dev/disk/by-id
+
+            until mount -t btrfs -o rw,noatime,ssd,discard=async \
+                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media; do
+                echo "Waiting USB Media..."
+                sleep 1
+            done
+
+            while [ ! -f /media/secret.key ]; do
+                echo "Media Key Loading"
+                sleep 1
+            done
+
             cat /media/secret.key | zfs load-key zswap/local/swap
             cat /media/secret.key | zfs load-key zpersist/safe/persist
             cat /media/secret.key | zfs load-key zcloud/safe/cloud
@@ -123,7 +123,6 @@ in
             RemainAfterExit = true;
           };
         };
-
       };
     };
   };
