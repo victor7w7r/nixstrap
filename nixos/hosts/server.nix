@@ -84,38 +84,52 @@ in
         zfs-import-zcloud.enable = false;
         zfs-import-zswap.enable = false;
         zfs-import-zpersist.enable = false;
-        zfs-load-key = {
-          wantedBy = [ "sysroot.mount" ];
-          before = [ "sysroot.mount" ];
-          unitConfig = {
-            RequiresMountsFor = "/media";
-            DefaultDependencies = false;
-          };
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = ''
-              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zswap/local/swap
-              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zpersist/safe/persist
-              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zcloud/safe/cloud
-            '';
-            RemainAfterExit = true;
-          };
-        };
+
         zfs-setimport =
           let
             disk = "${utils.escapeSystemdPath "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"}.device";
           in
           {
-            requiredBy = [ "zfs-load-key.service" ];
+            wantedBy = [ "initrd-fs.target" ];
+            before = [
+              "zfs-load-key.service"
+              "rollback-zfs.service"
+              "initrd-fs.target"
+            ];
             after = [ disk ];
             bindsTo = [ disk ];
             unitConfig.DefaultDependencies = false;
             serviceConfig = {
               Type = "oneshot";
+              path = [ config.boot.zfs.package ];
               ExecStart = "${config.boot.zfs.package}/bin/zpool import -f -N -a -d /dev/disk/by-id";
               RemainAfterExit = true;
             };
           };
+
+        zfs-load-key = {
+          wantedBy = [ "initrd.target" ];
+          after = [ "zfs-setimport.service" ];
+          before = [
+            "rollback-zfs.service"
+            "initrd-fs.target"
+          ];
+          path = [ config.boot.zfs.package ];
+          unitConfig = {
+            RequiresMountsFor = "/media";
+            DefaultDependencies = false;
+          };
+          script = ''
+            cat /media/secret.key | zfs load-key zswap/local/swap || true
+            cat /media/secret.key | zfs load-key zpersist/safe/persist || true
+            cat /media/secret.key | zfs load-key zcloud/safe/cloud || true
+          '';
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+        };
+
       };
     };
   };

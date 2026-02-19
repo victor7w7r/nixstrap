@@ -12,17 +12,18 @@ in
 {
   boot.initrd.systemd.services = {
     rollback-zfs = lib.mkIf specialHosts {
-      description = "Rollback ZFS root dataset to a pristine state";
       wantedBy = [ "initrd.target" ];
-      after = [ "zfs-import-zroot.service" ];
-      before = [ "sysroot.mount" ];
+      before = [ "initrd-fs.target" ];
+      after = [
+        "zfs-setimport.service"
+        "zfs-load-key.service"
+      ];
       path = [ config.boot.zfs.package ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
-      script = ''
-        zfs rollback -r zroot/local/root@empty
-      '';
+      script = "zfs rollback -r zroot/local/root@empty";
     };
+
     rollback-btrfs = lib.mkIf (!specialHosts) {
       wantedBy = [ "initrd.target" ];
       after = [ "initrd-root-device.target" ];
