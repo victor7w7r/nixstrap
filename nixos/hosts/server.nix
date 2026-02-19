@@ -105,7 +105,6 @@ in
       enable = true;
       interval = "Sat, 02:00";
       pools = [
-        "zroot"
         "zpersist"
         "zcloud"
       ];
