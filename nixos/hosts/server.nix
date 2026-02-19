@@ -85,6 +85,7 @@ in
             mount -t btrfs -o nofail,noatime,lazytime,ssd,rw,x-initrd.mount \
                 /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
 
+            zpool import -f zroot
             zpool import -f zcloud
             zpool import -f zswap
             zpool import -f zpersist
