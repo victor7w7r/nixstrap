@@ -23,10 +23,6 @@ in
       label = "store";
       depends = [ "/" ];
     };
-    "/media" = btrfs {
-      hasSubvol = false;
-      device = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
-    };
     "/nix/persist" = zfs {
       pool = "zpersist";
       dataset = "persist";
@@ -86,28 +82,22 @@ in
         zfs-import-zswap.enable = false;
         zfs-import-zpersist.enable = false;
 
-        zfs-setimport =
-          let
-            disk = "${utils.escapeSystemdPath "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"}.device";
-          in
-          {
-            wantedBy = [ "initrd-fs.target" ];
-            before = [
-              "zfs-load-key.service"
-              "rollback-zfs.service"
-              "sysroot.mount"
-              "initrd-fs.target"
-            ];
-            after = [ disk ];
-            bindsTo = [ disk ];
-            unitConfig.DefaultDependencies = false;
-            path = [ config.boot.zfs.package ];
-            script = "zpool import -f -N -a -d /dev/disk/by-id";
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-            };
+        zfs-setimport = {
+          wantedBy = [ "initrd-fs.target" ];
+          before = [
+            "zfs-load-key.service"
+            "rollback-zfs.service"
+            "sysroot.mount"
+            "initrd-fs.target"
+          ];
+          unitConfig.DefaultDependencies = false;
+          path = [ config.boot.zfs.package ];
+          script = "zpool import -f -N -a -d /dev/disk/by-id";
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
           };
+        };
 
         zfs-load-key = {
           requiredBy = [ "initrd-fs.target" ];
@@ -118,11 +108,12 @@ in
             "sysroot.mount"
           ];
           path = [ config.boot.zfs.package ];
-          unitConfig = {
-            RequiresMountsFor = "/media";
-            DefaultDependencies = false;
-          };
+          unitConfig.DefaultDependencies = false;
+
           script = ''
+            mkdir -p /media
+            mount -t btrfs -o rw,noatime,lazytime,ssd,discard=async \
+                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
             cat /media/secret.key | zfs load-key zswap/local/swap
             cat /media/secret.key | zfs load-key zpersist/safe/persist
             cat /media/secret.key | zfs load-key zcloud/safe/cloud
