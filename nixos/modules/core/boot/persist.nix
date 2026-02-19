@@ -107,14 +107,8 @@ in
     files = [
       "/etc/adjtime"
       "/etc/logo.svg"
-      {
-        file = "/etc/machine-id";
-        inInitrd = true;
-      }
-      {
-        file = "/etc/zfs/zpool.cache";
-        inInitrd = true;
-      }
+      "/etc/machine-id"
+      "/etc/zfs/zpool.cache"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
