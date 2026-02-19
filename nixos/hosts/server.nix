@@ -101,22 +101,21 @@ in
             after = [ disk ];
             bindsTo = [ disk ];
             unitConfig.DefaultDependencies = false;
+            path = [ config.boot.zfs.package ];
+            script = "zpool import -f -N -a -d /dev/disk/by-id";
             serviceConfig = {
               Type = "oneshot";
-              path = [ config.boot.zfs.package ];
-              ExecStart = "${config.boot.zfs.package}/bin/zpool import -f -N -a -d /dev/disk/by-id";
               RemainAfterExit = true;
             };
           };
 
         zfs-load-key = {
-          requiredBy = [ "sysroot.mount" ];
-          wantedBy = [ "initrd.target" ];
+          requiredBy = [ "initrd-fs.target" ];
           after = [ "zfs-setimport.service" ];
           before = [
             "rollback-zfs.service"
-            "sysroot.mount"
             "initrd-fs.target"
+            "sysroot.mount"
           ];
           path = [ config.boot.zfs.package ];
           unitConfig = {

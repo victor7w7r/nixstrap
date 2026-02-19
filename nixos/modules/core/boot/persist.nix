@@ -12,7 +12,7 @@ in
 {
   boot.initrd.systemd.services = {
     rollback-zfs = lib.mkIf specialHosts {
-      wantedBy = [ "initrd.target" ];
+      requiredBy = [ "initrd-fs.target" ];
       before = [ "initrd-fs.target" ];
       after = [
         "zfs-setimport.service"
