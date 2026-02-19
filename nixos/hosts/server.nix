@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  utils,
+  pkgs,
+  ...
+}:
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
@@ -7,6 +12,7 @@ let
     emergencyDisk = "nvme";
   };
   zfs = import ./lib/zfs.nix;
+  btrfs = import ./lib/btrfs.nix;
   f2fs = import ./lib/f2fs.nix;
 in
 {
@@ -16,6 +22,10 @@ in
     "/nix" = f2fs {
       label = "store";
       depends = [ "/" ];
+    };
+    "/media" = btrfs {
+      hasSubvol = false;
+      device = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
     };
     "/nix/persist" = zfs {
       pool = "zpersist";
@@ -46,8 +56,9 @@ in
   */
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = pkgs.linuxPackages_cachyos-server;
     zfs = {
+      package = pkgs.zfs_cachyos;
       forceImportAll = false;
       forceImportRoot = true;
     };
@@ -68,32 +79,43 @@ in
         "sdhci"
       ];
       supportedFilesystems = [ "zfs" ];
-      systemd = {
-        services.zfs-import-setsecrets = {
-          after = [ "media.mount" ];
-          wantedBy = [ "initrd-fs.target" ];
-          before = [ "initrd-fs.target" ];
-          unitConfig.DefaultDependencies = false;
+      systemd.services = {
+        zfs-import-zroot.enable = false;
+        zfs-import-zcloud.enable = false;
+        zfs-import-zswap.enable = false;
+        zfs-import-zpersist.enable = false;
+        zfs-load-key = {
+          wantedBy = [ "sysroot.mount" ];
+          before = [ "sysroot.mount" ];
+          unitConfig = {
+            RequiresMountsFor = "/media";
+            DefaultDependencies = false;
+          };
           serviceConfig = {
             Type = "oneshot";
+            ExecStart = ''
+              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zswap/local/swap
+              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zpersist/safe/persist
+              ${config.boot.zfs.package}/bin/zfs load-key -L file:///media/secret.key zcloud/safe/cloud
+            '';
             RemainAfterExit = true;
           };
-          script = ''
-            set -e
-
-            mkdir -p /media
-            mount -t btrfs -o nofail,noatime,lazytime,ssd,rw,x-initrd.mount \
-                /dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1 /media
-
-            zpool import -f zcloud
-            zpool import -f zswap
-            zpool import -f zpersist
-
-            cat /media/secret.key | zfs load-key zcloud/safe/cloud
-            cat /media/secret.key | zfs load-key zswap/local/swap
-            cat /media/secret.key | zfs load-key zpersist/safe/persist
-          '';
         };
+        zfs-setimport =
+          let
+            disk = "${utils.escapeSystemdPath "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"}.device";
+          in
+          {
+            requiredBy = [ "zfs-load-key.service" ];
+            after = [ disk ];
+            bindsTo = [ disk ];
+            unitConfig.DefaultDependencies = false;
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = "${config.boot.zfs.package}/bin/zpool import -f -N -a -d /dev/disk/by-id";
+              RemainAfterExit = true;
+            };
+          };
       };
     };
   };

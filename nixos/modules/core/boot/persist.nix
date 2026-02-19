@@ -90,22 +90,31 @@ in
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       "/var/log"
+      "/var/lib/alsa"
       "/var/lib/bluetooth"
       "/var/lib/pve-cluster"
+      "/var/lib/NetworkManager"
       "/var/lib/nixos"
       {
         directory = "/var/lib/sbctl";
         mode = "0700";
       }
-      "/var/lib/systemd/coredump"
-      "/var/lib/NetworkManager"
+      "/var/lib/systemd"
+      "/var/lib/tailscale"
+      "/var/lib/sops-nix"
       "/var/lib/tpm2-tss"
     ];
     files = [
-      "/etc/machine-id"
       "/etc/adjtime"
       "/etc/logo.svg"
-      "/etc/zfs/zpool.cache"
+      {
+        file = "/etc/machine-id";
+        inInitrd = true;
+      }
+      {
+        file = "/etc/zfs/zpool.cache";
+        inInitrd = true;
+      }
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
