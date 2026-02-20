@@ -26,6 +26,13 @@
           };
         });
 
+        Term-ReadLine = super.perlPackages.Term-ReadLine.overrideAttrs (oldAttrs: {
+          src = super.fetchurl {
+            url = "mirror://cpan/authors/id/F/FL/FLORA/Term-ReadLine-1.14.tar.gz";
+            hash = "sha256-c2xHpG8rvuF50JyMUJlw1lYeliVr6VkyPwjzQR6Bves=";
+          };
+        });
+
       };
     })
   ];

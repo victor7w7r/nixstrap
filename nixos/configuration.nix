@@ -57,7 +57,7 @@
         options = "--delete-older-than 7d";
       };
       daemonCPUSchedPolicy = if is-term-hosts then "batch" else "idle";
-      daemonIOSchedPriority = if is-term-hosts then 2 else 5;
+      daemonIOSchedPriority = if is-term-hosts then 0 else 5;
       distributedBuilds = true;
       optimise.automatic = true;
       package = lib.mkDefault (pkgs.lix);
