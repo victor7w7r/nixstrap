@@ -6,11 +6,6 @@
   #   /nix/persist/var/lib/secrets/harmonia.pub
   services.harmonia.signKeyPaths = [ "/var/lib/secrets/harmonia.secret" ];
 
-  security.acme = {
-    defaults.email = "arkano036@gmail.com";
-    acceptTerms = true;
-  };
-
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;
