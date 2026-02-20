@@ -2,6 +2,6 @@
 {
   imports = [
     (import ./harmonia.nix)
-    #(import ./proxmox.nix)
+    (import ./proxmox.nix)
   ];
 }
