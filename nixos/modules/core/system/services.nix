@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  host,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services = {
     gvfs.enable = true;
@@ -12,14 +17,14 @@
 
     dbus = {
       enable = true;
-      packages = with pkgs; [
+      packages = [
         #nohang
         #uresourced
       ];
     };
 
     kmscon = {
-      enable = true;
+      enable = host != "v7w7r-youyeetoox1";
       hwRender = false;
       fonts = [
         {
