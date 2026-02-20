@@ -70,6 +70,15 @@ in
             }
           else
             { }
+        )
+        // (
+          if host == "v7w7r-youyeetoox1" then
+            {
+              TLP_DEFAULT_MODE = "AC";
+              TLP_PERSISTENT_DEFAULT = 1;
+            }
+          else
+            { }
         );
     };
 
