@@ -8,6 +8,15 @@ let
     else
       "schedutil"
   );
+
+  perfpolicy = (
+    if host == "v7w7r-higole" then
+      "default"
+    else if host == "v7w7r-youyeetoox1" then
+      "performance"
+    else
+      "balance_performance"
+  );
 in
 {
   services = {
@@ -32,7 +41,7 @@ in
         {
           CPU_SCALING_GOVERNOR_ON_AC = governor;
           CPU_SCALING_GOVERNOR_ON_BAT = if host == "v7w7r-rc71l" then "schedutil" else "powersave";
-          CPU_ENERGY_PERF_POLICY_ON_AC = if is-gole then "default" else "balance_performance";
+          CPU_ENERGY_PERF_POLICY_ON_AC = perfpolicy;
           CPU_ENERGY_PERF_POLICY_ON_BAT = if is-gole then "power" else "balance_power";
           CPU_BOOST_ON_AC = if is-term-hosts then 1 else 0;
           CPU_BOOST_ON_BAT = 0;
