@@ -2,7 +2,7 @@
 {
   services = {
     gvfs.enable = true;
-    glances.enable = true;
+    glances.enable = false;
     locate.enable = true;
     lvm.boot.thin.enable = true;
     #restic.enable = true;

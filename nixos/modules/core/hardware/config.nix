@@ -46,6 +46,6 @@
     #corefreq.enable = true;
     iotop.enable = true;
     usbtop.enable = true;
-    coolercontrol.enable = true;
+    coolercontrol.enable = host != "v7w7r-youyeetoox1";
   };
 }

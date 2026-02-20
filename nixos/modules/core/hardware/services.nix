@@ -12,7 +12,7 @@ in
 {
   services = {
     blueman.enable = host != "v7w7r-nixvm";
-    fwupd.enable = true;
+    fwupd.enable = host == "v7w7r-rc71l";
     #lact.enable = true;
     sysstat.enable = true;
     smartd.enable = false;

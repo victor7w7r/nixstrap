@@ -1,6 +1,5 @@
 {
   config,
-  utils,
   pkgs,
   ...
 }:
@@ -12,7 +11,6 @@ let
     emergencyDisk = "nvme";
   };
   zfs = import ./lib/zfs.nix;
-  btrfs = import ./lib/btrfs.nix;
   f2fs = import ./lib/f2fs.nix;
 in
 {
@@ -40,21 +38,19 @@ in
       depends = [ "/nix/persist" ];
     };
   };
-
-  /*
-    swapDevices = [
+  swapDevices = [
     {
-      device = "/dev/zvol/zswap/local/swap";
+      device = "/dev/zd0";
       discardPolicy = "both";
       options = [ "nofail" ];
     }
-    ];
-  */
+  ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+    kernelPackages = pkgs.linuxPackages_lqx;
     zfs = {
-      package = config.boot.kernelPackages.zfs_cachyos;
+      #package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;
       forceImportRoot = true;
     };
