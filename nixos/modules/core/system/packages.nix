@@ -23,6 +23,7 @@
       luksmeta
       keyd
       killall
+      modprobed-db
       mokutil
       rsyncy
       p7zip
