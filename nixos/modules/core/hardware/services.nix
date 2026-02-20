@@ -1,4 +1,4 @@
-{ host, ... }:
+{ lib, host, ... }:
 let
   governor = (
     if host == "v7w7r-macmini81" then
@@ -16,7 +16,7 @@ in
     #lact.enable = true;
     sysstat.enable = true;
     smartd.enable = false;
-    upower.enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
+    upower.enable = lib.mkDefault host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
     power-profiles-daemon.enable = false;
     thermald.enable = host != "v7w7r-youyeetoox1";
     udisks2.enable = true;
