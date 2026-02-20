@@ -19,6 +19,13 @@
           };
         });
 
+        FindBin = super.perlPackages.FindBin.overrideAttrs (oldAttrs: {
+          src = super.fetchurl {
+            url = "mirror://cpan/authors/id/T/TO/TODDR/FindBin-1.54.tar.gz";
+            hash = "sha256-8IqwsL8DXfNkRAlgfX0vElqPQwZMSRBr5S68DRy+2Zo=";
+          };
+        });
+
       };
     })
   ];

@@ -1,13 +1,24 @@
 { host, ... }:
+let
+  governor = (
+    if host == "v7w7r-macmini81" then
+      "ondemand"
+    else if host == "v7w7r-youyeetoox1" then
+      "performance"
+    else
+      "schedutil"
+  );
+in
 {
   services = {
-    blueman.enable = (host != "v7w7r-nixvm");
+    blueman.enable = host != "v7w7r-nixvm";
     fwupd.enable = true;
     #lact.enable = true;
     sysstat.enable = true;
     smartd.enable = false;
+    upower.enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
     power-profiles-daemon.enable = false;
-    thermald.enable = true;
+    thermald.enable = host != "v7w7r-youyeetoox1";
     udisks2.enable = true;
     tlp = {
       enable = true;
@@ -19,8 +30,8 @@
           is-mac = host == "v7w7r-macmini81";
         in
         {
-          CPU_SCALING_GOVERNOR_ON_AC = "ondemand";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          CPU_SCALING_GOVERNOR_ON_AC = governor;
+          CPU_SCALING_GOVERNOR_ON_BAT = if host == "v7w7r-rc71l" then "schedutil" else "powersave";
           CPU_ENERGY_PERF_POLICY_ON_AC = if is-gole then "default" else "balance_performance";
           CPU_ENERGY_PERF_POLICY_ON_BAT = if is-gole then "power" else "balance_power";
           CPU_BOOST_ON_AC = if is-term-hosts then 1 else 0;
@@ -39,7 +50,7 @@
           WIFI_PWR_ON_BAT = if is-battery then "on" else "off";
           SOUND_POWER_SAVE_ON_AC = if is-gole then 1 else 0;
           SOUND_POWER_SAVE_ON_BAT = if is-gole then 1 else 0;
-          USB_AUTOSUSPEND = if is-battery || host == "v7w7r-youyeetoox1" then 1 else 0;
+          USB_AUTOSUSPEND = if is-battery then 1 else 0;
           SCHED_POWERSAVE_ON_AC = 0;
           SCHED_POWERSAVE_ON_BAT = 1;
         }
