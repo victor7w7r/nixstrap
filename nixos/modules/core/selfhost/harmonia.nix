@@ -11,7 +11,7 @@
     recommendedTlsSettings = true;
     virtualHosts."cache.v7w7r.local" = {
       enableACME = false;
-      forceSSL = true;
+      forceSSL = false;
       locations."/".extraConfig = ''
         proxy_pass http://127.0.0.1:5000;
         proxy_set_header Host $host;
