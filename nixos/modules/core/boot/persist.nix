@@ -88,6 +88,7 @@ in
       "/var/lib/tailscale"
       "/var/lib/sops-nix"
       "/var/lib/tpm2-tss"
+      "/var/lib/secrets"
       "/var/lib/waydroid"
     ];
     files = [
