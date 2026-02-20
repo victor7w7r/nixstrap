@@ -8,8 +8,8 @@
 
   systemd.services."corosync".enable = false;
   systemd.services."pvestatd".enable = false;
-  systemd.services."pvescheduler".enable = false;
-  systemd.services."pvebanner".enable = false;
+  #systemd.services."pvescheduler".enable = false;
+  #systemd.services."pvebanner".enable = false;
   networking.bridges.vmbr0.interfaces = [ "ens18" ];
   networking.interfaces.vmbr0.useDHCP = lib.mkDefault true;
 }
