@@ -2,6 +2,7 @@
   lib,
   pkgs,
   buildLinux,
+  inputs,
   fetchurl,
   stdenv,
   ...
@@ -13,6 +14,7 @@ let
 
   simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
+    inherit inputs;
     configVariant = "linux-cachyos-lts";
     cpusched = "eevdf";
     hardened = true;
