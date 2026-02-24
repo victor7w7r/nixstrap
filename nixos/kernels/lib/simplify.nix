@@ -658,7 +658,7 @@ rec {
     MARVELL_10G_PHY = no;
     AS21XXX_PHY = no;
     AIR_EN8811H_PHY = no;
-    AMD_PHY = f module;
+    AMD_PHY = lib.mkForce module;
     ADIN_PHY = no;
     ADIN1100_PHY = no;
     AQUANTIA_PHY = no;
