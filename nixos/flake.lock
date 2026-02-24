@@ -33,22 +33,6 @@
         "type": "github"
       }
     },
-    "asus-patches": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1636888308,
-        "narHash": "sha256-9S03h2BRKCzBmOWcecQw00lqEKiMaqZCvKtuyUCOd6A=",
-        "owner": "asus-linux",
-        "repo": "linux-g14",
-        "rev": "305193f3d21789783fff35c3b0d2b7ea07767170",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "asus-linux",
-        "repo": "linux-g14",
-        "type": "gitlab"
-      }
-    },
     "batfetch": {
       "inputs": {
         "nixpkgs": [
@@ -1560,7 +1544,6 @@
     },
     "root": {
       "inputs": {
-        "asus-patches": "asus-patches",
         "batfetch": "batfetch",
         "betterfox": "betterfox",
         "cachyos-kernel": "cachyos-kernel",
