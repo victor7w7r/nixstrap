@@ -1,19 +1,20 @@
 {
   lib,
-  nix-cachyos-kernel,
   pkgs,
+  inputs,
   username,
   ...
 }:
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
+  lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
+  kernel = (pkgs.callPackage ../kernels/rog.nix) { inherit inputs; };
   btrfs = (import ./lib/btrfs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
     partlabel = "games";
   };
-  kernel = (import ./kernels/handheld.nix { inherit pkgs nix-cachyos-kernel; });
 in
 {
   fileSystems = {
@@ -34,9 +35,7 @@ in
       "amdgpu.sg_display=0"
     ]
     ++ params { };
-    kernelPackages = pkgs.linuxPackages_lqx;
-    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
-    #kernel.packages;
+    kernelPackages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel));
     initrd = {
       kernelModules = [
         "dm-snapshot"

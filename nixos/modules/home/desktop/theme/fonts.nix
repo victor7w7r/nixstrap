@@ -20,7 +20,7 @@
     nerd-fonts.roboto-mono
     nerd-fonts.symbols-only
     nerd-fonts.ubuntu
-    openmoji-color
+    #openmoji-color
     open-sans
   ];
 }
