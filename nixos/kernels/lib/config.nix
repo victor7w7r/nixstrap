@@ -32,7 +32,7 @@ with lib.kernel;
     NET_SCH_FQ_CODEL = module;
     NET_SCH_FQ = yes;
     TCP_CONG_BBR = yes;
-    TCP_CONG_CUBIC = module;
+    TCP_CONG_CUBIC = lib.mkForce module;
   };
 
   procOpt = {
