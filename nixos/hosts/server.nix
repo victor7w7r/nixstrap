@@ -5,6 +5,8 @@
 }:
 let
   intelParams = import ./lib/intel-params.nix;
+  lto = pkgs.callPackage .../kernels/lib/lto.nix { };
+  kernel = pkgs.callPackage ../kernels/server.nix { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
@@ -47,7 +49,9 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+    packages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
+      _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
+    );
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;
