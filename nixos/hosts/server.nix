@@ -50,7 +50,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    packages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
+    kernelPackages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
       _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
     );
     zfs = {
