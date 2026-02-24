@@ -106,7 +106,7 @@ with lib.kernel;
   tickrate = {
     idle = {
       HZ_PERIODIC = no;
-      NO_HZ_FULL = no;
+      NO_HZ_FULL = lib.mkForce no;
       NO_HZ_IDLE = yes;
       NO_HZ = yes;
       NO_HZ_COMMON = yes;
