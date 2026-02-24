@@ -39,10 +39,10 @@ rec {
     DEFAULT_BBR = yes;
     PCIE_MICROCHIP_HOST = no;
     PCI_MESON = no;
-    MTD = f no;
+    MTD = lib.mkForce no;
     X86_EXTENDED_PLATFORM = no;
-    MODULE_COMPRESS_XZ = f no;
-    MODULE_COMPRESS_ZSTD = f yes;
+    MODULE_COMPRESS_XZ = lib.mkForce no;
+    MODULE_COMPRESS_ZSTD = lib.mkForce yes;
     INPUT_MISC = yes;
     INPUT_UINPUT = module;
     EROFS_FS_PCPU_KTHREAD = yes;
@@ -53,15 +53,15 @@ rec {
 
   hacking = {
     RANDSTRUCT_PERFORMANCE = yes;
-    DEBUG_INFO_BTF = f no;
-    DEBUG_INFO_REDUCED = f yes;
-    DEBUG_LIST = f no;
+    DEBUG_INFO_BTF = lib.mkForce no;
+    DEBUG_INFO_REDUCED = lib.mkForce yes;
+    DEBUG_LIST = lib.mkForce no;
     SLUB_DEBUG = no;
-    COMPAT_BRK = f no;
+    COMPAT_BRK = lib.mkForce no;
   };
 
   uselessDrivers = {
-    CHROME_PLATFORMS = f no;
+    CHROME_PLATFORMS = lib.mkForce no;
     SURFACE_PLATFORMS = no;
     IIO = no;
     CXL_BUS = no;
@@ -91,7 +91,7 @@ rec {
     MUX_ADGS1408 = no;
     MUX_GPIO = no;
     NTB = no;
-    INFINIBAND = f no;
+    INFINIBAND = lib.mkForce no;
     MMC_SDHCI_XENON = no;
     MMC_MTK = no;
     MMC_TOSHIBA_PCI = no;
@@ -106,9 +106,9 @@ rec {
     MMC_SDHCI_F_SDH30 = no;
     DRM_ACCEL_HABANALABS = no;
     DRM_ACCEL_QAIC = no;
-    ACCESSIBILITY = f no;
+    ACCESSIBILITY = lib.mkForce no;
     MACINTOSH_DRIVERS = no;
-    GOOGLE_FIRMWARE = f no;
+    GOOGLE_FIRMWARE = lib.mkForce no;
     TARGET_CORE = no;
     SSB = no;
     BCMA = no;
@@ -133,9 +133,9 @@ rec {
     PANASONIC_LAPTOP = no;
     SONY_LAPTOP = no;
     MEEGOPAD_ANX7428 = no;
-    X86_PLATFORM_DRIVERS_DELL = f no;
+    X86_PLATFORM_DRIVERS_DELL = lib.mkForce no;
     MELLANOX_PLATFORM = no;
-    STAGING = f no;
+    STAGING = lib.mkForce no;
     MFD_MADERA = no;
     HOTPLUG_PCI = no;
     TIFM_CORE = no;
@@ -149,7 +149,7 @@ rec {
     CB710_CORE = no;
     ZL3073X_I2C = no;
     ZL3073X_SPI = no;
-    RC_CORE = f no;
+    RC_CORE = lib.mkForce no;
     USB_LGM_PHY = no;
     PHY_PXA_28NM_HSIC = no;
     PHY_CAN_TRANSCEIVER = no;
@@ -159,13 +159,13 @@ rec {
     PHY_SAMSUNG_USB2 = no;
     PHY_TUSB1210 = no;
     PHY_INTEL_LGM_EMMC = no;
-    REGULATOR = f no;
-    RC_DEVICES = f no;
-    RC_DECODERS = f no;
+    REGULATOR = lib.mkForce no;
+    RC_DEVICES = lib.mkForce no;
+    RC_DECODERS = lib.mkForce no;
     COMEDI = no;
     PATA_PARPORT = no;
     PATA_LEGACY = no;
-    MMC = f no;
+    MMC = lib.mkForce no;
     SPI_ALTERA = no;
     SPI_AXI_SPI_ENGINE = no;
     SPI_LM70_LLP = no;
@@ -202,7 +202,7 @@ rec {
     DWC_PCIE_PMU = no;
     FSI = no;
     INPUT_TABLET = no;
-    INPUT_TOUCHSCREEN = f no;
+    INPUT_TOUCHSCREEN = lib.mkForce no;
     JOYSTICK_IFORCE = no;
     INPUT_KEYBOARD = yes;
     INPUT_MOUSE = yes;
@@ -232,7 +232,7 @@ rec {
     JOYSTICK_SENSEHAT = no;
     JOYSTICK_SEESAW = no;
     JOYSTICK_PXRC = no;
-    KEYBOARD_APPLESPI = f no;
+    KEYBOARD_APPLESPI = lib.mkForce no;
     KEYBOARD_BCM = no;
     KEYBOARD_CAP11XX = no;
     KEYBOARD_STMPE = no;
@@ -317,7 +317,7 @@ rec {
     ROMFS_FS = no;
     UFS_FS = no;
     MINIX_FS = no;
-    #F2FS_FS = f no;
+    #F2FS_FS = lib.mkForce no;
     ADFS_FS = no;
     BFS_FS = no;
     EFS_FS = no;
@@ -331,7 +331,7 @@ rec {
     USB_C67X00_HCD = no;
     USB_CDNS_SUPPORT = no;
     USB_MUSB_HDRC = no;
-    USB_SERIAL = f no;
+    USB_SERIAL = lib.mkForce no;
     USB_ATM = no;
     USB_MDC800 = no;
     USB_MICROTEK = no;
@@ -424,7 +424,7 @@ rec {
     TINYDRM_ILI9163 = no;
     TINYDRM_HX8357D = no;
     DRM_PIXPAPER = no;
-    DRM_GMA500 = f no;
+    DRM_GMA500 = lib.mkForce no;
     DRM_QXL = no;
     DRM_MGAG200 = no;
     DRM_PANEL_MIPI_DBI = no;
@@ -480,7 +480,7 @@ rec {
     BACKLIGHT_QCOM_WLED = no;
     DRM_XE = no;
     DRM_I915 = no;
-    AGP = f no;
+    AGP = lib.mkForce no;
   };
 
   uselessNet = {
@@ -529,7 +529,7 @@ rec {
     NET_VENDOR_CADENCE = no;
     NET_VENDOR_CAVIUM = no;
     NET_VENDOR_CHELSIO = no;
-    HAMRADIO = f no;
+    HAMRADIO = lib.mkForce no;
     CAN = no;
     AF_RXRPC = no;
     EQUALIZER = no;
@@ -650,8 +650,8 @@ rec {
     MHI_NET = no;
     ARCNET = no;
     MDIO_HISI_FEMAC = no;
-    HIPPI = f no;
-    WAN = f no;
+    HIPPI = lib.mkForce no;
+    WAN = lib.mkForce no;
     ISDN = no;
     FUJITSU_ES = no;
     PCS_XPCS = no;
@@ -1358,7 +1358,7 @@ rec {
     LENOVO_WMI_HOTKEY_UTILITIES = no;
     LENOVO_WMI_CAMERA = no;
     THINKPAD_ACPI = no;
-    X86_PLATFORM_DRIVERS_HP = f no;
+    X86_PLATFORM_DRIVERS_HP = lib.mkForce no;
     MXM_WMI = no;
     ACERHDF = no;
     ACER_WIRELESS = no;
@@ -1397,7 +1397,7 @@ rec {
     SCSI_ADVANSYS = no;
     SCSI_ARCMSR = no;
     SCSI_ESAS2R = no;
-    MEGARAID_NEWGEN = f no;
+    MEGARAID_NEWGEN = lib.mkForce no;
     MEGARAID_MM = no;
     MEGARAID_MAILBOX = no;
     MEGARAID_LEGACY = no;
