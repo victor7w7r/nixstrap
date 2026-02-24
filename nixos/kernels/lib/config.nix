@@ -90,14 +90,14 @@ with lib.kernel;
     full = {
       PREEMPT_DYNAMIC = yes;
       PREEMPT = yes;
-      PREEMPT_VOLUNTARY = no;
+      PREEMPT_VOLUNTARY = lib.mkForce no;
       PREEMPT_LAZY = no;
       PREEMPT_NONE = no;
     };
     none = {
       PREEMPT_DYNAMIC = no;
       PREEMPT = no;
-      PREEMPT_VOLUNTARY = no;
+      PREEMPT_VOLUNTARY = lib.mkForce no;
       PREEMPT_LAZY = no;
       PREEMPT_NONE = yes;
     };
