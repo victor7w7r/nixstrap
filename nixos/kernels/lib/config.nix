@@ -89,7 +89,7 @@ with lib.kernel;
   preemptType = {
     full = {
       PREEMPT_DYNAMIC = yes;
-      PREEMPT = yes;
+      PREEMPT = lib.mkForce yes;
       PREEMPT_VOLUNTARY = lib.mkForce no;
       PREEMPT_LAZY = no;
       PREEMPT_NONE = no;
