@@ -93,7 +93,7 @@
       kdiff3
       kdiskmark
       krename
-      krita
+      #krita
       krusader
       maliit-keyboard
       onboard
