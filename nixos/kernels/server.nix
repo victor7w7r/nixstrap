@@ -14,7 +14,7 @@ let
 
   simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
-    inherit inputs;
+    inherit inputs version;
     configVariant = "linux-cachyos-lts";
     cpusched = "eevdf";
     hardened = true;
