@@ -27,7 +27,7 @@ in
 buildLinux (
   args
   // {
-    #autoModules = true;
+    autoModules = true;
     inherit version;
     pname = "linux-v7w7r-server";
     modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-v7w7r-server";
