@@ -11,7 +11,7 @@ let
   config = pkgs.callPackage ./lib/config.nix { };
   lto = pkgs.callPackage ./lib/lto.nix { };
 
-  simplify = pkgs.callPackage ./lib/simplify { };
+  simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
     configVariant = "linux-cachyos-lts";
     cpusched = "eevdf";
