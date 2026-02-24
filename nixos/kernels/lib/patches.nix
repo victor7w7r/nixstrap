@@ -121,9 +121,9 @@ in
     patches = [
       kernelPatches.bridge_stp_helper.patch
       kernelPatches.request_key_helper.patch
-    ]
+    ];
     #++ (lib.optional asus asusPatches)
-    ++ cachyosPatches;
+    #++ cachyosPatches;
     postPatch = ''
       install -Dm644 ${kconfigClearence} arch/x86/configs/cachyos_defconfig
     '';
