@@ -1,12 +1,13 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
   intelParams = import ./lib/intel-params.nix;
   lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
-  kernel = (pkgs.callPackage ../kernels/server.nix) { };
+  kernel = (pkgs.callPackage ../kernels/server.nix) { inherit inputs; };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
