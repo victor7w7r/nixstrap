@@ -10,7 +10,7 @@
   ...
 }@args:
 let
-  version = "6.12.74";
+  version = "6.17.13";
   config = (import ./lib/config.nix) { };
   lto = (callPackage ./lib/lto.nix { });
 
@@ -23,11 +23,11 @@ let
       kernelPatches
       applyPatches
       ;
-    configVariant = "linux-cachyos-lts";
+    configVariant = "linux-cachyos-hardened";
     hardened = true;
     src = fetchurl {
       url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-      hash = "sha256-O1busdyaQ38YnKVrgjvjdpmU9ZpOoIlbCOwNIKysoT4=";
+      hash = "sha256-EWgC3DrRZGFjzG/+m926JKgGm1aRNewFI815kGTy7bk=";
     };
   };
 in

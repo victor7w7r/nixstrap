@@ -23,7 +23,7 @@ let
       kernelPatches
       applyPatches
       ;
-    configVariant = "linux-cachyos-lts";
+    configVariant = "linux-cachyos";
     src = fetchurl {
       url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
       hash = "sha256-O1busdyaQ38YnKVrgjvjdpmU9ZpOoIlbCOwNIKysoT4=";
