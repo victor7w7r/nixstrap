@@ -119,9 +119,9 @@ in
     name = "linux-src-patched";
     inherit src;
     patches = [
-    ]
-    ++ (lib.optional asus asusPatches)
-    ++ cachyosPatches;
+    ];
+    #++ (lib.optional asus asusPatches)
+    #++ cachyosPatches;
     postPatch = ''
       install -Dm644 ${kconfigClearence} arch/x86/configs/cachyos_defconfig
     '';
