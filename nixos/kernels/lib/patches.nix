@@ -12,6 +12,7 @@
   hardened ? false,
   acpiCall ? false,
   handheld ? false,
+  ...
 }:
 let
   cachyosConfigFile = "${inputs.cachyos-kernel.outPath}/${configVariant}/config";
@@ -119,9 +120,11 @@ in
     name = "linux-src-patched";
     inherit src;
     patches = [
-    ];
-    #++ (lib.optional asus asusPatches)
-    #++ cachyosPatches;
+      kernelPatches.bridge_stp_helper.patch
+      kernelPatches.request_key_helper.patch
+    ]
+    ++ (lib.optional asus asusPatches)
+    ++ cachyosPatches;
     postPatch = ''
       install -Dm644 ${kconfigClearence} arch/x86/configs/cachyos_defconfig
     '';

@@ -1,10 +1,7 @@
 {
   lib,
-  inputs,
-  callPackage,
+  pkgs,
   buildLinux,
-  kernelPatches,
-  applyPatches,
   fetchurl,
   stdenv,
   ...
@@ -12,17 +9,10 @@
 let
   version = "6.12.74";
   config = (import ./lib/config.nix) { };
-  lto = (callPackage ./lib/lto.nix { });
+  lto = (pkgs.callPackage ./lib/lto.nix { });
 
   simplify = (import ./lib/simplify) { };
-  source = (import ./lib/patches.nix) {
-    inherit
-      lib
-      version
-      inputs
-      kernelPatches
-      applyPatches
-      ;
+  source = (pkgs.callPackage ./lib/patches.nix) {
     configVariant = "linux-cachyos-lts";
     cpusched = "eevdf";
     hardened = true;
