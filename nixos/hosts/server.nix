@@ -5,8 +5,8 @@
 }:
 let
   intelParams = import ./lib/intel-params.nix;
-  lto = pkgs.callPackage ../kernels/lib/lto.nix { };
-  kernel = pkgs.callPackage ../kernels/server.nix { };
+  lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
+  kernel = (pkgs.callPackage ../kernels/server.nix) { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
