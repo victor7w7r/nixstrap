@@ -8,7 +8,7 @@
   ...
 }@args:
 let
-  version = "6.12.74";
+  version = "6.18.7";
   config = pkgs.callPackage ./lib/config.nix { };
   lto = pkgs.callPackage ./lib/lto.nix { };
 
