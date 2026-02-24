@@ -1,6 +1,6 @@
-{ lib }:
+{ lib, ... }:
 with lib.kernel;
-{
+rec {
   general =
     some
     // hacking

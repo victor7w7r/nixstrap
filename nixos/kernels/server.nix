@@ -8,10 +8,10 @@
 }@args:
 let
   version = "6.12.74";
-  config = import ./lib/config.nix { inherit lib; };
+  config = pkgs.callPackage ./lib/config.nix { };
   lto = pkgs.callPackage ./lib/lto.nix { };
 
-  simplify = import ./lib/simplify.nix { inherit lib; };
+  simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
     configVariant = "linux-cachyos-lts";
     cpusched = "eevdf";
