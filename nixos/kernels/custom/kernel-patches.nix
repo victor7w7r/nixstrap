@@ -17,7 +17,7 @@ in
     owner = "CachyOS";
     repo = "kernel-patches";
     rev = "master";
-    sha256 = "sha256-479palXyP6zmfJRiEApiniU5Hv26X3ATUoocahweXUo=";
+    sha256 = "sha256-io8FpzYJCTMdEuE03r/Qp87CHM65iubAzp8kNbubZEk=";
     postFetch = ''
       find "$out" -type f \
           ! -path "6.18/*" \
