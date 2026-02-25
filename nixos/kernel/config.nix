@@ -1,9 +1,7 @@
 { host, lib }:
 let
-  asus = host == "v7w7r-rc71l";
   server = host == "v7w7r-youyeetoox1";
   higole = host == "v7w7r-higole";
-  minNetwork = server || higole;
 in
 with lib.kernel;
 {
@@ -25,10 +23,7 @@ with lib.kernel;
   LTO_CLANG_THIN = yes;
   LTO_CLANG_FULL = no;
 }
-// lib.optionalAttrs (!server) {
-  SCHED_BORE = yes;
-}
-// lib.optionalAttrs asus {
+// lib.optionalAttrs (host == "v7w7r-rc71l") {
   ASUS_ARMOURY = module;
   AMD_PRIVATE_COLOR = yes;
   AMD_3D_VCACHE = module;
@@ -39,7 +34,7 @@ with lib.kernel;
   HID_APPLETB_KBD = module;
   CONTEXT_TRACKING_FORCE = unset;
 }
-// lib.optionalAttrs minNetwork {
+// lib.optionalAttrs (server || higole) {
   CONFIG_DEFAULT_FQ_CODEL = no;
   CONFIG_DEFAULT_FQ = yes;
   DEFAULT_BBR = yes;
@@ -50,54 +45,33 @@ with lib.kernel;
   TCP_CONG_BBR = yes;
   TCP_CONG_CUBIC = lib.mkForce module;
 }
-// lib.optionalAttrs server {
-  HZ = freeform "300";
-  CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = lib.mkForce no;
-  CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
-}
 // (
-  if (!higole) then
-    {
-      GENERIC_CPU = no;
-      X86_NATIVE_CPU = yes;
-    }
-  else
+  if higole then
     {
       GENERIC_CPU = yes;
       MZEN4 = no;
       X86_NATIVE_CPU = no;
       X86_64_VERSION = freeform "2";
     }
-)
-// (
-  if (!server) then
-    {
-      PREEMPT_DYNAMIC = yes;
-      PREEMPT = lib.mkForce yes;
-      PREEMPT_VOLUNTARY = lib.mkForce no;
-      PREEMPT_LAZY = no;
-      PREEMPT_NONE = no;
-    }
   else
     {
+      GENERIC_CPU = no;
+      X86_NATIVE_CPU = yes;
+    }
+)
+// (
+  if server then
+    {
+      HZ = freeform "300";
+      CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = lib.mkForce no;
+      CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
+
       PREEMPT_DYNAMIC = no;
       PREEMPT = no;
       PREEMPT_VOLUNTARY = lib.mkForce no;
       PREEMPT_LAZY = no;
       PREEMPT_NONE = yes;
-    }
-)
-// (
-  if (!server) then
-    {
-      HZ_PERIODIC = no;
-      NO_HZ_FULL = lib.mkForce no;
-      NO_HZ_IDLE = yes;
-      NO_HZ = yes;
-      NO_HZ_COMMON = yes;
-    }
-  else
-    {
+
       HZ_PERIODIC = no;
       NO_HZ_IDLE = no;
       CONTEXT_TRACKING_FORCE = no;
@@ -106,5 +80,21 @@ with lib.kernel;
       NO_HZ = yes;
       NO_HZ_COMMON = yes;
       CONTEXT_TRACKING = yes;
+    }
+  else
+    {
+      SCHED_BORE = yes;
+
+      PREEMPT_DYNAMIC = yes;
+      PREEMPT = lib.mkForce yes;
+      PREEMPT_VOLUNTARY = lib.mkForce no;
+      PREEMPT_LAZY = no;
+      PREEMPT_NONE = no;
+
+      HZ_PERIODIC = no;
+      NO_HZ_FULL = lib.mkForce no;
+      NO_HZ_IDLE = yes;
+      NO_HZ = yes;
+      NO_HZ_COMMON = yes;
     }
 )
