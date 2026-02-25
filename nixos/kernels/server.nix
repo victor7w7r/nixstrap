@@ -8,7 +8,8 @@
   ...
 }@args:
 let
-  version = "6.17.13";
+  version = "6.12.74";
+  #version = "6.17.13";
   localversion = "v7w7r-server";
   config = pkgs.callPackage ./lib/config.nix { inherit localversion; };
   lto = pkgs.callPackage ./lib/lto.nix { };
@@ -21,6 +22,7 @@ let
     src = fetchurl {
       url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
       hash = "sha256-EWgC3DrRZGFjzG/+m926JKgGm1aRNewFI815kGTy7bk=";
+      #hash = "sha256-EWgC3DrRZGFjzG/+m926JKgGm1aRNewFI815kGTy7bk=";
     };
   };
 in
