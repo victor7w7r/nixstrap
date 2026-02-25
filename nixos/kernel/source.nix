@@ -59,18 +59,15 @@ in
     */
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
-      ++ (lib.optional notServer [
-        (fetchCachyPatch "/sched/0001-bore-cachy.patch")
-      ])
       ++ (lib.optional hardened [
         (fetchCachyPatch "/misc/0001-hardened.patch")
       ])
-      ++ (lib.optional asus [
-        (fetchCachyPatch "/misc/0001-acpi-call.patch")
-        (fetchCachyPatch "/misc/0001-handheld.patch")
-      ])
       ++ (lib.optional asus (
-        builtins.map (p: "${patches.asusPatches.outPath}") [
+        [
+          (fetchCachyPatch "/misc/0001-acpi-call.patch")
+          (fetchCachyPatch "/misc/0001-handheld.patch")
+        ]
+        ++ builtins.map (p: "${patches.asusPatches.outPath}") [
           "0001-acpi-proc-idle-skip-dummy-wait.patch"
           "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
           "0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch"
@@ -96,7 +93,10 @@ in
           #"v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch"
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
-      ));
+      ))
+      ++ (lib.optional notServer [
+        (fetchCachyPatch "/sched/0001-bore-cachy.patch")
+      ]);
 
     postPatch = ''
       for dir in arch/*/configs; do
