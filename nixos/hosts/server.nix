@@ -2,6 +2,7 @@
 let
   intelParams = import ./lib/intel-params.nix;
   kernel = (pkgs.callPackage ../kernel) { hardened = true; };
+  helpers = (pkgs.callPackage ../kernel/helpers.nix { });
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
@@ -44,7 +45,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = kernel.extend (
+    kernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel).extend (
       _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
     );
     zfs = {
