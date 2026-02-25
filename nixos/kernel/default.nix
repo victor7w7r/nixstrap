@@ -44,4 +44,4 @@ let
     };
   };
 in
-helpers.ltoKernel kernel
+helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)
