@@ -1,4 +1,4 @@
-{ fetchFromGitHub, fetchGit, ... }:
+{ fetchFromGitHub, fetchgit, ... }:
 {
   cachyPatches = fetchFromGitHub {
     owner = "CachyOS";
@@ -23,7 +23,7 @@
     '';
   };
 
-  asusPatches = fetchGit {
+  asusPatches = fetchgit {
     url = "https://gitlab.com/asus-linux/linux-g14";
     rev = "6.18";
     sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";

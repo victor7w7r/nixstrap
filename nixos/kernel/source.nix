@@ -2,7 +2,6 @@
   host,
   lib,
   pkgs,
-  fetchGit,
   stdenv,
   hardened ? false,
   ...
@@ -33,7 +32,7 @@ let
   asus = host == "v7w7r-rc71l";
   notServer = host != "v7w7r-youyeetoox1";
 
-  patches = pkgs.callPackage ./patches.nix { inherit fetchGit; };
+  patches = pkgs.callPackage ./patches.nix { };
   fetchCachyPatch =
     patchPath:
     pkgs.runCommand "cachyos-${majorMinor}-${patchPath}" { } ''
