@@ -36,7 +36,7 @@ let
     #"0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch"
     #"0002-HID-asus-make-asus_kbd_init-generic-remove-rog_nkey_.patch"
     #"0002-platform-x86-asus-wmi-don-t-fail-if-platform_profile.patch"
-    "0003-asus-bios-refactor-existing-tunings-in-to-asus-bios-.patch"
+    #"0003-asus-bios-refactor-existing-tunings-in-to-asus-bios-.patch"
     #"0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch"
     "0003-platform-x86-asus-wmi-add-macros-and-expose-min-max-.patch"
     "0004-asus-bios-add-panel-hd-control.patch"
