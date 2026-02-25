@@ -7,8 +7,8 @@
   ...
 }:
 let
-  variant = "lts";
-  localVer = "-v7w7r-secured-server";
+  variant = "deckify";
+  localVer = "-v7w7r-handheld";
   kernelSrc = import ./custom/kernel.nix { inherit lib fetchurl; };
   lto = (pkgs.callPackage ./lib/lto.nix { });
   kernelConfig = import ./custom/kernel-config.nix { inherit fetchFromGitHub variant; };
@@ -18,17 +18,14 @@ let
   };
   structuredExtraConfig = import ./lib/struct-config.nix {
     inherit lib;
-    isBore = false;
-    hasBbr3 = false;
-    isServer = true;
-    v2 = true;
+    isAsus = true;
+    zen4 = true;
     v3 = false;
-    preemptTypeFull = false;
-    tickrateFull = false;
   };
   patchedSrc = pkgs.callPackage ./custom/source.nix {
-    cpusched = "eevdf";
-    hardened = true;
+    asus = true;
+    acpiCall = true;
+    handheld = true;
     baseKernel = {
       src = kernelSrc.srcLTS;
       version = kernelSrc.versionLTS;
@@ -43,7 +40,7 @@ let
   };
   kernel = buildLinux {
     # autoModules = false;
-    pname = "linux-cachyos-server";
+    pname = "linux-cachyos-handheld";
     defconfig = "cachyos_defconfig";
     inherit structuredExtraConfig;
     src = patchedSrc;
@@ -56,6 +53,4 @@ let
     };
   };
 in
-(lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
-  _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
-)
+lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)

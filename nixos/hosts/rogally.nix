@@ -1,15 +1,13 @@
 {
   lib,
   pkgs,
-  inputs,
   username,
   ...
 }:
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
-  lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
-  kernel = (pkgs.callPackage ../kernels/rog.nix) { inherit inputs; };
+  kernel = (pkgs.callPackage ../kernels/handheld.nix) { };
   btrfs = (import ./lib/btrfs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
@@ -35,7 +33,7 @@ in
       "amdgpu.sg_display=0"
     ]
     ++ params { };
-    kernelPackages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel));
+    kernelPackages = kernel;
     initrd = {
       kernelModules = [
         "dm-snapshot"

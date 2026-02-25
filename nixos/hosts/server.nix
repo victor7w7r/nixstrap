@@ -1,13 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   intelParams = import ./lib/intel-params.nix;
-  lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
-  kernel = (pkgs.callPackage ../kernels/server.nix) { inherit inputs; };
+  kernel = (pkgs.callPackage ../kernels/server.nix) { };
   simplify = (pkgs.callPackage ../kernels/lib/simplify.nix) { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
@@ -52,9 +46,7 @@ in
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
     kernelPatches = simplify.general;
-    kernelPackages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
-      _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
-    );
+    kernelPackages = kernel;
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;

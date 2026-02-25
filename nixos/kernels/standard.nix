@@ -1,66 +1,61 @@
 {
   lib,
-  inputs,
-  callPackage,
+  pkgs,
+  fetchFromGitHub,
   buildLinux,
-  kernelPatches,
-  applyPatches,
   fetchurl,
-  stdenv,
+  hardened ? false,
+  isZfs ? true,
+  isT2 ? false,
   ...
-}@args:
+}:
 let
-  version = "6.12.74";
-  config = (import ./lib/config.nix) { };
-  lto = (callPackage ./lib/lto.nix { });
-
-  #simplify = (import ./lib/simplify) { };
-  source = (import ./lib/patches.nix) {
+  variant = "lts";
+  localVer = "-v7w7r${
+    if hardened then "-secured" else ""
+  }${if isZfs then "-zfs" else ""}${if isT2 then "-apple" else ""}";
+  kernelSrc = import ./custom/kernel.nix { inherit lib fetchurl; };
+  lto = (pkgs.callPackage ./lib/lto.nix { });
+  kernelConfig = import ./custom/kernel-config.nix { inherit fetchFromGitHub variant; };
+  kconfigClearence = import ./kconfig-hack.nix {
+    runCommand = pkgs.runCommand;
+    inherit kernelConfig;
+  };
+  structuredExtraConfig = import ./lib/struct-config.nix { inherit lib; };
+  patchedSrc = pkgs.callPackage ./custom/source.nix {
+    isLTS = true;
+    baseKernel = {
+      src = kernelSrc.srcLTS;
+      version = kernelSrc.versionLTS;
+    };
     inherit
       lib
-      version
-      inputs
-      kernelPatches
-      applyPatches
+      fetchFromGitHub
+      hardened
+      kernelConfig
+      fetchGit
+      variant
       ;
-    configVariant = "linux-cachyos";
-    src = fetchurl {
-      url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-      hash = "sha256-O1busdyaQ38YnKVrgjvjdpmU9ZpOoIlbCOwNIKysoT4=";
+  };
+  kernel = buildLinux {
+    # autoModules = false;
+    pname = "linux-cachyos-std";
+    defconfig = "cachyos_defconfig";
+    inherit structuredExtraConfig;
+    src = patchedSrc;
+    stdenv = lto.stdenvLLVM;
+    version = lib.versions.pad 3 "${kernelSrc.versionLTS}${localVer}";
+    ignoreConfigErrors = true;
+    extraPassthru = {
+      packages = pkgs.linuxKernel.packagesFor kernel;
+      inherit kconfigClearence;
     };
   };
+  readyKernel = lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
 in
-buildLinux (
-  args
-  // {
-    #autoModules = true;
-    inherit version;
-    pname = "linux-v7w7r";
-    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-v7w7r";
-
-    structuredExtraConfig =
-      config.common
-      // config.bore
-      // config.procOpt.x86_64-v3
-      // config.lto.thin
-      // config.preemptType.full
-      // config.tickrate.full
-      // (args.structuredExtraConfig or { });
-
-    stdenv = lto.stdenvLLVM;
-    extraMakeFlags = args.extraMakeFlags or [ ];
-    defconfig = args.defconfig or "cachyos_defconfig";
-    ignoreConfigErrors = args.ignoreConfigErrors or true;
-    src = source.patchedSrc;
-    extraMeta = {
-      description = "Linux 7w7r Standard Kernel";
-      broken = !stdenv.isx86_64;
-    }
-    // (args.extraMeta or { });
-    extraPassthru = {
-      cachyosConfigFile = source.cachyosConfigFile;
-      cachyosPatches = source.cachyosPatches;
-    }
-    // (args.extraPassthru or { });
-  }
-)
+if isZfs then
+  readyKernel.extend (
+    _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
+  )
+else
+  readyKernel

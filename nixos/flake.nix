@@ -20,14 +20,6 @@
 
   inputs = {
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    cachyos-kernel = {
-      url = "github:CachyOS/linux-cachyos";
-      flake = false;
-    };
-    cachyos-kernel-patches = {
-      url = "github:CachyOS/kernel-patches";
-      flake = false;
-    };
     hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
