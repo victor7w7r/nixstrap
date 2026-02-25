@@ -30,7 +30,7 @@ let
 
   kernel = buildLinux {
     # autoModules = false;
-    pname = "linux";
+    pname = "linux-${nativeHost}";
     defconfig = "cachyos_defconfig";
     inherit structuredExtraConfig;
     src = source.src;
