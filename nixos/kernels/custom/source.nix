@@ -91,7 +91,7 @@ stdenv.mkDerivation {
     ++ (lib.optional handheld [
       (fetchCachyPatch "misc/0001-handheld.patch")
     ])
-    ++ (lib.optional asus fetchAsusPatchLatest);
+    ++ (lib.optional asus [ fetchAsusPatchLatest ]);
 
   postPatch = ''
     for dir in arch/*/configs; do

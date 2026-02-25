@@ -47,7 +47,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${linux_6_12.versionLTS}${localVer}";
+    version = lib.versions.pad 3 "${linux_6_12.version}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
