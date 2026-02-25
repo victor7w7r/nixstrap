@@ -8,7 +8,7 @@
   ...
 }@args:
 let
-  version = "6.19.3";
+  version = "6.18.13";
   localversion = "v7w7r-rog";
   config = pkgs.callPackage ./lib/config.nix {
     inherit localversion;
