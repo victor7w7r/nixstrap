@@ -61,7 +61,7 @@ let
   '';
 in
 stdenv.mkDerivation {
-  pname = "linux-cachyos-${majorMinor}-src";
+  pname = "linux-${majorMinor}-src";
   inherit (baseKernel) version src;
   dontConfigure = true;
 
@@ -80,16 +80,16 @@ stdenv.mkDerivation {
       (fetchCachyPatch "/all/0001-cachyos-base-all.patch")
     ]
     ++ (lib.optional (cpusched == "bore") [
-      (fetchCachyPatch "sched/0001-bore-cachy.patch")
+      (fetchCachyPatch "/sched/0001-bore-cachy.patch")
     ])
     ++ (lib.optional hardened [
-      (fetchCachyPatch "misc/0001-hardened.patch")
+      (fetchCachyPatch "/misc/0001-hardened.patch")
     ])
     ++ (lib.optional acpiCall [
-      (fetchCachyPatch "misc/0001-acpi-call.patch")
+      (fetchCachyPatch "/misc/0001-acpi-call.patch")
     ])
     ++ (lib.optional handheld [
-      (fetchCachyPatch "misc/0001-handheld.patch")
+      (fetchCachyPatch "/misc/0001-handheld.patch")
     ])
     ++ (lib.optional asus [ fetchAsusPatchLatest ]);
 

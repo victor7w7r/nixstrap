@@ -36,7 +36,7 @@ let
   };
   kernel = buildLinux {
     # autoModules = false;
-    pname = "linux-cachyos-handheld";
+    pname = "linux";
     defconfig = "cachyos_defconfig";
     inherit structuredExtraConfig;
     src = patchedSrc;

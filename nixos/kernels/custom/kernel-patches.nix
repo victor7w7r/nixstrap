@@ -39,12 +39,14 @@ in
   asusPatchesLatest = fetchGit {
     url = asusUrl;
     rev = "6.18";
+    sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
     postFetch = asusDeleteActions;
   };
 
   asusPatchesLTS = fetchGit {
     url = asusUrl;
     rev = "6.12";
+    sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
     postFetch = asusDeleteActions;
   };
 

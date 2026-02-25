@@ -1,6 +1,6 @@
 { kernelConfig, runCommand }:
 runCommand "kconfig-hack" { } ''
-  cp "linux-cachyos-${kernelConfig}" config
+  cp "${kernelConfig}" config
   sed -i '/^#/d' config
   # remove meta config related to cc and ld
   sed -i '/^CONFIG_G*CC_/d' config

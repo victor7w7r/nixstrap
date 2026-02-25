@@ -42,7 +42,7 @@ let
   };
   kernel = buildLinux {
     # autoModules = false;
-    pname = "linux-cachyos-server";
+    pname = "linux";
     defconfig = "cachyos_defconfig";
     inherit structuredExtraConfig;
     src = patchedSrc;
