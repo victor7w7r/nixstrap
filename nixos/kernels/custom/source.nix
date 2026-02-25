@@ -4,6 +4,7 @@
   stdenv,
   kernelConfig,
   linux_latest,
+  linux_lts,
   baseKernel,
   fetchFromGitHub,
   fetchGit,
@@ -59,7 +60,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "linux-cachyos-${majorMinor}-src";
-  inherit (linux_latest) version src;
+  inherit (linux_lts) version src;
   dontConfigure = true;
 
   nativeBuildInputs = with pkgs; [
@@ -72,14 +73,26 @@ stdenv.mkDerivation {
     kernelPatches.request_key_helper.patch
   */
   patches =
-    (with lib; filter (p: !hasInfix "randstruct" p) linux_latest.patches)
+    (with lib; filter (p: !hasInfix "randstruct" p) linux_lts.patches)
     ++ [
       (fetchCachyPatch "/all/0001-cachyos-base-all.patch")
     ]
-    ++ (lib.optional (cpusched == "bore") fetchCachyPatch "sched/0001-bore-cachy.patch")
-    ++ (lib.optional hardened fetchCachyPatch "misc/0001-hardened.patch")
-    ++ (lib.optional acpiCall fetchCachyPatch "misc/0001-acpi-call.patch")
-    ++ (lib.optional handheld fetchCachyPatch "misc/0001-handheld.patch")
+    ++ (lib.optional (cpusched == "bore") [
+      fetchCachyPatch
+      "sched/0001-bore-cachy.patch"
+    ])
+    ++ (lib.optional hardened [
+      fetchCachyPatch
+      "misc/0001-hardened.patch"
+    ])
+    ++ (lib.optional acpiCall [
+      fetchCachyPatch
+      "misc/0001-acpi-call.patch"
+    ])
+    ++ (lib.optional handheld [
+      fetchCachyPatch
+      "misc/0001-handheld.patch"
+    ])
     ++ (lib.optional asus fetchAsusPatchLatest);
 
   postPatch = ''
