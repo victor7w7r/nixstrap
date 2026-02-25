@@ -310,7 +310,7 @@ rec {
     AFFS_FS = no;
     JFFS2_FS = no;
     JFS_FS = no;
-    AFS_FS = no;
+    AFS_FS = lib.mkForce no;
     CODA_FS = no;
     CEPH_FS = no;
     #ECRYPT_FS = no;
