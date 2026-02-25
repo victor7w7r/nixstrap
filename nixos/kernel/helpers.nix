@@ -36,6 +36,8 @@ let
 
   stdenv' = pkgs.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
 
+in
+{
   kernelModuleLLVMOverride =
     kernelPackages_:
     kernelPackages_.extend (
@@ -60,10 +62,7 @@ let
           v
       ) prev
     );
-  ltoKernel = kernel: kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
-in
-{
-  inherit ltoKernel;
+
   stdenvLLVM = stdenv'.override (old: {
     hostPlatform = mkLLVMPlatform old.hostPlatform;
     buildPlatform = mkLLVMPlatform old.buildPlatform;
