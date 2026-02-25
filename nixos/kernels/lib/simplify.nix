@@ -4,7 +4,7 @@ rec {
   general = lib.mapAttrsToList (key: value: {
     name = "config-${key}";
     patch = null;
-    extraStructuredConfig = {
+    structuredExtraConfig = {
       "${key}" = value;
     };
   }) some;
