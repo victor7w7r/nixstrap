@@ -76,9 +76,6 @@ stdenv.mkDerivation {
   */
   patches =
     (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
-    ++ [
-      (fetchCachyPatch "/all/0001-cachyos-base-all.patch")
-    ]
     ++ (lib.optional (cpusched == "bore") [
       (fetchCachyPatch "/sched/0001-bore-cachy.patch")
     ])
