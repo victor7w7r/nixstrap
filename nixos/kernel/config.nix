@@ -1,4 +1,4 @@
-{ host, lib, ... }:
+{ host, lib }:
 let
   asus = host == "v7w7r-rc71l";
   server = host == "v7w7r-youyeetoox1";
