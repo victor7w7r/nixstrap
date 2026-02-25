@@ -19,7 +19,7 @@ let
     argsOverride = rec {
       src = pkgs.fetchurl {
         url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-        sha256 = " sha256-xDW9dNHCH8WpUHgaUNeLriuTlEFEaUhDNZlIrTr8cqU=";
+        sha256 = "sha256-xDW9dNHCH8WpUHgaUNeLriuTlEFEaUhDNZlIrTr8cqU=";
       };
       version = "6.12.50";
       modDirVersion = "6.12.50";
