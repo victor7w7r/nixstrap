@@ -29,9 +29,6 @@ let
     in
     "${elemAt parts 0}.${elemAt parts 1}";
 
-  asus = host == "v7w7r-rc71l";
-  notServer = host != "v7w7r-youyeetoox1";
-
   patches = pkgs.callPackage ./patches.nix { };
   fetchCachyPatch =
     patchPath:
@@ -62,7 +59,7 @@ in
       ++ (lib.optional hardened [
         (fetchCachyPatch "/misc/0001-hardened.patch")
       ])
-      ++ (lib.optional asus (
+      ++ (lib.optional (host == "v7w7r-rc71l") (
         [
           (fetchCachyPatch "/misc/0001-acpi-call.patch")
           (fetchCachyPatch "/misc/0001-handheld.patch")
@@ -94,7 +91,7 @@ in
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
       ))
-      ++ (lib.optional notServer [
+      ++ (lib.optional (host != "v7w7r-youyeetoox1") [
         (fetchCachyPatch "/sched/0001-bore-cachy.patch")
       ]);
 
