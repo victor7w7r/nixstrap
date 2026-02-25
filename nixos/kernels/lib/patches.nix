@@ -40,7 +40,7 @@ let
     #"0003-HID-asus-add-ROG-Ally-N-Key-ID-and-keycodes.patch"
     #"0003-platform-x86-asus-wmi-add-macros-and-expose-min-max-.patch"
     #"0004-asus-bios-add-panel-hd-control.patch"
-    "0005-asus-wmi-don-t-error-out-if-platform_profile-already.patch"
+    #"0005-asus-wmi-don-t-error-out-if-platform_profile-already.patch"
     "0006-asus-bios-add-apu-mem.patch"
     "0007-asus-bios-add-core-count-control.patch"
     "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
