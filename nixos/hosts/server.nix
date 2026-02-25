@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   intelParams = import ./lib/intel-params.nix;
-  kernel = (pkgs.callPackage ../kernel) { };
+  kernel = (pkgs.callPackage ../kernel) { hardened = true; };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";

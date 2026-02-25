@@ -36,7 +36,8 @@ let
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     ignoreConfigErrors = true;
-    version = lib.versions.pad 3 "${source.baseKernel.version}${localVer}";
+    version = source.baseKernel.version;
+    modDirVersion = lib.versions.pad 3 "${source.baseKernel.version}${localVer}";
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
       kconfigClearence = kernelConfig.kconfig;
