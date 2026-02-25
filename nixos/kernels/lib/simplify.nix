@@ -1,13 +1,24 @@
 { lib, ... }:
 with lib.kernel;
 rec {
-  general = lib.mapAttrsToList (key: value: {
-    name = "config-${key}";
-    patch = null;
-    structuredExtraConfig = {
-      "${key}" = value;
-    };
-  }) some;
+  general =
+    some
+    // hacking
+    // uselessDrivers
+    // multimedia
+    // uselessFs
+    // uselessUsbDrivers
+    // uselessBlockDevices
+    // uselessInput
+    // uselessAtaDrivers
+    // uselessNet
+    // uselessAudio
+    // uselessMultifunction
+    // uselessGPIO
+    // uselessHwmon
+    // uselessWmi
+    // uselessScsi
+    // uselessGraphics;
 
   some = {
     EXPERT = yes;

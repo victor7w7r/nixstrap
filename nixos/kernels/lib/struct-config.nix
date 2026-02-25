@@ -60,7 +60,7 @@ with lib.kernel;
   HZ_300 = yes;
   HZ = freeform "300";
   CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = no;
-  CPU_FREQ_DEFAULT_GOV_PERFORMANCE = yes;
+  CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
 }
 // (
   if v2 then

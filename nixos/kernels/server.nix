@@ -11,21 +11,24 @@ let
   localVer = "-v7w7r-secured-server";
   kernelSrc = import ./custom/kernel.nix { inherit lib fetchurl; };
   lto = (pkgs.callPackage ./lib/lto.nix { });
+  simplify = pkgs.callPackage ./lib/simplify.nix { };
   kernelConfig = import ./custom/kernel-config.nix { inherit fetchFromGitHub variant; };
   kconfigClearence = import ./kconfig-hack.nix {
     runCommand = pkgs.runCommand;
     inherit kernelConfig;
   };
-  structuredExtraConfig = import ./lib/struct-config.nix {
-    inherit lib;
-    isBore = false;
-    hasBbr3 = false;
-    isServer = true;
-    v2 = true;
-    v3 = false;
-    preemptTypeFull = false;
-    tickrateFull = false;
-  };
+  structuredExtraConfig =
+    import ./lib/struct-config.nix {
+      inherit lib;
+      isBore = false;
+      hasBbr3 = false;
+      isServer = true;
+      v2 = true;
+      v3 = false;
+      preemptTypeFull = false;
+      tickrateFull = false;
+    }
+    // simplify.general;
   patchedSrc = pkgs.callPackage ./custom/source.nix {
     cpusched = "eevdf";
     hardened = true;
