@@ -21,7 +21,7 @@ let
     hardened = true;
     src = fetchurl {
       url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-      hash = "sha256-O1busdyaQ38YnKVrgjvjdpmU9ZpOoIlbCOwNIKysoT4=";
+      hash = "sha256-0a2UozaBFI7+iE9AKJcNaeMy8rAD8Oi+U6HSXeOOSaI=";
       #hash = "sha256-EWgC3DrRZGFjzG/+m926JKgGm1aRNewFI815kGTy7bk=";
     };
   };
