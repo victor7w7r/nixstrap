@@ -2,7 +2,7 @@
   lib,
   pkgs,
   fetchFromGitHub,
-  linux_6_12,
+  linux,
   buildLinux,
   ...
 }:
@@ -31,7 +31,7 @@ let
   patchedSrc = pkgs.callPackage ./custom/source.nix {
     cpusched = "eevdf";
     hardened = true;
-    baseKernel = linux_6_12;
+    baseKernel = linux;
     inherit
       lib
       fetchFromGitHub
@@ -47,7 +47,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${linux_6_12.version}${localVer}";
+    version = lib.versions.pad 3 "${linux.version}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
