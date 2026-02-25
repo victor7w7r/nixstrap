@@ -59,7 +59,7 @@ with lib.kernel;
 // lib.optionalAttrs isServer {
   HZ_300 = yes;
   HZ = freeform "300";
-  CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = no;
+  CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = lib.mkForce no;
   CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
 }
 // (

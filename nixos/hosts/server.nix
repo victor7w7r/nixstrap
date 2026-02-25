@@ -2,7 +2,6 @@
 let
   intelParams = import ./lib/intel-params.nix;
   kernel = (pkgs.callPackage ../kernels/server.nix) { };
-  simplify = (pkgs.callPackage ../kernels/lib/simplify.nix) { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
