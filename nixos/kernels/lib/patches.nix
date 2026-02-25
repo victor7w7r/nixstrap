@@ -31,6 +31,7 @@ let
     rev = "52ac92f9b6085f3b2c7edac93dec412dbe9c01b4";
   };
 
+  #Poner en boot.kernelPackages
   asusPatches = builtins.map (name: "${g14patch}/${name}") [
     "0001-acpi-proc-idle-skip-dummy-wait.patch"
     "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
