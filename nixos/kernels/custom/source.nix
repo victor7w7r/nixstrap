@@ -94,6 +94,7 @@ stdenv.mkDerivation {
     ++ (lib.optional asus [ fetchAsusPatchLatest ]);
 
   postPatch = ''
+    - patch -p1 < ${(fetchCachyPatch "/all/0001-cachyos-base-all.patch")} --force
     for dir in arch/*/configs; do
       install -Dm644 "${kconfigClearence}" "$dir/cachyos_defconfig"
     done
