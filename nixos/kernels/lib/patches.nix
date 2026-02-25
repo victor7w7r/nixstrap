@@ -48,7 +48,7 @@ let
     #"0035-Add_quirk_for_polling_the_KBD_port.patch"
     "0038-mediatek-pci-reset.patch"
     "0040-workaround_hardware_decoding_amdgpu.patch"
-    "v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch"
+    #"v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch"
     "v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch"
     "v4-0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch"
     "v4-0005-platform-x86-asus-wmi-store-a-min-default-for-ppt.patch"
