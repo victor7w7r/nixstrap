@@ -9,9 +9,11 @@
 }@args:
 let
   version = "6.19.3";
-  config = pkgs.callPackage ./lib/config.nix { };
+  localversion = "v7w7r-rog";
+  config = pkgs.callPackage ./lib/config.nix {
+    inherit localversion;
+  };
   lto = pkgs.callPackage ./lib/lto.nix { };
-
   simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
     inherit inputs version;
@@ -31,7 +33,7 @@ buildLinux (
     #autoModules = true;
     inherit version;
     pname = "linux-v7w7r-rog";
-    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-v7w7r-rog";
+    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-${localversion}";
 
     structuredExtraConfig =
       config.common
