@@ -50,7 +50,7 @@ let
     "0040-workaround_hardware_decoding_amdgpu.patch"
     #"v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch"
     "v2-0005-platform-x86-asus-wmi-don-t-allow-eGPU-switching-.patch"
-    "v4-0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch"
+    #"v4-0004-platform-x86-asus-wmi-support-toggling-POST-sound.patch"
     "v4-0005-platform-x86-asus-wmi-store-a-min-default-for-ppt.patch"
     "v4-0006-platform-x86-asus-wmi-adjust-formatting-of-ppt-na.patch"
     "v4-0007-platform-x86-asus-wmi-ROG-Ally-increase-wait-time.patch"
