@@ -34,7 +34,7 @@ let
   asusPatches = builtins.map (name: "${g14patch}/${name}") [
     "0001-acpi-proc-idle-skip-dummy-wait.patch"
     "0001-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch"
-    "0001-ALSA-hda-realtek-Adjust-G814JZR-to-use-SPI-init-for-.patch"
+    #"0001-ALSA-hda-realtek-Adjust-G814JZR-to-use-SPI-init-for-.patch"
     "0001-HID-asus-fix-more-n-key-report-descriptors-if-n-key-.patch"
     "0001-platform-x86-asus-wmi-add-debug-print-in-more-key-pl.patch"
     "0001-platform-x86-asus-wmi-add-support-for-vivobook-fan-p.patch"
