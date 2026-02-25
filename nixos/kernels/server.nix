@@ -34,7 +34,7 @@ buildLinux (
 
     structuredExtraConfig =
       config.common
-      // simplify.general
+      # simplify.general
       // config.procOpt.x86_64-v2
       // config.bbr3
       // config.lto.thin
