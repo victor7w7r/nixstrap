@@ -55,7 +55,7 @@ let
     #"v4-0006-platform-x86-asus-wmi-adjust-formatting-of-ppt-na.patch"
     #"v4-0007-platform-x86-asus-wmi-ROG-Ally-increase-wait-time.patch"
     #"v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch"
-    "v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
+    #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
   ];
 
   kconfigClearence = runCommand "kconfig-hack" { } ''
