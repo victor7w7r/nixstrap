@@ -45,7 +45,7 @@ let
     #"0007-asus-bios-add-core-count-control.patch"
     "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
     "0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch"
-    "0035-Add_quirk_for_polling_the_KBD_port.patch"
+    #"0035-Add_quirk_for_polling_the_KBD_port.patch"
     "0038-mediatek-pci-reset.patch"
     "0040-workaround_hardware_decoding_amdgpu.patch"
     "v2-0001-hid-asus-use-hid-for-brightness-control-on-keyboa.patch"
