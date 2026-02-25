@@ -16,6 +16,16 @@ let
     runCommand = pkgs.runCommand;
     inherit kernelConfig;
   };
+  linux = pkgs.linux_6_12.override {
+    argsOverride = rec {
+      src = pkgs.fetchurl {
+        url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
+        sha256 = "sha256-IYF/GZjiIw+B9+T2Bfpv3LBA4U+ifZnCfdsWznSXl6k=";
+      };
+      version = "6.12.65";
+      modDirVersion = "6.12.65";
+    };
+  };
   structuredExtraConfig =
     import ./lib/struct-config.nix {
       inherit lib;
@@ -31,7 +41,7 @@ let
   patchedSrc = pkgs.callPackage ./custom/source.nix {
     cpusched = "eevdf";
     hardened = true;
-    baseKernel = linux_6_12_65;
+    baseKernel = linux;
     inherit
       lib
       fetchFromGitHub
@@ -47,7 +57,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${linux_6_12_65.version}${localVer}";
+    version = lib.versions.pad 3 "${linux.version}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
