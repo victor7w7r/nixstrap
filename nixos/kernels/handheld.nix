@@ -2,7 +2,7 @@
   lib,
   pkgs,
   fetchFromGitHub,
-  linux,
+  linux_6_18,
   buildLinux,
   ...
 }:
@@ -25,7 +25,7 @@ let
     asus = true;
     acpiCall = true;
     handheld = true;
-    baseKernel = linux;
+    baseKernel = linux_6_18;
     inherit
       lib
       fetchFromGitHub
@@ -41,7 +41,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${linux.version}${localVer}";
+    version = lib.versions.pad 3 "${linux_6_18.version}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
