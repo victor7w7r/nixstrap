@@ -16,12 +16,12 @@ in
   cachyPatches = fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
-    rev = "3b2482095ba9b62a9e85ee1b6e257ff0a987334f";
+    rev = "master";
     sha256 = "sha256-io8FpzYJCTMdEuE03r/Qp87CHM65iubAzp8kNbubZEk=";
     postFetch = ''
       find "$out" -type f \
           ! -path "6.18/*" \
-          ! -path "6.12/*" \
+          ! -path "6.19/*" \
           ! -name "0001-cachyos-base-all.patch" \
           ! -name "0001-amd-pstate.patch" \
           ! -name "0002-asus.patch" \
@@ -45,7 +45,7 @@ in
 
   asusPatchesLTS = fetchGit {
     url = asusUrl;
-    rev = "6.12";
+    rev = "6.18";
     sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
     postFetch = asusDeleteActions;
   };
