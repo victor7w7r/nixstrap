@@ -9,9 +9,9 @@
 }@args:
 let
   version = "6.17.13";
-  config = pkgs.callPackage ./lib/config.nix { };
+  localversion = "v7w7r-server";
+  config = pkgs.callPackage ./lib/config.nix { inherit localversion; };
   lto = pkgs.callPackage ./lib/lto.nix { };
-
   simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
     inherit inputs version;
@@ -30,7 +30,7 @@ buildLinux (
     autoModules = true;
     inherit version;
     pname = "linux-v7w7r-server";
-    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-v7w7r-server";
+    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-${localversion}";
 
     structuredExtraConfig =
       config.common
@@ -46,7 +46,7 @@ buildLinux (
     stdenv = lto.stdenvLLVM;
     extraMakeFlags = args.extraMakeFlags or [ ];
     defconfig = args.defconfig or "cachyos_defconfig";
-    ignoreConfigErrors = args.ignoreConfigErrors or true;
+    ignoreConfigErrors = true;
     src = source.patchedSrc;
     extraMeta = {
       description = "Linux 7w7r Server Kernel";

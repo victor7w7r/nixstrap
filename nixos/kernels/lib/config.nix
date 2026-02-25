@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, localversion, ... }:
 with lib.kernel;
 {
   common = {
@@ -7,7 +7,7 @@ with lib.kernel;
     NR_CPUS = lib.mkForce (option (freeform "8192"));
     CC_OPTIMIZE_FOR_PERFORMANCE = no;
     CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
-    LOCALVERSION = freeform "v7w7r-lto";
+    LOCALVERSION = freeform localversion;
     TRANSPARENT_HUGEPAGE_MADVISE = lib.mkForce no;
     TRANSPARENT_HUGEPAGE_ALWAYS = lib.mkForce yes;
     OVERLAY_FS = module;
