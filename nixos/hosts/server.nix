@@ -44,8 +44,9 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    #kernelPatches = simplify.general;
-    kernelPackages = kernel;
+    kernelPackages = kernel.extend (
+      _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
+    );
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;

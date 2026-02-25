@@ -43,4 +43,4 @@ let
     };
   };
 in
-if zfsHosts then helpers.ltoZFSKernel kernel else helpers.ltoKernel kernel
+helpers.ltoKernel kernel
