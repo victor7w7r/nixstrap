@@ -4,7 +4,7 @@
   stdenv,
   kernelConfig,
   linux_latest,
-  linux_lts,
+  linux_6_12,
   baseKernel,
   fetchFromGitHub,
   fetchGit,
@@ -60,7 +60,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "linux-cachyos-${majorMinor}-src";
-  inherit (linux_lts) version src;
+  inherit (linux_6_12) version src;
   dontConfigure = true;
 
   nativeBuildInputs = with pkgs; [
@@ -73,7 +73,7 @@ stdenv.mkDerivation {
     kernelPatches.request_key_helper.patch
   */
   patches =
-    (with lib; filter (p: !hasInfix "randstruct" p) linux_lts.patches)
+    (with lib; filter (p: !hasInfix "randstruct" p) linux_6_12.patches)
     ++ [
       (fetchCachyPatch "/all/0001-cachyos-base-all.patch")
     ]
