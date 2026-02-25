@@ -126,7 +126,7 @@ in
     ++ (lib.optional asus asusPatches)
     ++ cachyosPatches;
     postPatch = ''
-      install -Dm644 ${kconfigClearence} arch/x86/configs/cachyos_defconfig
+      install -Dm644 ${cachyosConfigFile} arch/x86/configs/cachyos_defconfig
     '';
   };
 }
