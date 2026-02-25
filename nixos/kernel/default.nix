@@ -11,7 +11,7 @@ let
     (import ./config.nix) { inherit host lib; } // (pkgs.callPackage ./simplify.nix { }).general;
   helpers = (pkgs.callPackage ./helpers.nix { });
   kernelConfig = (pkgs.callPackage ./kernel-config.nix { inherit hardened; });
-  source = (pkgs.callPackage ./source.nix { inherit hardened host; });
+  source = (pkgs.callPackage ./source.nix { inherit hardened; });
 
   nativeHost =
     if host == "v7w7r-macmini81" then
