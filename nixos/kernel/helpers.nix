@@ -35,16 +35,6 @@ let
     };
 
   stdenv' = pkgs.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
-in
-{
-  stdenvLLVM = stdenv'.override (old: {
-    hostPlatform = mkLLVMPlatform old.hostPlatform;
-    buildPlatform = mkLLVMPlatform old.buildPlatform;
-    extraNativeBuildInputs = [
-      hostLLVM.lld
-      pkgs.patchelf
-    ];
-  });
 
   kernelModuleLLVMOverride =
     kernelPackages_:
@@ -70,4 +60,22 @@ in
           v
       ) prev
     );
+  ltoKernel = kernel: kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
+  ltoZFSKernel =
+    kernel:
+    (ltoKernel { inherit kernel; }).extend (
+      _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
+    );
+in
+{
+  inherit ltoKernel ltoZFSKernel;
+  stdenvLLVM = stdenv'.override (old: {
+    hostPlatform = mkLLVMPlatform old.hostPlatform;
+    buildPlatform = mkLLVMPlatform old.buildPlatform;
+    extraNativeBuildInputs = [
+      hostLLVM.lld
+      pkgs.patchelf
+    ];
+  });
+
 }

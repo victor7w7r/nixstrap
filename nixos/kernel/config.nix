@@ -1,16 +1,10 @@
-{
-  lib,
-  isBore ? true,
-  hasBbr3 ? false,
-  isAsus ? false,
-  isServer ? false,
-  v2 ? false,
-  v3 ? true,
-  zen4 ? false,
-  native ? false,
-  preemptTypeFull ? true,
-  tickrateFull ? true,
-}:
+{ host, lib, ... }:
+let
+  asus = host == "v7w7r-rc71l";
+  server = host == "v7w7r-youyeetoox1";
+  higole = host == "v7w7r-higole";
+  minNetwork = server || higole;
+in
 with lib.kernel;
 {
   CACHY = yes;
@@ -31,10 +25,10 @@ with lib.kernel;
   LTO_CLANG_THIN = yes;
   LTO_CLANG_FULL = no;
 }
-// lib.optionalAttrs isBore {
+// lib.optionalAttrs (!server) {
   SCHED_BORE = yes;
 }
-// lib.optionalAttrs isAsus {
+// lib.optionalAttrs asus {
   ASUS_ARMOURY = module;
   AMD_PRIVATE_COLOR = yes;
   AMD_3D_VCACHE = module;
@@ -45,7 +39,7 @@ with lib.kernel;
   HID_APPLETB_KBD = module;
   CONTEXT_TRACKING_FORCE = unset;
 }
-// lib.optionalAttrs hasBbr3 {
+// lib.optionalAttrs minNetwork {
   CONFIG_DEFAULT_FQ_CODEL = no;
   CONFIG_DEFAULT_FQ = yes;
   DEFAULT_BBR = yes;
@@ -56,43 +50,27 @@ with lib.kernel;
   TCP_CONG_BBR = yes;
   TCP_CONG_CUBIC = lib.mkForce module;
 }
-// lib.optionalAttrs isServer {
-  HZ_300 = yes;
+// lib.optionalAttrs server {
   HZ = freeform "300";
   CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = lib.mkForce no;
   CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
 }
 // (
-  if v2 then
+  if (!higole) then
+    {
+      GENERIC_CPU = no;
+      X86_NATIVE_CPU = yes;
+    }
+  else
     {
       GENERIC_CPU = yes;
       MZEN4 = no;
       X86_NATIVE_CPU = no;
       X86_64_VERSION = freeform "2";
     }
-  else if v3 then
-    {
-      GENERIC_CPU = yes;
-      MZEN4 = no;
-      X86_NATIVE_CPU = no;
-      X86_64_VERSION = freeform "3";
-    }
-  else if zen4 then
-    {
-      GENERIC_CPU = no;
-      MZEN4 = yes;
-      X86_NATIVE_CPU = no;
-    }
-  else if native then
-    {
-      GENERIC_CPU = no;
-      X86_NATIVE_CPU = yes;
-    }
-  else
-    { }
 )
 // (
-  if preemptTypeFull then
+  if (!server) then
     {
       PREEMPT_DYNAMIC = yes;
       PREEMPT = lib.mkForce yes;
@@ -110,7 +88,7 @@ with lib.kernel;
     }
 )
 // (
-  if tickrateFull then
+  if (!server) then
     {
       HZ_PERIODIC = no;
       NO_HZ_FULL = lib.mkForce no;

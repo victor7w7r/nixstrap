@@ -7,7 +7,7 @@
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
-  kernel = (pkgs.callPackage ../kernels/handheld.nix) { };
+  kernel = (pkgs.callPackage ../kernel) { };
   btrfs = (import ./lib/btrfs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
