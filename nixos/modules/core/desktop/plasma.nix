@@ -84,7 +84,7 @@
       libsForQt5.qt5.qtgraphicaleffects
       kdePackages.qtquick3d
       kdePackages.qtvirtualkeyboard
-      heaptrack
+      #heaptrack
       ffmpegthumbnailer
       graphviz
       icoextract
