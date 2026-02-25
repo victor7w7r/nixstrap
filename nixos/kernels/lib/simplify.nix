@@ -2,7 +2,13 @@
 with lib.kernel;
 rec {
   general =
-    some
+    lib.mapAttrsToList (key: value: {
+      name = "config-${key}";
+      patch = null;
+      extraStructuredConfig = {
+        "${key}" = value;
+      };
+    }) some
     // hacking
     // uselessDrivers
     // multimedia

@@ -8,6 +8,7 @@ let
   intelParams = import ./lib/intel-params.nix;
   lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
   kernel = (pkgs.callPackage ../kernels/server.nix) { inherit inputs; };
+  simplify = (pkgs.callPackage ../kernels/simplify.nix) { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
@@ -50,6 +51,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
+    kernelPatches = simplify.general;
     kernelPackages = (lto.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
       _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
     );

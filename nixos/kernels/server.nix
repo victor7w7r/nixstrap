@@ -12,7 +12,7 @@ let
   localversion = "v7w7r-server";
   config = pkgs.callPackage ./lib/config.nix { inherit localversion; };
   lto = pkgs.callPackage ./lib/lto.nix { };
-  simplify = pkgs.callPackage ./lib/simplify.nix { };
+  #simplify = pkgs.callPackage ./lib/simplify.nix { };
   source = (pkgs.callPackage ./lib/patches.nix) {
     inherit inputs version;
     configVariant = "linux-cachyos-server";
