@@ -6,7 +6,7 @@ fetchFromGitHub {
   owner = "CachyOS";
   repo = "linux-cachyos";
   rev = "master";
-  sha256 = "sha256-8OyN6x8QYIM1iddi/GGxG4C1OGYcUNSfuwThEXaWHHw=";
+  sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
   postFetch = ''
     hold="$(mktemp -d)"
     conf="$hold/conf"
