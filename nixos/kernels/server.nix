@@ -2,7 +2,6 @@
   lib,
   pkgs,
   fetchFromGitHub,
-  linux_6_12_65,
   buildLinux,
   ...
 }:
