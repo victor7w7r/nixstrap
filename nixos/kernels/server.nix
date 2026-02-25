@@ -30,11 +30,11 @@ buildLinux (
     autoModules = true;
     inherit version;
     pname = "linux-v7w7r-server";
-    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-${localversion}";
+    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}${localversion}";
 
     structuredExtraConfig =
       config.common
-      #// simplify.general
+      // simplify.general
       // config.procOpt.x86_64-v2
       // config.bbr3
       // config.lto.thin

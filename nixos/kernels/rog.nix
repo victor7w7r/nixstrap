@@ -30,15 +30,15 @@ in
 buildLinux (
   args
   // {
-    #autoModules = true;
+    autoModules = true;
     inherit version;
     pname = "linux-v7w7r-rog";
-    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}-${localversion}";
+    modDirVersion = args.modDirVersion or "${lib.versions.pad 3 version}${localversion}";
 
     structuredExtraConfig =
       config.common
+      # simplify.general
       // config.bore
-      // simplify.general
       // config.procOpt.zen4
       // config.lto.thin
       // config.preemptType.full
