@@ -45,7 +45,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPatches = simplify.general;
+    #kernelPatches = simplify.general;
     kernelPackages = kernel;
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
