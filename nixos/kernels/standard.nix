@@ -3,7 +3,7 @@
   pkgs,
   fetchFromGitHub,
   buildLinux,
-  fetchurl,
+  linux_6_12,
   hardened ? false,
   isZfs ? true,
   isT2 ? false,
@@ -14,7 +14,6 @@ let
   localVer = "-v7w7r${
     if hardened then "-secured" else ""
   }${if isZfs then "-zfs" else ""}${if isT2 then "-apple" else ""}";
-  kernelSrc = import ./custom/kernel.nix { inherit lib fetchurl; };
   lto = (pkgs.callPackage ./lib/lto.nix { });
   kernelConfig = import ./custom/kernel-config.nix { inherit fetchFromGitHub variant; };
   kconfigClearence = import ./kconfig-hack.nix {
@@ -23,11 +22,7 @@ let
   };
   structuredExtraConfig = import ./lib/struct-config.nix { inherit lib; };
   patchedSrc = pkgs.callPackage ./custom/source.nix {
-    isLTS = true;
-    baseKernel = {
-      src = kernelSrc.srcLTS;
-      version = kernelSrc.versionLTS;
-    };
+    baseKernel = linux_6_12;
     inherit
       lib
       fetchFromGitHub
@@ -44,7 +39,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${kernelSrc.versionLTS}${localVer}";
+    version = lib.versions.pad 3 "${linux_6_12.versionLTS}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;

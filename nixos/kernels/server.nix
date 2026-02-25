@@ -2,14 +2,13 @@
   lib,
   pkgs,
   fetchFromGitHub,
+  linux_6_12,
   buildLinux,
-  fetchurl,
   ...
 }:
 let
   variant = "lts";
   localVer = "-v7w7r-secured-server";
-  kernelSrc = import ./custom/kernel.nix { inherit lib fetchurl; };
   lto = (pkgs.callPackage ./lib/lto.nix { });
   simplify = pkgs.callPackage ./lib/simplify.nix { };
   kernelConfig = import ./custom/kernel-config.nix { inherit fetchFromGitHub variant; };
@@ -32,10 +31,7 @@ let
   patchedSrc = pkgs.callPackage ./custom/source.nix {
     cpusched = "eevdf";
     hardened = true;
-    baseKernel = {
-      src = kernelSrc.srcLTS;
-      version = kernelSrc.versionLTS;
-    };
+    baseKernel = linux_6_12;
     inherit
       lib
       fetchFromGitHub
@@ -51,7 +47,7 @@ let
     inherit structuredExtraConfig;
     src = patchedSrc;
     stdenv = lto.stdenvLLVM;
-    version = lib.versions.pad 3 "${kernelSrc.versionLTS}${localVer}";
+    version = lib.versions.pad 3 "${linux_6_12.versionLTS}${localVer}";
     ignoreConfigErrors = true;
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;

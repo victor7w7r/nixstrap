@@ -3,12 +3,9 @@
   pkgs,
   stdenv,
   kernelConfig,
-  linux_latest,
-  linux_6_12,
   baseKernel,
   fetchFromGitHub,
   fetchGit,
-  isLTS ? true,
   cpusched ? "bore",
   asus ? false,
   hardened ? false,
@@ -17,7 +14,12 @@
   ...
 }:
 let
-  majorMinor = if isLTS then "6.12" else "6.18";
+  majorMinor =
+    with lib;
+    let
+      parts = versions.splitVersion baseKernel.version;
+    in
+    "${elemAt parts 0}.${elemAt parts 1}";
 
   patches = import ./kernel-patches.nix { inherit fetchFromGitHub fetchGit; };
   kconfigClearence = import ./kconfig-hack.nix {
@@ -60,7 +62,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "linux-cachyos-${majorMinor}-src";
-  inherit (linux_6_12) version src;
+  inherit (baseKernel) version src;
   dontConfigure = true;
 
   nativeBuildInputs = with pkgs; [
@@ -73,25 +75,21 @@ stdenv.mkDerivation {
     kernelPatches.request_key_helper.patch
   */
   patches =
-    (with lib; filter (p: !hasInfix "randstruct" p) linux_6_12.patches)
+    (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
     ++ [
       (fetchCachyPatch "/all/0001-cachyos-base-all.patch")
     ]
     ++ (lib.optional (cpusched == "bore") [
-      fetchCachyPatch
-      "sched/0001-bore-cachy.patch"
+      (fetchCachyPatch "sched/0001-bore-cachy.patch")
     ])
     ++ (lib.optional hardened [
-      fetchCachyPatch
-      "misc/0001-hardened.patch"
+      (fetchCachyPatch "misc/0001-hardened.patch")
     ])
     ++ (lib.optional acpiCall [
-      fetchCachyPatch
-      "misc/0001-acpi-call.patch"
+      (fetchCachyPatch "misc/0001-acpi-call.patch")
     ])
     ++ (lib.optional handheld [
-      fetchCachyPatch
-      "misc/0001-handheld.patch"
+      (fetchCachyPatch "misc/0001-handheld.patch")
     ])
     ++ (lib.optional asus fetchAsusPatchLatest);
 
