@@ -8,7 +8,7 @@ let
   intelParams = import ./lib/intel-params.nix;
   lto = (pkgs.callPackage ../kernels/lib/lto.nix) { };
   kernel = (pkgs.callPackage ../kernels/server.nix) { inherit inputs; };
-  simplify = (pkgs.callPackage ../kernels/simplify.nix) { };
+  simplify = (pkgs.callPackage ../kernels/lib/simplify.nix) { };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
