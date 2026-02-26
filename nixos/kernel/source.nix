@@ -42,25 +42,6 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
-    configureFlags = [ "--target=x86_64-unknown-linux-gnu" ];
-
-    prePatch = ''
-      export PATH=${pkgs.rustfmt}/bin:${pkgs.rustc}/bin:$PATH
-    '';
-
-    nativeBuildInputs = with pkgs; [
-      patch
-      rustfmt
-      rustc
-    ];
-
-    NIX_ENFORCE_PURITY = 0;
-    /*
-      [
-        kernelPatches.bridge_stp_helper.patch
-        kernelPatches.request_key_helper.patch
-      ]
-    */
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ (lib.optional (host != "v7w7r-youyeetoox1") [
