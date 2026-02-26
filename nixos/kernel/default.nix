@@ -8,9 +8,11 @@
   ...
 }:
 let
-  structuredExtraConfig = (import ./config) { inherit host pkgs lib; };
   kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened host; };
-  source = pkgs.callPackage ./source.nix { inherit hardened host; };
+  source = pkgs.callPackage ./source.nix {
+    inherit hardened host;
+    kconfig = kernelConfig.kconfig;
+  };
 
   nativeHost =
     if host == "v7w7r-macmini81" then
@@ -22,10 +24,9 @@ let
     else
       "-v2";
 
-  zfsHosts = host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81";
   # builtins.trace "${host}"
   localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
-    if zfsHosts then "-zfs" else ""
+    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
   }";
 
   kernel = buildLinux {
@@ -33,7 +34,7 @@ let
     defconfig = "cachyos_defconfig";
     ignoreConfigErrors = true;
     autoModules = true;
-    inherit structuredExtraConfig;
+    structuredExtraConfig = (import ./config) { inherit host pkgs lib; };
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     modDirVersion = source.version;

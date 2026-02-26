@@ -2,6 +2,7 @@
   host,
   lib,
   pkgs,
+  kconfig,
   hardened ? false,
   ...
 }:
@@ -23,13 +24,11 @@ let
 
   majorMinor =
     with lib;
-    let
-      parts = versions.splitVersion baseKernel.version;
-    in
-    "${elemAt parts 0}.${elemAt parts 1}";
+    "${elemAt versions.splitVersion baseKernel.version 0}.${
+      elemAt versions.splitVersion baseKernel.version 1
+    }";
 
   patches = pkgs.callPackage ./patches.nix { inherit host; };
-  kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened; };
   fetchCachyPatch =
     patchPath:
     pkgs.runCommand "cachyos-${majorMinor}-${patchPath}" { } ''
@@ -83,9 +82,20 @@ in
         ]
       ));
 
-    postPatch = ''
-      install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
-    '';
+    postPatch = ''install -Dm644 "${kconfig}" arch/x86/configs/cachyos_defconfig'';
+
+    /*
+      # let  modprobedDb = ./modprobed.db; in
+      buildPhase = ''
+        cp -r ${pkgs.linux_6_12.src}/* .
+        make defconfig
+        export LSMOD=$(mktemp)
+        awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
+        yes "" | make localmodconfig
+        ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "scripts/config --module ${k}"))}
+        cp .config $out/config
+        '';
+    */
 
     phases = [
       "unpackPhase"
