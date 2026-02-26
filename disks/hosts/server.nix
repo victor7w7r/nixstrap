@@ -5,7 +5,7 @@ let
     esp = (import ../lib/esp.nix) { };
     store = (import ../lib/f2fs.nix) {
       name = "store";
-      size = "70G";
+      size = "110G";
       mountpoint = "/nix";
       priority = 2;
     };

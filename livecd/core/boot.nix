@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   boot = {
     loader.grub.memtest86.enable = true;
@@ -12,7 +8,7 @@
       "dm-snapshot"
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     initrd = {
       availableKernelModules = [
         "dm-thin-pool"
