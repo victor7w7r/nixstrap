@@ -24,7 +24,7 @@ let
       "-v2";
 
   zfsHosts = host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81";
-  localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
+  localVer = builtins.trace host "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
     if zfsHosts then "-zfs" else ""
   }";
 
@@ -44,6 +44,4 @@ let
     };
   };
 in
-builtins.trace host {
-  inherit kernel;
-}
+kernel
