@@ -31,6 +31,8 @@ let
 
   patchesSrc = pkgs.callPackage ./patches.nix { inherit host; };
 
+  config = import ./config { inherit host lib; };
+
   modprobedDb =
     if host == "v7w7r-macmini81" then
       ./config/modprobed-macmini.db
@@ -67,7 +69,7 @@ in
 
       make olddefconfig
       patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " (import ./config { inherit host lib; })}
+      scripts/config ${lib.concatStringsSep " " config}
       make olddefconfig
       runHook postBuild
     '';
