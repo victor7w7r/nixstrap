@@ -24,9 +24,9 @@ let
       "-v2";
 
   zfsHosts = host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81";
-  localVer = builtins.trace host "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
-    if zfsHosts then "-zfs" else ""
-  }";
+  localVer = builtins.trace "LO QUE RESULTÓ ES ${host}" "-v7w7r${nativeHost}${
+    if hardened then "-hardened" else ""
+  }${if zfsHosts then "-zfs" else ""}";
 
   kernel = buildLinux {
     # autoModules = false;
