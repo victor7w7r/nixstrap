@@ -35,17 +35,8 @@ let
     autoModules = true;
     inherit structuredExtraConfig;
     src = source.src;
-
-    nativeBuildInputs = with pkgs; [
-      patch
-      rustfmt
-      rustc
-      cargo
-    ];
-
-    NIX_ENFORCE_PURITY = 0;
-    configureFlags = [ "--target=x86_64-unknown-linux-gnu" ];
     stdenv = helpers.stdenvLLVM;
+    modDirVersion = source.version;
     version = lib.versions.pad 3 "${source.version}${localVer}";
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;

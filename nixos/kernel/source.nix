@@ -42,6 +42,12 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
+    configureFlags = [ "--target=x86_64-unknown-linux-gnu" ];
+
+    prePatch = ''
+      export PATH=${pkgs.rustfmt}/bin:${pkgs.rustc}/bin:$PATH
+    '';
+
     nativeBuildInputs = with pkgs; [
       patch
       rustfmt
