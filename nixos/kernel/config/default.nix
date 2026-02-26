@@ -59,7 +59,7 @@ in
   "-e NO_HZ_COMMON"
   "-e NO_HZ"
 ]
-++ (lib.optional host == "v7w7r-rc71l") [
+++ (lib.optional (host == "v7w7r-rc71l") [
   "-m ASUS_ARMOURY"
   "-e AMD_PRIVATE_COLOR"
   "-m AMD_3D_VCACHE"
@@ -69,8 +69,8 @@ in
   "-m HID_APPLETB_BL"
   "-m HID_APPLETB_KBD"
   "--unset CONTEXT_TRACKING_FORCE"
-]
-++ (lib.optional server || higole) [
+])
+++ (lib.optional (server || higole) [
   "-d CONFIG_DEFAULT_FQ_CODEL"
   "-e CONFIG_DEFAULT_FQ"
   "-e DEFAULT_BBR"
@@ -80,7 +80,7 @@ in
   "-e NET_SCH_FQ"
   "-e TCP_CONG_BBR"
   "-m TCP_CONG_CUBIC"
-]
+])
 ++ (
   if higole then
     [
