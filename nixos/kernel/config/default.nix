@@ -1,4 +1,4 @@
-{ lib, host }:
+{ host }:
 [
   "-e CACHY"
   "-e MQ_IOSCHED_ADIOS"
@@ -55,28 +55,38 @@
   "-e NO_HZ_COMMON"
   "-e NO_HZ"
 ]
-++ (lib.optional (host == "v7w7r-rc71l") [
-  "-m ASUS_ARMOURY"
-  "-e AMD_PRIVATE_COLOR"
-  "-m AMD_3D_VCACHE"
-  "-m V4L2_LOOPBACK"
-  "-m VHBA"
-  "-m DRM_APPLETBDRM"
-  "-m HID_APPLETB_BL"
-  "-m HID_APPLETB_KBD"
-  "--unset CONTEXT_TRACKING_FORCE"
-])
-++ (lib.optional (host == "v7w7r-higole" || host == "v7w7r-youyeetoox1") [
-  "-d CONFIG_DEFAULT_FQ_CODEL"
-  "-e CONFIG_DEFAULT_FQ"
-  "-e DEFAULT_BBR"
-  "-d DEFAULT_CUBIC"
-  "--set-str DEFAULT_TCP_CONG bbr"
-  "-m NET_SCH_FQ_CODEL"
-  "-e NET_SCH_FQ"
-  "-e TCP_CONG_BBR"
-  "-m TCP_CONG_CUBIC"
-])
+++ (
+  if host == "v7w7r-rc71l" then
+    [
+      "-m ASUS_ARMOURY"
+      "-e AMD_PRIVATE_COLOR"
+      "-m AMD_3D_VCACHE"
+      "-m V4L2_LOOPBACK"
+      "-m VHBA"
+      "-m DRM_APPLETBDRM"
+      "-m HID_APPLETB_BL"
+      "-m HID_APPLETB_KBD"
+      "--unset CONTEXT_TRACKING_FORCE"
+    ]
+  else
+    [ ]
+)
+++ (
+  if host == "v7w7r-higole" || host == "v7w7r-youyeetoox1" then
+    [
+      "-d CONFIG_DEFAULT_FQ_CODEL"
+      "-e CONFIG_DEFAULT_FQ"
+      "-e DEFAULT_BBR"
+      "-d DEFAULT_CUBIC"
+      "--set-str DEFAULT_TCP_CONG bbr"
+      "-m NET_SCH_FQ_CODEL"
+      "-e NET_SCH_FQ"
+      "-e TCP_CONG_BBR"
+      "-m TCP_CONG_CUBIC"
+    ]
+  else
+    [ ]
+)
 ++ (
   if host == "v7w7r-higole" then
     [
