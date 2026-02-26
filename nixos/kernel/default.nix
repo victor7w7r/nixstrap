@@ -29,14 +29,14 @@ let
   }";
 
   kernel = buildLinux {
-    # autoModules = false;
     pname = "linux-${nativeHost}";
     defconfig = "cachyos_defconfig";
+    ignoreConfigErrors = true;
+    autoModules = true;
     inherit structuredExtraConfig;
     src = source.src;
     stdenv = helpers.stdenvLLVM;
-    ignoreConfigErrors = true;
-    version = lib.versions.pad 3 "${source.baseKernel.version}${localVer}";
+    version = lib.versions.pad 3 "${source.version}${localVer}";
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
       kconfigClearence = kernelConfig.kconfig;

@@ -4,6 +4,7 @@
   pkgs,
   stdenv,
   kernelPatches,
+  applyPatches,
   hardened ? false,
   ...
 }:
@@ -39,18 +40,10 @@ let
     '';
 in
 {
-  inherit baseKernel;
-  src = stdenv.mkDerivation {
-    inherit (baseKernel) version src;
-
-    pname = "linux-${majorMinor}-src";
-    dontConfigure = true;
-    installPhase = ''mkdir -pv "$out" && rsync -avhP "./" "$out/"'';
-
-    nativeBuildInputs = with pkgs; [
-      rsync
-      perl
-    ];
+  version = baseKernel.version;
+  src = applyPatches {
+    name = "linux-${majorMinor}-src";
+    inherit (baseKernel) src;
 
     patches = [
       kernelPatches.bridge_stp_helper.patch
@@ -97,9 +90,7 @@ in
     ));
 
     postPatch = ''
-      for dir in arch/*/configs; do
-        install -Dm644 "${kernelConfig.kconfig}" "$dir/cachyos_defconfig"
-      done
+      install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
     '';
   };
 }
