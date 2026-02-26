@@ -1,4 +1,29 @@
-{ fetchFromGitHub, fetchgit, ... }:
+{
+  host,
+  fetchFromGitHub,
+  fetchgit,
+  ...
+}:
+let
+  extraPatches =
+    if host != "v7w7r-youyeetoox1" then
+      ''! -path "*/sched/0001-bore-cachy.patch" \''
+    else
+      ""
+      + (
+        if host == "v7w7r-rc71l" then
+          ''
+            ! -name "0001-amd-pstate.patch" \
+            ! -name "0002-asus.patch" \
+            ! -path "*/misc/0001-hardened.patch" \
+            ! -path "*/misc/0001-acpi-call.patch" \
+            ! -path "*/misc/0001-handheld.patch" \
+          ''
+        else
+          ''! -name "0008-intel-pstate.patch" \''
+      );
+
+in
 {
   cachyPatches = fetchFromGitHub {
     owner = "CachyOS";
@@ -7,18 +32,10 @@
     sha256 = "sha256-io8FpzYJCTMdEuE03r/Qp87CHM65iubAzp8kNbubZEk=";
     postFetch = ''
       find "$out" -type f \
-        ! -path "6.18/*" \
-        ! -path "6.19/*" \
+        ${extraPatches}
         ! -name "0001-cachyos-base-all.patch" \
-        ! -name "0001-amd-pstate.patch" \
-        ! -name "0002-asus.patch" \
-        ! -name "0008-intel-pstate.patch" \
         ! -name "0009-sched-ext.patch" \
-        ! -name "0010-t2.patch" \
-        ! -path "*/misc/0001-hardened.patch" \
-        ! -path "*/misc/0001-acpi-call.patch" \
-        ! -path "*/misc/0001-handheld.patch" \
-        ! -path "*/sched/0001-bore-cachy.patch" -delete
+        ! -name "0010-t2.patch" -delete
       find "$out" -type d -empty -delete
     '';
   };
