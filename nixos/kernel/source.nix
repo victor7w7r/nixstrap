@@ -3,16 +3,13 @@
   lib,
   pkgs,
   stdenv,
-  kernelPatches,
   hardened ? false,
   ...
 }:
 let
   baseKernel =
     if hardened then
-      pkgs.linux
-    /*
-      .override {
+      pkgs.linuxPackages_6_17_hardened.override {
         argsOverride = rec {
           src = pkgs.fetchurl {
             url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
@@ -22,7 +19,6 @@ let
           modDirVersion = "6.17.13";
         };
       }
-    */
     else
       pkgs.linux_6_18;
 
@@ -55,11 +51,7 @@ in
     ];
 
     patches =
-      ##(with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
-      [
-        kernelPatches.bridge_stp_helper.patch
-        kernelPatches.request_key_helper.patch
-      ]
+      (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ (lib.optional hardened [
         (fetchCachyPatch "/misc/0001-hardened.patch")
       ])

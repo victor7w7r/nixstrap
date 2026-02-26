@@ -3,7 +3,7 @@
   cachyPatches = fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
-    rev = "4ffae8ab9947f35495dfa7b62b7a22f023488dfb";
+    rev = "master";
     sha256 = "sha256-io8FpzYJCTMdEuE03r/Qp87CHM65iubAzp8kNbubZEk=";
     postFetch = ''
       find "$out" -type f \
