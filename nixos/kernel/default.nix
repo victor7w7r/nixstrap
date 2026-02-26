@@ -44,4 +44,6 @@ let
     };
   };
 in
-builtins.trace host kernel
+builtins.trace host {
+  inherit kernel;
+}
