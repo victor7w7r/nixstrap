@@ -9,10 +9,7 @@
 }:
 let
   kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened host; };
-  source = pkgs.callPackage ./source.nix {
-    inherit hardened host;
-    kconfig = kernelConfig.kconfig;
-  };
+  source = pkgs.callPackage ./source.nix { inherit hardened host kernelConfig; };
 
   nativeHost =
     if host == "v7w7r-macmini81" then
@@ -34,7 +31,6 @@ let
     defconfig = "cachyos_defconfig";
     ignoreConfigErrors = true;
     autoModules = true;
-    structuredExtraConfig = (import ./config) { inherit host pkgs lib; };
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     modDirVersion = source.version;

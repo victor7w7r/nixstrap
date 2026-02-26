@@ -1,106 +1,125 @@
-{
-  host,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, host }:
 let
   server = host == "v7w7r-youyeetoox1";
   higole = host == "v7w7r-higole";
 in
-with lib.kernel;
-(pkgs.callPackage ./simplify.nix { }).general
-// {
-  CACHY = yes;
-  MQ_IOSCHED_ADIOS = yes;
-  CC_OPTIMIZE_FOR_PERFORMANCE = no;
-  CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
-  LOCALVERSION_AUTO = no;
-  TRANSPARENT_HUGEPAGE_MADVISE = lib.mkForce no;
-  TRANSPARENT_HUGEPAGE_ALWAYS = lib.mkForce yes;
-  OVERLAY_FS = module;
-  OVERLAY_FS_REDIRECT_DIR = no;
-  OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW = yes;
-  OVERLAY_FS_INDEX = no;
-  OVERLAY_FS_XINO_AUTO = no;
-  OVERLAY_FS_METACOPY = no;
-  OVERLAY_FS_DEBUG = no;
-  LTO_NONE = no;
-  LTO_CLANG_THIN = yes;
-  LTO_CLANG_FULL = no;
-}
-// lib.optionalAttrs (host == "v7w7r-rc71l") {
-  ASUS_ARMOURY = module;
-  AMD_PRIVATE_COLOR = yes;
-  AMD_3D_VCACHE = module;
-  V4L2_LOOPBACK = module;
-  VHBA = module;
-  DRM_APPLETBDRM = module;
-  HID_APPLETB_BL = module;
-  HID_APPLETB_KBD = module;
-  CONTEXT_TRACKING_FORCE = unset;
-}
-// lib.optionalAttrs (server || higole) {
-  CONFIG_DEFAULT_FQ_CODEL = no;
-  CONFIG_DEFAULT_FQ = yes;
-  DEFAULT_BBR = yes;
-  DEFAULT_CUBIC = no;
-  DEFAULT_TCP_CONG = freeform "bbr";
-  NET_SCH_FQ_CODEL = module;
-  NET_SCH_FQ = yes;
-  TCP_CONG_BBR = yes;
-  TCP_CONG_CUBIC = lib.mkForce module;
-}
-// (
+[
+  "-e CACHY"
+  "-e MQ_IOSCHED_ADIOS"
+  "-d CC_OPTIMIZE_FOR_PERFORMANCE"
+  "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
+  "-d LOCALVERSION_AUTO"
+  "-d TRANSPARENT_HUGEPAGE_MADVISE"
+  "-e TRANSPARENT_HUGEPAGE_ALWAYS"
+  "-m OVERLAY_FS"
+  "-d OVERLAY_FS_REDIRECT_DIR"
+  "-e OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW"
+  "-d OVERLAY_FS_INDEX"
+  "-d OVERLAY_FS_XINO_AUTO"
+  "-d OVERLAY_FS_METACOPY"
+  "-d OVERLAY_FS_DEBUG"
+  "-d LTO_NONE"
+  "-e LTO_CLANG_THIN"
+  "-d LTO_CLANG_FULL"
+  "--set-val NR_CPUS 320"
+  "-m NTSYNC"
+
+  "-d PREEMPT_VOLUNTARY"
+  "-d PREEMPT_LAZY"
+
+  "-e LRU_GEN"
+  "-e LRU_GEN_ENABLED"
+  "-d LRU_GEN_STATS"
+
+  "-e PER_VMA_LOCK"
+  "-d PER_VMA_LOCK_STATS"
+
+  "-d DEBUG_INFO"
+  "-d DEBUG_INFO_BTF"
+  "-d DEBUG_INFO_DWARF4"
+  "-d DEBUG_INFO_DWARF5"
+  "-d PAHOLE_HAS_SPLIT_BTF"
+  "-d DEBUG_INFO_BTF_MODULES"
+  "-d SLUB_DEBUG"
+  "-d PM_DEBUG"
+  "-d PM_ADVANCED_DEBUG"
+  "-d PM_SLEEP_DEBUG"
+  "-d ACPI_DEBUG"
+  "-d SCHED_DEBUG"
+  "-d LATENCYTOP"
+  "-d DEBUG_PREEMPT"
+
+  "-e NVME_KEYRING"
+  "-e NVME_AUTH"
+  "-e NVME_CORE"
+  "-e BLK_DEV_NVME"
+  "-d NVME_TARGET"
+
+  "-d HZ_PERIODIC"
+  "-e NO_HZ_COMMON"
+  "-e NO_HZ"
+]
+++ (lib.optional host == "v7w7r-rc71l") [
+  "-m ASUS_ARMOURY"
+  "-e AMD_PRIVATE_COLOR"
+  "-m AMD_3D_VCACHE"
+  "-m V4L2_LOOPBACK"
+  "-m VHBA"
+  "-m DRM_APPLETBDRM"
+  "-m HID_APPLETB_BL"
+  "-m HID_APPLETB_KBD"
+  "--unset CONTEXT_TRACKING_FORCE"
+]
+++ (lib.optional server || higole) [
+  "-d CONFIG_DEFAULT_FQ_CODEL"
+  "-e CONFIG_DEFAULT_FQ"
+  "-e DEFAULT_BBR"
+  "-d DEFAULT_CUBIC"
+  "--set-str DEFAULT_TCP_CONG bbr"
+  "-m NET_SCH_FQ_CODEL"
+  "-e NET_SCH_FQ"
+  "-e TCP_CONG_BBR"
+  "-m TCP_CONG_CUBIC"
+]
+++ (
   if higole then
-    {
-      GENERIC_CPU = yes;
-      MZEN4 = no;
-      X86_NATIVE_CPU = no;
-      X86_64_VERSION = freeform "2";
-    }
+    [
+      "-e GENERIC_CPU"
+      "-d MZEN4"
+      "-d X86_NATIVE_CPU"
+      "--set-val X86_64_VERSION 2"
+    ]
   else
-    {
-      GENERIC_CPU = no;
-      X86_NATIVE_CPU = yes;
-    }
+    [
+      "-d GENERIC_CPU"
+      "-e X86_NATIVE_CPU"
+    ]
 )
-// (
+++ (
   if server then
-    {
-      HZ = freeform "300";
-      CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = lib.mkForce no;
-      CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
+    [
+      "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
+      "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
 
-      PREEMPT_DYNAMIC = no;
-      PREEMPT = no;
-      PREEMPT_VOLUNTARY = lib.mkForce no;
-      PREEMPT_LAZY = no;
-      PREEMPT_NONE = yes;
+      "-d PREEMPT_DYNAMIC"
+      "-d PREEMPT"
+      "-e PREEMPT_NONE"
 
-      HZ_PERIODIC = no;
-      NO_HZ_IDLE = no;
-      CONTEXT_TRACKING_FORCE = no;
-      NO_HZ_FULL_NODEF = yes;
-      NO_HZ_FULL = yes;
-      NO_HZ = yes;
-      NO_HZ_COMMON = yes;
-      CONTEXT_TRACKING = yes;
-    }
+      "--set-val HZ 300"
+      "-e NO_HZ_IDLE"
+      "-d NO_HZ_FULL"
+    ]
   else
-    {
-      SCHED_BORE = yes;
+    [
+      "-e SCHED_BORE"
 
-      PREEMPT_DYNAMIC = yes;
-      PREEMPT = lib.mkForce yes;
-      PREEMPT_VOLUNTARY = lib.mkForce no;
-      PREEMPT_LAZY = no;
-      PREEMPT_NONE = no;
+      "-e PREEMPT_DYNAMIC"
+      "-e PREEMPT"
+      "-d PREEMPT_NONE"
 
-      HZ_PERIODIC = no;
-      NO_HZ_FULL = lib.mkForce no;
-      NO_HZ_IDLE = yes;
-      NO_HZ = yes;
-      NO_HZ_COMMON = yes;
-    }
+      "-d CONTEXT_TRACKING_FORCE"
+      "-e CONTEXT_TRACKING"
+      "-e NO_HZ_FULL_NODEF"
+      "-e NO_HZ_FULL"
+    ]
 )

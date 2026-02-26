@@ -2,7 +2,7 @@
   host,
   lib,
   pkgs,
-  kconfig,
+  kernelConfig,
   hardened ? false,
   ...
 }:
@@ -28,12 +28,17 @@ let
       elemAt versions.splitVersion baseKernel.version 1
     }";
 
-  patches = pkgs.callPackage ./patches.nix { inherit host; };
-  fetchCachyPatch =
-    patchPath:
-    pkgs.runCommand "cachyos-${majorMinor}-${patchPath}" { } ''
-      cp "${patches.cachyPatches}/${majorMinor}/${patchPath}" "$out"
-    '';
+  patchesSrc = pkgs.callPackage ./patches.nix { inherit host; };
+
+  modprobedDb =
+    if host == "v7w7r-macmini81" then
+      ./config/modprobed-macmini.db
+    else if host == "v7w7r-youyeetoox1" then
+      ./config/modprobed-server.db
+    else if host == "v7w7r-rc71l" then
+      ./config/modprobed.db
+    else
+      ./config/modprobed.db;
 in
 {
   version = baseKernel.version;
@@ -48,22 +53,39 @@ in
     ];
 
     installPhase = "cp -r . $out";
-    postPatch = ''install -Dm644 "${kconfig}" arch/x86/configs/cachyos_defconfig'';
+    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
+
+    #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
+    buildPhase = ''
+      runHook preBuild
+      cp "${kernelConfig.config}" ".config"
+
+      export LSMOD=$(mktemp)
+      awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
+      yes "" | make localmodconfig
+
+      make olddefconfig
+      patchShebangs scripts/config
+      scripts/config ${lib.concatStringsSep " " (import ./config) { inherit host pkgs lib; }}
+      make olddefconfig
+      runHook postBuild
+    '';
 
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
+      ++ [ "${patchesSrc}/${majorMinor}/all/0001-cachyos-base-all.patch" ]
       ++ (lib.optional (host != "v7w7r-youyeetoox1") [
-        (fetchCachyPatch "/sched/0001-bore-cachy.patch")
+        "${patchesSrc}/${majorMinor}/sched/0001-bore-cachy.patch"
       ])
       ++ (lib.optional hardened [
-        (fetchCachyPatch "/misc/0001-hardened.patch")
+        "${patchesSrc}/${majorMinor}/misc/0001-hardened.patch"
       ])
       ++ (lib.optional (host == "v7w7r-rc71l") (
         [
-          (fetchCachyPatch "/misc/0001-acpi-call.patch")
-          (fetchCachyPatch "/misc/0001-handheld.patch")
+          "${patchesSrc}/${majorMinor}/misc/0001-acpi-call.patch"
+          "${patchesSrc}/${majorMinor}/misc/0001-handheld.patch"
         ]
-        ++ builtins.map (p: "${patches.asusPatches.outPath}/${p}") [
+        ++ builtins.map (p: "${patchesSrc.asusPatches.outPath}/${p}") [
           "0001-acpi-proc-idle-skip-dummy-wait.patch"
           "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
           "0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch"
@@ -91,17 +113,5 @@ in
         ]
       ));
 
-    /*
-      # let  modprobedDb = ./modprobed.db; in
-      buildPhase = ''
-        cp -r ${pkgs.linux_6_12.src}/* .
-        make defconfig
-        export LSMOD=$(mktemp)
-        awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
-        yes "" | make localmodconfig
-        ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "scripts/config --module ${k}"))}
-        cp .config $out/config
-        '';
-    */
   };
 }
