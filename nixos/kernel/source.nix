@@ -30,7 +30,6 @@ let
     "${elemAt parts 0}.${elemAt parts 1}";
 
   patchesSrc = pkgs.callPackage ./patches.nix { inherit host; };
-
   config = import ./config { inherit host lib; };
 
   modprobedDb =
@@ -69,7 +68,7 @@ in
 
       make olddefconfig
       patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " config}
+      scripts/config ${lib.concatStringsSep " " builtins.trace config config}
       make olddefconfig
 
       runHook postBuild
