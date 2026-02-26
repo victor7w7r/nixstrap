@@ -28,8 +28,6 @@ let
     if zfsHosts then "-zfs" else ""
   }";
 
-  test = builtins.trace host;
-
   kernel = buildLinux {
     # autoModules = false;
     pname = "linux-${nativeHost}";
@@ -46,4 +44,4 @@ let
     };
   };
 in
-kernel
+builtins.trace host kernel
