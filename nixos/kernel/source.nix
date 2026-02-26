@@ -93,7 +93,7 @@ in
 
     postPatch = ''
       for dir in arch/*/configs; do
-        install -Dm644 "${(pkgs.callPackage ./kernel-config.nix { inherit hardened; }).config}" \
+        install -Dm644 "${(pkgs.callPackage ./kernel-config.nix { inherit hardened; }).kconfig}" \
         "$dir/cachyos_defconfig"
       done
     '';

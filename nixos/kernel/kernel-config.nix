@@ -11,11 +11,11 @@ rec {
     rev = "master";
     sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
     postFetch = ''
-      hold="$(mktemp -d)" && conf="$hold/conf"
-      cp \
-       "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" \
-       "$conf"
-      rm -rfv "$out" && cp -v "$conf" "$out"
+      hold="$(mktemp -d)"
+      conf="$hold/conf"
+      cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
+      rm -rfv "$out"
+      cp -v "$conf" "$out"
     '';
   };
 

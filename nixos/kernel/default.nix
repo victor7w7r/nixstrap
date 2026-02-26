@@ -24,7 +24,8 @@ let
       "-v2";
 
   zfsHosts = host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81";
-  localVer = builtins.trace "${host}" "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
+  # builtins.trace "${host}"
+  localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
     if zfsHosts then "-zfs" else ""
   }";
 
