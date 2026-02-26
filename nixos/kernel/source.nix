@@ -41,6 +41,15 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
+    phases = [
+      "unpackPhase"
+      "patchPhase"
+      "installPhase"
+    ];
+
+    installPhase = "cp -r . $out";
+    postPatch = ''install -Dm644 "${kconfig}" arch/x86/configs/cachyos_defconfig'';
+
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ (lib.optional (host != "v7w7r-youyeetoox1") [
@@ -82,8 +91,6 @@ in
         ]
       ));
 
-    postPatch = ''install -Dm644 "${kconfig}" arch/x86/configs/cachyos_defconfig'';
-
     /*
       # let  modprobedDb = ./modprobed.db; in
       buildPhase = ''
@@ -96,13 +103,5 @@ in
         cp .config $out/config
         '';
     */
-
-    phases = [
-      "unpackPhase"
-      "patchPhase"
-      "installPhase"
-    ];
-
-    installPhase = "cp -r . $out";
   };
 }
