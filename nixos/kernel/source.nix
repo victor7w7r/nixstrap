@@ -43,7 +43,7 @@ in
 {
   version = baseKernel.version;
   src = pkgs.stdenv.mkDerivation {
-    name = "linux-${majorMinor}-src";
+    name = "linux-${builtins.toString majorMinor}-src";
     inherit (baseKernel) version src;
 
     phases = [
