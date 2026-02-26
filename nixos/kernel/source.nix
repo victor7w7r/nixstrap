@@ -24,9 +24,10 @@ let
 
   majorMinor =
     with lib;
-    "${elemAt versions.splitVersion baseKernel.version 0}.${
-      elemAt versions.splitVersion baseKernel.version 1
-    }";
+    let
+      parts = versions.splitVersion baseKernel.version;
+    in
+    "${elemAt parts 0}.${elemAt parts 1}";
 
   patchesSrc = pkgs.callPackage ./patches.nix { inherit host; };
 
@@ -43,7 +44,7 @@ in
 {
   version = baseKernel.version;
   src = pkgs.stdenv.mkDerivation {
-    name = "linux-${builtins.toString majorMinor}-src";
+    name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
     phases = [
