@@ -52,8 +52,8 @@ in
     ];
 
     patches =
-      (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
-      ++ [
+      ##(with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches) ++
+      [
         kernelPatches.bridge_stp_helper.patch
         kernelPatches.request_key_helper.patch
       ]
