@@ -76,19 +76,19 @@ in
 
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
-      ++ [ "${patchesSrc}/${majorMinor}/all/0001-cachyos-base-all.patch" ]
+      ++ [ "${patchesSrc.cachy}/${majorMinor}/all/0001-cachyos-base-all.patch" ]
       ++ (lib.optional (host != "v7w7r-youyeetoox1") [
-        "${patchesSrc}/${majorMinor}/sched/0001-bore-cachy.patch"
+        "${patchesSrc.cachy}/${majorMinor}/sched/0001-bore-cachy.patch"
       ])
       ++ (lib.optional hardened [
-        "${patchesSrc}/${majorMinor}/misc/0001-hardened.patch"
+        "${patchesSrc.cachy}/${majorMinor}/misc/0001-hardened.patch"
       ])
       ++ (lib.optional (host == "v7w7r-rc71l") (
         [
-          "${patchesSrc}/${majorMinor}/misc/0001-acpi-call.patch"
-          "${patchesSrc}/${majorMinor}/misc/0001-handheld.patch"
+          "${patchesSrc.cachy}/${majorMinor}/misc/0001-acpi-call.patch"
+          "${patchesSrc.cachy}/${majorMinor}/misc/0001-handheld.patch"
         ]
-        ++ builtins.map (p: "${patchesSrc.asusPatches.outPath}/${p}") [
+        ++ builtins.map (p: "${patchesSrc.asus.outPath}/${p}") [
           "0001-acpi-proc-idle-skip-dummy-wait.patch"
           "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
           "0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch"

@@ -4,7 +4,7 @@
   ...
 }:
 {
-  cachyPatches = fetchFromGitHub {
+  cachy = fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
     rev = "master";
@@ -25,7 +25,7 @@
     '';
   };
 
-  asusPatches = fetchgit {
+  asus = fetchgit {
     url = "https://gitlab.com/asus-linux/linux-g14";
     rev = "6.18";
     sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
