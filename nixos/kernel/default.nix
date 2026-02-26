@@ -1,4 +1,5 @@
 {
+  helpers,
   host,
   lib,
   pkgs,
@@ -8,9 +9,8 @@
 }:
 let
   structuredExtraConfig = (import ./config) { inherit host pkgs lib; };
-  helpers = (pkgs.callPackage ./helpers.nix { });
-  kernelConfig = (pkgs.callPackage ./kernel-config.nix { inherit hardened host; });
-  source = (pkgs.callPackage ./source.nix { inherit hardened host; });
+  kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened host; };
+  source = pkgs.callPackage ./source.nix { inherit hardened host; };
 
   nativeHost =
     if host == "v7w7r-macmini81" then

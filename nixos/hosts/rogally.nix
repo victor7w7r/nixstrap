@@ -1,4 +1,6 @@
 {
+  host,
+  inputs,
   lib,
   pkgs,
   username,
@@ -7,7 +9,8 @@
 let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
-  kernel = (pkgs.callPackage ../kernel) { };
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
+  kernel = (pkgs.callPackage ../kernel) { inherit host helpers; };
   btrfs = (import ./lib/btrfs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";

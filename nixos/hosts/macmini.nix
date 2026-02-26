@@ -1,8 +1,15 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  host,
+  inputs,
+  ...
+}:
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/params.nix;
   boot = (import ./lib/boot.nix) { };
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
+  kernel = (pkgs.callPackage ../kernel) { inherit host helpers; };
   btrfs = (import ./lib/btrfs.nix);
   zfs = import ./lib/zfs.nix;
   shared = (import ./lib/shared.nix) { };
