@@ -7,8 +7,7 @@
   ...
 }:
 let
-  structuredExtraConfig =
-    (import ./config.nix) { inherit host lib; } // (pkgs.callPackage ./simplify.nix { }).general;
+  structuredExtraConfig = (import ./config.nix) { inherit host lib; }; # // (pkgs.callPackage ./simplify.nix { }).general;
   helpers = (pkgs.callPackage ./helpers.nix { });
   kernelConfig = (pkgs.callPackage ./kernel-config.nix { inherit hardened host; });
   source = (pkgs.callPackage ./source.nix { inherit hardened host; });
@@ -37,8 +36,7 @@ let
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     ignoreConfigErrors = true;
-    version = source.baseKernel.version;
-    modDirVersion = lib.versions.pad 3 "${source.baseKernel.version}${localVer}";
+    version = lib.versions.pad 3 "${source.baseKernel.version}${localVer}";
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;
       kconfigClearence = kernelConfig.kconfig;

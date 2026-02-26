@@ -30,6 +30,7 @@ let
     "${elemAt parts 0}.${elemAt parts 1}";
 
   patches = pkgs.callPackage ./patches.nix { inherit host; };
+  kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened; };
   fetchCachyPatch =
     patchPath:
     pkgs.runCommand "cachyos-${majorMinor}-${patchPath}" { } ''
@@ -93,8 +94,7 @@ in
 
     postPatch = ''
       for dir in arch/*/configs; do
-        install -Dm644 "${(pkgs.callPackage ./kernel-config.nix { inherit hardened; }).kconfig}" \
-        "$dir/cachyos_defconfig"
+        install -Dm644 "${kernelConfig.kconfig}" "$dir/cachyos_defconfig"
       done
     '';
   };
