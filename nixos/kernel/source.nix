@@ -67,7 +67,7 @@ in
 
       make olddefconfig
       patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " (import ./config { inherit host pkgs lib; })}
+      scripts/config ${lib.concatStringsSep " " (import ./config { inherit host lib; })}
       make olddefconfig
       runHook postBuild
     '';
