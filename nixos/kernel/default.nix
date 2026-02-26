@@ -29,7 +29,7 @@ let
   }";
 
   kernel = buildLinux {
-    pname = "linux-${nativeHost}";
+    pname = "linux";
     defconfig = "cachyos_defconfig";
     ignoreConfigErrors = true;
     autoModules = true;
