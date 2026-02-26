@@ -45,6 +45,12 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) src;
 
+    configureFlags = [ "--target=x86_64-unknown-linux-gnu" ];
+    nativeBuildInputs = with pkgs; [
+      patch
+      rustfmt
+    ];
+
     patches = [
       kernelPatches.bridge_stp_helper.patch
       kernelPatches.request_key_helper.patch
