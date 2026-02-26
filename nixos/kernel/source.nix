@@ -3,6 +3,7 @@
   lib,
   pkgs,
   stdenv,
+  kernelPatches,
   hardened ? false,
   ...
 }:
@@ -50,12 +51,12 @@ in
       perl
     ];
 
-    /*
-      kernelPatches.bridge_stp_helper.patch
-      kernelPatches.request_key_helper.patch
-    */
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
+      ++ [
+        kernelPatches.bridge_stp_helper.patch
+        kernelPatches.request_key_helper.patch
+      ]
       ++ (lib.optional hardened [
         (fetchCachyPatch "/misc/0001-hardened.patch")
       ])
@@ -97,7 +98,7 @@ in
 
     postPatch = ''
       for dir in arch/*/configs; do
-        install -Dm644 "${(pkgs.callPackage ./kernel-config.nix { inherit hardened; }).kconfig}" \
+        install -Dm644 "${(pkgs.callPackage ./kernel-config.nix { inherit hardened; }).config}" \
         "$dir/cachyos_defconfig"
       done
     '';
