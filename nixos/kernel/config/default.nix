@@ -1,4 +1,9 @@
-{ host, lib }:
+{
+  host,
+  lib,
+  pkgs,
+  ...
+}:
 let
   server = host == "v7w7r-youyeetoox1";
   higole = host == "v7w7r-higole";
