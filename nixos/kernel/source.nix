@@ -2,9 +2,6 @@
   host,
   lib,
   pkgs,
-  stdenv,
-  kernelPatches,
-  applyPatches,
   hardened ? false,
   ...
 }:
@@ -41,17 +38,24 @@ let
 in
 {
   version = baseKernel.version;
-  src = applyPatches {
+  src = pkgs.stdenv.mkDerivation {
     name = "linux-${majorMinor}-src";
-    inherit (baseKernel) src;
+    inherit (baseKernel) version src;
 
-    patches =
-      /*
-        [
+    nativeBuildInputs = with pkgs; [
+      patch
+      rustfmt
+      rustc
+    ];
+
+    NIX_ENFORCE_PURITY = 0;
+    /*
+      [
         kernelPatches.bridge_stp_helper.patch
         kernelPatches.request_key_helper.patch
-        ]
-      */
+      ]
+    */
+    patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ (lib.optional (host != "v7w7r-youyeetoox1") [
         (fetchCachyPatch "/sched/0001-bore-cachy.patch")
@@ -64,7 +68,7 @@ in
           (fetchCachyPatch "/misc/0001-acpi-call.patch")
           (fetchCachyPatch "/misc/0001-handheld.patch")
         ]
-        ++ builtins.map (p: "${patches.asusPatches.outPath}") [
+        ++ builtins.map (p: "${patches.asusPatches.outPath}/${p}") [
           "0001-acpi-proc-idle-skip-dummy-wait.patch"
           "0027-mt76_-mt7921_-Disable-powersave-features-by-default.patch"
           "0032-Bluetooth-btusb-Add-a-new-PID-VID-0489-e0f6-for-MT7922.patch"
@@ -95,5 +99,13 @@ in
     postPatch = ''
       install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
     '';
+
+    phases = [
+      "unpackPhase"
+      "patchPhase"
+      "installPhase"
+    ];
+
+    installPhase = "cp -r . $out";
   };
 }
