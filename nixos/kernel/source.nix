@@ -86,10 +86,7 @@ in
           #"v4-0008-platform-x86-asus-wmi-Add-support-for-MCU-powersa.patch"
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
-      ))
-      ++ (lib.optional (host != "v7w7r-youyeetoox1") [
-        (fetchCachyPatch "/sched/0001-bore-cachy.patch")
-      ]);
+      ));
 
     postPatch = ''
       for dir in arch/*/configs; do
