@@ -68,7 +68,7 @@ in
 
       make olddefconfig
       patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " builtins.trace config config}
+      scripts/config ${lib.concatStringsSep " " (builtins.trace config config)}
       make olddefconfig
 
       runHook postBuild
