@@ -10,7 +10,7 @@
 let
   baseKernel =
     if hardened then
-      pkgs.linuxPackages_6_17_hardened
+      pkgs.linux
     /*
       .override {
         argsOverride = rec {
