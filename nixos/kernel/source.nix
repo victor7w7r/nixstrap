@@ -29,7 +29,7 @@ let
     in
     "${elemAt parts 0}.${elemAt parts 1}";
 
-  patches = pkgs.callPackage ./patches.nix { };
+  patches = pkgs.callPackage ./patches.nix { inherit host; };
   fetchCachyPatch =
     patchPath:
     pkgs.runCommand "cachyos-${majorMinor}-${patchPath}" { } ''
@@ -52,6 +52,9 @@ in
 
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
+      ++ (lib.optional (host != "v7w7r-youyeetoox1") [
+        (fetchCachyPatch "/sched/0001-bore-cachy.patch")
+      ])
       ++ (lib.optional hardened [
         (fetchCachyPatch "/misc/0001-hardened.patch")
       ])
