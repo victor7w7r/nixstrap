@@ -1,8 +1,4 @@
 { lib, host }:
-let
-  server = host == "v7w7r-youyeetoox1";
-  higole = host == "v7w7r-higole";
-in
 [
   "-e CACHY"
   "-e MQ_IOSCHED_ADIOS"
@@ -70,7 +66,7 @@ in
   "-m HID_APPLETB_KBD"
   "--unset CONTEXT_TRACKING_FORCE"
 ])
-++ (lib.optional (server || higole) [
+++ (lib.optional (host == "v7w7r-higole" || host == "v7w7r-youyeetoox1") [
   "-d CONFIG_DEFAULT_FQ_CODEL"
   "-e CONFIG_DEFAULT_FQ"
   "-e DEFAULT_BBR"
@@ -82,7 +78,7 @@ in
   "-m TCP_CONG_CUBIC"
 ])
 ++ (
-  if higole then
+  if host == "v7w7r-higole" then
     [
       "-e GENERIC_CPU"
       "-d MZEN4"
@@ -96,7 +92,7 @@ in
     ]
 )
 ++ (
-  if server then
+  if host == "v7w7r-youyeetoox1" then
     [
       "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
       "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"

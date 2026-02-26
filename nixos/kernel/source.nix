@@ -71,6 +71,7 @@ in
       patchShebangs scripts/config
       scripts/config ${lib.concatStringsSep " " config}
       make olddefconfig
+
       runHook postBuild
     '';
 
