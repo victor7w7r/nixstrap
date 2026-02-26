@@ -7,7 +7,7 @@
   ...
 }:
 let
-  structuredExtraConfig = (import ./config.nix) { inherit host lib; }; # // (pkgs.callPackage ./simplify.nix { }).general;
+  structuredExtraConfig = (import ./config) { inherit host lib; };
   helpers = (pkgs.callPackage ./helpers.nix { });
   kernelConfig = (pkgs.callPackage ./kernel-config.nix { inherit hardened host; });
   source = (pkgs.callPackage ./source.nix { inherit hardened host; });

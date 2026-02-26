@@ -4,7 +4,8 @@ let
   higole = host == "v7w7r-higole";
 in
 with lib.kernel;
-{
+(pkgs.callPackage ./simplify.nix { }).general
+// {
   CACHY = yes;
   MQ_IOSCHED_ADIOS = yes;
   CC_OPTIMIZE_FOR_PERFORMANCE = no;
