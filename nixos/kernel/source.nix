@@ -102,7 +102,6 @@ in
         ++ builtins.map (p: "${patchesSrc.asus.outPath}/${p}") [
           "0001-bluetooth-btus-add-new-vid-pid.patch"
           "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
-          "0010-platform-x86-asus-wmi-move-keyboard-control-firmware.patch"
           "0040-workaround_hardware_decoding_amdgpu.patch"
           "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
           "0081-amdgpu-adjust_plane_init_off_by_one.patch"
