@@ -119,9 +119,10 @@
       kernelConfig = pkgs.callPackage ./kernel/kernel-config.nix { inherit hardened host; };
     in
     {
-      packages.${system}.testkernel = pkgs.callPackage ./kernel/source.nix {
-        inherit hardened host kernelConfig;
-      };
+      packages.${system}.testkernel =
+        (pkgs.callPackage ./kernel/source.nix {
+          inherit hardened host kernelConfig;
+        }).src;
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
