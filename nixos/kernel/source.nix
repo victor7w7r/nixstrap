@@ -60,7 +60,11 @@ in
       perl
     ];
 
-    preBuild = ''
+    installPhase = "cp -r . $out";
+    env.NIX_ENFORCE_NO_NATIVE = "0";
+    buildPhase = ''
+      #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
+      runHook preBuild
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
@@ -71,19 +75,11 @@ in
       patchShebangs scripts/config
       scripts/config ${lib.concatStringsSep " " config}
       make olddefconfig
+      make -j$(nproc) bzImage modules
+      runHook postBuild
     '';
 
-    #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-    env.NIX_ENFORCE_NO_NATIVE = "0";
-    buildPhase = ''
-      runHook preBuild
-      #make -j$(nproc) bzImage modules
-      #runHook postBuild
-    '';
-
-    installPhase = "cp -r . $out";
     postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
-
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ [ "${patchesSrc.cachy}/${majorMinor}/all/0001-cachyos-base-all.patch" ]
