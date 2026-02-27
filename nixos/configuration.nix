@@ -60,7 +60,7 @@
       daemonIOSchedPriority = if is-term-hosts then 0 else 5;
       distributedBuilds = true;
       optimise.automatic = true;
-      package = lib.mkDefault (pkgs.lix);
+      #package = lib.mkDefault (pkgs.lix);
       settings = {
         max-jobs = if is-term-hosts then "auto" else 3;
         cores = if is-term-hosts then 0 else (if is-mac then 6 else 4);
