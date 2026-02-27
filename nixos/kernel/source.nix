@@ -107,7 +107,6 @@ in
           "0081-amdgpu-adjust_plane_init_off_by_one.patch"
           #"0084-enable-steam-deck-hdr.patch"
           "asus-patch-series.patch"
-          "PATCH-v4-1-3-platform-x86-asus-wmi-explicitly-mark-more-code-with-CONFIG_ASUS_WMI_DEPRECATED_ATTRS.patch"
           "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
           "PATCH-v11-00-11-HID-asus-Fix-ASUS-ROG-Laptop-s-Keyboard-backlight-handling.patch"
           "v2-0002-hid-asus-change-the-report_id-used-for-HID-LED-co.patch"
