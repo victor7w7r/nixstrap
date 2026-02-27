@@ -74,7 +74,7 @@ in
     '';
 
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-
+    env.NIX_ENFORCE_NO_NATIVE = "0";
     buildPhase = ''
       runHook preBuild
       #make -j$(nproc) bzImage modules
