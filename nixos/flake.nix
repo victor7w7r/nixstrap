@@ -114,12 +114,13 @@
       username = "victor7w7r";
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      helpers = pkgs.callPackage "${nix-cachyos-kernel.outPath}/helpers.nix" { };
+      host = "v7w7r-youyeetoox1";
+      hardened = false;
+      kernelConfig = pkgs.callPackage ./kernel/kernel-config.nix { inherit hardened host; };
     in
     {
-      packages.${system}.testkernel = pkgs.callPackage ./kernel {
-        host = "v7w7r-youyeetoox1";
-        inherit helpers;
+      packages.${system}.testkernel = pkgs.callPackage ./kernel/source.nix {
+        inherit hardened host kernelConfig;
       };
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
