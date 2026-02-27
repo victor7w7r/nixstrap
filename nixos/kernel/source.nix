@@ -105,10 +105,8 @@ in
           "0040-workaround_hardware_decoding_amdgpu.patch"
           "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
           "0081-amdgpu-adjust_plane_init_off_by_one.patch"
-          #"0084-enable-steam-deck-hdr.patch"
           "asus-patch-series.patch"
           "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
-          "PATCH-v11-00-11-HID-asus-Fix-ASUS-ROG-Laptop-s-Keyboard-backlight-handling.patch"
           "v2-0002-hid-asus-change-the-report_id-used-for-HID-LED-co.patch"
         ]
       ));
