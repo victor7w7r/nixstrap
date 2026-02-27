@@ -8,7 +8,7 @@
     owner = "CachyOS";
     repo = "kernel-patches";
     rev = "master";
-    sha256 = "sha256-io8FpzYJCTMdEuE03r/Qp87CHM65iubAzp8kNbubZEk=";
+    sha256 = "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54=";
     postFetch = ''
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
