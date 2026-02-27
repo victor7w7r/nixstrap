@@ -30,16 +30,14 @@ let
     pname = "linux";
     defconfig = "cachyos_defconfig";
     ignoreConfigErrors = true;
-    autoModules = true;
+    autoModules = false;
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     modDirVersion = source.version;
-
     extraMakeFlags = [
       "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
       "KCFLAGS=-Wno-error"
     ];
-
     version = lib.versions.pad 3 "${source.version}${localVer}";
     extraPassthru = {
       packages = pkgs.linuxKernel.packagesFor kernel;

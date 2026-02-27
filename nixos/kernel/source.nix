@@ -67,21 +67,23 @@ in
     installPhase = "cp -r . $out";
     env.NIX_ENFORCE_NO_NATIVE = "0";
     buildPhase = ''
-           #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-           runHook preBuild
-           cp "${kernelConfig.config}" ".config"
+      #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
+      runHook preBuild
 
-           export LSMOD=$(mktemp)
-      > LSMOD
-           awk '{ print $1, 0, 0 }' ${modprobedDb} ${commonDb} > $LSMOD
-           (yes "" | make localmodconfig) || true
+      make ARCH=x86_64 mrproper
 
-           make olddefconfig
-           patchShebangs scripts/config
-           scripts/config ${lib.concatStringsSep " " config}
-           make olddefconfig
-           make -j$(nproc) bzImage modules
-           runHook postBuild
+      cp "${kernelConfig.config}" ".config"
+
+      export LSMOD=$(mktemp)
+      awk '{ print $1, 0, 0 }' ${modprobedDb} ${commonDb} > $LSMOD
+      (yes "" | make localmodconfig) || true
+
+      make olddefconfig
+      patchShebangs scripts/config
+      scripts/config ${lib.concatStringsSep " " config}
+      make olddefconfig
+      make -j$(nproc) bzImage modules
+      runHook postBuild
     '';
 
     postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';

@@ -1,5 +1,4 @@
 8250_dw
-ac97_bus
 acpi_cpufreq
 acpi_tad
 act_csum
@@ -11,7 +10,6 @@ algif_skcipher
 apple_bce
 applesmc
 asn1_encoder
-bluetooth
 bnep
 brcmfmac
 brcmfmac_wcc
@@ -22,8 +20,6 @@ btintel
 btqca
 btrtl
 cdc_ether
-cec
-cfg80211
 cls_u32
 cmac
 coretemp
@@ -38,11 +34,9 @@ drm_buddy
 drm_display_helper
 ee1004
 encrypted_keys
-fat
 ghash_clmulni_intel
 hci_uart
 hkdf
-i2c_algo_bit
 i2c_dev
 i2c_i801
 i2c_mux
@@ -72,13 +66,11 @@ ip6t_REJECT
 ip6t_rt
 ipt_REJECT
 irqbypass
-kvm
 kvmfr
 kvmgt
 kvm_intel
 libphy
 llc
-loop
 mdev
 mdio_bus
 mei
@@ -88,12 +80,6 @@ mei_pxp
 mii
 mmc_core
 mtd
-nf_conntrack
-nf_defrag_ipv4
-nf_defrag_ipv6
-nf_log_syslog
-nf_nat
-nfnetlink
 nfnetlink_log
 nf_reject_ipv4
 nf_reject_ipv6
@@ -107,10 +93,6 @@ nft_reject
 nft_reject_ipv4
 nls_iso8859_1
 ntsync
-nvme
-nvme_auth
-nvme_core
-nvme_keyring
 overlay
 pcspkr
 pmt_class
@@ -123,7 +105,6 @@ r8152
 r8153_ecm
 rapl
 rfcomm
-rfkill
 sch_htb
 sch_ingress
 snd
@@ -176,9 +157,6 @@ tcp_diag
 tee
 tg3
 thunderbolt
-trusted
-ttm
-tun
 tunnel4
 tunnel6
 uas
@@ -188,16 +166,12 @@ usbip_core
 usbip_host
 usbnet
 usb_storage
-veth
-vfio
-vfio_iommu_type1
 vmw_vmci
 vmw_vsock_virtio_transport_common
 vmw_vsock_vmci_transport
 vsock
 vsock_loopback
 wacom
-wmi
 x86_pkg_temp_thermal
 xfrm6_tunnel
 xfrm_algo
