@@ -69,7 +69,7 @@ in
 
       export LSMOD=$(mktemp)
       awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
-      yes "" | make localmodconfig
+      (yes "" | make localmodconfig) || true
 
       make olddefconfig
       patchShebangs scripts/config
