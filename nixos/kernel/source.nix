@@ -56,6 +56,7 @@ in
       "installPhase"
     ];
 
+    setSourceRoot = "sourceRoot=`pwd`/linux-6.18.13";
     installPhase = "cp -r . $out";
     postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
 
