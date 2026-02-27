@@ -38,7 +38,7 @@ let
     else if host == "v7w7r-youyeetoox1" then
       ./config/modprobed-server.db
     else if host == "v7w7r-rc71l" then
-      ./config/modprobed.db
+      ./config/modprobed-rc71l.db
     else
       ./config/modprobed.db;
 in
@@ -49,15 +49,17 @@ in
     inherit (baseKernel) version src;
 
     nativeBuildInputs = with pkgs; [
-      flex
       bc
       bison
+      elfutils
+      flex
       gnumake
       gcc
-      pkg-config
-      elfutils
+      lz4
       openssl
+      pkg-config
       perl
+      zstd
     ];
 
     installPhase = "cp -r . $out";
@@ -68,6 +70,7 @@ in
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
+      #{commonDb} > LSMOD
       awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
       (yes "" | make localmodconfig) || true
 
