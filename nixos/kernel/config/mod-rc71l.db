@@ -227,7 +227,6 @@ usbhid
 usbmon
 usbnet
 veth
-vfat
 vfio
 vfio_iommu_type1
 vhost
@@ -252,5 +251,3 @@ xt_LOG
 xt_MASQUERADE
 xt_pkttype
 xt_tcpudp
-zram
-zstd

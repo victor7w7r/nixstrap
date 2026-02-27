@@ -189,10 +189,8 @@ usbip_host
 usbnet
 usb_storage
 veth
-vfat
 vfio
 vfio_iommu_type1
-video
 vmw_vmci
 vmw_vsock_virtio_transport_common
 vmw_vsock_vmci_transport
