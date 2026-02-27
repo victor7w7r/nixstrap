@@ -77,8 +77,8 @@ in
 
     buildPhase = ''
       runHook preBuild
-      make -j$(nproc) bzImage modules
-      runHook postBuild
+      #make -j$(nproc) bzImage modules
+      #runHook postBuild
     '';
 
     installPhase = "cp -r . $out";

@@ -157,7 +157,6 @@ spi_intel_pci
 spi_nor
 spi_pxa2xx_core
 spi_pxa2xx_platform
-spl
 stp
 tcp_bbr
 thermal
