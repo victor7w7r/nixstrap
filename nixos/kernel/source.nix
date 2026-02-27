@@ -101,7 +101,6 @@ in
         ]
         ++ builtins.map (p: "${patchesSrc.asus.outPath}/${p}") [
           "0001-bluetooth-btus-add-new-vid-pid.patch"
-          "0001-platform-x86-asus-armoury-fix-only-DC-tunables-being.patch"
           "0001-platform-x86-asus-wmi-export-symbols-used-for-read-w.patch"
           "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
           "0002-platform-x86-asus-armoury-move-existing-tunings-to-a.patch"
