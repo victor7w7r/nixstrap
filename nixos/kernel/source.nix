@@ -48,8 +48,17 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
-    setSourceRoot = "sourceRoot=`pwd`/linux-6.18.13";
-    installPhase = "cp -r . $out";
+    nativeBuildInputs = with pkgs; [
+      flex
+      bc
+      bison
+      gnumake
+      gcc
+      pkg-config
+      elfutils
+      openssl
+      perl
+    ];
 
     preBuild = ''
       cp "${kernelConfig.config}" ".config"
@@ -66,22 +75,14 @@ in
 
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
 
-    nativeBuildInputs = with pkgs; [
-      flex
-      bison
-      gnumake
-      gcc
-      pkg-config
-      elfutils
-      openssl
-      perl
-    ];
-
     buildPhase = ''
       runHook preBuild
       make -j$(nproc) bzImage modules
       runHook postBuild
     '';
+
+    installPhase = "cp -r . $out";
+    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
 
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
@@ -124,6 +125,5 @@ in
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
       ));
-    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
   };
 }
