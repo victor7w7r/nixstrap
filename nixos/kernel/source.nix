@@ -58,6 +58,7 @@ in
     '';
 
     postUnpack = ''
+      cd $sourceRoot
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
