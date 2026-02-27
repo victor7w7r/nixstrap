@@ -70,8 +70,6 @@ in
       #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
       runHook preBuild
 
-      make ARCH=x86_64 mrproper
-
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)

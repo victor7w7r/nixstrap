@@ -34,6 +34,13 @@ let
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     modDirVersion = source.version;
+
+    buildPhase = ''
+      runHook preBuild
+      make ARCH=x86_64 mrproper
+      runHook postBuild
+    '';
+
     extraMakeFlags = [
       "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
       "KCFLAGS=-Wno-error"
