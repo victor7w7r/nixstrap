@@ -69,7 +69,7 @@
       "-m DRM_APPLETBDRM"
       "-m HID_APPLETB_BL"
       "-m HID_APPLETB_KBD"
-      "--unset CONTEXT_TRACKING_FORCE"
+      "--undefine CONTEXT_TRACKING_FORCE"
     ]
   else
     [ ]
