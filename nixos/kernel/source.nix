@@ -102,7 +102,6 @@ in
         ++ builtins.map (p: "${patchesSrc.asus.outPath}/${p}") [
           "0001-bluetooth-btus-add-new-vid-pid.patch"
           "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
-          "0004-platform-x86-asus-armoury-add-apu-mem-control-suppor.patch"
           "0005-platform-x86-asus-armoury-add-screen-auto-brightness.patch"
           "0006-platform-x86-asus-wmi-deprecate-bios-features.patch"
           "0007-platform-x86-asus-wmi-rename-ASUS_WMI_DEVID_PPT_FPPT.patch"
