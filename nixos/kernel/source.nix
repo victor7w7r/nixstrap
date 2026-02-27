@@ -51,14 +51,7 @@ in
     setSourceRoot = "sourceRoot=`pwd`/linux-6.18.13";
     installPhase = "cp -r . $out";
 
-    unpackPhase = ''
-      runHook preUnpack
-      unpackFile "$src"
-      runHook postUnpack
-    '';
-
-    postUnpack = ''
-      cd $sourceRoot
+    preBuild = ''
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
