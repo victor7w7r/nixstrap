@@ -51,6 +51,8 @@ in
     phases = [
       "unpackPhase"
       "patchPhase"
+      "configurePhase"
+      "buildPhase"
       "installPhase"
     ];
 
@@ -58,8 +60,10 @@ in
     postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
 
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-    buildPhase = ''
-      runHook preBuild
+    configurePhase = ''
+      runHook preConfigure
+
+      echo "Preparando el .config..."
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
@@ -71,6 +75,12 @@ in
       scripts/config ${lib.concatStringsSep " " config}
       make olddefconfig
 
+      runHook postConfigure
+    '';
+
+    buildPhase = ''
+      runHook preBuild
+      make -j$(nproc) bzImage modules
       runHook postBuild
     '';
 
