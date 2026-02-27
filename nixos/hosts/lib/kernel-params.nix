@@ -4,6 +4,7 @@
   #"rootfstype=${rootfs}"
   #"rootflags=${rootflags}"
   #"lsm=landlock,yama,integrity,apparmor,bpf"
+  #rotate:2
   "add_efi_memmap"
   "threadirqs"
   "preempt=full"
