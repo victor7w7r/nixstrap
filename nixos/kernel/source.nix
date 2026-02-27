@@ -102,7 +102,6 @@ in
         ++ builtins.map (p: "${patchesSrc.asus.outPath}/${p}") [
           "0001-bluetooth-btus-add-new-vid-pid.patch"
           "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
-          "0007-platform-x86-asus-wmi-rename-ASUS_WMI_DEVID_PPT_FPPT.patch"
           "0008-platform-x86-asus-armoury-add-ppt_-and-nv_-tuning-kn.patch"
           "0010-platform-x86-asus-wmi-move-keyboard-control-firmware.patch"
           "0040-workaround_hardware_decoding_amdgpu.patch"
