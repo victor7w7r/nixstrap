@@ -51,7 +51,37 @@ in
     setSourceRoot = "sourceRoot=`pwd`/linux-6.18.13";
     installPhase = "cp -r . $out";
 
+    unpackPhase = ''
+      runHook preUnpack
+      unpackFile "$src"
+      runHook postUnpack
+    '';
+
+    postUnpack = ''
+      cp "${kernelConfig.config}" ".config"
+
+      export LSMOD=$(mktemp)
+      awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
+      yes "" | make localmodconfig
+
+      make olddefconfig
+      patchShebangs scripts/config
+      scripts/config ${lib.concatStringsSep " " config}
+      make olddefconfig
+    '';
+
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
+
+    nativeBuildInputs = with pkgs; [
+      flex
+      bison
+      gnumake
+      gcc
+      pkg-config
+      elfutils
+      openssl
+      perl
+    ];
 
     buildPhase = ''
       runHook preBuild
@@ -100,19 +130,6 @@ in
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
       ));
-    postPatch = ''
-      install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
-      cp "${kernelConfig.config}" ".config"
-
-      export LSMOD=$(mktemp)
-      awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
-      yes "" | make localmodconfig
-
-      make olddefconfig
-      patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " config}
-      make olddefconfig
-    '';
-
+    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
   };
 }
