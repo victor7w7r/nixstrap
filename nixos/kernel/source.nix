@@ -48,23 +48,11 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
-    phases = [
-      "unpackPhase"
-      "patchPhase"
-      "configurePhase"
-      "buildPhase"
-      "installPhase"
-    ];
-
     setSourceRoot = "sourceRoot=`pwd`/linux-6.18.13";
     installPhase = "cp -r . $out";
-    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
 
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
     configurePhase = ''
-      runHook preConfigure
-
-      echo "Preparando el .config..."
       cp "${kernelConfig.config}" ".config"
 
       export LSMOD=$(mktemp)
@@ -75,8 +63,6 @@ in
       patchShebangs scripts/config
       scripts/config ${lib.concatStringsSep " " config}
       make olddefconfig
-
-      runHook postConfigure
     '';
 
     buildPhase = ''
@@ -126,6 +112,7 @@ in
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
       ));
+    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
 
   };
 }
