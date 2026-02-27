@@ -29,16 +29,7 @@
     url = "https://gitlab.com/asus-linux/linux-g14";
     rev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
     sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
-    postFetch = ''
-      - rm -rf PKGBUILD
-      - rm -rf README
-      - rm -rf .gitignore
-      - rm -rf .SRCINFO
-      - rm -rf choose-gcc-optimization.sh
-      - rm -rf chroot-build.sh
-      - rm -rf clean-up-patches.sh
-      - rm -rf config
-    '';
+    postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
 }
