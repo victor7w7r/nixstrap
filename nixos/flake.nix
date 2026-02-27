@@ -113,8 +113,14 @@
     let
       username = "victor7w7r";
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      helpers = pkgs.callPackage "${nix-cachyos-kernel.outPath}/helpers.nix" { };
     in
     {
+      packages.${system}.kernel = pkgs.callPackage ./kernel {
+        host = "v7w7r-youyeetoox1";
+        inherit helpers;
+      };
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;

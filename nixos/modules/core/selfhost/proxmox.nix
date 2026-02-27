@@ -6,6 +6,7 @@
     bridges = [ "vmbr0" ];
   };
 
+  systemd.services."dhcpcd".enable = false;
   systemd.services."corosync".enable = false;
   systemd.services."pvestatd".enable = false;
   #systemd.services."pvescheduler".enable = false;

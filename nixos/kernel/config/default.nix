@@ -45,11 +45,14 @@
   "-d LATENCYTOP"
   "-d DEBUG_PREEMPT"
 
-  "-e NVME_KEYRING"
-  "-e NVME_AUTH"
-  "-e NVME_CORE"
   "-e BLK_DEV_NVME"
-  "-d NVME_TARGET"
+  "-m NLS"
+  "-m NLS_UTF8"
+
+  "-m VIRTIO"
+  "-m VIRTIO_PCI"
+  "-m VIRTIO_BLK"
+  "-m VIRTIO_NET"
 
   "-d HZ_PERIODIC"
   "-e NO_HZ_COMMON"
