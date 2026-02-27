@@ -105,7 +105,7 @@ in
           "0040-workaround_hardware_decoding_amdgpu.patch"
           "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
           "0081-amdgpu-adjust_plane_init_off_by_one.patch"
-          "0084-enable-steam-deck-hdr.patch"
+          #"0084-enable-steam-deck-hdr.patch"
           "asus-patch-series.patch"
           "PATCH-v4-1-3-platform-x86-asus-wmi-explicitly-mark-more-code-with-CONFIG_ASUS_WMI_DEPRECATED_ATTRS.patch"
           "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
