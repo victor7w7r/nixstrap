@@ -59,8 +59,8 @@ in
       gcc
       lz4
       openssl
-      pkg-config
       perl
+      pkg-config
       zstd
     ];
 

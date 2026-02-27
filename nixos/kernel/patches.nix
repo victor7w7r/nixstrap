@@ -28,7 +28,7 @@
   asus = fetchgit {
     url = "https://gitlab.com/asus-linux/linux-g14";
     rev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
-    sha256 = " sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
+    sha256 = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
