@@ -52,18 +52,6 @@ in
     installPhase = "cp -r . $out";
 
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-    configurePhase = ''
-      cp "${kernelConfig.config}" ".config"
-
-      export LSMOD=$(mktemp)
-      awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
-      yes "" | make localmodconfig
-
-      make olddefconfig
-      patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " config}
-      make olddefconfig
-    '';
 
     buildPhase = ''
       runHook preBuild
@@ -112,7 +100,19 @@ in
           #"v4-0009-platform-x86-asus-wmi-cleanup-main-struct-to-avoi.patch"
         ]
       ));
-    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
+    postPatch = ''
+      install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
+      cp "${kernelConfig.config}" ".config"
+
+      export LSMOD=$(mktemp)
+      awk '{ print $1, 0, 0 }' ${modprobedDb} > $LSMOD
+      yes "" | make localmodconfig
+
+      make olddefconfig
+      patchShebangs scripts/config
+      scripts/config ${lib.concatStringsSep " " config}
+      make olddefconfig
+    '';
 
   };
 }
