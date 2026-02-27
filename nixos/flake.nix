@@ -117,7 +117,7 @@
       helpers = pkgs.callPackage "${nix-cachyos-kernel.outPath}/helpers.nix" { };
     in
     {
-      packages.${system}.kernel = pkgs.callPackage ./kernel {
+      packages.${system}.testkernel = pkgs.callPackage ./kernel {
         host = "v7w7r-youyeetoox1";
         inherit helpers;
       };
