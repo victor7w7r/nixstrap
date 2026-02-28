@@ -49,6 +49,20 @@ let
     modDirVersion = source.version;
     env.NIX_ENFORCE_NO_NATIVE = "0";
 
+    nativeBuildInputs = with pkgs; [
+      bc
+      bison
+      elfutils
+      flex
+      gnumake
+      gcc
+      lz4
+      openssl
+      perl
+      pkg-config
+      zstd
+    ];
+
     preConfigure = ''
       #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
       cp "${kernelConfig.config}" ".config"

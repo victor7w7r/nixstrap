@@ -37,28 +37,14 @@ in
     name = "linux-${majorMinor}-src";
     inherit (baseKernel) version src;
 
-    nativeBuildInputs = with pkgs; [
-      bc
-      bison
-      elfutils
-      flex
-      gnumake
-      gcc
-      lz4
-      openssl
-      perl
-      pkg-config
-      zstd
-    ];
-
     installPhase = "cp -r . $out";
-
     dontBuild = true;
 
     postPatch = ''
       install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
       patchShebangs scripts/config
     '';
+
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ [ "${patchesSrc.cachy}/${majorMinor}/all/0001-cachyos-base-all.patch" ]
