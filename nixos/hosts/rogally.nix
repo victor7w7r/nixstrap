@@ -36,7 +36,7 @@ in
       "amdgpu.sg_display=0"
     ]
     ++ params { };
-    kernelPackages = pkgs.linuxPackages_lqx; # helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
+    kernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
     initrd = {
       kernelModules = [
         "dm-snapshot"
