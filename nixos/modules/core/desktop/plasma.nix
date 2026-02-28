@@ -98,7 +98,7 @@
       maliit-keyboard
       onboard
       qpwgraph
-      okteta
+      #okteta
       pinentry-qt
       systemdgenie
       ulauncher
