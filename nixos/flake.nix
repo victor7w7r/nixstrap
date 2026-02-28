@@ -119,10 +119,7 @@
       hardened = false;
     in
     {
-      packages.${system}.testkernel =
-        (pkgs.callPackage ./kernel {
-          inherit hardened host;
-        }).src;
+      packages.${system}.testkernel = (pkgs.callPackage ./kernel { inherit hardened host; });
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
