@@ -51,14 +51,17 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = (helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
-      _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
-    );
-    zfs = {
-      package = config.boot.kernelPackages.zfs_cachyos;
-      forceImportAll = false;
-      forceImportRoot = true;
-    };
+    kernelPackages = pkgs.linuxPackages_lqx;
+    /*
+      kernelPackages = (helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)).extend (
+        _self: _super: { zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernel; }; }
+      );
+      zfs = {
+        package = config.boot.kernelPackages.zfs_cachyos;
+        forceImportAll = false;
+        forceImportRoot = true;
+        };
+    */
     initrd = {
       availableKernelModules = [ "i915" ];
       kernelModules = [
