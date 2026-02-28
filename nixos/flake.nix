@@ -116,10 +116,11 @@
 
       pkgs = nixpkgs.legacyPackages.${system};
       host = "v7w7r-youyeetoox1";
+      helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
       hardened = false;
     in
     {
-      packages.${system}.testkernel = (pkgs.callPackage ./kernel { inherit hardened host; });
+      packages.${system}.testkernel = (pkgs.callPackage ./kernel { inherit hardened host helpers; });
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
