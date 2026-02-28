@@ -201,7 +201,6 @@ vhost_iotlb
 vhost_vsock
 vivaldi_fmap
 vmw_vsock_virtio_transport_common
-vsock
 wmi_bmof
 xhci_hcd
 xhci_pci

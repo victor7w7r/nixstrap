@@ -35,6 +35,7 @@ veth
 vfat
 vfio
 vfio_iommu_type1
+vsock
 video
 watchdog
 wmi

@@ -20,6 +20,9 @@
   "--set-val NR_CPUS 320"
   "-m NTSYNC"
 
+  "-e CONFIG_AUTOFS4_FS"
+  "-e CONFIG_AUTOFS_FS"
+
   "-d PREEMPT_VOLUNTARY"
   "-d PREEMPT_LAZY"
 
