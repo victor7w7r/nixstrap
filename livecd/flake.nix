@@ -59,6 +59,26 @@
             flavor = "minimal";
           };
         };
+
+        minimalliverotated = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+              }
+            )
+            (import ./iso/minimal.nix)
+          ]
+          ++ commonModules;
+          specialArgs = {
+            inherit nix-cachyos-kernel;
+            flavor = "minimal";
+            rotated = true;
+          };
+        };
+
         # nix build .#nixosConfigurations.graphicallive.config.system.build.isoImage
         graphicallive = nixpkgs.lib.nixosSystem {
           inherit system;
