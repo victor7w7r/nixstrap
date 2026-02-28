@@ -30,19 +30,6 @@ let
     "${elemAt parts 0}.${elemAt parts 1}";
 
   patchesSrc = pkgs.callPackage ./patches.nix { inherit host; };
-  config = import ./config { inherit host; };
-
-  commonDb = ./config/mod-common.db;
-  modprobedDb =
-    if host == "v7w7r-macmini81" then
-      ./config/mod-macmini.db
-    else if host == "v7w7r-youyeetoox1" then
-      ./config/mod-server.db
-    else if host == "v7w7r-rc71l" then
-      ./config/mod-rc71l.db
-    else
-      commonDb;
-
 in
 {
   version = baseKernel.version;
@@ -65,26 +52,13 @@ in
     ];
 
     installPhase = "cp -r . $out";
-    env.NIX_ENFORCE_NO_NATIVE = "0";
-    buildPhase = ''
-      #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-      runHook preBuild
 
-      cp "${kernelConfig.config}" ".config"
+    dontBuild = true;
 
-      export LSMOD=$(mktemp)
-      awk '{ print $1, 0, 0 }' ${modprobedDb} ${commonDb} > $LSMOD
-      (yes "" | make localmodconfig) || true
-
-      make olddefconfig
+    postPatch = ''
+      install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig
       patchShebangs scripts/config
-      scripts/config ${lib.concatStringsSep " " config}
-      make olddefconfig
-      make -j$(nproc) bzImage modules
-      runHook postBuild
     '';
-
-    postPatch = ''install -Dm644 "${kernelConfig.kconfig}" arch/x86/configs/cachyos_defconfig'';
     patches =
       (with lib; filter (p: !hasInfix "randstruct" p) baseKernel.patches)
       ++ [ "${patchesSrc.cachy}/${majorMinor}/all/0001-cachyos-base-all.patch" ]

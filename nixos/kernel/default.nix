@@ -26,6 +26,19 @@ let
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
   }";
 
+  config = import ./config { inherit host; };
+
+  commonDb = ./config/mod-common.db;
+  modprobedDb =
+    if host == "v7w7r-macmini81" then
+      ./config/mod-macmini.db
+    else if host == "v7w7r-youyeetoox1" then
+      ./config/mod-server.db
+    else if host == "v7w7r-rc71l" then
+      ./config/mod-rc71l.db
+    else
+      commonDb;
+
   kernel = buildLinux {
     pname = "linux";
     defconfig = "cachyos_defconfig";
@@ -34,11 +47,19 @@ let
     src = source.src;
     stdenv = helpers.stdenvLLVM;
     modDirVersion = source.version;
+    env.NIX_ENFORCE_NO_NATIVE = "0";
 
-    buildPhase = ''
-      runHook preBuild
-      make ARCH=x86_64 mrproper
-      runHook postBuild
+    preConfigure = ''
+      #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
+      cp "${kernelConfig.config}" ".config"
+
+      export LSMOD=$(mktemp)
+      awk '{ print $1, 0, 0 }' ${modprobedDb} ${commonDb} > $LSMOD
+      (yes "" | make localmodconfig) || true
+
+      make ARCH=x86_64 olddefconfig
+      scripts/config ${lib.concatStringsSep " " config}
+      make ARCH=x86_64 olddefconfig
     '';
 
     extraMakeFlags = [
