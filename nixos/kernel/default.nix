@@ -16,8 +16,8 @@ let
       allowImportFromDerivation = true;
       version = source.version;
       modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
-      stdenv = helpers.stdenvLLVM;
-      env.NIX_ENFORCE_NO_NATIVE = "0";
+      #stdenv = helpers.stdenvLLVM;
+      #env.NIX_ENFORCE_NO_NATIVE = "0";
 
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
