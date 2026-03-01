@@ -26,9 +26,9 @@ let
   kernel =
     (pkgs.linuxManualConfig {
       src = source;
-
+      version = lib.versions.pad 3 "${source.version}${localVer}";
       allowImportFromDerivation = false;
-      modDirVersion = lib.versions.pad 3 "${source.version}${localVer}";
+      modDirVersion = source.version;
       stdenv = helpers.stdenvLLVM;
       env.NIX_ENFORCE_NO_NATIVE = "0";
 
