@@ -9,29 +9,19 @@
 let
   source = pkgs.callPackage ./source.nix { inherit hardened host; };
 
-  nativeHost =
-    if host == "v7w7r-macmini81" then
-      "-i7-8700B"
-    else if host == "v7w7r-youyeetoox1" then
-      "-server-N5105"
-    else if host == "v7w7r-rc71l" then
-      "-handheld-Ryzen-Z1"
-    else
-      "-v2";
-
-  localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
-    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
-  }";
-
   kernel =
     (pkgs.linuxManualConfig {
       src = source.src;
       configFile = source;
-      version = lib.versions.pad 3 "${source.version}${localVer}";
-      allowImportFromDerivation = false;
-      modDirVersion = source.version;
+      allowImportFromDerivation = true;
+      modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
       env.NIX_ENFORCE_NO_NATIVE = "0";
+
+      kernelPatches = builtins.map (file: {
+        name = builtins.baseNameOf file;
+        patch = file;
+      }) source.passthru.kernelPatches;
 
       extraMakeFlags = [
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
@@ -52,5 +42,4 @@ in
 {
   inherit kernel;
   packages = pkgs.linuxPackagesFor kernel;
-  #|> removeAttrs [ ];
 }

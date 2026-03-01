@@ -13,7 +13,7 @@
 }:
 {
   kernel-src = fetchurl {
-    url = "https://git.kernel.org/torvalds/t/linux-${kernelVersion}.tar.gz";
+    url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz";
     inherit kernelHash;
   };
 

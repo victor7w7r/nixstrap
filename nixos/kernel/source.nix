@@ -12,6 +12,20 @@ let
   kernelVersion = "6.18.15";
   majorMinor = lib.versions.majorMinor kernelVersion;
 
+  nativeHost =
+    if host == "v7w7r-macmini81" then
+      "-i7-8700B"
+    else if host == "v7w7r-youyeetoox1" then
+      "-server-N5105"
+    else if host == "v7w7r-rc71l" then
+      "-handheld-Ryzen-Z1"
+    else
+      "-v2";
+
+  localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
+    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
+  }";
+
   fetch = pkgs.callPackage ./fetch.nix {
     inherit kernelVersion;
     kernelHash = "sha256-...";
@@ -48,9 +62,8 @@ let
   ));
 in
 pkgs.stdenv.mkDerivation {
-  inherit patches;
   src = fetch.kernel-src;
-  name = "linux-${majorMinor}";
+  name = "linux-${majorMinor}-${localVer}";
   nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
 
   installPhase = "cp .config $out";
@@ -60,8 +73,9 @@ pkgs.stdenv.mkDerivation {
     cp "${fetch.kernel-config}" ".config"
 
     export LSMOD=$(mktemp)
-    awk '{ print $1, 0, 0 }' ${config.commonDb} > $LSMOD
-    awk '{ print $1, 0, 0 }' ${config.modprobedDb} >> $LSMOD
+    ${config.commonDb} > $LSMOD
+    ${config.modprobedDb} >> $LSMOD
+    echo $LSMOD
     (yes "" | make localmodconfig) || true
 
     make olddefconfig
@@ -72,6 +86,7 @@ pkgs.stdenv.mkDerivation {
 
   passthru = {
     version = kernelVersion;
+    inherit localVer;
     kernelPatches = patches;
     #extraVerPatch = ''sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${versions.suffix}/g' Makefile'';
   };

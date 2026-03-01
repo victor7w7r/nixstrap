@@ -1,66 +1,66 @@
-ac97_bus
-bluetooth
-btrfs
-cec
-cfg80211
-efivarfs
-evdev
-exfat
-ext4
-f2fs
-fat
-hkdf
-i2c_algo_bit
-i2c_smbus
-irqbypass
-kvm
-kvmgt
-libphy
-loop
-mmc_block
-mmc_core
-msdos
-msr
-nf_conntrack
-nf_defrag_ipv4
-nf_defrag_ipv6
-nf_nat
-nf_tables
-nfnetlink
-nft_compat
-nvme
-nvme_auth
-nvme_core
-nvme_keyring
-ntfs3
-ntsync
-raid6_pq
-rfkill
-thermal
-trusted
-ttm
-tpm
-tpm_crb
-tpm_tis
-tpm_tis_core
-tun
-veth
-vfat
-vfio
-vfio_iommu_type1
-vsock
-video
-watchdog
-wmi
-xor
-x_tables
-xt_MASQUERADE
-xt_addrtype
-xt_conntrack
-xt_hl
-xt_limit
-xt_LOG
-xt_mark
-xt_tcpudp
-zstd
-zram
+ac97_bus 0 0
+bluetooth 0 0
+btrfs 0 0
+cec 0 0
+cfg80211 0 0
+efivarfs 0 0
+evdev 0 0
+exfat 0 0
+ext4 0 0
+f2fs 0 0
+fat 0 0
+hkdf 0 0
+i2c_algo_bit 0 0
+i2c_smbus 0 0
+irqbypass 0 0
+kvm 0 0
+kvmgt 0 0
+libphy 0 0
+loop 0 0
+mmc_block 0 0
+mmc_core 0 0
+msdos 0 0
+msr 0 0
+nf_conntrack 0 0
+nf_defrag_ipv4 0 0
+nf_defrag_ipv6 0 0
+nf_nat 0 0
+nf_tables 0 0
+nfnetlink 0 0
+nft_compat 0 0
+nvme 0 0
+nvme_auth 0 0
+nvme_core 0 0
+nvme_keyring 0 0
+ntfs3 0 0
+ntsync 0 0
+raid6_pq 0 0
+rfkill 0 0
+thermal 0 0
+trusted 0 0
+ttm 0 0
+tpm 0 0
+tpm_crb 0 0
+tpm_tis 0 0
+tpm_tis_core 0 0
+tun 0 0
+veth 0 0
+vfat 0 0
+vfio 0 0
+vfio_iommu_type1 0 0
+vsock 0 0
+video 0 0
+watchdog 0 0
+wmi 0 0
+xor 0 0
+x_tables 0 0
+xt_MASQUERADE 0 0
+xt_addrtype 0 0
+xt_conntrack 0 0
+xt_hl 0 0
+xt_limit 0 0
+xt_LOG 0 0
+xt_mark 0 0
+xt_tcpudp 0 0
+zstd 0 0
+zram 0 0
