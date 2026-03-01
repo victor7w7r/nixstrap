@@ -2,7 +2,6 @@
   host,
   lib,
   pkgs,
-  kernel,
   hardened ? false,
   ...
 }:
@@ -93,7 +92,7 @@ pkgs.stdenv.mkDerivation {
     cp "${fetch.kernel-config}" ".config"
 
     export LSMOD=$(mktemp)
-    cat "${config.commonDb}" "${config.modprobedDb}" > $LSMOD
+    cat "${commonDb}" "${modprobedDb}" > $LSMOD
     cat $LSMOD
     (yes "" | make localmodconfig) || true
 
