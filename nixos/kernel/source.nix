@@ -88,18 +88,17 @@ pkgs.stdenv.mkDerivation {
     ncurses
   ];
   installPhase = ''
-    echo "¡Listo el config, me mando a cambiar!"
     cp .config $out
     exit 0
   '';
 
   buildPhase = ''
-    set -x
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
     cp "${fetch.kernel-config}" ".config"
 
     export LSMOD=$(mktemp)
-    cat "${commonDb}" "${modprobedDb}" > $LSMOD
+    cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD
+    cat $LSMOD
     (yes "" | make localmodconfig) || true
 
     patchShebangs scripts/config
