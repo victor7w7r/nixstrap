@@ -14,6 +14,7 @@ let
       src = source.src;
       configFile = source;
       allowImportFromDerivation = true;
+      version = source.version;
       modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
       env.NIX_ENFORCE_NO_NATIVE = "0";
