@@ -4,10 +4,10 @@
   fetchurl,
   kernelVersion,
   kernelHash,
-  kernelConfigHash,
-  cachyPatchesHash,
   asusPatchesHash,
   asusPatchesRev,
+  kernelConfigHash,
+  cachyPatchesHash,
   hardened ? false,
   ...
 }:
