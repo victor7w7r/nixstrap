@@ -87,7 +87,11 @@ pkgs.stdenv.mkDerivation {
     libelf
     ncurses
   ];
-  installPhase = "cp .config $out";
+  installPhase = ''
+    echo "¡Listo el config, me mando a cambiar!"
+    cp .config $out
+    exit 0
+  '';
 
   buildPhase = ''
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
