@@ -12,6 +12,17 @@ let
   kernelVersion = "6.18.15";
   majorMinor = lib.versions.majorMinor kernelVersion;
 
+  commonDb = ./config/mod-common.db;
+  modprobedDb =
+    if host == "v7w7r-macmini81" then
+      ./config/mod-macmini.db
+    else if host == "v7w7r-youyeetoox1" then
+      ./config/mod-server.db
+    else if host == "v7w7r-rc71l" then
+      ./config/mod-rc71l.db
+    else
+      ./config/mod-rc71l.db;
+
   nativeHost =
     if host == "v7w7r-macmini81" then
       "-i7-8700B"
@@ -72,14 +83,14 @@ pkgs.stdenv.mkDerivation {
     cp "${fetch.kernel-config}" ".config"
 
     export LSMOD=$(mktemp)
-    ${config.commonDb} > $LSMOD
-    ${config.modprobedDb} >> $LSMOD
+    ${commonDb} > $LSMOD
+    ${modprobedDb} >> $LSMOD
     echo $LSMOD
     (yes "" | make localmodconfig) || true
 
     make olddefconfig
     patchShebangs scripts/config
-    scripts/config ${lib.concatStringsSep " " config.initialConfig}
+    scripts/config ${lib.concatStringsSep " " config}
     make olddefconfig
   '';
 
