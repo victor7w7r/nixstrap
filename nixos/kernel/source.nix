@@ -9,8 +9,8 @@
 let
   config = import ./config { inherit host; };
 
-  kernelVersion = "6.18.15";
-  majorMinor = lib.versions.majorMinor kernelVersion;
+  baseKernel = pkgs.linux_6_18;
+  majorMinor = lib.versions.majorMinor baseKernel.version;
 
   commonDb = ./config/mod-common.db;
   modprobedDb =
@@ -38,7 +38,7 @@ let
   }";
 
   fetch = import ./fetch.nix {
-    inherit kernelVersion hardened pkgs;
+    inherit hardened pkgs;
     kernelHash = "sha256-fHFiFsPEE07Q3mkZVwHmd1d7vN05efMxwYKs0Gvy8XA=";
     asusPatchesHash = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
     asusPatchesRev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
@@ -76,7 +76,7 @@ let
 in
 pkgs.stdenv.mkDerivation {
   #inherit patches;
-  src = fetch.kernel-src;
+  src = baseKernel.src;
   name = "linux-${majorMinor}${localVer}";
   nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
   installPhase = ''

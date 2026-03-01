@@ -1,7 +1,5 @@
 {
   pkgs,
-  kernelVersion,
-  kernelHash,
   asusPatchesHash,
   asusPatchesRev,
   kernelConfigHash,
@@ -9,11 +7,6 @@
   hardened ? false,
 }:
 {
-  kernel-src = pkgs.fetchurl {
-    url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz";
-    sha256 = kernelHash;
-  };
-
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
