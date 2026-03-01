@@ -76,6 +76,7 @@ pkgs.stdenv.mkDerivation {
   name = "linux-${majorMinor}${localVer}";
   nativeBuildInputs = with pkgs; [
     stdenvNoCC
+    openssl
     binutils
     bison
     flex
