@@ -12,7 +12,7 @@ let
   kernel =
     (pkgs.linuxManualConfig {
       src = source.src;
-      configFile = source;
+      config = source;
       allowImportFromDerivation = true;
       version = source.version;
       modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
