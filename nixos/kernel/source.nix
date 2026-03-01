@@ -75,7 +75,7 @@ pkgs.stdenv.mkDerivation {
   src = fetch.kernel-src;
   name = "linux-${majorMinor}${localVer}";
   nativeBuildInputs = with pkgs; [
-    stdenvNoCC
+    stdenv.cc
     openssl
     binutils
     bison
@@ -95,10 +95,8 @@ pkgs.stdenv.mkDerivation {
 
     export LSMOD=$(mktemp)
     cat "${commonDb}" "${modprobedDb}" > $LSMOD
-    cat $LSMOD
     (yes "" | make localmodconfig) || true
 
-    make olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
     make olddefconfig
