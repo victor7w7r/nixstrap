@@ -3,13 +3,11 @@
   host,
   lib,
   pkgs,
-  buildLinux,
   hardened ? false,
   ...
 }:
 let
-  kernelConfig = pkgs.callPackage ./kernel-config.nix { inherit hardened host; };
-  source = pkgs.callPackage ./source.nix { inherit hardened host kernelConfig; };
+  source = pkgs.callPackage ./source.nix { inherit hardened host; };
 
   nativeHost =
     if host == "v7w7r-macmini81" then
@@ -21,70 +19,47 @@ let
     else
       "-v2";
 
-  # builtins.trace "${host}"
   localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
   }";
 
-  config = import ./config { inherit host; };
+  kernel =
+    (pkgs.linuxManualConfig {
+      src = source;
 
-  commonDb = ./config/mod-common.db;
-  modprobedDb =
-    if host == "v7w7r-macmini81" then
-      ./config/mod-macmini.db
-    else if host == "v7w7r-youyeetoox1" then
-      ./config/mod-server.db
-    else if host == "v7w7r-rc71l" then
-      ./config/mod-rc71l.db
-    else
-      commonDb;
+      allowImportFromDerivation = false;
+      modDirVersion = lib.versions.pad 3 "${source.version}${localVer}";
+      stdenv = helpers.stdenvLLVM;
+      env.NIX_ENFORCE_NO_NATIVE = "0";
 
-  kernel = buildLinux {
-    pname = "linux";
-    defconfig = "cachyos_defconfig";
-    ignoreConfigErrors = true;
-    autoModules = false;
-    src = source.src;
-    stdenv = helpers.stdenvLLVM;
-    modDirVersion = source.version;
-    env.NIX_ENFORCE_NO_NATIVE = "0";
+      extraMakeFlags = [
+        "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
+        "KCFLAGS=-Wno-error"
+      ];
+    }).overrideAttrs
+      (attrs: {
+        passthru = attrs.passthru // {
+          modDirVersion = source.version;
+          features = {
+            ia32Emulation = true;
+            netfilterRPFilter = true;
+            efiBootStub = true;
+          };
+        };
+      });
 
-    nativeBuildInputs = with pkgs; [
-      bc
-      bison
-      elfutils
-      flex
-      gnumake
-      gcc
-      lz4
-      openssl
-      perl
-      pkg-config
-      zstd
-    ];
+  /*
+    packages =
+    (pkgs.linuxPackagesFor kernel).extend (
+      final: prev: {
+        kernel_configfile = prev.kernel.configfile;
+      }
+    )
+    |> removeAttrs [
+      "lkrg"
+      "drbd"
+      ];
+  */
 
-    preConfigure = ''
-      #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-      cp "${kernelConfig.config}" ".config"
-
-      export LSMOD=$(mktemp)
-      awk '{ print $1, 0, 0 }' ${modprobedDb} ${commonDb} > $LSMOD
-      (yes "" | make localmodconfig) || true
-
-      make ARCH=x86_64 olddefconfig
-      scripts/config ${lib.concatStringsSep " " config}
-      make ARCH=x86_64 olddefconfig
-    '';
-
-    extraMakeFlags = [
-      "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
-      "KCFLAGS=-Wno-error"
-    ];
-    version = lib.versions.pad 3 "${source.version}${localVer}";
-    extraPassthru = {
-      packages = pkgs.linuxKernel.packagesFor kernel;
-      kconfigClearence = kernelConfig.kconfig;
-    };
-  };
 in
 kernel

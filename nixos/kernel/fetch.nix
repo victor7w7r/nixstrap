@@ -1,14 +1,39 @@
 {
   fetchFromGitHub,
   fetchgit,
+  fetchurl,
+  kernelVersion,
+  kernelHash,
+  kernelConfigHash,
+  cachyPatchesHash,
+  asusPatchesHash,
+  asusPatchesRev,
+  hardened ? false,
   ...
 }:
 {
-  cachy = fetchFromGitHub {
+  kernel-src = fetchurl {
+    url = "https://git.kernel.org/torvalds/t/linux-${kernelVersion}.tar.gz";
+    inherit kernelHash;
+  };
+
+  kernel-config = fetchFromGitHub {
+    owner = "CachyOS";
+    repo = "linux-cachyos";
+    rev = "master";
+    sha256 = kernelConfigHash;
+    postFetch = ''
+      hold="$(mktemp -d)" && conf="$hold/conf"
+      cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
+      rm -rfv "$out" && cp -v "$conf" "$out"
+    '';
+  };
+
+  cachy-patches = fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
     rev = "master";
-    sha256 = "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54=";
+    sha256 = cachyPatchesHash;
     postFetch = ''
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
@@ -25,11 +50,10 @@
     '';
   };
 
-  asus = fetchgit {
+  asus-patches = fetchgit {
     url = "https://gitlab.com/asus-linux/linux-g14";
-    rev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
-    sha256 = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
+    rev = asusPatchesRev;
+    sha256 = asusPatchesHash;
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
-
 }
