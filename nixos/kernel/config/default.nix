@@ -14,6 +14,8 @@
   "-d OVERLAY_FS_XINO_AUTO"
   "-d OVERLAY_FS_METACOPY"
   "-d OVERLAY_FS_DEBUG"
+  "-e LLVM"
+  "-e LLVM_IAS"
   "-d LTO_NONE"
   "-e LTO_CLANG_THIN"
   "-d LTO_CLANG_FULL"
