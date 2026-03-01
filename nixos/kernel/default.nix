@@ -26,6 +26,7 @@ let
   kernel =
     (pkgs.linuxManualConfig {
       src = source.src;
+      config = source;
       version = lib.versions.pad 3 "${source.version}${localVer}";
       allowImportFromDerivation = false;
       modDirVersion = source.version;
