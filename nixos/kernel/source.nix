@@ -40,7 +40,7 @@ let
     inherit hardened pkgs;
     asusPatchesHash = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
     asusPatchesRev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
-    kernelConfigHash = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
+    kernelConfigHash = "sha256-GDGOZ7m/7CKlL6+vC2ZgklyUqRd4D29d6LnUVIYh4hI=";
     cachyPatchesHash = "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54=";
   };
 
