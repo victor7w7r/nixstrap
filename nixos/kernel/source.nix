@@ -1,7 +1,6 @@
 {
   host,
   lib,
-  helpers,
   pkgs,
   hardened ? false,
   ...
@@ -73,21 +72,10 @@ let
   ));
 in
 pkgs.stdenv.mkDerivation {
+  inherit patches;
   src = fetch.kernel-src;
   name = "linux-${majorMinor}${localVer}";
-  nativeBuildInputs = with pkgs; [
-    helpers.stdenvLLVM
-    diffutils
-    openssl
-    binutils
-    bison
-    flex
-    perl
-    pkg-config
-    elfutils
-    gnumake
-    libelf
-  ];
+  nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
   installPhase = ''
     cp .config $out
     ls $out
@@ -97,14 +85,14 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
     cp "${fetch.kernel-config}" ".config"
+    patchShebangs scripts/config
 
     export LSMOD=$(mktemp)
     cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD
     cat $LSMOD
-    make LSMOD=$LSMOD localmodconfig
+    yes "" | make LSMOD=$LSMOD localmodconfig
 
     make olddefconfig
-    patchShebangs scripts/config
     #diff .config.old .config
     ./scripts/config --file .config ${lib.concatStringsSep " " config}
     make olddefconfig
