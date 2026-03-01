@@ -1,80 +1,80 @@
 { host }:
 [
-  "-e CACHY"
-  "-e MQ_IOSCHED_ADIOS"
-  "-d CC_OPTIMIZE_FOR_PERFORMANCE"
-  "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
-  "-d LOCALVERSION_AUTO"
-  "-d TRANSPARENT_HUGEPAGE_MADVISE"
-  "-e TRANSPARENT_HUGEPAGE_ALWAYS"
-  "-m OVERLAY_FS"
-  "-d OVERLAY_FS_REDIRECT_DIR"
-  "-e OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW"
-  "-d OVERLAY_FS_INDEX"
-  "-d OVERLAY_FS_XINO_AUTO"
-  "-d OVERLAY_FS_METACOPY"
-  "-d OVERLAY_FS_DEBUG"
-  "-e LLVM"
-  "-e LLVM_IAS"
-  "-d LTO_NONE"
-  "-e LTO_CLANG_THIN"
-  "-d LTO_CLANG_FULL"
-  "--set-val NR_CPUS 320"
-  "-m NTSYNC"
+  "CACHY=y"
+  "MQ_IOSCHED_ADIOS=y"
+  "CC_OPTIMIZE_FOR_PERFORMANCE=n"
+  "CC_OPTIMIZE_FOR_PERFORMANCE_O3=y"
+  "LOCALVERSION_AUTO=n"
+  "TRANSPARENT_HUGEPAGE_MADVISE=n"
+  "TRANSPARENT_HUGEPAGE_ALWAYS=y"
+  "OVERLAY_FS=m"
+  "OVERLAY_FS_REDIRECT_DIR=n"
+  "OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW=y"
+  "OVERLAY_FS_INDEX=n"
+  "OVERLAY_FS_XINO_AUTO=n"
+  "OVERLAY_FS_METACOPY=n"
+  "OVERLAY_FS_DEBUG=n"
+  "LLVM=y"
+  "LLVM_IAS=y"
+  "LTO_NONE=n"
+  "LTO_CLANG_THIN=y"
+  "LTO_CLANG_FULL=n"
+  "NR_CPUS=320"
+  "NTSYNC=m"
 
-  "-e CONFIG_AUTOFS4_FS"
-  "-e CONFIG_AUTOFS_FS"
+  "CONFIG_AUTOFS4_FS=y"
+  "CONFIG_AUTOFS_FS=y"
 
-  "-d PREEMPT_VOLUNTARY"
-  "-d PREEMPT_LAZY"
+  "PREEMPT_VOLUNTARY=n"
+  "PREEMPT_LAZY=n"
 
-  "-e LRU_GEN"
-  "-e LRU_GEN_ENABLED"
-  "-d LRU_GEN_STATS"
+  "LRU_GEN=y"
+  "LRU_GEN_ENABLED=y"
+  "LRU_GEN_STATS=n"
 
-  "-e PER_VMA_LOCK"
-  "-d PER_VMA_LOCK_STATS"
+  "PER_VMA_LOCK=y"
+  "PER_VMA_LOCK_STATS=n"
 
-  "-d DEBUG_INFO"
-  "-d DEBUG_INFO_BTF"
-  "-d DEBUG_INFO_DWARF4"
-  "-d DEBUG_INFO_DWARF5"
-  "-d PAHOLE_HAS_SPLIT_BTF"
-  "-d DEBUG_INFO_BTF_MODULES"
-  "-d SLUB_DEBUG"
-  "-d PM_DEBUG"
-  "-d PM_ADVANCED_DEBUG"
-  "-d PM_SLEEP_DEBUG"
-  "-d ACPI_DEBUG"
-  "-d SCHED_DEBUG"
-  "-d LATENCYTOP"
-  "-d DEBUG_PREEMPT"
+  "DEBUG_INFO=n"
+  "DEBUG_INFO_BTF=n"
+  "DEBUG_INFO_DWARF4=n"
+  "DEBUG_INFO_DWARF5=n"
+  "PAHOLE_HAS_SPLIT_BTF=n"
+  "DEBUG_INFO_BTF_MODULES=n"
+  "SLUB_DEBUG=n"
+  "PM_DEBUG=n"
+  "PM_ADVANCED_DEBUG=n"
+  "PM_SLEEP_DEBUG=n"
+  "ACPI_DEBUG=n"
+  "SCHED_DEBUG=n"
+  "LATENCYTOP=n"
+  "DEBUG_PREEMPT=n"
 
-  "-e BLK_DEV_NVME"
-  "-m NLS"
-  "-m NLS_UTF8"
+  "BLK_DEV_NVME=y"
+  "NLS=m"
+  "NLS_UTF8=m"
 
-  "-m VIRTIO"
-  "-m VIRTIO_PCI"
-  "-m VIRTIO_BLK"
-  "-m VIRTIO_NET"
+  "VIRTIO=m"
+  "VIRTIO_PCI=m"
+  "VIRTIO_BLK=m"
+  "VIRTIO_NET=m"
 
-  "-d HZ_PERIODIC"
-  "-e NO_HZ_COMMON"
-  "-e NO_HZ"
+  "HZ_PERIODIC=n"
+  "NO_HZ_COMMON=y"
+  "NO_HZ=y"
 ]
 ++ (
   if host == "v7w7r-rc71l" then
     [
-      "-m ASUS_ARMOURY"
-      "-e AMD_PRIVATE_COLOR"
-      "-m AMD_3D_VCACHE"
-      "-m V4L2_LOOPBACK"
-      "-m VHBA"
-      "-m DRM_APPLETBDRM"
-      "-m HID_APPLETB_BL"
-      "-m HID_APPLETB_KBD"
-      "--undefine CONTEXT_TRACKING_FORCE"
+      "ASUS_ARMOURY=m"
+      "AMD_PRIVATE_COLOR=y"
+      "AMD_3D_VCACHE=m"
+      "V4L2_LOOPBACK=m"
+      "VHBA=m"
+      "DRM_APPLETBDRM=m"
+      "HID_APPLETB_BL=m"
+      "HID_APPLETB_KBD=m"
+      "# CONTEXT_TRACKING_FORCE is not set"
     ]
   else
     [ ]
@@ -82,15 +82,15 @@
 ++ (
   if host == "v7w7r-higole" || host == "v7w7r-youyeetoox1" then
     [
-      "-d CONFIG_DEFAULT_FQ_CODEL"
-      "-e CONFIG_DEFAULT_FQ"
-      "-e DEFAULT_BBR"
-      "-d DEFAULT_CUBIC"
-      "--set-str DEFAULT_TCP_CONG bbr"
-      "-m NET_SCH_FQ_CODEL"
-      "-e NET_SCH_FQ"
-      "-e TCP_CONG_BBR"
-      "-m TCP_CONG_CUBIC"
+      "CONFIG_DEFAULT_FQ_CODEL=n"
+      "CONFIG_DEFAULT_FQ=y"
+      "DEFAULT_BBR=y"
+      "DEFAULT_CUBIC=n"
+      "DEFAULT_TCP_CONG=bbr"
+      "NET_SCH_FQ_CODEL=m"
+      "NET_SCH_FQ=y"
+      "TCP_CONG_BBR=y"
+      "TCP_CONG_CUBIC=m"
     ]
   else
     [ ]
@@ -98,42 +98,42 @@
 ++ (
   if host == "v7w7r-higole" then
     [
-      "-e GENERIC_CPU"
-      "-d MZEN4"
-      "-d X86_NATIVE_CPU"
-      "--set-val X86_64_VERSION 2"
+      "GENERIC_CPU=y"
+      "MZEN4=n"
+      "X86_NATIVE_CPU=n"
+      "X86_64_VERSION=2"
     ]
   else
     [
-      "-d GENERIC_CPU"
-      "-e X86_NATIVE_CPU"
+      "GENERIC_CPU=n"
+      "X86_NATIVE_CPU=y"
     ]
 )
 ++ (
   if host == "v7w7r-youyeetoox1" then
     [
-      "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
-      "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
+      "CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=n"
+      "CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y"
 
-      "-d PREEMPT_DYNAMIC"
-      "-d PREEMPT"
-      "-e PREEMPT_NONE"
+      "PREEMPT_DYNAMIC=n"
+      "PREEMPT=n"
+      "PREEMPT_NONE=y"
 
-      "--set-val HZ 300"
-      "-e NO_HZ_IDLE"
-      "-d NO_HZ_FULL"
+      "HZ=300"
+      "NO_HZ_IDLE=y"
+      "NO_HZ_FULL=n"
     ]
   else
     [
-      "-e SCHED_BORE"
+      "SCHED_BORE=y"
 
-      "-e PREEMPT_DYNAMIC"
-      "-e PREEMPT"
-      "-d PREEMPT_NONE"
+      "PREEMPT_DYNAMIC=y"
+      "PREEMPT=y"
+      "PREEMPT_NONE=n"
 
-      "-d CONTEXT_TRACKING_FORCE"
-      "-e CONTEXT_TRACKING"
-      "-e NO_HZ_FULL_NODEF"
-      "-e NO_HZ_FULL"
+      "CONTEXT_TRACKING_FORCE=n"
+      "CONTEXT_TRACKING=y"
+      "NO_HZ_FULL_NODEF=y"
+      "NO_HZ_FULL=y"
     ]
 )

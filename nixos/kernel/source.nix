@@ -92,11 +92,11 @@ pkgs.stdenv.mkDerivation {
     cat $LSMOD
     (yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
+    cat <<EOF >> .config
+    ${lib.concatStringsSep "\n" config}
+    EOF
+
     make olddefconfig
-    #diff .config.old .config
-    #./scripts/config --file .config ${lib.concatStringsSep " " config}
-    #make olddefconfig
-    #grep "CONFIG_LTO_CLANG_THIN" .config || echo "¡OJO! LTO no se activó"
   '';
 
   passthru = {
