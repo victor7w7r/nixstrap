@@ -89,7 +89,7 @@ pkgs.stdenv.mkDerivation {
 
     make olddefconfig
     patchShebangs scripts/config
-    scripts/config ${lib.concatStringsSep " " config}
+    scripts/config ${lib.concatStringsSep " " config.initialConfig}
     make olddefconfig
   '';
 
