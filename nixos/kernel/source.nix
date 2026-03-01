@@ -2,6 +2,7 @@
   host,
   lib,
   pkgs,
+  kernel,
   hardened ? false,
   ...
 }:
@@ -62,19 +63,8 @@ let
 in
 pkgs.stdenv.mkDerivation {
   src = fetch.kernel-src;
-  name = "linux-${majorMinor}-${localVer}";
-  nativeBuildInputs = with pkgs; [
-    stdenv.cc
-    binutils
-    bison
-    flex
-    perl
-    pkg-config
-    gnumake
-    libelf
-    ncurses
-  ];
-
+  name = "linux-${majorMinor}${localVer}";
+  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
   installPhase = "cp .config $out";
 
   buildPhase = ''

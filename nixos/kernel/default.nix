@@ -7,7 +7,7 @@
   ...
 }:
 let
-  source = pkgs.callPackage ./source.nix { inherit hardened host; };
+  source = pkgs.callPackage ./source.nix { inherit hardened host kernel; };
 
   kernel =
     (pkgs.linuxManualConfig {
@@ -17,14 +17,6 @@ let
       version = source.version;
       modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
-      /*
-        configfile = (
-        pkgs.linuxConfig {
-          src = source.src;
-          version = source.version;
-        }
-        );
-      */
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
         patch = file;
