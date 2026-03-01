@@ -25,7 +25,7 @@ let
 
   kernel =
     (pkgs.linuxManualConfig {
-      src = source;
+      src = source.src;
       version = lib.versions.pad 3 "${source.version}${localVer}";
       allowImportFromDerivation = false;
       modDirVersion = source.version;
@@ -47,19 +47,14 @@ let
           };
         };
       });
-
-  /*
-    packages =
+in
+{
+  inherit kernel;
+  packages =
     (pkgs.linuxPackagesFor kernel).extend (
       final: prev: {
         kernel_configfile = prev.kernel.configfile;
       }
     )
-    |> removeAttrs [
-      "lkrg"
-      "drbd"
-      ];
-  */
-
-in
-kernel
+    |> removeAttrs [ ];
+}
