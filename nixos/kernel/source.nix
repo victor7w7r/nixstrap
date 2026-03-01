@@ -103,7 +103,7 @@ pkgs.stdenv.mkDerivation {
   '';
 
   passthru = {
-    version = kernelVersion;
+    version = baseKernel.version;
     inherit localVer;
     kernelPatches = patches;
     #extraVerPatch = ''sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${versions.suffix}/g' Makefile'';
