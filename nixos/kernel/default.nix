@@ -7,7 +7,7 @@
   ...
 }:
 let
-  source = pkgs.callPackage ./source.nix { inherit hardened host; };
+  source = pkgs.callPackage ./source.nix { inherit hardened host kernel; };
 
   kernel =
     (pkgs.linuxManualConfig {
