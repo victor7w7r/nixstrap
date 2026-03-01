@@ -1,7 +1,5 @@
 {
-  fetchFromGitHub,
-  fetchgit,
-  fetchurl,
+  pkgs,
   kernelVersion,
   kernelHash,
   asusPatchesHash,
@@ -9,15 +7,14 @@
   kernelConfigHash,
   cachyPatchesHash,
   hardened ? false,
-  ...
 }:
 {
-  kernel-src = fetchurl {
+  kernel-src = pkgs.fetchurl {
     url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz";
     inherit kernelHash;
   };
 
-  kernel-config = fetchFromGitHub {
+  kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
     rev = "master";
@@ -29,7 +26,7 @@
     '';
   };
 
-  cachy-patches = fetchFromGitHub {
+  cachy-patches = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
     rev = "master";
@@ -50,7 +47,7 @@
     '';
   };
 
-  asus-patches = fetchgit {
+  asus-patches = pkgs.fetchgit {
     url = "https://gitlab.com/asus-linux/linux-g14";
     rev = asusPatchesRev;
     sha256 = asusPatchesHash;
