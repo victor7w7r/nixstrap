@@ -15,7 +15,7 @@ let
       helpers
       ;
   };
-
+  # nix build -L .#nixosConfigurations.server.config.system.build.kernel
   kernel =
     (pkgs.linuxManualConfig {
       src = source.src;

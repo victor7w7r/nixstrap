@@ -113,13 +113,8 @@
     let
       username = "victor7w7r";
       system = "x86_64-linux";
-
-      pkgs = nixpkgs.legacyPackages.${system};
-      host = "v7w7r-youyeetoox1";
-      hardened = false;
     in
     {
-      packages.${system}.testconfig = (pkgs.callPackage ./kernel/source.nix { inherit hardened host; });
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;

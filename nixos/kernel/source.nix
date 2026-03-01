@@ -105,6 +105,7 @@ pkgs.stdenv.mkDerivation {
 
     make olddefconfig
     patchShebangs scripts/config
+    patchShebangs scripts/diffconfig
     ./scripts/diffconfig .config.old .config
     ./scripts/config --file .config ${lib.concatStringsSep " " config}
     make olddefconfig
