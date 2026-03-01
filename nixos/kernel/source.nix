@@ -77,6 +77,7 @@ pkgs.stdenv.mkDerivation {
   name = "linux-${majorMinor}${localVer}";
   nativeBuildInputs = with pkgs; [
     helpers.stdenvLLVM
+    diffutils
     openssl
     binutils
     bison
@@ -86,7 +87,6 @@ pkgs.stdenv.mkDerivation {
     elfutils
     gnumake
     libelf
-    ncurses
   ];
   installPhase = ''
     cp .config $out
@@ -105,8 +105,7 @@ pkgs.stdenv.mkDerivation {
 
     make olddefconfig
     patchShebangs scripts/config
-    patchShebangs scripts/diffconfig
-    ./scripts/diffconfig .config.old .config
+    diff .config.old .config
     ./scripts/config --file .config ${lib.concatStringsSep " " config}
     make olddefconfig
     grep "CONFIG_LTO_CLANG_THIN" .config || echo "¡OJO! LTO no se activó"
