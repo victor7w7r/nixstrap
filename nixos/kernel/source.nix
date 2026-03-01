@@ -27,7 +27,7 @@ let
 
   fetch = import ./fetch.nix {
     inherit kernelVersion hardened pkgs;
-    kernelHash = "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54=";
+    kernelHash = "sha256-fHFiFsPEE07Q3mkZVwHmd1d7vN05efMxwYKs0Gvy8XA=";
     asusPatchesHash = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
     asusPatchesRev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
     kernelConfigHash = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
