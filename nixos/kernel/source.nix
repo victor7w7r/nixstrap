@@ -72,7 +72,7 @@ let
   ));
 in
 pkgs.stdenv.mkDerivation {
-  inherit patches;
+  #inherit patches;
   src = fetch.kernel-src;
   name = "linux-${majorMinor}${localVer}";
   nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
