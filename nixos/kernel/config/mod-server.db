@@ -14,7 +14,6 @@ autofs4
 bfq
 bridge
 button
-cmdlinepart
 coretemp
 cqhci
 crc32c_cryptoapi
@@ -81,8 +80,6 @@ mrp
 mtd
 nls_ascii
 nls_cp437
-of_mdio
-ofpart
 pinctrl_jasperlake
 platform_profile
 platform_temperature_control
@@ -119,7 +116,6 @@ spi_pxa2xx_core
 spi_pxa2xx_platform
 stp
 tcp_bbr
-tiny_power_button
 tls
 uas
 uhci_hcd

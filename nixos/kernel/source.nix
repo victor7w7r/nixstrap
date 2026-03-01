@@ -101,7 +101,7 @@ pkgs.stdenv.mkDerivation {
     export LSMOD=$(mktemp)
     cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD
     cat $LSMOD
-    (yes "" | make LSMOD=$LSMOD localmodconfig) || true
+    make LSMOD=$LSMOD localmodconfig
 
     make olddefconfig
     patchShebangs scripts/config
