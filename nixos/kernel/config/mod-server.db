@@ -1,138 +1,138 @@
-8021q 0
-8250_dw 0 0
-842_compress 0 0
-842_decompress 0 0
-acpi_cpufreq 0 0
-acpi_pad 0 0
-acpi_tad 0 0
-acpi_thermal_rel 0 0
-aesni_intel 0 0
-af_packet 0 0
-ahci 0 0
-atkbd 0 0
-autofs4 0 0
-bfq 0 0
-bridge 0 0
-button 0 0
-cmdlinepart 0 0
-coretemp 0 0
-cqhci 0 0
-crc32c_cryptoapi 0 0
-crc8 0 0
-dm_bio_prison 0 0
-dm_bufio 0 0
-dmi_sysfs 0 0
-dm_mod 0 0
-dm_persistent_data 0 0
-dm_snapshot 0 0
-dm_thin_pool 0 0
-drm_buddy 0 0
-drm_display_helper 0 0
-dw_dmac 0 0
-dw_dmac_core 0 0
-ecc 0 0
-ecdh_generic 0 0
-efi_pstore 0 0
-ehci_hcd 0 0
-fixed_phy 0 0
-fuse 0 0
-fwnode_mdio 0 0
-garp 0 0
-ghash_clmulni_intel 0 0
-hid 0 0
-hid_generic 0 0
-i2c_i801 0 0
-i2c_mux 0 0
-i915 0 0
-idma64 0 0
-input_leds 0 0
-int3400_thermal 0 0
-int3403_thermal 0 0
-int340x_thermal_zone 0 0
-intel_cstate 0 0
-intel_gtt 0 0
-intel_lpss 0 0
-intel_lpss_pci 0 0
-intel_oc_wdt 0 0
-intel_pmc_core 0 0
-intel_pmc_ssram_telemetry 0 0
-intel_powerclamp 0 0
-intel_rapl_common 0 0
-intel_rapl_msr 0 0
-intel_soc_dts_iosf 0 0
-ip6t_rpfilter 0 0
-iptable_mangle 0 0
-ip_tables 0 0
-ipt_rpfilter 0 0
-kvm_intel 0 0
-led_class 0 0
-libaescfb 0 0
-libahci 0 0
-libata 0 0
-libps2 0 0
-llc 0 0
-lz4_compress 0 0
-lz4hc_compress 0 0
-mei 0 0
-mei_hdcp 0 0
-mei_me 0 0
-mei_pxp 0 0
-mrp 0 0
-mtd 0 0
-nls_ascii 0 0
-nls_cp437 0 0
-of_mdio 0 0
-ofpart 0 0
-pinctrl_jasperlake 0 0
-platform_profile 0 0
-platform_temperature_control 0 0
-pmt_class 0 0
-pmt_discovery 0 0
-pmt_telemetry 0 0
-processor_thermal_device 0 0
-processor_thermal_device_pci_legacy 0 0
-processor_thermal_mbox 0 0
-processor_thermal_power_floor 0 0
-processor_thermal_rapl 0 0
-processor_thermal_rfim 0 0
-processor_thermal_soc_slider 0 0
-processor_thermal_wt_hint 0 0
-processor_thermal_wt_req 0 0
-r8169 0 0
-realtek 0 0
-rng_core 0 0
-rpmb_core 0 0
-rtc_cmos 0 0
-sch_cake 0 0
-scsi_common 0 0
-scsi_mod 0 0
-sdhci 0 0
-sdhci_acpi 0 0
-sdhci_pci 0 0
-sdhci_uhs2 0 0
-sd_mod 0 0
-serio 0 0
-spi_intel 0 0
-spi_intel_pci 0 0
-spi_nor 0 0
-spi_pxa2xx_core 0 0
-spi_pxa2xx_platform 0 0
-stp 0 0
-tcp_bbr 0 0
-tiny_power_button 0 0
-tls 0 0
-uas 0 0
-uhci_hcd 0 0
-usbhid 0 0
-usbmon 0 0
-usb_storage 0 0
-vhost 0 0
-vhost_iotlb 0 0
-vhost_vsock 0 0
-vivaldi_fmap 0 0
-vmw_vsock_virtio_transport_common 0 0
-wmi_bmof 0 0
-x86_pkg_temp_thermal 0 0
-xhci_hcd 0 0
-xhci_pci 0 0
-xor 0 0
+8021q
+8250_dw
+842_compress
+842_decompress
+acpi_cpufreq
+acpi_pad
+acpi_tad
+acpi_thermal_rel
+aesni_intel
+af_packet
+ahci
+atkbd
+autofs4
+bfq
+bridge
+button
+cmdlinepart
+coretemp
+cqhci
+crc32c_cryptoapi
+crc8
+dm_bio_prison
+dm_bufio
+dmi_sysfs
+dm_mod
+dm_persistent_data
+dm_snapshot
+dm_thin_pool
+drm_buddy
+drm_display_helper
+dw_dmac
+dw_dmac_core
+ecc
+ecdh_generic
+efi_pstore
+ehci_hcd
+fixed_phy
+fuse
+fwnode_mdio
+garp
+ghash_clmulni_intel
+hid
+hid_generic
+i2c_i801
+i2c_mux
+i915
+idma64
+input_leds
+int3400_thermal
+int3403_thermal
+int340x_thermal_zone
+intel_cstate
+intel_gtt
+intel_lpss
+intel_lpss_pci
+intel_oc_wdt
+intel_pmc_core
+intel_pmc_ssram_telemetry
+intel_powerclamp
+intel_rapl_common
+intel_rapl_msr
+intel_soc_dts_iosf
+ip6t_rpfilter
+iptable_mangle
+ip_tables
+ipt_rpfilter
+kvm_intel
+led_class
+libaescfb
+libahci
+libata
+libps2
+llc
+lz4_compress
+lz4hc_compress
+mei
+mei_hdcp
+mei_me
+mei_pxp
+mrp
+mtd
+nls_ascii
+nls_cp437
+of_mdio
+ofpart
+pinctrl_jasperlake
+platform_profile
+platform_temperature_control
+pmt_class
+pmt_discovery
+pmt_telemetry
+processor_thermal_device
+processor_thermal_device_pci_legacy
+processor_thermal_mbox
+processor_thermal_power_floor
+processor_thermal_rapl
+processor_thermal_rfim
+processor_thermal_soc_slider
+processor_thermal_wt_hint
+processor_thermal_wt_req
+r8169
+realtek
+rng_core
+rpmb_core
+rtc_cmos
+sch_cake
+scsi_common
+scsi_mod
+sdhci
+sdhci_acpi
+sdhci_pci
+sdhci_uhs2
+sd_mod
+serio
+spi_intel
+spi_intel_pci
+spi_nor
+spi_pxa2xx_core
+spi_pxa2xx_platform
+stp
+tcp_bbr
+tiny_power_button
+tls
+uas
+uhci_hcd
+usbhid
+usbmon
+usb_storage
+vhost
+vhost_iotlb
+vhost_vsock
+vivaldi_fmap
+vmw_vsock_virtio_transport_common
+wmi_bmof
+x86_pkg_temp_thermal
+xhci_hcd
+xhci_pci
+xor

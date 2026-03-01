@@ -1,195 +1,195 @@
 842_compress
-842_decompress 0 0
-ac 0 0
-acpi_call 0 0
-af_alg 0 0
-af_packet 0 0
-algif_hash 0 0
-algif_skcipher 0 0
-amd_atl 0 0
-amdgpu 0 0
-amd_pmc 0 0
-amdxcp 0 0
-asn1_encoder 0 0
-asus_nb_wmi 0 0
-asus_wmi 0 0
-atkbd 0 0
-autofs4 0 0
-battery 0 0
-blake2b_generic 0 0
-bmc150_accel_core 0 0
-bmc150_accel_i2c 0 0
-bmi323_core 0 0
-bmi323_i2c 0 0
-bnep 0 0
-btbcm 0 0
-btintel 0 0
-btmtk 0 0
-btrtl 0 0
-btusb 0 0
-button 0 0
-ccm 0 0
-ccp 0 0
-cdc_ether 0 0
-cmac 0 0
-configfs 0 0
-cqhci 0 0
-crc16 0 0
-crc32c_cryptoapi 0 0
-cs_dsp 0 0
-dax 0 0
-dm_bio_prison 0 0
-dm_bufio 0 0
-dm_crypt 0 0
-dmi_sysfs 0 0
-dm_mod 0 0
-dm_persistent_data 0 0
-dm_snapshot 0 0
-dm_thin_pool 0 0
-drm_buddy 0 0
-drm_display_helper 0 0
-drm_exec 0 0
-drm_panel_backlight_quirks 0 0
-drm_suballoc_helper 0 0
-drm_ttm_helper 0 0
-ecc 0 0
-ecdh_generic 0 0
-edac_core 0 0
-edac_mce_amd 0 0
-efi_pstore 0 0
-encrypted_keys 0 0
-ff_memless 0 0
-fuse 0 0
-ghash_clmulni_intel 0 0
-gpu_sched 0 0
-hid 0 0
-hid_asus 0 0
-hid_generic 0 0
-hid_multitouch 0 0
-i2c_hid 0 0
-i2c_hid_acpi 0 0
-i2c_piix4 0 0
-i8042 0 0
-industrialio 0 0
-industrialio_triggered_buffer 0 0
-input_leds 0 0
-intel_gtt 0 0
-intel_rapl_common 0 0
-intel_rapl_msr 0 0
-iommufd 0 0
-ip6t_rpfilter 0 0
-ipt_rpfilter 0 0
-k10temp 0 0
-kfifo_buf 0 0
-kvm_amd 0 0
-led_class 0 0
-libarc4 0 0
-libps2 0 0
-lz4hc_compress 0 0
-mac80211 0 0
-mdev 0 0
-mii 0 0
-mmc_core 0 0
-mt76 0 0
-mt76_connac_lib 0 0
-mt7921_common 0 0
-mt7921e 0 0
-mt792x_lib 0 0
-nls_ascii 0 0
-nls_cp437 0 0
-platform_profile 0 0
-polyval_clmulni 0 0
-r8152 0 0
-r8153_ecm 0 0
-rapl 0 0
-regmap_spi 0 0
-rfcomm 0 0
-rng_core 0 0
-roles 0 0
-rtc_cmos 0 0
-sch_cake 0 0
-sdhci 0 0
-sdhci_pci 0 0
-sdhci_uhs2 0 0
-serial_multi_instantiate 0 0
-serio 0 0
-serio_raw 0 0
-sha1 0 0
-snd 0 0
-snd_acp_config 0 0
-snd_acp_legacy_common 0 0
-snd_acp_pci 0 0
-snd_amd_acpi_mach 0 0
-snd_amd_sdw_acpi 0 0
-snd_compress 0 0
-snd_hda_codec 0 0
-snd_hda_codec_alc269 0 0
-snd_hda_codec_atihdmi 0 0
-snd_hda_codec_generic 0 0
-snd_hda_codec_hdmi 0 0
-snd_hda_codec_realtek_lib 0 0
-snd_hda_core 0 0
-snd_hda_intel 0 0
-snd_hda_scodec_component 0 0
-snd_hda_scodec_cs35l41 0 0
-snd_hda_scodec_cs35l41_i2c 0 0
-snd_hda_scodec_cs35l41_spi 0 0
-snd_hrtimer 0 0
-snd_hwdep 0 0
-snd_intel_dspcfg 0 0
-snd_intel_sdw_acpi 0 0
-snd_pci_acp3x 0 0
-snd_pci_acp5x 0 0
-snd_pci_acp6x 0 0
-snd_pci_ps 0 0
-snd_pcm 0 0
-snd_pcm_dmaengine 0 0
-snd_rn_pci_acp3x 0 0
-snd_rpl_pci_acp6x 0 0
-snd_seq 0 0
-snd_seq_device 0 0
-snd_seq_dummy 0 0
-snd_soc_acpi 0 0
-snd_soc_acpi_amd_match 0 0
-snd_soc_core 0 0
-snd_soc_cs35l41_lib 0 0
-snd_soc_cs_amp_lib 0 0
-snd_soc_sdca 0 0
-snd_sof 0 0
-snd_sof_amd_acp 0 0
-snd_sof_amd_acp63 0 0
-snd_sof_amd_acp70 0 0
-snd_sof_amd_rembrandt 0 0
-snd_sof_amd_renoir 0 0
-snd_sof_amd_vangogh 0 0
-snd_sof_pci 0 0
-snd_sof_utils 0 0
-snd_sof_xtensa_dsp 0 0
-snd_timer 0 0
-soundcore 0 0
-soundwire_amd 0 0
-soundwire_bus 0 0
-soundwire_generic_allocation 0 0
-sp5100_tco 0 0
-sparse_keymap 0 0
-spd5118 0 0
-tee 0 0
-thunderbolt 0 0
-tiny_power_button 0 0
-typec 0 0
-typec_ucsi 0 0
-ucsi_acpi 0 0
-uinput 0 0
-usbhid 0 0
-usbmon 0 0
-usbnet 0 0
-vhost 0 0
-vhost_iotlb 0 0
-vhost_vsock 0 0
-vivaldi_fmap 0 0
-vmw_vsock_virtio_transport_common 0 0
-wmi_bmof 0 0
-xhci_hcd 0 0
-xhci_pci 0 0
-xor 0 0
-xpad 0 0
+842_decompress
+ac
+acpi_call
+af_alg
+af_packet
+algif_hash
+algif_skcipher
+amd_atl
+amdgpu
+amd_pmc
+amdxcp
+asn1_encoder
+asus_nb_wmi
+asus_wmi
+atkbd
+autofs4
+battery
+blake2b_generic
+bmc150_accel_core
+bmc150_accel_i2c
+bmi323_core
+bmi323_i2c
+bnep
+btbcm
+btintel
+btmtk
+btrtl
+btusb
+button
+ccm
+ccp
+cdc_ether
+cmac
+configfs
+cqhci
+crc16
+crc32c_cryptoapi
+cs_dsp
+dax
+dm_bio_prison
+dm_bufio
+dm_crypt
+dmi_sysfs
+dm_mod
+dm_persistent_data
+dm_snapshot
+dm_thin_pool
+drm_buddy
+drm_display_helper
+drm_exec
+drm_panel_backlight_quirks
+drm_suballoc_helper
+drm_ttm_helper
+ecc
+ecdh_generic
+edac_core
+edac_mce_amd
+efi_pstore
+encrypted_keys
+ff_memless
+fuse
+ghash_clmulni_intel
+gpu_sched
+hid
+hid_asus
+hid_generic
+hid_multitouch
+i2c_hid
+i2c_hid_acpi
+i2c_piix4
+i8042
+industrialio
+industrialio_triggered_buffer
+input_leds
+intel_gtt
+intel_rapl_common
+intel_rapl_msr
+iommufd
+ip6t_rpfilter
+ipt_rpfilter
+k10temp
+kfifo_buf
+kvm_amd
+led_class
+libarc4
+libps2
+lz4hc_compress
+mac80211
+mdev
+mii
+mmc_core
+mt76
+mt76_connac_lib
+mt7921_common
+mt7921e
+mt792x_lib
+nls_ascii
+nls_cp437
+platform_profile
+polyval_clmulni
+r8152
+r8153_ecm
+rapl
+regmap_spi
+rfcomm
+rng_core
+roles
+rtc_cmos
+sch_cake
+sdhci
+sdhci_pci
+sdhci_uhs2
+serial_multi_instantiate
+serio
+serio_raw
+sha1
+snd
+snd_acp_config
+snd_acp_legacy_common
+snd_acp_pci
+snd_amd_acpi_mach
+snd_amd_sdw_acpi
+snd_compress
+snd_hda_codec
+snd_hda_codec_alc269
+snd_hda_codec_atihdmi
+snd_hda_codec_generic
+snd_hda_codec_hdmi
+snd_hda_codec_realtek_lib
+snd_hda_core
+snd_hda_intel
+snd_hda_scodec_component
+snd_hda_scodec_cs35l41
+snd_hda_scodec_cs35l41_i2c
+snd_hda_scodec_cs35l41_spi
+snd_hrtimer
+snd_hwdep
+snd_intel_dspcfg
+snd_intel_sdw_acpi
+snd_pci_acp3x
+snd_pci_acp5x
+snd_pci_acp6x
+snd_pci_ps
+snd_pcm
+snd_pcm_dmaengine
+snd_rn_pci_acp3x
+snd_rpl_pci_acp6x
+snd_seq
+snd_seq_device
+snd_seq_dummy
+snd_soc_acpi
+snd_soc_acpi_amd_match
+snd_soc_core
+snd_soc_cs35l41_lib
+snd_soc_cs_amp_lib
+snd_soc_sdca
+snd_sof
+snd_sof_amd_acp
+snd_sof_amd_acp63
+snd_sof_amd_acp 0
+snd_sof_amd_rembrandt
+snd_sof_amd_renoir
+snd_sof_amd_vangogh
+snd_sof_pci
+snd_sof_utils
+snd_sof_xtensa_dsp
+snd_timer
+soundcore
+soundwire_amd
+soundwire_bus
+soundwire_generic_allocation
+sp5100_tco
+sparse_keymap
+spd5118
+tee
+thunderbolt
+tiny_power_button
+typec
+typec_ucsi
+ucsi_acpi
+uinput
+usbhid
+usbmon
+usbnet
+vhost
+vhost_iotlb
+vhost_vsock
+vivaldi_fmap
+vmw_vsock_virtio_transport_common
+wmi_bmof
+xhci_hcd
+xhci_pci
+xor
+xpad
