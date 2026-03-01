@@ -82,6 +82,7 @@ pkgs.stdenv.mkDerivation {
     flex
     perl
     pkg-config
+    elfutils
     gnumake
     libelf
     ncurses
