@@ -94,6 +94,7 @@ pkgs.stdenv.mkDerivation {
   '';
 
   buildPhase = ''
+    set -x
     #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
     cp "${fetch.kernel-config}" ".config"
 
