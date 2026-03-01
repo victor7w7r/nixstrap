@@ -11,7 +11,7 @@
 {
   kernel-src = pkgs.fetchurl {
     url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernelVersion}.tar.xz";
-    inherit kernelHash;
+    hash = kernelHash;
   };
 
   kernel-config = pkgs.fetchFromGitHub {
