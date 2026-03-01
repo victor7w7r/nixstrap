@@ -75,7 +75,17 @@ in
 pkgs.stdenv.mkDerivation {
   src = fetch.kernel-src;
   name = "linux-${majorMinor}${localVer}";
-  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
+  nativeBuildInputs = with pkgs; [
+    stdenvNoCC
+    binutils
+    bison
+    flex
+    perl
+    pkg-config
+    gnumake
+    libelf
+    ncurses
+  ];
   installPhase = "cp .config $out";
 
   buildPhase = ''
