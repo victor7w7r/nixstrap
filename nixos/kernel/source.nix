@@ -89,6 +89,7 @@ pkgs.stdenv.mkDerivation {
   ];
   installPhase = ''
     cp .config $out
+    ls $out
     exit 0
   '';
 
