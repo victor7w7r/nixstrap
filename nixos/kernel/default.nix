@@ -12,19 +12,26 @@ let
   kernel =
     (pkgs.linuxManualConfig {
       src = source.src;
-      configFile = "${source}/.config";
+      configfile = "${source}/.config";
       allowImportFromDerivation = true;
       version = source.version;
       modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
-      #stdenv = helpers.stdenvLLVM;
-      #env.NIX_ENFORCE_NO_NATIVE = "0";
-
+      stdenv = helpers.stdenvLLVM;
+      /*
+        configfile = (
+        pkgs.linuxConfig {
+          src = source.src;
+          version = source.version;
+        }
+        );
+      */
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
         patch = file;
       }) source.passthru.kernelPatches;
 
       extraMakeFlags = [
+        "NIX_ENFORCE_NO_NATIVE=0"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "KCFLAGS=-Wno-error"
       ];
