@@ -15,7 +15,42 @@
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
-      rm -rfv "$out" && cp -v "$conf" "$out"
+        sed -i '/^#/d' $conf
+        sed -i '/^CONFIG_G*CC_/d' $conf
+        sed -i '/^CONFIG_LD_/d' $conf
+        sed -i '/^CONFIG_RUSTC*_/d' $conf
+        sed -i '/^CONFIG_CC_/d' $conf
+        sed -i '/^CONFIG_KUNIT$/d' $conf
+        sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
+        # Remove drivers
+        sed -i '/^CONFIG_SND_/d' $conf
+        # sed -i '/^CONFIG_NET_/d' $conf
+        sed -i '/^CONFIG_.*_FS=/d' $conf
+        sed -i '/^CONFIG_MMC_/d' $conf
+        sed -i '/^CONFIG_MEMSTICK_/d' $conf
+        sed -i '/^CONFIG_SYSTEM/d' $conf
+        sed -i '/^CONFIG_MEDIA_/d' $conf
+        sed -i '/^CONFIG_SSB/d' $conf
+        sed -i '/^CONFIG_IIO/d' $conf
+        sed -i '/^CONFIG_USB_/d' $conf
+        # sed -i '/^CONFIG_PHY_/d' $conf
+        # sed -i '/^CONFIG_DRM_/d' $conf
+        # sed -i '/^CONFIG_FB_/d' $conf
+        sed -i '/^CONFIG_MFD_/d' $conf
+        sed -i '/^CONFIG_GPIO/d' $conf
+        sed -i '/^CONFIG_REGULATOR/d' $conf
+        sed -i '/^CONFIG_COMEDI/d' $conf
+        # sed -i '/^CONFIG_SENSORS/d' $conf
+        sed -i '/^CONFIG_BLK_DEV/d' $conf
+        sed -i '/^CONFIG_SCSI_/d' $conf
+        sed -i '/^CONFIG_DEBUG_/d' $conf
+        sed -i '/^CONFIG_.*_PHY=/d' $conf
+        sed -i '/^CONFIG_INPUT_/d' $conf
+        sed -i '/^CONFIG_JOYSTICK_/d' $conf
+        sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
+        sed -i '/^CONFIG_ATH/d' $conf
+        sed -i '/^$/N;/\n$/D' $conf
+        rm -rfv "$out" && cp -v "$conf" "$out"
     '';
   };
 

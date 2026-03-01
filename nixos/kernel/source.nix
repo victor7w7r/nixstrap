@@ -2,7 +2,6 @@
   host,
   lib,
   pkgs,
-  kernelPatches,
   hardened ? false,
   ...
 }:
