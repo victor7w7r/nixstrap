@@ -23,7 +23,7 @@ in
 
     "/nix" = f2fs {
       label = "system";
-      device = "/dev/vg0/syscrypt";
+      device = "/dev/vg0/system";
     };
   };
 
