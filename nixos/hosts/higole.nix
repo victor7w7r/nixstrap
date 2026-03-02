@@ -2,9 +2,12 @@
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
-  boot = import ./lib/boot.nix { };
+  boot = import ./lib/boot.nix {
+    emergencyDisk = "emmc";
+    efiDisk = "emmc";
+  };
   f2fs = import ./lib/f2fs.nix;
-  shared = (import ./lib/shared.nix) { };
+  shared = (import ./lib/shared.nix) { sharedDisk = "emmc"; };
 in
 {
   fileSystems = {
