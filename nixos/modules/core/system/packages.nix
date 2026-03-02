@@ -18,7 +18,9 @@
       file
       firejail
       hexyl
+      iio-sensor-proxy
       jump
+      libiio
       lsof
       luksmeta
       keyd

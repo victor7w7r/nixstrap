@@ -25,6 +25,20 @@
           acceleration = -0.4;
           productId = "8367";
         }
+        {
+          accelerationProfile = "none";
+          name = "E-Signal USB Gaming Mouse";
+          vendorId = "04d9";
+          acceleration = -0.5;
+          productId = "a09f";
+        }
+        {
+          accelerationProfile = "none";
+          name = "Xing Wei 2.4G USB USB Composite Device Mouse";
+          vendorId = "040a";
+          acceleration = -0.5;
+          productId = "2814";
+        }
       ];
       touchpads = [
         {
