@@ -3,6 +3,7 @@
   vg ? "vg0",
   allowDiscards ? true,
   size ? "100%",
+  group ? "main",
   isForTest ? false,
   keyFile ? "/tmp/key.txt",
   priority ? 3,
@@ -19,7 +20,7 @@
     settings = { inherit keyFile allowDiscards; };
     preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
     postCreateHook = ''
-      cryptsetup config /dev/disk/by-partlabel/disk-main-${name} --label "${name}"
+      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${name} --label "${name}"
     '';
   };
 }

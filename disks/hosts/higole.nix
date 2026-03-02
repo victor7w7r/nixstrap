@@ -9,6 +9,7 @@ let
     win = winmod.win { size = "90G"; };
     systempv = (import ../lib/luks-lvm.nix) {
       size = "95G";
+      group = "emmc";
       vg = "vg0";
       priority = 4;
     };
