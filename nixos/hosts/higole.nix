@@ -45,10 +45,12 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+  resumeDevice = "/dev/vg0/swapcrypt";
   boot = {
     kernelParams = [
       "intel_iommu=on"
       "fbcon=rotate:1"
+      "resume=/dev/vg0/swapcrypt"
       "mem_sleep_default=deep"
       "i2c_designware.force_load=1"
       "i2c_dw.disable_fast_mode=1"

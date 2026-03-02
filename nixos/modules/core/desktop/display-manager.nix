@@ -117,7 +117,15 @@
           text_in_center = true;
           xinitrc = "null";
           tty = 1;
-        };
+        }
+        // (
+          if host == "v7w7r-higole" then
+            {
+              battery_id = "BAT0";
+            }
+          else
+            { }
+        );
       };
     };
   };

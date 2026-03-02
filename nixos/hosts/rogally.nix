@@ -30,10 +30,12 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+  resumeDevice = "/dev/vg0/swapcrypt";
   boot = {
     kernelParams = [
       "amd_iommu=on"
       "amdgpu.sg_display=0"
+      "resume=/dev/vg0/swapcrypt"
     ]
     ++ params { };
     kernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);

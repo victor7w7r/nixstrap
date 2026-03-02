@@ -76,6 +76,7 @@
             popupHeight = 319;
             popupWidth = 240;
             Appearance = {
+              icon = "/etc/nixos/logo.svg";
               cmdList = [
                 "kinfocenter"
                 "separator"
@@ -85,24 +86,25 @@
                 "systemctl suspend -f"
                 "systemctl reboot"
                 "systemctl reboot --firmware-setup"
+                "systemctl hibernate"
                 "systemctl poweroff"
                 "separator"
                 "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"
                 "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"
               ];
-              icon = "/etc/nixos/logo.svg";
               iconList = [
                 "help-hint"
+                "separator"
                 "filename-dash-amarok"
                 "settings-configure"
-                "view-process-all-tree"
+                "separator"
                 "update-none"
-                "filename-dash-amarok"
                 "system-suspend"
                 "system-reboot"
                 "system-reboot-symbolic"
+                "system-reboot-symbolic"
                 "system-shutdown"
-                "filename-dash-amarok"
+                "separator"
                 "system-lock-screen"
                 "system-log-out"
               ];
@@ -115,6 +117,7 @@
                 "Reposo"
                 "Reiniciar"
                 "Reiniciar a UEFI"
+                "Hibernar"
                 "Apagar"
                 "separator"
                 "Bloquear"
@@ -126,6 +129,7 @@
                 false
                 false
                 true
+                false
                 false
                 false
                 false
