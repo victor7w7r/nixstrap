@@ -50,23 +50,39 @@ in
       "intel_iommu=on"
       "fbcon=rotate:1"
       "mem_sleep_default=deep"
+      "i2c_designware.force_load=1"
+      "i2c_dw.disable_fast_mode=1"
       "acpi_backlight=vendor"
       "i915.enable_dpcd_backlight=1"
     ]
     ++ intelParams
     ++ params { };
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    blacklistedKernelModules = [ "pac1934" ];
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-emmc-systempv";
         #rypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
-      availableKernelModules = [ "i915" ];
+      availableKernelModules = [
+        "i915"
+        "intel_lpss_pci"
+        "i2c_designware_pci"
+        "i2c_designware_platform"
+        "goodix_ts"
+        "sdhci_pci"
+      ];
+      extraModprobeConfig = ''
+        options goodix_ts reset_speed=100
+        options i2c_designware_core bus_speed=100
+      '';
       kernelModules = [
         "autofs"
         "tpm-crb"
         "sdhci_pci"
+        "goodix_ts"
+        "mxc4005"
         "sdhci_acpi"
         "intel_lpss_pci"
         "mmc_block"

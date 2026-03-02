@@ -13,11 +13,13 @@
       cmd-wrapped
       cod
       emptty
+      evemu
       gnused
       inotify-tools
       file
       firejail
       hexyl
+      libinput
       iio-sensor-proxy
       jump
       libiio
