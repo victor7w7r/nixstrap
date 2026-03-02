@@ -8,7 +8,7 @@ let
     recovery = winmod.recovery { };
     win = winmod.win { size = "90G"; };
     systempv = (import ../lib/luks-lvm.nix) {
-      size = "75G";
+      size = "95G";
       vg = "vg0";
       priority = 4;
     };
@@ -19,18 +19,18 @@ let
     swapcrypt = (import ../lib/swap.nix) {
       discardPolicy = "once";
     };
-    # CHECK EMMC QUALITY
-    syscrypt = (import ../lib/btrfs.nix) {
+    syscrypt = (import ../lib/f2fs.nix) {
       name = "system";
+      mountpoint = "/nix";
       size = "100%";
-      #subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
+      postCreateHook = "mkdir -p persist";
     };
   };
 
 in
 {
   disko.devices = {
-    disk.main = {
+    disk.emmc = {
       type = "disk";
       device = "/dev/mmcblk0";
       content = {
@@ -43,4 +43,14 @@ in
       inherit lvs;
     };
   };
+
+  roottmp."/" = {
+    fsType = "tmpfs";
+    mountOptions = [
+      "defaults"
+      "size=2G"
+      "mode=755"
+    ];
+  };
+
 }

@@ -3,6 +3,7 @@
   size ? null,
   mountpoint ? "/",
   priority ? null,
+  postMountHook ? "",
 }:
 let
   args = (import ./f2fs-args.nix) { inherit name; };
@@ -14,7 +15,12 @@ in
   content = {
     type = "filesystem";
     format = "f2fs";
-    inherit mountpoint mountOptions extraArgs;
+    inherit
+      mountpoint
+      mountOptions
+      extraArgs
+      postMountHook
+      ;
   };
 }
 // (

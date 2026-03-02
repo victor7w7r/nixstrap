@@ -2,9 +2,10 @@
   label,
   neededForBoot ? true,
   depends ? [ ],
+  device ? null,
 }:
 {
-  device = "/dev/disk/by-partlabel/disk-emmc-${label}";
+  device = if device == null then "/dev/disk/by-partlabel/disk-emmc-${label}" else device;
   fsType = "f2fs";
   options = [
     "lazytime"

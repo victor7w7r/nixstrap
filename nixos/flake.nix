@@ -148,7 +148,7 @@
           };
         };
 
-        laptop = nixpkgs.lib.nixosSystem {
+        higole = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             (
@@ -166,12 +166,12 @@
             impermanence.nixosModules.impermanence
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
-            (import ./hosts/laptop.nix)
+            (import ./hosts/higole.nix)
             (import ./modules/core)
             (import ./modules/home)
           ];
           specialArgs = {
-            host = "v7w7r-dynabook";
+            host = "v7w7r-higole";
             inherit
               self
               sops-nix
