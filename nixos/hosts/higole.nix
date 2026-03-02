@@ -40,6 +40,4 @@ in
       kernelModules = [ "dm-snapshot" ];
     };
   };
-
-  hardware.intel-gpu-tools = true;
 }
