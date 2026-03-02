@@ -45,7 +45,7 @@ in
   boot = {
     kernelParams = [
       "intel_iommu=on"
-      "fbcon=rotate:3"
+      "fbcon=rotate:1"
       "mem_sleep_default=deep"
       "acpi_backlight=vendor"
       "i915.enable_dpcd_backlight=1"
@@ -56,10 +56,19 @@ in
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-emmc-systempv";
+        #rypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
       availableKernelModules = [ "i915" ];
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [
+        "autofs"
+        "tpm-crb"
+        "sdhci_pci"
+        "sdhci_acpi"
+        "intel_lpss_pci"
+        "mmc_block"
+        "dm-snapshot"
+      ];
     };
   };
 }

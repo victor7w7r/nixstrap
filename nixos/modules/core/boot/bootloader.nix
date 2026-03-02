@@ -101,11 +101,14 @@ in
       ${cp} -r ${refind}/fonts ${efi}/refind/fonts
       ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi &> /dev/null
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/exfat_x64.efi &> /dev/null
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi &> /dev/null
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi &> /dev/null
-
+      ${
+        if (host == "v7w7r-youyeetoox1") || (host == "v7w7r-macmini81") then
+          "${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi &> /dev/null"
+        else
+          ""
+      }
       EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
         | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
       DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
