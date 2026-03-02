@@ -3,6 +3,7 @@
   size ? null,
   mountpoint ? "/",
   priority ? null,
+  postCreateHook ? "",
   postMountHook ? "",
 }:
 let
@@ -19,6 +20,7 @@ in
       mountpoint
       mountOptions
       extraArgs
+      postCreateHook
       postMountHook
       ;
   };
