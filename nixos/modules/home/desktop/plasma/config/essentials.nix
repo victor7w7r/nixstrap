@@ -106,7 +106,7 @@
         lowBattery = {
           autoSuspend = {
             action = "sleep";
-            idleTimeout = if is-gole then 30 else 60;
+            idleTimeout = if is-gole then 60 else 65;
           };
           turnOffDisplay = {
             idleTimeout = if is-gole then 30 else 35;
