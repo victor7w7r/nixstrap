@@ -30,7 +30,7 @@ in
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto-x86_64-v2;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-emmc-systempv";
