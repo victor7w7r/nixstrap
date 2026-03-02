@@ -24,6 +24,7 @@
       rtl8192su-firmware
       rtl8761b-firmware
     ];
+    sensor.iio.enable = true;
     ksm.enable = true;
     #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
     bluetooth = {
