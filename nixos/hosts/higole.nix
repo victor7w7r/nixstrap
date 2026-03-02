@@ -59,6 +59,10 @@ in
     ++ params { };
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     blacklistedKernelModules = [ "pac1934" ];
+    extraModprobeConfig = ''
+      options goodix_ts reset_speed=100
+      options i2c_designware_core bus_speed=100
+    '';
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-emmc-systempv";
@@ -73,10 +77,6 @@ in
         "goodix_ts"
         "sdhci_pci"
       ];
-      extraModprobeConfig = ''
-        options goodix_ts reset_speed=100
-        options i2c_designware_core bus_speed=100
-      '';
       kernelModules = [
         "autofs"
         "tpm-crb"
