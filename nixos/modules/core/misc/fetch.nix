@@ -18,7 +18,7 @@
     #(pkgs.callPackage ./custom/cargofetch.nix { })
     #(pkgs.callPackage ./custom/customfetch.nix { })
     (pkgs.callPackage ./custom/envfetch.nix { })
-    (pkgs.callPackage ./custom/treefetch.nix { })
+    #(pkgs.callPackage ./custom/treefetch.nix { })
 
     #https://github.com/xdearboy/mfetch
     #https://gitlab.com/Maxb0tbeep/bestfetch
