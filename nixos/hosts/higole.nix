@@ -27,9 +27,31 @@ in
     };
   };
 
+  services.udev = {
+    extraRules = ''
+      SUBSYSTEM=="iio", ATTR{name}=="mxc4005", ENV{ID_INPUT_ACCELEROMETER}="1", ENV{ACCEL_MOUNT_MATRIX}="0,-1,0;-1,0,0;0,0,1"
+    '';
+    hwdb.extraConfig = ''
+      evdev:name:Goodix Capacitive TouchScreen:dmi:*
+       EVDEV_ABS_00=::1280
+       EVDEV_ABS_01=::720
+       EVDEV_ABS_35=::1280
+       EVDEV_ABS_36=::720
+       LIBINPUT_CALIBRATION_MATRIX=-1 0 1 0 -1 1
+    '';
+  };
+
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
   boot = {
-    kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
+    kernelParams = [
+      "intel_iommu=on"
+      "fbcon=rotate:3"
+      "mem_sleep_default=deep"
+      "acpi_backlight=vendor"
+      "i915.enable_dpcd_backlight=1"
+    ]
+    ++ intelParams
+    ++ params { };
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     initrd = {
       luks.devices.syscrypt = {
