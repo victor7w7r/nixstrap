@@ -31,7 +31,7 @@ in
     extraRules = ''
       SUBSYSTEM=="iio", ATTR{name}=="mxc4005", ENV{ID_INPUT_ACCELEROMETER}="1", ENV{ACCEL_MOUNT_MATRIX}="0,-1,0;-1,0,0;0,0,1"
     '';
-    hwdb.extraConfig = ''
+    extraHwdb = ''
       evdev:name:Goodix Capacitive TouchScreen:dmi:*
        EVDEV_ABS_00=::1280
        EVDEV_ABS_01=::720
