@@ -160,7 +160,7 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.common-pc-ssd
-            nixos-hardware.nixosModules.common-laptop
+            nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
