@@ -10,7 +10,7 @@ stdenv.mkDerivation {
     owner = "51n7";
     repo = "kMenu";
     rev = "HEAD";
-    sha256 = "sha256-XKf3fBpx19J888XuufmmoDH7oz1H+fYCTW4yZ6Zjqvs=";
+    sha256 = "sha256-Ium+RmV8zieSqHFZul4MdRZFKPUKmJVCoo2OoLCrwzk=";
   };
 
   installPhase = ''
