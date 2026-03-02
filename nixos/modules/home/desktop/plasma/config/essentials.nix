@@ -109,7 +109,7 @@
             idleTimeout = if is-gole then 30 else 60;
           };
           turnOffDisplay = {
-            idleTimeout = if is-gole then 25 else 30;
+            idleTimeout = if is-gole then 30 else 35;
             idleTimeoutWhenLocked = "immediately";
           };
           dimDisplay = {
