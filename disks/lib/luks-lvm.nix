@@ -1,5 +1,6 @@
 {
   name ? "syscrypt",
+  partlabel ? "systempv",
   vg ? "vg0",
   allowDiscards ? true,
   size ? "100%",
@@ -20,7 +21,7 @@
     settings = { inherit keyFile allowDiscards; };
     preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
     postCreateHook = ''
-      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${name} --label "${name}"
+      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${partlabel} --label "${name}"
     '';
   };
 }

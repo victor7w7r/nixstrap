@@ -50,7 +50,7 @@
     };
     displayManager = {
       sddm = {
-        enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
+        enable = host == "v7w7r-rc71l";
         package = lib.mkForce pkgs.kdePackages.sddm;
         wayland = {
           enable = true;
@@ -88,7 +88,7 @@
         theme = "sddm-astronaut-theme";
       };
       ly = {
-        enable = host == "v7w7r-macmini81";
+        enable = host == "v7w7r-macmini81" || host == "v7w7r-higole";
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
