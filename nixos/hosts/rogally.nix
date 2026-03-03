@@ -30,8 +30,8 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
-  resumeDevice = "/dev/vg0/swapcrypt";
   boot = {
+    resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [
       "amd_iommu=on"
       "amdgpu.sg_display=0"
