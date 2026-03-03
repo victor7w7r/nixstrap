@@ -68,7 +68,7 @@ in
     initrd = {
       luks.devices.syscrypt = {
         device = "/dev/disk/by-partlabel/disk-emmc-systempv";
-        #rypttabExtraOpts = [ "tpm2-device=auto" ];
+        crypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };
       availableKernelModules = [
@@ -81,7 +81,8 @@ in
       ];
       kernelModules = [
         "autofs"
-        "tpm-crb"
+        "tpm_crb"
+        "tpm_tis"
         "sdhci_pci"
         "goodix_ts"
         "mxc4005"
