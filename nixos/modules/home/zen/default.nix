@@ -17,6 +17,7 @@
 
   programs.zen-browser = {
     enable = true;
+    suppressXdgMigrationWarning = true;
     package = (
       config.lib.nixGL.wrap (
         (pkgs.wrapFirefox) (inputs.zen-browser.packages.${system}.twilight-unwrapped.override {
