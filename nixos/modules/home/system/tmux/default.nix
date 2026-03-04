@@ -21,7 +21,6 @@ in
     extraConfig = ''
       ${(import ./bindings.nix)}
       ${(import ./config.nix)}
-      ${(import ./plugins-options.nix)}
       ${(import ./ui.nix)}
       run ${status}
       run -b ${foreground}
