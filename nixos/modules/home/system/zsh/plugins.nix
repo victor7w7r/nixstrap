@@ -32,7 +32,7 @@
       }
       {
         name = "zsh-clipboard";
-        file = "${pkgs.zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
+        src = "${pkgs.zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
       }
       {
         name = "zsh-shift-select";
