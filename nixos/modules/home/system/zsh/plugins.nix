@@ -113,8 +113,9 @@
     ];
     antidote = {
       enable = true;
+      useFriendlyNames = true;
       plugins = [
-        "jirutka/zsh-shift-select"
+        #"jirutka/zsh-shift-select"
         "Bhupesh-V/ugit"
         "Schroefdop/git-branches"
         "lainiwa/ph-marks"
