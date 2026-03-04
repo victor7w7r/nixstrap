@@ -19,14 +19,15 @@ in
     sensibleOnTop = false;
     shell = "${pkgs.zsh}/bin/zsh";
     extraConfig = ''
-      ${import ./bindings.nix}
-      ${import ./config.nix}
-      ${import ./plugins.nix}
-      ${import ./plugins-options.nix}
-      ${import ./ui.nix}
+      ${(import ./bindings.nix)}
+      ${(import ./config.nix)}
+      ${(import ./plugins-options.nix)}
+      ${(import ./ui.nix)}
       run ${status}
       run -b ${foreground}
       run -b ${colors}
     '';
   };
+
+  imports = [ (import ./plugins.nix) ];
 }
