@@ -90,7 +90,7 @@
         battery = {
           autoSuspend = {
             action = "sleep";
-            idleTimeout = if is-gole then 120 else 300;
+            idleTimeout = 300;
           };
           turnOffDisplay = {
             idleTimeout = if is-gole then 40 else 60;
