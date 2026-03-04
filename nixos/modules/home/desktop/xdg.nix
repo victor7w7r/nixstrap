@@ -1,5 +1,11 @@
-{ config, ... }:
+{ user, config, ... }:
 {
+  home.file.".xinitrc".text = ''
+    export XAUTHORITY=/home/${user}/.Xauthority
+    export XDG_SESSION_TYPE=x11
+    export DESKTOP_SESSION=xfce
+    exec startxfce4
+  '';
   xdg = {
     configFile."mimeapps.list".force = true;
     mimeApps = {

@@ -26,7 +26,7 @@
     };
     xrdp = {
       enable = true;
-      defaultWindowManager = "xfce4-session";
+      defaultWindowManager = "${pkgs.xfce.xfce4-session}/bin/startxfce4";
       openFirewall = true;
     };
   };
