@@ -1,6 +1,5 @@
-{ ... }:
-{
-  programs.zsh.siteFunctions.bofh = ''
+''
+  bofh() {
     bofh_quotes=(
       "clock speed"
       "solar flares"
@@ -472,6 +471,5 @@
     bofh_string="$\{bofh_quotes[RANDOM % $\{#bofh_quotes[@]}]}"
     echo "$bofh_string"
     unset bofh_quotes
-  '';
-
-}
+  }
+''

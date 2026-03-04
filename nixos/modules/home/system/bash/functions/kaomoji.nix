@@ -1,6 +1,5 @@
-{ ... }:
-{
-  programs.zsh.siteFunctions.kaomoji = ''
+''
+  kaomoji() {
     case $((RANDOM % 45)) in
       0) printf "〜⁠(⁠꒪⁠꒳⁠꒪⁠)⁠〜" ;;
       1) printf "∑( ºロº) !!" ;;
@@ -49,5 +48,5 @@
       44) printf "(≧◡≦)" ;;
       45) printf "(づ￣ ³￣)づ" ;;
     esac
-  '';
-}
+  }
+''
