@@ -81,7 +81,7 @@
       }
       {
         name = "zhooks";
-        src = "${pkgs.zhooks}/share/zsh/zhooks";
+        src = "${pkgs.zsh-zhooks}/share/zsh/zhooks";
       }
       {
         name = "zsh-nix-shell";
