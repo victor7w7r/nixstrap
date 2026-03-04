@@ -35,16 +35,6 @@
         src = "${pkgs.zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
       }
       {
-        name = "zsh-shift-select";
-        file = "zsh-shift-select.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "";
-          repo = "zsh-shift-select";
-          rev = "master";
-          sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
-        };
-      }
-      {
         name = "zsh-vi-mode";
         src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
       }
@@ -115,7 +105,7 @@
       enable = true;
       useFriendlyNames = true;
       plugins = [
-        #"jirutka/zsh-shift-select"
+        "jirutka/zsh-shift-select"
         "Bhupesh-V/ugit"
         "Schroefdop/git-branches"
         "lainiwa/ph-marks"
