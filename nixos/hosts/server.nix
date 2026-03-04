@@ -51,7 +51,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
 
     /*
       (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
@@ -62,7 +62,7 @@ in
       );
     */
     zfs = {
-      #package = config.boot.kernelPackages.zfs_cachyos;
+      package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;
       forceImportRoot = true;
     };
