@@ -17,6 +17,17 @@
     extraPackages =
       epkgs: with epkgs; [
         melpaPackages.nixos-options
+        (epkgs.melpaBuild {
+          pname = "lsp-augment";
+          version = "v0.33.0";
+          packageRequires = [ epkgs.dash ];
+          src = builtins.fetchTree {
+            type = "github";
+            rev = "main";
+            owner = "rolandd";
+            repo = "augment.vim";
+          };
+        })
       ];
     extraBinPackages = with pkgs; [
       git
