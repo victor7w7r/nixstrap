@@ -1,7 +1,7 @@
 { ... }:
 {
-  programs.zsh = {
-    zsh-abbr.enable = true;
+  programs.zsh.zsh-abbr = {
+    enable = true;
     abbreviations = {
       c = "clear";
       ":q" = "exit";
