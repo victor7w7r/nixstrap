@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.zsh.shellAliases = {
     ssh = "TERM=xterm-256color command ssh";
@@ -82,7 +82,7 @@
 
     l = "eza --icons --git --classify=auto --color --group-directories-first --sort=extension -a";
     ls = "l";
-    ll = "l -l --octal-permissions --no-permissions --header --group --created --modified";
+    ll = lib.mkForce "l -l --octal-permissions --no-permissions --header --group --created --modified";
     lsa = "ls -aG";
     ldot = "ls -ld .*";
 
