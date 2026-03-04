@@ -6,7 +6,7 @@
 }:
 {
   nixpkgs.overlays = [
-    inputs.emacs-overlay.overlay
+    inputs.emacs-overlay
   ];
 
   programs.doom-emacs = {
