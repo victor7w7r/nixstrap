@@ -69,7 +69,7 @@
       }
       {
         name = "zsh-histdb";
-        src = "${pkgs.local.zsh-histdb}/share/zsh-histdb";
+        src = "${pkgs.zsh-histdb}/share/zsh-histdb";
       }
       {
         name = "zsh-forgit";
