@@ -96,7 +96,7 @@
         sha256 = "sha256-KJNsdDLqT2Uzc25U4GLSB2O1SA/PThmDj9Aej5XjmJs=";
       };
     })
-    (tmuxPlugins.mkTmuxPlugin {
+    (tmuxPlugins.mkTmuxPlugin rec {
       pluginName = "tmux-notify";
       version = "1.6.0";
       src = pkgs.fetchFromGitHub {
