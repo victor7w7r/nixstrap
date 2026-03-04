@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+ext="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+
+right_status() {
+  tmux set-option -ga status-right \
+    "#{?#{==:$2,},,#[fg=$1,nobold,nounderscore,noitalics] #[fg=#cdd6f4,bg=$1] $2}"
+}
+
+#right_status "#($ext/extensions/colors.sh 3)" "#($ext/extensions/mommy.sh)"
+right_status "#($ext/extensions/colors.sh 0)" "#($ext/extensions/git.sh)"
+right_status "#($ext/extensions/colors.sh 1)" "#($ext/extensions/ssh_session.sh)"
+right_status "#($ext/extensions/colors.sh 2)" "#($ext/extensions/network_ping.sh)"
+right_status "#($ext/extensions/colors.sh 3)" "#($ext/extensions/ram_info.sh)"
+right_status "#($ext/extensions/colors.sh 4)" "#($ext/extensions/cpu_info.sh)"
+right_status "#($ext/extensions/colors.sh 5)" "#($ext/extensions/battery.sh)"
+right_status "#($ext/extensions/colors.sh 6)" "%%d-%b %I:%M%P "
+#right_status "#e4cfff" "#($current_dir/network.sh)"
+#right_status "#e4cfff" "#($current_dir/mpc.sh)"
+#right_status "#e4cfff" "#($current_dir/sys_temp.sh)"

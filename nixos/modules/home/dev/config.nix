@@ -47,6 +47,11 @@
     gitui.enable = true;
     jq.enable = true;
     lazysql.enable = true;
+    mise = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
     #meli.enable = true; BUILD
     mods.enable = true;
     visidata.enable = true;

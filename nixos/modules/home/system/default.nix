@@ -8,5 +8,7 @@
     (import ./packages.nix)
     (import ./services.nix)
     (import ./starship.nix)
+    (import ./tmux)
+    (import ./zsh)
   ];
 }

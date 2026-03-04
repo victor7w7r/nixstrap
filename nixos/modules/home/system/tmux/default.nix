@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
+let
+  status = pkgs.writeShellScript "status-ss" (builtins.readFile ./shell/status);
+  foreground = pkgs.writeShellScript "fg-ss" (builtins.readFile ./shell/foreground);
+  colors = pkgs.writeShellScript "color-sss" (builtins.readFile ./shell/colors);
+in
 {
   programs.tmux = {
     enable = true;
@@ -12,9 +17,16 @@
     mouse = true;
     prefix = "C-a";
     sensibleOnTop = false;
-    shell = ${pkgs.zsh}/bin/zsh;
+    shell = "${pkgs.zsh}/bin/zsh";
     extraConfig = ''
-
+      ${import ./bindings.nix}
+      ${import ./config.nix}
+      ${import ./plugins.nix}
+      ${import ./plugins-options.nix}
+      ${import ./ui.nix}
+      run ${status}
+      run -b ${foreground}
+      run -b ${colors}
     '';
   };
 }

@@ -9,6 +9,8 @@
     tealdeer.enable = true;
     fzf = {
       enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
       defaultOptions = [
         "--height 40%"
         "--reverse"
@@ -23,19 +25,25 @@
     #lazydocker.enable = true;
     looking-glass-client.enable = true;
     lsd.enable = true;
+    pyenv = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
     ripgrep-all.enable = true;
     rclone.enable = true;
     vifm.enable = true;
     xplr.enable = true;
     zoxide = {
       enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
       options = [ "--cmd cd" ];
-      #enableZshIntegration = true;
     };
-
     eza = {
       enable = true;
-      #enableZshIntegration = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
       colors = "always";
       extraOptions = [
         "--group-directories-first"

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091,SC2154
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/palette"
+
+KAOMOJI=""
+ACTUALPROCESS=""
+ACTUALCOLOR=""
+
+shorten_string() {
+  local str="$1"
+  if ((${#str} <= 70)); then echo "$str"; else echo "${str:0:50}...${str: -50}"; fi
+}
+
+random_single_color() {
+  local random_index=$((RANDOM % 7))
+  case $(((RANDOM % 2) + 1)) in
+  1) echo "${colors_cake[$random_index]}" ;;
+  2) echo "${colors_secondary[$random_index]}" ;;
+  esac
+}
+
+secondary_right_status() {
+  tmux set-option -g status 2
+  tmux set -g 'status-format[1]' \
+    "#[fg=$1,nobold,nounderscore,noitalics,align=right] #[fg=#cdd6f4,bg=$1] $2 "
+}
+
+setup_foreground() {
+  if [[ "$1" == "bash" || "$1" == "starship" || "$1" == "ssh" || "$1" == "nvim" ||
+    "$1" == "tmux" || "$1" == "emacs" || "$1" == "zsh" || "$1" == "-zsh" ]] \
+    ; then
+    KAOMOJI=""
+    tmux set-option -gu status
+  elif [[ "$1" != "$ACTUALPROCESS" || -z "$KAOMOJI" ]]; then
+    ACTUALPROCESS="$1"
+    ACTUALCOLOR="$(random_single_color)"
+    KAOMOJI="$(source "$HOME"/.config/bash/functions/kaomoji.bash && kaomoji)"
+    tmux set-option -gu status
+  else
+    secondary_right_status "$ACTUALCOLOR" "${KAOMOJI} $(shorten_string "$2")"
+  fi
+}
+
+while :; do
+  tmux has-session 2>/dev/null || exit
+  PID=$(tmux list-panes -F "#{?pane_active,#{pane_pid},}")
+  while :; do
+    kill -0 "$PID" 2>/dev/null || break
+    tty=$(ps -p "$PID" -o tty= | xargs)
+    tty=${tty#/dev/}
+    TPGID=$(ps -t "$tty" -o tpgid | tail -n 1 | xargs)
+    [ -z "$TPGID" ] || [ "$TPGID" = "$PID" ] && break
+    PID=$TPGID
+  done
+  [ "$PID" -eq "$PID" ] 2>/dev/null || continue
+  setup_foreground \
+    "$(ps -p "$PID" -o args= | awk '{print $1}' | sed 's|.*/||')" \
+    "$(ps -o command= -p "$PID")"
+  sleep 0.2
+done

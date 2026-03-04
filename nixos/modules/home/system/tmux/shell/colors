@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091,SC2154,SC2034
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/palette"
+
+if [ -d /dev/shm ]; then CACHE_FILE="/dev/shm/colors.exectmux"; else CACHE_FILE="/tmp/colors.exectmux"; fi
+
+randomize_colors() {
+  local -a input_array=("$@")
+  local random_index_one=$((RANDOM % 7))
+  local random_index_two=$((RANDOM % 7))
+  local color_one=${input_array[$random_index_one]}
+  local color_two=${input_array[$random_index_two]}
+  local repeated_colors=()
+
+  [[ $random_index_one -eq $random_index_two ]] && random_index_two=$(((random_index_two + 1) % 8))
+  for ((i = 0; i < ${#input_array[@]} / 2; i++)); do repeated_colors+=("$color_one" "$color_two"); done
+  ((${#input_array[@]} % 2 != 0)) && repeated_colors+=("$color_one")
+
+  echo "${repeated_colors[@]}"
+}
+
+random_colors() {
+  case $(((RANDOM % 7) + 1)) in
+  1) echo "${colors_alt[@]}" ;;
+  2) echo "${colors_alt2[@]}" ;;
+  3) echo "${colors_alt3[@]}" ;;
+  5) echo "${colors_cake[@]}" ;;
+  6) echo "${colors_secondary[@]}" ;;
+  7) randomize_colors "${colors_cake[@]}" ;;
+  8) randomize_colors "${colors_secondary[@]}" ;;
+  *) echo "${colors_cake[@]}" ;;
+  esac
+}
+
+right_rotate() {
+  local -n in=$1
+  local -n out=$2
+  local last_idx=$((${#in[@]} - 1))
+  out=("${in[$last_idx]}" "${in[@]:0:$last_idx}")
+}
+
+left_rotate() {
+  local -n in=$1
+  local -n outrotate=$2
+  outrotate=("${in[@]:1}" "${in[0]}")
+}
+
+random_rotate() {
+  local number="$1"
+  shift
+  local -a variant_colors=("$@")
+  if ((number % 2 == 0)); then
+    right_rotate variant_colors rotated_colors
+  else
+    left_rotate variant_colors rotated_colors
+  fi
+  echo "${rotated_colors[@]}"
+}
+
+exec_colors() {
+  cat /dev/null >"$CACHE_FILE"
+  read -r -a assign_colors <<<"$(random_colors)"
+  for color in "${assign_colors[@]}"; do echo "$color" >>"$CACHE_FILE"; done
+}
+
+exec_rotate() {
+  read -r -a selected_colors <<<"$(random_colors)"
+  local sel_colors=("${selected_colors[@]}")
+  local rand_direction=$((RANDOM % 10))
+  for ((i = 0; i < ${#selected_colors[@]}; i++)); do
+    cat /dev/null >"$CACHE_FILE"
+    read -r -a assign_colors_rotate <<<"$(random_rotate "$rand_direction" "${sel_colors[@]}")"
+    for color_rotate in "${assign_colors_rotate[@]}"; do echo "$color_rotate" >>"$CACHE_FILE"; done
+    sel_colors=("${assign_colors_rotate[@]}")
+    sleep 1
+  done
+}
+
+[ ! -f "$CACHE_FILE" ] && touch "$CACHE_FILE"
+
+while :; do
+  tmux has-session 2>/dev/null || exit
+  rand_direction=$((RANDOM % 10))
+  if ((rand_direction % 2 == 0)); then exec_colors; else exec_rotate; fi
+  sleep 20
+done
