@@ -36,7 +36,7 @@
           accelerationProfile = "none";
           name = "XING WEI 2.4G USB USB Composite Device Mouse";
           vendorId = "040a";
-          acceleration = -0.1;
+          acceleration = 0.2;
           productId = "2814";
         }
       ];
