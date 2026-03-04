@@ -51,7 +51,7 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_6_18;
 
     /*
       (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
