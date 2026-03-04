@@ -24,7 +24,7 @@
     mc.enable = true;
     #lazydocker.enable = true;
     looking-glass-client.enable = true;
-    lsd.enable = true;
+    #lsd.enable = true;
     pyenv = {
       enable = true;
       enableZshIntegration = true;
