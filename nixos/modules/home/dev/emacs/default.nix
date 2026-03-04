@@ -23,7 +23,7 @@
           packageRequires = [ epkgs.dash ];
           src = builtins.fetchTree {
             type = "github";
-            rev = "main";
+            rev = "06819e1158e75a3c264cf6776ce0b9bf2f69f241";
             owner = "rolandd";
             repo = "augment.vim";
           };

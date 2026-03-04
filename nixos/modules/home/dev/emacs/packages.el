@@ -3,6 +3,7 @@
 ;; Code
 (package! lsp-augment
   :recipe (:host github :repo "rolandd/augment.vim"))
+  :pin "06819e1158e75a3c264cf6776ce0b9bf2f69f241"
 (package! copilot)
 (package! astro-ts-mode)
 (package! auto-rename-tag)
