@@ -24,6 +24,10 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.7.0";
     compose2nix = {
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
