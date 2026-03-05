@@ -1,6 +1,7 @@
 {
   inputs,
   username,
+  user,
   host,
   pkgs,
   system,

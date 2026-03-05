@@ -1,6 +1,6 @@
-{ user, ... }:
+{ username, ... }:
 let
-  isRoot = user == "root";
+  isRoot = username == "root";
 in
 {
   programs.starship = {
