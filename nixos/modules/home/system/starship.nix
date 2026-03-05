@@ -1,4 +1,7 @@
-{ ... }:
+{ user, ... }:
+let
+  isRoot = user == "root";
+in
 {
   programs.starship = {
     enable = true;
@@ -8,22 +11,22 @@
       command_timeout = 500;
 
       format = ''
-        [╭╴](#7088ff)$os$username[@](#7088ff)$hostname\
-        $jobs$directory$sudo$cmd_duration$fill\
-        $shell$status$localip$time
-        [╰╴](#7088ff)$character$custom
+        [╭╴](#7088ff)$os$username[@](#7088ff)$hostname$jobs$directory$sudo$cmd_duration$fill$shell$status$localip$time
+        [╰╴](#7088ff)$character
       '';
 
       character = {
-        success_symbol = ''[\$](bold #cc8afc)'';
-        error_symbol = ''[\$](bold #cc8afc)'';
+        success_symbol = ''[${if isRoot then "#" else "\$"}](bold [${
+          if isRoot then "#ff5990" else "#cc8afc"
+        })'';
+        error_symbol = ''[${if isRoot then "#ff5990" else "\$"}](bold #cc8afc)'';
         vimcmd_symbol = "[](bold turquoise)";
       };
 
       os = {
         disabled = false;
         format = "[$symbol]($style)";
-        style = "bold #7088ff";
+        style = "bold ${if isRoot then "#7088ff" else "#ff5990"}";
         symbols = {
           Windows = " ";
           Arch = "󰣇";

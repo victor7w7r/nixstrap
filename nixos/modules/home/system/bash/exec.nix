@@ -2,13 +2,18 @@
 {
   programs.bash = {
     profileExtra = ''
-      if [[ $- == *i* ]] && \
-        [[ -z "$TMUX" ]] && \
-        command -v tmux >/dev/null 2>&1 && \
-        [[ "$TERM_PROGRAM" != "vscode" ]] && \
-        [[ -z "$SSH_TTY" ]]; then
-          exec tmux -f "$HOME/.config/tmux/tmux.conf"
+      if [[ $- == *i* && -z "$TMUX" && -z "$SSH_TTY"  ]] && \
+        if command -v tmux >/dev/null 2>&1 && \
+          [[ "$TERM_PROGRAM" != "zed" ]] && \
+          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && \
+          [ -n "$KONSOLE_DBUS_SESSION" ]; then
+            exec tmux -f "$HOME/.config/tmux/tmux.conf" new-session -A -s default
+        fi
       fi
+
+      #if [[ -z "$TMUX" && -n "$SSH_TTY" ]]; then
+      #    exec tmux attach-session -t default || exec tmux new-session -s default
+      #fi
 
       paths=(
         /bin

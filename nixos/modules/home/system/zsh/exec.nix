@@ -4,14 +4,18 @@
     profileExtra = ''
       #typeset -gU path fpath
       if [[ -o interactive && -z "$TMUX" && -z "$SSH_TTY" ]]; then
-        if command -v tmux >/dev/null 2>&1 && [[ "$TERM_PROGRAM" != "zed" ]]; then
-          exec tmux -f "$HOME/.config/tmux/tmux.conf" new-session -A -s default
+        if command -v tmux >/dev/null 2>&1 && \
+          [[ "$TERM_ROGRAM" != "zed" ]] && \
+          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && \
+          [ -n "$KONSOLE_DBUS_SESSION" ]; then
+           exec tmux -f "$HOME/.config/tmux/tmux.conf" new-session -A -s default
         fi
       fi
 
-      if [[ -z "$TMUX" && -n "$SSH_TTY" ]]; then
-          exec tmux attach-session -t default || exec tmux new-session -s default
-      fi
+      #if [[ -z "$TMUX" && -n "$SSH_TTY" ]]; then
+      #    exec tmux attach-session -t default || exec tmux new-session -s default
+      #fi
+
       path=(
         /bin
         /usr/bin

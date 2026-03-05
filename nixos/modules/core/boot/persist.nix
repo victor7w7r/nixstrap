@@ -121,6 +121,7 @@ in
         ".config/sops"
         ".config/nix"
         ".steam"
+        ".zsh"
         ".tmux"
         #".cache"
       ];
