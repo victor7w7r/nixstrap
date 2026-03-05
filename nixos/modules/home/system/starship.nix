@@ -30,7 +30,7 @@ in
         style = "bold ${if isRoot then "#ff5990" else "#7088ff"}";
         symbols = {
           Windows = " ";
-          Arch = "󰣇";
+          NixOS = "󱄅 ";
           Android = " ";
           Debian = " ";
           FreeBSD = " ";
