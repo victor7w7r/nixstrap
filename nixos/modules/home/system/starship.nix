@@ -1,6 +1,8 @@
 { username, ... }:
 let
   isRoot = username == "root";
+  symbol = if isRoot then "#" else "\\$";
+  symbolColor = if isRoot then "#ff5990" else "#cc8afc";
 in
 {
   programs.starship = {
@@ -16,19 +18,15 @@ in
       '';
 
       character = {
-        success_symbol = ''[${if isRoot then "#" else "\\$"}](bold [${
-          if isRoot then "#ff5990" else "#cc8afc"
-        })'';
-        error_symbol = ''[${if isRoot then "#ff5990" else "\\$"}](bold [${
-          if isRoot then "#ff5990" else "#cc8afc"
-        })'';
+        success_symbol = ''[${symbol}](bold ${symbolColor})'';
+        error_symbol = ''[${symbol}](bold ${symbolColor})'';
         vimcmd_symbol = "[](bold turquoise)";
       };
 
       os = {
         disabled = false;
         format = "[$symbol]($style)";
-        style = "bold ${if isRoot then "#7088ff" else "#ff5990"}";
+        style = "bold ${if isRoot then "#ff5990" else "#7088ff"}";
         symbols = {
           Windows = " ";
           Arch = "󰣇";
