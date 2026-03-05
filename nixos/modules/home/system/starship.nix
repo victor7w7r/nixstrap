@@ -16,10 +16,12 @@ in
       '';
 
       character = {
-        success_symbol = ''[${if isRoot then "#" else "\$"}](bold [${
+        success_symbol = ''[${if isRoot then "#" else "\\$"}](bold [${
           if isRoot then "#ff5990" else "#cc8afc"
         })'';
-        error_symbol = ''[${if isRoot then "#ff5990" else "\$"}](bold #cc8afc)'';
+        error_symbol = ''[${if isRoot then "#ff5990" else "\\$"}](bold [${
+          if isRoot then "#ff5990" else "#cc8afc"
+        })'';
         vimcmd_symbol = "[](bold turquoise)";
       };
 
