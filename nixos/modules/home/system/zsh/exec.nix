@@ -32,9 +32,8 @@
     '';
 
     loginExtra = ''
-      jump -- 'eval "$(jump shell)"'
+      #jump -- 'eval "$(jump shell)"'
       source <(cod init $$ zsh)
-      systemctl -- 'systemctl --user import-environment PATH'
 
       if [[ "$OSTYPE" == "darwin"* ]]; then
         if commandexist lolcat; then uname -v | lolcat; else uname -v | lolcat; fi

@@ -8,6 +8,7 @@ in
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    enableBashIntegration = true;
     settings = {
       add_newline = true;
       command_timeout = 500;
@@ -101,7 +102,7 @@ in
 
       localip = {
         disabled = false;
-        format = "[$localipv4]($style)[ 󰋑  ](#cc8afc)";
+        format = "[$localipv4]($style)[ 󰋑 ](#cc8afc)";
         style = "italic dimmed #7088ff";
         ssh_only = false;
       };

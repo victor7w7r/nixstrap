@@ -13,7 +13,7 @@
     enable = true;
     emacs = pkgs.emacs-nox;
     doomDir = ./.;
-    doomLocalDir = "${config.home.homeDirectory}/.local/share/nix-doom";
+    doomLocalDir = "${config.home.homeDirectory}/.local/share/emacs";
     extraPackages =
       epkgs: with epkgs; [
         melpaPackages.nixos-options
