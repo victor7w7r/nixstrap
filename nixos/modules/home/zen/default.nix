@@ -2,13 +2,14 @@
   config,
   inputs,
   pkgs,
-  system,
   ...
 }:
 {
+
   imports = [
     (import ./bookmarks.nix)
     (import ./extensions.nix)
+    (import ./package.nix)
     (import ./pins.nix)
     (import ./settings.nix)
     (import ./search.nix)
@@ -18,14 +19,6 @@
   programs.zen-browser = {
     enable = true;
     suppressXdgMigrationWarning = true;
-    /*
-      package = (
-      inputs.zen-browser.packages.${system}.twilight-unwrapped.override {
-        policies = import ./policies.nix;
-      }
-      );
-    */
-    nativeMessagingHosts = [ pkgs.firefoxpwa ];
     languagePacks = [ "es-ES" ];
     profiles.default = {
       id = 0;
