@@ -63,7 +63,7 @@ in
       inputs.nix-doom-emacs-unstraightened.homeModule
     ];
     users = {
-      ${username} = homeConfig { inherit username; };
+      ${username} = homeConfig { user = username; };
       root = homeConfig { };
     };
   };
