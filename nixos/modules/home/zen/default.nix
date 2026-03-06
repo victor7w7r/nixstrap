@@ -18,11 +18,13 @@
   programs.zen-browser = {
     enable = true;
     suppressXdgMigrationWarning = true;
-    package = (
+    /*
+      package = (
       inputs.zen-browser.packages.${system}.twilight-unwrapped.override {
         policies = import ./policies.nix;
       }
-    );
+      );
+    */
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
     languagePacks = [ "es-ES" ];
     profiles.default = {
