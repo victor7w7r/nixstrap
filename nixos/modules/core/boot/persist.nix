@@ -123,7 +123,7 @@ in
         ".steam"
         ".zsh"
         ".tmux"
-        #".cache"
+        ".cache/antidote"
       ];
       files = [
         ".bash_history"

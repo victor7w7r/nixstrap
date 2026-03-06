@@ -13,7 +13,6 @@
     LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
     VISUAL = "nvim";
-    ANTIDOTE_DIR = "$HOME/.zsh/antidote";
     GPG_TTY = "$(tty)";
     COLORTERM = "truecolor";
     SHELL = "zsh";

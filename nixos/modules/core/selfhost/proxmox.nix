@@ -9,6 +9,8 @@
   systemd.services."dhcpcd".enable = false;
   systemd.services."corosync".enable = false;
   systemd.services."pvestatd".enable = false;
+  systemd.network.wait-online.enable = false;
+  systemd.services."sys-subsystem-net-devices-ens18.device".enable = false;
   #systemd.services."pvescheduler".enable = false;
   #systemd.services."pvebanner".enable = false;
   networking.bridges.vmbr0.interfaces = [ "ens18" ];
