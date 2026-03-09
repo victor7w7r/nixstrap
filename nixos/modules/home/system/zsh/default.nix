@@ -16,6 +16,8 @@
     };
     enableCompletion = true;
     initContent = ''
+      autoload -U compinit && compinit -i
+
       unsetopt BEEP
       unsetopt HIST_BEEP
       unsetopt LIST_BEEP
