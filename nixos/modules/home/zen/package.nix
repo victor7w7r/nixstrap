@@ -45,22 +45,28 @@ let
     '';
   };
 
-  zen-package =
-    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight-unwrapped.override {
+  zen-package = (
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight-unwrapped.override {
       policies = config.programs.zen-browser.policies;
-    }).overrideAttrs
-      (prev: {
-        postInstall = prev.postInstall or "" + ''
-          chmod -R u+w "$out/lib/zen-bin-${prev.version}"
-          cp -r "${inputs.sine-bootloader}/program/"* "$out/lib/zen-bin-${prev.version}"
-        '';
-      });
+    }
+  );
+  /*
+    .overrideAttrs
+    (prev: {
+      postInstall = prev.postInstall or "" + ''
+        chmod -R u+w "$out/lib/zen-bin-${prev.version}"
+        cp -r "${inputs.sine-bootloader}/program/"* "$out/lib/zen-bin-${prev.version}"
+      '';
+    })
+  */
 in
 {
-  xdg.configFile."zen/default/chrome" = {
+  /*
+    xdg.configFile."zen/default/chrome" = {
     source = chrome;
     recursive = true;
-  };
+    };
+  */
 
   programs.zen-browser.package = (pkgs.wrapFirefox zen-package { icon = "zen-twilight"; }).override {
     extraPrefs = config.programs.zen-browser.extraPrefs;
