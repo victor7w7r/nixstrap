@@ -4,7 +4,7 @@
     with pkgs;
     [
       axel
-      ayugram-desktop
+      #ayugram-desktop
       lan-mouse
       legcord
       mailspring
