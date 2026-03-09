@@ -13,7 +13,6 @@
 
   programs.zen-browser = {
     enable = true;
-    suppressXdgMigrationWarning = true;
     languagePacks = [ "es-ES" ];
     profiles.default = {
       id = 0;
