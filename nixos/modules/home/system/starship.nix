@@ -97,7 +97,7 @@ in
         disabled = false;
         failure_style = "bold #ff5990";
         format = ''[$symbol\[$status\] ]($style)'';
-        symbol = ''\\(╯°□°）╯'';
+        symbol = ''(╯°□°）╯'';
       };
 
       localip = {

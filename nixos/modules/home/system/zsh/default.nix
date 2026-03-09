@@ -16,7 +16,9 @@
     };
     enableCompletion = true;
     initContent = ''
-      autoload -U compinit && compinit -i
+      autoload -Uz compinit bashcompinit
+      compinit -u
+      bashcompinit
 
       unsetopt BEEP
       unsetopt HIST_BEEP

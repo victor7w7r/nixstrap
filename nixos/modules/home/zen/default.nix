@@ -27,7 +27,6 @@
       sine = {
         enable = true;
         mods = [
-          "Nebula"
           "context-menu-icons"
           "quick-search-zen-browser"
           "quick-tabs"
