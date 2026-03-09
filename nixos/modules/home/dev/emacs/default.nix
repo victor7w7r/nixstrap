@@ -10,7 +10,7 @@
   ];
 
   programs.doom-emacs = {
-    enable = true;
+    enable = false;
     emacs = pkgs.emacs-nox;
     doomDir = ./.;
     doomLocalDir = "${config.home.homeDirectory}/.local/share/emacs";
