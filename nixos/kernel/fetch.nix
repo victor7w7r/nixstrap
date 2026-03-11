@@ -82,6 +82,12 @@ in
         ! -name "0009-sched-ext.patch" \
         ! -name "0010-t2.patch" -delete
       find "$out" -type d -empty -delete
+
+      ${pkgs.patchutils}/bin/filterdiff \
+        -x "drivers/gpu/drm/amd/amdgpu/*" \
+        -x "drivers/gpu/drm/i915/display/*" \
+        0001-cachyos-base-all.patch > base-cleaned.patch \
+        && mv base-cleaned.patch 0001-cachyos-base-all.patch
     '';
   };
 
