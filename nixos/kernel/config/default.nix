@@ -16,7 +16,7 @@
   "-d LTO_NONE"
   "-e LTO_CLANG_THIN"
   "-d LTO_CLANG_FULL"
-  "--set-str NR_CPUS 320"
+  "--set-val NR_CPUS 320"
   "-d CONFIG_SECURITY_TOMOYO"
 
   "-m TCP_CONG_CUBIC"
