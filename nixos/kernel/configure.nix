@@ -117,6 +117,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   passthru = {
     kernelPatches = patches;
     inherit localVer;
+    version = if hardened then kernels.hardened.linux.version else kernels.lts.linux.version;
     extraVerPatch = ''
       sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${localVer}/g' Makefile
     '';
