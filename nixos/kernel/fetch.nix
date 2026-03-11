@@ -1,17 +1,27 @@
 {
+  lib,
   pkgs,
-  asusPatchesHash,
-  asusPatchesRev,
-  kernelConfigHash,
-  cachyPatchesHash,
-  hardened ? false,
+  kernels,
+  hardened,
+  ...
 }:
+let
+  version = if hardened then kernels.hardened.version else kernels.lts.version;
+  majorMinor = lib.versions.majorMinor version;
+in
 {
+  linux = pkgs.fetchurl {
+    url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${
+      if version == "${majorMinor}.0" then majorMinor else version
+    }.tar.xz";
+    hash = if hardened then kernels.hardened.hash else kernels.lts.hash;
+  };
+
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
-    rev = "master";
-    sha256 = kernelConfigHash;
+    rev = kernels.common.config.rev;
+    sha256 = kernels.common.config.hash;
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
@@ -57,8 +67,8 @@
   cachy-patches = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
-    rev = "master";
-    sha256 = cachyPatchesHash;
+    rev = kernels.common.config.patches;
+    sha256 = kernels.common.config.hash;
     postFetch = ''
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
@@ -76,9 +86,9 @@
   };
 
   asus-patches = pkgs.fetchgit {
-    url = "https://gitlab.com/asus-linux/linux-g14";
-    rev = asusPatchesRev;
-    sha256 = asusPatchesHash;
+    url = kernels.lts.asus.url;
+    rev = kernels.lts.asus.rev;
+    sha256 = kernels.lts.asus.hash;
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 }

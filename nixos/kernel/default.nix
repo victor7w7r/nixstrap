@@ -7,7 +7,7 @@
   ...
 }:
 let
-  source = pkgs.callPackage ./source.nix {
+  configure = pkgs.callPackage ./configure.nix {
     inherit
       hardened
       host
@@ -15,19 +15,34 @@ let
       helpers
       ;
   };
-  # nix build -L .#nixosConfigurations.server.config.system.build.kernel
+  kconfigToNix = pkgs.callPackage ./kconfig-to-nix.nix {
+    configfile = configure;
+  };
+
+  linuxConfigTransfomed =
+    if host == "v7w7r-macmini81" then
+      ./config/macminiconfig.x86_64-linux.nix
+    else if host == "v7w7r-youyeetoox1" then
+      ./config/serverconfig.x86_64-linux.nix
+    else if host == "v7w7r-rc71l" then
+      ./config/rogallyconfig.x86_64-linux.nix
+    else
+      ./config/higoleconfig.x86_64-linux.nix;
+
   kernel =
     (pkgs.linuxManualConfig {
-      src = source.src;
-      configfile = source;
-      allowImportFromDerivation = true;
-      version = source.version;
-      modDirVersion = lib.versions.pad 3 "${source.version}${source.passthru.localVer}";
+      inherit (configure) src;
+      config = linuxConfigTransfomed;
+      configfile = configure;
+      allowImportFromDerivation = false;
+      version = configure.version;
+      modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
+
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
         patch = file;
-      }) source.passthru.kernelPatches;
+      }) configure.passthru.kernelPatches;
 
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
@@ -36,8 +51,10 @@ let
       ];
     }).overrideAttrs
       (attrs: {
+        postPatch = attrs.postPatch + configure.extraVerPatch;
         passthru = attrs.passthru // {
-          modDirVersion = source.version;
+          inherit kconfigToNix;
+          modDirVersion = configure.version;
           features = {
             ia32Emulation = true;
             netfilterRPFilter = true;

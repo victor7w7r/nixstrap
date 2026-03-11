@@ -1,0 +1,10 @@
+{
+  "config": {
+    "rev": "master",
+    "hash": "sha256-GDGOZ7m/7CKlL6+vC2ZgklyUqRd4D29d6LnUVIYh4hI="
+  },
+  "patches": {
+    "rev": "master",
+    "hash": "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54="
+  }
+}

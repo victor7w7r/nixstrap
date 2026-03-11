@@ -1,15 +1,19 @@
 {
   host,
+  inputs,
   lib,
   pkgs,
+  kernels,
   hardened ? false,
   ...
 }:
 let
+  fetch = pkgs.callPackage ./fetch.nix { inherit hardened; };
   config = import ./config { inherit host; };
 
-  baseKernel = pkgs.linux_6_18;
-  majorMinor = lib.versions.majorMinor baseKernel.version;
+  majorMinor = lib.versions.majorMinor (
+    if hardened then kernels.hardened.version else kernels.lts.version
+  );
 
   commonDb = ./config/mod-common.db;
   modprobedDb =
@@ -36,24 +40,17 @@ let
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
   }";
 
-  fetch = import ./fetch.nix {
-    inherit hardened pkgs;
-    asusPatchesHash = "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk=";
-    asusPatchesRev = "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
-    kernelConfigHash = "sha256-GDGOZ7m/7CKlL6+vC2ZgklyUqRd4D29d6LnUVIYh4hI=";
-    cachyPatchesHash = "sha256-LhKeRpbG355d/h0H+esisnZ695I7PTFjEkOHKeEtO54=";
-  };
-
   patches =
     let
       rmRandstruct = with lib; filter (p: !hasInfix "randstruct" p);
     in
-    (rmRandstruct baseKernel.patches)
+    (rmRandstruct kernels.common.config.patches)
     ++ [
       "${fetch.cachy-patches}/${majorMinor}/all/0001-cachyos-base-all.patch"
     ]
     ++ (lib.optional (host != "v7w7r-youyeetoox1") [
       "${fetch.cachy-patches}/${majorMinor}/sched/0001-bore-cachy.patch"
+      "${fetch.cachy-patches}/${majorMinor}/sched/0001-sched-ext.patch"
     ])
     ++ (lib.optional hardened [
       "${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch"
@@ -75,39 +72,49 @@ let
       ]
     ));
 in
-pkgs.stdenv.mkDerivation {
-  #inherit patches;
-  src = baseKernel.src;
-  name = "linux-${majorMinor}${localVer}";
+pkgs.stdenv.mkDerivation (attrs: {
+  src = fetch.linux;
+  name = "linux-${majorMinor}${localVer}-config";
   nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
+
+  postPhase = "${attrs.passthru.extraVerPatch}";
+
+  makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix";
+
   installPhase = ''
+    runHook preInstall
     cp .config $out
-    ls $out
-    exit 0
+    runHook postInstall
   '';
 
   buildPhase = ''
-    #modprobed-db && e ~/.config/modprobed-db.conf && modprobed-db store && modprobed-db list
-    cp "${fetch.kernel-config}" ".config"
-    patchShebangs scripts/config
+    runHook preBuild
 
     export LSMOD=$(mktemp)
     cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD
     cat $LSMOD
+
+    cp "${fetch.kernel-config}" ".config"
+
     (yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
-    cat <<EOF >> .config
-    ${lib.concatStringsSep "\n" config}
-    EOF
-
-    make olddefconfig
+    make $makeFlags olddefconfig
+    patchShebangs scripts/config
+    scripts/config ${lib.concatStringsSep " " config}
+    make $makeFlags olddefconfig
+    runHook postBuild
   '';
 
-  passthru = {
-    version = baseKernel.version;
-    inherit localVer;
-    kernelPatches = patches;
-    #extraVerPatch = ''sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${versions.suffix}/g' Makefile'';
+  meta = pkgs.linuxPackages.kernel.passthru.configfile.meta // {
+    platforms = [ "x86_64-linux" ];
   };
 
-}
+  passthru = {
+    kernelPatches = patches;
+    inherit localVer;
+    extraVerPatch = ''
+      sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${localVer}/g' Makefile
+    '';
+  };
+
+})

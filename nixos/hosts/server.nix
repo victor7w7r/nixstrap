@@ -8,7 +8,7 @@
 let
   intelParams = import ./lib/intel-params.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-  kernelBuild = (pkgs.callPackage ../kernel) { inherit host helpers; };
+  kernelBuild = (pkgs.callPackage ../kernel) { inherit helpers; };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
