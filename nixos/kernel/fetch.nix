@@ -67,8 +67,8 @@ in
   cachy-patches = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
-    rev = kernels.common.config.patches;
-    sha256 = kernels.common.config.hash;
+    rev = kernels.common.patches.rev;
+    sha256 = kernels.common.patches.hash;
     postFetch = ''
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
