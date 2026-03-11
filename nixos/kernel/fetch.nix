@@ -6,7 +6,7 @@
   ...
 }:
 let
-  version = if hardened then kernels.hardened.version else kernels.lts.version;
+  version = if hardened then kernels.hardened.linux.version else kernels.lts.linux.version;
   majorMinor = lib.versions.majorMinor version;
 in
 {
@@ -14,7 +14,7 @@ in
     url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${
       if version == "${majorMinor}.0" then majorMinor else version
     }.tar.xz";
-    hash = if hardened then kernels.hardened.hash else kernels.lts.hash;
+    hash = if hardened then kernels.hardened.linux.hash else kernels.lts.linux.hash;
   };
 
   kernel-config = pkgs.fetchFromGitHub {

@@ -12,7 +12,7 @@ let
   config = import ./config { inherit host hardened; };
 
   majorMinor = lib.versions.majorMinor (
-    if hardened then kernels.hardened.version else kernels.lts.version
+    if hardened then kernels.hardened.linux.version else kernels.lts.linux.version
   );
 
   commonDb = ./config/mod-common.db;
