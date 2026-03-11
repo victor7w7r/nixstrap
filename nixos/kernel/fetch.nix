@@ -87,7 +87,7 @@ in
         -x "*/drivers/gpu/drm/amd/amdgpu/*" \
         -x "*/drivers/gpu/drm/i915/display/*" \
         ${majorMinor}/all/0001-cachyos-base-all.patch > ${majorMinor}/all/base-cleaned.patch \
-        && rm f ${majorMinor}/all/0001-cachyos-base-all.patch \
+        && rm -f ${majorMinor}/all/0001-cachyos-base-all.patch \
         && mv ${majorMinor}/all/base-cleaned.patch ${majorMinor}/all/0001-cachyos-base-all.patch
     '';
   };
