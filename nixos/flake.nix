@@ -131,19 +131,12 @@
     in
     {
       packages.${system} = {
-        configdebug =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-youyeetoox1";
-            inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
-          }).kernel.configure;
-
         kerneldebug =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
-          }).kernel.configure;
+          }).kernel;
 
         rogallyconfig =
           (pkgs.callPackage ./kernel {
