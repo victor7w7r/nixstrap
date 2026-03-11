@@ -2,6 +2,7 @@
   helpers,
   host,
   lib,
+  inputs,
   pkgs,
   hardened ? false,
   ...
@@ -12,6 +13,7 @@ let
       hardened
       host
       kernel
+      inputs
       helpers
       ;
   };

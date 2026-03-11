@@ -132,28 +132,28 @@
           (pkgs.callPackage ./kernel {
             hardened = false;
             host = "v7w7r-rogally";
-            inherit helpers;
+            inherit helpers inputs;
           }).kernel.kconfigToNix;
 
         higoleconfig =
           (pkgs.callPackage ./kernel {
             hardened = false;
             host = "v7w7r-higole";
-            inherit helpers;
+            inherit helpers inputs;
           }).kernel.kconfigToNix;
 
         serverconfig =
           (pkgs.callPackage ./kernel {
             hardened = false;
             host = "v7w7r-server";
-            inherit helpers;
+            inherit helpers inputs;
           }).kernel.kconfigToNix;
 
         macminiconfig =
           (pkgs.callPackage ./kernel {
             hardened = false;
             host = "v7w7r-macmini81";
-            inherit helpers;
+            inherit helpers inputs;
           }).kernel.kconfigToNix;
       };
 
