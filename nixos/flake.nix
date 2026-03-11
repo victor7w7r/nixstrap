@@ -117,7 +117,10 @@
     let
       username = "victor7w7r";
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ nix-cachyos-kernel.overlays.pinned ];
+      };
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
       # nix build -L .#nixosConfigurations.server.config.system.build.kernel
       kernels = importJSON: {
