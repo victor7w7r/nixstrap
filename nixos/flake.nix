@@ -127,28 +127,30 @@
       };
     in
     {
-      packages.${system}.macminiconfig = pkgs.callPackage ./kernel {
-        hardened = false;
-        host = "v7w7r-macmini81";
-        inherit helpers;
-      };
+      packages.${system} = {
+        rogallyconfig = pkgs.callPackage ./kernel {
+          hardened = false;
+          host = "v7w7r-rogally";
+          inherit helpers;
+        };
 
-      packages.${system}.rogallyconfig = pkgs.callPackage ./kernel {
-        hardened = false;
-        host = "v7w7r-rogally";
-        inherit helpers;
-      };
+        higoleconfig = pkgs.callPackage ./kernel {
+          hardened = false;
+          host = "v7w7r-higole";
+          inherit helpers;
+        };
 
-      packages.${system}.higoleconfig = pkgs.callPackage ./kernel {
-        hardened = false;
-        host = "v7w7r-higole";
-        inherit helpers;
-      };
+        serverconfig = pkgs.callPackage ./kernel {
+          hardened = false;
+          host = "v7w7r-server";
+          inherit helpers;
+        };
 
-      packages.${system}.serverconfig = pkgs.callPackage ./kernel {
-        hardened = false;
-        host = "v7w7r-server";
-        inherit helpers;
+        macminiconfig = pkgs.callPackage ./kernel {
+          hardened = false;
+          host = "v7w7r-macmini81";
+          inherit helpers;
+        };
       };
 
       nixosConfigurations = {
