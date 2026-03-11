@@ -4,6 +4,7 @@
   lib,
   pkgs,
   kernels,
+  kernelPatches,
   hardened ? false,
   ...
 }:
@@ -41,6 +42,10 @@ let
   }";
 
   patches = [
+    kernelPatches.bridge_stp_helper.patch
+    kernelPatches.request_key_helper.patch
+  ]
+  ++ [
     "${fetch.cachy-patches}/${majorMinor}/all/0001-cachyos-base-all.patch"
   ]
   ++ (lib.optional (host != "v7w7r-youyeetoox1") [
