@@ -91,16 +91,17 @@ pkgs.stdenv.mkDerivation (attrs: {
     runHook postInstall
   '';
 
-  buildPhase = ''
-    runHook preBuild
-
+  /*
     export LSMOD=$(mktemp)
     cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD
     cat $LSMOD
+    (yes "" | make LSMOD=$LSMOD localmodconfig) || true
+  */
+
+  buildPhase = ''
+    runHook preBuild
 
     cp "${fetch.kernel-config}" ".config"
-
-    (yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
     make $makeFlags olddefconfig
     patchShebangs scripts/config
