@@ -116,5 +116,4 @@ pkgs.stdenv.mkDerivation (attrs: {
       sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${localVer}/g' Makefile
     '';
   };
-
 })
