@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -eu
 
-cat "$(nix build ".#packages.x86_64-linux.macminiconfig.kernel.kconfigToNix" --no-link --print-out-paths)" \
+cat "$(nix build ".##packages.x86_64-linux.macminiconfig" --no-link --print-out-paths)" \
     >"kernel/config/macminiconfig.x86_64-linux.nix"
 
-cat "$(nix build ".#packages.x86_64-linux.rogallyconfig.kernel.kconfigToNix" --no-link --print-out-paths)" \
+cat "$(nix build ".##packages.x86_64-linux.rogallyconfig" --no-link --print-out-paths)" \
     >"kernel/config/rogallyconfig.x86_64-linux.nix"
 
-cat "$(nix build ".#packages.x86_64-linux.higoleconfig.kernel.kconfigToNix" --no-link --print-out-paths)" \
+cat "$(nix build ".##packages.x86_64-linux.higoleconfig" --no-link --print-out-paths)" \
     >"kernel/config/higoleconfig.x86_64-linux.nix"
 
-cat "$(nix build ".#packages.x86_64-linux.serverconfig.kernel.kconfigToNix" --no-link --print-out-paths)" \
+cat "$(nix build ".##packages.x86_64-linux.serverconfig" --no-link --print-out-paths)" \
     >"kernel/config/serverconfig.x86_64-linux.nix"

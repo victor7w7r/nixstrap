@@ -128,29 +128,33 @@
     in
     {
       packages.${system} = {
-        rogallyconfig = pkgs.callPackage ./kernel {
-          hardened = false;
-          host = "v7w7r-rogally";
-          inherit helpers;
-        };
+        rogallyconfig =
+          (pkgs.callPackage ./kernel {
+            hardened = false;
+            host = "v7w7r-rogally";
+            inherit helpers;
+          }).kernel.kconfigToNix;
 
-        higoleconfig = pkgs.callPackage ./kernel {
-          hardened = false;
-          host = "v7w7r-higole";
-          inherit helpers;
-        };
+        higoleconfig =
+          (pkgs.callPackage ./kernel {
+            hardened = false;
+            host = "v7w7r-higole";
+            inherit helpers;
+          }).kernel.kconfigToNix;
 
-        serverconfig = pkgs.callPackage ./kernel {
-          hardened = false;
-          host = "v7w7r-server";
-          inherit helpers;
-        };
+        serverconfig =
+          (pkgs.callPackage ./kernel {
+            hardened = false;
+            host = "v7w7r-server";
+            inherit helpers;
+          }).kernel.kconfigToNix;
 
-        macminiconfig = pkgs.callPackage ./kernel {
-          hardened = false;
-          host = "v7w7r-macmini81";
-          inherit helpers;
-        };
+        macminiconfig =
+          (pkgs.callPackage ./kernel {
+            hardened = false;
+            host = "v7w7r-macmini81";
+            inherit helpers;
+          }).kernel.kconfigToNix;
       };
 
       nixosConfigurations = {
