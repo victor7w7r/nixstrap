@@ -19,7 +19,8 @@ let
     configfile = configure;
   };
 
-  linuxConfigTransfomed =
+  /*
+    linuxConfigTransfomed =
     if host == "v7w7r-macmini81" then
       ./config/macminiconfig.x86_64-linux.nix
     else if host == "v7w7r-youyeetoox1" then
@@ -28,11 +29,12 @@ let
       ./config/rogallyconfig.x86_64-linux.nix
     else
       ./config/higoleconfig.x86_64-linux.nix;
+  */
 
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
-      config = linuxConfigTransfomed;
+      #config = linuxConfigTransfomed;
       configfile = configure;
       allowImportFromDerivation = false;
       version = configure.version;
