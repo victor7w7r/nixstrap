@@ -12,6 +12,6 @@
   systemd.services."pvestatd".enable = false;
   #systemd.services."pvescheduler".enable = false;
   #systemd.services."pvebanner".enable = false;
-  networking.bridges.vmbr0.interfaces = [ "enp1s0" ];
-  networking.interfaces.vmbr0.useDHCP = lib.mkDefault true;
+  #networking.bridges.vmbr0.interfaces = [ "enp1s0" ];
+  #networking.interfaces.vmbr0.useDHCP = lib.mkDefault true;
 }
