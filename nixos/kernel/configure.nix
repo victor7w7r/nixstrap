@@ -91,6 +91,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   '';
 
   prePatch = ''
+    ls -lah .
     filterdiff -x "*/drivers/gpu/drm/amd/amdgpu/*" \
         -x "*/drivers/gpu/drm/i915/display/*" \
         ${majorMinor}/all/0001-cachyos-base-all.patch > ${majorMinor}/all/base-cleaned.patch
