@@ -87,6 +87,7 @@ in
       ${pkgs.patchutils}/bin/filterdiff \
           -x "*/drivers/gpu/drm/amd/amdgpu/*" \
           -x "*/drivers/gpu/drm/i915/display/*" \
+          -x "*/include/net/tcp.h" \
           $SRC/${majorMinor}/all/0001-cachyos-base-all.patch > $SRC/base-cleaned.patch
       rm -f $SRC/${majorMinor}/all/0001-cachyos-base-all.patch
       mv $SRC/base-cleaned.patch $SRC/${majorMinor}/all/0001-cachyos-base-all.patch
