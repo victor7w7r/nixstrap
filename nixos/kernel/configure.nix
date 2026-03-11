@@ -79,7 +79,9 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   postPhase = "${attrs.passthru.extraVerPatch}";
 
-  makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix" { };
+  makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix" {
+    inherit lib;
+  };
 
   installPhase = ''
     runHook preInstall
