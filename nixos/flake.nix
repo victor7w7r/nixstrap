@@ -138,7 +138,7 @@
             kernels = kernels nixpkgs.lib.trivial.importJSON;
           }).kernel.configure;
 
-        configdebug =
+        kerneldebug =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
