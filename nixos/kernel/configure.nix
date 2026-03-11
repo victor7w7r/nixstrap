@@ -8,7 +8,7 @@
   ...
 }:
 let
-  fetch = pkgs.callPackage ./fetch.nix { inherit hardened; };
+  fetch = pkgs.callPackage ./fetch.nix { inherit hardened kernels; };
   config = import ./config { inherit host hardened; };
 
   majorMinor = lib.versions.majorMinor (
