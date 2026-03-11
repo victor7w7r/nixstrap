@@ -122,7 +122,7 @@
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
       };
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-      # nix build -L .#nixosConfigurations.server.config.system.build.kernel
+      # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
       kernels = importJSON: {
         hard = importJSON ./hardened.json;
         lts = importJSON ./lts.json;
@@ -131,9 +131,17 @@
     in
     {
       packages.${system} = {
+
+        kernelDebug =
+          (pkgs.callPackage ./kernel {
+            host = "v7w7r-youyeetoox1";
+            inherit helpers inputs;
+            kernels = kernels nixpkgs.lib.trivial.importJSON;
+          }).kernel.configure;
+
         rogallyconfig =
           (pkgs.callPackage ./kernel {
-            host = "v7w7r-rc71l";
+            host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
           }).kernel.kconfigToNix;

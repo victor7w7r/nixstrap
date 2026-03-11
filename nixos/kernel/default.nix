@@ -57,7 +57,7 @@ let
       (attrs: {
         postPatch = attrs.postPatch + configure.extraVerPatch;
         passthru = attrs.passthru // {
-          inherit kconfigToNix;
+          inherit kconfigToNix configure;
           modDirVersion = configure.version;
           features = {
             ia32Emulation = true;
