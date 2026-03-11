@@ -82,6 +82,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix" {
     inherit lib;
     stdenv = pkgs.stdenv;
+    buildPackages = pkgs.buildPackages;
   };
 
   installPhase = ''
