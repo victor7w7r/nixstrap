@@ -102,11 +102,11 @@ pkgs.stdenv.mkDerivation (attrs: {
     runHook preBuild
 
     cp "${fetch.kernel-config}" ".config"
-
     make $makeFlags olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
     make $makeFlags olddefconfig
+
     runHook postBuild
   '';
 

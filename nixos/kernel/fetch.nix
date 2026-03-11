@@ -36,7 +36,7 @@ in
         sed -i '/^CONFIG_SND_/d' $conf
         # sed -i '/^CONFIG_NET_/d' $conf
         sed -i '/^CONFIG_.*_FS=/d' $conf
-        sed -i '/^CONFIG_MMC_/d' $conf
+        #sed -i '/^CONFIG_MMC_/d' $conf
         sed -i '/^CONFIG_MEMSTICK_/d' $conf
         sed -i '/^CONFIG_SYSTEM/d' $conf
         sed -i '/^CONFIG_MEDIA_/d' $conf

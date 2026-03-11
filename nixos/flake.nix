@@ -134,7 +134,7 @@
         rogallyconfig =
           (pkgs.callPackage ./kernel {
             hardened = false;
-            host = "v7w7r-rogally";
+            host = "v7w7r-rc71l";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
           }).kernel.kconfigToNix;
@@ -150,7 +150,7 @@
         serverconfig =
           (pkgs.callPackage ./kernel {
             hardened = false;
-            host = "v7w7r-server";
+            host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
           }).kernel.kconfigToNix;
