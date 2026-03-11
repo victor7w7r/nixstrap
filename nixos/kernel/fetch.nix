@@ -84,7 +84,7 @@ in
         ! -name "0010-t2.patch" -delete
       find "$out" -type d -empty -delete
 
-      filterdiff -x "*/drivers/gpu/drm/amd/amdgpu/*" \
+      ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/amdgpu/*" \
           -x "*/drivers/gpu/drm/i915/display/*" \
           $SRC/${majorMinor}/all/0001-cachyos-base-all.patch > $SRC/${majorMinor}/all/base-cleaned.patch
       rm -f $SRC/${majorMinor}/all/0001-cachyos-base-all.patch
