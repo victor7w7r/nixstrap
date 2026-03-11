@@ -70,6 +70,7 @@ in
     rev = kernels.common.patches.rev;
     sha256 = kernels.common.patches.hash;
     postFetch = ''
+      SRC="$out"
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
         ! -path "*/misc/0001-hardened.patch" \
@@ -85,13 +86,10 @@ in
 
       filterdiff -x "*/drivers/gpu/drm/amd/amdgpu/*" \
           -x "*/drivers/gpu/drm/i915/display/*" \
-          ${majorMinor}/all/0001-cachyos-base-all.patch > ${majorMinor}/all/base-cleaned.patch
-      rm -f ${majorMinor}/all/0001-cachyos-base-all.patch
-      cp ${majorMinor}/all/0001-cachyos-base-all.patch /tmp/visual.patch
-      mv ${majorMinor}/all/base-cleaned.patch ${majorMinor}/all/0001-cachyos-base-all.patch
-
-      ls -lah ${majorMinor}/all
-      sleep 30
+          $SRC/${majorMinor}/all/0001-cachyos-base-all.patch > $SRC/${majorMinor}/all/base-cleaned.patch
+      rm -f $SRC/${majorMinor}/all/0001-cachyos-base-all.patch
+      cp $SRC/${majorMinor}/all/0001-cachyos-base-all.patch /tmp/visual.patch
+      mv $SRC/${majorMinor}/all/base-cleaned.patch $SRC/${majorMinor}/all/0001-cachyos-base-all.patch
     '';
   };
 
