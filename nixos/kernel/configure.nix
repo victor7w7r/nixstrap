@@ -76,8 +76,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
   nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
-
-  postPhase = "${attrs.passthru.extraVerPatch}";
+  #postPhase = "${attrs.passthru.extraVerPatch}";
 
   makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix" {
     inherit lib;
