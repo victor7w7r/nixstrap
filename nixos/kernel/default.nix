@@ -25,13 +25,13 @@ let
 
   linuxConfigTransfomed =
     if host == "v7w7r-macmini81" then
-      ./config/macminiconfig.x86_64-linux.nix
+      import ./config/macminiconfig.x86_64-linux.nix
     else if host == "v7w7r-youyeetoox1" then
-      ./config/serverconfig.x86_64-linux.nix
+      import ./config/serverconfig.x86_64-linux.nix
     else if host == "v7w7r-rc71l" then
-      ./config/rogallyconfig.x86_64-linux.nix
+      import ./config/rogallyconfig.x86_64-linux.nix
     else
-      ./config/higoleconfig.x86_64-linux.nix;
+      import ./config/higoleconfig.x86_64-linux.nix;
 
   kernel =
     (pkgs.linuxManualConfig {
