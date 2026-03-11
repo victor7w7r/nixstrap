@@ -92,7 +92,6 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   buildPhase = ''
     runHook preBuild
-    ls
 
     cp "${fetch.kernel-config}" ".config"
 
