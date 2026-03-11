@@ -2,13 +2,14 @@
   inputs,
   host,
   config,
+  kernels,
   pkgs,
   ...
 }:
 let
   intelParams = import ./lib/intel-params.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-  kernelBuild = (pkgs.callPackage ../kernel) { inherit helpers; };
+  kernelBuild = (pkgs.callPackage ../kernel) { inherit helpers host kernels; };
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     efiDisk = "emmc";
@@ -51,16 +52,12 @@ in
   ];
   boot = {
     kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
-
-    /*
-      (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
+    kernelPackages = (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
       _self: _super: {
         kernel_configfile = _super.kernel.configfile;
         zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernelBuild.kernel; };
       }
-      );
-    */
+    );
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;

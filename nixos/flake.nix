@@ -133,7 +133,6 @@
       packages.${system} = {
         rogallyconfig =
           (pkgs.callPackage ./kernel {
-            hardened = false;
             host = "v7w7r-rc71l";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
@@ -141,7 +140,6 @@
 
         higoleconfig =
           (pkgs.callPackage ./kernel {
-            hardened = false;
             host = "v7w7r-higole";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
@@ -149,7 +147,6 @@
 
         serverconfig =
           (pkgs.callPackage ./kernel {
-            hardened = false;
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;
@@ -157,7 +154,6 @@
 
         macminiconfig =
           (pkgs.callPackage ./kernel {
-            hardened = false;
             host = "v7w7r-macmini81";
             inherit helpers inputs;
             kernels = kernels nixpkgs.lib.trivial.importJSON;

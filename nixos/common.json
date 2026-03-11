@@ -1,7 +1,7 @@
 {
   "config": {
     "rev": "master",
-    "hash": "sha256-GDGOZ7m/7CKlL6+vC2ZgklyUqRd4D29d6LnUVIYh4hI="
+    "hash": "sha256-TG321duNkRZP9tgg2NDX78JQX39pFnCdr48c8uENPCo="
   },
   "patches": {
     "rev": "master",
