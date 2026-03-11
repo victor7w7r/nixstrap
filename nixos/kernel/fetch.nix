@@ -84,9 +84,10 @@ in
       find "$out" -type d -empty -delete
 
       ${pkgs.patchutils}/bin/filterdiff \
-        -x "drivers/gpu/drm/amd/amdgpu/*" \
-        -x "drivers/gpu/drm/i915/display/*" \
+        -x "*/drivers/gpu/drm/amd/amdgpu/*" \
+        -x "*/drivers/gpu/drm/i915/display/*" \
         0001-cachyos-base-all.patch > base-cleaned.patch \
+        && rm f 0001-cachyos-base-all.patch \
         && mv base-cleaned.patch 0001-cachyos-base-all.patch
     '';
   };
