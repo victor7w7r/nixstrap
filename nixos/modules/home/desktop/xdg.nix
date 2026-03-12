@@ -1,7 +1,7 @@
-{ user, config, ... }:
+{ username, config, ... }:
 {
   home.file.".xinitrc".text = ''
-    export XAUTHORITY=/home/${user}/.Xauthority
+    export XAUTHORITY=/home/${username}/.Xauthority
     export XDG_SESSION_TYPE=x11
     export DESKTOP_SESSION=xfce
     exec startxfce4
