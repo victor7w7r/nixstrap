@@ -50,6 +50,7 @@
         sed -i '/^CONFIG_SSB/d' $conf
         sed -i '/^CONFIG_COMEDI/d' $conf
         sed -i '/^CONFIG_DEBUG_/d' $conf
+        sed -i '/^CONFIG_XEN/d' $conf
         sed -i '/^CONFIG_.*_PHY=/d' $conf
         sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
         sed -i '/^$/N;/\n$/D' $conf
