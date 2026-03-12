@@ -65,18 +65,6 @@
     postFetch = ''
       PATCHDIR="$out/${majorMinor}"
       BASE="all/0001-cachyos-base-all.patch"
-
-      ${pkgs.patchutils}/bin/filterdiff \
-        -x "*/arch/arm/*" -x "*/arch/riscv/*" \
-        -x "*/arch/s390/*" -x "*/arch/sparc/*" \
-        -x "*/tools/testing/selftests/*" -x "*/drivers/scsi/vhba/*" \
-        -x "*/drivers/media/v4l2-core/*" \
-        -x "*/drivers/gpu/drm/amd/amdgpu/*" \
-        -x "*/drivers/gpu/drm/i915/display/*" \
-        -x "*/include/net/tcp.h" \
-
-        "$PATCHDIR/$BASE" > filtered.patch
-
         find "$out" -type f \
           ! -path "*/sched/0001-bore-cachy.patch" \
           ! -path "*/misc/0001-hardened.patch" \
@@ -90,9 +78,9 @@
           ! -name "0010-t2.patch" -delete
         find "$out" -type d -empty -delete
         #chmod +w "$PATCHDIR/$BASE"
-        "$PATCHDIR/$BASE" > filtered.patch
+        #"$PATCHDIR/$BASE" > filtered.patch
         #chmod -w "$PATCHDIR/$BASE"
-        rm filtered.patch
+        #rm filtered.patch
     '';
   };
 }
