@@ -2,7 +2,7 @@
   inputs,
   host,
   config,
-  kernels,
+  kernelData,
   pkgs,
   ...
 }:
@@ -13,7 +13,7 @@ let
     inherit
       helpers
       host
-      kernels
+      kernelData
       inputs
       ;
   };
