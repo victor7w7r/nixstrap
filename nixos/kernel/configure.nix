@@ -10,7 +10,14 @@ let
   kernel = pkgs.linux_6_18;
   majorMinor = lib.versions.majorMinor kernel.version;
 
-  fetch = pkgs.callPackage ./fetch.nix { inherit hardened kernelData majorMinor; };
+  fetch = pkgs.callPackage ./fetch.nix {
+    inherit
+      hardened
+      host
+      kernelData
+      majorMinor
+      ;
+  };
   config = import ./config { inherit host hardened; };
 
   commonDb = ./config/mod-common.db;
