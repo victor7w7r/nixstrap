@@ -63,7 +63,6 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-      find "$out" -type d ! -path "*/${majorMinor}*" -delete
       find "$out" -mindepth 1 -type f \
         ! -path "*/misc/0001-hardened.patch" \
         ! -path "*/misc/0001-handheld.patch" \
@@ -81,6 +80,7 @@
         ! -name "0008-intel-pstate.patch" \
         ! -name "0009-sched-ext.patch" \
         ! -name "0010-t2.patch" -delete
+        find "$out" -type d -empty -delete
 
         ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
          "${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
