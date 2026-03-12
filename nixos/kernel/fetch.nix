@@ -64,7 +64,7 @@
     sha256 = kernelData.patches.hash;
     postFetch = ''
       PATCHDIR="$out"/${majorMinor}
-      BASE=/all/0001-cachyos-base-all.patch
+      BASE=all/0001-cachyos-base-all.patch
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
         ! -path "*/misc/0001-hardened.patch" \
