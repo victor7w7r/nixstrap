@@ -17,7 +17,6 @@
   "-d LTO_NONE"
   "-e LTO_CLANG_THIN"
   "-d LTO_CLANG_FULL"
-  "--set-val NR_CPUS 320"
   "-d CONFIG_SECURITY_TOMOYO"
 
   "-m TCP_CONG_CUBIC"
@@ -29,6 +28,7 @@
   "-e NET_SCH_FQ"
   "-d DEFAULT_FQ_CODEL"
   "-e DEFAULT_FQ"
+  "-d NUMA"
   "-d XEN"
   "--set-str DEFAULT_NET_SCH fq"
 
@@ -41,6 +41,10 @@
   "-e LRU_GEN"
   "-e LRU_GEN_ENABLED"
   "-d LRU_GEN_STATS"
+
+  "-d CPU_SUP_HYGON"
+  "-d CPU_SUP_CENTAUR"
+  "-d CPU_SUP_ZHAOXIN"
 
   "-e PER_VMA_LOCK"
   "-d PER_VMA_LOCK_STATS"
@@ -78,8 +82,11 @@
   if host == "v7w7r-rc71l" then
     [
       "-m ASUS_ARMOURY"
+      "-e CPU_SUP_AMD"
+      "-d CPU_SUP_INTEL"
       "-e AMD_PRIVATE_COLOR"
       "-m AMD_3D_VCACHE"
+      "-e KVM_AMD"
       "-m V4L2_LOOPBACK"
       "-m VHBA"
       "-m DRM_APPLETBDRM"
@@ -88,7 +95,11 @@
       #"--unset CONTEXT_TRACKING_FORCE"
     ]
   else
-    [ ]
+    [
+      "-e CPU_SUP_INTEL"
+      "-d KVM_AMD"
+      "-d CPU_SUP_AMD"
+    ]
 )
 ++ (
   if !hardened then
@@ -117,6 +128,7 @@
     [
       "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
       "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
+      "--set-val NR_CPUS 8"
 
       "-e PREEMPT_NONE_BUILD"
       "-e PREEMPT_NONE"
@@ -141,6 +153,7 @@
       "-e CACHY"
       "-m NTSYNC"
       "-e SCHED_BORE"
+      "--set-val NR_CPUS 32"
 
       "-d TRANSPARENT_HUGEPAGE_MADVISE"
       "-e TRANSPARENT_HUGEPAGE_ALWAYS"
