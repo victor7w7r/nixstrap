@@ -77,12 +77,6 @@ pkgs.stdenv.mkDerivation (attrs: {
   name = "linux-${majorMinor}${localVer}-config";
   nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
 
-  makeFlags = import "${inputs.nixpkgs}/pkgs/os-specific/linux/kernel/common-flags.nix" {
-    inherit lib;
-    stdenv = pkgs.stdenv;
-    buildPackages = pkgs.buildPackages;
-  };
-
   installPhase = ''
     runHook preInstall
     cp .config $out
