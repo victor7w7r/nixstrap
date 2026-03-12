@@ -55,7 +55,7 @@ let
       ];
     }).overrideAttrs
       (attrs: {
-        postPatch = (attrs.postPatch or "") + configure.extraVerPatch;
+        postPatch = attrs.postPatch + configure.extraVerPatch;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           modDirVersion = configure.version;
