@@ -61,7 +61,7 @@ let
       "${fetch.cachy-patches}/${majorMinor}/0009-sched-ext.patch"
     ])
     ++ (lib.optional (host == "v7w7r-macmini81") [
-      "${fetch.cachy-patches}/${majorMinor}/sched/0010-t2.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0010-t2.patch"
     ])
     ++ (lib.optional hardened [
       "${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch"
@@ -89,7 +89,7 @@ let
         )
       else
         [
-          "${fetch.cachy-patches}/${majorMinor}/misc/0008-intel-state.patch"
+          "${fetch.cachy-patches}/${majorMinor}/0008-intel-state.patch"
         ]
     );
 in
