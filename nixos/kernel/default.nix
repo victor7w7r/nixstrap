@@ -48,7 +48,6 @@ let
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
-        "EXTRAVERSION=${configure.localVer}"
         "KCFLAGS=-Wno-error"
       ];
     }).overrideAttrs
