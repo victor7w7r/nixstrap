@@ -76,22 +76,17 @@
         -x "*/include/net/tcp.h" \
         ${
           if host != "v7w7r-macmini81" then
-            ''-x "*/drivers/soc/apple/*" -x "*/drivers/staging/apple-bce/*" \''
+            ''-x "*/drivers/soc/apple/*" -x "*/drivers/staging/apple-bce/*"''
           else
             ""
-        }
+        } \
         ${
           if host != "v7w7r-rc71l" then
-            ''
-              -x "*/drivers/gpu/drm/amd/*" \
-              -x "*/drivers/hid/hid-asus*" \
-              -x "*/drivers/platform/x86/asus*" \
-              -x "*/include/linux/hid-asus*" \
-            ''
+            ''-x "*/drivers/gpu/drm/amd/*" -x "*/drivers/hid/hid-asus*" -x "*/drivers/platform/x86/asus*" -x "*/include/linux/hid-asus*"''
           else
             ""
-        }
-        "$PATCHDIR/$BASE" > "$PATCHDIR/temp.patch"
+        } \
+        "$PATCHDIR/$BASE" > filtered.patch
 
         find "$out" -type f \
           ! -path "*/sched/0001-bore-cachy.patch" \
@@ -105,10 +100,10 @@
           ! -name "0009-sched-ext.patch" \
           ! -name "0010-t2.patch" -delete
         find "$out" -type d -empty -delete
-        chmod +w "$PATCHDIR/$BASE"
-        cat temp.patch > "$PATCHDIR/$BASE"
-        chmod -w "$PATCHDIR/$BASE"
-        rm temp.patch
+        #chmod +w "$PATCHDIR/$BASE"
+        "$PATCHDIR/$BASE" > filtered.patch
+        #chmod -w "$PATCHDIR/$BASE"
+        rm filtered.patch
     '';
   };
 }
