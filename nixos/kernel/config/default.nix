@@ -12,13 +12,14 @@
   "-d OVERLAY_FS_XINO_AUTO"
   "-d OVERLAY_FS_METACOPY"
   "-d OVERLAY_FS_DEBUG"
-  "-d CONFIG_DRM_XE"
+  "-d DRM_XE"
+  "-d DRM_XE_DISPLAY"
   "-e LLVM"
   "-e LLVM_IAS"
   "-d LTO_NONE"
   "-e LTO_CLANG_THIN"
   "-d LTO_CLANG_FULL"
-  "-d CONFIG_SECURITY_TOMOYO"
+  "-d SECURITY_TOMOYO"
 
   "-m TCP_CONG_CUBIC"
   "-d DEFAULT_CUBIC"
@@ -97,6 +98,7 @@
     ]
   else
     [
+      "-e DRM_I915"
       "-e CPU_SUP_INTEL"
       "-d KVM_AMD"
       "-d CPU_SUP_AMD"
