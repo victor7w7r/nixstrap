@@ -16,7 +16,7 @@
   };
 
   hardened-patch = pkgs.fetchurl {
-    url = "https://github.com/anthraxx/linux-hardened/releases/download/v${version}-hardened1/linux-hardened-${version}-hardened1.patch";
+    url = "https://github.com/anthraxx/linux-hardened/releases/download/v${version}-hardened1/linux-hardened-v${version}-hardened1.patch";
     sha256 = kernelData.hardened.hash;
   };
 
