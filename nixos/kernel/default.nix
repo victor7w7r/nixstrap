@@ -4,7 +4,7 @@
   lib,
   inputs,
   pkgs,
-  kernels,
+  kernelData,
   hardened ? false,
   ...
 }:
@@ -14,7 +14,7 @@ let
       hardened
       host
       kernel
-      kernels
+      kernelData
       inputs
       helpers
       ;

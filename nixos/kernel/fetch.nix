@@ -1,27 +1,16 @@
 {
-  lib,
   pkgs,
-  kernels,
+  kernelData,
   hardened,
+  majorMinor,
   ...
 }:
-let
-  version = if hardened then kernels.hardened.linux.version else kernels.lts.linux.version;
-  majorMinor = lib.versions.majorMinor version;
-in
 {
-  linux = pkgs.fetchurl {
-    url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${
-      if version == "${majorMinor}.0" then majorMinor else version
-    }.tar.xz";
-    hash = if hardened then kernels.hardened.linux.hash else kernels.lts.linux.hash;
-  };
-
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
-    rev = kernels.common.config.rev;
-    sha256 = kernels.common.config.hash;
+    rev = kernelData.config.rev;
+    sha256 = kernelData.config.hash;
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
@@ -67,8 +56,8 @@ in
   cachy-patches = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "kernel-patches";
-    rev = kernels.common.patches.rev;
-    sha256 = kernels.common.patches.hash;
+    rev = kernelData.patches.rev;
+    sha256 = kernelData.patches.hash;
     postFetch = ''
       SRC="$out"
       find "$out" -type f \
@@ -95,9 +84,9 @@ in
   };
 
   asus-patches = pkgs.fetchgit {
-    url = kernels.lts.asus.url;
-    rev = kernels.lts.asus.rev;
-    sha256 = kernels.lts.asus.hash;
+    url = kernelData.asus.url;
+    rev = kernelData.asus.rev;
+    sha256 = kernelData.asus.hash;
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 }

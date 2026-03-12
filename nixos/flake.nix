@@ -123,11 +123,6 @@
       };
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
       # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
-      kernels = importJSON: {
-        hard = importJSON ./hardened.json;
-        lts = importJSON ./lts.json;
-        common = importJSON ./common.json;
-      };
     in
     {
       packages.${system} = {
@@ -135,42 +130,42 @@
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel;
 
         configdebug =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel.configure;
 
         rogallyconfig =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel.kconfigToNix;
 
         higoleconfig =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-higole";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel.kconfigToNix;
 
         serverconfig =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-youyeetoox1";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel.kconfigToNix;
 
         macminiconfig =
           (pkgs.callPackage ./kernel {
             host = "v7w7r-macmini81";
             inherit helpers inputs;
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
           }).kernel.kconfigToNix;
       };
 
@@ -197,7 +192,7 @@
           ];
           specialArgs = {
             host = "v7w7r-macmini81";
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix
@@ -232,7 +227,7 @@
           ];
           specialArgs = {
             host = "v7w7r-higole";
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix
@@ -265,7 +260,7 @@
           ];
           specialArgs = {
             host = "v7w7r-rc71l";
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix
@@ -304,7 +299,7 @@
           ];
           specialArgs = {
             host = "v7w7r-youyeetoox1";
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix
@@ -338,7 +333,7 @@
           ];
           specialArgs = {
             host = "v7w7r-nixvm";
-            kernels = kernels nixpkgs.lib.trivial.importJSON;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix
