@@ -89,7 +89,7 @@ let
         )
       else
         [
-          "${fetch.cachy-patches}/${majorMinor}/0008-intel-state.patch"
+          "${fetch.cachy-patches}/${majorMinor}/0008-intel-pstate.patch"
         ]
     );
 in
