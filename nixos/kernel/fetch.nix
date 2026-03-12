@@ -63,24 +63,28 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-      PATCHDIR="$out/${majorMinor}"
-      BASE="all/0001-cachyos-base-all.patch"
-        find "$out" -type f \
-          ! -path "*/sched/0001-bore-cachy.patch" \
-          ! -path "*/misc/0001-hardened.patch" \
-          ! -path "*/misc/0001-acpi-call.patch" \
-          ! -path "*/misc/0001-handheld.patch" \
-          ! -name "0001-amd-pstate.patch" \
-          ! -name "0002-asus.patch" \
-          ! -name "0008-intel-pstate.patch" \
-          ! -name "0001-cachyos-base-all.patch" \
-          ! -name "0009-sched-ext.patch" \
-          ! -name "0010-t2.patch" -delete
-        find "$out" -type d -empty -delete
-        #chmod +w "$PATCHDIR/$BASE"
-        #"$PATCHDIR/$BASE" > filtered.patch
-        #chmod -w "$PATCHDIR/$BASE"
-        #rm filtered.patch
+      find "$out" -type d ! -path "*/${majorMinor}*" \ -delete
+      find "$out" -mindepth 1 -type f \
+        ! -path "*/misc/0001-hardened.patch" \
+        ! -path "*/misc/0001-handheld.patch" \
+        ! -path "*/misc/0001-acpi-call.patch" \
+        ! -path "*/misc/nap-governor.patch" \
+        ! -path "*/misc/reflex-governor.patch" \
+        ! -path "*/sched/0001-bore-cachy.patch" \
+        ! -name "0001-amd-pstate.patch" \
+        ! -name "0002-asus.patch" \
+        ! -name "0003-bbr3.patch" \
+        ! -name "0004-cachy.patch" \
+        ! -name "0005-crypto.patch" \
+        ! -name "0006-fixes.patch" \
+        ! -name "0007-hdmi.patch" \
+        ! -name "0008-intel-pstate.patch" \
+        ! -name "0009-sched-ext.patch" \
+        ! -name "0010-t2.patch" -delete
+
+        ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
+         "${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
+        cat bbr3-filter.patch > "${majorMinor}/0003-bbr3.patch"
     '';
   };
 }

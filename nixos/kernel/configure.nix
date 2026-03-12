@@ -51,31 +51,47 @@ let
     in
     (rmRandstruct kernel.patches)
     ++ [
-      "${fetch.cachy-patches}/${majorMinor}/all/0001-cachyos-base-all.patch"
+      "${fetch.cachy-patches}/${majorMinor}/all/0003-bbr3.patch"
+      "${fetch.cachy-patches}/${majorMinor}/all/0004-cachy.patch"
+      "${fetch.cachy-patches}/${majorMinor}/all/0005-crypto.patch"
+      "${fetch.cachy-patches}/${majorMinor}/all/0006-fixes.patch"
     ]
     ++ (lib.optional (host != "v7w7r-youyeetoox1") [
       "${fetch.cachy-patches}/${majorMinor}/sched/0001-bore-cachy.patch"
-      "${fetch.cachy-patches}/${majorMinor}/sched/0001-sched-ext.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0009-sched-ext.patch"
+    ])
+    ++ (lib.optional (host == "v7w7r-macmini81") [
+      "${fetch.cachy-patches}/${majorMinor}/sched/0010-t2.patch"
     ])
     ++ (lib.optional hardened [
       "${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch"
     ])
-    ++ (lib.optional (host == "v7w7r-rc71l") (
-      [
-        "${fetch.cachy-patches}/${majorMinor}/misc/0001-acpi-call.patch"
-        "${fetch.cachy-patches}/${majorMinor}/misc/0001-handheld.patch"
-      ]
-      ++ builtins.map (p: "${fetch.asus-patches.outPath}/${p}") [
-        "0001-bluetooth-btus-add-new-vid-pid.patch"
-        "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
-        "0040-workaround_hardware_decoding_amdgpu.patch"
-        "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
-        "0081-amdgpu-adjust_plane_init_off_by_one.patch"
-        "asus-patch-series.patch"
-        "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
-        "v2-0002-hid-asus-change-the-report_id-used-for-HID-LED-co.patch"
-      ]
-    ));
+    ++ (
+      if (host == "v7w7r-rc71l") then
+        (
+          [
+            "${fetch.cachy-patches}/${majorMinor}/misc/0001-acpi-call.patch"
+            "${fetch.cachy-patches}/${majorMinor}/misc/0001-handheld.patch"
+            "${fetch.cachy-patches}/${majorMinor}/0001-amd-pstate.patch"
+            "${fetch.cachy-patches}/${majorMinor}/0002-asus.patch"
+            "${fetch.cachy-patches}/${majorMinor}/0007-hdmi.patch"
+          ]
+          ++ builtins.map (p: "${fetch.asus-patches.outPath}/${p}") [
+            "0001-bluetooth-btus-add-new-vid-pid.patch"
+            "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
+            "0040-workaround_hardware_decoding_amdgpu.patch"
+            "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
+            "0081-amdgpu-adjust_plane_init_off_by_one.patch"
+            "asus-patch-series.patch"
+            "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
+            "v2-0002-hid-asus-change-the-report_id-used-for-HID-LED-co.patch"
+          ]
+        )
+      else
+        [
+          "${fetch.cachy-patches}/${majorMinor}/misc/0008-intel-state.patch"
+        ]
+    );
 in
 pkgs.stdenv.mkDerivation (attrs: {
   src = kernel.src;
