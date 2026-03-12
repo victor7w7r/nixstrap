@@ -45,9 +45,9 @@ let
     kernelPatches.bridge_stp_helper.patch
     kernelPatches.request_key_helper.patch
   ]
-  #++ [
-  #  "${fetch.cachy-patches}/${majorMinor}/all/0001-cachyos-base-all.patch"
-  #]
+  ++ [
+    "${fetch.cachy-patches}/${majorMinor}/all/0001-cachyos-base-all.patch"
+  ]
   ++ (lib.optional (host != "v7w7r-youyeetoox1") [
     "${fetch.cachy-patches}/${majorMinor}/sched/0001-bore-cachy.patch"
     "${fetch.cachy-patches}/${majorMinor}/sched/0001-sched-ext.patch"
@@ -115,8 +115,5 @@ pkgs.stdenv.mkDerivation (attrs: {
     kernelPatches = patches;
     inherit localVer;
     version = if hardened then kernels.hardened.linux.version else kernels.lts.linux.version;
-    extraVerPatch = ''
-      sed -Ei"" 's/EXTRAVERSION = ?(.*)$/EXTRAVERSION = \1${localVer}/g' Makefile
-    '';
   };
 })

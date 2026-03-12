@@ -46,16 +46,16 @@ let
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
         patch = file;
-      }) configure.passthru.kernelPatches;
+      }) configure.passthru.kernelPatches;extraVerPatch
 
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
+        "EXTRAVERSION=${configure.localVer}"
         "KCFLAGS=-Wno-error"
       ];
     }).overrideAttrs
       (attrs: {
-        postPatch = attrs.postPatch + configure.extraVerPatch;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           modDirVersion = configure.version;
