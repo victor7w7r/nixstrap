@@ -51,10 +51,10 @@ let
     in
     (rmRandstruct kernel.patches)
     ++ [
-      "${fetch.cachy-patches}/${majorMinor}/all/0003-bbr3.patch"
-      "${fetch.cachy-patches}/${majorMinor}/all/0004-cachy.patch"
-      "${fetch.cachy-patches}/${majorMinor}/all/0005-crypto.patch"
-      "${fetch.cachy-patches}/${majorMinor}/all/0006-fixes.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0003-bbr3.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0004-cachy.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0005-crypto.patch"
+      "${fetch.cachy-patches}/${majorMinor}/0006-fixes.patch"
     ]
     ++ (lib.optional (host != "v7w7r-youyeetoox1") [
       "${fetch.cachy-patches}/${majorMinor}/sched/0001-bore-cachy.patch"
