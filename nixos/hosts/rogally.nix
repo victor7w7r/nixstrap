@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  kernelData,
   username,
   ...
 }:
@@ -10,7 +11,14 @@ let
   params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) { };
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-  kernel = (pkgs.callPackage ../kernel) { inherit host helpers; };
+  kernelBuild = (pkgs.callPackage ../kernel) {
+    inherit
+      helpers
+      host
+      kernelData
+      inputs
+      ;
+  };
   btrfs = (import ./lib/btrfs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
@@ -38,7 +46,7 @@ in
       "resume=/dev/vg0/swapcrypt"
     ]
     ++ params { };
-    kernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel);
+    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     initrd = {
       kernelModules = [
         "dm-snapshot"
