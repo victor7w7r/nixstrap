@@ -83,8 +83,8 @@
         find "$out" -type d -empty -delete
 
         ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
-         "${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
-        cat bbr3-filter.patch > "${majorMinor}/0003-bbr3.patch"
+         "$out/${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
+         cat bbr3-filter.patch > "$out/${majorMinor}/0003-bbr3.patch"
     '';
   };
 }
