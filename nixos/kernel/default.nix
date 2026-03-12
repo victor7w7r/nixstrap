@@ -46,7 +46,7 @@ let
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf file;
         patch = file;
-      }) configure.passthru.kernelPatches;extraVerPatch
+      }) configure.passthru.kernelPatches;
 
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
