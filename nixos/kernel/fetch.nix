@@ -65,18 +65,6 @@
     postFetch = ''
       PATCHDIR="$out/${majorMinor}"
       BASE="all/0001-cachyos-base-all.patch"
-      find "$out" -type f \
-        ! -path "*/sched/0001-bore-cachy.patch" \
-        ! -path "*/misc/0001-hardened.patch" \
-        ! -path "*/misc/0001-acpi-call.patch" \
-        ! -path "*/misc/0001-handheld.patch" \
-        ! -name "0001-amd-pstate.patch" \
-        ! -name "0002-asus.patch" \
-        ! -name "0008-intel-pstate.patch" \
-        ! -name "0001-cachyos-base-all.patch" \
-        ! -name "0009-sched-ext.patch" \
-        ! -name "0010-t2.patch" -delete
-      find "$out" -type d -empty -delete
 
       ${pkgs.patchutils}/bin/filterdiff \
         -x "*/arch/arm/*" -x "*/arch/riscv/*" \
@@ -104,7 +92,22 @@
             ""
         }
         "$PATCHDIR/$BASE" > "$PATCHDIR/temp.patch"
-        rm -f "$PATCHDIR/$BASE" && mv "$PATCHDIR/temp.patch" "$PATCHDIR/$BASE"
+
+        find "$out" -type f \
+          ! -path "*/sched/0001-bore-cachy.patch" \
+          ! -path "*/misc/0001-hardened.patch" \
+          ! -path "*/misc/0001-acpi-call.patch" \
+          ! -path "*/misc/0001-handheld.patch" \
+          ! -name "0001-amd-pstate.patch" \
+          ! -name "0002-asus.patch" \
+          ! -name "0008-intel-pstate.patch" \
+          ! -name "0001-cachyos-base-all.patch" \
+          ! -name "0009-sched-ext.patch" \
+          ! -name "0010-t2.patch" -delete
+        find "$out" -type d -empty -delete
+
+        cat temp.patch > "$PATCHDIR/$BASE"
+        rm temp.patch
     '';
   };
 }
