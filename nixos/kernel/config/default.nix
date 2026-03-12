@@ -45,6 +45,12 @@
   "-e PER_VMA_LOCK"
   "-d PER_VMA_LOCK_STATS"
 
+  "-d DEBUG_INFO"
+  "-d DEBUG_INFO_BTF"
+  "-d DEBUG_INFO_DWARF4"
+  "-d DEBUG_INFO_DWARF5"
+  "-d PAHOLE_HAS_SPLIT_BTF"
+  "-d DEBUG_INFO_BTF_MODULES"
   "-d PAHOLE_HAS_SPLIT_BTF"
   "-d SLUB_DEBUG"
   "-d PM_DEBUG"
@@ -121,6 +127,10 @@
       "-d TRANSPARENT_HUGEPAGE_ALWAYS"
       "-e TRANSPARENT_HUGEPAGE_MADVISE"
 
+      "-d INPUT_JOYSTICK"
+      "-d INPUT_TABLET"
+      "-d INPUT_TOUCHSCREEN"
+
       "-e HZ_300"
       "--set-val HZ 300"
       "-e NO_HZ_IDLE"
@@ -141,12 +151,12 @@
       "-e PREEMPT"
       "-e PREEMPT_COUNT"
       "-e PREEMPTION"
+      "-e PREEMPT_ION"
 
       "--set-val HZ 500"
+      "-e HZ_500"
       "-d CONTEXT_TRACKING_FORCE"
       "-e CONTEXT_TRACKING"
-      "-e HZ_500"
-      "-d HZ_300"
       "-d NO_HZ_IDLE"
       "-e NO_HZ_FULL_NODEF"
       "-e NO_HZ_FULL"

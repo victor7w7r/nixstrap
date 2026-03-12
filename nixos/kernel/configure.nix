@@ -97,10 +97,20 @@ in
 pkgs.stdenv.mkDerivation (attrs: {
   src = kernel.src;
   name = "linux-${majorMinor}${localVer}-config";
+
   LLVM = "1";
   LLVM_IAS = "1";
+
   stdenv = helpers.stdenvLLVM;
-  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
+  nativeBuildInputs =
+    with pkgs;
+    kernel.nativeBuildInputs
+    ++ kernel.buildInputs
+    ++ [
+      clang_18
+      llvm_18
+      lld_18
+    ];
 
   installPhase = ''
     runHook preInstall
