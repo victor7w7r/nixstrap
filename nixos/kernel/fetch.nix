@@ -74,18 +74,7 @@
         -x "*/drivers/gpu/drm/amd/amdgpu/*" \
         -x "*/drivers/gpu/drm/i915/display/*" \
         -x "*/include/net/tcp.h" \
-        ${
-          if host != "v7w7r-macmini81" then
-            ''-x "*/drivers/soc/apple/*" -x "*/drivers/staging/apple-bce/*"''
-          else
-            ""
-        } \
-        ${
-          if host != "v7w7r-rc71l" then
-            ''-x "*/drivers/gpu/drm/amd/*" -x "*/drivers/hid/hid-asus*" -x "*/drivers/platform/x86/asus*" -x "*/include/linux/hid-asus*"''
-          else
-            ""
-        } \
+
         "$PATCHDIR/$BASE" > filtered.patch
 
         find "$out" -type f \
