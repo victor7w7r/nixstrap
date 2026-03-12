@@ -55,7 +55,6 @@ let
       (attrs: {
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
-          modDirVersion = configure.version;
           features = {
             ia32Emulation = true;
             netfilterRPFilter = true;
