@@ -37,25 +37,28 @@
           ""
       }
       ${if host == "v7w7r-youyeetoox1" then "sed -i '/^CONFIG_SND_/d' $conf" else ""}
-        sed -i '/^#/d' $conf
-        sed -i '/^CONFIG_G*CC_/d' $conf
-        sed -i '/^CONFIG_ATH/d' $conf
-        sed -i '/^CONFIG_LD_/d' $conf
-        sed -i '/^CONFIG_RUSTC*_/d' $conf
-        sed -i '/^CONFIG_KUNIT$/d' $conf
-        sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
-        sed -i '/^CONFIG_MEMSTICK_/d' $conf
-        sed -i '/^CONFIG_SYSTEM/d' $conf
-        sed -i '/^CONFIG_MEDIA_/d' $conf
-        sed -i '/^CONFIG_SSB/d' $conf
-        sed -i '/^CONFIG_COMEDI/d' $conf
-        sed -i '/^CONFIG_DEBUG_/d' $conf
-        sed -i '/^CONFIG_XEN/d' $conf
-        sed -i '/^CONFIG_.*_PHY=/d' $conf
-        sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
-        sed -i '/^$/N;/\n$/D' $conf
-        rm -rfv "$out" && cp -v "$conf" "$out"
+
     '';
+    /*
+      sed -i '/^#/d' $conf
+      sed -i '/^CONFIG_G*CC_/d' $conf
+      sed -i '/^CONFIG_ATH/d' $conf
+      sed -i '/^CONFIG_LD_/d' $conf
+      sed -i '/^CONFIG_RUSTC*_/d' $conf
+      sed -i '/^CONFIG_KUNIT$/d' $conf
+      sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
+      sed -i '/^CONFIG_MEMSTICK_/d' $conf
+      sed -i '/^CONFIG_SYSTEM/d' $conf
+      sed -i '/^CONFIG_MEDIA_/d' $conf
+      sed -i '/^CONFIG_SSB/d' $conf
+      sed -i '/^CONFIG_COMEDI/d' $conf
+      sed -i '/^CONFIG_DEBUG_/d' $conf
+      sed -i '/^CONFIG_XEN/d' $conf
+      sed -i '/^CONFIG_.*_PHY=/d' $conf
+      sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
+      sed -i '/^$/N;/\n$/D' $conf
+      rm -rfv "$out" && cp -v "$conf" "$out"
+    */
   };
 
   cachy-patches = pkgs.fetchFromGitHub {

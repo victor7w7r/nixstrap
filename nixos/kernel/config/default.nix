@@ -1,6 +1,7 @@
 { host, hardened }:
 [
   "-e MQ_IOSCHED_ADIOS"
+  "--set-str DEFAULT_HOSTNAME v7w7r"
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-d LOCALVERSION_AUTO"
@@ -28,6 +29,7 @@
   "-e NET_SCH_FQ"
   "-d DEFAULT_FQ_CODEL"
   "-e DEFAULT_FQ"
+  "-d XEN"
   "--set-str DEFAULT_NET_SCH fq"
 
   "-e AUTOFS4_FS"

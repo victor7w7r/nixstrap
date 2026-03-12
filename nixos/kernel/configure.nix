@@ -2,6 +2,7 @@
   host,
   lib,
   pkgs,
+  helpers,
   kernelData,
   hardened ? false,
   ...
@@ -96,7 +97,10 @@ in
 pkgs.stdenv.mkDerivation (attrs: {
   src = kernel.src;
   name = "linux-${majorMinor}${localVer}-config";
-  nativeBuildInputs = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto.kernel.nativeBuildInputs;
+  LLVM = "1";
+  LLVM_IAS = "1";
+  stdenv = helpers.stdenvLLVM;
+  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
 
   installPhase = ''
     runHook preInstall

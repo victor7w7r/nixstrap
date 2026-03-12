@@ -2,7 +2,6 @@
   helpers,
   host,
   lib,
-  inputs,
   pkgs,
   kernelData,
   hardened ? false,
@@ -13,9 +12,7 @@ let
     inherit
       hardened
       host
-      kernel
       kernelData
-      inputs
       helpers
       ;
   };
