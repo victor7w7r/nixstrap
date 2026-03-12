@@ -12,6 +12,7 @@ let
   majorMinor = lib.versions.majorMinor kernel.version;
 
   fetch = pkgs.callPackage ./fetch.nix {
+    version = kernel.version;
     inherit
       hardened
       host
@@ -64,9 +65,7 @@ let
     ++ (lib.optional (host == "v7w7r-macmini81") [
       "${fetch.cachy-patches}/${majorMinor}/0010-t2.patch"
     ])
-    ++ (lib.optional hardened [
-      "${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch"
-    ])
+    ++ (lib.optional hardened [ fetch.hardened-patch ])
     ++ (
       if (host == "v7w7r-rc71l") then
         (

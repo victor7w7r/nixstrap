@@ -7,6 +7,9 @@
     "rev": "master",
     "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
   },
+  "hardened": {
+    "hash": "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk="
+  },
   "asus": {
     "url": "https://gitlab.com/asus-linux/linux-g14",
     "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
