@@ -7,6 +7,13 @@
   ...
 }:
 {
+  asus-patches = pkgs.fetchgit {
+    url = kernelData.asus.url;
+    rev = kernelData.asus.rev;
+    sha256 = kernelData.asus.hash;
+    postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
+  };
+
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
@@ -112,12 +119,5 @@
           ""
       }
     '';
-  };
-
-  asus-patches = pkgs.fetchgit {
-    url = kernelData.asus.url;
-    rev = kernelData.asus.rev;
-    sha256 = kernelData.asus.hash;
-    postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 }
