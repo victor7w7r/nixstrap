@@ -63,7 +63,7 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-      find "$out" -type d ! -path "*/${majorMinor}*" \ -delete
+      find "$out" -type d ! -path "*/${majorMinor}*" -delete
       find "$out" -mindepth 1 -type f \
         ! -path "*/misc/0001-hardened.patch" \
         ! -path "*/misc/0001-handheld.patch" \
