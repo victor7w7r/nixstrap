@@ -105,8 +105,9 @@
           ! -name "0009-sched-ext.patch" \
           ! -name "0010-t2.patch" -delete
         find "$out" -type d -empty -delete
-
+        chmod +w "$PATCHDIR/$BASE"
         cat temp.patch > "$PATCHDIR/$BASE"
+        chmod -w "$PATCHDIR/$BASE"
         rm temp.patch
     '';
   };
