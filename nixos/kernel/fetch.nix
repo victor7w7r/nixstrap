@@ -72,6 +72,10 @@
       find "$out" -type d -empty -delete
 
       ${pkgs.patchutils}/bin/filterdiff \
+        -x "*/arch/arm/*" -x "*/arch/riscv/*" \
+        -x "*/arch/s390/*" -x "*/arch/sparc/*" \
+        -x "*/tools/testing/selftests/*" -x "*/drivers/scsi/vhba/*" \
+        -x "*/drivers/media/v4l2-core/*" \
         -x "*/drivers/gpu/drm/amd/amdgpu/*" \
         -x "*/drivers/gpu/drm/i915/display/*" \
         -x "*/include/net/tcp.h" \
@@ -97,8 +101,9 @@
           ''
             ${pkgs.patchutils}/bin/filterdiff \
               -x "*/drivers/gpu/drm/amd/*" \
-              -x "*/drivers/hid/*" \
+              -x "*/drivers/hid/hid-asus*" \
               -x "*/drivers/platform/x86/asus*" \
+              -x "*/include/linux/hid-asus*" \
               "$PATCHDIR"/"$BASE" > $PATCHDIR/temp.patch
 
             rm -f "$PATCHDIR"/"$BASE" && mv $PATCHDIR/temp.patch "$PATCHDIR"/"$BASE"
