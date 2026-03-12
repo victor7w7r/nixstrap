@@ -37,7 +37,7 @@ let
       configfile = configure;
       allowImportFromDerivation = false;
       version = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
-      modDirVersion = configure.version;
+      modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
 
       kernelPatches = builtins.map (file: {
