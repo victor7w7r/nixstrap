@@ -5,7 +5,7 @@
   },
   "patches": {
     "rev": "master",
-    "hash": "sha256-9wmqcIkFUhEmUmru1sj5B4kagKhESmCYLnwg9sp5ovA="
+    "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
   },
   "asus": {
     "url": "https://gitlab.com/asus-linux/linux-g14",
