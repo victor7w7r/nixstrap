@@ -146,7 +146,6 @@ in
 
     asusd = {
       enable = true;
-      enableUserService = true;
     };
     handheld-daemon = {
       enable = true;
