@@ -63,8 +63,8 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-      PATCHDIR="$out"/${majorMinor}
-      BASE=all/0001-cachyos-base-all.patch
+      PATCHDIR="$out/${majorMinor}"
+      BASE="all/0001-cachyos-base-all.patch"
       find "$out" -type f \
         ! -path "*/sched/0001-bore-cachy.patch" \
         ! -path "*/misc/0001-hardened.patch" \
@@ -103,8 +103,8 @@
           else
             ""
         }
-        "$PATCHDIR"/"$BASE" > $PATCHDIR/temp.patch
-        rm -f "$PATCHDIR"/"$BASE" && mv $PATCHDIR/temp.patch "$PATCHDIR"/"$BASE"
+        "$PATCHDIR/$BASE" > "$PATCHDIR/temp.patch"
+        rm -f "$PATCHDIR/$BASE" && mv "$PATCHDIR/temp.patch" "$PATCHDIR/$BASE"
     '';
   };
 }
