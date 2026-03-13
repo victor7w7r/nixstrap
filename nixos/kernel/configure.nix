@@ -31,7 +31,7 @@ let
     else if host == "v7w7r-rc71l" then
       ./config/mod-rc71l.db
     else
-      ./config/mod-rc71l.db;
+      ./config/mod-higole.db;
 
   nativeHost =
     if host == "v7w7r-macmini81" then
