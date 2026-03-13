@@ -75,7 +75,6 @@ in
     initrd = {
       availableKernelModules = [ "i915" ];
       checkJournalingFS = false;
-      optimizeModules = false;
       kernelModules = [
         "mmc_block"
         "zfs"
