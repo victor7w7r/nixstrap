@@ -80,7 +80,6 @@ in
     };
     initrd = {
       availableKernelModules = [ "i915" ];
-      checkJournalingFS = false;
       kernelModules = [
         "mmc_block"
         "zfs"
