@@ -27,6 +27,12 @@ let
   f2fs = import ./lib/f2fs.nix;
 in
 {
+  nixpkgs.overlays = [
+    (_final: super: {
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
