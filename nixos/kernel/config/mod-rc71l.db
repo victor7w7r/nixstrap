@@ -48,14 +48,10 @@ ecc
 ecdh_generic
 edac_core
 edac_mce_amd
-efi_pstore
 encrypted_keys
 ff_memless
-fuse
 gpu_sched
-hid
 hid_asus
-hid_generic
 hid_multitouch
 i2c_hid
 i2c_hid_acpi
@@ -70,7 +66,6 @@ kfifo_buf
 kvm_amd
 led_class
 libarc4
-lz4hc_compress
 mac80211
 mdev
 mii
@@ -158,9 +153,6 @@ typec_ucsi
 ucsi_acpi
 uinput
 usbnet
-vhost
-vhost_iotlb
-vhost_vsock
 vivaldi_fmap
 wmi_bmof
 xhci_hcd

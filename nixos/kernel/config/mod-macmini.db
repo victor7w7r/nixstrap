@@ -17,7 +17,6 @@ coretemp
 crc8
 crypto_user
 dm_log
-dm_mirror
 dm_region_hash
 ee1004
 encrypted_keys
@@ -73,6 +72,7 @@ ptp
 pwrseq_core
 r8152
 r8153_ecm
+raid6_pq
 rapl
 rfcomm
 sch_htb
@@ -138,3 +138,4 @@ xfrm6_tunnel
 xfrm_algo
 xfrm_interface
 xfrm_user
+xor

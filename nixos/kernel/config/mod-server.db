@@ -24,15 +24,11 @@ dw_dmac
 dw_dmac_core
 ecc
 ecdh_generic
-efi_pstore
 ehci_hcd
 fixed_phy
-fuse
 fwnode_mdio
 garp
 ghash_clmulni_intel
-hid
-hid_generic
 i2c_i801
 i2c_mux
 i915
@@ -53,7 +49,6 @@ intel_rapl_msr
 intel_soc_dts_iosf
 ip6t_rpfilter
 iptable_mangle
-ip_tables
 ipt_rpfilter
 kvm_intel
 led_class
@@ -61,8 +56,6 @@ libaescfb
 libahci
 libata
 llc
-lz4_compress
-lz4hc_compress
 mei
 mmc_block
 mmc_core
@@ -82,6 +75,7 @@ processor_thermal_soc_slider
 processor_thermal_wt_hint
 processor_thermal_wt_req
 r8169
+raid6_pq
 realtek
 rng_core
 rpmb_core
@@ -100,13 +94,9 @@ spi_nor
 spi_pxa2xx_core
 spi_pxa2xx_platform
 stp
-tcp_bbr
 tls
 uas
 uhci_hcd
-vhost
-vhost_iotlb
-vhost_vsock
 vivaldi_fmap
 wmi_bmof
 x86_pkg_temp_thermal
