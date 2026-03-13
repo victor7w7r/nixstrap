@@ -26,6 +26,13 @@ let
   };
 in
 {
+
+  nixpkgs.overlays = [
+    (_final: super: {
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
