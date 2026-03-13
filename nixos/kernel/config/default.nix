@@ -204,7 +204,7 @@
       "-d NO_HZ_FULL"
     ]
   else
-   ( [
+   [
       "-e CACHY"
       "-m NTSYNC"
       "-e SCHED_BORE"
@@ -240,5 +240,5 @@
         "-e PREEMPT"
         "-e PREEMPT_COUNT"
       ]
-    )
+    );
 )
