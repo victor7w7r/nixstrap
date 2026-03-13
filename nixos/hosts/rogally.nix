@@ -40,6 +40,7 @@ in
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
+    blacklistedKernelModules = [ "ata_piix" ];
     kernelParams = [
       "amd_iommu=on"
       "amdgpu.sg_display=0"
