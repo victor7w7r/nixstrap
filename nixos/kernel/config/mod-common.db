@@ -66,6 +66,7 @@ xt_hl
 xt_limit
 xt_LOG
 xt_mark
+xt_pkttype
 xt_tcpudp
 zstd
 zram
