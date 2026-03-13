@@ -240,5 +240,5 @@
         "-e PREEMPT"
         "-e PREEMPT_COUNT"
       ]
-    );
+    )
 )
