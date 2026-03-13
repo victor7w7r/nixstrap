@@ -225,11 +225,10 @@
       "-d NO_HZ_FULL"
     ]
   else
-    [
+   ( [
       "-e CACHY"
       "-m NTSYNC"
       "-e SCHED_BORE"
-      "--set-val NR_CPUS 32"
 
       "-d TRANSPARENT_HUGEPAGE_MADVISE"
       "-e TRANSPARENT_HUGEPAGE_ALWAYS"
@@ -237,17 +236,29 @@
       "-d PREEMPT_NONE"
       "-e PREEMPT_BUILD"
       "-e PREEMPT_DYNAMIC"
-      "-e PREEMPT"
-      "-e PREEMPT_COUNT"
       "-e PREEMPTION"
-      "-e PREEMPT_ION"
 
-      "--set-val HZ 500"
-      "-e HZ_500"
       "-d CONTEXT_TRACKING_FORCE"
       "-e CONTEXT_TRACKING"
-      "-d NO_HZ_IDLE"
-      "-e NO_HZ_FULL_NODEF"
-      "-e NO_HZ_FULL"
-    ]
+
+    ] ++ (
+      if host == "v7w7r-higole" then [
+        "-e HZ_300"
+        "--set-val NR_CPUS 8"
+        "--set-val HZ 300"
+        "-e NO_HZ_IDLE"
+        "-d NO_HZ_FULL"
+      ] else [
+        "--set-val HZ 1000"
+        "--set-val NR_CPUS 32"
+        "-e HZ_1000"
+        "-d NO_HZ_IDLE"
+        "-e NO_HZ_FULL"
+        "-e NO_HZ_FULL_NODEF"
+        "-e RCU_NOCB_CPU"
+
+        "-e PREEMPT"
+        "-e PREEMPT_COUNT"
+      ]
+    )
 )

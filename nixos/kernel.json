@@ -1,14 +1,11 @@
 {
   "config": {
-    "rev": "master",
+    "rev": "3b9ae1ae5d4ee95e1509d350b65c0777dde97628",
     "hash": "sha256-NsZIdAQLihgLE2Hy+hz3KtWRjfieDHLI+7hq/d7trRQ="
   },
   "patches": {
-    "rev": "master",
+    "rev": "35559d4f7e0da6a594135e71cac1ab802c9ccc43",
     "hash": "sha256-HJv1aPyQJw8MnBPKsc1VN4EPlyqRIIHNWvN4suG0JmQ="
-  },
-  "hardened": {
-    "hash": "sha256-JhRgiDrBfFR5targOXRBZI+97nS7WToBbhvso5EQipw="
   },
   "asus": {
     "url": "https://gitlab.com/asus-linux/linux-g14",

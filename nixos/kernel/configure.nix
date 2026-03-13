@@ -65,7 +65,7 @@ let
     ++ (lib.optional (host == "v7w7r-macmini81") [
       "${fetch.cachy-patches}/${majorMinor}/0010-t2.patch"
     ])
-    ++ (lib.optional hardened [ fetch.hardened-patch ])
+    ++ (lib.optional hardened ["${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch"])
     ++ (
       if (host == "v7w7r-rc71l") then
         (

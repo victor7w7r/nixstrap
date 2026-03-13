@@ -15,11 +15,6 @@
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
-  hardened-patch = pkgs.fetchurl {
-    url = "https://github.com/anthraxx/linux-hardened/releases/download/v${version}-hardened1/linux-hardened-v${version}-hardened1.patch";
-    sha256 = kernelData.hardened.hash;
-  };
-
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
@@ -72,6 +67,7 @@
     postFetch = ''
       find "$out" -mindepth 1 -type f \
         ! -path "*/misc/0001-handheld.patch" \
+        ! -path "*/misc/0001-hardened.patch" \
         ! -path "*/misc/0001-acpi-call.patch" \
         ! -path "*/misc/nap-governor.patch" \
         ! -path "*/misc/reflex-governor.patch" \
