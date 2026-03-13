@@ -220,14 +220,17 @@
       "-e CONTEXT_TRACKING"
 
     ] ++ (
-      if host == "v7w7r-higole" then [
+      if host == "v7w7r-higole" then
+      [
         "-e HZ_300"
         "--set-val NR_CPUS 8"
         "--set-val HZ 300"
         "-e NO_HZ_IDLE"
         "-e PREEMPT_VOLUNTARY"
         "-d NO_HZ_FULL"
-      ] else [
+      ]
+      else
+      [
         "--set-val HZ 1000"
         "--set-val NR_CPUS 32"
         "-e HZ_1000"
