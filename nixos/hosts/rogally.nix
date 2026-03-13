@@ -48,7 +48,7 @@ in
     ++ params { };
     kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     initrd = {
-      checkJournalingFS = false;
+      checkJournalingFS = lib.mkForce false;
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
