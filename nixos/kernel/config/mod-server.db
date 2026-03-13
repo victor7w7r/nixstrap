@@ -1,7 +1,5 @@
 8021q
 8250_dw
-842_compress
-842_decompress
 acpi_cpufreq
 acpi_pad
 acpi_tad
@@ -9,7 +7,6 @@ acpi_thermal_rel
 aesni_intel
 af_packet
 ahci
-atkbd
 autofs4
 bfq
 bridge
@@ -50,7 +47,6 @@ intel_lpss
 intel_lpss_pci
 intel_oc_wdt
 intel_pmc_core
-intel_pmc_ssram_telemetry
 intel_powerclamp
 intel_rapl_common
 intel_rapl_msr
@@ -64,26 +60,18 @@ led_class
 libaescfb
 libahci
 libata
-libps2
 llc
 lz4_compress
 lz4hc_compress
 mei
-mei_hdcp
 mmc_block
 mmc_core
 mei_me
-mei_pxp
 mrp
 mtd
-nls_ascii
-nls_cp437
 pinctrl_jasperlake
 platform_profile
 platform_temperature_control
-pmt_class
-pmt_discovery
-pmt_telemetry
 processor_thermal_device
 processor_thermal_device_pci_legacy
 processor_thermal_mbox
@@ -106,7 +94,6 @@ sdhci_acpi
 sdhci_pci
 sdhci_uhs2
 sd_mod
-serio
 spi_intel
 spi_intel_pci
 spi_nor
@@ -117,8 +104,6 @@ tcp_bbr
 tls
 uas
 uhci_hcd
-usbip_core
-usbip_host
 vhost
 vhost_iotlb
 vhost_vsock

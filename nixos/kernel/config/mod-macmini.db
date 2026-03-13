@@ -1,10 +1,8 @@
-8250_dw
 acpi_cpufreq
 acpi_tad
 act_csum
 aesni_intel
 af_alg
-af_key
 algif_hash
 algif_skcipher
 applesmc
@@ -13,9 +11,6 @@ bnep
 brcmfmac_wcc
 btbcm
 btintel
-btqca
-btrtl
-cdc_ether
 cls_u32
 cmac
 coretemp
@@ -42,7 +37,6 @@ intel_lpss_pci
 intel_pch_thermal
 intel_pmc_core
 intel_pmc_core_pltdrv
-intel_pmc_ssram_telemetry
 intel_powerclamp
 intel_rapl_common
 intel_rapl_msr
@@ -50,7 +44,6 @@ intel_tcc_cooling
 intel_uncore
 intel_uncore_frequency
 intel_uncore_frequency_common
-intel_vsec
 ip6t_REJECT
 ip6t_rt
 ipt_REJECT
@@ -75,10 +68,6 @@ nft_reject
 nft_reject_ipv4
 ntsync
 overlay
-pcspkr
-pmt_class
-pmt_discovery
-pmt_telemetry
 pps_core
 ptp
 pwrseq_core
@@ -104,7 +93,6 @@ snd_pcm
 snd_pcm_dmaengine
 snd_seq
 snd_seq_device
-snd_seq_dummy
 snd_soc_acpi
 snd_soc_acpi_intel_match
 snd_soc_acpi_intel_sdca_quirks
@@ -143,8 +131,6 @@ tunnel6
 uas
 udp_diag
 uinput
-vmw_vmci
-vmw_vsock_vmci_transport
 vsock_loopback
 wacom
 x86_pkg_temp_thermal

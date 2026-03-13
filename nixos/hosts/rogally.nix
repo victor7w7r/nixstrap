@@ -53,7 +53,7 @@ in
       "resume=/dev/vg0/swapcrypt"
     ]
     ++ params { };
-    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
+    kernelPackages = pkgs.linuxPackages_lqx; # helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     initrd = {
       checkJournalingFS = lib.mkForce false;
       kernelModules = [
