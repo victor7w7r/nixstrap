@@ -5,13 +5,6 @@
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-d LOCALVERSION_AUTO"
-  "-m OVERLAY_FS"
-  "-d OVERLAY_FS_REDIRECT_DIR"
-  "-e OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW"
-  "-d OVERLAY_FS_INDEX"
-  "-d OVERLAY_FS_XINO_AUTO"
-  "-d OVERLAY_FS_METACOPY"
-  "-d OVERLAY_FS_DEBUG"
   "-d DRM_XE"
   "-d DRM_XE_DISPLAY"
   "-e LLVM"
@@ -86,6 +79,9 @@
   "-d HZ_PERIODIC"
   "-e NO_HZ_COMMON"
   "-e NO_HZ"
+
+  "-d GENERIC_CPU"
+  "-e X86_NATIVE_CPU"
 ]
 ++ (
   if host == "v7w7r-rc71l" then
@@ -100,9 +96,6 @@
       "-e KVM_AMD"
       "-m V4L2_LOOPBACK"
       "-m VHBA"
-      "-m DRM_APPLETBDRM"
-      "-m HID_APPLETB_BL"
-      "-m HID_APPLETB_KBD"
       "-d HAVE_INTEL_TXT"
       "-d X86_INTEL_LPSS"
       "-d INTEL_TDX_GUEST"
@@ -186,20 +179,6 @@
     [ ]
 )
 ++ (
-  if host == "v7w7r-higole" then
-    [
-      "-e GENERIC_CPU"
-      "-d MZEN4"
-      "-d X86_NATIVE_CPU"
-      "--set-val X86_64_VERSION 2"
-    ]
-  else
-    [
-      "-d GENERIC_CPU"
-      "-e X86_NATIVE_CPU"
-    ]
-)
-++ (
   if host == "v7w7r-youyeetoox1" then
     [
       "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
@@ -235,7 +214,6 @@
 
       "-d PREEMPT_NONE"
       "-e PREEMPT_BUILD"
-      "-e PREEMPT_DYNAMIC"
       "-e PREEMPTION"
 
       "-d CONTEXT_TRACKING_FORCE"
@@ -247,6 +225,7 @@
         "--set-val NR_CPUS 8"
         "--set-val HZ 300"
         "-e NO_HZ_IDLE"
+        "-e PREEMPT_VOLUNTARY"
         "-d NO_HZ_FULL"
       ] else [
         "--set-val HZ 1000"
@@ -254,6 +233,7 @@
         "-e HZ_1000"
         "-d NO_HZ_IDLE"
         "-e NO_HZ_FULL"
+        "-e PREEMPT_DYNAMIC"
         "-e NO_HZ_FULL_NODEF"
         "-e RCU_NOCB_CPU"
 
