@@ -74,6 +74,8 @@ lz4_compress
 lz4hc_compress
 mei
 mei_hdcp
+mmc_block
+mmc_core
 mei_me
 mei_pxp
 mrp

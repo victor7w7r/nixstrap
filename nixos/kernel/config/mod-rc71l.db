@@ -1,5 +1,3 @@
-842_compress
-842_decompress
 ac
 acpi_call
 af_alg
@@ -23,7 +21,6 @@ bmi323_core
 bmi323_i2c
 bnep
 btbcm
-btintel
 btmtk
 btrtl
 btusb
@@ -60,7 +57,6 @@ efi_pstore
 encrypted_keys
 ff_memless
 fuse
-ghash_clmulni_intel
 gpu_sched
 hid
 hid_asus
@@ -68,14 +64,10 @@ hid_generic
 hid_multitouch
 i2c_hid
 i2c_hid_acpi
-i2c_piix4
 i8042
 industrialio
 industrialio_triggered_buffer
 input_leds
-intel_gtt
-intel_rapl_common
-intel_rapl_msr
 iommufd
 ip6t_rpfilter
 ipt_rpfilter
@@ -129,15 +121,12 @@ snd_hda_codec_generic
 snd_hda_codec_hdmi
 snd_hda_codec_realtek_lib
 snd_hda_core
-snd_hda_intel
 snd_hda_scodec_component
 snd_hda_scodec_cs35l41
 snd_hda_scodec_cs35l41_i2c
 snd_hda_scodec_cs35l41_spi
 snd_hrtimer
 snd_hwdep
-snd_intel_dspcfg
-snd_intel_sdw_acpi
 snd_pci_acp3x
 snd_pci_acp5x
 snd_pci_acp6x

@@ -51,6 +51,7 @@
           sed -i '/^CONFIG_KUNIT$/d' $conf
           sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
           sed -i '/^CONFIG_MEMSTICK_/d' $conf
+          sed -i '/^CONFIG_NET_VENDOR_/d' $conf
           sed -i '/^CONFIG_SYSTEM/d' $conf
           sed -i '/^CONFIG_MEDIA_/d' $conf
           sed -i '/^CONFIG_SSB/d' $conf

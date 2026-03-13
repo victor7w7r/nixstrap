@@ -17,9 +17,6 @@ kvm
 kvmgt
 libphy
 loop
-mmc_block
-mmc_core
-msdos
 msr
 nf_conntrack
 nf_defrag_ipv4
@@ -33,7 +30,6 @@ nvme_auth
 nvme_core
 nvme_keyring
 ntfs3
-ntsync
 raid6_pq
 rfkill
 thermal
