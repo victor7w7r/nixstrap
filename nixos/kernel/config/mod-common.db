@@ -3,6 +3,11 @@ bluetooth
 btrfs
 cec
 cfg80211
+dm_crypt
+dm_mod
+dm_snapshot
+drm_buddy
+drm_display_helper
 efivarfs
 evdev
 exfat
@@ -12,6 +17,7 @@ fat
 hkdf
 i2c_algo_bit
 i2c_smbus
+iommufd
 irqbypass
 kvm
 kvmgt
@@ -40,12 +46,15 @@ tpm_crb
 tpm_tis
 tpm_tis_core
 tun
+usbhid
+usb_storage
 veth
 vfat
 vfio
 vfio_iommu_type1
-vsock
 video
+vmw_vsock_virtio_transport_common
+vsock
 watchdog
 wmi
 xor

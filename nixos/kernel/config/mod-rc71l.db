@@ -37,14 +37,9 @@ cs_dsp
 dax
 dm_bio_prison
 dm_bufio
-dm_crypt
 dmi_sysfs
-dm_mod
 dm_persistent_data
-dm_snapshot
 dm_thin_pool
-drm_buddy
-drm_display_helper
 drm_exec
 drm_panel_backlight_quirks
 drm_suballoc_helper
@@ -68,7 +63,6 @@ i8042
 industrialio
 industrialio_triggered_buffer
 input_leds
-iommufd
 ip6t_rpfilter
 ipt_rpfilter
 k10temp
@@ -81,7 +75,6 @@ lz4hc_compress
 mac80211
 mdev
 mii
-mmc_core
 mt76
 mt76_connac_lib
 mt7921_common
@@ -169,14 +162,11 @@ typec
 typec_ucsi
 ucsi_acpi
 uinput
-usbhid
-usbmon
 usbnet
 vhost
 vhost_iotlb
 vhost_vsock
 vivaldi_fmap
-vmw_vsock_virtio_transport_common
 wmi_bmof
 xhci_hcd
 xhci_pci

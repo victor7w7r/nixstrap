@@ -74,6 +74,7 @@ in
     };
     initrd = {
       availableKernelModules = [ "i915" ];
+      optimizeModules = false;
       kernelModules = [
         "mmc_block"
         "zfs"

@@ -21,13 +21,9 @@ cmac
 coretemp
 crc8
 crypto_user
-dm_crypt
 dm_log
 dm_mirror
-dm_mod
 dm_region_hash
-drm_buddy
-drm_display_helper
 ee1004
 encrypted_keys
 ghash_clmulni_intel
@@ -55,7 +51,6 @@ intel_uncore
 intel_uncore_frequency
 intel_uncore_frequency_common
 intel_vsec
-iommufd
 ip6t_REJECT
 ip6t_rt
 ipt_REJECT
@@ -68,7 +63,6 @@ mei_hdcp
 mei_me
 mei_pxp
 mii
-mmc_core
 mtd
 nfnetlink_log
 nf_reject_ipv4
@@ -149,12 +143,7 @@ tunnel6
 uas
 udp_diag
 uinput
-usbip_core
-usbip_host
-usbnet
-usb_storage
 vmw_vmci
-vmw_vsock_virtio_transport_common
 vmw_vsock_vmci_transport
 vsock_loopback
 wacom
