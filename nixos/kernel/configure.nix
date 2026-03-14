@@ -79,7 +79,7 @@ in pkgs.stdenv.mkDerivation (attrs: {
     runHook preBuild
     cp "${fetch.kernel-config}" ".config"
 
-    ${((import ./modules) { inherit host; }).exec}
+    ${((import ./modules) { inherit host; })}
 
     make $makeFlags olddefconfig
     patchShebangs scripts/config
