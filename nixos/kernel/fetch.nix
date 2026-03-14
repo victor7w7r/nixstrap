@@ -1,13 +1,4 @@
-{
-  pkgs,
-  kernelData,
-  hardened,
-  majorMinor,
-  host,
-  version,
-  ...
-}:
-{
+{ pkgs, kernelData, hardened, majorMinor, host, version, ... }: {
   asus-patches = pkgs.fetchgit {
     url = kernelData.asus.url;
     rev = kernelData.asus.rev;
@@ -21,41 +12,36 @@
     rev = kernelData.config.rev;
     sha256 = kernelData.config.hash;
     postFetch = ''
-        hold="$(mktemp -d)" && conf="$hold/conf"
-        cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
-        ${
-          if host != "v7w7r-rc71l" && host != "v7w7r-youyeetoox1" then
-            "sed -i '/^CONFIG_IIO/d' $conf"
-          else if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
-            "sed -i '/^CONFIG_MMC/d' $conf"
-          else
-            ""
-        }
-      ${
-        if host != "v7w7r-rc71l" then
-          "sed -i '/^CONFIG_MFD_/d' $conf && sed -i '/^CONFIG_JOYSTICK_/d' $conf"
-        else
-          ""
-      }
-      ${if host == "v7w7r-youyeetoox1" then "sed -i '/^CONFIG_SND_/d' $conf" else ""}
-          sed -i '/^#/d' $conf
-          sed -i '/^CONFIG_G*CC_/d' $conf
-          sed -i '/^CONFIG_ATH/d' $conf
-          sed -i '/^CONFIG_LD_/d' $conf
-          sed -i '/^CONFIG_RUSTC*_/d' $conf
-          sed -i '/^CONFIG_KUNIT$/d' $conf
-          sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
-          sed -i '/^CONFIG_MEMSTICK_/d' $conf
-          sed -i '/^CONFIG_NET_VENDOR_/d' $conf
-          sed -i '/^CONFIG_SYSTEM/d' $conf
-          sed -i '/^CONFIG_MEDIA_/d' $conf
-          sed -i '/^CONFIG_SSB/d' $conf
-          sed -i '/^CONFIG_COMEDI/d' $conf
-          sed -i '/^CONFIG_DEBUG_/d' $conf
-          sed -i '/^CONFIG_.*_PHY=/d' $conf
-          sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
-          sed -i '/^$/N;/\n$/D' $conf
-        rm -rfv "$out" && cp -v "$conf" "$out"
+      hold="$(mktemp -d)" && conf="$hold/conf"
+      cp "$out/linux-cachyos-${
+        if hardened then "hardened" else "lts"
+      }/config" "$conf"
+      ${if host != "v7w7r-rc71l" && host != "v7w7r-youyeetoox1" then
+        "sed -i '/^CONFIG_IIO/d' $conf"
+      else if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
+        "sed -i '/^CONFIG_MMC/d' $conf"
+      else
+        ""}
+      ${if host != "v7w7r-rc71l" then
+        "sed -i '/^CONFIG_MFD_/d' $conf && sed -i '/^CONFIG_JOYSTICK_/d' $conf"
+      else
+        ""}
+      sed -i '/^#/d' $conf
+      sed -i '/^CONFIG_G*CC_/d' $conf
+      sed -i '/^CONFIG_ATH/d' $conf
+      sed -i '/^CONFIG_LD_/d' $conf
+      sed -i '/^CONFIG_RUSTC*_/d' $conf
+      sed -i '/^CONFIG_KUNIT$/d' $conf
+      sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
+      sed -i '/^CONFIG_MEMSTICK_/d' $conf
+      sed -i '/^CONFIG_SYSTEM/d' $conf
+      sed -i '/^CONFIG_MEDIA_/d' $conf
+      sed -i '/^CONFIG_SSB/d' $conf
+      sed -i '/^CONFIG_COMEDI/d' $conf
+      sed -i '/^CONFIG_.*_PHY=/d' $conf
+      sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
+      sed -i '/^$/N;/\n$/D' $conf
+      rm -rfv "$out" && cp -v "$conf" "$out"
     '';
   };
 
@@ -65,6 +51,7 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
+
       find "$out" -mindepth 1 -type f \
         ! -path "*/misc/0001-handheld.patch" \
         ! -path "*/misc/0001-hardened.patch" \
