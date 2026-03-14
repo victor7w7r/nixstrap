@@ -5,22 +5,19 @@
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-d LOCALVERSION_AUTO"
-  "-d DRM_XE"
-  "-d DRM_XE_DISPLAY"
   "-e LLVM"
   "-e LLVM_IAS"
   "-d LTO_NONE"
   "-e LTO_CLANG_THIN"
   "-d LTO_CLANG_FULL"
   "-d SECURITY_TOMOYO"
-  #"-d SECURITY_SELINUX"
+  "-d SECURITY_SELINUX"
 
   "-e NET_VENDOR_AQUANTIA"
   "-e NET_VENDOR_BROADCOM"
   "-e NET_VENDOR_REALTEK"
   "-e NET_VENDOR_MICROSOFT"
 
-  "-d SERIAL_8250"
   "-d NET_VENDOR_3COM"
   "-d NET_VENDOR_ADAPTEC"
   "-d NET_VENDOR_AGERE"
@@ -118,8 +115,6 @@
   "-e NET_SCH_FQ"
   "-d DEFAULT_FQ_CODEL"
   "-e DEFAULT_FQ"
-  "-d NUMA"
-  "-d XEN"
   "--set-str DEFAULT_NET_SCH fq"
 
   "-e AUTOFS4_FS"
@@ -155,8 +150,8 @@
   "-d DEBUG_PREEMPT"
   "-e SECCOMP"
   "-e BLK_DEV_NVME"
-  "-m NLS"
-  "-m NLS_UTF8"
+
+  "-d SLUB_DEBUG"
 
   "-m VIRTIO"
   "-m VIRTIO_PCI"
@@ -338,15 +333,14 @@
 
       "-d CONTEXT_TRACKING_FORCE"
       "-e CONTEXT_TRACKING"
-
     ] ++ (
       if host == "v7w7r-higole" then
       [
+        "-e PREEMPT_VOLUNTARY"
         "-e HZ_300"
         "--set-val NR_CPUS 8"
         "--set-val HZ 300"
         "-e NO_HZ_IDLE"
-        "-e PREEMPT_VOLUNTARY"
         "-d NO_HZ_FULL"
       ]
       else

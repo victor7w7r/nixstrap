@@ -38,13 +38,11 @@ fixed_phy
 fwnode_mdio
 ghash_clmulni_intel
 goodix_ts
-i2c_algo_bit
 hid_multitouch
 i2c_i801
 i2c_mux
 i2c_hid
 i2c_hid_acpi
-i2c_smbus
 i8042
 i915
 idma64
