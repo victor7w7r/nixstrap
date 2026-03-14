@@ -21,15 +21,21 @@ let
       };
 
       imports = [
-        (import ./desktop)
-        (import ./dev)
-        (import ./hardware)
-        (import ./networking)
         (import ./system)
-        (import ./zen)
       ]
       ++ (
-        if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then
+        if (user != "root") then [
+          (import ./desktop)
+          (import ./dev)
+          (import ./hardware)
+          (import ./networking)
+          (import ./zen)
+        ] else [
+
+        ]
+      )
+      ++ (
+        if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") && (user != "root") then
           [
             (import ./misc)
             (import ./multimedia)

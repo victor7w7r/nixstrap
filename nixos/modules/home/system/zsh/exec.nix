@@ -6,8 +6,7 @@
       if [[ -o interactive && -z "$TMUX" && -z "$SSH_TTY" ]]; then
         if command -v tmux >/dev/null 2>&1 && \
           [[ "$TERM_ROGRAM" != "zed" ]] && \
-          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && \
-          [ -n "$KONSOLE_DBUS_SESSION" ]; then
+          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
            exec tmux -f "$HOME/.config/tmux/tmux.conf" new-session -A -s default
         fi
       fi
@@ -32,6 +31,10 @@
     '';
 
     loginExtra = ''
+      autoload -Uz compinit bashcompinit
+      compinit -u
+      bashcompinit
+
       #jump -- 'eval "$(jump shell)"'
       source <(cod init $$ zsh)
 

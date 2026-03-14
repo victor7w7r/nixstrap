@@ -82,7 +82,7 @@ in
     ]
     ++ intelParams
     ++ params { };
-    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
+    kernelPackages = pkgs.linuxPackages_lqx; #helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     blacklistedKernelModules = [ "pac1934" ];
     extraModprobeConfig = ''
       options goodix_ts reset_speed=100

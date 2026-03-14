@@ -16,10 +16,6 @@
     };
     enableCompletion = true;
     initContent = ''
-      autoload -Uz compinit bashcompinit
-      compinit -u
-      bashcompinit
-
       unsetopt BEEP
       unsetopt HIST_BEEP
       unsetopt LIST_BEEP
