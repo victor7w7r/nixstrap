@@ -8,7 +8,7 @@ let
   else if host == "v7w7r-rc71l" then
     ./rc71l.db
   else
-    ./youyeetoox1.db;
+    ./higole.db;
 in ''
   export LSMOD=$(mktemp)
   cat "${commonDb}" "${modprobedDb}" | sort > $LSMOD

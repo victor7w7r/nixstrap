@@ -62,6 +62,10 @@ mmc_core
 mei_me
 mrp
 mtd
+nvme
+nvme_auth
+nvme_core
+nvme_keyring
 pinctrl_jasperlake
 platform_profile
 platform_temperature_control

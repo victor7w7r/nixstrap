@@ -66,6 +66,10 @@ nft_masq
 nft_reject
 nft_reject_ipv4
 ntsync
+nvme
+nvme_auth
+nvme_core
+nvme_keyring
 overlay
 pps_core
 ptp

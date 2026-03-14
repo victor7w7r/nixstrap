@@ -16,14 +16,8 @@
       cp "$out/linux-cachyos-${
         if hardened then "hardened" else "lts"
       }/config" "$conf"
-      ${if host != "v7w7r-rc71l" && host != "v7w7r-youyeetoox1" then
-        "sed -i '/^CONFIG_IIO/d' $conf"
-      else if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
+      ${ if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
         "sed -i '/^CONFIG_MMC/d' $conf"
-      else
-        ""}
-      ${if host != "v7w7r-rc71l" then
-        "sed -i '/^CONFIG_MFD_/d' $conf && sed -i '/^CONFIG_JOYSTICK_/d' $conf"
       else
         ""}
       sed -i '/^#/d' $conf

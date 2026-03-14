@@ -74,6 +74,10 @@ mt76_connac_lib
 mt7921_common
 mt7921e
 mt792x_lib
+nvme
+nvme_auth
+nvme_core
+nvme_keyring
 platform_profile
 polyval_clmulni
 r8152

@@ -38,10 +38,6 @@ nf_nat
 nf_tables
 nfnetlink
 nft_compat
-nvme
-nvme_auth
-nvme_core
-nvme_keyring
 ntfs3
 rfkill
 tcp_bbr
