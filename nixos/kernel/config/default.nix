@@ -278,7 +278,6 @@
       "-d PERF_EVENTS_AMD_BRS"
       "-d AMD_MEM_ENCRYPT"
       "-d X86_AMD_PSTATE"
-      "-d X86_AMD_PSTATE_DEFAULT_MODE"
       "-d AMD_NB"
       "-d AMD_NODE"
       "-d NET_VENDOR_AMD"
