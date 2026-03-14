@@ -170,7 +170,7 @@
   "-d GENERIC_CPU"
   "-e X86_NATIVE_CPU"
 
-  "-d TASKS_TRACE_RCU"
+ /* "-d TASKS_TRACE_RCU"
   "-d SYSCTL_EXCEPTION_TRACE"
   "-d STACKTRACE_SUPPORT"
   "-d KPROBES_ON_FTRACE"
@@ -200,7 +200,7 @@
   "-d FTRACE_SYSCALLS"
   "-d TRACER_SNAPSHOT"
   "-d BLK_DEV_IO_TRACE"
-  "-d FTRACE_MCOUNT_USE_OBJTOOL"
+  "-d FTRACE_MCOUNT_USE_OBJTOOL"*/
 ]
 ++ (
   if host == "v7w7r-rc71l" then
@@ -303,6 +303,7 @@
       "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
       "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
       "--set-val NR_CPUS 8"
+      "-d SND"
 
       "-e PREEMPT_NONE_BUILD"
       "-e PREEMPT_NONE"
