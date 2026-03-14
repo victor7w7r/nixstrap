@@ -41,7 +41,7 @@ let
     else if host == "v7w7r-rc71l" then
       "-handheld-Ryzen-Z1"
     else
-      "-v2";
+      "-N5095";
 
   localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""

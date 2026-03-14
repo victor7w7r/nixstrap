@@ -1,10 +1,27 @@
-{ pkgs, ... }:
+{
+  host,
+  inputs,
+  lib,
+  pkgs,
+  kernelData,
+  username,
+  ...
+}:
 let
   intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
   boot = import ./lib/boot.nix {
     emergencyDisk = "emmc";
     efiDisk = "emmc";
+  };
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
+  kernelBuild = (pkgs.callPackage ../kernel) {
+    inherit
+      helpers
+      host
+      kernelData
+      inputs
+      ;
   };
   f2fs = import ./lib/f2fs.nix;
   shared = (import ./lib/shared.nix) { sharedDisk = "emmc"; };
@@ -65,7 +82,7 @@ in
     ]
     ++ intelParams
     ++ params { };
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     blacklistedKernelModules = [ "pac1934" ];
     extraModprobeConfig = ''
       options goodix_ts reset_speed=100
