@@ -7,7 +7,7 @@ let
     version = kernel.version;
     inherit hardened host kernelData majorMinor;
   };
-  config = import ./config { inherit host hardened; };
+  config = import ./config { inherit host; };
 
   nativeHost = if host == "v7w7r-macmini81" then
     "-i7-8700B"
