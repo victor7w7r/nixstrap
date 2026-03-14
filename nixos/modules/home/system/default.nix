@@ -1,7 +1,6 @@
 { username, ... }:
 {
   imports = [
-    (import ./bash)
     (import ./bat.nix)
     (import ./btop.nix)
     (import ./config.nix)
