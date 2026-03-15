@@ -158,6 +158,7 @@ snd_sof_xtensa_dsp
 snd_timer
 snd_ump
 snd_usb_audio
+snd_usbmidi_lib
 soc_button_array
 soundcore
 soundwire_bus
