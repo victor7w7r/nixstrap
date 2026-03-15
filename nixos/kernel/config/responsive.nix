@@ -10,11 +10,14 @@
   "-e HZ_1000"
   "-e NO_HZ_FULL"
   "-e NO_HZ_FULL_NODEF"
-  "-e RCU_NOCB_CPU"
+  "-e PREEMPT_BUILD"
+  "-e PREEMPTION"
   "-e PREEMPT"
   "-e PREEMPT_COUNT"
   "-e PREEMPT_DYNAMIC"
+  "-e RCU_NOCB_CPU"
 
   "-d NO_HZ_IDLE"
+  "-d PREEMPT_NONE"
   "-d PREEMPT_VOLUNTARY"
 ]

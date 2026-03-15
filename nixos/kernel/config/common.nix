@@ -20,7 +20,7 @@
   "-d DEBUG_FS"
   "-d DRM_XE"
   "-d GENERIC_CPU"
-  "-d HZ_PERIODIC"
+  "-d HZ_PERIODIC "
   "-d LOCALVERSION_AUTO"
   "-d LRU_GEN_STATS"
   "-d LTO_CLANG_FULL"
