@@ -12,7 +12,7 @@
   ];
 
   programs.zen-browser = {
-    enable = host == "v7w7r-youyeetoox1";
+    enable = host != "v7w7r-youyeetoox1";
     languagePacks = [ "es-ES" ];
     profiles.default = {
       id = 0;
