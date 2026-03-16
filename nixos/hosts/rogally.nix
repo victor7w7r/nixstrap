@@ -96,22 +96,10 @@ in
     thunderbolt
   ];
 
-  systemd.services = {
-    batterThreshold = {
-      script = ''
-        echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
-      '';
-      wantedBy = [ "multi-user.target" ];
-      description = "Set the charge threshold to protect battery life";
-      serviceConfig = {
-        Restart = "on-failure";
-      };
-    };
-    supergfxd.path = [
-      pkgs.kmod
-      pkgs.pciutils
-    ];
-  };
+  systemd.services.supergfxd.path = [
+    pkgs.kmod
+    pkgs.pciutils
+  ];
 
   security.pam.services.ly = {
     name = "ly";
@@ -130,7 +118,7 @@ in
 
   services = {
     acpid.enable = true;
-    auto-cpufreq.enable = true;
+    #auto-cpufreq.enable = true;
     supergfxd = {
       enable = true;
       settings = {
@@ -154,6 +142,17 @@ in
 
     asusd = {
       enable = true;
+      asusdConfig = ''
+        bat_charge_limit: 80,
+        platform_profile_on_battery: Quiet,
+        change_platform_profile_on_battery: true,
+        platform_profile_on_ac: BalancePerformance,
+        change_platform_profile_on_ac: true,
+        profile_quiet_epp: Power,
+        profile_balanced_epp: BalancePower,
+        profile_custom_epp: BalancePerformance,
+        profile_performance_epp: BalancePerformance,
+      '';
     };
     handheld-daemon = {
       enable = true;

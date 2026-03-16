@@ -33,7 +33,8 @@
           width = 25;
         };
       }
-      {
+      /*
+        {
         name = "maxwell";
         config.General.speed = 2.2;
         position = {
@@ -44,7 +45,8 @@
           height = 100;
           width = 100;
         };
-      }
+        }
+      */
     ];
 
     kscreenlocker = {

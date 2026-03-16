@@ -473,5 +473,4 @@
     echo "$bofh_string"
     unset bofh_quotes
   '';
-
 }

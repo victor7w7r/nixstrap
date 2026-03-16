@@ -1,4 +1,4 @@
-{ ... }:
+{ host, ... }:
 {
   services = {
     #aria2.enable = true; NEEDS KEY
@@ -12,8 +12,9 @@
       writeable = true;
     };
     #openvpn.package = true;
+
     samba = {
-      enable = true;
+      enable = host == "v7w7r-youyeetoox1";
       openFirewall = true;
       settings = {
         global = {

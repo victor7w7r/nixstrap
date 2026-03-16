@@ -29,10 +29,10 @@
     initExtra = ''
       ${import ./functions}
        if [[ "$OSTYPE" == "darwin"* ]]; then
-        if commandexist lolcat; then uname -v | lolcat; else uname -v | lolcat; fi
+        if commandexist clolcat; then uname -v | clolcat; else uname -v | clolcat; fi
       else
-        if commandexist lolcat; then
-          uname -m -n -o -v | lolcat
+        if commandexist clolcat; then
+        uname -m -n -o -v | clolcat
         elif commandexist meow; then
           uname -m -n -o -v | meow
         else
@@ -40,16 +40,16 @@
         fi
       fi
 
-      if commandexist lolcat; then
-        echo "Welcome to $(uname)!" | lolcat
+      if commandexist clolcat; then
+        echo "Welcome to $(uname)!" | clolcat
       elif commandexist meow; then
         echo "Welcome to $(uname)!" | meow
       else
         echo "Welcome to $(uname)!"
       fi
 
-      if commandexist cowsay && commandexist lolcat; then
-        random-quote | cowsay --bold "$(random-opts)" --random | lolcat
+      if commandexist cowsay && commandexist clolcat; then
+        random-quote | cowsay --bold "$(random-opts)" --random | clolcat
       elif commandexist cowsay && commandexist meow; then
         random-quote | cowsay --bold "$(random-opts)" --random | meow
       elif commandexist cowsay; then
@@ -72,7 +72,7 @@
       PROMPT_COMMAND='post $?'
 
       #set -l toon (random choice {default,bud-frogs,dragon,dragon-and-cow,elephant,moose,stegosaurus,tux,vader})
-      #fortune -s | cowsay -f $toon | lolcat
+      #fortune -s | cowsay -f $toon | clolcat
       #[[ $\{BLE_VERSION-} ]] && ble-attach
     '';
   };

@@ -8,7 +8,7 @@
       lengthMode = "fit";
       floating = true;
       height = 44;
-      hiding = "none"; # "autohide";
+      hiding = "autohide";
       screen = 0;
       opacity = "translucent";
       widgets = [
@@ -291,7 +291,7 @@
             };
           */
           name = "org.kde.plasma.systemtray";
-          config.General = rec {
+          config.General = {
             scaleIconsToFit = true;
             showAllItems = false;
             spacing = 2;
