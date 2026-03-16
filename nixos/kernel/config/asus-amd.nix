@@ -13,7 +13,7 @@
   "-d BT_INTEL"
   "-d BT_INTEL_PCIE"
   "-d CPU_SUP_INTEL"
-  "-d CPU_SUP_INTEL"
+  "-d DRM_I915"
   "-d HAVE_INTEL_TXT"
   "-d INTEL_GTT"
   "-d INTEL_HFI_THERMAL"

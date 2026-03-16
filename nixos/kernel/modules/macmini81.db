@@ -59,10 +59,8 @@ mtd
 nfnetlink_log
 nf_reject_ipv4
 nf_reject_ipv6
-nft_chain_nat
 nft_ct
 nft_limit
-nft_masq
 nft_reject
 nft_reject_ipv4
 ntsync

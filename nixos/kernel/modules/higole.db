@@ -185,5 +185,3 @@ wmi_bmof
 x86_pkg_temp_thermal
 xhci_hcd
 xhci_pci
-xt_CHECKSUM
-xt_comment

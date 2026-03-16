@@ -37,7 +37,9 @@ nf_defrag_ipv6
 nf_nat
 nf_tables
 nfnetlink
+nft_chain_nat
 nft_compat
+nft_masq
 ntfs3
 rfkill
 tcp_bbr
@@ -50,6 +52,7 @@ tpm_tis
 tpm_tis_core
 tun
 usbhid
+usbmon
 usb_storage
 veth
 vfat
@@ -64,8 +67,10 @@ vsock
 watchdog
 wmi
 x_tables
+xt_CHECKSUM
 xt_MASQUERADE
 xt_addrtype
+xt_comment
 xt_conntrack
 xt_hl
 xt_limit
