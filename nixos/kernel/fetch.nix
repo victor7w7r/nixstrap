@@ -1,4 +1,13 @@
-{ pkgs, kernelData, hardened, majorMinor, host, version, ... }: {
+{
+  pkgs,
+  kernelData,
+  hardened,
+  majorMinor,
+  host,
+  version,
+  ...
+}:
+{
   asus-patches = pkgs.fetchgit {
     url = kernelData.asus.url;
     rev = kernelData.asus.rev;
@@ -13,13 +22,13 @@
     sha256 = kernelData.config.hash;
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
-      cp "$out/linux-cachyos-${
-        if hardened then "hardened" else "lts"
-      }/config" "$conf"
-      ${ if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
-        "sed -i '/^CONFIG_MMC/d' $conf"
-      else
-        ""}
+      cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
+      ${
+        if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
+          "sed -i '/^CONFIG_MMC/d' $conf"
+        else
+          ""
+      }
       sed -i '/^#/d' $conf
       sed -i '/^CONFIG_G*CC_/d' $conf
       sed -i '/^CONFIG_ATH/d' $conf

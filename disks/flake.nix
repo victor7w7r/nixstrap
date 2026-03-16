@@ -11,7 +11,12 @@
     };
   };
 
-  outputs = { disko, nixpkgs, self }:
+  outputs =
+    {
+      disko,
+      nixpkgs,
+      self,
+    }:
     {
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {

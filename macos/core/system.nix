@@ -34,12 +34,12 @@
         Defaults timestamp_timeout=30
       '';
       "gitconfig".text = ''
-          [filter "lfs"]
-            clean = git-lfs clean -- %f
-            smudge = git-lfs smudge -- %f
-            process = git-lfs filter-process
-            required = true
-        '';
+        [filter "lfs"]
+          clean = git-lfs clean -- %f
+          smudge = git-lfs smudge -- %f
+          process = git-lfs filter-process
+          required = true
+      '';
 
     };
   };

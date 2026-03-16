@@ -122,7 +122,7 @@
 
         nixd = {
           binary = {
-            path = "/run/current-system/sw/bin/nixd"; #"/home/victor7w7r/.nix-profile/bin/nixd";
+            path = "/run/current-system/sw/bin/nixd"; # "/home/victor7w7r/.nix-profile/bin/nixd";
           };
           initialization_options = {
             formatting = {
