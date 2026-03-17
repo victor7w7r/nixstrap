@@ -18,6 +18,20 @@
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
+  tachyon = pkgs.fetchgit {
+    url = kernelData.tachyon.url;
+    rev = kernelData.tachyon.rev;
+    sha256 = kernelData.tachyon.hash;
+    postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
+  };
+
+  tkg = pkgs.fetchFromGitHub {
+    owner = kernelData.tkg.owner;
+    repo = kernelData.tkg.repo;
+    rev = kernelData.tkg.rev;
+    sha256 = kernelData.tkg.hash;
+  };
+
   kConfig = pkgs.fetchFromGitHub {
     owner = kernelData.user;
     repo = kernelData.config.repo;
@@ -55,8 +69,11 @@
         ! -path "*/misc/0001-handheld.patch" \
         ! -path "*/misc/0001-hardened.patch" \
         ! -path "*/misc/0001-acpi-call.patch" \
+        ! -path "*/misc/0001-clang-polly.patch" \
+        ! -path "*/misc/dkms-clang.patch" \
         ! -path "*/misc/nap-governor.patch" \
         ! -path "*/misc/reflex-governor.patch" \
+        ! -path "*/misc/poc-selector.patch" \
         ! -path "*/sched/0001-bore-cachy.patch" \
         ! -name "0001-amd-pstate.patch" \
         ! -name "0002-asus.patch" \

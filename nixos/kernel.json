@@ -15,6 +15,17 @@
     "rev": "35559d4f7e0da6a594135e71cac1ab802c9ccc43",
     "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
   },
+  "tkg": {
+    "owner": "Frogging-Family",
+    "repo": "linux-tkg",
+    "rev": "b8f2e726159872207012e706f3239c67829ab1b8",
+    "hash": "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk="
+  },
+  "tachyon": {
+    "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",
+    "rev": "465087d9f514ffebcfda87ae9ec184e843616313",
+    "hash": "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk="
+  },
   "asus": {
     "url": "https://gitlab.com/asus-linux/linux-g14",
     "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",

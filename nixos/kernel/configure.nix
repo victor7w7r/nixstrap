@@ -34,15 +34,35 @@ let
     "${fetch.patches}/${majorMinor}/0004-cachy.patch"
     "${fetch.patches}/${majorMinor}/0005-crypto.patch"
     "${fetch.patches}/${majorMinor}/0006-fixes.patch"
+    "${fetch.patches}/${majorMinor}/misc/0001-clang-polly.patch"
+    "${fetch.patches}/${majorMinor}/misc/dkms-clang.patch"
+    "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
+    "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
+    "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0006-add-acs-overrides_iommu.patch"
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch"
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-cfs.patch"
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0013-optimize_harder_O3.patch"
   ]
   ++ (lib.optional (host != "v7w7r-youyeetoox1") [
     "${fetch.patches}/${majorMinor}/sched/0001-bore-cachy.patch"
     "${fetch.patches}/${majorMinor}/0009-sched-ext.patch"
   ])
+  ++ (lib.optional (host == "v7w7r-youyeetoox1") [
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-eevdf-additions.patch"
+  ])
   ++ (lib.optional (host == "v7w7r-macmini81") [
     "${fetch.patches}/${majorMinor}/0010-t2.patch"
   ])
-  ++ (lib.optional hardened [ "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch" ])
+  ++ (lib.optional (host == "v7w7r-macmini81" || host == "v7w7r-rc71l") [
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-base.patch"
+  ])
+  ++ (lib.optional (host == "v7w7r-higole" || host == "v7w7r-rc71l") [
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0002-clear-patches.patch"
+  ])
+  ++ (lib.optional hardened [
+    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0012-linux-hardened.patch"
+  ])
   ++ (
     if (host == "v7w7r-rc71l") then
       (
