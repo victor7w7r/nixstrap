@@ -4,22 +4,14 @@
     profileExtra = ''
       #typeset -gU path fpath
       if [[ -o interactive && -z "$TMUX" && -z "$SSH_TTY" ]]; then
-        if command -v tmux >/dev/null 2>&1 && \
-          [[ "$TERM_ROGRAM" != "zed" ]] && \
+        if command -v tmux >/dev/null 2>&1 && [[ "$TERM_PROGRAM" != "zed" ]] && \
           [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
-           exec tmux -f "$HOME/.config/tmux/tmux.conf" new-session -A -s default
+           exec tmux new-session -A -s default
         fi
       fi
 
-      #if [[ -z "$TMUX" && -n "$SSH_TTY" ]]; then
-      #    exec tmux attach-session -t default || exec tmux new-session -s default
-      #fi
-
       path=(
         /bin
-        /usr/bin
-        /usr/local/bin
-        /usr/local/sbin
         node_modules/.bin
         "$HOME/.bin"
         "$HOME/.local/bin"
@@ -31,10 +23,6 @@
     '';
 
     loginExtra = ''
-      autoload -Uz compinit bashcompinit
-      compinit -u
-      bashcompinit
-
       #jump -- 'eval "$(jump shell)"'
       source <(cod init $$ zsh)
 
@@ -81,7 +69,7 @@
 
       #if commandexist mommy; then
       #  set -o PROMPT_SUBST
-      #  RPS1='$(mommy -c $\{HOME}/.config/tmux/mommy.conf -1 -s $?)'
+      #  RPS1='$(mommy -c ''${HOME}/.config/tmux/mommy.conf -1 -s $?)'
       #fi
 
       echo -e '\e[5 q'

@@ -15,6 +15,9 @@
       };
     };
     enableCompletion = true;
+    initExtraFirst = ''
+      ZSH_DISABLE_COMPFIX=true
+    '';
     initContent = ''
       unsetopt BEEP
       unsetopt HIST_BEEP

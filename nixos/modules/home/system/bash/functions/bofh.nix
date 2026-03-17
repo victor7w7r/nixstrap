@@ -468,7 +468,7 @@
       "DNS server drank too much and had a hiccup"
       "Your machine had the fuses in backwards."
     )
-    bofh_string="$\{bofh_quotes[RANDOM % $\{#bofh_quotes[@]}]}"
+    bofh_string="''${bofh_quotes[RANDOM % ''${#bofh_quotes[@]}]}"
     echo "$bofh_string"
     unset bofh_quotes
   }

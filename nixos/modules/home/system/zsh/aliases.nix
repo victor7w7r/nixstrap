@@ -50,7 +50,7 @@
 
     print-fpath = "for fp in $fpath; do echo $fp; done; unset fp";
     print-path = ''echo $PATH | tr ":" "\n"'';
-    print-functions = ''print -l $\{(k)functions[(I)[^_]*]} | sort'';
+    print-functions = ''print -l ''${(k)functions[(I)[^_]*]} | sort'';
     myip = "curl icanhazip.com";
     weather = "curl wttr.in";
     weather-short = ''curl "wttr.in?format=3"'';
@@ -100,9 +100,9 @@
     s = "startx";
 
     reload = ''. "$ZDOTDIR/.zshrc" && echo "Sourced $ZDOTDIR/.zshrc"'';
-    colormap = ''for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}$\{(l:3::0:)i}%f " $\{$\{(M)$((i%6)):#3}:+$'\n'}; done'';
+    colormap = ''for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}''${(l:3::0:)i}%f " ''${''${(M)$((i%6)):#3}:+$'\n'}; done'';
     zupdate = "zinit update --parallel 40";
     zselfupdate = "zinit self-update";
-    zreset = ''rm -rf "$\{ZSHEXECDIR}/zinit" &>/dev/null && rm -rf "$\{HOME}/.local/share/zinit" &>/dev/null'';
+    zreset = ''rm -rf "''${ZSHEXECDIR}/zinit" &>/dev/null && rm -rf "''${HOME}/.local/share/zinit" &>/dev/null'';
   };
 }

@@ -50,7 +50,7 @@
 
     print-fpath = "for fp in $fpath; do echo $fp; done; unset fp";
     print-path = ''echo $PATH | tr ":" "\n"'';
-    print-functions = ''print -l $\{(k)functions[(I)[^_]*]} | sort'';
+    print-functions = ''print -l ''${(k)functions[(I)[^_]*]} | sort'';
     myip = "curl icanhazip.com";
     weather = "curl wttr.in";
     weather-short = ''curl "wttr.in?format=3"'';

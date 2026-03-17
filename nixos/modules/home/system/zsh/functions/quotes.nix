@@ -263,7 +263,7 @@
       local quote author
       quote=$(sed -e 's|</dt>.*||g' -e 's|.*html||g' -e 's|^[^a-zA-Z]*||' -e 's|</a..*$||g' <<<"$data")
       author=$(sed -e 's|.*/quotes/||g' -e 's|<.*||g' -e 's|.*">||g' <<<"$data")
-      print -P "%F{3}$\{author}%f: “%F{5}$\{quote}%f”"
+      print -P "%F{3}''${author}%f: “%F{5}''${quote}%f”"
     '';
 
     random-quote = ''

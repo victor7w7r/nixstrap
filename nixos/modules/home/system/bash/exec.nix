@@ -22,13 +22,12 @@
         "$HOME/.venv/bin"
       )
 
-      for p in "$\{paths[@]}"; do if [ -d "$p" ]; then PATH="$p:$PATH"; fi; done
+      for p in "''${paths[@]}"; do if [ -d "$p" ]; then PATH="$p:$PATH"; fi; done
       export PATH
     '';
 
     initExtra = ''
-      ${import ./functions}
-       if [[ "$OSTYPE" == "darwin"* ]]; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
         if commandexist clolcat; then uname -v | clolcat; else uname -v | clolcat; fi
       else
         if commandexist clolcat; then
@@ -73,7 +72,7 @@
 
       #set -l toon (random choice {default,bud-frogs,dragon,dragon-and-cow,elephant,moose,stegosaurus,tux,vader})
       #fortune -s | cowsay -f $toon | clolcat
-      #[[ $\{BLE_VERSION-} ]] && ble-attach
+      #[[ ''${BLE_VERSION-} ]] && ble-attach
     '';
   };
 }

@@ -3,8 +3,11 @@
 ext="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 
 right_status() {
-  tmux set-option -ga status-right \
-    "#{?#{==:$2,},,#[fg=$1,nobold,nounderscore,noitalics] #[fg=#cdd6f4,bg=$1] $2}"
+    local color="$1"
+    local text="$2"
+
+    tmux set-option -ga status-right \
+        "#{?#{==:${text},},,#[fg=${color}] #[fg=#cdd6f4]#[bg=${color}] ${text}}"
 }
 
 #right_status "#($ext/extensions/colors.sh 3)" "#($ext/extensions/mommy.sh)"

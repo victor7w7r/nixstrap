@@ -9,7 +9,7 @@
 
   random-opts() {
     local options=(-b -d -g -p -s -t -w -y)
-    echo "$\{options[$RANDOM % $\{#options[@]} + 1]}"
+    echo "''${options[$RANDOM % ''${#options[@]} + 1]}"
   }
 
   is-macos() {
@@ -29,14 +29,14 @@
   }
 
   setopt_if_exists() {
-    if [[ "$\{options[$1]+1}" ]]; then setopt "$1"; fi
+    if [[ "''${options[$1]+1}" ]]; then setopt "$1"; fi
   }
 
   x() {
     if [ $# -eq 1 ]; then
       export "$1"
     elif [ $# -ge 2 ]; then
-      export "$1=$\{*:2}"
+      export "$1=''${*:2}"
     else
       echo "Usage: x VARIABLE [VALUE]"
       return 1

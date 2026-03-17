@@ -19,6 +19,10 @@
   };
 
   inputs = {
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
