@@ -1,6 +1,9 @@
 [
+  "-e BT_INTEL"
   "-e CPU_SUP_INTEL"
   "-e DRM_I915"
+  "-e DRM_I915_GVT_KVMGT"
+  "-e KVM_INTEL"
   "-e NET_VENDOR_INTEL"
 
   "-d AMD_3D_VCACHE"
@@ -13,10 +16,12 @@
   "-d AMD_SECURE_AVIC"
   "-d AMD_WBRF"
   "-d CPU_SUP_AMD"
+  "-d CPU_SUP_HYGON"
   "-d KVM_AMD"
   "-d NET_VENDOR_AMD"
   "-d PERF_EVENTS_AMD_BRS"
   "-d PINCTRL_AMD"
+  "-d SOUNDWIRE_AMD"
   "-d USB_PCI_AMD"
   "-d X86_AMD_PLATFORM_DEVICE"
   "-d X86_AMD_PSTATE"

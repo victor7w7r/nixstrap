@@ -2,6 +2,7 @@
   "-e AMD_PRIVATE_COLOR"
   "-e ASUS_ARMOURY"
   "-e CPU_SUP_AMD"
+  "-e CPU_SUP_HYGON"
   "-e KVM_AMD"
   "-e NET_VENDOR_AMD"
   "-e NET_VENDOR_ASIX"

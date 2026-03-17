@@ -74,7 +74,6 @@ pkgs.stdenv.mkDerivation (attrs: {
   name = "linux-${majorMinor}${localVer}-config";
 
   LLVM = "1";
-  LLVM_IAS = "1";
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;

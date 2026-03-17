@@ -59,7 +59,6 @@ vfat
 vfio
 vfio_iommu_type1
 video
-vmw_vsock_virtio_transport_common
 vhost
 vhost_iotlb
 vhost_vsock
