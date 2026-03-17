@@ -1,12 +1,17 @@
 [
+  "-e AMD_PMF"
   "-e AMD_PRIVATE_COLOR"
   "-e ASUS_ARMOURY"
+  "-e ASUS_WMI"
+  "-e ASUS_NB_WMI"
+  "-e BATTERY_ASUS_EC"
   "-e CPU_SUP_AMD"
   "-e CPU_SUP_HYGON"
   "-e KVM_AMD"
   "-e NET_VENDOR_AMD"
   "-e NET_VENDOR_ASIX"
   "-e SENSORS_K10TEMP"
+  "-e SENSORS_AMD_ENERGY"
 
   "-m AMD_3D_VCACHE"
   "-m V4L2_LOOPBACK"
