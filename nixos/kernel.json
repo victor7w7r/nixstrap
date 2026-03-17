@@ -1,14 +1,17 @@
 {
+  "user": "CachyOS",
   "linux": {
     "version": "6.18.18",
     "url": "mirror://kernel/linux/kernel/v6.x",
     "hash": "sha256-9IVfOCwbc1yEByve8221vNXceww35C9RBDFxSaCkhu8="
   },
   "config": {
+    "repo": "linux-cachyos",
     "rev": "503b21a3cb765719c5c827ee80a73e3e5bf5f841",
     "hash": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
   },
   "patches": {
+    "repo": "kernel-patches",
     "rev": "35559d4f7e0da6a594135e71cac1ab802c9ccc43",
     "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
   },

@@ -31,30 +31,30 @@ let
   }";
 
   patches = [
-    "${fetch.cachy-patches}/${majorMinor}/0003-bbr3.patch"
-    "${fetch.cachy-patches}/${majorMinor}/0004-cachy.patch"
-    "${fetch.cachy-patches}/${majorMinor}/0005-crypto.patch"
-    "${fetch.cachy-patches}/${majorMinor}/0006-fixes.patch"
+    "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
+    "${fetch.patches}/${majorMinor}/0004-cachy.patch"
+    "${fetch.patches}/${majorMinor}/0005-crypto.patch"
+    "${fetch.patches}/${majorMinor}/0006-fixes.patch"
   ]
   ++ (lib.optional (host != "v7w7r-youyeetoox1") [
-    "${fetch.cachy-patches}/${majorMinor}/sched/0001-bore-cachy.patch"
-    "${fetch.cachy-patches}/${majorMinor}/0009-sched-ext.patch"
+    "${fetch.patches}/${majorMinor}/sched/0001-bore-cachy.patch"
+    "${fetch.patches}/${majorMinor}/0009-sched-ext.patch"
   ])
   ++ (lib.optional (host == "v7w7r-macmini81") [
-    "${fetch.cachy-patches}/${majorMinor}/0010-t2.patch"
+    "${fetch.patches}/${majorMinor}/0010-t2.patch"
   ])
-  ++ (lib.optional hardened [ "${fetch.cachy-patches}/${majorMinor}/misc/0001-hardened.patch" ])
+  ++ (lib.optional hardened [ "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch" ])
   ++ (
     if (host == "v7w7r-rc71l") then
       (
         [
-          "${fetch.cachy-patches}/${majorMinor}/misc/0001-acpi-call.patch"
-          "${fetch.cachy-patches}/${majorMinor}/misc/0001-handheld.patch"
-          "${fetch.cachy-patches}/${majorMinor}/0001-amd-pstate.patch"
-          "${fetch.cachy-patches}/${majorMinor}/0002-asus.patch"
-          "${fetch.cachy-patches}/${majorMinor}/0007-hdmi.patch"
+          "${fetch.patches}/${majorMinor}/misc/0001-acpi-call.patch"
+          "${fetch.patches}/${majorMinor}/misc/0001-handheld.patch"
+          "${fetch.patches}/${majorMinor}/0001-amd-pstate.patch"
+          "${fetch.patches}/${majorMinor}/0002-asus.patch"
+          "${fetch.patches}/${majorMinor}/0007-hdmi.patch"
         ]
-        ++ builtins.map (p: "${fetch.asus-patches.outPath}/${p}") [
+        ++ builtins.map (p: "${fetch.asus.outPath}/${p}") [
           "0001-bluetooth-btus-add-new-vid-pid.patch"
           "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
           "0040-workaround_hardware_decoding_amdgpu.patch"
@@ -75,7 +75,6 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   LLVM = "1";
   LLVM_IAS = "1";
-
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
@@ -95,7 +94,7 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   buildPhase = ''
     runHook preBuild
-    cp "${fetch.kernel-config}" ".config"
+    cp "${fetch.kConfig}" ".config"
 
     ${((import ./modules) { inherit host; })}
 

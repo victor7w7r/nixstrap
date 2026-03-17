@@ -6,21 +6,21 @@
   ...
 }:
 {
-  asus-patches = pkgs.fetchgit {
+  linux = pkgs.fetchurl {
+    url = "${kernelData.linux.url}/linux-${kernelData.linux.version}.tar.xz";
+    hash = kernelData.linux.hash;
+  };
+
+  asus = pkgs.fetchgit {
     url = kernelData.asus.url;
     rev = kernelData.asus.rev;
     sha256 = kernelData.asus.hash;
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
-  linux = pkgs.fetchurl {
-    url = "${kernelData.linux.url}/linux-${kernelData.linux.version}.tar.xz";
-    hash = kernelData.linux.hash;
-  };
-
-  kernel-config = pkgs.fetchFromGitHub {
-    owner = "CachyOS";
-    repo = "linux-cachyos";
+  kConfig = pkgs.fetchFromGitHub {
+    owner = kernelData.user;
+    repo = kernelData.config.repo;
     rev = kernelData.config.rev;
     sha256 = kernelData.config.hash;
     postFetch = ''
@@ -45,9 +45,9 @@
     '';
   };
 
-  cachy-patches = pkgs.fetchFromGitHub {
-    owner = "CachyOS";
-    repo = "kernel-patches";
+  patches = pkgs.fetchFromGitHub {
+    owner = kernelData.user;
+    repo = kernelData.patches.repo;
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
