@@ -36,11 +36,7 @@
   "-d SECURITY_SELINUX"
   "-d SECURITY_TOMOYO"
   "-d SERIAL_8250"
+  "-d VIRTIO"
   "-d XEN"
   "-d X86_EXTENDED_PLATFORM"
-
-  "-m VIRTIO"
-  "-m VIRTIO_BLK"
-  "-m VIRTIO_NET"
-  "-m VIRTIO_PCI"
 ]

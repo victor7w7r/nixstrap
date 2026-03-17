@@ -16,8 +16,6 @@
     };
     enableCompletion = true;
     initContent = ''
-      ZSH_DISABLE_COMPFIX=true
-
       unsetopt BEEP
       unsetopt HIST_BEEP
       unsetopt LIST_BEEP

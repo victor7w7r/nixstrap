@@ -6,6 +6,7 @@
     (import ./config.nix)
     (import ./starship.nix)
     (import ./tmux)
+    (import ./bash)
     (import ./zsh)
   ]
   ++ (

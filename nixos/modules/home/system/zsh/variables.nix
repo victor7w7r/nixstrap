@@ -15,6 +15,7 @@
     VISUAL = "nvim";
     GPG_TTY = "$(tty)";
     COLORTERM = "truecolor";
+    ZSH_DISABLE_COMPFIX = true;
     SHELL = "zsh";
     TERMINAL = "kitty";
     STARSHIP_CACHE = "$HOME/.starship/cache";
