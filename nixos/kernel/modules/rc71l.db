@@ -7,7 +7,6 @@ algif_skcipher
 amd_atl
 amdgpu
 amd_pmc
-amd_pstate
 amdxcp
 asn1_encoder
 asus_nb_wmi

@@ -5,6 +5,7 @@
   "-e DRM_I915_GVT_KVMGT"
   "-e KVM_INTEL"
   "-e NET_VENDOR_INTEL"
+  "-e X86_INTEL_PSTATE"
 
   "-d AMD_3D_VCACHE"
   "-d AMD_HFI"
@@ -12,7 +13,6 @@
   "-d AMD_MEM_ENCRYPT"
   "-d AMD_NB"
   "-d AMD_NODE"
-  "-d AMD_PSTATE"
   "-d AMD_SECURE_AVIC"
   "-d AMD_WBRF"
   "-d CPU_SUP_AMD"
