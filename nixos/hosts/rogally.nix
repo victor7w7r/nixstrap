@@ -142,7 +142,7 @@ in
 
     asusd = {
       enable = true;
-      asusdConfig = ''
+      asusdConfig.text = ''
         bat_charge_limit: 80,
         platform_profile_on_battery: Quiet,
         change_platform_profile_on_battery: true,
