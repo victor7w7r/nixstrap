@@ -17,7 +17,7 @@ let
       home = {
         username = user;
         homeDirectory = if user == "root" then "/root" else "/home/${user}";
-        stateVersion = "25.11";
+        stateVersion = "26.05";
       };
 
       imports = [

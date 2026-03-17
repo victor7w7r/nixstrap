@@ -5,9 +5,6 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    inputs.emacs-overlay
-  ];
 
   programs.doom-emacs = {
     enable = false;
