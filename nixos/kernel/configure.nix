@@ -66,7 +66,7 @@ let
         ]
       )
     else
-      [ "${fetch.cachy-patches}/${majorMinor}/0008-intel-pstate.patch" ]
+      [ "${fetch.patches}/${majorMinor}/0008-intel-pstate.patch" ]
   );
 in
 pkgs.stdenv.mkDerivation (attrs: {
