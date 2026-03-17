@@ -5,8 +5,6 @@
   "-e AUTOFS_FS"
   "-e BLK_DEV_NVME"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
-  "-e KVM"
-  "-e KVM_X86"
   "-e LLVM"
   "-e LLVM_IAS"
   "-e LRU_GEN"
@@ -16,7 +14,6 @@
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
   "-e PER_VMA_LOCK"
-  "-e SECCOMP"
   "-e X86_NATIVE_CPU"
 
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
