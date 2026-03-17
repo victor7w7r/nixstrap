@@ -12,7 +12,6 @@ amdxcp
 asn1_encoder
 asus_nb_wmi
 asus_wmi
-autofs4
 battery
 blake2b_generic
 bmc150_accel_core

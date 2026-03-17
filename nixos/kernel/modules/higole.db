@@ -8,7 +8,6 @@ af_packet
 algif_hash
 algif_skcipher
 asn1_encoder
-autofs4
 battery
 bnep
 btbcm
@@ -69,6 +68,7 @@ iptable_mangle
 ipt_rpfilter
 kfifo_buf
 kvm_intel
+kvmgt
 led_class
 libaescfb
 libarc4

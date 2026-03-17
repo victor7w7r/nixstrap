@@ -25,7 +25,6 @@ iommufd
 ip_tables
 irqbypass
 kvm
-kvmgt
 libphy
 loop
 lz4_compress
@@ -40,6 +39,7 @@ nfnetlink
 nft_chain_nat
 nft_compat
 nft_masq
+nls_iso8859_1
 ntfs3
 rfkill
 tcp_bbr

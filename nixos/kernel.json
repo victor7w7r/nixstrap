@@ -1,6 +1,10 @@
 {
+  "linux": {
+    "version": "6.18.18",
+    "hash": "0hdg5h91zwypsgb1lp1m5q1iak1g00rml54fh6j7nj8dgrqwv29z"
+  },
   "config": {
-    "rev": "3b9ae1ae5d4ee95e1509d350b65c0777dde97628",
+    "rev": "503b21a3cb765719c5c827ee80a73e3e5bf5f841",
     "hash": "sha256-PsNBbVlLl2vi7dNOSH/sxfPihr3IAAh7GuUSyblPtzA="
   },
   "patches": {

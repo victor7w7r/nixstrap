@@ -46,8 +46,8 @@ intel_uncore_frequency_common
 ip6t_REJECT
 ip6t_rt
 ipt_REJECT
-kvmfr
 kvm_intel
+kvmgt
 llc
 mdev
 mei

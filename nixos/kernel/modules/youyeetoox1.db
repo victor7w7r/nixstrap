@@ -7,7 +7,6 @@ acpi_thermal_rel
 aesni_intel
 af_packet
 ahci
-autofs4
 bfq
 bridge
 button
@@ -52,6 +51,7 @@ ip6t_rpfilter
 iptable_mangle
 ipt_rpfilter
 kvm_intel
+kvmgt
 led_class
 libaescfb
 libahci

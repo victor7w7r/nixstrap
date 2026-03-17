@@ -1,10 +1,8 @@
 {
   pkgs,
   kernelData,
-  hardened,
   majorMinor,
-  host,
-  version,
+  hardened,
   ...
 }:
 {
@@ -15,6 +13,11 @@
     postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
+  linux = pkgs.fetchurl {
+    url = "mirror://kernel/linux/kernel/v${majorMinor}/linux-${kernelData.linux.version}.tar.xz";
+    hash = kernelData.linux.hash;
+  };
+
   kernel-config = pkgs.fetchFromGitHub {
     owner = "CachyOS";
     repo = "linux-cachyos";
@@ -23,12 +26,6 @@
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
-      ${
-        if host != "v7w7r-youyeetoox1" && host != "v7w7r-higole" then
-          "sed -i '/^CONFIG_MMC/d' $conf"
-        else
-          ""
-      }
       sed -i '/^#/d' $conf
       sed -i '/^CONFIG_G*CC_/d' $conf
       sed -i '/^CONFIG_ATH/d' $conf
