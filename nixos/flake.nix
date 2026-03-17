@@ -114,6 +114,7 @@
       proxmox-nixos,
       impermanence,
       nix-flatpak,
+      nixvim,
       sops-nix,
       nixos-hardware,
       ...
@@ -191,6 +192,7 @@
             (import ./modules/core)
             (import ./modules/home)
             nur.modules.nixos.default
+            nixvim.nixosModules.nixvim
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
@@ -224,6 +226,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
             nur.modules.nixos.default
+            nixvim.nixosModules.nixvim
             sops-nix.nixosModules.sops
             (import ./hosts/higole.nix)
             (import ./modules/core)
@@ -255,6 +258,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             nix-flatpak.nixosModules.nix-flatpak
+            nixvim.nixosModules.nixvim
             (import ./hosts/rogally.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -295,6 +299,7 @@
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
+            nixvim.nixosModules.nixvim
             (import ./hosts/server.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -328,6 +333,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             impermanence.nixosModules.impermanence
+            nixvim.nixosModules.nixvim
             nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/vm.nix)
             (import ./modules/core)

@@ -69,7 +69,6 @@ in
     sharedModules = [
       inputs.plasma-manager.homeModules.plasma-manager
       inputs.zen-browser.homeModules.twilight
-      inputs.nixvim.nixosModules.nixvim
       inputs.nix-doom-emacs-unstraightened.homeModule
     ];
     users = {
