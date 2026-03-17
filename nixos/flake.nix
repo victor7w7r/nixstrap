@@ -114,7 +114,6 @@
       proxmox-nixos,
       impermanence,
       nix-flatpak,
-      nixvim,
       sops-nix,
       nixos-hardware,
       ...
@@ -188,7 +187,6 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
             nix-flatpak.nixosModules.nix-flatpak
-            nixvim.nixosModules.nixvim
             (import ./hosts/macmini.nix)
             (import ./modules/core)
             (import ./modules/home)
@@ -224,7 +222,6 @@
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
-            nixvim.nixosModules.nixvim
             impermanence.nixosModules.impermanence
             nur.modules.nixos.default
             sops-nix.nixosModules.sops
@@ -262,7 +259,6 @@
             (import ./modules/core)
             (import ./modules/home)
             nur.modules.nixos.default
-            nixvim.nixosModules.nixvim
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
@@ -298,7 +294,6 @@
             proxmox-nixos.nixosModules.proxmox-ve
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
-            nixvim.nixosModules.nixvim
             impermanence.nixosModules.impermanence
             (import ./hosts/server.nix)
             (import ./modules/core)
@@ -333,7 +328,6 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             impermanence.nixosModules.impermanence
-            nixvim.nixosModules.nixvim
             nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/vm.nix)
             (import ./modules/core)
