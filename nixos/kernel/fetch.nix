@@ -14,7 +14,7 @@
   };
 
   linux = pkgs.fetchurl {
-    url = "mirror://kernel/linux/kernel/v6.x/linux-${kernelData.linux.version}.tar.xz";
+    url = "${kernelData.linux.url}/linux-${kernelData.linux.version}.tar.xz";
     hash = kernelData.linux.hash;
   };
 
@@ -51,7 +51,6 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-
       find "$out" -mindepth 1 -type f \
         ! -path "*/misc/0001-handheld.patch" \
         ! -path "*/misc/0001-hardened.patch" \
