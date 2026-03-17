@@ -10,7 +10,6 @@ let
   intelParams = import ./lib/intel-params.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
   kernelBuild = (pkgs.callPackage ../kernel) {
-    hardened = true;
     inherit
       helpers
       host

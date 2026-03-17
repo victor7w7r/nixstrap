@@ -4,13 +4,11 @@
   lib,
   pkgs,
   kernelData,
-  hardened ? false,
   ...
 }:
 let
   configure = pkgs.callPackage ./configure.nix {
     inherit
-      hardened
       host
       kernelData
       helpers

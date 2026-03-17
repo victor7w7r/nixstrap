@@ -5,30 +5,29 @@
   helpers,
   linux_6_18,
   kernelData,
-  hardened ? false,
   ...
 }:
 let
   majorMinor = lib.versions.majorMinor kernelData.linux.version;
+  hardened = host == "v7w7r-youyeetoox1";
+  config = import ./config { inherit host; };
+
+  specialization =
+    if host == "v7w7r-macmini81" then
+      "-t2"
+    else if host == "v7w7r-youyeetoox1" then
+      "-server"
+    else if host == "v7w7r-rc71l" then
+      "-handheld"
+    else if host == "v7w7r-higole" then
+      "-lowperf"
+    else
+      "";
 
   fetch = pkgs.callPackage ./fetch.nix {
     inherit kernelData majorMinor hardened;
   };
-  config = import ./config { inherit host; };
-
-  nativeHost =
-    if host == "v7w7r-macmini81" then
-      "-t2-i7-8700B"
-    else if host == "v7w7r-youyeetoox1" then
-      "-server-N5105"
-    else if host == "v7w7r-rc71l" then
-      "-handheld-RyzenZ1"
-    else
-      "-N5095";
-
-  localVer = "-v7w7r${nativeHost}${if hardened then "-hardened" else ""}${
-    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "-zfs" else ""
-  }";
+  localVer = "-v7w7r${specialization}${if hardened then "-hardened" else ""}-native";
 
   patches = [
     "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
