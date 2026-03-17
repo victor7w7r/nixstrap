@@ -1,6 +1,8 @@
 [
   "--set-str DEFAULT_HOSTNAME v7w7r"
 
+  "-e AUTOFS"
+  "-e BPF_LSM"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEBUG_INFO_BTF"
   "-e KVM"
