@@ -14,7 +14,7 @@
   };
 
   linux = pkgs.fetchurl {
-    url = "mirror://kernel/linux/kernel/v${majorMinor}/linux-${kernelData.linux.version}.tar.xz";
+    url = "mirror://kernel/linux/kernel/v6.x/linux-${kernelData.linux.version}.tar.xz";
     hash = kernelData.linux.hash;
   };
 
