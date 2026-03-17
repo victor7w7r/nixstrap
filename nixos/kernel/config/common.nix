@@ -2,6 +2,7 @@
   "--set-str DEFAULT_HOSTNAME v7w7r"
 
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
+  "-e DEBUG_INFO_BTF"
   "-e KVM"
   "-e KVM_X86"
   "-e LLVM"

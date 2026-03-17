@@ -1,6 +1,5 @@
 [
   "-d ACPI_DEBUG"
-  "-d DEBUG_INFO"
   "-d DEBUG_INFO_DWARF4"
   "-d DEBUG_INFO_DWARF5"
   "-d DEBUG_PREEMPT"
