@@ -1,7 +1,7 @@
 {
   "linux": {
     "version": "6.18.18",
-    "hash": " sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
+    "hash": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
   },
   "config": {
     "rev": "503b21a3cb765719c5c827ee80a73e3e5bf5f841",

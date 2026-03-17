@@ -183,7 +183,7 @@
               {
                 nixpkgs.overlays = [
                   nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay
+                  inputs.emacs-overlay.overlay
                 ];
               }
             )
@@ -220,7 +220,7 @@
               {
                 nixpkgs.overlays = [
                   nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay
+                  inputs.emacs-overlay.overlay
                 ];
               }
             )
@@ -259,7 +259,7 @@
               {
                 nixpkgs.overlays = [
                   nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay
+                  inputs.emacs-overlay.overlay
                 ];
               }
             )
@@ -297,7 +297,7 @@
               {
                 nixpkgs.overlays = [
                   nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay
+                  inputs.emacs-overlay.overlay
                   proxmox-nixos.overlays.${system}
                 ];
               }
@@ -337,7 +337,7 @@
               {
                 nixpkgs.overlays = [
                   nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay
+                  inputs.emacs-overlay.overlay
                 ];
               }
             )
