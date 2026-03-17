@@ -22,5 +22,5 @@
     ]
   );
 
-  programs.pywal.enable = true;
+  #programs.pywal.enable = true;
 }
