@@ -8,8 +8,8 @@
   "config": {
     "repo": "linux-cachyos",
     "rev": "fa09a5bc69d3e7feeed9b1402c7df06c8170402a",
-    "hashOld": "sha256-PsNBbVlLl2vi7dNOSH/sxfPihr3IAAh7GuUSyblPtzA=",
-    "hash": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
+    "hash": "sha256-PsNBbVlLl2vi7dNOSH/sxfPihr3IAAh7GuUSyblPtzA=",
+    "hashOld": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
   },
   "patches": {
     "repo": "kernel-patches",
