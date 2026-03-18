@@ -52,7 +52,6 @@ let
     "${fetch.tachyon}/patches/0104-pci-pme-wakeups.patch"
     #"${fetch.tachyon}/patches/0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch"
     "${fetch.tachyon}/patches/0108-smpboot-reuse-timer-calibration.patch"
-    "${fetch.tachyon}/patches/0109-initialize-ata-before-graphics.patch"
     "${fetch.tachyon}/patches/0110-give-rdrand-some-credit.patch"
     "${fetch.tachyon}/patches/0111-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit.patch"
     "${fetch.tachyon}/patches/0112-init-wait-for-partition-and-retry-scan.patch"
