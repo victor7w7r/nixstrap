@@ -16,7 +16,7 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ./generated/generate.nix { inherit configure; };
-
+  patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
@@ -30,7 +30,7 @@ let
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf (toString file);
         patch = file;
-      }) configure.kernelPatches;
+      }) patches;
 
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
