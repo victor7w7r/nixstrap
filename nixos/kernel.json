@@ -7,12 +7,12 @@
   },
   "config": {
     "repo": "linux-cachyos",
-    "rev": "503b21a3cb765719c5c827ee80a73e3e5bf5f841",
+    "rev": "fa09a5bc69d3e7feeed9b1402c7df06c8170402a",
     "hash": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
   },
   "patches": {
     "repo": "kernel-patches",
-    "rev": "35559d4f7e0da6a594135e71cac1ab802c9ccc43",
+    "rev": "1c32cd813da03e2f78ad6067c0eada6bd149413c",
     "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
   },
   "tkg": {
