@@ -60,7 +60,7 @@ let
     "${fetch.tachyon}/patches/0115-enable-stateless-firmware-loading.patch"
     "${fetch.tachyon}/patches/0116-migrate-some-systemd-defaults-to-the-kernel-defaults.patch"
     "${fetch.tachyon}/patches/0117-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch"
-    "${fetch.tachyon}/patches/0118-add-scheduler-turbo3-patch.patch"
+    #"${fetch.tachyon}/patches/0118-add-scheduler-turbo3-patch.patch"
     "${fetch.tachyon}/patches/0120-do-accept-in-LIFO-order-for-cache-efficiency.patch"
     "${fetch.tachyon}/patches/0121-locking-rwsem-spin-faster.patch"
     "${fetch.tachyon}/patches/0122-ata-libahci-ignore-staggered-spin-up.patch"
