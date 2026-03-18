@@ -5,6 +5,7 @@
   "-e BPF_LSM"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEBUG_INFO_BTF"
+  "-e HIBERNATION"
   "-e KVM"
   "-e KVM_X86"
   "-e LLVM"

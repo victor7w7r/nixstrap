@@ -1,4 +1,6 @@
 [
+  "-e ANDROID_BINDERFS"
+  "-e ANDROID_BINDER_IPC"
   "-e CACHY"
   "-e SCHED_BORE"
   "-e SCHED_CLASS_EXT"
