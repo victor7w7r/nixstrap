@@ -54,7 +54,7 @@ let
     #"${fetch.tachyon}/patches/0003-mm-Omit-RCU-read-lock-in-list_lru_count_one-when-RCU.patch"
     "${fetch.tachyon}/patches/0003-mm-stop-kswapd-early-when-nothings-wa.patch"
     #"${fetch.tachyon}/patches/0003-sched-core-Skip-superfluous-acquire-barrier-in-ttwu.patch"
-    "${fetch.tachyon}/patches/0004-sched-fair-Always-update-CPU-capacity-when-load-bala.patch"
+    #"${fetch.tachyon}/patches/0004-sched-fair-Always-update-CPU-capacity-when-load-bala.patch"
     "${fetch.tachyon}/patches/0004-sched-fair-Compile-out-NUMA-code-entirely-when-NUMA-.patch"
     "${fetch.tachyon}/patches/0005-sched-fair-Don-t-needlessly-migrate-a-lone-task-to-a.patch"
     "${fetch.tachyon}/patches/0006-sched-fair-Iterate-in-ascending-CPU-order-when-doing.patch"
