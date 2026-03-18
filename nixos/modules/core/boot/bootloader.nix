@@ -92,23 +92,18 @@ in
     TOPLEVEL=$1
     BASE=$(${basename} $TOPLEVEL)
 
+    ${mkdir} -p ${efi}/BOOT
     if [ ! -d ${efi}/refind ]; then
       echo "Setup Refind, downloading drivers..."
-      ${mkdir} -p ${efi}/BOOT ${efi}/refind/themes ${efi}/refind/drivers_x64
       ${cp} ${refind}/refind_x64.efi ${efi}/refind/refind_x64.efi
-      ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
+      ${cp} ${efi}/refind/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
+      ${mkdir} -p ${efi}/refind/themes ${efi}/refind/drivers_x64
+
       ${cp} -r ${refind}/icons ${efi}/refind/icons
       ${cp} -r ${refind}/fonts ${efi}/refind/fonts
       ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi &> /dev/null
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/f2fs_x64.efi &> /dev/null
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
-      ${
-        if (host == "v7w7r-youyeetoox1") || (host == "v7w7r-macmini81") then
-          "${wget} -P ${efi}/refind/drivers_x64 ${efifs}/zfs_x64.efi &> /dev/null"
-        else
-          ""
-      }
       EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
         | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
       DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
@@ -137,8 +132,8 @@ in
       --os-release="${config.system.build.etc}/etc/os-release" \
       --output=${efi}/nixos.efi
 
-    ${mkdir} -p /boot/emergency/cache
-    ${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
+    #${mkdir} -p /boot/emergency/cache
+    #${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
     echo "$BASE" > /boot/emergency/actual.txt
 
     ${cat} > ${efi}/refind/refind.conf << EOF
@@ -149,15 +144,11 @@ in
 
     if [ -d /var/lib/sbctl/keys ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
       ${sbctl} sign -s ${efi}/tools/fwupx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/exfat_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/f2fs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/zfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/nixos.efi
     fi
   '';
