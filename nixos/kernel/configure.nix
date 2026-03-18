@@ -100,9 +100,6 @@ let
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-base.patch"
     "${fetch.tachyon}/patches/0001-sched-migrate.patch"
   ])
-  ++ (lib.optional (host == "v7w7r-higole" || host == "v7w7r-rc71l") [
-    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0002-clear-patches.patch"
-  ])
   ++ (lib.optional hardened [
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0012-linux-hardened.patch"
   ])
