@@ -74,7 +74,6 @@ let
     #"${fetch.tachyon}/patches/0162-extra-optmization-flags.patch"
     "${fetch.tachyon}/patches/0166-sched-fair-remove-upper-limit-on-cpu-number.patch"
     "${fetch.tachyon}/patches/0167-net-sock-increase-default-number-of-_SK_MEM_PACKETS-.patch"
-    "${fetch.tachyon}/patches/0169-mm-mincore-improve-performance-by-adding-an-unlikely.patch"
     "${fetch.tachyon}/patches/0170-sched-Add-unlikey-branch-hints-to-several-system-cal.patch"
     "${fetch.tachyon}/patches/0171-kcmp-improve-performance-adding-an-unlikely-hint-to-.patch"
     "${fetch.tachyon}/patches/0173-cpuidle-psd-add-power-sleep-demotion-prevention-for-.patch"
