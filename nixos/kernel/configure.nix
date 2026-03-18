@@ -85,7 +85,7 @@ let
     "${fetch.tachyon}/patches/posted_msi.patch"
     "${fetch.tachyon}/patches/ratelimit-sched-yield.patch"
     #"${fetch.tachyon}/patches/revert-regression.patch"
-    "${fetch.tachyon}/patches/scale.patch"
+    #"${fetch.tachyon}/patches/scale.patch"
     "${fetch.tachyon}/patches/scale-net-alloc.patch"
     "${fetch.tachyon}/patches/slack.patch"
   ]
