@@ -13,7 +13,7 @@
   "patches": {
     "repo": "kernel-patches",
     "rev": "1c32cd813da03e2f78ad6067c0eada6bd149413c",
-    "hash": "sha256-vXIQPoisxZjXngw0jE20VjtpZeqVvUvw4xrxFz5A5IQ="
+    "hash": "sha256-7lq9SbA1ZthUuBEdm/CuTZ9a5x8iapo3IW8jYAcFCeM="
   },
   "tkg": {
     "owner": "Frogging-Family",
