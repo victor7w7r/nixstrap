@@ -51,7 +51,7 @@ let
     #"${fetch.tachyon}/patches/0002-mm-disable-proactive-compaction-by-de.patch"
     #"${fetch.tachyon}/patches/0002-sched-core-add-some-branch-hints-based-on-gcov-analy.patch"
     #"${fetch.tachyon}/patches/0002-sched-Disable-TTWU_QUEUE.patch"
-    "${fetch.tachyon}/patches/0003-mm-Omit-RCU-read-lock-in-list_lru_count_one-when-RCU.patch"
+    #"${fetch.tachyon}/patches/0003-mm-Omit-RCU-read-lock-in-list_lru_count_one-when-RCU.patch"
     "${fetch.tachyon}/patches/0003-mm-stop-kswapd-early-when-nothings-wa.patch"
     "${fetch.tachyon}/patches/0003-sched-core-Skip-superfluous-acquire-barrier-in-ttwu.patch"
     "${fetch.tachyon}/patches/0004-sched-fair-Always-update-CPU-capacity-when-load-bala.patch"
