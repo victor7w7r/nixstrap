@@ -92,7 +92,7 @@ let
     "${fetch.tachyon}/patches/0173-cpuidle-psd-add-power-sleep-demotion-prevention-for-.patch"
     "${fetch.tachyon}/patches/0174-memcg-increase-MEMCG_CHARGE_BATCH-to-127.patch"
     "${fetch.tachyon}/patches/0175-readdir-add-unlikely-hint-on-len-check.patch"
-    "${fetch.tachyon}/patches/better_idle_balance.patchasasasas"
+    "${fetch.tachyon}/patches/better_idle_balance.patch"
     "${fetch.tachyon}/patches/epp-retune.patch"
     "${fetch.tachyon}/patches/libsgrowdown.patch"
     "${fetch.tachyon}/patches/mmput_async.patch"

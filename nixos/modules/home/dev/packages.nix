@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 {
   home.packages = (
     with pkgs;
@@ -8,9 +13,11 @@
       cool-retro-term
       git-credential-manager
       lazygit
-      jetbrains.datagrip
       rustup
       windterm
     ]
+    ++ (lib.optional (host == "v7w7r-macmini81") [
+      jetbrains.datagrip
+    ])
   );
 }

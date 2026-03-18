@@ -65,31 +65,11 @@
     rev = kernelData.patches.rev;
     sha256 = kernelData.patches.hash;
     postFetch = ''
-      find "$out" -mindepth 1 -type f \
-        ! -path "*/misc/0001-handheld.patch" \
-        ! -path "*/misc/0001-hardened.patch" \
-        ! -path "*/misc/0001-acpi-call.patch" \
-        ! -path "*/misc/0001-clang-polly.patch" \
-        ! -path "*/misc/dkms-clang.patch" \
-        ! -path "*/misc/nap-governor.patch" \
-        ! -path "*/misc/reflex-governor.patch" \
-        ! -path "*/misc/poc-selector.patch" \
-        ! -path "*/sched/0001-bore-cachy.patch" \
-        ! -name "0001-amd-pstate.patch" \
-        ! -name "0002-asus.patch" \
-        ! -name "0003-bbr3.patch" \
-        ! -name "0004-cachy.patch" \
-        ! -name "0005-crypto.patch" \
-        ! -name "0006-fixes.patch" \
-        ! -name "0007-hdmi.patch" \
-        ! -name "0008-intel-pstate.patch" \
-        ! -name "0009-sched-ext.patch" \
-        ! -name "0010-t2.patch" -delete
-        find "$out" -type d -empty -delete
+      find "$out" -type d -empty -delete
 
         ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
-         "$out/${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
-         cat bbr3-filter.patch > "$out/${majorMinor}/0003-bbr3.patch"
+        "$out/${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
+        cat bbr3-filter.patch > "$out/${majorMinor}/0003-bbr3.patch"
     '';
   };
 }
