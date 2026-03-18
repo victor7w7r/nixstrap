@@ -29,7 +29,7 @@ let
 
       kernelPatches = builtins.map (file: {
         name = builtins.baseNameOf (toString file);
-        patch = file;
+        patch = /. + file;
       }) patches;
 
       extraMakeFlags = [
