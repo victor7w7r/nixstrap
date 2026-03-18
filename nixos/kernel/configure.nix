@@ -67,7 +67,7 @@ let
     "${fetch.tachyon}/patches/0127-lib-raid6-add-patch.patch"
     #"${fetch.tachyon}/patches/0129-mm-wakeups-remove-a-wakeup.patch"
     "${fetch.tachyon}/patches/0131-add-a-per-cpu-minimum-high-watermark-an-tune-batch-s.patch"
-    "${fetch.tachyon}/patches/0132-prezero-20220308.patch"
+    #"${fetch.tachyon}/patches/0132-prezero-20220308.patch"
     "${fetch.tachyon}/patches/0135-initcall-only-print-non-zero-initcall-debug-to-speed.patch"
     "${fetch.tachyon}/patches/0136-crypto-kdf-make-the-module-init-call-a-late-init-cal.patch"
     "${fetch.tachyon}/patches/0161-ACPI-align-slab-buffers-for-improved-memory-performa.patch"
