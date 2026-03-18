@@ -41,7 +41,7 @@ let
     "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0006-add-acs-overrides_iommu.patch"
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch"
-    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-cfs.patch"
+    #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-cfs.patch"
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0013-optimize_harder_O3.patch"
     "${fetch.tachyon}/patches/0001-add-umonitor-umwait-C0.x-C-states.patch"
     "${fetch.tachyon}/patches/0001-dma-buf-sync_file-Speed-up-ioctl-by-omitting-debug-n.patch"
