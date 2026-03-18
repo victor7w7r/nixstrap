@@ -93,9 +93,6 @@ let
     "${fetch.patches}/${majorMinor}/sched/0001-bore-cachy.patch"
     "${fetch.patches}/${majorMinor}/0009-sched-ext.patch"
   ])
-  ++ (lib.optional (host == "v7w7r-youyeetoox1") [
-    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-eevdf-additions.patch"
-  ])
   ++ (lib.optional (host == "v7w7r-macmini81") [
     "${fetch.patches}/${majorMinor}/0010-t2.patch"
   ])
