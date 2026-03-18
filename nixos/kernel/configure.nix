@@ -62,7 +62,7 @@ let
     "${fetch.tachyon}/patches/0117-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch"
     #"${fetch.tachyon}/patches/0118-add-scheduler-turbo3-patch.patch"
     "${fetch.tachyon}/patches/0120-do-accept-in-LIFO-order-for-cache-efficiency.patch"
-    "${fetch.tachyon}/patches/0121-locking-rwsem-spin-faster.patch"
+    #"${fetch.tachyon}/patches/0121-locking-rwsem-spin-faster.patch"
     "${fetch.tachyon}/patches/0122-ata-libahci-ignore-staggered-spin-up.patch"
     "${fetch.tachyon}/patches/0125-nvme-workaround.patch"
     "${fetch.tachyon}/patches/0127-lib-raid6-add-patch.patch"
