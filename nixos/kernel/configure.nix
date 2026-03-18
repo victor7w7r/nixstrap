@@ -82,7 +82,6 @@ let
     "${fetch.tachyon}/patches/libsgrowdown.patch"
     "${fetch.tachyon}/patches/mmput_async.patch"
     #"${fetch.tachyon}/patches/netscale.patch"
-    "${fetch.tachyon}/patches/nonapi-realtek.patch"
     "${fetch.tachyon}/patches/posted_msi.patch"
     "${fetch.tachyon}/patches/ratelimit-sched-yield.patch"
     "${fetch.tachyon}/patches/revert-regression.patch"
