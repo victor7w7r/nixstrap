@@ -102,7 +102,7 @@ in
       ${cp} -r ${refind} ${efi}/
       ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
 
-      ${rm} -rf ${efi}/refind/docs ${efi}/refind/refind.conf-example ${efi}/refind/images ${efi}/refind/drivers_x64/ext*
+      ${rm} -rf ${efi}/refind/docs ${efi}/refind/refind.conf-sample ${efi}/refind/images ${efi}/refind/drivers_x64/ext*
       ${rm} -rf ${efi}/refind/drivers_x64/hfs_x64.efi ${efi}/refind/drivers_x64/iso9660_x64.efi  ${efi}/refind/drivers_x64/reiserfs_x64.efi
       ${mkdir} -p ${efi}/refind/themes && ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
