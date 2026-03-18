@@ -45,7 +45,7 @@ let
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0013-optimize_harder_O3.patch"
     #"${fetch.tachyon}/patches/0001-add-umonitor-umwait-C0.x-C-states.patch"
     #"${fetch.tachyon}/patches/0001-dma-buf-sync_file-Speed-up-ioctl-by-omitting-debug-n.patch"
-    "${fetch.tachyon}/patches/0001-kernfs-Avoid-dynamic-memory-allocation-for-small-wri.patch"
+    #"${fetch.tachyon}/patches/0001-kernfs-Avoid-dynamic-memory-allocation-for-small-wri.patch"
     "${fetch.tachyon}/patches/0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an.patch"
     "${fetch.tachyon}/patches/0002-kernel-Eliminate-dynamic-memory-allocation-in-prctl_.patch"
     "${fetch.tachyon}/patches/0002-mm-disable-proactive-compaction-by-de.patch"
