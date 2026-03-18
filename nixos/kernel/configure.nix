@@ -50,7 +50,7 @@ let
     "${fetch.tachyon}/patches/0003-mm-stop-kswapd-early-when-nothings-wa.patch"
     "${fetch.tachyon}/patches/0005-mm-increment-kswapd_waiters-for-throt.patch"
     "${fetch.tachyon}/patches/0104-pci-pme-wakeups.patch"
-    "${fetch.tachyon}/patches/0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch"
+    #"${fetch.tachyon}/patches/0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch"
     "${fetch.tachyon}/patches/0108-smpboot-reuse-timer-calibration.patch"
     "${fetch.tachyon}/patches/0109-initialize-ata-before-graphics.patch"
     "${fetch.tachyon}/patches/0110-give-rdrand-some-credit.patch"
