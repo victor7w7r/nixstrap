@@ -39,7 +39,7 @@ let
     "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
     "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
     "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
-    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0006-add-acs-overrides_iommu.patch"
+    #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0006-add-acs-overrides_iommu.patch"
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch"
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-cfs.patch"
     "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0013-optimize_harder_O3.patch"
