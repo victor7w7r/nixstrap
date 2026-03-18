@@ -133,7 +133,7 @@ let
         "${fetch.patches}/${majorMinor}/0008-intel-pstate.patch"
         #"${fetch.tachyon}/patches/0103-silence-rapl.patch"
         "${fetch.tachyon}/patches/0128-itmt_epb-use-epb-to-scale-itmt.patch"
-        "${fetch.tachyon}/patches/0163-thermal-intel-powerclamp-check-MWAIT-first-use-pr_wa.patch"
+        #"${fetch.tachyon}/patches/0163-thermal-intel-powerclamp-check-MWAIT-first-use-pr_wa.patch"
         "${fetch.tachyon}/patches/vmidle.patch"
       ]
   );
