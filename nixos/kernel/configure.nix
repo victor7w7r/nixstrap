@@ -71,7 +71,7 @@ let
     "${fetch.tachyon}/patches/0135-initcall-only-print-non-zero-initcall-debug-to-speed.patch"
     "${fetch.tachyon}/patches/0136-crypto-kdf-make-the-module-init-call-a-late-init-cal.patch"
     "${fetch.tachyon}/patches/0161-ACPI-align-slab-buffers-for-improved-memory-performa.patch"
-    "${fetch.tachyon}/patches/0162-extra-optmization-flags.patch"
+    #"${fetch.tachyon}/patches/0162-extra-optmization-flags.patch"
     "${fetch.tachyon}/patches/0166-sched-fair-remove-upper-limit-on-cpu-number.patch"
     "${fetch.tachyon}/patches/0167-net-sock-increase-default-number-of-_SK_MEM_PACKETS-.patch"
     "${fetch.tachyon}/patches/0169-mm-mincore-improve-performance-by-adding-an-unlikely.patch"
