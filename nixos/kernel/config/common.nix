@@ -1,9 +1,17 @@
+let
+  red = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166";
+  green = "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173";
+  blue = "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200";
+  opt = "mitigations=off pti=on page_alloc.shuffle=1";
+in
 [
   "--set-str DEFAULT_HOSTNAME v7w7r"
+  "--set-str CMDLINE ${red} ${green} ${blue} ${opt}"
 
   "-e AUTOFS"
   "-e BPF_LSM"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
+  "-e CMDLINE_BOOL"
   "-e DEBUG_INFO_BTF"
   "-e HIBERNATION"
   "-e KVM"
@@ -22,6 +30,7 @@
   "-d 842_COMPRESS"
   "-d 842_DECOMPRESS"
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
+  "-d CMDLINE_OVERRIDE"
   "-d CPUMASK_OFFSTACK"
   "-d DEBUG_FS"
   "-d DRM_XE"
