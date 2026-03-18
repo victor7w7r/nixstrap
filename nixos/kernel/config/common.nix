@@ -6,7 +6,7 @@ let
 in
 [
   "--set-str DEFAULT_HOSTNAME v7w7r"
-  "--set-str CMDLINE ${red} ${green} ${blue} ${opt}"
+  ''--set-str CMDLINE "${red} ${green} ${blue} ${opt}"''
 
   "-e AUTOFS"
   "-e BPF_LSM"
