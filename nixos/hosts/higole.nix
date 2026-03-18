@@ -80,8 +80,8 @@ in
     ]
     ++ intelParams
     ++ params { };
-    kernelPackages = # helpers.kernelModuleLLVMOverride (kernelBuild.packages);
-      pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
+    #pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     blacklistedKernelModules = [ "pac1934" ];
     extraModprobeConfig = ''
       options goodix_ts reset_speed=100
