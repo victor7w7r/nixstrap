@@ -22,7 +22,6 @@
     url = kernelData.tachyon.url;
     rev = kernelData.tachyon.rev;
     sha256 = kernelData.tachyon.hash;
-    postFetch = ''find "$out" -type f ! -name "*.patch" -delete'';
   };
 
   tkg = pkgs.fetchFromGitHub {
