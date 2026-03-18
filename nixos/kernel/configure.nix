@@ -198,8 +198,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   };
 
   passthru = {
-    kernelPatches = patches;
     version = kernelData.linux.version;
-    inherit localVer;
+    inherit localVer patches;
   };
 })

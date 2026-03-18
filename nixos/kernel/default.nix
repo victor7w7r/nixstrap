@@ -28,9 +28,9 @@ let
       stdenv = helpers.stdenvLLVM;
 
       kernelPatches = builtins.map (file: {
-        name = builtins.baseNameOf file;
+        name = builtins.baseNameOf (toString file);
         patch = file;
-      }) configure.passthru.kernelPatches;
+      }) configure.kernelPatches;
 
       extraMakeFlags = [
         "NIX_ENFORCE_NO_NATIVE=0"
