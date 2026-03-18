@@ -48,7 +48,7 @@ let
     #"${fetch.tachyon}/patches/0001-kernfs-Avoid-dynamic-memory-allocation-for-small-wri.patch"
     #"${fetch.tachyon}/patches/0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an.patch"
     #"${fetch.tachyon}/patches/0002-kernel-Eliminate-dynamic-memory-allocation-in-prctl_.patch"
-    "${fetch.tachyon}/patches/0002-mm-disable-proactive-compaction-by-de.patch"
+    #"${fetch.tachyon}/patches/0002-mm-disable-proactive-compaction-by-de.patch"
     "${fetch.tachyon}/patches/0002-sched-core-add-some-branch-hints-based-on-gcov-analy.patch"
     "${fetch.tachyon}/patches/0002-sched-Disable-TTWU_QUEUE.patch"
     "${fetch.tachyon}/patches/0003-mm-Omit-RCU-read-lock-in-list_lru_count_one-when-RCU.patch"
