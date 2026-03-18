@@ -3,7 +3,7 @@
   "linux": {
     "version": "6.18.18",
     "url": "mirror://kernel/linux/kernel/v6.x",
-    "hash": "sha256-9IVfOCwbc1yEByve8221vNXceww35C9RBDFxSaCkhu4="
+    "hash": "sha256-9IVfOCwbc1yEByve8221vNXceww35C9RBDFxSaCkhu8="
   },
   "config": {
     "repo": "linux-cachyos",
