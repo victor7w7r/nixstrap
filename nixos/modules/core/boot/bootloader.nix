@@ -92,38 +92,38 @@ in
     TOPLEVEL=$1
     BASE=$(${basename} $TOPLEVEL)
 
-    ${mkdir} -p ${efi}/BOOT
+    [[ ! -d ${efi}/BOOT ]] && ${mkdir} -p ${efi}/BOOT
+
     if [ ! -d ${efi}/refind ]; then
-      echo "Setup Refind, downloading drivers..."
-      ${cp} ${refind}/refind_x64.efi ${efi}/refind/refind_x64.efi
-      ${cp} ${efi}/refind/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
-      ${mkdir} -p ${efi}/refind/themes ${efi}/refind/drivers_x64
+      echo "Setup Refind"
 
-      ${cp} -r ${refind}/icons ${efi}/refind/icons
-      ${cp} -r ${refind}/fonts ${efi}/refind/fonts
-      ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
-      ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/btrfs_x64.efi &> /dev/null
+      [[ -f ${efi}/BOOT/BOOTX64.efi ]] && ${rm} ${efi}/BOOT/BOOTX64.efi
+
+      ${cp} -r ${refind} ${efi}/
+      ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
+
+      ${rm} -rf ${efi}/refind/docs ${efi}/refind/refind.conf-example ${efi}/refind/images ${efi}/refind/drivers_x64/ext*
+      ${rm} -rf ${efi}/refind/drivers_x64/hfs_x64.efi ${efi}/refind/drivers_x64/iso9660_x64.efi  ${efi}/refind/drivers_x64/reiserfs_x64.efi
+      ${mkdir} -p ${efi}/refind/themes && ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
-      EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
-        | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
-      DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
-      echo "Setup EFI Entries..."
-      ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
-        | ${sed} 's/Boot//' | ${sed} 's/\*//' \
-        | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
 
-      ${efibootmgr} --create --disk /dev/$DISK --part 1 \
-        --loader /EFI/refind/refind_x64.efi --label "rEFInd" \
-        --unicode &> /dev/null
+      ${cp} ${edk2}/shell.efi ${efi}/refind/tools_x64/shellx64.efi
+      ${cp} ${memtest}/BOOTX64.efi ${efi}/refind/tools_x64/memtest86.efi
+      ${cp} ${fwupd}/fwupdx64.efi ${efi}/refind/tools_x64/fwupx64.efi
     fi
 
-    if [ ! -d ${efi}/tools ]; then
-      echo "Setup Tools..."
-      ${mkdir} -p ${efi}/tools
-      ${cp} ${edk2}/shell.efi ${efi}/tools/shellx64.efi
-      ${cp} ${memtest}/BOOTX64.efi ${efi}/tools/memtest86.efi
-      ${cp} ${fwupd}/fwupdx64.efi ${efi}/tools/fwupx64.efi
-    fi
+    EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
+      | ${grep} -i "EFI" | ${grep} -i "vfat" | ${head} -n1)
+    DISK=$(echo "$EFI_INFO" | ${awk} '{print $3}')
+
+    echo "Setup EFI Entries..."
+    ${efibootmgr} | ${grep} -i "rEFind" | ${awk} '{print $1}' \
+      | ${sed} 's/Boot//' | ${sed} 's/\*//' \
+      | while read entry; do ${efibootmgr} -b "$entry" -B &> /dev/null; done
+
+    ${efibootmgr} --create --disk /dev/$DISK --part 1 \
+      --loader /EFI/refind/refind_x64.efi --label "rEFInd" \
+      --unicode &> /dev/null
 
     [[ -f ${efi}/nixos.efi ]] && ${rm} ${efi}/nixos.efi
 
@@ -134,7 +134,7 @@ in
 
     #${mkdir} -p /boot/emergency/cache
     #${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
-    echo "$BASE" > /boot/emergency/actual.txt
+    #echo "$BASE" > /boot/emergency/actual.txt
 
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
@@ -144,9 +144,10 @@ in
 
     if [ -d /var/lib/sbctl/keys ]; then
       ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/tools/shellx64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/tools/memtest86.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/tools/fwupx64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/tools_x64/shellx64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/tools_x64/memtest86.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/tools_x64/gptsync_x64.efi &> /dev/null
+      ${sbctl} sign -s ${efi}/refind/tools_x64/fwupx64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
       ${sbctl} sign -s ${efi}/nixos.efi
