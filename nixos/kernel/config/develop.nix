@@ -1,13 +1,13 @@
 [
-  "-d DEBUG_INFO_DWARF4"
-  "-d DEBUG_INFO_DWARF5"
+  #"-d DEBUG_INFO_DWARF4"
+  #"-d DEBUG_INFO_DWARF5"
   "-d DEBUG_PREEMPT"
   "-d LATENCYTOP"
   "-d PM_ADVANCED_DEBUG"
   "-d PM_DEBUG"
   "-d PM_SLEEP_DEBUG"
-  #"-d SCHED_DEBUG"
-  #"-d SLUB_DEBUG"
+  "-d SCHED_DEBUG"
+  "-d SLUB_DEBUG"
 ]
 ++ [
   "-d BLK_DEV_IO_TRACE"
