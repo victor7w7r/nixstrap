@@ -30,15 +30,17 @@ let
   localVer = "-v7w7r${specialization}${if hardened then "-hardened" else ""}-native";
 
   patches = [
-    "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
-    "${fetch.patches}/${majorMinor}/0004-cachy.patch"
-    "${fetch.patches}/${majorMinor}/0005-crypto.patch"
-    "${fetch.patches}/${majorMinor}/0006-fixes.patch"
-    "${fetch.patches}/${majorMinor}/misc/0001-clang-polly.patch"
-    "${fetch.patches}/${majorMinor}/misc/dkms-clang.patch"
-    "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
-    "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
-    "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
+    /*
+      "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
+      "${fetch.patches}/${majorMinor}/0004-cachy.patch"
+      "${fetch.patches}/${majorMinor}/0005-crypto.patch"
+      "${fetch.patches}/${majorMinor}/0006-fixes.patch"
+      "${fetch.patches}/${majorMinor}/misc/0001-clang-polly.patch"
+      "${fetch.patches}/${majorMinor}/misc/dkms-clang.patch"
+      "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
+      "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
+      "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
+    */
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0006-add-acs-overrides_iommu.patch"
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch"
     #"${fetch.tkg}/linux-tkg-patches/${majorMinor}/0003-glitched-cfs.patch"

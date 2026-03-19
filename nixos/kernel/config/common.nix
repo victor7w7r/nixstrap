@@ -3,10 +3,11 @@
   "--set-str DEFAULT_NET_SCH fq"
   "--set-str DEFAULT_TCP_CONG bbr"
 
-  "-e AUTOFS4"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
+  "-e EXFAT_FS"
+  "-e F2FS_FS"
   "-e HIBERNATION"
   "-e KVM"
   "-e KVM_X86"
@@ -50,5 +51,6 @@
   "-d VIRTIO_VSOCKETS_COMMON"
   "-d XEN"
   "-d X86_EXTENDED_PLATFORM"
+  "-d WATCHDOG"
   "-d ZRAM_BACKEND_842"
 ]
