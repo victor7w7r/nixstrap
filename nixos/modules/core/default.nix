@@ -4,6 +4,7 @@
     (import ./boot)
     (import ./system)
     (import ./hardware)
+    (import ./misc)
     (import ./networking)
     (import ./security)
     (import ./desktop)
@@ -13,7 +14,6 @@
     if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then
       [
         (import ./android)
-        (import ./misc)
         (import ./multimedia)
         (import ./virt)
       ]
