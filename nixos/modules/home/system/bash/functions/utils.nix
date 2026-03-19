@@ -1,8 +1,4 @@
 ''
-  commandexist() {
-    command -v "$1" &>/dev/null
-  }
-
   biggest() {
     du -s ./* | sort -nr | awk '{print $2}' | xargs du -sh
   }

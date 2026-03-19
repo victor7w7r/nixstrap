@@ -3,6 +3,7 @@
   programs.zsh = {
     enable = true;
     autocd = true;
+    enableCompletion = true;
     autosuggestion = {
       enable = true;
       highlight = "fg=ff00ff,bg=cyan,bold,underline";
@@ -14,7 +15,6 @@
         "command" = "fg=cyan";
       };
     };
-    enableCompletion = true;
     history = {
       extended = true;
       path = "$HOME/.zsh_history";
@@ -33,10 +33,9 @@
   imports = [
     (import ./abbr.nix)
     (import ./aliases.nix)
-    (import ./functions)
-    (import ./exec.nix)
     (import ./options.nix)
-    (import ./plugins.nix)
     (import ./variables.nix)
+    (import ./plugins.nix)
+    (import ./init.nix)
   ];
 }

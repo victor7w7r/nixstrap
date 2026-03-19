@@ -45,13 +45,6 @@
       cpvr = "rsync -a --no-o --no-g -h --info=progress2 --append";
       clearf = "cat /dev/null >";
       clrf = "cat /dev/null >";
-
-      apti = "sudo apt install -y";
-      aptu = "sudo apt update -y";
-      aptr = "sudo apt remove -y";
-      aptf = "sudo apt full-upgrade -y";
-      aptl = "sudo apt list --upgradable";
-      di = "sudo dpkg -i";
     };
   };
 }
