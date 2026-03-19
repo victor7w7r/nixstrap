@@ -30,10 +30,12 @@
         name = "zsh-nix-shell";
         src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
       }
-      {
+      /*
+        {
         name = "zsh-clipboard";
         src = "${pkgs.zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
-      }
+        }
+      */
       {
         name = "zsh-vi-mode";
         src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
