@@ -1,5 +1,9 @@
 { username, ... }:
 {
+  environment.variables = {
+    ZSH_DISABLE_COMPFIX = "true";
+  };
+
   imports = [
     (import ./bat.nix)
     (import ./btop.nix)

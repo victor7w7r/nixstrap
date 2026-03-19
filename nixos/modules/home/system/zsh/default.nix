@@ -15,23 +15,20 @@
       };
     };
     enableCompletion = true;
-    initContent = lib.mkMerge [
-      (lib.mkOrder 550 ''
-        ZSH_DISABLE_COMPFIX=true
-      '')
-      ''
-        unsetopt BEEP
-        unsetopt HIST_BEEP
-        unsetopt LIST_BEEP
-        unset SSH_ASKPASS
-        unset PROMPT_FIRST_TIME
+    initContent = ''
+      ZSH_DISABLE_COMPFIX=true
 
-        bindkey '^[[1;2B' down-line-or-history
-        bindkey '^[[1;2A' up-line-or-history
-        bindkey '^[[1;2C' forward-word
-        bindkey '^[[1;2D' backward-word
-      ''
-    ];
+      unsetopt BEEP
+      unsetopt HIST_BEEP
+      unsetopt LIST_BEEP
+      unset SSH_ASKPASS
+      unset PROMPT_FIRST_TIME
+
+      bindkey '^[[1;2B' down-line-or-history
+      bindkey '^[[1;2A' up-line-or-history
+      bindkey '^[[1;2C' forward-word
+      bindkey '^[[1;2D' backward-word
+    '';
     history = {
       extended = true;
       path = "$HOME/.zsh_history";
