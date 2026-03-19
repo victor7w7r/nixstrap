@@ -1,5 +1,6 @@
 {
   pkgs,
+  host,
   username,
   ...
 }:
@@ -71,7 +72,17 @@
       LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
       NIXOS_OZONE_WL = "1";
     };
-  };
+  }
+  // (
+    if host == "v7w7r-youyeetoox1" then
+      {
+        etc."intel-undervolt.conf".text = ''
+          power package 8 28 10 2.4
+        '';
+      }
+    else
+      { }
+  );
 
   programs = {
     appimage = {

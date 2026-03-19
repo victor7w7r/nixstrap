@@ -56,7 +56,6 @@ in
     bolt
     tbtools
     thunderbolt
-    intel-undervolt
     kdePackages.plasma-thunderbolt
   ];
 

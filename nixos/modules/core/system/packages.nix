@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  host,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages =
     with pkgs;
@@ -53,16 +58,18 @@
       #(pkgs.callPackage ./custom/progressline.nix { })
       (pkgs.callPackage ./custom/texoxide.nix { })
     ]
-    ++ [
-      superfile
-      termscp
-      tran
-      trash-cli
-      tuifimanager
-      walk
-      #https://codeberg.org/sylphenix/sff
-      (pkgs.callPackage ./custom/fman.nix { })
-    ]
+    ++
+      [
+        superfile
+        termscp
+        tran
+        trash-cli
+        tuifimanager
+        walk
+        #https://codeberg.org/sylphenix/sff
+        (pkgs.callPackage ./custom/fman.nix { })
+      ]
+        (if host != "v7w7r-rc71l" then [ intel-undervolt ] else [ ])
     ++ [
       dust
       dua
