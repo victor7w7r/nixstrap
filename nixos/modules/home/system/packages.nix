@@ -5,6 +5,7 @@
     [
       #clamtk
       bleachbit
+      home-manager
       clolcat
       cpu-x
       czkawka-full
