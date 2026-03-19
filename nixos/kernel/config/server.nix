@@ -13,6 +13,7 @@ else
     "--set-val HZ 300"
     "--set-val NR_CPUS 8"
 
+    "-d CACHY"
     "-e BLK_DEV_NVME"
     "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
     "-e CPU_FREQ_GOV_ONDEMAND"

@@ -140,7 +140,6 @@ pkgs.stdenv.mkDerivation (attrs: {
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
 
-  LLVM = "1";
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
