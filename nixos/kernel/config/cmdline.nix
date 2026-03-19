@@ -31,8 +31,8 @@ in
 [
   ''
     "-e CMDLINE_BOOL"
-    "--set-str CMDLINE \"${cmd}\""
     "-d CMDLINE_OVERRIDE"
   ''
 ]
+#"--set-str CMDLINE \"${cmd}\""
 #"add_efi_memmap"
