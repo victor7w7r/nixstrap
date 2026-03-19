@@ -4,9 +4,7 @@
   "--set-str DEFAULT_TCP_CONG bbr"
 
   "-e AUTOFS4"
-  #"-e BPF_LSM"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
-  "-e DEBUG_INFO_BTF"
   "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
   "-e HIBERNATION"
