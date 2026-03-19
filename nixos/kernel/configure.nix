@@ -27,6 +27,16 @@ let
     else
       "";
 
+  archSpec =
+    if host == "v7w7r-rc71l" then
+      "--enable MZEN4 --disable GENERIC_CPU --disable X86_NATIVE_CPU"
+    else if host == "v7w7r-macmini81" then
+      "--enable GENERIC_CPU --set-val X86_64_VERSION 3 --disable X86_NATIVE_CPU --disable MZEN4"
+    else if host == "v7w7r-youyeetoox1" || host == "v7w7r-higole" then
+      "--enable GENERIC_CPU --set-val X86_64_VERSION 2 --disable X86_NATIVE_CPU --disable MZEN4"
+    else
+      "--enable X86_NATIVE_CPU --disable GENERIC_CPU --disable MZEN4";
+
   fetch = pkgs.callPackage ./fetch.nix {
     inherit kernelData majorMinor hardened;
   };
@@ -144,15 +154,14 @@ pkgs.stdenv.mkDerivation (attrs: {
   name = "linux-${majorMinor}${localVer}-config";
   LLVM = "1";
   stdenv = helpers.stdenvLLVM;
-  nativeBuildInputs =
-    with pkgs;
-    linux_6_18.nativeBuildInputs
-    ++ linux_6_18.buildInputs
+  nativeBuildInputs = with pkgs; linux_6_18.nativeBuildInputs ++ linux_6_18.buildInputs;
+  /*
     ++ [
-      clang_18
-      llvm_18
-      lld_18
+    clang_18
+    llvm_18
+    lld_18
     ];
+  */
 
   installPhase = ''
     runHook preInstall
@@ -169,6 +178,7 @@ pkgs.stdenv.mkDerivation (attrs: {
     make $makeFlags olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
+    scripts/config ${archSpec}
     make $makeFlags olddefconfig
 
     runHook postBuild
