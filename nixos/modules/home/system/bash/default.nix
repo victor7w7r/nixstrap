@@ -12,7 +12,7 @@
       "cd"
       "exit"
     ];
-    shellInit = lib.mkMerge [
+    bashrcExtra = lib.mkMerge [
       (import ./functions/bofh.nix)
       (import ./functions/kaomoji.nix)
       (import ./functions/misc.nix)
