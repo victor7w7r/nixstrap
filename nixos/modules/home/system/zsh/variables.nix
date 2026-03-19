@@ -1,13 +1,5 @@
 { ... }:
 {
-  #lazyload brew brewup brewupcask -- 'eval "$(/usr/local/bin/brew shellenv)"'
-  #
-  /*
-    if [[ "$TERM_PROGRAM" == "zed" ]]; then
-      export EDITOR="zed"
-      export VISUAL="zed --wait"
-    fi
-  */
   programs.zsh.sessionVariables = {
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
@@ -15,7 +7,6 @@
     VISUAL = "nvim";
     GPG_TTY = "$(tty)";
     COLORTERM = "truecolor";
-    ZSH_DISABLE_COMPFIX = true;
     SHELL = "zsh";
     TERMINAL = "kitty";
     STARSHIP_CACHE = "$HOME/.starship/cache";

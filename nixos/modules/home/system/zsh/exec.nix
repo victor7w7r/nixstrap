@@ -1,10 +1,18 @@
 { ... }:
 {
   programs.zsh = {
-    profileExtra = ''
+    loginExtra = ''
       #typeset -gU path fpath
       if [[ -o interactive && -z "$TMUX" && -z "$SSH_TTY" ]]; then
-          exec tmux new-session -A -s default
+        if command -v tmux >/dev/null 2>&1 && [[ "$TERM_PROGRAM" != "zed" ]] && \
+          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
+           exec tmux new-session -A -s default
+        fi
+      fi
+
+      if [[ "$TERM_PROGRAM" == "zed" ]]; then
+        export EDITOR="zed"
+        export VISUAL="zed --wait"
       fi
 
       path=(
@@ -17,9 +25,7 @@
         "$HOME/.emacs.d/bin"
         $path
       )
-    '';
 
-    loginExtra = ''
       #jump -- 'eval "$(jump shell)"'
       source <(cod init $$ zsh)
 
@@ -62,14 +68,14 @@
         fi
       }
 
-      add-zsh-hook precmd zsh_mommy
+      #add-zsh-hook precmd zsh_mommy
 
       #if commandexist mommy; then
       #  set -o PROMPT_SUBST
       #  RPS1='$(mommy -c ''${HOME}/.config/tmux/mommy.conf -1 -s $?)'
       #fi
 
-      echo -e '\e[5 q'
+      #echo -e '\e[5 q'
     '';
   };
 }

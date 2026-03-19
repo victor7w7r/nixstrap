@@ -69,16 +69,6 @@
     bmtop = ''btm $([ "$COLOR_SCHEME" = "light" ] && echo "--color default-light")'';
     flatupdate = "flatpak update; flatpak remove --unused";
 
-    update = ''
-      brew -v update ; \
-      brew upgrade ; \
-      brew upgrade --cask --greedy --verbose ; \
-      brew upgrade --force-bottle ; \
-      brew cleanup ; \
-      brew doctor'';
-
-    brewinfo = "brew leaves | xargs brew desc --eval-all";
-
     l = "eza --icons --git --classify=auto --color --group-directories-first --sort=extension -a";
     ls = "l";
     ll = lib.mkForce "l -l --octal-permissions --no-permissions --header --group --created --modified";
@@ -98,10 +88,6 @@
     h2t = "html2text -style pretty";
     s = "startx";
 
-    reload = ''. "$ZDOTDIR/.zshrc" && echo "Sourced $ZDOTDIR/.zshrc"'';
     colormap = ''for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}''${(l:3::0:)i}%f " ''${''${(M)$((i%6)):#3}:+$'\n'}; done'';
-    zupdate = "zinit update --parallel 40";
-    zselfupdate = "zinit self-update";
-    zreset = ''rm -rf "''${ZSHEXECDIR}/zinit" &>/dev/null && rm -rf "''${HOME}/.local/share/zinit" &>/dev/null'';
   };
 }
