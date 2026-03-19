@@ -31,7 +31,7 @@ in
 [
   ''
     "-e CMDLINE_BOOL"
-    --set-str CMDLINE "${cmd}"
+    "--set-str CMDLINE \"${cmd}\""
     "-d CMDLINE_OVERRIDE"
   ''
 ]
