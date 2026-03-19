@@ -61,8 +61,7 @@
     worldinternet = "curl https://status.plaintext.sh/t";
     path = ''echo $PATH | tr ":" "\n" | nl'';
 
-    tmux = "tmux -f ~/.config/tmux/tmux.conf";
-    treload = ''tmux source-file ~/.config/tmux/tmux.conf && tmux display-message "TMUX Config Reloaded"'';
+    treload = ''tmux && tmux display-message "TMUX Config Reloaded"'';
     rrr = "ranger";
     nnn = "nnn -e";
     faf = "fastfetch -c $HOME/.config/fastfetch/config.conf";

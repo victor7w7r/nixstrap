@@ -4,10 +4,7 @@
     profileExtra = ''
       #typeset -gU path fpath
       if [[ -o interactive && -z "$TMUX" && -z "$SSH_TTY" ]]; then
-        if command -v tmux >/dev/null 2>&1 && [[ "$TERM_PROGRAM" != "zed" ]] && \
-          [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
-           exec tmux new-session -A -s default
-        fi
+          exec tmux new-session -A -s default
       fi
 
       path=(
