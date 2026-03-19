@@ -13,21 +13,24 @@ let
   config = import ./config { inherit host; };
 
   specialization =
+    {
+      middle ? "",
+    }:
     if host == "v7w7r-macmini81" then
-      "-t2"
+      "-t2${middle}-v3"
     else if host == "v7w7r-youyeetoox1" then
-      "-server"
+      "-server${middle}-v2"
     else if host == "v7w7r-rc71l" then
-      "-handheld"
+      "-handheld${middle}-zen4"
     else if host == "v7w7r-higole" then
-      "-lowperf"
+      "-lowperf${middle}-v2"
     else
       "";
 
   fetch = pkgs.callPackage ./fetch.nix {
     inherit kernelData majorMinor hardened;
   };
-  localVer = "-v7w7r${specialization}${if hardened then "-hardened" else ""}-native";
+  localVer = "-v7w7r${specialization { middle = if hardened then "-hardened" else ""; }}";
 
   patches = [
     "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
