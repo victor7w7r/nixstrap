@@ -30,11 +30,11 @@ let
   localVer = "-v7w7r${specialization}${if hardened then "-hardened" else ""}-native";
 
   patches = [
+    "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
+    "${fetch.patches}/${majorMinor}/0004-cachy.patch"
+    "${fetch.patches}/${majorMinor}/0005-crypto.patch"
+    "${fetch.patches}/${majorMinor}/0006-fixes.patch"
     /*
-      "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
-      "${fetch.patches}/${majorMinor}/0004-cachy.patch"
-      "${fetch.patches}/${majorMinor}/0005-crypto.patch"
-      "${fetch.patches}/${majorMinor}/0006-fixes.patch"
       "${fetch.patches}/${majorMinor}/misc/0001-clang-polly.patch"
       "${fetch.patches}/${majorMinor}/misc/dkms-clang.patch"
       "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
