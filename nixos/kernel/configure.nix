@@ -139,7 +139,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   inherit patches;
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
-
+  LLVM = "1";
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
