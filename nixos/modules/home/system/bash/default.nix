@@ -15,10 +15,10 @@
   };
 
   imports = [
-    (import ./aliases.nix)
-    (import ./functions)
-    (import ./exec.nix)
-    (import ./plugins.nix)
-    (import ./variables.nix)
+    # (import ./aliases.nix)
+    # (import ./functions)
+    # (import ./exec.nix)
+    # (import ./plugins.nix)
+    # (import ./variables.nix)
   ];
 }
