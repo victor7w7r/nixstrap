@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.bash = {
     enable = true;
@@ -12,11 +12,18 @@
       "cd"
       "exit"
     ];
+    shellInit = lib.mkMerge [
+      (import ./functions/bofh.nix)
+      (import ./functions/kaomoji.nix)
+      (import ./functions/misc.nix)
+      (import ./functions/node.nix)
+      (import ./functions/quotes.nix)
+      (import ./functions/utils.nix)
+    ];
   };
 
   imports = [
     (import ./aliases.nix)
-    # (import ./functions)
     (import ./exec.nix)
     (import ./plugins.nix)
     (import ./variables.nix)
