@@ -391,6 +391,10 @@
   "CONFIG_PM_SLEEP" = "y";
   "CONFIG_PM_SLEEP_SMP" = "y";
   "CONFIG_PM" = "y";
+  "CONFIG_PM_DEBUG" = "y";
+  "CONFIG_PM_SLEEP_DEBUG" = "y";
+  "CONFIG_PM_TRACE" = "y";
+  "CONFIG_PM_TRACE_RTC" = "y";
   "CONFIG_PM_CLK" = "y";
   "CONFIG_WQ_POWER_EFFICIENT_DEFAULT" = "y";
   "CONFIG_ENERGY_MODEL" = "y";

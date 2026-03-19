@@ -1,14 +1,14 @@
 [
-  "-d ACPI_DEBUG"
-  "-d DEBUG_INFO_DWARF4"
-  "-d DEBUG_INFO_DWARF5"
+  #"-d ACPI_DEBUG"
+  # "-d DEBUG_INFO_DWARF4"
+  # "-d DEBUG_INFO_DWARF5"
   "-d DEBUG_PREEMPT"
   "-d LATENCYTOP"
   #"-d PAHOLE_HAS_SPLIT_BTF"
   "-d PM_ADVANCED_DEBUG"
-  #"-d PM_DEBUG"
+  "-d PM_DEBUG"
   "-d PM_SLEEP_DEBUG"
-  #"-d SCHED_DEBUG"
+  "-d SCHED_DEBUG"
   "-d SLUB_DEBUG"
 ]
 ++ [
@@ -37,7 +37,7 @@
   "-d NOP_TRACER"
   "-d OSNOISE_TRACER"
   "-d PRINTK_TIME"
-  #"-d SCHED_TRACER"
+  "-d SCHED_TRACER"
   "-d STACKTRACE"
   "-d STACKTRACE_BUILD_ID"
   "-d STACK_TRACER"
