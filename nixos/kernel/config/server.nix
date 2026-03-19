@@ -13,17 +13,20 @@ else
     "--set-val HZ 300"
     "--set-val NR_CPUS 8"
 
-    "-d CACHY"
     "-e BLK_DEV_NVME"
     "-e CPU_FREQ_DEFAULT_GOV_PERFORMANCE"
-    "-e CPU_FREQ_GOV_ONDEMAND"
     "-e CPU_FREQ_GOV_PERFORMANCE"
     "-e CPU_FREQ_GOV_SCHEDUTIL"
+    "-e F2FS_FS"
     "-e HZ_300"
+    "-e MMC"
     "-e NO_HZ_IDLE"
     "-e PREEMPT_NONE"
     "-e PREEMPT_NONE_BUILD"
 
+    "-m CPU_FREQ_GOV_ONDEMAND"
+
+    "-d CACHY"
     "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
     "-d INPUT_JOYSTICK"
     "-d INPUT_TABLET"

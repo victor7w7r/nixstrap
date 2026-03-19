@@ -6,9 +6,6 @@ if host != "v7w7r-higole" && host != "v7w7r-youyeetoox1" then
 
     "-e BLK_DEV_NVME"
     "-e CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
-    "-e CPU_FREQ_GOV_CONSERVATIVE"
-    "-e CPU_FREQ_GOV_ONDEMAND"
-    "-e CPU_FREQ_GOV_PERFORMANCE"
     "-e CPU_FREQ_GOV_SCHEDUTIL"
     "-e HZ_1000"
     "-e INPUT_UINPUT"
@@ -19,6 +16,11 @@ if host != "v7w7r-higole" && host != "v7w7r-youyeetoox1" then
     "-e PREEMPT"
     "-e PREEMPT_COUNT"
     "-e PREEMPT_DYNAMIC"
+
+    "-m F2FS_FS"
+    "-m CPU_FREQ_GOV_PERFORMANCE"
+    "-m CPU_FREQ_GOV_CONSERVATIVE"
+    "-m CPU_FREQ_GOV_ONDEMAND"
 
     "-d NO_HZ_IDLE"
     "-d PREEMPT_NONE"
@@ -31,10 +33,9 @@ else if host == "v7w7r-higole" then
     "--set-val SND_HDA_POWER_SAVE_DEFAULT 1"
 
     "-e CPU_FREQ_DEFAULT_GOV_POWERSAVE"
-    "-e CPU_FREQ_GOV_CONSERVATIVE"
-    "-e CPU_FREQ_GOV_ONDEMAND"
     "-e CPU_FREQ_GOV_POWERSAVE"
     "-e CPU_FREQ_GOV_SCHEDUTIL"
+    "-e F2FS_FS"
     "-e HZ_300"
     "-e INPUT_UINPUT"
     "-e MMC"
@@ -42,10 +43,13 @@ else if host == "v7w7r-higole" then
     "-e PCIEASPM_POWERSAVE"
     "-e PREEMPT_VOLUNTARY"
     "-e SND_HDA_POWER_SAVE"
-    "-e USB_AUTOSUSPEND"
-    "-e RTW88"
     "-e TOUCHSCREEN_GOODIX"
+    "-e USB_AUTOSUSPEND"
     "-e X86_PKG_TEMP_THERMAL"
+
+    "-m RTW88"
+    "-m CPU_FREQ_GOV_CONSERVATIVE"
+    "-m CPU_FREQ_GOV_ONDEMAND"
 
     "-d BLK_DEV_NVME"
     "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"

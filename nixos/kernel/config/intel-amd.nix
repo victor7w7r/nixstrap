@@ -3,20 +3,18 @@ if host == "v7w7r-rc71l" then
   [
     "-e AMD_PMF"
     "-e AMD_PRIVATE_COLOR"
-    "-e ASUS_ARMOURY"
     "-e ASUS_WMI"
     "-e ASUS_NB_WMI"
     "-e BATTERY_ASUS_EC"
     "-e CPU_SUP_AMD"
     "-e CPU_SUP_HYGON"
-    "-e KVM_AMD"
-    "-e NET_VENDOR_AMD"
-    "-e NET_VENDOR_ASIX"
-    "-e SENSORS_K10TEMP"
-    "-e SENSORS_AMD_ENERGY"
     "-e X86_AMD_PSTATE"
 
     "-m AMD_3D_VCACHE"
+    "-m ASUS_ARMOURY"
+    "-m KVM_AMD"
+    "-m SENSORS_AMD_ENERGY"
+    "-m SENSORS_K10TEMP"
     "-m V4L2_LOOPBACK"
     "-m VHBA"
 
@@ -70,13 +68,16 @@ if host == "v7w7r-rc71l" then
   ]
 else
   [
-    "-e BT_INTEL"
     "-e CPU_SUP_INTEL"
     "-e DRM_I915"
-    "-e DRM_I915_GVT_KVMGT"
-    "-e KVM_INTEL"
-    "-e NET_VENDOR_INTEL"
     "-e X86_INTEL_PSTATE"
+
+    "-m BT_INTEL"
+    "-m DRM_I915_GVT_KVMGT"
+    "-m KVM_INTEL"
+    "-m MFD_INTEL_LPSS"
+    "-m MFD_INTEL_LPSS_PCI"
+    "-m NET_VENDOR_INTEL"
 
     "-d AMD_3D_VCACHE"
     "-d AMD_HFI"
