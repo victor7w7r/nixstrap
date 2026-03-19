@@ -1,8 +1,8 @@
 { host }:
 (import ./cmdline.nix) { inherit host; }
-++ (import ./develop.nix)
-++ (import ./common.nix)
-++ (import ./vendors.nix)
+#++ (import ./develop.nix)
+#++ (import ./common.nix)
+#++ (import ./vendors.nix)
 ++ (import ./server.nix) { inherit host; }
 ++ (import ./powersav-perf.nix) { inherit host; }
 ++ (import ./intel-amd.nix) { inherit host; }
