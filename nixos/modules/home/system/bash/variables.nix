@@ -7,7 +7,6 @@
     GIT_HOSTING = "git@git.domain.com";
     IRC_CLIENT = "irssi";
     TODO = "t";
-    SCM_CHECK = true;
 
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";

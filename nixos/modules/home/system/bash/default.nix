@@ -18,7 +18,7 @@
     (import ./aliases.nix)
     # (import ./functions)
     (import ./exec.nix)
-    #(import ./plugins.nix)
+    (import ./plugins.nix)
     (import ./variables.nix)
   ];
 }
