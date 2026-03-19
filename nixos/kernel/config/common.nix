@@ -1,18 +1,14 @@
-let
-  red = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166";
-  green = "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173";
-  blue = "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200";
-  opt = "mitigations=off pti=on page_alloc.shuffle=1";
-in
 [
   "--set-str DEFAULT_HOSTNAME v7w7r"
-  ''--set-str CMDLINE "${red} ${green} ${blue} ${opt}"''
+  "--set-str DEFAULT_NET_SCH fq"
+  "--set-str DEFAULT_TCP_CONG bbr"
 
   "-e AUTOFS"
   "-e BPF_LSM"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
-  "-e CMDLINE_BOOL"
   "-e DEBUG_INFO_BTF"
+  "-e DEFAULT_BBR"
+  "-e DEFAULT_FQ"
   "-e HIBERNATION"
   "-e KVM"
   "-e KVM_X86"
@@ -21,18 +17,23 @@ in
   "-e LTO_CLANG_THIN"
   "-e MMC"
   "-e NO_HZ"
+  "-e NET_SCH_FQ"
   "-e NO_HZ_COMMON"
   "-e PER_VMA_LOCK"
   "-e X86_NATIVE_CPU"
+  "-e TCP_CONG_BBR"
   "-e TRANSPARENT_HUGEPAGE_MADVISE"
   "-e ZRAM"
+
+  "-m NET_SCH_FQ_CODEL"
 
   "-d 842_COMPRESS"
   "-d 842_DECOMPRESS"
   "-d CC_OPTIMIZE_FOR_PERFORMANCE"
-  "-d CMDLINE_OVERRIDE"
   "-d CPUMASK_OFFSTACK"
   "-d DEBUG_FS"
+  "-d DEFAULT_CUBIC"
+  "-d DEFAULT_FQ_CODEL"
   "-d DRM_XE"
   "-d GENERIC_CPU"
   "-d HZ_PERIODIC"

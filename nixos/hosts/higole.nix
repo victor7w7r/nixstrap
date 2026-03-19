@@ -69,14 +69,7 @@ in
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [
-      "intel_iommu=on"
-      "fbcon=rotate:1"
       "resume=/dev/vg0/swapcrypt"
-      "mem_sleep_default=deep"
-      "i2c_designware.force_load=1"
-      "i2c_dw.disable_fast_mode=1"
-      "acpi_backlight=vendor"
-      "i915.enable_dpcd_backlight=1"
     ]
     ++ intelParams
     ++ params { };

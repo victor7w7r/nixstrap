@@ -48,8 +48,6 @@ in
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [
-      "amd_iommu=on"
-      "amdgpu.sg_display=0"
       "resume=/dev/vg0/swapcrypt"
     ]
     ++ params { };
