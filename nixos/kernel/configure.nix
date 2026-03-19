@@ -154,14 +154,15 @@ pkgs.stdenv.mkDerivation (attrs: {
   name = "linux-${majorMinor}${localVer}-config";
   LLVM = "1";
   stdenv = helpers.stdenvLLVM;
-  nativeBuildInputs = with pkgs; linux_6_18.nativeBuildInputs ++ linux_6_18.buildInputs;
-  /*
+  nativeBuildInputs =
+    with pkgs;
+    linux_6_18.nativeBuildInputs
+    ++ linux_6_18.buildInputs
     ++ [
-    clang_18
-    llvm_18
-    lld_18
+      clang_18
+      llvm_18
+      lld_18
     ];
-  */
 
   installPhase = ''
     runHook preInstall
