@@ -29,10 +29,7 @@ let
   cmd = "${red} ${green} ${blue} ${opt} ${sec} ${vm} ${save} ${amd} ${perf} ${sata} ${rescue} ${intel} ${higole}";
 in
 [
-  ''
-    "-e CMDLINE_BOOL"
-    "-d CMDLINE_OVERRIDE"
-  ''
+  "-e CMDLINE_BOOL"
+  "-d CMDLINE_OVERRIDE"
+  ''--set-str CMDLINE "${cmd}"''
 ]
-#"--set-str CMDLINE \"${cmd}\""
-#"add_efi_memmap"
