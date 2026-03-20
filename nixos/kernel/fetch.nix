@@ -35,7 +35,7 @@
     owner = kernelData.user;
     repo = kernelData.config.repo;
     rev = kernelData.config.rev;
-    sha256 = kernelData.config.hash;
+    sha256 = if hardened then kernelData.config.hashHardened else kernelData.config.hash;
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"

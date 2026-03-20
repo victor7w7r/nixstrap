@@ -9,7 +9,7 @@
     "repo": "linux-cachyos",
     "rev": "f7ce1a650782de6d35e9b7635dce828abde329b3",
     "hash": "sha256-PxuXtL+xdbPU+nVGz7M9o/flXjY+UP8rKQ9Bg2cpAjc=",
-    "hashOld": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
+    "hashHardened": "sha256-nedFXnBMMSaY6JZSZjd0Jv93freb0oVmrTyQZqAsxFE="
   },
   "patches": {
     "repo": "kernel-patches",
