@@ -24,13 +24,6 @@
     sha256 = kernelData.tachyon.hash;
   };
 
-  tkg = pkgs.fetchFromGitHub {
-    owner = kernelData.tkg.owner;
-    repo = kernelData.tkg.repo;
-    rev = kernelData.tkg.rev;
-    sha256 = kernelData.tkg.hash;
-  };
-
   kConfig = pkgs.fetchFromGitHub {
     owner = kernelData.user;
     repo = kernelData.config.repo;
@@ -39,18 +32,6 @@
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
       cp "$out/linux-cachyos-${if hardened then "hardened" else "lts"}/config" "$conf"
-      sed -i '/^#/d' $conf
-      sed -i '/^CONFIG_G*CC_/d' $conf
-      sed -i '/^CONFIG_ATH/d' $conf
-      sed -i '/^CONFIG_LD_/d' $conf
-      sed -i '/^CONFIG_KUNIT$/d' $conf
-      sed -i '/^CONFIG_MEMSTICK_/d' $conf
-      sed -i '/^CONFIG_SYSTEM/d' $conf
-      sed -i '/^CONFIG_MEDIA_/d' $conf
-      sed -i '/^CONFIG_SSB/d' $conf
-      sed -i '/^CONFIG_COMEDI/d' $conf
-      sed -i '/^CONFIG_.*_PHY=/d' $conf
-      sed -i '/^$/N;/\n$/D' $conf
       rm -rfv "$out" && cp -v "$conf" "$out"
     '';
   };

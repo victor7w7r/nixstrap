@@ -11,6 +11,7 @@ let
     inherit
       host
       kernelData
+      kernel
       helpers
       ;
   };

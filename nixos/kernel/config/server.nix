@@ -3,9 +3,8 @@ if host != "v7w7r-youyeetoox1" then
   [
     "-e ANDROID_BINDERFS"
     "-e ANDROID_BINDER_IPC"
-    "-e CACHY"
     "-e SCHED_BORE"
-    "-e SCHED_CLASS_EXT"
+    "-e INPUT_UINPUT"
     "-e NTSYNC"
   ]
 else
@@ -25,6 +24,7 @@ else
     "-e PREEMPT_NONE_BUILD"
 
     "-m CPU_FREQ_GOV_ONDEMAND"
+    "-m INPUT_UINPUT"
 
     "-d CACHY"
     "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"

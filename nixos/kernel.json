@@ -9,18 +9,12 @@
     "repo": "linux-cachyos",
     "rev": "f7ce1a650782de6d35e9b7635dce828abde329b3",
     "hash": "sha256-PxuXtL+xdbPU+nVGz7M9o/flXjY+UP8rKQ9Bg2cpAjc=",
-    "hashHardened": "sha256-nedFXnBMMSaY6JZSZjd0Jv93freb0oVmrTyQZqAsxFE="
+    "hashHardened": "sha256-6IKU3RN5p/0FdJd5fjVzsEuqMQMjL+a7fokuC/Fx6y4="
   },
   "patches": {
     "repo": "kernel-patches",
     "rev": "749983abd1d78492ef0b8bc7f23d92540077b62c",
     "hash": "sha256-eaCxvHQlqpuQzbev+X7EEwSTsqm0MH9LTIEfHvVenSE="
-  },
-  "tkg": {
-    "owner": "Frogging-Family",
-    "repo": "linux-tkg",
-    "rev": "e4eabe3978f0e6ed967e5d969487f9335af8062f",
-    "hash": "sha256-K7fVOHEVGLsM5Xi1oKUuYx936SWNNrDztFNSya/P+X8="
   },
   "tachyon": {
     "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",

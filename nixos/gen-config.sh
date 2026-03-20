@@ -14,6 +14,14 @@ run-build() {
         --no-link --print-out-paths
 }
 
+if res=$(run-build $SRVCONFIG); then
+    cat "$res" >"kernel/generated/${SRVCONFIG}.x86_64-linux.nix"
+else
+    exit 1
+fi
+
+exit 0
+
 if res=$(run-build $MCONFIG); then
     cat "$res" >"kernel/generated/${MCONFIG}.x86_64-linux.nix"
 else
@@ -28,12 +36,6 @@ fi
 
 if res=$(run-build $HCONFIG); then
     cat "$res" >"kernel/generated/${HCONFIG}.x86_64-linux.nix"
-else
-    exit 1
-fi
-
-if res=$(run-build $SRVCONFIG); then
-    cat "$res" >"kernel/generated/${SRVCONFIG}.x86_64-linux.nix"
 else
     exit 1
 fi
