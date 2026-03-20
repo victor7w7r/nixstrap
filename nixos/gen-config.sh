@@ -1,20 +1,39 @@
 #!/usr/bin/env bash
 set -eu
 
-cat "$(nix build --extra-experimental-features 'nix-command flakes' -L ".#packages.x86_64-linux.macminiconfig" --no-link --print-out-paths)" \
-    >"kernel/generated/macminiconfig.x86_64-linux.nix"
+MCONFIG="macminiconfig"
+ROGCONFIG="rogallyconfig"
+HCONFIG="higoleconfig"
+SRVCONFIG="serverconfig"
 
-nix-collect-garbage -d
+run-build() {
+    local PC=$1
+    nix build \
+        --extra-experimental-features 'nix-command flakes' \
+        -L ".#packages.x86_64-linux.${PC}" \
+        --no-link --print-out-paths
+}
 
-cat "$(nix build --extra-experimental-features 'nix-command flakes' -L ".#packages.x86_64-linux.rogallyconfig" --no-link --print-out-paths)" \
-    >"kernel/generated/rogallyconfig.x86_64-linux.nix"
+if res=$(run-build $MCONFIG); then
+    cat "$res" >"kernel/generated/${MCONFIG}.x86_64-linux.nix"
+else
+    exit 1
+fi
 
-nix-collect-garbage -d
+if res=$(run-build $ROGCONFIG); then
+    cat "$res" >"kernel/generated/${ROGCONFIG}.x86_64-linux.nix"
+else
+    exit 1
+fi
 
-cat "$(nix build --extra-experimental-features 'nix-command flakes' -L ".#packages.x86_64-linux.higoleconfig" --no-link --print-out-paths)" \
-    >"kernel/generated/higoleconfig.x86_64-linux.nix"
+if res=$(run-build $HCONFIG); then
+    cat "$res" >"kernel/generated/${HCONFIG}.x86_64-linux.nix"
+else
+    exit 1
+fi
 
-nix-collect-garbage -d
-
-cat "$(nix build --extra-experimental-features 'nix-command flakes' -L ".#packages.x86_64-linux.serverconfig" --no-link --print-out-paths)" \
-    >"kernel/generated/serverconfig.x86_64-linux.nix"
+if res=$(run-build $SRVCONFIG); then
+    cat "$res" >"kernel/generated/${SRVCONFIG}.x86_64-linux.nix"
+else
+    exit 1
+fi

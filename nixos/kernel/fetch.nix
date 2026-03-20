@@ -43,16 +43,13 @@
       sed -i '/^CONFIG_G*CC_/d' $conf
       sed -i '/^CONFIG_ATH/d' $conf
       sed -i '/^CONFIG_LD_/d' $conf
-      sed -i '/^CONFIG_RUSTC*_/d' $conf
       sed -i '/^CONFIG_KUNIT$/d' $conf
-      sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' $conf
       sed -i '/^CONFIG_MEMSTICK_/d' $conf
       sed -i '/^CONFIG_SYSTEM/d' $conf
       sed -i '/^CONFIG_MEDIA_/d' $conf
       sed -i '/^CONFIG_SSB/d' $conf
       sed -i '/^CONFIG_COMEDI/d' $conf
       sed -i '/^CONFIG_.*_PHY=/d' $conf
-      sed -i '/^CONFIG_PTP_1588_CLOCK/d' $conf
       sed -i '/^$/N;/\n$/D' $conf
       rm -rfv "$out" && cp -v "$conf" "$out"
     '';
@@ -65,10 +62,21 @@
     sha256 = kernelData.patches.hash;
     postFetch = ''
       find "$out" -type d -empty -delete
-
         ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
         "$out/${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
         cat bbr3-filter.patch > "$out/${majorMinor}/0003-bbr3.patch"
+
+        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
+        "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch
+        cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch"
+
+        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
+        "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch
+        cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch"
+
+        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/i915/display/*" \
+        "$out/${majorMinor}/0010-t2.patch" > t2-filter.patch
+        cat t2-filter.patch > "$out/${majorMinor}/0010-t2.patch"
     '';
   };
 }

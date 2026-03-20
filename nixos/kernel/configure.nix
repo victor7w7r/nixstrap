@@ -107,17 +107,17 @@ let
     "${fetch.patches}/${majorMinor}/0009-sched-ext.patch"
   ])
   ++ (lib.optional (host == "v7w7r-macmini81") [
-    "${fetch.patches}/${majorMinor}/0010-t2.patch" #FAIL CHECK
+    "${fetch.patches}/${majorMinor}/0010-t2.patch"
   ])
   ++ (lib.optional hardened [
-    "${fetch.tkg}/linux-tkg-patches/${majorMinor}/0012-linux-hardened.patch"
+     "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"
   ])
   ++ (
     if (host == "v7w7r-rc71l") then
       (
         [
           "${fetch.patches}/${majorMinor}/misc/0001-acpi-call.patch"
-          "${fetch.patches}/${majorMinor}/misc/0001-handheld.patch" #FAIL CHECK
+          "${fetch.patches}/${majorMinor}/misc/0001-handheld.patch"
           "${fetch.patches}/${majorMinor}/0001-amd-pstate.patch"
           "${fetch.patches}/${majorMinor}/0002-asus.patch"
           "${fetch.patches}/${majorMinor}/0007-hdmi.patch"

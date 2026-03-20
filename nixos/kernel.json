@@ -1,31 +1,31 @@
 {
   "user": "CachyOS",
   "linux": {
-    "version": "6.18.18",
+    "version": "6.18.19",
     "url": "mirror://kernel/linux/kernel/v6.x",
-    "hash": "sha256-9IVfOCwbc1yEByve8221vNXceww35C9RBDFxSaCkhu8="
+    "hash": "sha256-6q94JxzQfGitnEyacMcnGLM6u9cWI52CuslrF1HrCQw="
   },
   "config": {
     "repo": "linux-cachyos",
-    "rev": "fa09a5bc69d3e7feeed9b1402c7df06c8170402a",
-    "hashOld": "sha256-PsNBbVlLl2vi7dNOSH/sxfPihr3IAAh7GuUSyblPtzA=",
-    "hash": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
+    "rev": "f7ce1a650782de6d35e9b7635dce828abde329b3",
+    "hash": "sha256-PxuXtL+xdbPU+nVGz7M9o/flXjY+UP8rKQ9Bg2cpAjc=",
+    "hashOld": "sha256-/S1+LKJIJsxnXRF1gbvHkvTu+syYQWLaF1cqVv2dyDk="
   },
   "patches": {
     "repo": "kernel-patches",
-    "rev": "1c32cd813da03e2f78ad6067c0eada6bd149413c",
-    "hash": "sha256-7lq9SbA1ZthUuBEdm/CuTZ9a5x8iapo3IW8jYAcFCeM="
+    "rev": "749983abd1d78492ef0b8bc7f23d92540077b62c",
+    "hash": "sha256-eaCxvHQlqpuQzbev+X7EEwSTsqm0MH9LTIEfHvVenSE="
   },
   "tkg": {
     "owner": "Frogging-Family",
     "repo": "linux-tkg",
-    "rev": "b8f2e726159872207012e706f3239c67829ab1b8",
+    "rev": "e4eabe3978f0e6ed967e5d969487f9335af8062f",
     "hash": "sha256-K7fVOHEVGLsM5Xi1oKUuYx936SWNNrDztFNSya/P+X8="
   },
   "tachyon": {
     "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",
     "rev": "465087d9f514ffebcfda87ae9ec184e843616313",
-    "hash": "sha256-gzp78GULPQE0HaKnTi+nj7Pl/7Wq2M5lU7ZBCEcBsyI="
+    "hash": "sha256-18432fSAU0uzrAWr4nBvhXjBX4C8Xvt6Ci/Pl/qjP0k="
   },
   "asus": {
     "url": "https://gitlab.com/asus-linux/linux-g14",

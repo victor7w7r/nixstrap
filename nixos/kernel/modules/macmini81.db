@@ -8,7 +8,6 @@ algif_skcipher
 applesmc
 asn1_encoder
 bnep
-brcmfmac_wcc
 btbcm
 btintel
 cls_u32
