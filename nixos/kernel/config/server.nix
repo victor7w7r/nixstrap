@@ -5,6 +5,7 @@ if host != "v7w7r-youyeetoox1" then
     "-e ANDROID_BINDER_IPC"
     "-e SCHED_BORE"
     "-e INPUT_UINPUT"
+    "-e CACHY"
     "-e NTSYNC"
   ]
 else
