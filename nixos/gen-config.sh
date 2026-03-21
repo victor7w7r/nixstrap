@@ -20,8 +20,6 @@ else
     exit 1
 fi
 
-exit 0
-
 if res=$(run-build $MCONFIG); then
     cat "$res" >"kernel/generated/${MCONFIG}.x86_64-linux.nix"
 else

@@ -55,6 +55,7 @@ else if host == "v7w7r-higole" then
     "-d CONTEXT_TRACKING_FORCE"
     "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
     "-d CPU_FREQ_GOV_PERFORMANCE"
+    "-d HZ_1000"
     "-d NO_HZ_FULL"
     "-d PREEMPT"
     "-d PREEMPT_DYNAMIC"

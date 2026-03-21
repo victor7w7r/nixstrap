@@ -21,7 +21,7 @@ let
     else if host == "v7w7r-youyeetoox1" then
       "-server${middle}"
     else if host == "v7w7r-rc71l" then
-      "-handheld${middle}-zen4"
+      "-handheld${middle}"
     else if host == "v7w7r-higole" then
       "-lowperf${middle}"
     else
@@ -140,9 +140,9 @@ pkgs.stdenv.mkDerivation (attrs: {
     with pkgs;
     kernel.nativeBuildInputs
     ++ [
-      clang
-      lld
-      llvm
+      clang_20
+      lld_20
+      llvm_20
     ];
 
   installPhase = ''

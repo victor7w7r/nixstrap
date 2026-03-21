@@ -31,6 +31,7 @@ else
     "-d INPUT_JOYSTICK"
     "-d INPUT_TABLET"
     "-d INPUT_TOUCHSCREEN"
+    "-d HZ_1000"
     "-d NO_HZ_FULL"
     "-d NTSYNC"
     "-d PREEMPT"
