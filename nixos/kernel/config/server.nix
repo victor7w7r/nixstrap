@@ -27,7 +27,6 @@ else
     "-m CPU_FREQ_GOV_ONDEMAND"
     "-m INPUT_UINPUT"
 
-    "-d CACHY"
     "-d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
     "-d INPUT_JOYSTICK"
     "-d INPUT_TABLET"

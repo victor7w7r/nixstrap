@@ -138,8 +138,8 @@ pkgs.stdenv.mkDerivation (attrs: {
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
-    kernel.nativeBuildInputs
-    ++ kernel.buildInputs
+    pkgs.linux_6_18.nativeBuildInputs
+    ++ pkgs.linux_6_18.buildInputs
     ++ [
       clang_18
       llvm_18
