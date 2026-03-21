@@ -11,7 +11,6 @@ let
     inherit
       host
       kernelData
-      kernel
       helpers
       ;
   };
@@ -34,9 +33,7 @@ let
       }) patches;
 
       extraMakeFlags = [
-        "NIX_ENFORCE_NO_NATIVE=0"
         "LOCALVERSION=${configure.passthru.localVer}"
-        "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "KCFLAGS=-Wno-error"
       ];
     }).overrideAttrs

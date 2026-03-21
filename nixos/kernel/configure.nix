@@ -3,7 +3,7 @@
   lib,
   pkgs,
   helpers,
-  kernel,
+  linux_6_18,
   kernelData,
   ...
 }:
@@ -138,7 +138,8 @@ pkgs.stdenv.mkDerivation (attrs: {
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
-    kernel.nativeBuildInputs
+    linux_6_18.buildInputs
+    ++ linux_6_18.nativeBuildInputs
     ++ [
       clang_18
       lld_18
