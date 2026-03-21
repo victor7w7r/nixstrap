@@ -66,7 +66,7 @@ let
       #"${fetch.tachyon}/patches/0002-mm-disable-proactive-compaction-by-de.patch"
       #"${fetch.tachyon}/patches/0002-sched-core-add-some-branch-hints-based-on-gcov-analy.patch"
       "${fetch.tachyon}/patches/0003-mm-stop-kswapd-early-when-nothings-wa.patch"
-      "${fetch.tachyon}/patches/0005-mm-increment-kswapd_waiters-for-throt.patch"
+      #"${fetch.tachyon}/patches/0005-mm-increment-kswapd_waiters-for-throt.patch" #ERROR
       "${fetch.tachyon}/patches/0104-pci-pme-wakeups.patch"
       #"${fetch.tachyon}/patches/0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch"
       "${fetch.tachyon}/patches/0108-smpboot-reuse-timer-calibration.patch"
@@ -141,9 +141,9 @@ pkgs.stdenv.mkDerivation (attrs: {
     pkgs.linux_6_18.nativeBuildInputs
     ++ pkgs.linux_6_18.buildInputs
     ++ [
-      clang
-      llvm
-      lld
+      clang_18
+      llvm_18
+      lld_18
     ];
 
   installPhase = ''
