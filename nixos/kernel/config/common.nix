@@ -2,7 +2,7 @@
   "--set-str DEFAULT_HOSTNAME v7w7r"
   "--set-str DEFAULT_NET_SCH fq"
   "--set-str DEFAULT_TCP_CONG bbr"
-  #''--set-str LSM ""''
+  ''--set-str LSM ""''
 
   "-d CACHY"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
