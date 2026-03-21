@@ -2,9 +2,9 @@
   "--set-str DEFAULT_HOSTNAME v7w7r"
   "--set-str DEFAULT_NET_SCH fq"
   "--set-str DEFAULT_TCP_CONG bbr"
-  ''--set-str LSM ""''
+  #''--set-str LSM ""''
 
-  "-d CACHY"
+  "-e CACHY"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
@@ -16,6 +16,7 @@
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
   "-e TCP_CONG_BBR"
+  # "-e RANDSTRUCT_PERFORMANCE"
   "-e TRANSPARENT_HUGEPAGE_MADVISE"
   "-e ZRAM_DEF_COMP_LZ4"
   "-e ZRAM_LZ4_COMPRESS"
