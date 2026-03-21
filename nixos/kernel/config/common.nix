@@ -58,6 +58,8 @@
   "-d PTP_1588_CLOCK"
   "-d REMOTEPROC"
   "-d RUNTIME_TESTING_MENU"
+  "-d RUST"
+  "-d RUSTC"
   "-d SCHED_CLUSTER"
   "-d SCSI_DH"
   "-d SECURITY_SELINUX"
