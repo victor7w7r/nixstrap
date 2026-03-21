@@ -9,13 +9,6 @@ let
   save = "rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs";
   perf = "split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0";
   rescue = "sysrq_always_enabled=0 udev.log_level=3 verbose=1";
-  archSpec =
-    if host == "v7w7r-macmini81" then
-      "--set-val X86_64_VERSION 3"
-    else if host == "v7w7r-youyeetoox1" || host == "v7w7r-higole" then
-      "--set-val X86_64_VERSION 2"
-    else
-      "-e X86_NATIVE_CPU";
   sata =
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "libahci.ignore_sss=1" else "";
   amd =
@@ -36,7 +29,6 @@ let
   cmd = "${red} ${green} ${blue} ${opt} ${sec} ${vm} ${save} ${amd} ${perf} ${sata} ${rescue} ${intel} ${higole}";
 in
 [
-  archSpec
   "-e CMDLINE_BOOL"
   "-d CMDLINE_OVERRIDE"
   ''--set-str CMDLINE "${cmd}"''
