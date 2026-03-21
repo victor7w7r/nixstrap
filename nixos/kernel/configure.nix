@@ -17,20 +17,20 @@ let
       middle ? "",
     }:
     if host == "v7w7r-macmini81" then
-      "-t2${middle}"
+      "-t2${middle}-v3"
     else if host == "v7w7r-youyeetoox1" then
-      "-server${middle}"
+      "-server${middle}-v2"
     else if host == "v7w7r-rc71l" then
-      "-handheld${middle}"
+      "-handheld${middle}-zen4"
     else if host == "v7w7r-higole" then
-      "-lowperf${middle}"
+      "-lowperf${middle}-v2"
     else
       "";
 
   fetch = pkgs.callPackage ./fetch.nix {
     inherit kernelData majorMinor hardened;
   };
-  localVer = "-v7w7r${specialization { middle = if hardened then "-hardened" else ""; }}-native";
+  localVer = "-v7w7r${specialization { middle = if hardened then "-hardened" else ""; }}";
 
   patches =
     (lib.optional (host == "v7w7r-rc71l") [
@@ -140,9 +140,9 @@ pkgs.stdenv.mkDerivation (attrs: {
     with pkgs;
     kernel.nativeBuildInputs
     ++ [
-      clang_20
-      lld_20
-      llvm_20
+      clang_18
+      lld_18
+      llvm_18
     ];
 
   installPhase = ''

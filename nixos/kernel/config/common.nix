@@ -4,10 +4,6 @@
   "--set-str DEFAULT_TCP_CONG bbr"
   ''--set-str LSM ""''
 
-  "-d GENERIC_CPU"
-  "-d MZEN4"
-  "-e X86_NATIVE_CPU"
-
   "-e CACHY"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEFAULT_BBR"
@@ -80,6 +76,7 @@
   "-d XEN"
   "-d X86_DECODER_SELFTEST"
   "-d X86_EXTENDED_PLATFORM"
+  "-d X86_NATIVE_CPU"
   "-d WATCHDOG"
   "-d ZRAM_BACKEND_842"
 ]

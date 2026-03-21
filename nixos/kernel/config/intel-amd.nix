@@ -1,6 +1,7 @@
 { host }:
 if host == "v7w7r-rc71l" then
   [
+
     "-e AMD_PMF"
     "-e AMD_PRIVATE_COLOR"
     "-e ASUS_WMI"
@@ -8,6 +9,7 @@ if host == "v7w7r-rc71l" then
     "-e BATTERY_ASUS_EC"
     "-e CPU_SUP_AMD"
     "-e CPU_SUP_HYGON"
+    "-e MZEN4"
     "-e X86_AMD_PSTATE"
 
     "-m AMD_3D_VCACHE"
@@ -23,6 +25,7 @@ if host == "v7w7r-rc71l" then
     "-d CPU_SUP_INTEL"
     "-d DRM_I915"
     "-d HAVE_INTEL_TXT"
+    "-d GENERIC_CPU"
     "-d INTEL_GTT"
     "-d INTEL_HFI_THERMAL"
     "-d INTEL_IDLE"
@@ -70,6 +73,7 @@ else
   [
     "-e CPU_SUP_INTEL"
     "-e DRM_I915"
+    "-e GENERIC_CPU"
     "-e X86_INTEL_PSTATE"
 
     "-m BT_INTEL"
