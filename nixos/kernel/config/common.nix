@@ -9,7 +9,6 @@
   "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
   "-e HIBERNATION"
-  #"-e KERNEL_LZ4"
   "-e LTO_CLANG_THIN"
   "-e MQ_IOSCHED_ADIOS"
   "-e NET_SCH_FQ"

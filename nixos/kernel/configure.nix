@@ -138,12 +138,12 @@ pkgs.stdenv.mkDerivation (attrs: {
   stdenv = helpers.stdenvLLVM;
   nativeBuildInputs =
     with pkgs;
-    linux_6_18.buildInputs
-    ++ linux_6_18.nativeBuildInputs
+    linux_6_18.nativeBuildInputs
+    ++ linux_6_18.buildInputs
     ++ [
       clang_18
-      lld_18
       llvm_18
+      lld_18
     ];
 
   installPhase = ''
