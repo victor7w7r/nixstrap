@@ -34,6 +34,7 @@ let
 
       extraMakeFlags = [
         "LOCALVERSION=${configure.passthru.localVer}"
+        "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "KCFLAGS=-Wno-error"
       ];
     }).overrideAttrs
