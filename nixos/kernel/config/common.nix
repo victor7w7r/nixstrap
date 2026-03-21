@@ -4,11 +4,12 @@
   "--set-str DEFAULT_TCP_CONG bbr"
   ''--set-str LSM ""''
 
-  "-e CACHY"
+  "-d CACHY"
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
   "-e HIBERNATION"
+  "-e KERNEL_LZ4"
   "-e LTO_CLANG_THIN"
   "-e MQ_IOSCHED_ADIOS"
   "-e NET_SCH_FQ"
