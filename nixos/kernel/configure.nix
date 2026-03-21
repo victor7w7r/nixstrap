@@ -141,9 +141,9 @@ pkgs.stdenv.mkDerivation (attrs: {
     kernel.nativeBuildInputs
     ++ kernel.buildInputs
     ++ [
-      clang_18
-      llvm_18
-      lld_18
+      clang
+      llvm
+      lld
     ];
 
   installPhase = ''

@@ -37,7 +37,7 @@ let
         "LOCALVERSION=${configure.passthru.localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
-        "KCFLAGS=-Wno-error"
+        "KCFLAGS=-Wno-unknown-warning-option -Wno-ignored-optimization-argument"
       ];
     }).overrideAttrs
       (attrs: {

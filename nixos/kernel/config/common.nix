@@ -15,7 +15,7 @@
   "-e KERNEL_LZ4"
   "-e LTO_CLANG_THIN"
   "-e MQ_IOSCHED_ADIOS"
-  "-e NET_SCH_FQ"
+  #"-e NET_SCH_FQ"
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
   "-e TCP_CONG_BBR"
