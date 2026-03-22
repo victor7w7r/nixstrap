@@ -26,8 +26,6 @@ else
     exit 1
 fi
 
-exit 0
-
 if res=$(run-build $ROGCONFIG); then
     cat "$res" >"kernel/generated/${ROGCONFIG}.x86_64-linux.nix"
 else
