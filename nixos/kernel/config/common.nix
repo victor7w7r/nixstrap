@@ -12,6 +12,7 @@
   "-e CRYPTO_LZ4HC"
   "-e CRYPTO_LZ4"
   "-e CRYPTO_LZO"
+  "-e MMC"
   "-e F2FS_CHECK_FS"
   "-e F2FS_FS_COMPRESSION"
   "-e F2FS_FS_LZ4"

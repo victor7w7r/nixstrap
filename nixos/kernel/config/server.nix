@@ -19,7 +19,6 @@ else
     "-e CPU_FREQ_GOV_SCHEDUTIL"
     "-e F2FS_FS"
     "-e HZ_300"
-    "-e MMC"
     "-e NO_HZ_IDLE"
     "-e PREEMPT_NONE"
     "-e PREEMPT_NONE_BUILD"

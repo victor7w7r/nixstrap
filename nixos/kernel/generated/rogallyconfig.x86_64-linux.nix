@@ -1649,7 +1649,7 @@
   "CONFIG_TYPEC_UCSI" = "m";
   "CONFIG_UCSI_ACPI" = "m";
   "CONFIG_USB_ROLE_SWITCH" = "m";
-  "CONFIG_MMC" = "m";
+  "CONFIG_MMC" = "y";
   "CONFIG_MMC_CRYPTO" = "y";
   "CONFIG_MMC_SDHCI" = "m";
   "CONFIG_MMC_SDHCI_IO_ACCESSORS" = "y";

@@ -38,7 +38,6 @@ else if host == "v7w7r-higole" then
     "-e CONTEXT_TRACKING"
     "-e F2FS_FS"
     "-e HZ_300"
-    "-e MMC"
     "-e NO_HZ_IDLE"
     "-e PCIEASPM_POWERSAVE"
     "-e PREEMPT_VOLUNTARY"
