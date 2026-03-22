@@ -9,6 +9,15 @@
   ''--set-str LSM ""''
 
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
+  "-e CRYPTO_LZ4HC"
+  "-e CRYPTO_LZ4"
+  "-e CRYPTO_LZO"
+  "-e F2FS_CHECK_FS"
+  "-e F2FS_FS_COMPRESSION"
+  "-e F2FS_FS_LZ4"
+  "-e F2FS_FS_LZ4HC"
+  "-e F2FS_FS_SECURITY"
+  "-e F2FS_FS_ZSTD"
   #"-e DEFAULT_BBR"
   #"-e DEFAULT_FQ"
   "-e HIBERNATION"
