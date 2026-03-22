@@ -51,8 +51,16 @@ in
         enable = true;
         emergencyAccess = true;
         users.root.shell = "${pkgs.bashInteractive}/bin/bash";
+        contents = {
+          "/etc/ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+          "/etc/terminfo".source = "${pkgs.ncurses}/share/terminfo";
+        };
         initrdBin = [ pkgs.coreutils ];
-        storePaths = [ "${pkgs.bashInteractive}/bin/bash" ];
+        storePaths = [
+          "${pkgs.bashInteractive}/bin/bash"
+          pkgs.util-linux
+          pkgs.ncurses
+        ];
         settings.Manager = {
           DefaultTimeoutStartSec = "15s";
           DefaultTimeoutStopSec = "10s";
@@ -60,12 +68,18 @@ in
           DefaultLimitNOFILE = "2048:2097152";
         };
         extraBin = {
+          nix = "${pkgs.nix}/bin/nix";
           ip = "${pkgs.iproute2}/bin/ip";
+          curl = "${pkgs.curl}/bin/curl";
           ping = "${pkgs.iputils}/bin/ping";
           cryptsetup = "${pkgs.cryptsetup}/bin/cryptsetup";
           busybox = "${pkgs.busybox-sandbox-shell}/bin/busybox";
+          htop = "${pkgs.htop}/bin/htop";
+          yazi = "${pkgs.yazi-unwrapped}/bin/yazi";
           find = "${pkgs.findutils}/bin/find";
           fdisk = "${pkgs.util-linux}/bin/fdisk";
+          file = "${pkgs.file}/bin/file";
+          blkid = "${pkgs.util-linux}/bin/blkid";
           lsblk = "${pkgs.util-linux}/bin/lsblk";
           lspci = "${pkgs.pciutils}/bin/lspci";
           grep = "${pkgs.gnugrep}/bin/grep";
