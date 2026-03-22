@@ -14,10 +14,15 @@
     ]
     ++ [
       calf
+      deepfilternet
       lsp-plugins
+      libebur128
       zam-plugins
+      zita-convolver
       mda_lv2
-      #easyeffects-bundy01-presets easyeffects-jtrv-presets-git
+      speexdsp
+      soundtouch
+      rnnoise
     ]
     ++ [
       tenacity

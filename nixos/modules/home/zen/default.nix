@@ -1,6 +1,5 @@
 { inputs, host, ... }:
 {
-
   imports = [
     (import ./bookmarks.nix)
     (import ./extensions.nix)
@@ -8,7 +7,7 @@
     (import ./pins.nix)
     (import ./settings.nix)
     (import ./search.nix)
-    (import ./theme.nix)
+    #(import ./theme.nix)
   ];
 
   programs.zen-browser = {

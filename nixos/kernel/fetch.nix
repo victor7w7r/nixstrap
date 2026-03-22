@@ -24,6 +24,13 @@
     sha256 = kernelData.tachyon.hash;
   };
 
+  bunker = pkgs.fetchFromGitHub {
+    owner = kernelData.bunker.user;
+    repo = kernelData.bunker.repo;
+    rev = kernelData.bunker.rev;
+    hash = kernelData.bunker.hash;
+  };
+
   kConfig = pkgs.fetchFromGitHub {
     owner = kernelData.user;
     repo = kernelData.config.repo;
@@ -43,10 +50,6 @@
     sha256 = kernelData.patches.hash;
     postFetch = ''
       find "$out" -type d -empty -delete
-        ${pkgs.patchutils}/bin/filterdiff -x "*/include/net/tcp.h" \
-        "$out/${majorMinor}/0003-bbr3.patch" > bbr3-filter.patch
-        cat bbr3-filter.patch > "$out/${majorMinor}/0003-bbr3.patch"
-
         ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
         "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch
         cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch"

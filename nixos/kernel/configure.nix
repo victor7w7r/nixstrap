@@ -39,7 +39,7 @@ let
       "${fetch.patches}/${majorMinor}/0007-hdmi.patch"
     ])
     ++ [
-      "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
+      #"${fetch.patches}/${majorMinor}/0003-bbr3.patch"
       "${fetch.patches}/${majorMinor}/0004-cachy.patch"
       "${fetch.patches}/${majorMinor}/0005-crypto.patch"
       "${fetch.patches}/${majorMinor}/0006-fixes.patch"
