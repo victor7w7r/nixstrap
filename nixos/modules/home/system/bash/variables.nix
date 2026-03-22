@@ -1,7 +1,8 @@
-{ ... }:
+{ config, ... }:
 {
   programs.bash.sessionVariables = {
     BASH_SILENCE_DEPRECATION_WARNING = 1;
+    BASH_IT = "${config.home.homeDirectory}/.config/bash/bash_it";
     HISTCONTROL = "ignoredups";
     HISTIGNORE = "?:??";
     GIT_HOSTING = "git@git.domain.com";
@@ -26,6 +27,7 @@
     PAGER = "bat --plain";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     MANROFFOPT = "-c";
+    BASH_IT_THEME = "clean";
 
     FNM_VERSION_FILE_STRATEGY = "local";
     FNM_LOGLEVEL = "info";
