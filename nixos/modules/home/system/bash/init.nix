@@ -21,14 +21,16 @@
 
     #[[ -f "$BASHDOTDIR/.private" ]] && source "$BASHDOTDIR/.private"
 
-    ${lib.mkMerge [
-      (import ./functions/bofh.nix)
-      (import ./functions/kaomoji.nix)
-      (import ./functions/misc.nix)
-      (import ./functions/node.nix)
-      (import ./functions/quotes.nix)
-      (import ./functions/utils.nix)
-    ]}
+    ${
+      (lib.mkMerge [
+        (import ./functions/bofh.nix)
+        (import ./functions/kaomoji.nix)
+        (import ./functions/misc.nix)
+        (import ./functions/node.nix)
+        (import ./functions/quotes.nix)
+        (import ./functions/utils.nix)
+      ])
+    }
 
     source "$BASH_IT/bash_it.sh"
     bash-it profile load victor7w7r
