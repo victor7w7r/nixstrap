@@ -44,7 +44,7 @@
     memavaild.enable = true;
     chrony.enable = true;
     #preload.enable = true;
-    prelockd.enable = true;
+    prelockd.enable = host != "v7w7r-youyeetoox1";
     resolved.enable = false;
     #uresourced.enable = true;
     scx.enable = true;

@@ -144,6 +144,7 @@ pkgs.stdenv.mkDerivation (attrs: {
       clang_20
       llvm_20
       lld_20
+      lz4
     ];
 
   installPhase = ''
