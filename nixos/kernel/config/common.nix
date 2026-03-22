@@ -9,8 +9,8 @@
   ''--set-str LSM ""''
 
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
-  "-e DEFAULT_BBR"
-  "-e DEFAULT_FQ"
+  #"-e DEFAULT_BBR"
+  #"-e DEFAULT_FQ"
   "-e HIBERNATION"
   "-e KERNEL_LZ4"
   "-e LTO_CLANG_THIN"
@@ -18,7 +18,7 @@
   #"-e NET_SCH_FQ"
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
-  "-e TCP_CONG_BBR"
+  #"-e TCP_CONG_BBR"
   "-e TRANSPARENT_HUGEPAGE_MADVISE"
   "-e ZRAM_DEF_COMP_LZ4"
   "-e ZRAM_LZ4_COMPRESS"
