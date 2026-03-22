@@ -132,9 +132,9 @@ in
       --os-release="${config.system.build.etc}/etc/os-release" \
       --output=${efi}/nixos.efi
 
-    #${mkdir} -p /boot/emergency/cache
-    #${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
-    #echo "$BASE" > /boot/emergency/actual.txt
+    ${mkdir} -p /boot/emergency/cache
+    ${cp} ${efi}/nixos.efi /boot/emergency/cache/nixos-$BASE.efi
+    echo "$BASE" > /boot/emergency/actual.txt
 
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
@@ -153,5 +153,4 @@ in
       ${sbctl} sign -s ${efi}/nixos.efi
     fi
   '';
-  # cp ${secure}/${kernelFile} ${efi}/kernel-hardened
 }
