@@ -1,5 +1,4 @@
 ''
-  ${(import ../shell/palette.nix)}
   colors_exec() {
     if [ -d /dev/shm ]; then
       CACHE_FILE="/dev/shm/colors.exectmux"

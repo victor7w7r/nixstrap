@@ -1,5 +1,5 @@
 { pkgs, ... }:
-pkgs.writeShellScript "colors" ''
+pkgs.writeShellScript "foreground" ''
   ${(import ./palette.nix)}
 
   KAOMOJI=""

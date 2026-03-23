@@ -1,5 +1,6 @@
 { pkgs, ... }:
 pkgs.writeShellScript "status" ''
+  ${(import ./palette.nix)}
   ${(import ../extensions/colors.nix)}
   ${(import ../extensions/git.nix)}
   ${(import ../extensions/ssh_session.nix)}
