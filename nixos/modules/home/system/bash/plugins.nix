@@ -19,7 +19,6 @@
 
   home.file.".blerc".text = ''
     bleopt prompt_ps1_transient=always:trim
-    bleopt exec_exit_mark=
     bleopt exec_errexit_mark=
     bleopt prompt_ps1_final='$(starship module character)'
   '';

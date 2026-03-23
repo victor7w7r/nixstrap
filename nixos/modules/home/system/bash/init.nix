@@ -28,8 +28,8 @@
     ${(import ./functions/quotes.nix)}
     ${(import ./functions/utils.nix)}
 
-    source "${config.home.homeDirectory}/.config/bash/bash_it/bash_it.sh"
-    bash-it profile load victor7w7r
+    #source "${config.home.homeDirectory}/.config/bash/bash_it/bash_it.sh"
+    #bash-it profile load victor7w7r
 
     if [[ -f "${pkgs.blesh}/share/blesh/ble.sh" ]]; then
       source "${pkgs.blesh}/share/blesh/ble.sh"
