@@ -1,9 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.file.".config/bash/bash_it" = {
-    source = builtins.fetchGit {
-      url = "https://github.com/Bash-it/bash-it.git";
+    source = pkgs.fetchFromGitHub {
+      owner = "Bash-it";
+      repo = "bash-it";
       rev = "4c5ac697f593169ab09a63e0f78f85a20d01c47a";
+      sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
       postFetch = ''
         rm -rf "$out/custom" &> /dev/null
         rm -rf "$out/docs" &> /dev/null
