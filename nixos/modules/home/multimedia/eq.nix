@@ -97,7 +97,7 @@
           band6Gain=-0.53
         '';
 
-        "${dir}/equalizerrc".text = ''
+        "${dir}/filterrc".text = ''
           [soe][Filter#0]
           bypass=true
           type=7
