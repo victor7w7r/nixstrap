@@ -1,10 +1,4 @@
 { pkgs, ... }:
-let
-  #Agregar como parametros la locacion de los scripts, todos esos no saben en que ruta esta al hacer source
-  status = pkgs.writeShellScript "status-ss" (builtins.readFile ./shell/status);
-  foreground = pkgs.writeShellScript "fg-ss" (builtins.readFile ./shell/foreground);
-  colors = pkgs.writeShellScript "color-sss" (builtins.readFile ./shell/colors);
-in
 {
   programs.tmux = {
     enable = true;
@@ -23,9 +17,9 @@ in
       ${(import ./bindings.nix)}
       ${(import ./config.nix)}
       ${(import ./ui.nix)}
-      run ${status}
-      run -b ${foreground}
-      run -b ${colors}
+      run $ ${(import ./shell/status.nix)}
+      run -b ${(import ./shell/foreground.nix)}
+      run -b ${(import ./shell/colors.nix)}
     '';
   };
 

@@ -69,13 +69,8 @@
       screen = "all";
       opacity = "adaptive";
       /*
-        [Containments][25][Applets][26][Configuration][General] FALTA de sacar en lo de abajo
-        customButtonImage=com.system76.CosmicLauncher
-        favoriteSystemActions=shutdown,reboot,logout,suspend,lock-screen,switch-user
-        maxNumberColumns=12
-        searchRunners=krunner_services,krunner_recentdocuments,baloosearch
-        showSystemActions=false
-        useSymbolicSystemActionIcons=true
+        [Containments][29][Applets][30][Configuration][General]
+        menuJson=[\n        {\n          "name": "About This Computadora",\n          "icon": "help-hint",\n          "command": "kinfocenter"\n        },\n        {\n          "separator": true\n        },\n        {\n          "name": "System Preferences...",\n          "icon": "settings-configure",\n          "command": "systemsettings"\n        },\n        {\n          "name": "App Store...",\n          "icon": "update-none",\n          "command": "plasma-discover"\n        },\n        {\n          "separator": true\n        },\n        {\n          "name": "Force Quit...",\n          "icon": "error",\n          "command": "xkill"\n        },\n        {\n          "separator": true\n        },\n        {\n          "name": "Sleep",\n          "icon": "system-suspend",\n          "command": "systemctl suspend"\n        },\n        {\n          "name": "Restart...",\n          "icon": "system-reboot",\n          "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptReboot"\n        },\n        {\n          "name": "Shut Down...",\n          "icon": "system-shutdown",\n          "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptShutDown"\n        },\n        {\n          "separator": true\n        },\n        {\n          "name": "Lock Screen",\n          "icon": "system-lock-screen",\n          "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"\n        },\n        {\n          "name": "Log Out",\n          "icon": "system-log-out",\n          "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"\n        }\n      ]
       */
       widgets = [
         {
