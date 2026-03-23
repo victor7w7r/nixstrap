@@ -2,7 +2,7 @@
 pkgs.writeShellScript "status" ''
   ${(import ../extensions/colors.nix)}
   ${(import ../extensions/git.nix)}
-  ${(import ../extensions/ssh_sesion.nix)}
+  ${(import ../extensions/ssh_session.nix)}
   ${(import ../extensions/network_ping.nix)}
   ${(import ../extensions/ram_info.nix)}
   ${(import ../extensions/cpu_info.nix)}
