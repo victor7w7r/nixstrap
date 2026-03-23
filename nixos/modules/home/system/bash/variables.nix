@@ -53,6 +53,7 @@
     FZF_COMPLETION_OPTS = "--no-reverse";
 
     LESS = ''
+      -R \
       --ignore-case \
       --tilde \
       --chop-long-lines \
@@ -67,13 +68,13 @@
     LESSHISTFILE = "-";
     LESSKEYRC = "$HOME/.config/less/lesskey";
     LESSKEY = "$LESSKEYRC.lwc";
-    LESS_TERMCAP_md = "$'\e[01;34m'";
-    LESS_TERMCAP_me = "$'\e[0m'";
-    LESS_TERMCAP_mh = "$'\e[2m'";
-    LESS_TERMCAP_mr = "$'\e[7m'";
-    LESS_TERMCAP_se = "$'\e[27;0m'";
-    LESS_TERMCAP_so = "$'\e[1;33m'";
-    LESS_TERMCAP_ue = "$'\e[24;0m'";
-    LESS_TERMCAP_us = "$'\e[4;1;38;5;250m'";
+    LESS_TERMCAP_md = "\033[01;34m";
+    LESS_TERMCAP_me = "\033[0m";
+    LESS_TERMCAP_mh = "\033[2m";
+    LESS_TERMCAP_mr = "\033[7m";
+    LESS_TERMCAP_se = "\033[27;0m";
+    LESS_TERMCAP_so = "\033[1;33m";
+    LESS_TERMCAP_ue = "\033[24;0m";
+    LESS_TERMCAP_us = "\033[4;1;38;5;250m";
   };
 }
