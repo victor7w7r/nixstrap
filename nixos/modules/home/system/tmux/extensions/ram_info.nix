@@ -55,6 +55,10 @@ pkgs.writeShellScript "ram-ext" ''
     esac
   }
 
-  ram_ratio=$(get_ratio)
-  echo "  $ram_ratio"
+  main() {
+    ram_ratio=$(get_ratio)
+    echo "  $ram_ratio"
+  }
+
+  main
 ''
