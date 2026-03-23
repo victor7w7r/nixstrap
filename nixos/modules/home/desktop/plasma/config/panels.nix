@@ -72,13 +72,16 @@
         {
           name = "org.51n7.kMenu";
           config = {
-            appIconSize = 64;
-            popupHeight = 319;
-            disableAnimations = true;
-            popupWidth = 240;
-            useCustomButtonImage = true;
-            icon = "/etc/nixos/logo.svg";
             General = {
+              appIconSize = 64;
+              popupHeight = 319;
+              maxNumberColumns = 12;
+              disableAnimations = true;
+              popupWidth = 240;
+              useCustomButtonImage = true;
+              customButtonImage = "/etc/nixos/logo.svg";
+              systemActionIconSize = 32;
+              useSymbolicSystemActionIcons = true;
               menuJson = [
                 ''{ "name": "Acerca De Esta PC...", "icon": "help-hint", "command": "kinfocenter" }''
                 ''{ "separator": true }''

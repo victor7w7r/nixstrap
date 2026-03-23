@@ -63,20 +63,18 @@
     powerdevil =
       let
         is-mac = host == "v7w7r-macmini81";
-        is-battery = host == "v7w7r-higole" || host == "v7w7r-rc71l";
-        is-gole = host == "v7w7r-higole";
       in
       {
         general.pausePlayersOnSuspend = true;
         batteryLevels = {
-          criticalAction = if is-battery then "hibernate" else "sleep";
+          criticalAction = "hibernate";
           criticalLevel = 5;
           lowLevel = 10;
         };
         AC = {
           autoSuspend = {
             action = "sleep";
-            idleTimeout = if is-mac then "never" else 3600;
+            idleTimeout = if is-mac then 10800 else 3600;
           };
           turnOffDisplay = {
             idleTimeout = if is-mac then 600 else 180;
@@ -95,12 +93,12 @@
             idleTimeout = 300;
           };
           turnOffDisplay = {
-            idleTimeout = if is-gole then 40 else 60;
+            idleTimeout = 60;
             idleTimeoutWhenLocked = 20;
           };
           dimDisplay = {
             enable = true;
-            idleTimeout = if is-gole then 20 else 30;
+            idleTimeout = 45;
           };
           powerButtonAction = "sleep";
           whenLaptopLidClosed = "sleep";
@@ -108,15 +106,15 @@
         lowBattery = {
           autoSuspend = {
             action = "sleep";
-            idleTimeout = if is-gole then 60 else 65;
+            idleTimeout = 60;
           };
           turnOffDisplay = {
-            idleTimeout = if is-gole then 30 else 35;
+            idleTimeout = 30;
             idleTimeoutWhenLocked = "immediately";
           };
           dimDisplay = {
             enable = true;
-            idleTimeout = if is-gole then 20 else 25;
+            idleTimeout = 25;
           };
           powerButtonAction = "hibernate";
           whenLaptopLidClosed = "sleep";
