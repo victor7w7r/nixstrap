@@ -4,6 +4,13 @@
     source = builtins.fetchGit {
       url = "https://github.com/Bash-it/bash-it.git";
       rev = "4c5ac697f593169ab09a63e0f78f85a20d01c47a";
+      postFetch = ''
+        rm -rf "$out/custom" &> /dev/null
+        rm -rf "$out/docs" &> /dev/null
+        rm -rf "$out/template" &> /dev/null
+        rm -rf "$out/themes" &> /dev/null
+        sh $out/install.sh --no-modify-config --silent
+      '';
     };
     recursive = true;
   };
@@ -16,7 +23,7 @@
       bleopt prompt_ps1_final='$(starship module character)'
     '';
 
-    "bash/bashit-profile".text = ''
+    "bash/bash_it/profiles/victor7w7r.bash_it".text = ''
       plugins alias-completion
       plugins autojump
       plugins base
