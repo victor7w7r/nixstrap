@@ -69,7 +69,7 @@
       window_padding_width = 5;
       tab_bar_margin_width = 5;
       update_check_interval = 0;
-      term = "xterm-256color";
+      term = "tmux-256color";
 
       allow_remote_control = true;
       listen_on = "unix:/tmp/kitty";
