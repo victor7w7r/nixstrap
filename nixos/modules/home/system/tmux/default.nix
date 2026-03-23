@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
-  status = import ./shell/status.nix;
-  foreground = import ./shell/foreground.nix;
-  colors = import ./shell/colors.nix;
+  status = pkgs.callPackage ./shell/status.nix { };
+  foreground = pkgs.callPackage ./shell/foreground.nix { };
+  colors = pkgs.callPackage ./shell/colors.nix { };
 in
 {
   programs.tmux = {
