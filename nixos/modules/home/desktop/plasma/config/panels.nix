@@ -72,78 +72,90 @@
         {
           name = "org.51n7.kMenu";
           /*
-            config = {
-               popupHeight = 319;
-               popupWidth = 240;
-               Appearance = {
-                 icon = "/etc/nixos/logo.svg";
-                 cmdList = [
-                   "kinfocenter"
-                   "separator"
-                   "systemsettings"
-                   "missioncenter"
-                   "separator"
-                   "systemctl suspend -f"
-                   "systemctl reboot"
-                   "systemctl reboot --firmware-setup"
-                   "systemctl hibernate"
-                   "systemctl poweroff"
-                   "separator"
-                   "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"
-                   "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"
-                 ];
-                 iconList = [
-                   "help-hint"
-                   "separator"
-                   "filename-dash-amarok"
-                   "settings-configure"
-                   "separator"
-                   "update-none"
-                   "system-suspend"
-                   "system-reboot"
-                   "system-reboot-symbolic"
-                   "system-reboot-symbolic"
-                   "system-shutdown"
-                   "separator"
-                   "system-lock-screen"
-                   "system-log-out"
-                 ];
-                 labelList = [
-                   "Acerca De Esta PC..."
-                   "separator"
-                   "Configuración del Sistema..."
-                   "Administrador de Tareas..."
-                   "separator"
-                   "Reposo"
-                   "Reiniciar"
-                   "Reiniciar a UEFI"
-                   "Hibernar"
-                   "Apagar"
-                   "separator"
-                   "Bloquear"
-                   "Cerrar Sesión"
-                 ];
-                 separatorList = [
-                   false
-                   true
-                   false
-                   false
-                   true
-                   false
-                   false
-                   false
-                   false
-                   false
-                   true
-                   false
-                   false
-                 ];
+            [Containments][25][Applets][26][Configuration][General]
+            appIconSize=64
+            customButtonImage=com.system76.CosmicLauncher
+            disableAnimations=true
+            favoriteSystemActions=shutdown,reboot,logout,suspend,lock-screen,switch-user
+            maxNumberColumns=12
+            searchRunners=krunner_services,krunner_recentdocuments,baloosearch
+            showSystemActions=false
+            systemActionIconSize=32
+            useCustomButtonImage=true
+            useSymbolicSystemActionIcons=true
+
+              config = {
+                 popupHeight = 319;
+                 popupWidth = 240;
+                 Appearance = {
+                   icon = "/etc/nixos/logo.svg";
+                   cmdList = [
+                     "kinfocenter"
+                     "separator"
+                     "systemsettings"
+                     "missioncenter"
+                     "separator"
+                     "systemctl suspend -f"
+                     "systemctl reboot"
+                     "systemctl reboot --firmware-setup"
+                     "systemctl hibernate"
+                     "systemctl poweroff"
+                     "separator"
+                     "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"
+                     "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"
+                   ];
+                   iconList = [
+                     "help-hint"
+                     "separator"
+                     "filename-dash-amarok"
+                     "settings-configure"
+                     "separator"
+                     "update-none"
+                     "system-suspend"
+                     "system-reboot"
+                     "system-reboot-symbolic"
+                     "system-reboot-symbolic"
+                     "system-shutdown"
+                     "separator"
+                     "system-lock-screen"
+                     "system-log-out"
+                   ];
+                   labelList = [
+                     "Acerca De Esta PC..."
+                     "separator"
+                     "Configuración del Sistema..."
+                     "Administrador de Tareas..."
+                     "separator"
+                     "Reposo"
+                     "Reiniciar"
+                     "Reiniciar a UEFI"
+                     "Hibernar"
+                     "Apagar"
+                     "separator"
+                     "Bloquear"
+                     "Cerrar Sesión"
+                   ];
+                   separatorList = [
+                     false
+                     true
+                     false
+                     false
+                     true
+                     false
+                     false
+                     false
+                     false
+                     false
+                     true
+                     false
+                     false
+                   ];
+                 };
+                 ConfigDialog = {
+                   DialogHeight = 540;
+                   DialogWidth = 720;
+                 };
                };
-               ConfigDialog = {
-                 DialogHeight = 540;
-                 DialogWidth = 720;
-               };
-             };
           */
         }
         {
