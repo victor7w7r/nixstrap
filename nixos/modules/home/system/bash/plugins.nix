@@ -5,7 +5,7 @@
       owner = "Bash-it";
       repo = "bash-it";
       rev = "4c5ac697f593169ab09a63e0f78f85a20d01c47a";
-      sha256 = "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=";
+      sha256 = "sha256-h4LjpPnORLKz7KMqquhmLOh76ltRN3cHynVSoxfu/rM=";
       postFetch = ''
         rm -rf "$out/custom" &> /dev/null
         rm -rf "$out/docs" &> /dev/null
