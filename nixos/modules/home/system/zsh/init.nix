@@ -38,6 +38,10 @@
         export VISUAL="zed --wait"
       fi
 
+      if [[ "$TERMINAL" == "kitty" ]]; then
+        export TERM="xterm-kitty"
+      fi
+
       #jump -- 'eval "$(jump shell)"'
       source <(cod init $$ zsh)
     '')
