@@ -155,9 +155,9 @@
     sudo "$@"
   }
 
-  f() {
-    find . -name "*$1*" 2>/dev/null
-  }
+  #f() {
+  #  find . -name "*$1*" 2>/dev/null
+  #}
 
   path_add() {
     if [[ ":$PATH:" != *":$1:"* ]]; then
