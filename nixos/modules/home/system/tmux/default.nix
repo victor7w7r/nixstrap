@@ -17,7 +17,7 @@
       ${(import ./bindings.nix)}
       ${(import ./config.nix)}
       ${(import ./ui.nix)}
-      run $ ${(import ./shell/status.nix)}
+      run ${(import ./shell/status.nix)}
       run -b ${(import ./shell/foreground.nix)}
       run -b ${(import ./shell/colors.nix)}
     '';
