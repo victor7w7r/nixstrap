@@ -69,24 +69,23 @@
       screen = "all";
       opacity = "adaptive";
       /*
-        [Containments][25][Applets][26][Configuration][General]
-        appIconSize=64
+        [Containments][25][Applets][26][Configuration][General] FALTA de sacar en lo de abajo
         customButtonImage=com.system76.CosmicLauncher
-        disableAnimations=true
         favoriteSystemActions=shutdown,reboot,logout,suspend,lock-screen,switch-user
         maxNumberColumns=12
         searchRunners=krunner_services,krunner_recentdocuments,baloosearch
         showSystemActions=false
-        systemActionIconSize=32
-        useCustomButtonImage=true
         useSymbolicSystemActionIcons=true
       */
       widgets = [
         {
           name = "org.51n7.kMenu";
           config = {
+            appIconSize = 64;
             popupHeight = 319;
+            disableAnimations = true;
             popupWidth = 240;
+            useCustomButtonImage = true;
             Appearance = {
               icon = "/etc/nixos/logo.svg";
               cmdList = [

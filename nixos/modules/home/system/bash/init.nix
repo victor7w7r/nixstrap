@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.bash.bashrcExtra = ''
     [[ $- != *i* ]] && return
@@ -28,7 +28,7 @@
     ${(import ./functions/quotes.nix)}
     ${(import ./functions/utils.nix)}
 
-    source "~/.config/bash/bash_it/bash_it.sh"
+    source "${config.home.homeDirectory}/.config/bash/bash_it/bash_it.sh"
     bash-it profile load victor7w7r
 
     if [[ -f "${pkgs.blesh}/share/blesh/ble.sh" ]]; then
