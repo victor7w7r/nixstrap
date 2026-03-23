@@ -77,23 +77,25 @@
             General = {
               customButtonImage = "/etc/nixos/logo.svg";
               useCustomButtonImage = true;
-              menuJson = ''
-                [
-                  { "name": "Acerca De Esta PC...", "icon": "help-hint", "command": "kinfocenter" },
-                  { "separator": true },
-                  { "name":  "Ajustes...", "icon": "filename-dash-amarok", "command": "systemsettings" },
-                  { "name":  "Monitor de recursos", "icon": "settings-configure", "command": "missioncenter" },
-                  { "separator": true },
-                  { "name":  "Reposo", "icon": ""system-reboot-symbolic", "command": "systemctl suspend -f" },
-                  { "name":  "Hibernar", "icon": "system-reboot-symbolic", "command": "systemctl hibernate" },
-                  { "name":  "Reiniciar", "icon": "system-reboot", "command": "systemctl reboot" },
-                  { "name":  "Reiniciar a UEFI", "icon": "system-reboot-symbolic", "command": "systemctl reboot --firmware-setup" },
-                  { "name":  "Apagar", "icon": "system-shutdown", "command": "systemctl poweroff" },
-                  { "separator": true },
-                  { "name":  "Bloquear", "icon": "system-lock-screen", "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock" },
-                  { "name":  "Cerrar Sesión", "icon": "system-log-out", "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout" }
-                ]
-              '';
+              /*
+                menuJson = ''
+                  [
+                    { "name": "Acerca De Esta PC...", "icon": "help-hint", "command": "kinfocenter" },
+                    { "separator": true },
+                    { "name":  "Ajustes...", "icon": "filename-dash-amarok", "command": "systemsettings" },
+                    { "name":  "Monitor de recursos", "icon": "settings-configure", "command": "missioncenter" },
+                    { "separator": true },
+                    { "name":  "Reposo", "icon": ""system-reboot-symbolic", "command": "systemctl suspend -f" },
+                    { "name":  "Hibernar", "icon": "system-reboot-symbolic", "command": "systemctl hibernate" },
+                    { "name":  "Reiniciar", "icon": "system-reboot", "command": "systemctl reboot" },
+                    { "name":  "Reiniciar a UEFI", "icon": "system-reboot-symbolic", "command": "systemctl reboot --firmware-setup" },
+                    { "name":  "Apagar", "icon": "system-shutdown", "command": "systemctl poweroff" },
+                    { "separator": true },
+                    { "name":  "Bloquear", "icon": "system-lock-screen", "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock" },
+                    { "name":  "Cerrar Sesión", "icon": "system-log-out", "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout" }
+                  ]
+                '';
+              */
             };
 
             ConfigDialog = {

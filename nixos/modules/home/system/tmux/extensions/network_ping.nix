@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "network-ping" ''
   ping_function() {
     case $(uname -s) in
     Linux | Darwin)
@@ -9,8 +10,6 @@
     esac
   }
 
-  ping_exec() {
-    ping_function
-    sleep 5
-  }
+  ping_function
+  sleep 5
 ''

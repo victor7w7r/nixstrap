@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "git-ext" ''
   getChanges() {
     declare -i added=0
     declare -i modified=0
@@ -74,7 +75,5 @@
     fi
   }
 
-  git_exec() {
-    path=$(getPaneDir) && getMessage
-  }
+  path=$(getPaneDir) && getMessage
 ''

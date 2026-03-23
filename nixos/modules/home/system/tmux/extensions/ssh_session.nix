@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "ssh-ext" ''
   show_ssh_session_port=$1
 
   parse_ssh_port() {
@@ -68,7 +69,7 @@
     [ $cmd = "ssh" ] || [ $cmd = "sshpass" ]
   }
 
-  ssh_exec() {
+  main() {
     hostname=$(get_info hostname)
     user=$(get_info whoami)
     if ! $(ssh_connected); then
@@ -80,4 +81,6 @@
       echo $user@$hostname
     fi
   }
+
+  main
 ''

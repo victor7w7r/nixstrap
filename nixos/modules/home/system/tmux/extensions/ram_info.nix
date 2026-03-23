@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "ram-ext" ''
   get_ratio() {
     case $(uname -s) in
     Linux)
@@ -54,8 +55,6 @@
     esac
   }
 
-  ram_exec() {
-    ram_ratio=$(get_ratio)
-    echo "  $ram_ratio"
-  }
+  ram_ratio=$(get_ratio)
+  echo "  $ram_ratio"
 ''

@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "mommy-ext" ''
   commandexist() {
     command -v "$1" &>/dev/null
   }

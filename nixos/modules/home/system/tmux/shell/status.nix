@@ -1,13 +1,15 @@
 { pkgs, ... }:
+let
+  colors = pkgs.callPackage ../extensions/colors.nix { };
+  git = pkgs.callPackage ../extensions/git.nix { };
+  ssh = pkgs.callPackage ../extensions/ssh_session.nix { };
+  network = pkgs.callPackage ../extensions/network_ping.nix { };
+  ram = pkgs.callPackage ../extensions/ram_info.nix { };
+  cpu = pkgs.callPackage ../extensions/cpu_info.nix { };
+  battery = pkgs.callPackage ../extensions/battery.nix { };
+in
 pkgs.writeShellScript "status" ''
   ${(import ./palette.nix)}
-  ${(import ../extensions/colors.nix)}
-  ${(import ../extensions/git.nix)}
-  ${(import ../extensions/ssh_session.nix)}
-  ${(import ../extensions/network_ping.nix)}
-  ${(import ../extensions/ram_info.nix)}
-  ${(import ../extensions/cpu_info.nix)}
-  ${(import ../extensions/battery.nix)}
 
   right_status() {
     local color="$1"
@@ -16,13 +18,13 @@ pkgs.writeShellScript "status" ''
         "#{?#{==:''${text},},,#[fg=''${color}] #[fg=#cdd6f4]#[bg=''${color}] ''${text}}"
   }
 
-  right_status "#(colors_exec 0)" "#(git_exec)"
-  right_status "#(colors_exec 1)" "#(ssh_exec)"
-  right_status "#(colors_exec 2)" "#(ping_exec)"
-  right_status "#(colors_exec 3)" "#(ram_exec)"
-  right_status "#(colors_exec 4)" "#(cpu_exec)"
-  right_status "#(colors_exec 5)" "#(battery_exec)"
-  right_status "#(colors_exec 6)" "%%d-%b %I:%M%P "
+  right_status "#(${colors} 0)" "#(${git})"
+  right_status "#(${colors} 1)" "#(${ssh})"
+  right_status "#(${colors} 2)" "#(${network})"
+  right_status "#(${colors} 3)" "#(${ram})"
+  right_status "#(${colors} 4)" "#(${cpu})"
+  right_status "#(${colors} 5)" "#(${battery})"
+  right_status "#(${colors} 6)" "%%d-%b %I:%M%P "
   #right_status "#(colors_exec 3)" "#($ext/extensions/mommy.sh)"
   #right_status "#e4cfff" "#($current_dir/network.sh)"
   #right_status "#e4cfff" "#($current_dir/mpc.sh)"

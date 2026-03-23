@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "cpu-ext" ''
   normalize_percent_len() {
     max_len=5
     percent_len=''${#1}
@@ -35,7 +36,5 @@
     esac
   }
 
-  cpu_exec() {
-    echo " $(get_percent)" && sleep 3
-  }
+  echo " $(get_percent)" && sleep 3
 ''

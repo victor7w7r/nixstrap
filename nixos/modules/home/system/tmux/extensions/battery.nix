@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "battery-ext" ''
   linux_acpi() {
     arg=$1
     BAT=$(ls -d /sys/class/power_supply/*)
@@ -90,16 +91,14 @@
     esac
   }
 
-  battery_exec() {
-    bat_stat=$(battery_status)
-    bat_perc=$(battery_percent)
+  bat_stat=$(battery_status)
+  bat_perc=$(battery_percent)
 
-    if [ -z "$bat_stat" ]; then
-      echo "$bat_perc"
-    elif [ -z "$bat_perc" ]; then
-      echo ""
-    else
-      echo "$bat_stat $bat_perc"
-    fi
-  }
+  if [ -z "$bat_stat" ]; then
+    echo "$bat_perc"
+  elif [ -z "$bat_perc" ]; then
+    echo ""
+  else
+    echo "$bat_stat $bat_perc"
+  fi
 ''

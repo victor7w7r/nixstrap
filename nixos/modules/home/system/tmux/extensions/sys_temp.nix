@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "sys-ext" ''
   get_temp() {
     if grep -q "Raspberry" /proc/device-tree/model 2>/dev/null; then
       echo "$(vcgencmd measure_temp | sed 's/temp=//')"

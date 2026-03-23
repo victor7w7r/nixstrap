@@ -1,4 +1,5 @@
-''
+{ pkgs, ... }:
+pkgs.writeShellScript "network-ext" ''
   get_ssid() {
     case $(uname -s) in
     Linux)
