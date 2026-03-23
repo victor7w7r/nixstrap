@@ -11,7 +11,7 @@
         rm -rf "$out/docs" &> /dev/null
         rm -rf "$out/template" &> /dev/null
         rm -rf "$out/themes" &> /dev/null
-        sh $out/install.sh --no-modify-config --silent
+        #sh $out/install.sh --no-modify-config --silent
       '';
     };
     recursive = true;
