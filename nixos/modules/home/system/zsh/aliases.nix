@@ -15,7 +15,7 @@
     cp = "cp -rvi";
     cdy = "pwd | xclip -i";
     cdp = "cd (xclip -o)";
-    cow = "customfortunes | cowsay --bold $(random-opts) --random --super";
+    cow = "customfortunes | cowsay $(random-opts) --random --super";
     mkdir = "mkdir -pv";
     tarls = "tar -tvf";
     shot = "flameshot gui";

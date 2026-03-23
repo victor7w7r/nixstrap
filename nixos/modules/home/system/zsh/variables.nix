@@ -43,29 +43,12 @@
     FZF_ALT_C_OPTS = "--no-reverse";
     FZF_COMPLETION_OPTS = "--no-reverse";
 
-    LESS = ''
-      --ignore-case \
-      --tilde \
-      --chop-long-lines \
-      --status-column \
-      --LONG-PROMPT \
-      --jump-target=10 \
-      --RAW-CONTROL-CHARS \
-      --clear-screen \
-      --tabs=4 \
-      --shift=5
-    '';
+    LESS = "--ignore-case --tilde --chop-long-lines --status-column --LONG-PROMPT --jump-target=10 --RAW-CONTROL-CHARS --clear-screen --tabs=4 --shift=5";
     LESSHISTFILE = "-";
-    LESSKEYRC = "$HOME/.config/less/lesskey";
-    LESSKEY = "$LESSKEYRC.lwc";
-    LESS_TERMCAP_md = "$'\e[01;34m'";
-    LESS_TERMCAP_me = "$'\e[0m'";
-    LESS_TERMCAP_mh = "$'\e[2m'";
-    LESS_TERMCAP_mr = "$'\e[7m'";
-    LESS_TERMCAP_se = "$'\e[27;0m'";
-    LESS_TERMCAP_so = "$'\e[1;33m'";
-    LESS_TERMCAP_ue = "$'\e[24;0m'";
-    LESS_TERMCAP_us = "$'\e[4;1;38;5;250m'";
+    LESS_TERMCAP_md = "\e[01;34m";
+    LESS_TERMCAP_me = "\e[0m";
+    LESS_TERMCAP_so = "\e[01;33m";
+    LESS_TERMCAP_se = "\e[0m";
   };
   /*
     export HOMEBREW_CASK_OPTS="--no-quarantine"

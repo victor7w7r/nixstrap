@@ -60,11 +60,11 @@
     fi
 
     if commandexist cowsay && commandexist clolcat; then
-      random-quote | cowsay --bold "$(random-opts)" --random | clolcat
+      random-quote | cowsay "$(random-opts)" --random | clolcat
     elif commandexist cowsay && commandexist meow; then
-      random-quote | cowsay --bold "$(random-opts)" --random | meow
+      random-quote | cowsay "$(random-opts)" --random | meow
     elif commandexist cowsay; then
-      random-quote | cowsay --bold "$(random-opts)" --random
+      random-quote | cowsay "$(random-opts)" --random
     fi
 
     post() {
