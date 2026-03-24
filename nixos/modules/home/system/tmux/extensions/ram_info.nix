@@ -6,7 +6,7 @@ pkgs.writeShellScript "ram-ext" ''
       usage="$(free -h | awk 'NR==2 {print $3}')"
       total="$(free -h | awk 'NR==2 {print $2}')"
       formated="''${usage}/''${total}"
-      echo "''${formated // i/B}"
+      echo "$formated" | sed 's/i/B/g'
       ;;
     Darwin)
       used_mem=$(vm_stat | grep ' active\|wired\|compressor\|speculative' | sed 's/[^0-9]//g' | paste -sd ' ' - | awk -v pagesize="$(pagesize)" '{printf "%d\n", ($1+$2+$3+$5) * pagesize / 1048576}')
