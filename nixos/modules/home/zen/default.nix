@@ -13,10 +13,13 @@
   programs.zen-browser = {
     enable = host != "v7w7r-youyeetoox1";
     languagePacks = [ "es-ES" ];
+
     profiles.default = {
       id = 0;
       isDefault = true;
       name = "default";
+      window-sync.enabled = true;
+      window-sync.sync-only-pinned-tabs = true;
       extraConfig = ''
         ${builtins.readFile "${inputs.betterfox}/Fastfox.js"}
         ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
