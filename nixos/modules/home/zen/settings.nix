@@ -682,7 +682,8 @@
       "zen.view.compact.enable-at-startup" = false;
       "zen.view.experimental-force-window-controls-left" = true;
       "zen.view.show-newtab-button-top" = false;
-      "zen.window-sync.enabled" = false;
+      "zen.window-sync.enabled" = true;
+      "zen.window-sync.sync-only-pinned-tabs" = true;
       "zen.watermark.enabled" = false;
       "zen.welcome-screen.seen" = true;
       "zen.widget.linux.transparency" = true;

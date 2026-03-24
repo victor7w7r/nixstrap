@@ -13,9 +13,6 @@
   programs.zen-browser = {
     enable = host != "v7w7r-youyeetoox1";
     languagePacks = [ "es-ES" ];
-    window-sync.enabled = true;
-    window-sync.sync-only-pinned-tabs = true;
-
     profiles.default = {
       id = 0;
       isDefault = true;
