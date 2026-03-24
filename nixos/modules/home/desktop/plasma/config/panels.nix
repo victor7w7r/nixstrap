@@ -77,23 +77,7 @@
             General = {
               customButtonImage = "/etc/nixos/logo.svg";
               useCustomButtonImage = true;
-              menuJson = ''[\n  {\n    "name": "Acerca De Esta PC...",\n    "icon": "help-hint",\n    "command": "kinfocenter"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Ajustes...cd",\n    "icon": "settings-configure",\n    "command": "systemsettings"\n  },\n  {\n    "name": "App Store...",\n    "icon": "update-none",\n    "command": "plasma-discover"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Force Quit...",\n    "icon": "error",\n    "command": "xkill"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Sleep",\n    "icon": "system-suspend",\n    "command": "systemctl suspend"\n  },\n  {\n    "name": "Restart...",\n    "icon": "system-reboot",\n    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptReboot"\n  },\n  {\n    "name": "Shut Down...",\n    "icon": "system-shutdown",\n    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptShutDown"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Lock Screen",\n    "icon": "system-lock-screen",\n    "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"\n  },\n  {\n    "name": "Log Out",\n    "icon": "system-log-out",\n    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"\n  }\n]'';
-              /*
-                menuJson = ''
-                  [
-                    { "name":  "Monitor de recursos", "icon": "settings-configure", "command": "missioncenter" },
-                    { "separator": true },
-                    { "name":  "Reposo", "icon": ""system-reboot-symbolic", "command": "systemctl suspend -f" },
-                    { "name":  "Hibernar", "icon": "system-reboot-symbolic", "command": "systemctl hibernate" },
-                    { "name":  "Reiniciar", "icon": "system-reboot", "command": "systemctl reboot" },
-                    { "name":  "Reiniciar a UEFI", "icon": "system-reboot-symbolic", "command": "systemctl reboot --firmware-setup" },
-                    { "name":  "Apagar", "icon": "system-shutdown", "command": "systemctl poweroff" },
-                    { "separator": true },
-                    { "name":  "Bloquear", "icon": "system-lock-screen", "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock" },
-                    { "name":  "Cerrar Sesión", "icon": "system-log-out", "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout" }
-                  ]
-                '';
-              */
+              menuJson = ''[\n  {\n    "name": "Acerca De Esta PC...",\n    "icon": "help-hint",\n    "command": "kinfocenter"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Ajustes...",\n    "icon": "settings-configure",\n    "command": "systemsettings"\n  },\n  {\n    "name": "Monitor de recursos",\n    "icon": "settings-configure",\n    "command": "missioncenter"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Reposo",\n    "icon": "system-suspend",\n    "command": "systemctl suspend -f"\n  },\n  {\n    "name": "Hibernar",\n    "icon": "system-suspend",\n    "command": "systemctl hibernate"\n  },\n   {\n    "name": "Reiniciar",\n    "icon": "system-reboot",\n    "command": "systemctl reboot"\n  },\n  {\n    "name": "Reiniciar a UEFI",\n    "icon": "system-reboot",\n    "command": "systemctl reboot --firmware-setup"\n  },\n  {\n    "name": "Apagar...",\n    "icon": "system-shutdown",\n    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptShutDown"\n  },\n  {\n    "separator": true\n  },\n  {\n    "name": "Bloquear",\n    "icon": "system-lock-screen",\n    "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"\n  },\n  {\n    "name": "Cerrar Sesión",\n    "icon": "system-log-out",\n    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"\n  }\n]'';
             };
 
             ConfigDialog = {
