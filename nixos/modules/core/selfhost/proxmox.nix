@@ -12,19 +12,20 @@
       "10-lan" = {
         matchConfig.Name = [ "enp1s0" ];
         linkConfig.RequiredForOnline = "yes";
-        networkConfig = {
-          DHCP = "ipv4";
-          IPv6AcceptRA = true;
-          Bridge = "vmbr0";
-        };
+        networkConfig.Bridge = "vmbr0";
+
       };
       "10-lan-bridge" = {
         matchConfig.Name = "vmbr0";
         linkConfig.RequiredForOnline = "routable";
-        networkConfig = {
-          DHCP = "ipv4";
-          IPv6AcceptRA = true;
-        };
+        address = [ "192.168.1.100/24" ];
+        gateway = [ "192.168.1.1" ];
+        dns = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+        networkConfig.IPv6AcceptRA = true;
+
       };
     };
 
