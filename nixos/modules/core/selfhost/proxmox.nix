@@ -7,17 +7,23 @@
   };
 
   systemd.network = {
+    enable = true;
     networks = {
       "10-lan" = {
         matchConfig.Name = [ "enp1s0" ];
-        networkConfig.Bridge = "vmbr0";
+        linkConfig.RequiredForOnline = "yes";
+        networkConfig = {
+          DHCP = "ipv4";
+          IPv6AcceptRA = true;
+          Bridge = "vmbr0";
+        };
       };
       "10-lan-bridge" = {
         matchConfig.Name = "vmbr0";
         linkConfig.RequiredForOnline = "routable";
         networkConfig = {
-          IPv6AcceptRA = true;
           DHCP = "ipv4";
+          IPv6AcceptRA = true;
         };
       };
     };
