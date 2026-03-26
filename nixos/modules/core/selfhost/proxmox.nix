@@ -13,7 +13,6 @@
         matchConfig.Name = [ "enp1s0" ];
         linkConfig.RequiredForOnline = "yes";
         networkConfig.Bridge = "vmbr0";
-
       };
       "10-lan-bridge" = {
         matchConfig.Name = "vmbr0";
@@ -25,7 +24,6 @@
           "8.8.8.8"
         ];
         networkConfig.IPv6AcceptRA = true;
-
       };
     };
 
@@ -35,12 +33,9 @@
     };
   };
 
-  systemd.network.wait-online.enable = false;
   systemd.services."dhcpcd".enable = false;
   systemd.services."corosync".enable = false;
   systemd.services."pvestatd".enable = false;
   #systemd.services."pvescheduler".enable = false;
   #systemd.services."pvebanner".enable = false;
-  #networking.bridges.vmbr0.interfaces = [ "enp1s0" ];
-  #networking.interfaces.vmbr0.useDHCP = lib.mkDefault true;
 }
