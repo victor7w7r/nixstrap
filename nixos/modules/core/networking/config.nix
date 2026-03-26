@@ -17,19 +17,10 @@
       "3.south-america.pool.ntp.org"
     ];
     networkmanager = {
-      enable = true;
+      enable = host != "v7w7r-youyeetoox1";
       settings.main.rc-manager = "resolvconf";
-      wifi.powersave = true;
+      wifi.powersave = host != "v7w7r-higole";
     };
-    /*
-      wireless = {
-      secretsFile = config.sops.secrets.wireless.path;
-      networks = {
-        "TP-LINK_5GHz_FF0A59".pskRaw = "ext:pass_main";
-        "v7w7r-dir615".pskRaw = "ext:pass_tech";
-      };
-      };
-    */
     modemmanager.enable = lib.mkOverride 999 false;
     resolvconf = {
       enable = true;

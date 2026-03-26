@@ -7,7 +7,7 @@
       "https://nix-community.cachix.org"
       "https://attic.xuyh0120.win/lantian"
       "https://cache.garnix.io"
-      #"https://cache.saumon.network/proxmox-nixos"
+      "https://cache.saumon.network/proxmox-nixos"
     ];
     extra-trusted-public-keys = [
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
