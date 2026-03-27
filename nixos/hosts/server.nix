@@ -52,7 +52,6 @@ in
     "/nix/persist/vm" = zfs {
       pool = "zpersist";
       dataset = "proxmox";
-      neededForBoot = false;
       options = [
         "zfsutil"
         "nofail"
