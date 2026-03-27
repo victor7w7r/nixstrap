@@ -6,6 +6,11 @@
     bridges = [ "vmbr0" ];
   };
 
+  networking.interfaces = {
+    enp1s0.useDHCP = false;
+    vmbr0.useDHCP = false;
+  };
+
   systemd.network = {
     enable = true;
     networks = {

@@ -4,7 +4,6 @@
     hostName = "${host}";
     hostId = "314e119c";
     hosts."64.16.239.70" = [ "us-central-1.telnyxstorage.com" ];
-
     timeServers = [
       "0.south-america.pool.ntp.org"
       "1.south-america.pool.ntp.org"
