@@ -36,9 +36,6 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
-    "/media" = btrfs {
-      device = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
-    };
     "/nix" = f2fs {
       label = "store";
       depends = [ "/" ];
@@ -167,6 +164,7 @@ in
               cat /media/secret.key | zfs load-key zswap/local/swap
               cat /media/secret.key | zfs load-key zpersist/safe/persist
               cat /media/secret.key | zfs load-key zcloud/safe/cloud
+              cat /media/secret.key | zfs load-key zpersist/safe/proxmox
             '';
             serviceConfig = {
               Type = "oneshot";
