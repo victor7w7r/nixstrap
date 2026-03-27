@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, ... }:
 {
   services = {
-    resolved.enable = true;
+    resolved.enable = lib.mkForce true;
     proxmox-ve = {
       enable = true;
       ipAddress = "192.168.1.100";
