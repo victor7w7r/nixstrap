@@ -20,6 +20,7 @@
       emptty
       evemu
       gnused
+      gnutar
       inotify-tools
       file
       firejail
@@ -52,6 +53,7 @@
       veracrypt
       vtm
       wtfutil
+      xz
       #(pkgs.callPackage ./custom/hf.nix { })
       #(pkgs.callPackage ./custom/loop.nix { })
       #(pkgs.callPackage ./custom/procmux.nix { })
