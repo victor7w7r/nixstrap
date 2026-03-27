@@ -9,6 +9,10 @@
   networking = {
     useNetworkd = true;
     useDHCP = false;
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
   };
 
   systemd.network = {
