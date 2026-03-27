@@ -106,17 +106,18 @@
       mountpoint ? "/",
       options ? { },
       isRoot ? false,
+      isLegacy ? true,
       enableSnap ? true,
     }:
     {
       "${preDataset}/${name}" = {
         type = "zfs_fs";
         options = {
-          mountpoint = "legacy";
+          mountpoint = if isLegacy then "legacy" else "none";
+          canmount = if isLegacy then null else "on";
           atime = "off";
         }
         // options;
-        inherit mountpoint;
         postCreateHook = ''
           ${
             if isRoot then
@@ -138,7 +139,8 @@
               ""
           }
         '';
-      };
+      }
+      // (if isLegacy then { inherit mountpoint; } else { });
     };
 
   #ZVol Sparse

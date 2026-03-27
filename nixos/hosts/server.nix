@@ -49,6 +49,17 @@ in
       neededForBoot = false;
       depends = [ "/nix/persist" ];
     };
+    "/nix/persist/vm" = zfs {
+      pool = "zpersist";
+      dataset = "proxmox";
+      neededForBoot = false;
+      options = [
+        "zfsutil"
+        "nofail"
+        "X-systemd.requires=zfs-import-zpersist.service"
+      ];
+      depends = [ "/nix/persist" ];
+    };
     "/nix/persist/cloud" = zfs {
       pool = "zcloud";
       dataset = "cloud";

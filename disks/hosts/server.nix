@@ -135,6 +135,19 @@ let
           keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
+      }
+      // zfs.dataset {
+        pool = "zpersist";
+        name = "proxmox";
+        isLegacy = false;
+        options = {
+          compression = "lz4";
+          "xattr" = "sa";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "file:///media/secret.key";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
   };
 in
