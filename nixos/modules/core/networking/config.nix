@@ -17,7 +17,7 @@
     };
     modemmanager.enable = lib.mkOverride 999 false;
     resolvconf = {
-      enable = host != "v7w7r-youyeetoox1";
+      enable = true;
       useLocalResolver = true;
       dnsExtensionMechanism = false;
       extraConfig = ''
