@@ -81,7 +81,7 @@
           "https://nix-gaming.cachix.org"
           "https://nix-community.cachix.org"
           "https://attic.xuyh0120.win/lantian"
-          #"https://cache.saumon.network/proxmox-nixos"
+          "https://cache.saumon.network/proxmox-nixos"
         ];
         extra-trusted-public-keys = [
           "proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="
