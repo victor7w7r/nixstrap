@@ -6,9 +6,9 @@
     bridges = [ "vmbr0" ];
   };
 
-  networking.interfaces = {
-    enp1s0.useDHCP = false;
-    vmbr0.useDHCP = false;
+  networking = {
+    useNetworkd = true;
+    useDHCP = false;
   };
 
   systemd.network = {
@@ -41,6 +41,6 @@
   systemd.services."pvestatd".enable = true;
   systemd.services."dhcpcd".enable = false;
   systemd.services."corosync".enable = true;
-  #systemd.services."pvescheduler".enable = false;
-  #systemd.services."pvebanner".enable = false;
+  systemd.services."pvescheduler".enable = true;
+  systemd.services."pvebanner".enable = true;
 }
