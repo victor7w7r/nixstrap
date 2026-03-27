@@ -33,9 +33,9 @@
     };
   };
 
+  systemd.services."pvestatd".enable = true;
   systemd.services."dhcpcd".enable = false;
-  systemd.services."corosync".enable = false;
-  systemd.services."pvestatd".enable = false;
+  systemd.services."corosync".enable = true;
   #systemd.services."pvescheduler".enable = false;
   #systemd.services."pvebanner".enable = false;
 }
