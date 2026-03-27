@@ -1,7 +1,12 @@
 { lib, ... }:
 {
   services = {
-    resolved.enable = lib.mkForce true;
+    resolved = {
+      enable = lib.mkForce true;
+      extraConfig = ''
+        DNSStubListener=no
+      '';
+    };
     proxmox-ve = {
       enable = true;
       ipAddress = "192.168.1.100";

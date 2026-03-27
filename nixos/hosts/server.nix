@@ -24,6 +24,7 @@ let
   };
   zfs = import ./lib/zfs.nix;
   f2fs = import ./lib/f2fs.nix;
+  btrfs = import ./lib/btrfs.nix;
 in
 {
   nixpkgs.overlays = [
@@ -35,6 +36,9 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
+    "/media" = btrfs {
+      device = "/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
+    };
     "/nix" = f2fs {
       label = "store";
       depends = [ "/" ];
@@ -44,11 +48,6 @@ in
       dataset = "persist";
       depends = [ "/nix" ];
     };
-    "/nix/persist/shared" = f2fs {
-      label = "shared";
-      neededForBoot = false;
-      depends = [ "/nix/persist" ];
-    };
     "/nix/persist/vm" = zfs {
       pool = "zpersist";
       dataset = "proxmox";
@@ -56,6 +55,11 @@ in
         "zfsutil"
         "nofail"
       ];
+      depends = [ "/nix/persist" ];
+    };
+    "/nix/persist/shared" = f2fs {
+      label = "shared";
+      neededForBoot = false;
       depends = [ "/nix/persist" ];
     };
     "/nix/persist/cloud" = zfs {
