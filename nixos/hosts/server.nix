@@ -55,7 +55,6 @@ in
       options = [
         "zfsutil"
         "nofail"
-        "X-systemd.requires=zfs-import-zpersist.service"
       ];
       depends = [ "/nix/persist" ];
     };
