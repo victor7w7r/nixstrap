@@ -36,8 +36,8 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
-    "/nix" = zfs { dataset = "zsys"; };
-    "/nix/persist" = zfs { dataset = "zsys"; };
+    "/nix" = zfs { pool = "zsys"; dataset = "nix"; };
+    "/nix/persist" = zfs { pool = "zsys"; dataset = "persist"; };
     "/nix/persist/storage" = zfs {
       pool = "zdata";
       dataset = "storage";
