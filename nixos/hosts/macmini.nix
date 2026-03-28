@@ -18,7 +18,7 @@ let
       inputs
       ;
   };
-  params = import ./lib/params.nix;
+  params = import ./lib/kernel-params.nix;
   boot = (import ./lib/boot.nix) {
     emergencyDisk = "ssd";
   };
