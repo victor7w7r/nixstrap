@@ -156,7 +156,7 @@ in
                 if [ ! -e "$DISK1" ] || [ ! -e "$DISK2" ] || [ ! -e "$DISK3" ]; then
                     udevadm settle --timeout=4 || true
                 else
-                    echo "Reasy for boot in attempt $i"
+                    echo "Ready for boot in attempt $i"
                     break
                 fi
                 echo "Waiting SCSI/USB... ($i/30)"
