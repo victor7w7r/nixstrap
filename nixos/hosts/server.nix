@@ -95,7 +95,6 @@ in
         "mmc_block"
         "zfs"
         "btrfs"
-        "autofs"
         "sdhci_pci"
         "usb_storage"
         "uas"
