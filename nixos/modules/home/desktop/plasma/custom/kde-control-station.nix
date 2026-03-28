@@ -8,7 +8,7 @@ stdenvNoCC.mkDerivation {
     owner = "EliverLara";
     repo = "kde-control-station";
     rev = "plasma6";
-    sha256 = "sha256-kIkMG1ysaKIan4cGYmliONjlcY9cZDwl0LV446N1B4E=";
+    sha256 = "sha256-i/o1t/noeDA07rgtNI+yC+AufbcU8w8LLj2hmhK2lhc=";
   };
 
   propagatedUserEnvPkgs = with pkgs.kdePackages; [

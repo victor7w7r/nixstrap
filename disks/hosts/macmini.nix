@@ -237,7 +237,7 @@ in
         zetc
         zshared
         zssdshared
-        zswap
+        #zswap
         zroot
         ;
     };
