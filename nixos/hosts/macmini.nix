@@ -93,7 +93,14 @@ in
         # "vfio_iommu_type1"
         # "vfi"
       ];
-
+      systemd = {
+        storePaths = [
+          "${pkgs.btrfs-progs}/bin/btrfs"
+          "${pkgs.util-linux}/bin/mount"
+          "${pkgs.util-linux}/bin/umount"
+          "${pkgs.coreutils}/bin/sleep"
+          "${pkgs.systemd}/bin/udevadm"
+        ];
       services = {
         zfs-import-zroot.enable = false;
         zfs-import-zsys.enable = false;
@@ -154,6 +161,7 @@ in
             RemainAfterExit = true;
           };
         };
+      };
       };
     };
 
