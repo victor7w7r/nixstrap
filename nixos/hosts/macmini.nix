@@ -131,7 +131,10 @@ in
           ];
           after = [
             "systemd-modules-load.service"
+            "systemd-udev-settle.service"
+            "dev-disk-by-id.device"
           ];
+          wants = [ "systemd-udev-settle.service" ];
           unitConfig.DefaultDependencies = false;
           path = [
             config.boot.zfs.package
@@ -143,6 +146,7 @@ in
             set -e
 
             udevadm trigger --action=add --subsystem-match=block
+            udevadm settle --timeout=30
             zpool import -f -N -a -d /dev/disk/by-id
             zfs rollback -r zroot/local/root@empty
             #cat /media/secret.key | zfs load-key zswap/local/swap
