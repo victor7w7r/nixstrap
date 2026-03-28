@@ -1,7 +1,9 @@
 {
-  pkgs,
-  host,
   inputs,
+  host,
+  config,
+  kernelData,
+  pkgs,
   ...
 }:
 let
