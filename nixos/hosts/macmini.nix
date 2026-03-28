@@ -148,7 +148,7 @@ in
             DISK1="/dev/disk/by-id/ata-ST500LT012-1DG142_S3PMCMHT"
             DISK2="/dev/disk/by-id/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK"
             DISK3="/dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36"
-            KEYDISK="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0"
+            KEYDISK="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
             udevadm trigger --action=add --subsystem-match=block
 
             for i in {1..30}; do
