@@ -2,7 +2,7 @@ let
   winmod = import ../lib/windows.nix;
   zfs = import ../lib/zfs.nix;
 
-  internalpartitions = {
+  applepartitions = {
     esp = (import ../lib/esp.nix) { };
     macos = {
       name = "macos";
@@ -32,6 +32,7 @@ let
     };
     syslog = zfs.partition {
       size = "2G";
+      pool = "zsys";
       priority = 6;
     };
     datalog = zfs.partition {
@@ -41,6 +42,7 @@ let
     };
     sysspecial = zfs.partition {
       size = "40G";
+      pool = "zsys";
       priority = 8;
     };
     dataspecial = zfs.partition {
@@ -50,12 +52,18 @@ let
     };
     syscache = zfs.partition {
       size = "70G";
+      pool = "zsys";
       priority = 10;
     };
     datacache = zfs.partition {
       size = "70G";
       pool = "zdata";
       priority = 11;
+    };
+    root = zfs.partition {
+      size = "30G";
+      pool = "zroot";
+      priority = 12;
     };
     ssdshared = zfs.partition {
       size = "100%";
@@ -68,20 +76,27 @@ let
 
   zroot = zfs.pool {
     isRoot = true;
-    vdev = [ { members = [ "${idpart}/ata-TOSHIBA_MQ01ABD050V_34HES5WXS" ]; } ];
+    mode = "";
+    datasets =
+      zfs.preDataset { name = "local"; }
+      // zfs.dataset {
+        preDataset = "local";
+        options = {
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "false";
+        };
+      };
+  };
+  zsys = zfs.pool {
+    vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
     log = [ { members = [ "${partlabel}/disk-ssd-syslog" ]; } ];
     special = [ { members = [ "${partlabel}/disk-ssd-sysspecial" ]; } ];
     cache = [ "${partlabel}/disk-ssd-syscache" ];
     datasets =
-      zfs.dataset {
-        isRoot = true;
-        options = {
-          canmount = "on";
-          compression = "zstd";
-        };
-      }
+      zfs.preDataset { }
       // zfs.dataset {
         name = "nix";
+        pool = "zsys";
         mountpoint = "/nix";
         options = {
           canmount = "on";
@@ -91,6 +106,7 @@ let
       }
       // zfs.dataset {
         name = "persist";
+        pool = "zsys";
         mountpoint = "/nix/persist";
         options = {
           encryption = "aes-256-gcm";
@@ -100,68 +116,77 @@ let
         };
       };
   };
-
   zdata = zfs.pool {
     vdev = [ { members = [ "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK" ]; } ];
-    log = [ { members = [ "${partlabel}/disk-ssd-szlog" ]; } ];
-    special = [ { members = [ "${partlabel}/disk-ssd-szspecial" ]; } ];
-    cache = [ "${partlabel}/disk-ssd-szcache" ];
-    datasets = zfs.dataset {
-      pool = "zdata";
-      name = "storage";
-      mountpoint = "/nix/persist/storage";
-      options = {
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        keylocation = "prompt";
-        "com.sun:auto-snapshot" = "true";
+    log = [ { members = [ "${partlabel}/disk-ssd-datalog" ]; } ];
+    special = [ { members = [ "${partlabel}/disk-ssd-dataspecial" ]; } ];
+    cache = [ "${partlabel}/disk-ssd-datacache" ];
+    datasets =
+      zfs.preDataset { }
+      // zfs.dataset {
+        pool = "zdata";
+        name = "storage";
+        mountpoint = "/nix/persist/storage";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
-    };
   };
   zetc = zfs.pool {
     mode = "";
-    datasets = zfs.dataset {
-      pool = "zetc";
-      name = "etc";
-      mountpoint = "/nix/persist/etc";
+    datasets =
+      zfs.preDataset { }
+      // zfs.dataset {
+        pool = "zetc";
+        name = "etc";
+        mountpoint = "/nix/persist/etc";
+      };
     };
-  };
+
   zshared = zfs.pool {
     mode = "";
-    datasets = zfs.dataset {
-      pool = "zshared";
-      name = "shared";
-      mountpoint = "/nix/persist/shared";
+    datasets =
+      zfs.preDataset { }
+      // zfs.dataset {
+        pool = "zshared";
+        name = "shared";
+        mountpoint = "/nix/persist/shared";
+      };
     };
-  };
   zssdshared = zfs.pool {
     mode = "";
-    datasets = zfs.dataset {
-      pool = "zssdshared";
-      name = "ssdshared";
-      mountpoint = "/nix/persist/sshshared";
+    datasets =
+      zfs.preDataset { }
+      // zfs.dataset {
+        pool = "zssdshared";
+        name = "ssdshared";
+        mountpoint = "/nix/persist/ssdshared";
+      };
     };
-  };
   zswap = zfs.pool {
     mode = "";
-    datasets = zfs.volume {
-      name = "swap";
-      options = {
-        volblocksize = "4096";
-        compression = "zle";
-        logbias = "throughput";
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        sync = "always";
-        primarycache = "metadata";
-        secondarycache = "none";
-        "com.sun:auto-snapshot" = "false";
+    datasets =
+      zfs.preDataset { name = "local"; }
+      // zfs.volume {
+        name = "swap";
+        size = "1800M";
+        preDataset = ''local'';
+        options = {
+          compression = "zle";
+          logbias = "throughput";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          primarycache = "metadata";
+          secondarycache = "none";
+        };
+        content = {
+          type = "swap";
+          discardPolicy = "both";
+        };
       };
-      content = {
-        type = "swap";
-        discardPolicy = "both";
-      };
-    };
   };
 in
 {
@@ -172,7 +197,7 @@ in
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
-          partitions = internalpartitions;
+          partitions = applepartitions;
         };
       };
       ssd = {
@@ -183,21 +208,24 @@ in
           partitions = ssdpartitions;
         };
       };
-      sysroot = zfs.entireDisk {
-        device = "ata-TOSHIBA_MQ01ABD050V_34HES5WXS"; # CHANGE
+      sysnix = zfs.entireDisk {
+        device = "ata-ST500LT012-1DG142_S3PMCMHT";
+        pool = "zsys";
       };
-      szdev = zfs.entireDisk {
+      data = zfs.entireDisk {
         device = "ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
+        pool = "zdata";
       };
     };
     zpool = {
       inherit
-        zroot
+        zsys
         zdata
         zetc
         zshared
         zssdshared
         zswap
+        zroot
         ;
     };
   };
