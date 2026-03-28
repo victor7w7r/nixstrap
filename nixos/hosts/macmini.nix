@@ -82,14 +82,79 @@ in
       availableKernelModules = [
         "zfs"
         "btrfs"
+        "uas"
         "usb_storage"
-        "usb_storage"
+        "uhci_hcd"
+        "ehci_hcd"
+        "xhci_pci"
         "usbcore"
         # "vfio_virqfd"
         # "vfio_pci"
         # "vfio_iommu_type1"
         # "vfi"
       ];
+
+      services = {
+        zfs-import-zroot.enable = false;
+        zfs-import-zsys.enable = false;
+        zfs-import-zetc.enable = false;
+        zfs-import-zdata.enable = false;
+        zfs-import-zshared.enable = false;
+        zfs-import-zssdshared.enable = false;
+        zfs-import-zswap.enable = false;
+
+        zfs-setimport = {
+          wantedBy = [ "initrd.target" ];
+          before = [
+            "rollback-zfs.service"
+            "initrd-fs.target"
+            "sysroot.mount"
+          ];
+          after = [
+            "systemd-modules-load.service"
+          ];
+          unitConfig.DefaultDependencies = false;
+          path = [
+            config.boot.zfs.package
+            pkgs.util-linux
+            pkgs.systemd
+            pkgs.coreutils
+          ];
+          script = ''
+            set -e
+
+            zpool import -f -N -a -d /dev/disk/by-id
+            zfs rollback -r zroot/local/root@empty
+            #cat /media/secret.key | zfs load-key zswap/local/swap
+            #cat /media/secret.key | zfs load-key zpersist/safe/persist
+            #cat /media/secret.key | zfs load-key zcloud/safe/cloud
+            #cat /media/secret.key | zfs load-key zpersist/safe/proxmox
+          '';
+
+          /*  mkdir -p /media
+          DEVICE="/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"
+
+          udevadm trigger --action=add --subsystem-match=block
+          for i in {1..30}; do
+            if [ ! -e "$DEVICE" ]; then
+                udevadm settle --timeout=3 || true
+            fi
+            if [ -e "$DEVICE" ]; then
+                echo "Appear in attempt $i"
+                if mount -t btrfs -o rw,noatime,ssd,discard=async "$DEVICE" /media; then
+                    break
+                fi
+            fi
+            echo "Waiting SCSI/USB... ($i/30)"
+            sleep 1
+            done*/
+
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+        };
+      };
     };
 
   };
