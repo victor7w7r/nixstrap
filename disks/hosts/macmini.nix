@@ -154,6 +154,12 @@ let
         pool = "zshared";
         name = "shared";
         mountpoint = "/nix/persist/shared";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
     };
   zssdshared = zfs.pool {
@@ -164,6 +170,12 @@ let
         pool = "zssdshared";
         name = "ssdshared";
         mountpoint = "/nix/persist/ssdshared";
+        options = {
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          "com.sun:auto-snapshot" = "true";
+        };
       };
     };
   zswap = zfs.pool {
@@ -179,6 +191,7 @@ let
           logbias = "throughput";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
+          keylocation = "prompt";
           primarycache = "metadata";
           secondarycache = "none";
         };

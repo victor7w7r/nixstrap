@@ -36,22 +36,29 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
-    "/nix" = zfs { pool = "zsys"; dataset = "nix"; };
-    "/nix/persist" = zfs { pool = "zsys"; dataset = "persist"; };
-    "/nix/persist/storage" = zfs {
-      pool = "zdata";
-      dataset = "storage";
-    };
+    "/nix" = zfs { pool = "zsys"; dataset = "nix"; depends = [ "/" ]; };
+    "/nix/persist" = zfs { pool = "zsys"; dataset = "persist";  depends = [ "/nix" ]; };
     "/nix/persist/etc" = zfs {
       pool = "zetc";
       dataset = "etc";
+      depends = [ "/nix/persist" ];
+    };
+    "/nix/persist/storage" = zfs {
+      pool = "zdata";
+      neededForBoot = false;
+      depends = [ "/nix/persist" ];
+      dataset = "storage";
     };
     "/nix/persist/shared" = zfs {
       pool = "zshared";
+      neededForBoot = false;
+      depends = [ "/nix/persist" ];
       dataset = "shared";
     };
     "/nix/persist/ssdshared" = zfs {
       pool = "zssdshared";
+      neededForBoot = false;
+      depends = [ "/nix/persist" ];
       dataset = "ssdshared";
     };
   };
@@ -79,7 +86,7 @@ in
       forceImportRoot = true;
     };
     initrd = {
-      availableKernelModules = [
+      kernelModules = [
         "zfs"
         "btrfs"
         "uas"
@@ -93,6 +100,7 @@ in
         # "vfio_iommu_type1"
         # "vfi"
       ];
+      supportedFilesystems = [ "zfs" ];
       systemd = {
         storePaths = [
           "${pkgs.btrfs-progs}/bin/btrfs"
@@ -130,6 +138,7 @@ in
           script = ''
             set -e
 
+            udevadm trigger --action=add --subsystem-match=block
             zpool import -f -N -a -d /dev/disk/by-id
             zfs rollback -r zroot/local/root@empty
             #cat /media/secret.key | zfs load-key zswap/local/swap
@@ -141,7 +150,6 @@ in
           /*  mkdir -p /media
           DEVICE="/dev/disk/by-id/usb-MXT-USB_Storage_Device_150101v01-0:0-part1"
 
-          udevadm trigger --action=add --subsystem-match=block
           for i in {1..30}; do
             if [ ! -e "$DEVICE" ]; then
                 udevadm settle --timeout=3 || true
@@ -186,6 +194,7 @@ in
         "zshared"
       ];
     };
+
     autoSnapshot = {
       enable = true;
       frequent = 4;
