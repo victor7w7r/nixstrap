@@ -111,7 +111,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -130,7 +130,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -157,7 +157,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -173,7 +173,7 @@ let
         options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///media/secret.key";
           "com.sun:auto-snapshot" = "true";
         };
       };
@@ -191,7 +191,7 @@ let
           logbias = "throughput";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "prompt";
+          keylocation = "file:///media/secret.key";
           primarycache = "metadata";
           secondarycache = "none";
         };

@@ -149,15 +149,17 @@ in
             DISK1="/dev/disk/by-id/ata-ST500LT012-1DG142_S3PMCMHT"
             DISK2="/dev/disk/by-id/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK"
             DISK3="/dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36"
-            #KEYDISK=""
+            KEYDISK="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0"
             udevadm trigger --action=add --subsystem-match=block
 
             for i in {1..30}; do
-                if [ ! -e "$DISK1" ] || [ ! -e "$DISK2" ] || [ ! -e "$DISK3" ]; then
+                if [ ! -e "$DISK1" ] || [ ! -e "$DISK2" ] || [ ! -e "$DISK3" ] || [ ! -e "$KEYDISK" ]; then
                     udevadm settle --timeout=4 || true
                 else
                     echo "Ready for boot in attempt $i"
-                    break
+                    if mount -t btrfs -o rw,noatime,ssd,discard=async "$KEYDISK" /media; then
+                        break
+                    fi
                 fi
                 echo "Waiting SCSI/USB... ($i/30)"
                 sleep 1
@@ -165,10 +167,11 @@ in
 
             zpool import -f -N -a -d /dev/disk/by-id
             zfs rollback -r zroot/local/root@empty
-            #cat /media/secret.key | zfs load-key zswap/local/swap
-            #cat /media/secret.key | zfs load-key zpersist/safe/persist
-            #cat /media/secret.key | zfs load-key zcloud/safe/cloud
-            #cat /media/secret.key | zfs load-key zpersist/safe/proxmox
+            cat /media/secret.key | zfs load-key zsys/safe/persist
+            cat /media/secret.key | zfs load-key zdata/safe/storage
+            cat /media/secret.key | zfs load-key zswap/local/swap
+            #cat /media/secret.key | zfs load-key zshared/safe/shared
+            #cat /media/secret.key | zfs load-key zssdshared/safe/ssdshared
           '';
 
           serviceConfig = {
