@@ -83,7 +83,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     sops-nix = {
-      url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-refind = {
@@ -190,13 +190,13 @@
             (import ./configuration.nix)
             (import ./pkgs)
             nixos-hardware.nixosModules.apple-t2
+            nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
+            impermanence.nixosModules.impermanence
+            nixvim.nixosModules.nixvim
             (import ./hosts/macmini.nix)
             (import ./modules/core)
             (import ./modules/home)
-            nur.modules.nixos.default
-            nixvim.nixosModules.nixvim
-            impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
           ];
           specialArgs = {
