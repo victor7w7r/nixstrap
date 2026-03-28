@@ -16,8 +16,8 @@
       rustup
       windterm
     ]
-    ++ (lib.optional (host == "v7w7r-macmini81") [
+    ++ (if (host == "v7w7r-macmini81") then [
       jetbrains.datagrip
-    ])
+    ] else [ ])
   );
 }
