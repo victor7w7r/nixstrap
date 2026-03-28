@@ -82,7 +82,6 @@ in
 
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
-      requestEncryptionCredentials = true;
       forceImportAll = false;
       forceImportRoot = true;
     };
