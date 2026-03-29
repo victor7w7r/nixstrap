@@ -28,6 +28,8 @@
 
         "com.apple.assistant.support"."Assistant Enabled" = false;
 
+        "com.apple.NetworkBrowser".BrowseAllInterfaces = true;
+
         "com.apple.commerce" = {
           AutoUpdate = false;
           AutoUpdateRestartRequired = false;
@@ -244,7 +246,6 @@
       LaunchServices.LSQuarantine = false;
 
       menuextra.battery.ShowTime = "YES";
-      NetworkBrowser.BrowseAllInterfaces = true;
       NSGlobalDomain = {
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.springing.enabled" = true;
