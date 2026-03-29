@@ -3,10 +3,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
 {
   homebrew = {
     enable = true;
-    caskArgs = {
-      appdir = "~/Applications";
-      require_sha = true;
-    };
+    caskArgs.appdir = "~/Applications";
     onActivation = {
       autoUpdate = true;
       upgrade = true;
@@ -17,15 +14,6 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       autoUpdate = true;
       brewfile = true;
     };
-
-    taps = [
-      "homebrew/bundle"
-      "homebrew/cask"
-      "homebrew/cask-fonts"
-      "homebrew/cask-versions"
-      "homebrew/core"
-      "homebrew/services"
-    ];
 
 /*    masApps = {
       "Amphetamine" = 937984704;
@@ -38,6 +26,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
 */
     casks = lib.map mkGreedy [
       "alt-tab"
+      "android-platform-tools"
       "applite"
       "app-cleaner"
       "appcleaner"
@@ -47,12 +36,13 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "devtoys"
       "dockdoor"
       "go2shell"
-      "gsmartcontrol"
+      #"gsmartcontrol"
       "hiddenbar"
       "jordanbaird-ice"
       "jdownloader"
       "loop"
       "lulu"
+      "macfuse"
       "macs-fan-control"
       "maccy"
       "mist"
@@ -85,19 +75,17 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "kdabir/tap/has"
       "mananapr/cfiles/cfiles"
       #"nakabonne/pbgopy/pbgopy"
-      "napisani/procmux"
+      #"napisani/procmux"
       "orangekame3/tap/paclear"
       "qnkhuat/tap/termishare"
       "tako8ki/tap/gobang"
       "yudai/gotty/gotty"
-      "android-platform-tools"
       "arttime"
-      "apparency"
+      #"apparency"
       "bfg"
       "cfonts"
       "diskonaut"
       "dua-cli"
-      "macfuse"
       "mabel"
       "mas"
       "meli"
@@ -109,14 +97,14 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "pipes-sh"
       "progressline"
       "pyenv-virtualenv"
-      "qlcolorcode"
-      "qlstephen"
-      "qlmarkdown"
-      "quicklook-json"
-      "quicklookase"
-      "qlvideo"
+      #"qlcolorcode"
+      #"qlstephen"
+      #"qlmarkdown"
+      #"quicklook-json"
+      #"quicklookase"
+      #"qlvideo"
       "sevenzip"
-      "suspicious-package"
+      #"suspicious-package"
       "tmux-xpanes"
       "thefuck"
     ];
