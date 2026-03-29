@@ -244,7 +244,7 @@
 
       LaunchServices.LSQuarantine = false;
 
-      menuextra.battery.ShowTime = "YES";
+      #menuextra.battery.ShowTime = "YES";
       NSGlobalDomain = {
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.springing.enabled" = true;
