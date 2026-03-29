@@ -200,7 +200,7 @@
         magnification = false;
         mineffect = "scale";
         mru-spaces = false;
-        no-glass = true;
+        #no-glass = true;
         orientation = "bottom";
         showhidden = true;
         show-recents = false;
