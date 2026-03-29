@@ -240,7 +240,7 @@
         ShowPathbar = true;
       };
 
-      iphonesimulator.AllowFullscreenMode = "YES";
+      #iphonesimulator.AllowFullscreenMode = "YES";
 
       LaunchServices.LSQuarantine = false;
 
