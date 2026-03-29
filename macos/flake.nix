@@ -58,7 +58,7 @@
           specialArgs = {
             host = "v7w7r-macmini81";
             user = "victor7w7r";
-            determinateNix = determinate.inputs.nix.packages.${prev.stdenv.system}.default;
+            determinateNix = determinate.inputs.nix.packages."x86_64-darwin".default;
           };
         };
       };
