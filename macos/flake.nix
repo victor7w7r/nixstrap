@@ -50,6 +50,7 @@
           system = "x86_64-darwin";
           modules = [
             nix-homebrew.darwinModules.nix-homebrew
+            determinate.darwinModules.default
             home-manager.darwinModules.home-manager
             (import ./configuration.nix)
             (import ./core)
