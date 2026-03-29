@@ -40,7 +40,7 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
-      determinate
+      determinate,
       ...
     }:
     {
