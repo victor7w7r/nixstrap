@@ -56,7 +56,7 @@
   ];
 
   programs = {
-    bandwhich.enable = true;
+    #bandwhich.enable = true;
     less.enable = true;
     skim.enable = true;
     direnv = {
