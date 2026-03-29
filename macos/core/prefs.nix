@@ -154,6 +154,7 @@
           NSAllowContinuousSpellChecking = false;
           NSAutomaticWindowAnimationsEnabled = false;
           NSDisableAutomaticTermination = true;
+          NSPersonNameDefaultDisplayNameOrder = 1;
           NSQuitAlwaysKeepsWindows = false;
         };
       };
@@ -271,7 +272,6 @@
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
         NSTextShowsControlCharacters = true;
-        NSPersonNameDefaultDisplayNameOrder = 1;
         NSScrollAnimationEnabled = true;
         NSTableViewDefaultSizeMode = 1;
         NSUseAnimatedFocusRing = false;
