@@ -1,7 +1,7 @@
 { ... }:
 {
   homebrew = {
-    enable = true;
+    enable = false;
     caskArgs = {
       appdir = "~/Applications";
       require_sha = true;
