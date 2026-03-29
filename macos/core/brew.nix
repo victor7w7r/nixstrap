@@ -98,7 +98,6 @@
       "cfonts"
       "diskonaut"
       "dua-cli"
-      "jwt-ui"
       "macfuse"
       "mabel"
       "mas"
