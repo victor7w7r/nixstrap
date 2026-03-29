@@ -44,7 +44,6 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     nerd-fonts.jetbrains-mono
