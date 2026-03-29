@@ -7,7 +7,7 @@
 }:
 {
   system.primaryUser = user;
-  time.timeZone = "Aamerica/Guayaquil";
+  time.timeZone = "America/Guayaquil";
 
   networking = {
     computerName = host;
@@ -57,7 +57,7 @@
 
   programs = {
     #bandwhich.enable = true;
-    less.enable = true;
+    #less.enable = true;
     skim.enable = true;
     direnv = {
       enable = true;
