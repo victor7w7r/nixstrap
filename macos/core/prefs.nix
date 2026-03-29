@@ -195,7 +195,7 @@
         dashboard-in-overlay = true;
         enable-spring-load-actions-on-all-items = true;
         expose-animation-duration = 0.001;
-        hide-mirror = true;
+        #hide-mirror = true;
         launchanim = false;
         magnification = false;
         mineffect = "scale";
