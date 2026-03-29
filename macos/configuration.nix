@@ -1,4 +1,4 @@
-{ user, lib, ... }:
+{ user, lib, determinateNix, ... }:
 {
   system = {
     checks.verifyBuildUsers = false;
