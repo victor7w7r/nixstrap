@@ -221,7 +221,7 @@
         #AnimateInfoPanes = false;
         #AnimateSnapToGrid = false;
         #DisableAllAnimations = true;
-        EmptyTrashSecurely = true;
+        #EmptyTrashSecurely = true;
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
         FXEnableSlowAnimation = false;
