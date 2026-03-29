@@ -43,6 +43,7 @@
       ...
     }:
     {
+      # sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake .#macmini
       darwinConfigurations = {
         macmini = nix-darwin.lib.darwinSystem {
           system = "x86_64-darwin";
@@ -50,8 +51,8 @@
             nix-homebrew.darwinModules.nix-homebrew
             home-manager.darwinModules.home-manager
             (import ./configuration.nix)
-            (import ./core.nix)
-            (import ./home.nix)
+            (import ./core)
+            (import ./home)
           ];
           specialArgs = {
             host = "v7w7r-macmini81";
