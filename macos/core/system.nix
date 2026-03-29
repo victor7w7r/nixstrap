@@ -64,7 +64,7 @@
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
-    bottom.enable = true;
+    #bottom.enable = true;
     yazi = {
       enable = true;
       /*
