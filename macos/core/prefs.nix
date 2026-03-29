@@ -234,7 +234,7 @@
         FXPreferredViewStyle = "icnv";
         _FXShowPosixPathInTitle = true;
         #OpenWindowForNewRemovableDisk = false;
-        QLEnableTextSelection = true;
+       # QLEnableTextSelection = true;
         #QLEnableSlowMotion = false;
         ShowStatusBar = true;
         ShowPathbar = true;
