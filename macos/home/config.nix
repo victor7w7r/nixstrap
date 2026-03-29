@@ -70,7 +70,7 @@
     };
     navi.enable = true;
     tealdeer.enable = true;
-    visidata.enable = true;
+    #visidata.enable = true;
     vifm.enable = true;
     xplr.enable = true;
     zsh = {
