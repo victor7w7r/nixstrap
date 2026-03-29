@@ -219,7 +219,7 @@
 
       finder = {
         #AnimateInfoPanes = false;
-        AnimateSnapToGrid = false;
+        #AnimateSnapToGrid = false;
         DisableAllAnimations = true;
         EmptyTrashSecurely = true;
         FXDefaultSearchScope = "SCcf";
