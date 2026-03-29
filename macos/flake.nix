@@ -43,7 +43,7 @@
       determinate,
       self,
       ...
-    }:
+    }@inputs:
     {
       # sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake .#macmini
       darwinConfigurations = {
@@ -60,7 +60,7 @@
           specialArgs = {
             host = "v7w7r-macmini81";
             user = "victor7w7r";
-            inherit self;
+            inherit inputs;
             determinateNix = determinate.inputs.nix.packages."x86_64-darwin".default;
           };
         };
