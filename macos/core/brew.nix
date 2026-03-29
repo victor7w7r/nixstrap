@@ -7,9 +7,10 @@
       require_sha = true;
       no_quarantine = true;
     };
+    mutableTaps = true;
     onActivation = {
-      autoUpdate = false;
-      upgrade = false;
+      autoUpdate = true;
+      upgrade = true;
       cleanup = "uninstall";
       extraFlags = [ "--verbose" ];
     };

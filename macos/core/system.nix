@@ -25,6 +25,7 @@
   environment = {
     variables.RLIMIT_NOFILE = "65536";
     pathsToLink = [ "/Applications" ];
+    systemPath = [ "/usr/local/bin" ];
     etc = {
       home-manager.source = "${inputs.home-manager}";
       nixpkgs.source = "${pkgs.path}";
