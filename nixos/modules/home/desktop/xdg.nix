@@ -1,4 +1,4 @@
-{ username, config, ... }:
+{ username, ... }:
 {
   home.file.".xinitrc".text = ''
     export XAUTHORITY=/home/${username}/.Xauthority
@@ -25,12 +25,13 @@
       };
     };
     userDirs = {
-      desktop = "${config.home.homeDirectory}/tmp";
-      download = "${config.home.homeDirectory}/tmp";
-      documents = "${config.home.homeDirectory}/files";
-      music = "${config.home.homeDirectory}/files/media";
-      pictures = "${config.home.homeDirectory}/files/media";
-      videos = "${config.home.homeDirectory}/files/media";
+      enable = true;
+      createDirectories = true;
+      music = null;
+      desktop = null;
+      videos = null;
+      templates = null;
+      publicShare = null;
     };
   };
 }

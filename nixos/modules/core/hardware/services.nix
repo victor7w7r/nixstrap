@@ -1,4 +1,4 @@
-{ lib, host, ... }:
+{ pkgs, host, ... }:
 let
   governor = (
     if host == "v7w7r-macmini81" then
@@ -115,3 +115,71 @@ in
     };
   };
 }
+// (
+  if host == "v7w7r-macmini81" then
+    {
+      systemd.services = {
+        t2fanrd = {
+          description = "T2FanRD daemon to manage fan curves for T2 Macs";
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            Type = "exec";
+            ExecStart = "${(pkgs.callPackage ./custom/t2fanrd.nix { })}/bin/t2fanrd";
+            Restart = "always";
+
+            PrivateTmp = true;
+            ProtectSystem = true;
+            ProtectHome = true;
+            ProtectClock = true;
+            ProtectHostname = true;
+            ProtectControlGroups = true;
+            ProtectKernelLogs = true;
+            ProtectKernelModules = true;
+            ProtectProc = "invisible";
+            PrivateDevices = true;
+            PrivateNetwork = true;
+            NoNewPrivileges = true;
+            DevicePolicy = "closed";
+            KeyringMode = "private";
+            LockPersonality = true;
+            MemoryDenyWriteExecute = true;
+            PrivateUsers = true;
+            RemoveIPC = true;
+            RestrictNamespaces = true;
+            RestrictRealtime = true;
+            RestrictSUIDSGID = true;
+            SystemCallArchitectures = "native";
+          };
+        };
+
+        "apple-bce-reload" = {
+          description = "Disable and Re-Enable Apple BCE Module (and Wi-Fi)";
+          wantedBy = [ "sleep.target" ];
+          before = [ "sleep.target" ];
+          unitConfig.StopWhenUnneeded = true;
+
+          serviceConfig = {
+            User = "root";
+            Type = "oneshot";
+            RemainAfterExit = true;
+
+            ExecStart = [
+              "${pkgs.kmod}/bin/modprobe -r hci_bcm4377"
+              "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
+              "${pkgs.kmod}/bin/modprobe -r brcmfmac"
+              "${pkgs.kmod}/bin/rmmod -f apple-bce"
+            ];
+
+            ExecStop = [
+              "${pkgs.kmod}/bin/modprobe apple-bce"
+              "${pkgs.kmod}/bin/modprobe brcmfmac"
+              "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
+              "${pkgs.kmod}/bin/modprobe hci_bcm4377"
+            ];
+          };
+        };
+      };
+    }
+  else
+    { }
+)

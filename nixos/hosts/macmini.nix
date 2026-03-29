@@ -22,7 +22,6 @@ let
   boot = (import ./lib/boot.nix) {
     emergencyDisk = "ssd";
   };
-  btrfs = (import ./lib/btrfs.nix);
   zfs = import ./lib/zfs.nix;
 in
 {
@@ -36,8 +35,16 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     "/" = zfs { preDataset = "local"; };
-    "/nix" = zfs { pool = "zsys"; dataset = "nix"; depends = [ "/" ]; };
-    "/nix/persist" = zfs { pool = "zsys"; dataset = "persist";  depends = [ "/nix" ]; };
+    "/nix" = zfs {
+      pool = "zsys";
+      dataset = "nix";
+      depends = [ "/" ];
+    };
+    "/nix/persist" = zfs {
+      pool = "zsys";
+      dataset = "persist";
+      depends = [ "/nix" ];
+    };
     "/nix/persist/etc" = zfs {
       pool = "zetc";
       dataset = "etc";
@@ -70,7 +77,13 @@ in
     }
   ];
   boot = {
-    kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
+    kernelParams = [
+      "intel_iommu=on"
+      "apple-bce"
+      "video=DP-3:1600x900@60"
+    ]
+    ++ intelParams
+    ++ params { };
     kernelPackages = lib.mkForce (
       (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
         _self: _super: {
@@ -112,73 +125,73 @@ in
           "${pkgs.coreutils}/bin/sleep"
           "${pkgs.systemd}/bin/udevadm"
         ];
-      services = {
-        zfs-import-zroot.enable = false;
-        zfs-import-zsys.enable = false;
-        zfs-import-zetc.enable = false;
-        zfs-import-zdata.enable = false;
-        zfs-import-zshared.enable = false;
-        zfs-import-zssdshared.enable = false;
-        zfs-import-zswap.enable = false;
+        services = {
+          zfs-import-zroot.enable = false;
+          zfs-import-zsys.enable = false;
+          zfs-import-zetc.enable = false;
+          zfs-import-zdata.enable = false;
+          zfs-import-zshared.enable = false;
+          zfs-import-zssdshared.enable = false;
+          zfs-import-zswap.enable = false;
 
-        zfs-setimport = {
-          wantedBy = [ "initrd.target" ];
-          before = [
-            "rollback-zfs.service"
-            "initrd-fs.target"
-            "sysroot.mount"
-          ];
-          after = [
-            "systemd-modules-load.service"
-            "systemd-udev-settle.service"
-            "dev-disk-by-id.device"
-          ];
-          wants = [ "systemd-udev-settle.service" ];
-          unitConfig.DefaultDependencies = false;
-          path = [
-            config.boot.zfs.package
-            pkgs.util-linux
-            pkgs.systemd
-            pkgs.coreutils
-          ];
-          script = ''
-            set -e
-            mkdir -p /media
+          zfs-setimport = {
+            wantedBy = [ "initrd.target" ];
+            before = [
+              "rollback-zfs.service"
+              "initrd-fs.target"
+              "sysroot.mount"
+            ];
+            after = [
+              "systemd-modules-load.service"
+              "systemd-udev-settle.service"
+              "dev-disk-by-id.device"
+            ];
+            wants = [ "systemd-udev-settle.service" ];
+            unitConfig.DefaultDependencies = false;
+            path = [
+              config.boot.zfs.package
+              pkgs.util-linux
+              pkgs.systemd
+              pkgs.coreutils
+            ];
+            script = ''
+              set -e
+              mkdir -p /media
 
-            DISK1="/dev/disk/by-id/ata-ST500LT012-1DG142_S3PMCMHT"
-            DISK2="/dev/disk/by-id/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK"
-            DISK3="/dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36"
-            KEYDISK="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
-            udevadm trigger --action=add --subsystem-match=block
+              DISK1="/dev/disk/by-id/ata-ST500LT012-1DG142_S3PMCMHT"
+              DISK2="/dev/disk/by-id/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK"
+              DISK3="/dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36"
+              KEYDISK="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
+              udevadm trigger --action=add --subsystem-match=block
 
-            for i in {1..30}; do
-                if [ ! -e "$DISK1" ] || [ ! -e "$DISK2" ] || [ ! -e "$DISK3" ] || [ ! -e "$KEYDISK" ]; then
-                    udevadm settle --timeout=4 || true
-                else
-                    echo "Ready for boot in attempt $i"
-                    if mount -t btrfs -o rw,noatime,ssd,discard=async "$KEYDISK" /media; then
-                        break
-                    fi
-                fi
-                echo "Waiting SCSI/USB... ($i/30)"
-                sleep 1
-            done
+              for i in {1..30}; do
+                  if [ ! -e "$DISK1" ] || [ ! -e "$DISK2" ] || [ ! -e "$DISK3" ] || [ ! -e "$KEYDISK" ]; then
+                      udevadm settle --timeout=4 || true
+                  else
+                      echo "Ready for boot in attempt $i"
+                      if mount -t btrfs -o rw,noatime,ssd,discard=async "$KEYDISK" /media; then
+                          break
+                      fi
+                  fi
+                  echo "Waiting SCSI/USB... ($i/30)"
+                  sleep 1
+              done
 
-            zpool import -f -N -a -d /dev/disk/by-id
-            zfs rollback -r zroot/local/root@empty
-            cat /media/secret.key | zfs load-key zsys/safe/persist
-            cat /media/secret.key | zfs load-key zdata/safe/storage
-            cat /media/secret.key | zfs load-key zswap/local/swap
-            #cat /media/secret.key | zfs load-key zshared/safe/shared
-            #cat /media/secret.key | zfs load-key zssdshared/safe/ssdshared
-          '';
+              zpool import -f -N -a -d /dev/disk/by-id
+              zfs rollback -r zroot/local/root@empty
+              cat /media/secret.key | zfs load-key zsys/safe/persist
+              cat /media/secret.key | zfs load-key zdata/safe/storage
+              cat /media/secret.key | zfs load-key zswap/local/swap
+              #cat /media/secret.key | zfs load-key zshared/safe/shared
+              #cat /media/secret.key | zfs load-key zssdshared/safe/ssdshared
+            '';
 
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
           };
         };
-      };
       };
     };
 

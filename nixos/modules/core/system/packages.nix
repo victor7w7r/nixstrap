@@ -17,6 +17,7 @@
       choose
       cmd-wrapped
       cod
+      efibootmgr
       emptty
       evemu
       gnused

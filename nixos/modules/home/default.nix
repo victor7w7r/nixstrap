@@ -16,6 +16,7 @@ let
       programs.home-manager.enable = true;
       home = {
         username = user;
+        language.base = "es_ES.UTF-8";
         homeDirectory = if user == "root" then "/root" else "/home/${user}";
         stateVersion = "26.05";
       };

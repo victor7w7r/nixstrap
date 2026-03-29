@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ host, pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;

@@ -1,4 +1,4 @@
-{ ... }:
+{ host, ... }:
 {
   #https://github.com/DocBrown101/org.kde.plasma.nixos.channelstatus
   programs.plasma.panels = [
@@ -133,29 +133,36 @@
           };
         }
         "org.kde.plasma.panelspacer"
-        /*
-          {
-            name = "org.kde.plasma.systemmonitor";
-            config = {
-              CurrentPreset = "org.kde.plasma.systemmonitor";
-              PreloadWeight = 75;
-              popupHeight = 124;
-              popupWidth = 230;
-              ConfigDialog = {
-                DialogHeight = 538;
-                DialogWidth = 720;
+      ]
+      ++ (
+        if host == "v7w7r-macmini81" then
+          [
+            {
+              name = "org.kde.plasma.systemmonitor";
+              config = {
+                CurrentPreset = "org.kde.plasma.systemmonitor";
+                PreloadWeight = 75;
+                popupHeight = 124;
+                popupWidth = 230;
+                ConfigDialog = {
+                  DialogHeight = 538;
+                  DialogWidth = 720;
+                };
+                Appearance = {
+                  chartFace = "org.kde.circles";
+                  showTitle = true;
+                  title = "Ventilador";
+                };
+                SensorColors."lmsensors/applesmc-acpi-0/temp1" = "245,161,86";
+                Sensors."highPrioritySensorIds" = "[]";
+                Sensors."totalSensors" = ''["lmsensors/applesmc-acpi-0/fan1"]'';
               };
-              Appearance = {
-                chartFace = "org.kde.circles";
-                showTitle = true;
-                title = "Ventilador";
-              };
-              SensorColors."lmsensors/applesmc-acpi-0/temp1" = "245,161,86";
-              Sensors."highPrioritySensorIds" = "[]";
-              Sensors."totalSensors" = ''["lmsensors/applesmc-acpi-0/fan1"]'';
-            };
-          }
-        */
+            }
+          ]
+        else
+          [ ]
+      )
+      ++ [
         {
           name = "org.kde.plasma.systemmonitor.memory";
           config = {

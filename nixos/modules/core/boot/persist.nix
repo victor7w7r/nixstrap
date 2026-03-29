@@ -61,50 +61,15 @@ in
     directories = [
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
+      "/etc/ssh"
       "/var/log"
-      "/var/lib/alsa"
-      {
-        directory = "/var/lib/bluetooth";
-        mode = "u=rwx,g=,o=";
-      }
-      {
-        directory = "/var/lib/sddm";
-        user = "sddm";
-        group = "sddm";
-        mode = "u=rwx,g=,o=";
-      }
-      "/var/lib/pve-cluster"
-      "/var/lib/NetworkManager"
-      "/var/lib/nixos"
-      {
-        directory = "/var/lib/sbctl";
-        mode = "0700";
-      }
-      "/var/lib/systemd"
-      {
-        directory = "/var/lib/private";
-        mode = "u=rwx,g=,o=";
-      }
-      "/var/lib/tailscale"
-      "/var/lib/sops-nix"
-      "/var/lib/tpm2-tss"
-      "/var/lib/secrets"
-      "/var/lib/waydroid"
+      "/var/lib"
     ];
     files = [
       "/etc/adjtime"
       "/etc/logo.svg"
       "/etc/machine-id"
-      #"/etc/subgid"
-      #"/etc/subuid"
-      #"/etc/shadow"
-      #"/etc/group"
-      #"/etc/passwd"
       "/etc/zfs/zpool.cache"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
     ];
     users.root.directories = [
       "/root/.zsh"
@@ -117,22 +82,31 @@ in
         "Descargas"
         "Imágenes"
         "repositories"
+        "scripts"
+        "remote"
+        ".cache/antidote"
         ".ssh"
         ".local/share/baloo"
         ".local/share/emacs"
         ".local/share/kwalletd"
         ".local/share/Trash"
-        ".config/zen"
+        ".local/share/JetBrains"
+        ".local/share/zed"
+        ".local/share/waydroid"
+        ".config/JetBrains"
         ".config/sops"
+        ".config/zen"
         ".config/nix"
+        ".gnupg"
         ".steam"
         ".zsh"
         ".tmux"
-        ".cache/antidote"
       ];
       files = [
         ".bash_history"
         ".config/kwinoutputconfig.json"
+        ".config/dolphinrc"
+        ".config/kwalletrc"
         ".zsh_history"
       ];
     };

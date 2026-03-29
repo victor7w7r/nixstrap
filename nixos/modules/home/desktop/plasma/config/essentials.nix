@@ -13,6 +13,10 @@
       windowDecorations.theme = "__aurorae__svg__Layan";
     };
 
+    shortcuts = {
+      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Space";
+    };
+
     desktop.widgets = [
       {
         config = {

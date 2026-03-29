@@ -30,7 +30,6 @@ let
   initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
   latest = config.boot.kernelPackages.kernel;
   kernelFile = config.system.boot.loader.kernelFile;
-  #secure = config.specialisation.hardened.configuration.boot.kernelPackages.kernel;
 
   refind-opts = ''
     banner ${mocha}/background.png
@@ -58,10 +57,31 @@ let
     }
   '';
 
+  macosEntry = ''
+    menuentry "macOS" {
+      volume "Preboot"
+      icon /EFI/refind/${mocha}/icons/os_mac.png
+      loader \System\Library\CoreServices\boot.efi
+      ostype MacOS
+    }
+    submenuentry "Verbose" {
+        add_options "-v"
+    }
+    submenuentry "Single User" {
+        add_options "-s"
+    }
+    submenuentry "Safe Mode" {
+        add_options "-x"
+    }
+    submenuentry "Verbose + Single User" {
+        add_options "-v -s"
+    }
+  '';
+
   nixosBuilder =
     {
       name ? "NixOS",
-      loader ? "/EFI/nixos.efi",
+      loader ? "\EFI/nixos.efi",
       subentries ? ''
         submenuentry "Verbose" {
           add_options "${debugFlags}"
@@ -103,13 +123,16 @@ in
       ${cp} ${refind}/refind_x64.efi ${efi}/BOOT/BOOTX64.efi
 
       ${rm} -rf ${efi}/refind/docs ${efi}/refind/refind.conf-sample ${efi}/refind/images ${efi}/refind/drivers_x64/ext*
-      ${rm} -rf ${efi}/refind/drivers_x64/hfs_x64.efi ${efi}/refind/drivers_x64/iso9660_x64.efi  ${efi}/refind/drivers_x64/reiserfs_x64.efi
+      ${if (host != "v7w7r-macmini81") then "${rm} -rf ${efi}/refind/drivers_x64/hfs_x64.efi" else ""}
+      ${efi}/refind/drivers_x64/iso9660_x64.efi  ${efi}/refind/drivers_x64/reiserfs_x64.efi
       ${mkdir} -p ${efi}/refind/themes && ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
 
       ${cp} ${edk2}/shell.efi ${efi}/refind/tools_x64/shellx64.efi
       ${cp} ${memtest}/BOOTX64.efi ${efi}/refind/tools_x64/memtest86.efi
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/refind/tools_x64/fwupx64.efi
+
+
     fi
 
     EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
@@ -140,17 +163,25 @@ in
       ${refind-opts}
       ${nixosBuilder { }}
       ${if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then winEntry else ""}
+      ${if (host == "v7w7r-macmini81") then macosEntry else ""}
     EOF
 
-    if [ -d /var/lib/sbctl/keys ]; then
-      ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/tools_x64/shellx64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/tools_x64/memtest86.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/tools_x64/gptsync_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/tools_x64/fwupx64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
-      ${sbctl} sign -s ${efi}/nixos.efi
-    fi
+    ${
+      if host != "v7w7r-macmini" then
+        ''
+          if [ -d /var/lib/sbctl/keys ]; then
+            ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/tools_x64/shellx64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/tools_x64/memtest86.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/tools_x64/gptsync_x64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/tools_x64/fwupx64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/drivers_x64/btrfs_x64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/refind/drivers_x64/ntfs_x64.efi &> /dev/null
+            ${sbctl} sign -s ${efi}/nixos.efi
+          fi
+        ''
+      else
+        ""
+    }
   '';
 }
