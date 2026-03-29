@@ -37,7 +37,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "Unzip One" = 1127253508;
     };
 */
-    casks = lib.map mkGreedy [ [
+    casks = lib.map mkGreedy [
       "alt-tab"
       "applite"
       "app-cleaner"
