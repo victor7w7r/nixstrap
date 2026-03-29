@@ -1,6 +1,6 @@
 { user, ... }:
 {
-  security.sudo extraConfig = {
+  security.sudo.extraConfig = {
     common = {
       enable = true;
       target = "~darwin-common";
