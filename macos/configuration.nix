@@ -1,4 +1,4 @@
-{ user, lib, determinateNix, ... }:
+{ user, lib, inputs, determinateNix, ... }:
 {
   system = {
     checks.verifyBuildUsers = false;
@@ -81,6 +81,7 @@
   nix-homebrew = {
     enable = true;
     inherit user;
+    nixpkgs = inputs.nixpkgs;
     enableFishIntegration = false;
     enableRosetta = false;
     autoMigrate = true;
