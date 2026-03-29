@@ -78,7 +78,6 @@
       "Code-Hex/tap/neo-cowsay"
       "danielgatis/imgcat/imgcat"
       "danvergara/tools/dblab"
-      "fman/tap/fman"
       "f1bonacc1/tap/process-compose"
       "gromgit/fuse/sshfs-mac"
       "gromgit/fuse/ntfs-3g-mac"
