@@ -84,6 +84,6 @@
     enableFishIntegration = false;
     enableRosetta = false;
     autoMigrate = true;
-    mutableTaps = false;
+    mutableTaps = true;
   };
 }
