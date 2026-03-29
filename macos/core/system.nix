@@ -23,7 +23,6 @@
   };
 
   environment = {
-    loginShell = pkgs.zsh;
     variables.RLIMIT_NOFILE = "65536";
     pathsToLink = [ "/Applications" ];
     etc = {
