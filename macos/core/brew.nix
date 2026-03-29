@@ -88,7 +88,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       #"nakabonne/pbgopy/pbgopy"
       "napisani/procmux"
       "orangekame3/tap/paclear"
-      "qnkhuat/tap/termishar"
+      "qnkhuat/tap/termishare"
       "tako8ki/tap/gobang"
       "yudai/gotty/gotty"
       "android-platform-tools"
