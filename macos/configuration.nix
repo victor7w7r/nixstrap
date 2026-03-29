@@ -81,7 +81,6 @@
   nix-homebrew = {
     enable = true;
     inherit user;
-    nixpkgs = inputs.nixpkgs;
     enableFishIntegration = false;
     enableRosetta = false;
     autoMigrate = true;
