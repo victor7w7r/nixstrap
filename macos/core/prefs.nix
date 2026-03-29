@@ -103,7 +103,6 @@
           skip-verify-remote = true;
         };
 
-        "com.apple.NetworkBrowser".BrowseAllInterfaces = true;
         "com.apple.PowerChime".ChimeOnAllHardware = false;
         "com.apple.ScriptEditor2".ApplePersistence = false;
 
