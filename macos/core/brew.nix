@@ -6,7 +6,6 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
     caskArgs = {
       appdir = "~/Applications";
       require_sha = true;
-      no_quarantine = true;
     };
     onActivation = {
       autoUpdate = true;
