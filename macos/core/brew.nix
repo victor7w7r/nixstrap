@@ -85,7 +85,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "itchyny/tap/mmv"
       "kdabir/tap/has"
       "mananapr/cfiles/cfiles"
-      "nakabonne/pbgopy/pbgopy"
+      #"nakabonne/pbgopy/pbgopy"
       "napisani/procmux"
       "orangekame3/tap/paclear"
       "qnkhuat/tap/termishar"
