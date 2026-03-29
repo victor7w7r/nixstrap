@@ -40,6 +40,7 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
+      determinate
       ...
     }:
     {
@@ -57,6 +58,7 @@
           specialArgs = {
             host = "v7w7r-macmini81";
             user = "victor7w7r";
+            determinateNix = inputs.determinate.inputs.nix.packages.${prev.stdenv.system}.default;
           };
         };
       };
