@@ -2,8 +2,10 @@
 {
   imports = [
     ./brew.nix
-    ./packages.nix
+    ./launchctl.nix
+    ./postexec.nix
     ./prefs.nix
+    ./security.nix
     ./system.nix
   ];
 }
