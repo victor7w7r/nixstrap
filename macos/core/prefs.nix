@@ -220,7 +220,7 @@
       finder = {
         #AnimateInfoPanes = false;
         #AnimateSnapToGrid = false;
-        DisableAllAnimations = true;
+        #DisableAllAnimations = true;
         EmptyTrashSecurely = true;
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
