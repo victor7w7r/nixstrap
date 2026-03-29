@@ -209,7 +209,7 @@
         #springboard-page-duration = 0.0;
         static-only = false;
         tilesize = 50;
-        workspaces-edge-delay = 0;
+        #workspaces-edge-delay = 0;
         workspaces-swoosh-animation-off = true;
         wvous-bl-corner = null;
         wvous-br-corner = null;
