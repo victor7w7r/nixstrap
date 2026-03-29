@@ -41,6 +41,7 @@
       nix-homebrew,
       home-manager,
       determinate,
+      inputs,
       ...
     }:
     {
@@ -59,6 +60,7 @@
           specialArgs = {
             host = "v7w7r-macmini81";
             user = "victor7w7r";
+            inherit inputs;
             determinateNix = determinate.inputs.nix.packages."x86_64-darwin".default;
           };
         };
