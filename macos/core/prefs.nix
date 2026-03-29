@@ -230,7 +230,7 @@
           OpenWith = true;
           Privileges = true;
           };*/
-        FXPreferredGroupBy = "Name";
+        #FXPreferredGroupBy = "Name";
         FXPreferredViewStyle = "icnv";
         _FXShowPosixPathInTitle = true;
         OpenWindowForNewRemovableDisk = false;
