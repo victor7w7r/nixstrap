@@ -7,7 +7,6 @@
       require_sha = true;
       no_quarantine = true;
     };
-    mutableTaps = true;
     onActivation = {
       autoUpdate = true;
       upgrade = true;
