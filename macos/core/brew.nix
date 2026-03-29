@@ -5,6 +5,7 @@
     caskArgs = {
       appdir = "~/Applications";
       require_sha = true;
+      greedy = true;
       no_quarantine = true;
     };
     onActivation = {
@@ -106,7 +107,7 @@
       "nvtop"
       "ossp-uuid"
       "openssl"
-      "pipes-sh"
+      "pipes- sh"
       "progressline"
       "pyenv-virtualenv"
       "qlcolorcode"
