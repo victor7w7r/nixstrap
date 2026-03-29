@@ -107,7 +107,7 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       "nvtop"
       "ossp-uuid"
       "openssl"
-      "pipes- sh"
+      "pipes-sh"
       "progressline"
       "pyenv-virtualenv"
       "qlcolorcode"
