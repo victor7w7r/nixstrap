@@ -210,7 +210,7 @@
         static-only = false;
         tilesize = 50;
         #workspaces-edge-delay = 0;
-        workspaces-swoosh-animation-off = true;
+        #workspaces-swoosh-animation-off = true;
         wvous-bl-corner = null;
         wvous-br-corner = null;
         wvous-tl-corner = null;
