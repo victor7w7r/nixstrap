@@ -58,7 +58,7 @@
   programs = {
     #bandwhich.enable = true;
     #less.enable = true;
-    skim.enable = true;
+    #skim.enable = true;
     direnv = {
       enable = true;
       enableZshIntegration = true;
