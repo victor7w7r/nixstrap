@@ -26,14 +26,17 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "victor7w7r";
-      userEmail = "arkano036@gmail.com";
+      signing.format = null;
       settings = {
         core.pager = "${pkgs.delta}/bin/delta";
         init.defaultBranch = "main";
         credential.helper = "store";
         mergetool.prompt = true;
         rebase.autostash = true;
+        user = {
+          name = "victor7w7r";
+          email = "arkano036@gmail.com";
+        };
         pull.rebase = true;
         push.autoSetupRemote = true;
       };

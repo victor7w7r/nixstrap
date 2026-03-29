@@ -16,7 +16,6 @@
     global = {
       autoUpdate = true;
       brewfile = true;
-      lockfiles = false;
     };
 
     taps = [
