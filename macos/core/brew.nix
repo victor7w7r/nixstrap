@@ -116,7 +116,6 @@
       "quicklook-json"
       "quicklookase"
       "qlvideo"
-      "qlimagesize"
       "sevenzip"
       "suspicious-package"
       "tmux-xpanes"
