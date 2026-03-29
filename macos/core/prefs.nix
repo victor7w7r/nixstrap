@@ -284,7 +284,7 @@
       screencapture.disable-shadow = true;
 
       universalaccess = {
-        reduceMotion = 1;
+        reduceMotion = true;
         reduceTransparency = true;
       };
 
