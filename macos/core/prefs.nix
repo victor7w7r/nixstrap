@@ -224,7 +224,7 @@
         #EmptyTrashSecurely = true;
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
-        FXEnableSlowAnimation = false;
+        #FXEnableSlowAnimation = false;
         FXInfoPanesExpanded = {
           General = true;
           OpenWith = true;
