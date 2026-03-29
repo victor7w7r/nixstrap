@@ -235,7 +235,7 @@
         _FXShowPosixPathInTitle = true;
         #OpenWindowForNewRemovableDisk = false;
         QLEnableTextSelection = true;
-        QLEnableSlowMotion = false;
+        #QLEnableSlowMotion = false;
         ShowStatusBar = true;
         ShowPathbar = true;
       };
