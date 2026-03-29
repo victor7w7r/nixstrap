@@ -181,6 +181,10 @@
           ShutDownDisabledWhileLoggedIn = false;
           TALLogoutSavesState = false;
         };
+
+        NSGlobalDomain = {
+          NSNavPanelExpandedStateForSaveMode = true;
+        };
       };
 
       dock = {
@@ -241,7 +245,6 @@
 
       menuextra.battery.ShowTime = "YES";
       NetworkBrowser.BrowseAllInterfaces = true;
-      NSNavPanelExpandedStateForSaveMode = true;
       NSGlobalDomain = {
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.springing.enabled" = true;
