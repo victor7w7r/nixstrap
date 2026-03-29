@@ -46,7 +46,7 @@
     chflags nohidden /Volumes
 
     spctl --master-disable
-    echo 'd *' | mailx > /dev/null 2>&1 || true
+    echo "d *" | mailx > /dev/null 2>&1 || true
     csrutil enable --without fs --without nvram --without debug
     defaults write /Library/Preferences/com.apple.loginwindow DesktopPicture ""
     mdutil -d /System/Volumes/Preboot /opt
