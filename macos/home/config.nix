@@ -75,8 +75,6 @@
     xplr.enable = true;
     zsh = {
       enable = true;
-      enableCompletion = true;
-      enableBashCompletion = true;
       interactiveShellInit = ''
         # Todo move to homemanager/darwin section
         export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
