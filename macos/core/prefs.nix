@@ -218,7 +218,7 @@
       };
 
       finder = {
-        AnimateInfoPanes = false;
+        #AnimateInfoPanes = false;
         AnimateSnapToGrid = false;
         DisableAllAnimations = true;
         EmptyTrashSecurely = true;
