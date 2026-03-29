@@ -205,8 +205,8 @@
         showhidden = true;
         show-recents = false;
         show-process-indicators = true;
-        springboard-hide-duration = 0.0;
-        springboard-page-duration = 0.0;
+        #springboard-hide-duration = 0.0;
+        #springboard-page-duration = 0.0;
         static-only = false;
         tilesize = 50;
         workspaces-edge-delay = 0;
