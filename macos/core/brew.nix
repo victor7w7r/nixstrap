@@ -1,11 +1,11 @@
-{ ... }:
+{ lib, ... }:
+let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
 {
   homebrew = {
     enable = true;
     caskArgs = {
       appdir = "~/Applications";
       require_sha = true;
-      greedy = true;
       no_quarantine = true;
     };
     onActivation = {
@@ -37,7 +37,7 @@
       "Unzip One" = 1127253508;
     };
 */
-    casks = [
+    casks = lib.map mkGreedy [ [
       "alt-tab"
       "applite"
       "app-cleaner"
