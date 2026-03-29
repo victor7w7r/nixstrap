@@ -75,7 +75,7 @@
     xplr.enable = true;
     zsh = {
       enable = true;
-      interactiveShellInit = ''
+      initContent = ''
         # Todo move to homemanager/darwin section
         export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
         export PATH="/opt/homebrew/bin:$PATH"
