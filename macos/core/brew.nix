@@ -27,7 +27,7 @@
       "homebrew/services"
     ];
 
-    masApps = {
+/*    masApps = {
       "Amphetamine" = 937984704;
       "Apple Configurator" = 1037126344;
       "CCMenu" = 603117688;
@@ -35,7 +35,7 @@
       "Xcode" = 497799835;
       "Unzip One" = 1127253508;
     };
-
+*/
     casks = [
       "alt-tab"
       "applite"
