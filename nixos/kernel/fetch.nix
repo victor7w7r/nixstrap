@@ -57,10 +57,6 @@
         ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
         "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch
         cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch"
-
-        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/i915/display/*" \
-        "$out/${majorMinor}/0010-t2.patch" > t2-filter.patch
-        cat t2-filter.patch > "$out/${majorMinor}/0010-t2.patch"
     '';
   };
 }

@@ -1,7 +1,7 @@
 {
   "user": "CachyOS",
   "linux": {
-    "version": "6.18.19",
+    "version": "6.18.10",
     "url": "mirror://kernel/linux/kernel/v6.x",
     "hash": "sha256-6q94JxzQfGitnEyacMcnGLM6u9cWI52CuslrF1HrCQw="
   },

@@ -1,9 +1,7 @@
+{ pkgs, username, ... }:
 {
-  pkgs,
-  username,
-  ...
-}:
-{
+  programs.kde-pim.enable = true;
+
   services = {
     displayManager.defaultSession = "plasma";
     desktopManager.plasma6 = {
@@ -37,6 +35,7 @@
       kdePackages.kcalc
       kdePackages.kcachegrind
       kdePackages.kcharselect
+      kdePackages.kcmutils
       kdePackages.kcolorchooser
       kdePackages.kcron
       kdePackages.kdegraphics-thumbnailers
@@ -60,6 +59,7 @@
       kdePackages.okular
       kdePackages.plasma-workspace
       kdePackages.plasma-desktop
+      kdePackages.plasma-plasma-integration
       kdePackages.partitionmanager
       kdePackages.polkit-qt-1
       kdePackages.polkit-kde-agent-1

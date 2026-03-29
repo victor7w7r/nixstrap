@@ -17,6 +17,8 @@ let
     else
       "balance_performance"
   );
+
+  audioT2 = import ./custom/t2-pipewire.nix;
 in
 {
   services = {
@@ -66,7 +68,7 @@ in
         // (
           if is-mac then
             {
-              CPU_MAX_PERF_ON_AC = 70;
+              CPU_MAX_PERF_ON_AC = 80;
             }
           else
             { }
@@ -93,6 +95,7 @@ in
 
     pipewire = {
       enable = (host != "v7w7r-nixvm");
+      package = (if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire);
       extraConfig.pipewire = {
         "10-clock-quantum"."context.properties"."default.clock.min-quantum" = 1024;
         "99-allowed-rates"."context.properties"."default.clock.allowed-rates" = [
@@ -111,13 +114,22 @@ in
       jack.enable = true;
       pulse.enable = true;
       socketActivation = true;
-      wireplumber.enable = true;
+      wireplumber = {
+        enable = true;
+        package = pkgs.wireplumber.override {
+          pipewire = audioT2.pipewirePackage;
+        };
+      };
     };
   };
 }
 // (
   if host == "v7w7r-macmini81" then
     {
+      systemd.sleep.extraConfig = ''
+        HibernateDelaySec=1h
+        SuspendState=mem
+      '';
       systemd.services = {
         t2fanrd = {
           description = "T2FanRD daemon to manage fan curves for T2 Macs";

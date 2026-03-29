@@ -232,24 +232,25 @@
           };
         }
         {
-          /*
-            configs = {
-            battery.showPercentage = true;
-            keyboardLayout.displayStyle = "label";
-            };
-          */
           name = "org.kde.plasma.systemtray";
           config.General = {
             scaleIconsToFit = true;
             showAllItems = false;
             spacing = 2;
             shownItems = [
-              "org.kde.plasma.battery"
               "org.kde.plasma.keyboardlayout"
               "org.kde.plasma.notifications"
               "org.kde.plasma.networkmanagement"
               "org.kde.plasma.volume"
-            ];
+            ]
+            ++ (
+              if host != "v7w7r-macmini81" then
+                [
+                  "org.kde.plasma.battery"
+                ]
+              else
+                [ ]
+            );
             hiddenItems = [
               "org.kde.plasma.bluetooth"
               "org.kde.plasma.clipboard"

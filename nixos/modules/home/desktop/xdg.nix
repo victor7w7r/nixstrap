@@ -1,4 +1,4 @@
-{ username, ... }:
+{ config, username, ... }:
 {
   home.file.".xinitrc".text = ''
     export XAUTHORITY=/home/${username}/.Xauthority
@@ -6,6 +6,9 @@
     export DESKTOP_SESSION=xfce
     exec startxfce4
   '';
+
+  home.path."storage".source = config.lib.file.mkOutOfStoreSymlink /nix/persist/storage;
+
   xdg = {
     configFile."mimeapps.list".force = true;
     mimeApps = {

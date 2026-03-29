@@ -19,11 +19,30 @@
   hardware = {
     enableAllFirmware = lib.mkForce false;
     enableRedistributableFirmware = lib.mkForce false;
-    firmware = with pkgs; [
-      linux-firmware
-      rtl8192su-firmware
-      rtl8761b-firmware
-    ];
+    firmware =
+      with pkgs;
+      [
+        linux-firmware
+        rtl8192su-firmware
+        rtl8761b-firmware
+      ]
+      ++ (
+        if host == "v7w7r-macmini81" then
+          [
+            (pkgs.stdenvNoCC.mkDerivation (final: {
+              name = "brcm-firmware";
+              src = ./custom/firmware.tar;
+
+              dontUnpack = true;
+              installPhase = ''
+                mkdir -p $out/lib/firmware/brcm
+                tar -xf ${final.src} -C $out/lib/firmware/brcm
+              '';
+            }))
+          ]
+        else
+          [ ]
+      );
     sensor.iio.enable = true;
     ksm.enable = true;
     #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives

@@ -144,7 +144,7 @@ let
         name = "etc";
         mountpoint = "/nix/persist/etc";
       };
-    };
+  };
 
   zshared = zfs.pool {
     mode = "";
@@ -161,7 +161,7 @@ let
           "com.sun:auto-snapshot" = "true";
         };
       };
-    };
+  };
   zssdshared = zfs.pool {
     mode = "";
     datasets =
@@ -177,7 +177,7 @@ let
           "com.sun:auto-snapshot" = "true";
         };
       };
-    };
+  };
   zswap = zfs.pool {
     mode = "";
     datasets =
@@ -185,7 +185,7 @@ let
       // zfs.volume {
         name = "swap";
         size = "1800M";
-        preDataset = ''local'';
+        preDataset = "local";
         options = {
           compression = "zle";
           logbias = "throughput";
