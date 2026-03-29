@@ -233,7 +233,7 @@
         #FXPreferredGroupBy = "Name";
         FXPreferredViewStyle = "icnv";
         _FXShowPosixPathInTitle = true;
-        OpenWindowForNewRemovableDisk = false;
+        #OpenWindowForNewRemovableDisk = false;
         QLEnableTextSelection = true;
         QLEnableSlowMotion = false;
         ShowStatusBar = true;
