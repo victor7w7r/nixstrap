@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  audio = import ../../../../hosts/custom/apple-t2-better-audio.nix;
+  audio = (pkgs.callPackage ../../../../hosts/custom/apple-t2-better-audio.nix { });
   overrideAudioFiles =
     package: pluginsPath:
     package.overrideAttrs (
@@ -8,7 +8,7 @@ let
         preConfigurePhases = old.preConfigurePhases or [ ] ++ [ "postPatchPhase" ];
         postPatchPhase = ''
           cp -r ${audio.audioFiles}/files/{profile-sets,paths} ${pluginsPath}/alsa/mixer/
-          ${pkgs.cat} > ${pluginsPath}/alsa/mixer/profile-sets/apple-t2x1.conf << EOF
+          ${pkgs.coreutils}/bin/cat > ${pluginsPath}/alsa/mixer/profile-sets/apple-t2x1.conf << EOF
             [General]
             auto-profiles = yes
 

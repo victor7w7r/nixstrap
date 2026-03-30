@@ -9,6 +9,7 @@
       iconTheme = "Colloid-Purple-Catppuccin-Dark";
       theme = "Layan";
       tooltipDelay = 1;
+      wallpaper = "/etc/nixos/nixos/wallpaper.jpg";
       windowDecorations.library = "org.kde.kwin.aurorae";
       windowDecorations.theme = "__aurorae__svg__Layan";
     };

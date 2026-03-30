@@ -62,19 +62,18 @@ let
       volume "Preboot"
       icon /EFI/refind/${mocha}/icons/os_mac.png
       loader \System\Library\CoreServices\boot.efi
-      ostype MacOS
-    }
-    submenuentry "Verbose" {
-        add_options "-v"
-    }
-    submenuentry "Single User" {
-        add_options "-s"
-    }
-    submenuentry "Safe Mode" {
-        add_options "-x"
-    }
-    submenuentry "Verbose + Single User" {
-        add_options "-v -s"
+      submenuentry "Verbose" {
+          add_options "-v"
+      }
+      submenuentry "Single User" {
+          add_options "-s"
+      }
+      submenuentry "Safe Mode" {
+          add_options "-x"
+      }
+      submenuentry "Verbose + Single User" {
+          add_options "-v -s"
+      }
     }
   '';
 
@@ -131,8 +130,6 @@ in
       ${cp} ${edk2}/shell.efi ${efi}/refind/tools_x64/shellx64.efi
       ${cp} ${memtest}/BOOTX64.efi ${efi}/refind/tools_x64/memtest86.efi
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/refind/tools_x64/fwupx64.efi
-
-
     fi
 
     EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \

@@ -1,4 +1,9 @@
-{ pkgs, host, ... }:
+{
+  pkgs,
+  lib,
+  host,
+  ...
+}:
 let
   governor = (
     if host == "v7w7r-macmini81" then
@@ -18,7 +23,7 @@ let
       "balance_performance"
   );
 
-  audioT2 = import ./custom/t2-pipewire.nix;
+  audioT2 = (pkgs.callPackage ./custom/t2-pipewire.nix { });
 in
 {
   services = {
@@ -95,7 +100,9 @@ in
 
     pipewire = {
       enable = (host != "v7w7r-nixvm");
-      package = (if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire);
+      package = lib.mkForce (
+        if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire
+      );
       extraConfig.pipewire = {
         "10-clock-quantum"."context.properties"."default.clock.min-quantum" = 1024;
         "99-allowed-rates"."context.properties"."default.clock.allowed-rates" = [
@@ -116,9 +123,11 @@ in
       socketActivation = true;
       wireplumber = {
         enable = true;
-        package = pkgs.wireplumber.override {
-          pipewire = audioT2.pipewirePackage;
-        };
+        package = lib.mkForce (
+          pkgs.wireplumber.override {
+            pipewire = audioT2.pipewirePackage;
+          }
+        );
       };
     };
   };
@@ -126,10 +135,10 @@ in
 // (
   if host == "v7w7r-macmini81" then
     {
-      systemd.sleep.extraConfig = ''
-        HibernateDelaySec=1h
-        SuspendState=mem
-      '';
+      systemd.sleep.settings.Sleep = {
+        HibernateDelaySec = "1h";
+        SuspendState = "mem";
+      };
       systemd.services = {
         t2fanrd = {
           description = "T2FanRD daemon to manage fan curves for T2 Macs";

@@ -59,7 +59,7 @@
       kdePackages.okular
       kdePackages.plasma-workspace
       kdePackages.plasma-desktop
-      kdePackages.plasma-plasma-integration
+      kdePackages.plasma-integration
       kdePackages.partitionmanager
       kdePackages.polkit-qt-1
       kdePackages.polkit-kde-agent-1

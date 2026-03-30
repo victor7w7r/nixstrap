@@ -9,7 +9,6 @@
 }:
 let
   intelParams = import ./lib/intel-params.nix;
-  audio = import ./custom/apple-t2-better-audio.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
   kernelBuild = (pkgs.callPackage ../kernel) {
     inherit
@@ -24,10 +23,10 @@ let
     emergencyDisk = "ssd";
   };
   zfs = import ./lib/zfs.nix;
+  audio = (pkgs.callPackage ./custom/apple-t2-better-audio.nix { });
 in
 {
   nixpkgs.overlays = [
-    (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     (_final: super: {
       makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
@@ -203,6 +202,7 @@ in
     tbtools
     thunderbolt
     kdePackages.plasma-thunderbolt
+    #(pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
   ];
 
   services.udev.packages = [ audio.audioUdev ];
