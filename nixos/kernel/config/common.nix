@@ -6,7 +6,6 @@
   "--set-str DEFAULT_HOSTNAME v7w7r"
   "--set-str DEFAULT_NET_SCH fq"
   "--set-str DEFAULT_TCP_CONG bbr"
-  ''--set-str LSM ""''
 
   "-e CC_OPTIMIZE_FOR_PERFORMANCE_O3"
   "-e CPU_FREQ_GOV_SCHEDUTIL"

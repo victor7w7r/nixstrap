@@ -21,6 +21,9 @@ i2c_algo_bit
 i2c_smbus
 iommufd
 ip_tables
+ip6t_rpfilter
+iptable_mangle
+ipt_rpfilter
 irqbypass
 kvm
 libphy

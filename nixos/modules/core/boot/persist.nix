@@ -89,7 +89,6 @@ in
         ".local/share/baloo"
         ".local/share/emacs"
         ".local/share/kwalletd"
-        ".local/share/kactivitymanagerd"
         ".local/share/Trash"
         ".local/share/JetBrains"
         ".local/share/zed"

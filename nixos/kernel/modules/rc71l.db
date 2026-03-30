@@ -57,8 +57,6 @@ i8042
 industrialio
 industrialio_triggered_buffer
 input_leds
-ip6t_rpfilter
-ipt_rpfilter
 k10temp
 kfifo_buf
 kvm_amd

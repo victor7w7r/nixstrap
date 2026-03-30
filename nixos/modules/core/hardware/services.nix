@@ -19,17 +19,17 @@ let
       batteryPolicy = if host == "v7w7r-higole" then "power" else "balance_power";
     in
     pkgs.writeShellScript "power-script" ''
-      STATE=$(cat /sys/class/power_supply/AC*/online 2>/dev/null || echo 1)
+       STATE=$(cat /sys/class/power_supply/AC*/online 2>/dev/null || echo 1)
 
-      if [ "$STATE" = "1" ]; then
-        echo "${acPolicy}" > ${policyFile}
-        echo ${hwp} > ${hwpFile}
-        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${acProfile}
-      else
-        echo "${batteryPolicy}" > ${policyFile}
-        echo 0 > ${hwpFile}
-        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${batteryProfile}
-      fi
+       if [ "$STATE" = "1" ]; then
+         echo "${acPolicy}" > ${policyFile}
+         echo ${hwp} > ${hwpFile}
+         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${acProfile}
+       else
+      echo "${batteryPolicy}" > ${policyFile}
+         echo 0 > ${hwpFile}
+         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${batteryProfile}
+       fi
     '';
 in
 {
@@ -85,6 +85,7 @@ in
         SuspendState = "mem";
       };
     */
+
     power-setup-ac-battery = {
       description = "Setup Energy Profile";
       wantedBy = [ "multi-user.target" ];
@@ -118,64 +119,64 @@ in
           "${pkgs.bash}/bin/bash -c 'echo ${value} > /sys/devices/system/cpu/intel_pstate/max_perf_pct'";
         RemainAfterExit = true;
       };
-      t2fanrd = {
-        enable = host == "v7w7r-macmini81";
-        description = "T2FanRD daemon to manage fan curves for T2 Macs";
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "exec";
-          ExecStart = "${(pkgs.callPackage ./custom/t2fanrd.nix { })}/bin/t2fanrd";
-          Restart = "always";
+    };
+    t2fanrd = {
+      enable = host == "v7w7r-macmini81";
+      description = "T2FanRD daemon to manage fan curves for T2 Macs";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "exec";
+        ExecStart = "${(pkgs.callPackage ./custom/t2fanrd.nix { })}/bin/t2fanrd";
+        Restart = "always";
 
-          PrivateTmp = true;
-          ProtectSystem = true;
-          ProtectHome = true;
-          ProtectClock = true;
-          ProtectHostname = true;
-          ProtectControlGroups = true;
-          ProtectKernelLogs = true;
-          ProtectKernelModules = true;
-          ProtectProc = "invisible";
-          PrivateDevices = true;
-          PrivateNetwork = true;
-          NoNewPrivileges = true;
-          DevicePolicy = "closed";
-          KeyringMode = "private";
-          LockPersonality = true;
-          MemoryDenyWriteExecute = true;
-          PrivateUsers = true;
-          RemoveIPC = true;
-          RestrictNamespaces = true;
-          RestrictRealtime = true;
-          RestrictSUIDSGID = true;
-          SystemCallArchitectures = "native";
-        };
+        PrivateTmp = true;
+        ProtectSystem = true;
+        ProtectHome = true;
+        ProtectClock = true;
+        ProtectHostname = true;
+        ProtectControlGroups = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectProc = "invisible";
+        PrivateDevices = true;
+        PrivateNetwork = true;
+        NoNewPrivileges = true;
+        DevicePolicy = "closed";
+        KeyringMode = "private";
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        PrivateUsers = true;
+        RemoveIPC = true;
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        SystemCallArchitectures = "native";
       };
+    };
 
-      "apple-bce-reload" = {
-        enable = host == "v7w7r-macmini81";
-        description = "Disable and Re-Enable Apple BCE Module";
-        wantedBy = [ "sleep.target" ];
-        before = [ "sleep.target" ];
-        unitConfig.StopWhenUnneeded = true;
+    "apple-bce-reload" = {
+      enable = host == "v7w7r-macmini81";
+      description = "Disable and Re-Enable Apple BCE Module";
+      wantedBy = [ "sleep.target" ];
+      before = [ "sleep.target" ];
+      unitConfig.StopWhenUnneeded = true;
 
-        serviceConfig = {
-          User = "root";
-          Type = "oneshot";
-          RemainAfterExit = true;
+      serviceConfig = {
+        User = "root";
+        Type = "oneshot";
+        RemainAfterExit = true;
 
-          ExecStart = [
-            "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
-            "${pkgs.kmod}/bin/modprobe -r brcmfmac"
-            "${pkgs.kmod}/bin/rmmod -f apple_bce"
-          ];
+        ExecStart = [
+          "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
+          "${pkgs.kmod}/bin/modprobe -r brcmfmac"
+          "${pkgs.kmod}/bin/rmmod -f apple_bce"
+        ];
 
-          ExecStop = [
-            "${pkgs.kmod}/bin/modprobe apple_bce"
-            "${pkgs.kmod}/bin/modprobe brcmfmac"
-            "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
-          ];
-        };
+        ExecStop = [
+          "${pkgs.kmod}/bin/modprobe apple_bce"
+          "${pkgs.kmod}/bin/modprobe brcmfmac"
+          "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
+        ];
       };
     };
   };

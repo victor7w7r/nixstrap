@@ -63,9 +63,6 @@ intel_rapl_common
 intel_rapl_msr
 intel_soc_dts_iosf
 intel_tcc_cooling
-ip6t_rpfilter
-iptable_mangle
-ipt_rpfilter
 kfifo_buf
 kvm_intel
 kvmgt

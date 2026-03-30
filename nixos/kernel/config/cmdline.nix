@@ -23,7 +23,7 @@ let
   intel =
     if host != "v7w7r-rc71l" then
       "i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 "
-      + "intel_pstate=active intel_iommu=on pcie_ports=compat"
+      + "intel_pstate=passive intel_iommu=on pcie_ports=compat"
     else
       "";
   higole =

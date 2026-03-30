@@ -75,6 +75,9 @@ in
       options = [ "nofail" ];
     }
   ];
+
+  powerManagement.cpuFreqGovernor = "schedutil";
+
   boot = {
     extraModulePackages = [
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
@@ -88,9 +91,6 @@ in
         }
       )
     );
-
-    powerManagement.cpuFreqGovernor = "schedutil";
-
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;

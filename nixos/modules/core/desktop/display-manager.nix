@@ -113,6 +113,7 @@
           fg = "0x00FFFFFF";
           hide_version_string = true;
           lang = "es";
+          session_log = ".local/state/ly-session.log";
           sleep_cmd = "systemd suspend";
           text_in_center = true;
           xinitrc = "null";

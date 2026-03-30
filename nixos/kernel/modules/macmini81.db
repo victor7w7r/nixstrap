@@ -43,7 +43,6 @@ intel_uncore
 intel_uncore_frequency
 intel_uncore_frequency_common
 ip6t_REJECT
-ip6t_rt
 ipt_REJECT
 kvm_intel
 kvmgt

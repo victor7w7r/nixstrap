@@ -149,13 +149,17 @@
                 DialogWidth = 720;
               };
               Appearance = {
-                chartFace = "org.kde.circles";
+                chartFace = "org.kde.ksysguard.piechart";
                 showTitle = true;
                 title = "Ventilador";
               };
               Sensors."highPrioritySensorIds" = ''["${fan}/fan1"]'';
               Sensors."totalSensors" = ''["${fan}/fan1"]'';
               SensorColors."${fan}/temp1" = "245,161,86";
+              "org.kde.ksysguard.piechart/General" = {
+                rangeTo = 4500;
+                rangeAuto = false;
+              };
             };
         }
         {
@@ -218,12 +222,14 @@
               title = "Temperatura";
               updateRateLimit = 2000;
             };
-            SensorColors."cpu/all/averageTemperature" = "236,86,245";
-            SensorColors."cpu/all/maximumTemperature" = "170,245,86";
-            SensorColors."cpu/cpu.*/usage" = "86,87,245";
+
             Sensors."highPrioritySensorIds" = ''["cpu/all/averageTemperature"]'';
-            Sensors."lowPrioritySensorIds" = ''["cpu/all/maximumTemperature","cpu/all/minimumTemperature"]'';
             Sensors."totalSensors" = ''["cpu/all/averageTemperature"]'';
+            SensorColors."cpu/cpu.*/usage" = "86,87,245";
+            "org.kde.ksysguard.piechart/General" = {
+              rangeTo = 100;
+              rangeAuto = false;
+            };
           };
         }
         {

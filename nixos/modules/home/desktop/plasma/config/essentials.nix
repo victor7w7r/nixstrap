@@ -56,6 +56,7 @@
 
     kscreenlocker = {
       appearance.showMediaControls = false;
+      wallpaper = "/etc/nixos/nixos/wallpaper.jpg";
       autoLock = false;
       timeout = 0;
     };

@@ -71,6 +71,9 @@ in
       options = [ "nofail" ];
     }
   ];
+
+  powerManagement.cpuFreqGovernor = "schedutil";
+
   boot = {
     kernelParams = params { };
     kernelPackages = (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
@@ -81,8 +84,6 @@ in
     );
 
     #pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
-    powerManagement.cpuFreqGovernor = "schedutil";
-
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;

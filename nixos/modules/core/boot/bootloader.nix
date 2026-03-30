@@ -42,7 +42,7 @@ let
     hideui hwtest,arrows,badges
     scanfor manual,external,internal
     showtools shell, memtest, bootorder, apple_recovery, windows_recovery
-    dont_scan_dirs ESP:/EFI/BOOT,EFI/Microsoft,EFI/refind,EFI/tools,emergency
+    dont_scan_dirs ESP:/EFI/BOOT,EFI/refind,EFI/tools,emergency
     selection_big ${mocha}/selection_big.png
     selection_small ${mocha}/selection_small.png
     timeout 2
@@ -50,14 +50,6 @@ let
   '';
 
   debugFlags = "boot.trace=1 debug udev.log_level=7 rd.systemd.show_status=true";
-
-  winEntry = ''
-    menuentry "Windows 11" {
-      icon /EFI/refind/${mocha}/icons/os_win10.png
-      loader /EFI/Microsoft/Boot/bootmgfw.efi
-      ostype Windows
-    }
-  '';
 
   nixosBuilder =
     {
@@ -142,7 +134,6 @@ in
     ${cat} > ${efi}/refind/refind.conf << EOF
       ${refind-opts}
       ${nixosBuilder { }}
-      ${if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then winEntry else ""}
     EOF
 
     ${
