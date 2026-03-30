@@ -67,6 +67,10 @@
   };
 
   environment = {
+    variables = {
+      LANG = "es_ES.UTF-8";
+      LC_ALL = "es_ES.UTF-8";
+    };
     enableAllTerminfo = true;
     sessionVariables = {
       LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];

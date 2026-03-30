@@ -5,101 +5,47 @@
   ...
 }:
 let
-  governor = (
-    if host == "v7w7r-macmini81" then
-      "ondemand"
-    else if host == "v7w7r-youyeetoox1" then
-      "performance"
-    else
-      "schedutil"
-  );
-
-  perfpolicy = (
-    if host == "v7w7r-higole" then
-      "default"
-    else if host == "v7w7r-youyeetoox1" then
-      "performance"
-    else
-      "balance_performance"
-  );
-
   audioT2 = (pkgs.callPackage ./custom/t2-pipewire.nix { });
+  power-script =
+    let
+      policyFile = "/sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference";
+      hwpFile = "/sys/devices/system/cpu/cpufreq/policy*/hwp_dynamic_boost";
+
+      hwp = if host == "v7w7r-higole" then "0" else "1";
+      acProfile = if host == "v7w7r-higole" then "balanced" else "performance";
+      batteryProfile = if host == "v7w7r-higole" then "power-saver" else "balanced";
+
+      acPolicy = if host == "v7w7r-higole" then "performance" else "power";
+      batteryPolicy = if host == "v7w7r-higole" then "power" else "balance_power";
+    in
+    pkgs.writeShellScript "power-script" ''
+      STATE=$(cat /sys/class/power_supply/AC*/online 2>/dev/null || echo 1)
+
+      if [ "$STATE" = "1" ]; then
+        echo "${acPolicy}" > ${policyFile}
+        echo ${hwp} > ${hwpFile}
+        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${acProfile}
+      else
+        echo "${batteryPolicy}" > ${policyFile}
+        echo 0 > ${hwpFile}
+        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${batteryProfile}
+      fi
+    '';
 in
 {
   services = {
     blueman.enable = host != "v7w7r-nixvm";
-    fwupd.enable = host == "v7w7r-rc71l";
+    fwupd.enable = host != "v7w7r-macmini81" && host != "v7w7r-nixvm";
     #lact.enable = true;
-    sysstat.enable = true;
     smartd.enable = false;
     #upower.enable = lib.mkDefault host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
-    power-profiles-daemon.enable = false;
-    thermald.enable = host != "v7w7r-youyeetoox1";
-    udisks2.enable = true;
-    tlp = {
-      enable = true;
-      settings =
-        let
-          is-term-hosts = host == "v7w7r-rc71l" || host == "v7w7r-youyeetoox1";
-          is-battery = host == "v7w7r-higole" || host == "v7w7r-rc71l";
-          is-gole = host == "v7w7r-higole";
-          is-mac = host == "v7w7r-macmini81";
-        in
-        {
-          CPU_SCALING_GOVERNOR_ON_AC = governor;
-          CPU_SCALING_GOVERNOR_ON_BAT = if host == "v7w7r-rc71l" then "schedutil" else "powersave";
-          CPU_ENERGY_PERF_POLICY_ON_AC = perfpolicy;
-          CPU_ENERGY_PERF_POLICY_ON_BAT = if is-gole then "power" else "balance_power";
-          CPU_BOOST_ON_AC = if is-term-hosts then 1 else 0;
-          CPU_BOOST_ON_BAT = 0;
-          CPU_HWP_DYN_BOOST_ON_AC = 1;
-          CPU_HWP_DYN_BOOST_ON_BAT = 1;
-          MEM_SLEEP_ON_AC = "s2idle";
-          MEM_SLEEP_ON_BAT = "deep";
-          PLATFORM_PROFILE_ON_BAT = "low-power";
-          WOL_DISABLE = if host != "v7w7r-youyeetoox1" then "Y" else "N";
-
-          # min_power, med_power_with_dipm(*), medium_power, max_performance.
-          SATA_LINKPWR_ON_AC = "medium_power";
-          SATA_LINKPWR_ON_BAT = "medium_power";
-          WIFI_PWR_ON_AC = if is-gole then "on" else "off";
-          WIFI_PWR_ON_BAT = if is-battery then "on" else "off";
-          SOUND_POWER_SAVE_ON_AC = if is-gole then 1 else 0;
-          SOUND_POWER_SAVE_ON_BAT = if is-gole then 1 else 0;
-          USB_AUTOSUSPEND = if is-battery then 1 else 0;
-          SCHED_POWERSAVE_ON_AC = 0;
-          SCHED_POWERSAVE_ON_BAT = 1;
-        }
-        // (
-          if is-mac then
-            {
-              CPU_MAX_PERF_ON_AC = 80;
-            }
-          else
-            { }
-        )
-        // (
-          if is-gole then
-            {
-              CPU_MAX_PERF_ON_BAT = 50;
-              RUNTIME_PM_ON_BAT = "auto";
-            }
-          else
-            { }
-        )
-        // (
-          if host == "v7w7r-youyeetoox1" then
-            {
-              TLP_DEFAULT_MODE = "AC";
-              TLP_PERSISTENT_DEFAULT = 1;
-            }
-          else
-            { }
-        );
-    };
-
+    power-profiles-daemon.enable = true;
+    thermald.enable = host != "v7w7r-vm" && host != "v7w7r-rc71l";
+    udev.extraRules = ''
+      SUBSYSTEM=="power_supply", ACTION=="change", RUN+="${power-script}"
+    '';
     pipewire = {
-      enable = (host != "v7w7r-nixvm");
+      enable = (host != "v7w7r-nixvm" && host != "v7w7r-youyeetoox1");
       package = lib.mkForce (
         if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire
       );
@@ -131,76 +77,106 @@ in
       };
     };
   };
-}
-// (
-  if host == "v7w7r-macmini81" then
-    {
+
+  systemd.services = {
+    /*
       systemd.sleep.settings.Sleep = {
         HibernateDelaySec = "1h";
         SuspendState = "mem";
       };
-      systemd.services = {
-        t2fanrd = {
-          description = "T2FanRD daemon to manage fan curves for T2 Macs";
-          wantedBy = [ "multi-user.target" ];
-          serviceConfig = {
-            Type = "exec";
-            ExecStart = "${(pkgs.callPackage ./custom/t2fanrd.nix { })}/bin/t2fanrd";
-            Restart = "always";
+    */
+    power-setup-ac-battery = {
+      description = "Setup Energy Profile";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${power-script}";
+      };
+    };
+    cpu-boost-control = {
+      enable = host != "v7w7r-rc71l";
+      description = "Turbo Boost Management";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.bash}/bin/bash -c 'echo ${
+          if host == "v7w7r-youyeetoox1" then "0" else "1"
+        } > /sys/devices/system/cpu/intel_pstate/no_turbo'";
+      };
+    };
+    limit-cpu-perf = {
+      description = "Limit CPU";
+      enable = host != "v7w7r-rc71l" && host != "v7w7r-youyeetoox1";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart =
+          let
+            is-mac = host == "v7w7r-macmini81" || host == "v7w7r-higole";
+            value = if is-mac then "80" else "70";
+          in
+          "${pkgs.bash}/bin/bash -c 'echo ${value} > /sys/devices/system/cpu/intel_pstate/max_perf_pct'";
+        RemainAfterExit = true;
+      };
+      t2fanrd = {
+        enable = host == "v7w7r-macmini81";
+        description = "T2FanRD daemon to manage fan curves for T2 Macs";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "exec";
+          ExecStart = "${(pkgs.callPackage ./custom/t2fanrd.nix { })}/bin/t2fanrd";
+          Restart = "always";
 
-            PrivateTmp = true;
-            ProtectSystem = true;
-            ProtectHome = true;
-            ProtectClock = true;
-            ProtectHostname = true;
-            ProtectControlGroups = true;
-            ProtectKernelLogs = true;
-            ProtectKernelModules = true;
-            ProtectProc = "invisible";
-            PrivateDevices = true;
-            PrivateNetwork = true;
-            NoNewPrivileges = true;
-            DevicePolicy = "closed";
-            KeyringMode = "private";
-            LockPersonality = true;
-            MemoryDenyWriteExecute = true;
-            PrivateUsers = true;
-            RemoveIPC = true;
-            RestrictNamespaces = true;
-            RestrictRealtime = true;
-            RestrictSUIDSGID = true;
-            SystemCallArchitectures = "native";
-          };
-        };
-
-        "apple-bce-reload" = {
-          description = "Disable and Re-Enable Apple BCE Module (and Wi-Fi)";
-          wantedBy = [ "sleep.target" ];
-          before = [ "sleep.target" ];
-          unitConfig.StopWhenUnneeded = true;
-
-          serviceConfig = {
-            User = "root";
-            Type = "oneshot";
-            RemainAfterExit = true;
-
-            ExecStart = [
-              "${pkgs.kmod}/bin/modprobe -r hci_bcm4377"
-              "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
-              "${pkgs.kmod}/bin/modprobe -r brcmfmac"
-              "${pkgs.kmod}/bin/rmmod -f apple-bce"
-            ];
-
-            ExecStop = [
-              "${pkgs.kmod}/bin/modprobe apple-bce"
-              "${pkgs.kmod}/bin/modprobe brcmfmac"
-              "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
-              "${pkgs.kmod}/bin/modprobe hci_bcm4377"
-            ];
-          };
+          PrivateTmp = true;
+          ProtectSystem = true;
+          ProtectHome = true;
+          ProtectClock = true;
+          ProtectHostname = true;
+          ProtectControlGroups = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectProc = "invisible";
+          PrivateDevices = true;
+          PrivateNetwork = true;
+          NoNewPrivileges = true;
+          DevicePolicy = "closed";
+          KeyringMode = "private";
+          LockPersonality = true;
+          MemoryDenyWriteExecute = true;
+          PrivateUsers = true;
+          RemoveIPC = true;
+          RestrictNamespaces = true;
+          RestrictRealtime = true;
+          RestrictSUIDSGID = true;
+          SystemCallArchitectures = "native";
         };
       };
-    }
-  else
-    { }
-)
+
+      "apple-bce-reload" = {
+        enable = host == "v7w7r-macmini81";
+        description = "Disable and Re-Enable Apple BCE Module";
+        wantedBy = [ "sleep.target" ];
+        before = [ "sleep.target" ];
+        unitConfig.StopWhenUnneeded = true;
+
+        serviceConfig = {
+          User = "root";
+          Type = "oneshot";
+          RemainAfterExit = true;
+
+          ExecStart = [
+            "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
+            "${pkgs.kmod}/bin/modprobe -r brcmfmac"
+            "${pkgs.kmod}/bin/rmmod -f apple_bce"
+          ];
+
+          ExecStop = [
+            "${pkgs.kmod}/bin/modprobe apple_bce"
+            "${pkgs.kmod}/bin/modprobe brcmfmac"
+            "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
+          ];
+        };
+      };
+    };
+  };
+}

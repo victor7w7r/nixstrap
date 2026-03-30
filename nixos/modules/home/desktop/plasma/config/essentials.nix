@@ -82,7 +82,7 @@
             idleTimeout = if is-mac then 10800 else 3600;
           };
           turnOffDisplay = {
-            idleTimeout = if is-mac then 600 else 180;
+            idleTimeout = if is-mac then 3600 else 180;
             idleTimeoutWhenLocked = 40;
           };
           dimDisplay = {

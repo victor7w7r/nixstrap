@@ -1,13 +1,29 @@
-{ config, username, ... }:
 {
-  home.file.".xinitrc".text = ''
-    export XAUTHORITY=/home/${username}/.Xauthority
-    export XDG_SESSION_TYPE=x11
-    export DESKTOP_SESSION=xfce
-    exec startxfce4
-  '';
-
-  home.path."storage".source = config.lib.file.mkOutOfStoreSymlink /nix/persist/storage;
+  host,
+  config,
+  username,
+  ...
+}:
+{
+  home.file = {
+    ".xinitrc".text = ''
+      export XAUTHORITY=/home/${username}/.Xauthority
+      export XDG_SESSION_TYPE=x11
+      export DESKTOP_SESSION=xfce
+      exec startxfce4
+    '';
+    "repositories/nixstrap".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos";
+  }
+  // (
+    if host == "v7w7r-macmini81" then
+      {
+        "shared".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/shared";
+        "ssdshared".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/ssdshared";
+        "storage".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/storage";
+      }
+    else
+      { }
+  );
 
   xdg = {
     configFile."mimeapps.list".force = true;
@@ -30,8 +46,11 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      desktop = "${config.home.homeDirectory}/Escritorio";
+      download = "${config.home.homeDirectory}/Descargas";
+      documents = "${config.home.homeDirectory}/Documentos";
+      pictures = "${config.home.homeDirectory}/Imágenes";
       music = null;
-      desktop = null;
       videos = null;
       templates = null;
       publicShare = null;

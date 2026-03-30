@@ -133,36 +133,31 @@
           };
         }
         "org.kde.plasma.panelspacer"
-      ]
-      ++ (
-        if host == "v7w7r-macmini81" then
-          [
+        {
+          name = "org.kde.plasma.systemmonitor";
+          config =
+            let
+              fan = if host == "v7w7r-macmini81" then "lmsensors/applesmc-acpi-0" else "";
+            in
             {
-              name = "org.kde.plasma.systemmonitor";
-              config = {
-                CurrentPreset = "org.kde.plasma.systemmonitor";
-                PreloadWeight = 75;
-                popupHeight = 124;
-                popupWidth = 230;
-                ConfigDialog = {
-                  DialogHeight = 538;
-                  DialogWidth = 720;
-                };
-                Appearance = {
-                  chartFace = "org.kde.circles";
-                  showTitle = true;
-                  title = "Ventilador";
-                };
-                SensorColors."lmsensors/applesmc-acpi-0/temp1" = "245,161,86";
-                Sensors."highPrioritySensorIds" = "[]";
-                Sensors."totalSensors" = ''["lmsensors/applesmc-acpi-0/fan1"]'';
+              CurrentPreset = "org.kde.plasma.systemmonitor";
+              PreloadWeight = 75;
+              popupHeight = 124;
+              popupWidth = 230;
+              ConfigDialog = {
+                DialogHeight = 538;
+                DialogWidth = 720;
               };
-            }
-          ]
-        else
-          [ ]
-      )
-      ++ [
+              Appearance = {
+                chartFace = "org.kde.circles";
+                showTitle = true;
+                title = "Ventilador";
+              };
+              Sensors."highPrioritySensorIds" = ''["${fan}/fan1"]'';
+              Sensors."totalSensors" = ''["${fan}/fan1"]'';
+              SensorColors."${fan}/temp1" = "245,161,86";
+            };
+        }
         {
           name = "org.kde.plasma.systemmonitor.memory";
           config = {
@@ -216,7 +211,6 @@
               DialogHeight = 522;
               DialogWidth = 720;
             };
-            PreloadWeight = 100;
             popupHeight = 393;
             popupWidth = 381;
             Appearance = {
@@ -226,7 +220,8 @@
             };
             SensorColors."cpu/all/averageTemperature" = "236,86,245";
             SensorColors."cpu/all/maximumTemperature" = "170,245,86";
-            Sensors."highPrioritySensorIds" = "[]";
+            SensorColors."cpu/cpu.*/usage" = "86,87,245";
+            Sensors."highPrioritySensorIds" = ''["cpu/all/averageTemperature"]'';
             Sensors."lowPrioritySensorIds" = ''["cpu/all/maximumTemperature","cpu/all/minimumTemperature"]'';
             Sensors."totalSensors" = ''["cpu/all/averageTemperature"]'';
           };

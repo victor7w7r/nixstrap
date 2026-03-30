@@ -10,20 +10,27 @@ let
   perf = "split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0";
   rescue = "sysrq_always_enabled=0 udev.log_level=3 verbose=1";
   sata =
-    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then "libahci.ignore_sss=1" else "";
+    if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then
+      "libahci.ignore_sss=1 ahci.mobile_lpm_policy=2"
+    else
+      "";
   amd =
     if host == "v7w7r-rc71l" then
-      "mitigations=off nospectre_v1 nospectre_v2 spec_store_bypass_disable=off amd_iommu=on amdgpu.sg_display=0"
+      "mitigations=off nospectre_v1 nospectre_v2 spec_store_bypass_disable=off "
+      + "amd_iommu=on amdgpu.sg_display=0"
     else
       "";
   intel =
     if host != "v7w7r-rc71l" then
-      "i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 intel_pstate=disable intel_iommu=on"
+      "i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 "
+      + "intel_pstate=active intel_iommu=on pcie_ports=compat"
     else
       "";
   higole =
     if host == "v7w7r-higole" then
-      "fbcon=rotate:1 i915.enable_psr=0 acpi_backlight=vendor mem_sleep_default=deep i2c_dw.disable_fast_mode=1 i915.enable_dpcd_backlight=1"
+      "fbcon=rotate:1 usbcore.autosuspend=1 snd_hda_intel.power_save=1 "
+      + "i915.enable_psr=0 acpi_backlight=vendor mem_sleep_default=deep "
+      + "i2c_dw.disable_fast_mode=1 i915.enable_dpcd_backlight=1"
     else
       "";
   cmd = "${red} ${green} ${blue} ${opt} ${sec} ${vm} ${save} ${amd} ${perf} ${sata} ${rescue} ${intel} ${higole}";

@@ -6,7 +6,7 @@ if host != "v7w7r-higole" && host != "v7w7r-youyeetoox1" then
 
     "-e BLK_DEV_NVME"
     "-e CPU_FREQ_DEFAULT_GOV_SCHEDUTIL"
-    "-e CPU_FREQ_GOV_SCHEDUTIL"
+    "-e CPU_FREQ_GOV_PERFORANCE"
     "-e HZ_1000"
     "-e NO_HZ_FULL"
     "-e NO_HZ_FULL_NODEF"
@@ -18,9 +18,6 @@ if host != "v7w7r-higole" && host != "v7w7r-youyeetoox1" then
     "-e PREEMPT_DYNAMIC"
 
     "-m F2FS_FS"
-    "-m CPU_FREQ_GOV_PERFORMANCE"
-    "-m CPU_FREQ_GOV_CONSERVATIVE"
-    "-m CPU_FREQ_GOV_ONDEMAND"
 
     "-d NO_HZ_IDLE"
     "-d PREEMPT_NONE"
@@ -33,8 +30,7 @@ else if host == "v7w7r-higole" then
     "--set-val SND_HDA_POWER_SAVE_DEFAULT 1"
 
     "-e CPU_FREQ_DEFAULT_GOV_POWERSAVE"
-    "-e CPU_FREQ_GOV_POWERSAVE"
-    "-e CPU_FREQ_GOV_SCHEDUTIL"
+
     "-e CONTEXT_TRACKING"
     "-e F2FS_FS"
     "-e HZ_300"
@@ -47,8 +43,6 @@ else if host == "v7w7r-higole" then
     "-e X86_PKG_TEMP_THERMAL"
 
     "-m RTW88"
-    "-m CPU_FREQ_GOV_CONSERVATIVE"
-    "-m CPU_FREQ_GOV_ONDEMAND"
 
     "-d BLK_DEV_NVME"
     "-d CONTEXT_TRACKING_FORCE"

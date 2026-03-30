@@ -17,6 +17,7 @@
   networking = {
     useNetworkd = true;
     useDHCP = false;
+    interfaces."enp1s0".wakeOnLan.enable = true;
     nameservers = [
       "1.1.1.1"
       "8.8.8.8"

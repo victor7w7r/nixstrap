@@ -6,7 +6,6 @@
   ...
 }:
 let
-  intelParams = import ./lib/intel-params.nix;
   params = import ./lib/kernel-params.nix;
   boot = import ./lib/boot.nix {
     emergencyDisk = "emmc";
@@ -66,13 +65,12 @@ in
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+
+  powerManagement.cpuFreqGovernor = "powersave";
+
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
-    kernelParams = [
-      "resume=/dev/vg0/swapcrypt"
-    ]
-    ++ intelParams
-    ++ params { };
+    kernelParams = [ "resume=/dev/vg0/swapcrypt" ] ++ params { };
     kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     #pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     blacklistedKernelModules = [ "pac1934" ];
@@ -96,6 +94,9 @@ in
       ];
       kernelModules = [
         "autofs"
+        "cpufreq_schedutil"
+        "cpufreq_conservative"
+        "cpufreq_reflex"
         "tpm_crb"
         "tpm_tis"
         "sdhci_pci"

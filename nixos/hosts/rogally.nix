@@ -44,6 +44,8 @@ in
     };
   };
 
+  powerManagement.cpuFreqGovernor = "schedutil";
+
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
@@ -57,6 +59,7 @@ in
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
+        "cpufreq_reflex"
         "amdgpu"
       ];
       availableKernelModules = [

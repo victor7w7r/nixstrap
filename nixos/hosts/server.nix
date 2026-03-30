@@ -7,7 +7,6 @@
   ...
 }:
 let
-  intelParams = import ./lib/intel-params.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
   kernelBuild = (pkgs.callPackage ../kernel) {
     inherit
@@ -24,7 +23,6 @@ let
   };
   zfs = import ./lib/zfs.nix;
   f2fs = import ./lib/f2fs.nix;
-  btrfs = import ./lib/btrfs.nix;
 in
 {
   nixpkgs.overlays = [
@@ -74,7 +72,7 @@ in
     }
   ];
   boot = {
-    kernelParams = [ "intel_iommu=on" ] ++ intelParams ++ params { };
+    kernelParams = params { };
     kernelPackages = (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
       _self: _super: {
         kernel_configfile = _super.kernel.configfile;
@@ -83,6 +81,7 @@ in
     );
 
     #pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    powerManagement.cpuFreqGovernor = "schedutil";
 
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
@@ -92,6 +91,7 @@ in
     initrd = {
       availableKernelModules = [ "i915" ];
       kernelModules = [
+        "cpufreq_reflex"
         "mmc_block"
         "zfs"
         "btrfs"

@@ -9,6 +9,7 @@ let
   efi = "/boot/EFI";
   cat = "${pkgs.coreutils}/bin/cat";
   cp = "${pkgs.coreutils}/bin/cp";
+  mv = "${pkgs.coreutils}/bin/mv";
   rm = "${pkgs.coreutils}/bin/rm";
   mkdir = "${pkgs.coreutils}/bin/mkdir";
   refind = "${pkgs.refind}/share/refind";
@@ -39,8 +40,9 @@ let
     enable_mouse
     icons_dir ${mocha}/icons
     hideui hwtest,arrows,badges
-    scanfor manual,external
+    scanfor manual,external,internal
     showtools shell, memtest, bootorder, apple_recovery, windows_recovery
+    dont_scan_dirs ESP:/EFI/BOOT,EFI/Microsoft,EFI/refind,EFI/tools,emergency
     selection_big ${mocha}/selection_big.png
     selection_small ${mocha}/selection_small.png
     timeout 2
@@ -54,26 +56,6 @@ let
       icon /EFI/refind/${mocha}/icons/os_win10.png
       loader /EFI/Microsoft/Boot/bootmgfw.efi
       ostype Windows
-    }
-  '';
-
-  macosEntry = ''
-    menuentry "macOS" {
-      volume "Preboot"
-      icon /EFI/refind/${mocha}/icons/os_mac.png
-      loader \System\Library\CoreServices\boot.efi
-      submenuentry "Verbose" {
-          add_options "-v"
-      }
-      submenuentry "Single User" {
-          add_options "-s"
-      }
-      submenuentry "Safe Mode" {
-          add_options "-x"
-      }
-      submenuentry "Verbose + Single User" {
-          add_options "-v -s"
-      }
     }
   '';
 
@@ -123,13 +105,14 @@ in
 
       ${rm} -rf ${efi}/refind/docs ${efi}/refind/refind.conf-sample ${efi}/refind/images ${efi}/refind/drivers_x64/ext*
       ${if (host != "v7w7r-macmini81") then "${rm} -rf ${efi}/refind/drivers_x64/hfs_x64.efi" else ""}
-      ${efi}/refind/drivers_x64/iso9660_x64.efi  ${efi}/refind/drivers_x64/reiserfs_x64.efi
+      ${rm} -rf ${efi}/refind/drivers_x64/iso9660_x64.efi ${efi}/refind/drivers_x64/reiserfs_x64.efi
       ${mkdir} -p ${efi}/refind/themes && ${cp} -r ${inputs.catppuccin-refind} ${efi}/refind/themes/catppuccin
       ${wget} -P ${efi}/refind/drivers_x64 ${efifs}/ntfs_x64.efi &> /dev/null
 
       ${cp} ${edk2}/shell.efi ${efi}/refind/tools_x64/shellx64.efi
       ${cp} ${memtest}/BOOTX64.efi ${efi}/refind/tools_x64/memtest86.efi
       ${cp} ${fwupd}/fwupdx64.efi ${efi}/refind/tools_x64/fwupx64.efi
+      ${mv} ${efi}/refind/tools_x64 ${efi}/tools
     fi
 
     EFI_INFO=$(${lsblk} -o NAME,PARTTYPE,PKNAME,PARTTYPENAME,FSTYPE \
@@ -160,11 +143,10 @@ in
       ${refind-opts}
       ${nixosBuilder { }}
       ${if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then winEntry else ""}
-      ${if (host == "v7w7r-macmini81") then macosEntry else ""}
     EOF
 
     ${
-      if host != "v7w7r-macmini" then
+      if host != "v7w7r-macmini81" then
         ''
           if [ -d /var/lib/sbctl/keys ]; then
             ${sbctl} sign -s ${efi}/refind/refind_x64.efi &> /dev/null

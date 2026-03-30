@@ -8,7 +8,6 @@
   ...
 }:
 let
-  intelParams = import ./lib/intel-params.nix;
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
   kernelBuild = (pkgs.callPackage ../kernel) {
     inherit
@@ -77,12 +76,10 @@ in
     }
   ];
   boot = {
-    kernelParams = [
-      "intel_iommu=on"
-      "video=DP-3:1600x900@60"
-    ]
-    ++ intelParams
-    ++ params { };
+    extraModulePackages = [
+      (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
+    ];
+    kernelParams = [ "video=DP-3:1600x900@60" ] ++ params { };
     kernelPackages = lib.mkForce (
       (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
         _self: _super: {
@@ -92,6 +89,8 @@ in
       )
     );
 
+    powerManagement.cpuFreqGovernor = "schedutil";
+
     zfs = {
       package = config.boot.kernelPackages.zfs_cachyos;
       forceImportAll = false;
@@ -99,9 +98,13 @@ in
     };
     initrd = {
       kernelModules = [
-        "apple-bce"
         "zfs"
+        "apple-bce"
         "btrfs"
+        "cpufreq_schedutil"
+        "cpufreq_conservative"
+        "cpufreq_ondemand"
+        "cpufreq_reflex"
         "uas"
         "usb_storage"
         "ahci"
@@ -202,7 +205,6 @@ in
     tbtools
     thunderbolt
     kdePackages.plasma-thunderbolt
-    #(pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
   ];
 
   services.udev.packages = [ audio.audioUdev ];
