@@ -30,7 +30,8 @@ let
           "preferences": "preferences.json",
           "no-updates": false,
           "enabled": true
-        })' $out/sine-mods/mods.json > $out/sine-mods/mods.json.tmp && mv $out/sine-mods/mods.json.tmp $out/sine-mods/mods.json
+        })' $out/sine-mods/mods.json > $out/sine-mods/mods.json.tmp
+      mv $out/sine-mods/mods.json.tmp $out/sine-mods/mods.json
       cp $src_1/JS/Nebula.uc.js $out/JS/Nebula_Nebula.uc.js
       cp $src_1/README.md $out/sine-mods/Nebula/readme.md
       cp -r $src_1/{Nebula,userChrome.css,userContent.css,preferences.json} $out/sine-mods/Nebula
@@ -44,11 +45,9 @@ let
   };
 
   zen-package =
-    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight-unwrapped.override {
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta-unwrapped.override {
       policies = config.programs.zen-browser.policies;
-    })
-
-    .overrideAttrs
+    }).overrideAttrs
       (prev: {
         postInstall = prev.postInstall or "" + ''
           chmod -R u+w "$out/lib/zen-bin-${prev.version}"
@@ -57,13 +56,12 @@ let
       });
 in
 {
-
   xdg.configFile."zen/default/chrome" = {
     source = chrome;
     recursive = true;
   };
 
-  programs.zen-browser.package = (pkgs.wrapFirefox zen-package { icon = "zen-twilight"; }).override {
+  programs.zen-browser.package = (pkgs.wrapFirefox zen-package { }).override {
     extraPrefs = config.programs.zen-browser.extraPrefs;
     extraPrefsFiles = config.programs.zen-browser.extraPrefsFiles;
     nativeMessagingHosts = config.programs.zen-browser.nativeMessagingHosts;

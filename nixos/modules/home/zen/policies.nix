@@ -72,11 +72,7 @@
     Allow = [ ];
     Default = true;
   };
-  Preferences = {
-    "browser.tabs.warnOnClose" = {
-      Value = false;
-    };
-  };
+  Preferences."browser.tabs.warnOnClose".Value = false;
   PromptForDownloadLocation = false;
   RequestedLocales = [ "es-ES" ];
   SearchSuggestEnabled = false;
@@ -97,12 +93,10 @@
     ExtensionRecommendations = false;
     SkipOnboarding = true;
   };
-  WebsiteFilter = {
-    Block = [
-      "*://*.doubleclick.net/*"
-      "*://*.googleadservices.com/*"
-      "*://*.googlesyndication.com/*"
-      "*://*.facebook.com/tr/*"
-    ];
-  };
+  WebsiteFilter.Block = [
+    "*://*.doubleclick.net/*"
+    "*://*.googleadservices.com/*"
+    "*://*.googlesyndication.com/*"
+    "*://*.facebook.com/tr/*"
+  ];
 }

@@ -69,7 +69,7 @@ in
     useGlobalPkgs = true;
     sharedModules = [
       inputs.plasma-manager.homeModules.plasma-manager
-      inputs.zen-browser.homeModules.twilight
+      inputs.zen-browser.homeModules.beta
       inputs.nix-doom-emacs-unstraightened.homeModule
     ];
     users = {

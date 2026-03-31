@@ -24,7 +24,6 @@
     else
       { }
   );
-
   xdg = {
     configFile."mimeapps.list".force = true;
     mimeApps = {

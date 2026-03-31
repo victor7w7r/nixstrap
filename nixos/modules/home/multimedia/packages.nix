@@ -27,7 +27,7 @@
     ++ [
       tenacity
       #davinci-resolve
-      #inkscape-with-extensions
+      inkscape-with-extensions
       #lightworks
       #lunacy
       #natron

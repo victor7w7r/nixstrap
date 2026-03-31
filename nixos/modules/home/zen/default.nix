@@ -7,11 +7,12 @@
     (import ./pins.nix)
     (import ./settings.nix)
     (import ./search.nix)
-    #(import ./theme.nix)
+    (import ./theme.nix)
   ];
 
   programs.zen-browser = {
     enable = host != "v7w7r-youyeetoox1";
+    setAsDefaultBrowser = true;
     languagePacks = [ "es-ES" ];
     profiles.default = {
       id = 0;

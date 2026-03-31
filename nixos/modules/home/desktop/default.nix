@@ -8,6 +8,7 @@
       [
         (import ./plasma)
         (import ./xdg.nix)
+        (import ./entries.nix)
         #(import ./hypr)
         #inputs.hyprland.homeManagerModules.default
       ]

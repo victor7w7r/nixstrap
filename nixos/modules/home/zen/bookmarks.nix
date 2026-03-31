@@ -4,27 +4,15 @@
     force = true;
     settings = [
       {
-        name = "Bookmarks Toolbar";
+        name = "Barra de favoritos";
         toolbar = true;
         bookmarks = [
-          {
-            name = "Youtube";
-            url = "https://www.youtube.com";
-          }
-          {
-            name = "Twitch";
-            url = "https://www.twitch.tv";
-          }
           {
             name = "Github";
             url = "https://github.com/";
           }
           {
-            name = "ChatGPT";
-            url = "https://chatgpt.com/";
-          }
-          {
-            name = "Search Engines";
+            name = "Búsqueda";
             bookmarks = [
               {
                 name = "Startpage";
