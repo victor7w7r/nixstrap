@@ -33,20 +33,7 @@ let
   localVer = "-v7w7r${specialization { middle = if hardened then "-hardened" else ""; }}-native";
 
   patches =
-    (lib.optional (host == "v7w7r-rc71l") [
-      "${fetch.patches}/${majorMinor}/0001-amd-pstate.patch"
-      "${fetch.patches}/${majorMinor}/0002-asus.patch"
-      "${fetch.patches}/${majorMinor}/0007-hdmi.patch"
-    ])
-    ++ [
-      "${fetch.patches}/${majorMinor}/0003-bbr3.patch"
-      "${fetch.patches}/${majorMinor}/0004-cachy.patch"
-      "${fetch.patches}/${majorMinor}/0005-crypto.patch"
-      "${fetch.patches}/${majorMinor}/0006-fixes.patch"
-    ]
-    ++ (lib.optional (host != "v7w7r-rc71l") "${fetch.patches}/${majorMinor}/0008-intel-pstate.patch")
-    ++ (lib.optional (host == "v7w7r-macmini81") "${fetch.patches}/${majorMinor}/0010-t2.patch")
-    ++ (lib.optional (
+    (lib.optional (
       host != "v7w7r-youyeetoox1"
     ) "${fetch.patches}/${majorMinor}/sched/0001-bore-cachy.patch")
     ++ (lib.optional hardened "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch")
@@ -114,7 +101,6 @@ let
             "${fetch.tachyon}/patches/0158-clocksource-only-perform-extended-clocksource-checks.patch"
           ]
           ++ builtins.map (p: "${fetch.asus.outPath}/${p}") [
-            "0001-bluetooth-btus-add-new-vid-pid.patch"
             "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
             "0040-workaround_hardware_decoding_amdgpu.patch"
             "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"

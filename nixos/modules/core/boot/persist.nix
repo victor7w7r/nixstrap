@@ -94,6 +94,7 @@ in
         ".local/share/zed"
         ".local/share/waydroid"
         ".config/JetBrains"
+        ".config/git"
         ".config/sops"
         ".config/zen"
         ".config/nix"

@@ -1,7 +1,6 @@
 {
   fetchFromGitHub,
   rustPlatform,
-  lib,
   ...
 }:
 rustPlatform.buildRustPackage {
@@ -15,10 +14,10 @@ rustPlatform.buildRustPackage {
     sha256 = "sha256-vOJAYbB/ZcRxM+/lrkab/PcON3vOz3o6eqPvM9hmaOw=";
   };
 
-  cargoHash = lib.fakeHash;
+  cargoHash = "sha256-FKQYiaOTZxD95AWD2zbVjENzMAPrFl/rzhwbkAgGbx0=";
 
   installPhase = ''
-    ls -R
-    install -m755 -D target/x86_64-unknown-linux-gnu/release/tablet_map $out/bin/tablet_map
+    mkdir -p $out/bin
+    find target -name tablet_map -type f -exec cp {} $out/bin/ \;
   '';
 }

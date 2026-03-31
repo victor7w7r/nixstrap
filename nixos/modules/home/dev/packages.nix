@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   host,
   ...
 }:
@@ -16,8 +15,13 @@
       rustup
       windterm
     ]
-    ++ (if (host == "v7w7r-macmini81") then [
-      jetbrains.datagrip
-    ] else [ ])
+    ++ (
+      if (host == "v7w7r-macmini81") then
+        [
+          jetbrains.datagrip
+        ]
+      else
+        [ ]
+    )
   );
 }

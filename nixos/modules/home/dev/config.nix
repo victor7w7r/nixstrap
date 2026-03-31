@@ -17,7 +17,7 @@
           name = "victor7w7r";
           email = "arkano036@gmail.com";
         };
-        credential.helper = "store";
+        credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
         delta = {
           hyperlinks = true;
           keep-plus-minus-markers = true;

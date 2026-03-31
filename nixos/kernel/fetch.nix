@@ -7,7 +7,7 @@
 }:
 {
   linux = pkgs.fetchurl {
-    url = "${kernelData.linux.url}/linux-${kernelData.linux.version}.tar.xz";
+    url = kernelData.linux.url;
     hash = kernelData.linux.hash;
   };
 
