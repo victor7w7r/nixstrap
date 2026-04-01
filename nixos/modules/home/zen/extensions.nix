@@ -1,34 +1,7 @@
+{ inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}:
-let
-  buildAddon =
-    {
-      pname,
-      version,
-      addonId,
-      url,
-      sha256,
-    }:
-    pkgs.stdenv.mkDerivation {
-      name = "${pname}-${version}";
-      src = pkgs.fetchurl { inherit url sha256; };
-      preferLocalBuild = true;
-      allowSubstitutes = true;
-      passthru = { inherit addonId; };
-      buildCommand = ''
-        dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-        mkdir -p "$dst"
-        install -v -m644 "$src" "$dst/${addonId}.xpi"
-      '';
-    };
-in
-{
-  programs.zen-browser.profiles.default.extensions.packages =
-    with inputs.firefox-addons.packages."x86_64-linux";
-    [
+  programs.zen-browser = {
+    profiles.default.extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
       a11ycss
       annotations-restored
       blocktube
@@ -92,23 +65,23 @@ in
       youtube-subscription-groups
       zen-internet
       zoom-redirector
-    ]
-    ++ [
-      #Github Code Folding
-      #Github Recommender
-      #Github Red Issues
-      #Malware Bytes Guard
-      (buildAddon (
-        let
-          version = "1.5";
-        in
-        {
-          pname = "adless_spotify";
-          inherit version;
-          addonId = "{62e31096-34e6-4503-8806-3d7a6004a1f4}";
-          url = "https://addons.mozilla.org/firefox/downloads/file/4098050/adless_spotify-${version}.xpi";
-          sha256 = "sha256-U+bQndQkg0NDIfRmSAwu3rbD6Cx+GrC/I43uPs+CMRQ=";
-        }
-      ))
     ];
+
+    policies.ExtensionSettings =
+      let
+        mkExtensionSettings = builtins.mapAttrs (
+          _: pluginId: {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+            installation_mode = "force_installed";
+          }
+        );
+      in
+      (mkExtensionSettings {
+        "{62e31096-34e6-4503-8806-3d7a6004a1f4}" = "adless_spotify";
+        "{b588f8ac-dbdf-4397-bcd7-3d29be2f17d7}" = "github_code_folding";
+        "{70e5b770-918b-4d4d-a41e-7206016fe206}" = "github_recommender";
+        "{3e7882e9-4411-4136-9c76-8fddc57c8d87}" = "github_red_issues";
+        "{242af0bb-db11-4734-b7a0-61cb8a9b20fb}" = "malwarebytes";
+      });
+  };
 }

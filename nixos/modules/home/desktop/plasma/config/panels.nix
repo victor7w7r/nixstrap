@@ -75,7 +75,7 @@
             popupHeight = 309;
             popupWidth = 240;
             General = {
-              customButtonImage = "/home/victor7w7r/.cache/logo.svg";
+              customButtonImage = "/nix/persist/etc/logo.svg";
               useCustomButtonImage = true;
               menuJson = ''[  {    "name": "Acerca De Esta PC...",    "icon": "help-hint",    "command": "kinfocenter"  },  {    "separator": true  },  {    "name": "Ajustes...",    "icon": "settings-configure",    "command": "systemsettings"  },  {    "name": "Monitor de recursos",    "icon": "settings-configure",    "command": "missioncenter"  },  {    "separator": true  },  {    "name": "Reposo",    "icon": "system-suspend",    "command": "systemctl suspend -f"  },  {    "name": "Hibernar",    "icon": "system-suspend",    "command": "systemctl hibernate"  },   {    "name": "Reiniciar",    "icon": "system-reboot",    "command": "systemctl reboot"  },  {    "name": "Reiniciar a UEFI",    "icon": "system-reboot",    "command": "systemctl reboot --firmware-setup"  },  {    "name": "Apagar...",    "icon": "system-shutdown",    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptShutDown"  },  {    "separator": true  },  {    "name": "Bloquear",    "icon": "system-lock-screen",    "command": "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"  },  {    "name": "Cerrar Sesión",    "icon": "system-log-out",    "command": "qdbus org.kde.LogoutPrompt /LogoutPrompt promptLogout"  }]'';
             };

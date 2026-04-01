@@ -237,7 +237,7 @@
       "dom.battery.enabled" = false;
       "dom.block_multiple_popups" = lock-true;
       "dom.element.animate.enabled" = true;
-      "dom.event.clipboardevents.enabled" = false;
+      "dom.event.clipboardevents.enabled" = true;
       "dom.event.contextmenu.enabled" = false;
       "dom.forms.autocomplete.formautofill" = true;
       "dom.ipc.forkserver.enable" = true;
@@ -325,7 +325,6 @@
       "font.name.sans-serif.x-western" = "Ubuntu";
       "font.name.serif.x-western" = "Ubuntu";
       "general.autoScroll" = true;
-      "general.smoothScroll" = false;
       "geo.enabled" = false;
       "gfx.canvas.accelerated.cache-items" = 32768;
       "gfx.canvas.accelerated.cache-size" = 4096;
@@ -688,8 +687,8 @@
       "zen.view.compact.enable-at-startup" = false;
       "zen.view.experimental-force-window-controls-left" = true;
       "zen.view.show-newtab-button-top" = false;
-      "zen.window-sync.enabled" = true;
-      "zen.window-sync.sync-only-pinned-tabs" = true;
+      "zen.window-sync.enabled" = false;
+      "zen.window-sync.sync-only-pinned-tabs" = false;
       "zen.watermark.enabled" = false;
       "zen.welcome-screen.seen" = true;
       "zen.widget.linux.transparency" = true;

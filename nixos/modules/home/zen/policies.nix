@@ -61,6 +61,13 @@
     Snippets = false;
     Locked = false;
   };
+  GenerativeAI = {
+    Enabled = false;
+    Chatbot = false;
+    LinkPreviews = false;
+    TabGroups = false;
+    Locked = true;
+  };
   HardwareAcceleration = true;
   ManualAppUpdateOnly = true;
   NetworkPrediction = false;

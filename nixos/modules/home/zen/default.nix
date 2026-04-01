@@ -1,16 +1,16 @@
-{ inputs, host, ... }:
 {
-  imports = [
-    (import ./bookmarks.nix)
-    (import ./extensions.nix)
-    (import ./package.nix)
-    (import ./pins.nix)
-    (import ./settings.nix)
-    (import ./search.nix)
-    (import ./theme.nix)
-  ];
-
+  config,
+  pkgs,
+  inputs,
+  host,
+  ...
+}:
+let
+  package = (pkgs.callPackage ./package.nix { inherit inputs; });
+in
+{
   programs.zen-browser = {
+    package = package.zen-wrap;
     enable = host != "v7w7r-youyeetoox1";
     setAsDefaultBrowser = true;
     languagePacks = [ "es-ES" ];
@@ -23,6 +23,7 @@
         ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
         ${builtins.readFile "${inputs.betterfox}/Securefox.js"}
         ${builtins.readFile "${inputs.betterfox}/Smoothfox.js"}
+        lockPref("general.smoothScroll", false);
       '';
       sine = {
         enable = true;
@@ -48,4 +49,23 @@
       };
     };
   };
+
+  xdg.configFile = {
+    ".zen".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zen";
+    "zen/default/chrome" = {
+      source = package.chrome;
+      recursive = true;
+    };
+  };
+
+  home.file.".zen".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zen";
+
+  imports = [
+    (import ./bookmarks.nix)
+    (import ./extensions.nix)
+    (import ./pins.nix)
+    (import ./settings.nix)
+    (import ./search.nix)
+  ];
+
 }

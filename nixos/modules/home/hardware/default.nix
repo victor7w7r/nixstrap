@@ -11,6 +11,7 @@
       testdisk-qt
       usbimager
       woeusb-ng
+      (pkgs.callPackage ./custom/tablet-map.nix { })
       #ventoy-full-qt
       #https://aur.archlinux.org/packages/repair-usb-disc-gtk4
     ]
