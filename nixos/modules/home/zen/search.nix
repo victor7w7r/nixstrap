@@ -3,11 +3,11 @@
   programs.zen-browser.profiles.default.search = {
     force = true;
     default = "google";
-    privateDefault = "google";
+    privateDefault = "ddg";
     order = [
-      "brave"
-      "ddg"
       "google"
+      "ddg"
+      "brave"
     ];
     engines =
       let
@@ -142,5 +142,4 @@
         "wikipedia".metaData.hidden = true;
       };
   };
-
 }

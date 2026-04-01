@@ -225,7 +225,7 @@
 
             Sensors."highPrioritySensorIds" = ''["cpu/all/averageTemperature"]'';
             Sensors."totalSensors" = ''["cpu/all/averageTemperature"]'';
-            SensorColors."cpu/cpu.*/usage" = "86,87,245";
+            SensorColors."cpu/cpu.*/usage" = "165,75,255";
             "org.kde.ksysguard.piechart/General" = {
               rangeTo = 100;
               rangeAuto = false;

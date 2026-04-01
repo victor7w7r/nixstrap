@@ -1,11 +1,6 @@
 { ... }:
 {
   programs.zen-browser.profiles.default = {
-
-    extraConfig = ''
-      lockPref("general.smoothScroll", false);
-    '';
-
     settings =
       let
         lock-false = {
@@ -18,6 +13,11 @@
         };
       in
       {
+        /*
+          gfx.webrender.all = true;
+          sine.engine.auto-update = false;
+        */
+
         "accessibility.typeaheadfind" = true;
         "accessibility.typeaheadfind.flashBar" = 0;
         "accessibility.force_disabled" = 1;
@@ -212,33 +212,7 @@
         "btrnewtab.enable-border-radius" = false;
         "btrnewtab.plusanim" = false;
         "btrtabs.border-radius" = "8px";
-        "cmi-Auto-Hide-BookmarkBar" = 0;
-        "cmi-Disable-Better-Context-Menu" = false;
-        "cmi-Grayscale-Extensions-Icons" = true;
-        "cmi-Hide-Bookmark-Element" = 0;
-        "cmi-Padding-Container" = "30px";
-        "cmi-Switch-Gecko-Branch" = 1;
-        "cmi-Switch-Icon-Package" = 1;
-        "cmi-checkmark-margin-left_1" = "6px";
-        "cmi-checkmark-margin-left_2" = "6px";
-        "cmi-checkmark-margin-left_cover_1" = "8px";
-        "cmi-checkmark-margin-left_cover_2" = "6px";
-        "cmi-checkmark-margin-right_1" = "8px";
-        "cmi-checkmark-margin-right_2" = "8px";
-        "cmi-checkmark-margin-right_cover_1" = "10px";
-        "cmi-checkmark-margin-right_cover_2" = "8px";
-        "cmi-extension-icon-leftmargin_1" = "0px";
-        "cmi-extension-icon-leftmargin_2" = "0px";
-        "cmi-fluentui-icons-leftmargin" = "6px";
-        "cmi-fluentui-text-leftmargin" = "8px";
-        "cmi-fold-item-IDs" = "";
-        "cmi-menu-text-leftmargin_1" = "0px";
-        "cmi-menu-text-leftmargin_2" = "0px";
-        "cmi-menuseparator-opacity" = "0.5";
-        "cmi-non-checkmark-subitems-padding_1" = "24px";
-        "cmi-non-checkmark-subitems-padding_2" = "24px";
-        "cmi-zenui-icons-leftmargin" = "6px";
-        "cmi-zenui-text-leftmargin" = "12px";
+
         "content.interrupt.parsing" = true;
         "content.maxtextrun" = 8191;
         "content.max.tokenizing.time" = 2000000;
@@ -357,6 +331,7 @@
         "font.name.sans-serif.x-western" = "Ubuntu";
         "font.name.serif.x-western" = "Ubuntu";
         "general.autoScroll" = true;
+        "general.smoothScroll" = false;
         "geo.enabled" = false;
         "gfx.canvas.accelerated.cache-items" = 32768;
         "gfx.canvas.accelerated.cache-size" = 4096;
@@ -445,25 +420,6 @@
         "mousewheel.system_scroll_override_on_root_content.enabled" = true;
         "mousewheel.system_scroll_override_on_root_content.horizontal.factor" = 175;
         "mousewheel.system_scroll_override_on_root_content.vertical.factor" = 175;
-
-        "nebula-active-tab-glow" = 2;
-        "nebula-bookmarks-autohide" = 1;
-        "nebula-default-sound-style" = 2;
-        "nebula-disable-container-styling" = true;
-        "nebula-disable-menu-animations" = true;
-        "nebula-essentials-gray-icons" = true;
-        "nebula-folder-styling" = true;
-        "nebula-glow-gradient" = 1;
-        "nebula-macos-style-buttons" = false;
-        "nebula-nogaps-mod" = false;
-        "nebula-pinned-tabs-bg" = false;
-        "nebula-remove-workspace-indicator" = true;
-        "nebula-tab-loading-animation" = 4;
-        "nebula-tab-switch-animation" = 0;
-        "nebula-tabs-no-shadow" = false;
-        "nebula-turn-off-zen-menu-icon" = false;
-        "nebula-urlbar-animation" = 3;
-        "nebula-workspace-style" = 0;
 
         "nglayout.initialpaint.delay" = 5;
         "network.allow-experiments" = false;
@@ -650,28 +606,6 @@
 
         "ui.osk.enabled" = true;
         "ui.submenuDelay" = 0;
-
-        "var-nebula-border-radius" = "13px";
-        "var-nebula-color-glass-dark" = "rgba(0, 0, 0, 1)";
-        "var-nebula-color-glass-light" = "rgba(255, 255, 255, 1)";
-        "var-nebula-color-shadow-dark" = "rgba(0, 0, 0, 0.85)";
-        "var-nebula-color-shadow-light" = "rgba(255, 255, 255, 0.855)";
-        "var-nebula-essentials-width" = "60px";
-        "var-nebula-glass-blur" = "320px";
-        "var-nebula-glass-saturation" = "240%";
-        "var-nebula-tabs-default-dark" = "rgba(0,0,0,0.8)";
-        "var-nebula-tabs-default-light" = "rgba(255,255,255,0.8)";
-        "var-nebula-tabs-hover-dark" = "rgba(0,0,0,0.85)";
-        "var-nebula-tabs-hover-light" = "rgba(255,255,255,0.85)";
-        "var-nebula-tabs-minimum-dark" = "rgba(0, 0, 0, 0.8)";
-        "var-nebula-tabs-minimum-light" = "rgba(255, 255, 255, 0.8)";
-        "var-nebula-tabs-selected-dark" = "rgba(0,0,0,0.85)";
-        "var-nebula-tabs-selected-light" = "rgba(255,255,255,0.85)";
-        "var-nebula-ui-tint-dark" = "rgba(0,0,0,0.8)";
-        "var-nebula-ui-tint-light" = "rgba(255,255,255,0.8)";
-        "var-nebula-website-tint-dark" = "rgba(0,0,0,0.8)";
-        "var-nebula-website-tint-light" = "rgba(255,255,255,0)";
-        "var-nebula-workspace-grayscale" = "100%";
 
         "webgl.max-size" = 16384;
         "webgl.force-enabled" = true;

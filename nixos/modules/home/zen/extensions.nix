@@ -66,7 +66,6 @@
       zen-internet
       zoom-redirector
     ];
-
     policies.ExtensionSettings =
       let
         mkExtensionSettings = builtins.mapAttrs (
