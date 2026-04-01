@@ -11,10 +11,17 @@
       testdisk-qt
       usbimager
       woeusb-ng
-      (pkgs.callPackage ./custom/tablet-map.nix { })
       #ventoy-full-qt
       #https://aur.archlinux.org/packages/repair-usb-disc-gtk4
     ]
+    ++ (
+      if host == "v7w7r-macmini81" then
+        [
+          (pkgs.callPackage ./custom/tablet-map.nix { })
+        ]
+      else
+        [ ]
+    )
   );
 }
 // (

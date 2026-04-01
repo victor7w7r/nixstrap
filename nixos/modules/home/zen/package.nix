@@ -34,7 +34,7 @@ let
       cp --no-preserve=mode ${pkgs.nixos-icons}/share/icons/hicolor/1024x1024/apps/nix-snowflake.png $out/sine-mods/Nebula/Nebula/modules
       substituteInPlace $out/sine-mods/Nebula/Nebula/modules/Topbar-buttons.css \
         --replace-fail "url(\"chrome://branding/content/about-logo.svg\")" "url(\"nix-snowflake.png\")" \
-        --replace-fail "scale: 1.7;" "scale: 1.3;"
+        --replace-fail "scale: 1.7;" "scale: 1.2;"
     '';
   };
 

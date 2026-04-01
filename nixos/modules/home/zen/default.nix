@@ -18,13 +18,6 @@ in
       id = 0;
       isDefault = true;
       name = "default";
-      extraConfig = ''
-        ${builtins.readFile "${inputs.betterfox}/Fastfox.js"}
-        ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
-        ${builtins.readFile "${inputs.betterfox}/Securefox.js"}
-        ${builtins.readFile "${inputs.betterfox}/Smoothfox.js"}
-        lockPref("general.smoothScroll", false);
-      '';
       sine = {
         enable = true;
         mods = [
