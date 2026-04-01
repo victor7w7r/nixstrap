@@ -251,6 +251,7 @@
         "datareporting.policy.dataSubmissionEnable" = false;
         "datareporting.policy.dataSubmissionEnabled" = lock-false;
         "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+        "datareporting.usage.uploadEnabled" = false;
         "devtools.chrome.enabled" = true;
         "devtools.everOpened" = true;
         "devtools.debugger.remote-enabled" = true;

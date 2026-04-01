@@ -43,10 +43,6 @@
     nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
-    betterfox = {
-      url = "github:yokoffing/Betterfox";
-      flake = false;
-    };
     batfetch = {
       url = "github:ashish-kus/batfetch";
       inputs.nixpkgs.follows = "nixpkgs";
