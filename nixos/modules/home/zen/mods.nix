@@ -13,14 +13,12 @@ let
     installPhase = ''
       mkdir -p $out/JS
       mkdir -p $out/sine-mods
-
       cp --no-preserve=mode -r $src/{sine.sys.mjs,engine} $out/JS
       cp --no-preserve=mode -r ${inputs.sine-bootloader}/profile/utils $src/locales $out
       cp ${./mods.json} $out/sine-mods/mods.json
       cp --no-preserve=mode -r ${inputs.nebula-zen} $out/sine-mods/Nebula
       cp --no-preserve=mode ${pkgs.nixos-icons}/share/icons/hicolor/1024x1024/apps/nix-snowflake.png \
         $out/sine-mods/Nebula/Nebula/modules
-
       substituteInPlace $out/sine-mods/Nebula/Nebula/modules/Topbar-buttons.css \
         --replace-fail "url(\"chrome://branding/content/about-logo.svg\")" "url(\"nix-snowflake.png\")" \
         --replace-fail "scale: 1.7;" "scale: 1.1;"
@@ -63,9 +61,9 @@ in
 
     settings = {
       "sine.fork-id" = "zen";
-      "sine.is-cosine" = false;
-      "sine.mods-reinstalled" = true;
-      sine.engine.auto-update = false;
+      "sine.is-cosine" = true;
+      "sine.mods-reinstalled" = false;
+      "sine.engine.auto-update" = false;
 
       cmi-Auto-Hide-BookmarkBar = 0;
       cmi-Disable-Better-Context-Menu = false;

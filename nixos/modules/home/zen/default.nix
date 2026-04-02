@@ -18,14 +18,6 @@ let
       });
 in
 {
-  imports = [
-    ./bookmarks.nix
-    ./extensions.nix
-    ./mods.nix
-    ./search.nix
-    ./settings.nix
-  ];
-
   programs.zen-browser = {
     package = (pkgs.wrapFirefox zen-unwrap { icon = "zen-browser"; }).override {
       nativeMessagingHosts = [ pkgs.pywalfox-native ];
@@ -59,4 +51,12 @@ in
       };
     };
   };
+
+  imports = [
+    ./bookmarks.nix
+    ./extensions.nix
+    ./mods.nix
+    ./search.nix
+    ./settings.nix
+  ];
 }

@@ -145,7 +145,7 @@
     "stars": 46,
     "origin": "store",
     "no-updates": false,
-    "enabled": false
+    "enabled": true
   },
   "quick-search-zen-browser": {
     "id": "quick-search-zen-browser",

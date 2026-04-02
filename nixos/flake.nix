@@ -123,6 +123,8 @@
         inherit system;
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
       };
+
+      home = (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
       # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
     in
@@ -171,8 +173,12 @@
           }).kernel.kconfigToNix;
       };
 
-      homeConfigurations."${username}" =
-        (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        inherit (home)
+          extraSpecialArgs
+          ;
+      };
 
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {

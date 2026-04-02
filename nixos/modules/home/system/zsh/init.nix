@@ -9,7 +9,6 @@
           && "$TERM_PROGRAM" != "zed" \
           && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
           exec tmux new-session -A -s default
-        fi
       fi
     '')
     (lib.mkOrder 550 ''
