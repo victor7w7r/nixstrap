@@ -109,6 +109,7 @@
       nur,
       proxmox-nixos,
       impermanence,
+      home-manager,
       nix-flatpak,
       nixvim,
       sops-nix,
@@ -170,6 +171,9 @@
           }).kernel.kconfigToNix;
       };
 
+      homeConfigurations."${username}" =
+        (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
+
       nixosConfigurations = {
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -189,6 +193,7 @@
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
             nixvim.nixosModules.nixvim
             (import ./hosts/macmini.nix)
             (import ./modules/core)
@@ -227,6 +232,7 @@
             nixos-hardware.nixosModules.common-cpu-intel
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
             nur.modules.nixos.default
             nixvim.nixosModules.nixvim
             sops-nix.nixosModules.sops
@@ -263,6 +269,7 @@
             (import ./pkgs)
             nixos-hardware.nixosModules.asus-ally-rc71l
             nix-flatpak.nixosModules.nix-flatpak
+            home-manager.nixosModules.home-manager
             nixvim.nixosModules.nixvim
             (import ./hosts/rogally.nix)
             (import ./modules/core)
@@ -303,6 +310,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             proxmox-nixos.nixosModules.proxmox-ve
             nixos-hardware.nixosModules.common-cpu-intel
+            home-manager.nixosModules.home-manager
             nix-flatpak.nixosModules.nix-flatpak
             impermanence.nixosModules.impermanence
             nixvim.nixosModules.nixvim
@@ -342,6 +350,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nixos-hardware.nixosModules.common-cpu-intel
             impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
             nixvim.nixosModules.nixvim
             nix-flatpak.nixosModules.nix-flatpak
             (import ./hosts/vm.nix)

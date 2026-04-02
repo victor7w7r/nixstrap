@@ -9,7 +9,7 @@
     "style": { "chrome": "", "content": "" },
     "preferences": "",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "ae7868dc-1fa1-469e-8b89-a5edf7ab1f24": {
     "updatedAt": "2026-02-21T09:33:03Z",
@@ -21,7 +21,7 @@
     "style": { "chrome": "LoadBar/chrome.css", "content": "" },
     "preferences": "",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "599a1599-e6ab-4749-ab22-de533860de2c": {
     "id": "599a1599-e6ab-4749-ab22-de533860de2c",
@@ -38,7 +38,7 @@
     "updatedAt": "2025-05-13",
     "preferences": "",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "e51b85e6-cef5-45d4-9fff-6986637974e1": {
     "id": "e51b85e6-cef5-45d4-9fff-6986637974e1",
@@ -55,7 +55,7 @@
     "createdAt": "2025-05-09",
     "updatedAt": "2025-05-21",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "ad97bb70-0066-4e42-9b5f-173a5e42c6fc": {
     "id": "ad97bb70-0066-4e42-9b5f-173a5e42c6fc",
@@ -73,7 +73,7 @@
     "updatedAt": "2026-03-21",
     "fork": ["zen"],
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "4c2bec61-7f6c-4e5c-bdc6-c9ad1aba1827": {
     "updatedAt": "2025-10-05T18:38:32Z",
@@ -88,7 +88,7 @@
     },
     "preferences": "",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "2317fd93-c3ed-4f37-b55a-304c1816819e": {
     "updatedAt": "2026-03-25T19:21:41Z",
@@ -100,7 +100,7 @@
     "style": { "chrome": "", "content": "" },
     "preferences": "AudioIndicatorEnhanced/preferences.json",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "642854b5-88b4-4c40-b256-e035532109df": {
     "id": "642854b5-88b4-4c40-b256-e035532109df",
@@ -145,7 +145,7 @@
     "stars": 46,
     "origin": "store",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "quick-search-zen-browser": {
     "id": "quick-search-zen-browser",
@@ -169,7 +169,7 @@
     "origin": "store",
     "style": { "chrome": "", "content": "" },
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "e9dae25b-2ddd-4245-8581-a6dcf6d35b82": {
     "id": "e9dae25b-2ddd-4245-8581-a6dcf6d35b82",
@@ -189,7 +189,7 @@
     "stars": 2,
     "origin": "store",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "f966100a-4fed-4df5-a082-f001c5bd654e": {
     "id": "f966100a-4fed-4df5-a082-f001c5bd654e",
@@ -209,7 +209,7 @@
     "stars": 2,
     "origin": "store",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "zen-command-palette": {
     "id": "zen-command-palette",
@@ -241,7 +241,7 @@
     "stars": 5,
     "origin": "store",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "zen-drop-link": {
     "id": "zen-drop-link",
@@ -263,7 +263,7 @@
     "origin": "store",
     "preferences": "",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "Nebula": {
     "id": "Nebula",
@@ -311,7 +311,7 @@
     "origin": "store",
     "preferences": "preferences.json",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "quick-tabs": {
     "id": "quick-tabs",
@@ -344,7 +344,7 @@
     "origin": "store",
     "style": { "chrome": "", "content": "" },
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   },
   "search-engine-select": {
     "id": "search-engine-select",
@@ -368,6 +368,6 @@
     "stars": 1,
     "origin": "store",
     "no-updates": false,
-    "enabled": true
+    "enabled": false
   }
 }

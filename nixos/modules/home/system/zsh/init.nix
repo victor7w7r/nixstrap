@@ -4,11 +4,13 @@
   programs.zsh.initContent = lib.mkMerge [
     (lib.mkOrder 450 ''
       [[ $- != *i* ]] && return
-      [[ -z "$TMUX" \
-        && -z "$SSH_TTY" \
-        && "$TERM_PROGRAM" != "zed" \
-        && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" \
-      ]] && exec tmux new-session -A -s default
+      if [[ -z "$TMUX" \
+          && -z "$SSH_TTY" \
+          && "$TERM_PROGRAM" != "zed" \
+          && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
+          exec tmux new-session -A -s default
+        fi
+      fi
     '')
     (lib.mkOrder 550 ''
       unsetopt BEEP

@@ -4,10 +4,8 @@
     enable = true;
     autocd = true;
     enableCompletion = true;
-    autosuggestion = {
-      enable = true;
-      #highlight = "fg=ff00ff,bg=cyan,bold,underline";
-    };
+    autosuggestion.enable = true;
+
     syntaxHighlighting = {
       enable = true;
       styles = {
