@@ -13,11 +13,6 @@
         };
       in
       {
-        /*
-          gfx.webrender.all = true;
-          sine.engine.auto-update = false;
-        */
-
         "accessibility.typeaheadfind" = true;
         "accessibility.typeaheadfind.flashBar" = 0;
         "accessibility.force_disabled" = 1;
@@ -287,23 +282,7 @@
         "extensions.getAddons.cache.enabled" = lock-false;
         "extensions.getAddons.showPane" = lock-false;
         "extensions.pictureinpicture.enable_picture_in_picture_overrides" = true;
-        "extensions.quicksearch.behavior.drag_resize_enabled" = true;
-        "extensions.quicksearch.behavior.remember_size" = true;
-        "extensions.quicksearch.container.position" = "bottom-right";
-        "extensions.quicksearch.container.theme" = "dark";
-        "extensions.quicksearch.context_menu.access_key" = "";
-        "extensions.quicksearch.context_menu.engine" = "";
-        "extensions.quicksearch.shortcuts.escape_closes" = true;
-        "extensions.quicksearch.shortcuts.toggle_key" = "";
-        "extensions.quicktabs.commandpalette.dynamic.enabled" = true;
-        "extensions.quicktabs.context_menu.access_key" = "";
-        "extensions.quicktabs.defaultHeight" = "";
-        "extensions.quicktabs.defaultWidth" = "";
-        "extensions.quicktabs.initialPosition" = "center";
-        "extensions.quicktabs.maxContainers" = "";
-        "extensions.quicktabs.taskbar.minWidth" = "";
-        "extensions.quicktabs.taskbar.trigger" = "hover";
-        "extensions.quicktabs.theme" = "dark";
+
         "extensions.screenshots.disabled" = lock-true;
         "extension.search-engine-select.debug-mode" = false;
         "extension.search-engine-select.enabled" = true;
@@ -379,41 +358,6 @@
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
         "media.wmf.zero-copy-nv12-textures-force-enabled" = true;
         "media.webrtc.hw.h264.enabled" = true;
-        "mod.autoexpand.animation_delay" = "0ms";
-        "mod.autoexpand.animation_duration" = "10ms";
-        "mod.autoexpand.collapse_delay" = "400ms";
-        "mod.autoexpand.collapsed_width" = "45px";
-        "mod.autoexpand.essential_align" = false;
-        "mod.autoexpand.expanded_width" = "100px";
-        "mod.autoexpand.fade_sleeping_tabs" = true;
-        "mod.autoexpand.hide_workspace_indicator" = true;
-        "mod.autoexpand.performance_mode" = "potato";
-        "mod.autoexpand.remove_line_separator" = false;
-        "mod.forkedtidypopup.hovercolor.dark" = "rgba(87,65,50,255)";
-        "mod.forkedtidypopup.hovercolor.light" = "rgba(243,202,176,255)";
-        "mod.forkedtidypopup.keepdividers" = true;
-        "mod.forkedtidypopup.usecenterbookmarkbar" = true;
-        "mod.forkedtidypopup.usecustomhovercolor" = true;
-        "mod.forkedtidypopup.usetidyextension" = true;
-        "mod.forkedtidypopup.usetidypopup" = true;
-        "mod.forkedtidypopup.usezenprimarycolor" = true;
-        "mod.superpins.essentials.grid-count" = "1";
-        "mod.superpins.pins.active-bg" = "";
-        "mod.superpins.pins.grid-count" = "1";
-        "mod.zenbettermusicbar.alwaysshow" = true;
-        "mod.zenbettermusicbar.custombackground" = "var(--zen-media-control-bg)";
-        "mod.zenbettermusicbar.enabled" = true;
-        "mod.zencustomurlbar.blur" = "5px";
-        "mod.zencustomurlbar.borderradius" = "12px";
-        "mod.zencustomurlbar.brightness" = "0.7";
-        "mod.zencustomurlbar.customcolor" = "rgba(23, 23, 26, 1)";
-        "mod.zencustomurlbar.scale" = "1";
-        "mod.zencustomurlbar.transparentvalue" = "15%";
-        "mod.zencustomurlbar.useanimation" = true;
-        "mod.zencustomurlbar.usefromzen" = true;
-        "mod.zentoast.background_opacity" = "0.3";
-        "mod.zentoast.border_opacity" = "0.3";
-        "mod.zentoast.text_opacity" = "0.3";
 
         "mousewheel.default.delta_multiplier_y" = 50;
         "mousewheel.min_line_scroll_amount" = 30;
@@ -536,9 +480,6 @@
         "signon.rememberSignons" = lock-false;
         "signon.formlessCapture.enabled" = false;
         "signon.privateBrowsingCapture.enabled" = false;
-        "sine.fork-id" = "zen";
-        "sine.is-cosine" = true;
-        "sine.mods-reinstalled" = true;
 
         "svg.context-properties.content.enabled" = true;
         "tab.groups.add-arrow" = true;
@@ -639,19 +580,6 @@
         "zen-command-palette.prefix" = ":";
         "zen-command-palette.prefix-required" = false;
         "zen-command-palette.settings-file-path" = "chrome/zen-commands-settings.json";
-
-        "zen.mods.AudioIndicatorEnhanced.audioWave.colorMuted" =
-          "color-mix(in srgb, -moz-dialogtext 50%, rgb(129, 0, 0) 50%)";
-        "zen.mods.AudioIndicatorEnhanced.audioWave.colorPlaying" = "-moz-dialogtext";
-        "zen.mods.AudioIndicatorEnhanced.audioWave.enabled" = true;
-        "zen.mods.AudioIndicatorEnhanced.audioWave.opacity" = "0.2";
-        "zen.mods.AudioIndicatorEnhanced.hoverScaleAnimationEnabled" = true;
-        "zen.mods.AudioIndicatorEnhanced.returnOldIcons" = true;
-        "zen.mods.AudioIndicatorEnhanced.reverseAudioIcons" = false;
-        "zen.mods.TabPreviewEnhanced.borderRadiusAmount" = "10px";
-        "zen.mods.TabPreviewEnhanced.enabledBackgroundNative" = true;
-        "zen.mods.TabPreviewEnhanced.enabledCustomBorderRadius" = true;
-        "zen.mods.TabPreviewEnhanced.enabledMargins" = true;
 
         "zen.sidebar.enabled" = true;
         "zen.swipe.is-fast-swipe" = false;
