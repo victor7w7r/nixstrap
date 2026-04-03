@@ -60,13 +60,16 @@ in
        EVDEV_ABS_01=::720
        EVDEV_ABS_35=::1280
        EVDEV_ABS_36=::720
+       ID_INPUT=1
+       ID_INPUT_TOUCHSCREEN=1
+       ID_INPUT_KEYBOARD=0
        LIBINPUT_CALIBRATION_MATRIX=-1 0 1 0 -1 1
     '';
   };
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
 
-  powerManagement.cpuFreqGovernor = "powersave";
+  powerManagement.cpuFreqGovernor = "conservative";
 
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
@@ -76,6 +79,7 @@ in
     blacklistedKernelModules = [ "pac1934" ];
     extraModprobeConfig = ''
       options goodix_ts reset_speed=100
+      options goodix interrupt_duration=1
       options i2c_designware_core bus_speed=100
     '';
     initrd = {
@@ -94,9 +98,6 @@ in
       ];
       kernelModules = [
         "autofs"
-        "cpufreq_schedutil"
-        "cpufreq_conservative"
-        "cpufreq_reflex"
         "tpm_crb"
         "tpm_tis"
         "sdhci_pci"

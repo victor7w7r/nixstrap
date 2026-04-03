@@ -42,14 +42,7 @@
         accelSpeed = "0.75";
       };
     };
-    xserver = {
-      displayManager.lightdm.enable = false;
-      xkb = {
-        layout = "us";
-        variant = "intl-unicode";
-        options = "caps:ctrl_modifier";
-      };
-    };
+    xserver.enable = false;
     displayManager = {
       sddm = {
         enable = host == "v7w7r-rc71l";

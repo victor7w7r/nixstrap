@@ -18,9 +18,15 @@
     displayManager.defaultSession = "xfce";
     xserver = {
       enable = true;
+      displayManager.lightdm.enable = false;
       desktopManager.xfce = {
         enable = true;
         enableScreensaver = false;
+      };
+      xkb = {
+        layout = "us";
+        variant = "intl-unicode";
+        options = "caps:ctrl_modifier";
       };
       excludePackages = with pkgs; [ xterm ];
     };

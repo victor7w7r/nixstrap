@@ -4,11 +4,7 @@
     kwin = {
       borderlessMaximizedWindows = true;
       effects = {
-        blur = {
-          enable = false;
-          strength = 2;
-          noiseStrength = 2;
-        };
+        blur.enable = false;
         translucency.enable = true;
       };
       nightLight = {
@@ -30,9 +26,9 @@
       };
     };
     configFile.kwinrc = {
-      Effect-blurplus.BlurDecorations = true;
-      Effect-blurplus.BlurDocks = true;
-      Effect-blurplus.WindowClasses = "dolphin\norg.wezfurlong.wezterm";
+      Effect-better-blur-dx.BlurDecorations = true;
+      Effect-better-blur-dx.BlurDocks = true;
+      Effect-better-blur-dx.WindowClasses = "dolphin\nkitty\nzen\nplasmashell";
       Effect-overview.OrganizedGrid = false;
       Effect-translucency.DropdownMenus = 17;
       Effect-translucency.MoveResize = 100;
@@ -40,7 +36,8 @@
       Effect-translucency.TornOffMenus = 19;
       Input.TabletMode = "off";
       Plugins = lib.mkForce {
-        blurEnabled = true;
+        blurEnabled = false;
+        better_blur_dxEnabled = true;
         contrastEnabled = true;
         desktopchangeosdEnabled = false;
         dimscreenEnabled = true;

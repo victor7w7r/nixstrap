@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  inputs,
+  username,
+  ...
+}:
 {
   programs.kde-pim.enable = true;
 
@@ -12,8 +17,8 @@
   systemd.services.random-icon = {
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
-    requires = [ "nix-persist-etc.mount" ];
-    after = [ "nix-persist-etc.mount" ];
+    requires = [ "home-victor7w7r-.ssh.mount" ];
+    after = [ "home-victor7w7r-.ssh.mount" ];
     wantedBy = [ "multi-user.target" ];
     script = ''
       TARGET_DIR="/nix/persist/etc"
@@ -28,11 +33,13 @@
       esac
     '';
   };
-  security.pam.services."${username}".kwallet = {
-    enable = true;
-    package = pkgs.kdePackages.kwallet-pam;
-  };
+  security.pam.services = {
+    "${username}".kwallet = {
+      enable = true;
+      package = pkgs.kdePackages.kwallet-pam;
+    };
 
+  };
   environment = {
     plasma6.excludePackages = with pkgs; [
       kdePackages.elisa
@@ -98,6 +105,7 @@
           blur = false;
         };
       })
+      inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
       libsForQt5.qt5.qtquickcontrols2
       libsForQt5.qt5.qtgraphicaleffects
       kdePackages.qtquick3d
@@ -107,7 +115,6 @@
       graphviz
       icoextract
       icoutils
-      iio-sensor-proxy
       kdiff3
       kdiskmark
       krename

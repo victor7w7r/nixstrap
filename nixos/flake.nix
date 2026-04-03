@@ -86,17 +86,10 @@
       url = "github:catppuccin/refind";
       flake = false;
     };
-    sine = {
-      url = "github:CosmoCreeper/Sine";
-      flake = false;
-    };
-    sine-bootloader = {
-      url = "github:sineorg/bootloader";
-      flake = false;
-    };
-    nebula-zen = {
-      url = "github:JustAdumbPrsn/Zen-Nebula";
-      flake = false;
+
+    kwin-effects-better-blur-dx = {
+      url = "github:xarblu/kwin-effects-better-blur-dx";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

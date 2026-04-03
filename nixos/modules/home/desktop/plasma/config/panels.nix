@@ -233,68 +233,87 @@
           };
         }
         {
+          name = "KdeControlStation";
+          config.Appearance = {
+            brightness_widget_flat = true;
+            brightness_widget_thin = true;
+            brightness_widget_title = false;
+            layout = 2;
+            showCmd1 = true;
+            showCmd2 = true;
+            showColorSwitcher = false;
+            showNightLight = false;
+            showPercentage = true;
+            showSessionActions = false;
+            transparency = true;
+            usePlasmaSliders = true;
+            volume_widget_flat = true;
+            volume_widget_thin = true;
+            volume_widget_title = false;
+          };
+        }
+        {
           name = "org.kde.plasma.systemtray";
           config.General = {
             scaleIconsToFit = true;
             showAllItems = false;
             spacing = 2;
+            disabledStatusNotifiers = [
+              "blueman"
+              "Easy Effects"
+              "KMix"
+            ];
             shownItems = [
               "org.kde.plasma.keyboardlayout"
-              "org.kde.plasma.notifications"
               "org.kde.plasma.networkmanagement"
               "org.kde.plasma.volume"
-            ]
-            ++ (
-              if host != "v7w7r-macmini81" then
-                [
-                  "org.kde.plasma.battery"
-                ]
-              else
-                [ ]
-            );
-            hiddenItems = [
+              "org.kde.plasma.clipboard"
+              "org.kde.plasma.notifications"
+            ];
+            extraItems = [
+              "org.kde.plasma.cameraindicator"
+              "org.kde.plasma.notifications"
+              "org.kde.plasma.brightness"
+              "org.kde.plasma.networkmanagement"
+              "org.kde.plasma.keyboardlayout"
               "org.kde.plasma.bluetooth"
+              "org.kde.plasma.clipboard"
+              "org.kde.plasma.volume"
+              "org.kde.plasma.devicenotifier"
+            ];
+            hiddenItems = [
+              "org.kde.plasma.notifications"
+              "org.kde.plasma.keyboardlayout"
+              "org.kde.plasma.vault"
+              "org.kde.plasma.printmanager"
+              "org.kde.plasma.brightness"
+              "org.kde.plasma.cameraindicator"
+              "com.github.wwmm.easyeffects"
+              "org.kde.plasma.devicenotifier"
+            ];
+            knownItems = [
+              "org.kde.kdeconnect"
+              "org.kde.plasma.cameraindicator"
               "org.kde.plasma.clipboard"
               "org.kde.plasma.devicenotifier"
               "org.kde.plasma.manage-inputmethod"
               "org.kde.plasma.mediacontroller"
               "org.kde.plasma.notifications"
+              "org.kde.plasma.battery"
+              "org.kde.plasma.brightness"
               "org.kde.plasma.keyboardindicator"
-              "org.kde.plasma.keyboardlayout"
               "org.kde.plasma.networkmanagement"
               "org.kde.plasma.volume"
-              "org.kde.plasma.vault"
-              "org.kde.kdeconnect"
+              "org.kde.plasma.weather"
               "org.kde.kscreen"
-              "org.kde.plasma.printmanager"
-              "org.kde.plasma.brightness"
-              "org.kde.plasma.cameraindicator"
-              "com.github.wwmm.easyeffects"
+              "org.kde.plasma.bluetooth"
+              "org.kde.plasma.keyboardlayout"
             ];
-            #knownItems = extraItems;
           };
         }
         {
-          name = "KdeControlStation";
-          config = {
-            Appearance = {
-              brightness_widget_flat = true;
-              brightness_widget_thin = true;
-              brightness_widget_title = false;
-              layout = 2;
-              showCmd1 = true;
-              showCmd2 = true;
-              showColorSwitcher = false;
-              showNightLight = false;
-              showPercentage = true;
-              showSessionActions = false;
-              transparency = true;
-              usePlasmaSliders = true;
-              volume_widget_flat = true;
-              volume_widget_thin = true;
-              volume_widget_title = false;
-            };
-          };
+          name = "org.kde.plasma.battery";
+          config.General.showPercentage = true;
         }
         {
           digitalClock = {

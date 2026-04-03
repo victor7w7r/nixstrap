@@ -88,6 +88,7 @@ in
 
     power-setup-ac-battery = {
       description = "Setup Energy Profile";
+      enable = false;
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";

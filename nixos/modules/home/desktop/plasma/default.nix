@@ -16,9 +16,17 @@
     platformTheme.name = "kvantum";
     style.name = "kvantum-dark";
   };
+
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
     theme=LayanDark
+  '';
+
+  home.file.".config/kwalletrc".text = ''
+    [Wallet]
+    First Use=false
+    Enabled=true
+    Default Wallet=kdewallet
   '';
 
   imports = [

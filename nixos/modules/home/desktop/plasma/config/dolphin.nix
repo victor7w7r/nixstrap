@@ -4,9 +4,9 @@
     dolphinrc = {
       ContentDisplay.UsePermissionsFormat = "NumericFormat";
       ContextMenu = {
-        ShowOpenInNewTab = false;
-        ShowOpenInNewWindow = false;
-        ShowOpenTerminal = false;
+        ShowOpenInNewTab = true;
+        ShowOpenInNewWindow = true;
+        ShowOpenTerminal = true;
       };
       ExtractDialog = {
         "3 screens: Height" = 480;
@@ -17,6 +17,7 @@
         DynamicView = true;
         FilterBar = true;
         GlobalViewProps = false;
+        InformationPanelVisible = true;
         OpenNewTabAfterLastTab = true;
         ShowFullPath = true;
         ShowStatusBar = "FullWidth";

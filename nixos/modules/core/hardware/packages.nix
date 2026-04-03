@@ -1,4 +1,4 @@
-{ host, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages =
     with pkgs;
@@ -6,6 +6,7 @@
       go-mtpfs
       exfatprogs
       f2fs-tools
+      iio-sensor-proxy
       mtools
       viddy
       simple-mtpfs
@@ -29,6 +30,7 @@
       #https://github.com/ximion/btrfsd
     ]
     ++ [
+      alsa-utils
       cshatag
       ddrescue
       ddrutility
