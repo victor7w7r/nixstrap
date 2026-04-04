@@ -170,7 +170,7 @@
         "browser.tabs.groups.arc-style" = true;
         "browser.tabs.groups.enabled" = true;
         "browser.tabs.groups.smart.enabled" = false;
-        "browser.tabs.loadInBackground" = false;
+        "browser.tabs.loadInBackground" = true;
         "browser.tabs.inTitlebar" = 0;
         "browser.tabs.hoverPreview.enabled" = true;
         "browser.tabs.hoverPreview.showThumbnails" = true;
