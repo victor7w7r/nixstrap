@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   fetchFromGitHub,
   rustPlatform,
   ...
@@ -12,7 +13,7 @@ rustPlatform.buildRustPackage {
     owner = "victor7w7r";
     repo = "tablet_map";
     rev = "main";
-    sha256 = "sha256-vOJAYbB/ZcRxM+/lrkab/PcON3vOz3o6eqPvM9hmaOw=";
+    sha256 = "sha256-kA+LCoffX7+xnvi3xEweeP8a9uXimYU7trwM6zDMBhw=";
   };
 
   nativeBuildInputs = with pkgs; [
@@ -20,10 +21,11 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
 
-  cargoHash = "sha256-FKQYiaOTZxD95AWD2zbVjENzMAPrFl/rzhwbkAgGbx0=";
+  cargoHash = "sha256-8aPasJIznPhBC4jrX+9rX81M9EyDjtmhaMd4NZKxQwc=";
 
   installPhase = ''
     mkdir -p $out/bin
-    install -m755 target/debug/tablet_map $out/bin/tablet_map
+    ls -lah ./target/x86_64-unknown-linux-gnu/release
+    install -m755 -D target/x86_64-unknown-linux-gnu/release/tablet_map $out/bin/tablet_map
   '';
 }

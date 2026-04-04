@@ -37,6 +37,18 @@
         isNormalUser = true;
         hashedPassword = "$y$j9T$ieUYJ2thSsvR1M37kWe651$yt0z7Ga3..johS8fyA1Y9GaoddW.jfE838xXiFhcus1";
         uid = 1000;
+        subUidRanges = [
+          {
+            startUid = 100000;
+            count = 65536;
+          }
+        ];
+        subGidRanges = [
+          {
+            startGid = 100000;
+            count = 65536;
+          }
+        ];
         extraGroups = [
           "audio"
           "gamemode"

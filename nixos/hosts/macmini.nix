@@ -204,12 +204,11 @@ in
     kdePackages.plasma-thunderbolt
   ];
 
-  udev.extraRules = ''
+  programs.ydotool.enable = true;
+  services.udev.extraRules = ''
     KERNEL=="uinput", MODE="0660", GROUP="input"
   '';
-  programs.ydotool.enable = true;
   services.udev.packages = [ audio.audioUdev ];
-
   services.zfs = {
     autoScrub = {
       enable = true;

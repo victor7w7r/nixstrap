@@ -57,7 +57,6 @@
           node = "24";
         };
         settings = {
-          plugin_autoupdate = true;
           trusted_config_paths = [ "~/repositories" ];
           node.compile = false;
           npm.bun = true;

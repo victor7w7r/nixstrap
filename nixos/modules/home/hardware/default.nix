@@ -34,13 +34,12 @@
 // (
   if host == "v7w7r-macmini81" then
     {
-      xdg.configFile.gestures.kdl.text =
+      xdg.configFile."gestures.kdl".text =
         ''swipe direction="any" fingers=3 mouse-up-delay=500 acceleration=10'';
       systemd.user.services.gestures = {
-        enable = true;
         Service = {
-          ExecStart = "gestures start";
-          ExecReload = "gestures reload";
+          ExecStart = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures start";
+          ExecReload = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures reload";
           Restart = "no";
           StandardOutput = "journal";
           StandardError = "journal";
@@ -48,13 +47,8 @@
         Install.WantedBy = [ "default.target" ];
       };
       systemd.user.services.tablet-map = {
-        enable = true;
-        Unit = {
-          requires = [ "gestures.service" ];
-          after = [ "gestures.service" ];
-        };
         Service = {
-          ExecStart = "${(pkgs.callPackage ./custom/tablet-map.nix { })}/bin/tablet-map";
+          ExecStart = "${(pkgs.callPackage ./custom/tablet-map.nix { })}/bin/tablet_map";
           Restart = "no";
           StandardOutput = "journal";
           StandardError = "journal";

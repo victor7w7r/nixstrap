@@ -104,12 +104,12 @@
       nebula-default-sound-style = 2;
       nebula-disable-container-styling = true;
       nebula-disable-menu-animations = true;
-      nebula-essentials-gray-icons = true;
+      nebula-essentials-gray-icons = false;
       nebula-folder-styling = true;
       nebula-glow-gradient = 0;
       nebula-macos-style-buttons = false;
       nebula-nogaps-mod = false;
-      nebula-pinned-tabs-bg = false;
+      nebula-pinned-tabs-bg = true;
       nebula-remove-workspace-indicator = true;
       nebula-tab-loading-animation = 4;
       nebula-tab-switch-animation = 0;
@@ -123,7 +123,7 @@
       var-nebula-color-glass-light = "rgba(255, 255, 255, 1)";
       var-nebula-color-shadow-dark = "rgba(0, 0, 0, 0.85)";
       var-nebula-color-shadow-light = "rgba(255, 255, 255, 0.855)";
-      var-nebula-essentials-width = "60px";
+      var-nebula-essentials-width = "20px";
       var-nebula-glass-blur = "320px";
       var-nebula-glass-saturation = "240%";
       var-nebula-tabs-default-dark = "rgba(0,0,0,0.8)";
