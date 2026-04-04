@@ -208,7 +208,6 @@ in
   ];
 
   programs.ydotool.enable = true;
-
   services.udev.packages = [ audio.audioUdev ];
 
   services.zfs = {
