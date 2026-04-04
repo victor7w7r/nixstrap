@@ -12,7 +12,6 @@
       cool-retro-term
       git-credential-manager
       lazygit
-      rustup
       windterm
     ]
     ++ (

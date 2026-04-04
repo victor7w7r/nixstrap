@@ -51,6 +51,18 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
+      globalConfig = {
+        tools = {
+          bun = "1.3";
+          node = "24";
+        };
+        settings = {
+          plugin_autoupdate = true;
+          trusted_config_paths = [ "~/repositories" ];
+          node.compile = false;
+          npm.bun = true;
+        };
+      };
     };
     #meli.enable = true; BUILD
     mods.enable = true;

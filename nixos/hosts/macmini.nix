@@ -96,6 +96,9 @@ in
       forceImportAll = false;
       forceImportRoot = true;
     };
+    udev.extraRules = ''
+      KERNEL=="uinput", MODE="0660", GROUP="input"
+    '';
     initrd = {
       kernelModules = [
         "zfs"
@@ -200,10 +203,14 @@ in
     bolt
     tbtools
     thunderbolt
+    ydotool
     kdePackages.plasma-thunderbolt
   ];
 
+  programs.ydotool.enable = true;
+
   services.udev.packages = [ audio.audioUdev ];
+
   services.zfs = {
     autoScrub = {
       enable = true;

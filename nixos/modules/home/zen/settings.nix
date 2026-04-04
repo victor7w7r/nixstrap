@@ -170,6 +170,7 @@
         "browser.tabs.groups.arc-style" = true;
         "browser.tabs.groups.enabled" = true;
         "browser.tabs.groups.smart.enabled" = false;
+        "browser.tabs.loadBookmarksInBackground" = true;
         "browser.tabs.loadInBackground" = true;
         "browser.tabs.inTitlebar" = 0;
         "browser.tabs.hoverPreview.enabled" = true;
@@ -307,8 +308,9 @@
         "findbar.highlightAll" = true;
         "fission.autostart" = true;
         "font.name.monospace.x-western" = "UbuntuMono Nerd Font Mono";
-        "font.name.sans-serif.x-western" = "Ubuntu";
-        "font.name.serif.x-western" = "Ubuntu";
+        "font.name.sans-serif.x-western" = "Ubuntu Nerd Font";
+        "font.name.serif.x-western" = "Ubuntu Nerd Font";
+        "font.size.variable.x-western" = 14;
         "general.autoScroll" = true;
         "general.smoothScroll" = false;
         "geo.enabled" = false;

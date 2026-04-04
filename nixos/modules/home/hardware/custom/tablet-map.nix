@@ -1,4 +1,5 @@
 {
+  pkgs,
   fetchFromGitHub,
   rustPlatform,
   ...
@@ -14,10 +15,15 @@ rustPlatform.buildRustPackage {
     sha256 = "sha256-vOJAYbB/ZcRxM+/lrkab/PcON3vOz3o6eqPvM9hmaOw=";
   };
 
+  nativeBuildInputs = with pkgs; [
+    stdenv.cc
+    pkg-config
+  ];
+
   cargoHash = "sha256-FKQYiaOTZxD95AWD2zbVjENzMAPrFl/rzhwbkAgGbx0=";
 
   installPhase = ''
     mkdir -p $out/bin
-    find target -name tablet_map -type f -exec cp {} $out/bin/ \;
+    install -m755 target/debug/tablet_map $out/bin/tablet_map
   '';
 }
