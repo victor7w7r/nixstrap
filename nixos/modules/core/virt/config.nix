@@ -1,4 +1,5 @@
 {
+  host,
   pkgs,
   username,
   ...
@@ -7,7 +8,7 @@
   virtualisation = {
     waydroid.enable = true;
     spiceUSBRedirection.enable = true;
-    kvmgt.enable = true;
+    kvmgt.enable = host != "v7w7r-rc71l";
     podman = {
       enable = true;
       autoPrune.enable = true;
@@ -27,12 +28,6 @@
         swtpm.enable = true;
       };
     };
-    #lxd.enable = true;
-    #lxc = {
-    #  enable = true;
-    #  lxcfs.enable = true;
-    #  unprivilegedContainers = true;
-    #};
   };
 
   users.extraGroups.podman.members = [ username ];

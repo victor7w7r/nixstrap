@@ -28,7 +28,7 @@
     win-spice
     yad
     inputs.compose2nix.packages.x86_64-linux.default
-    (pkgs.callPackage ./custom/lxtui.nix { })
+    #S(pkgs.callPackage ./custom/lxtui.nix { })
 
     #cockpit-files
     #cockpit-machines
