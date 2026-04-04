@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   security.pam.services.gdm.enableGnomeKeyring = true;
 
@@ -17,7 +17,7 @@
   services = {
     displayManager.defaultSession = "xfce";
     xserver = {
-      enable = true;
+      enable = lib.mkForce true;
       displayManager.lightdm.enable = false;
       desktopManager.xfce = {
         enable = true;
