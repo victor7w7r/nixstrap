@@ -4,7 +4,7 @@
 
   networking.wireless = {
     enable = true;
-    networks."YourWifi".psk = "WifiPW";
+    networks."TP-LINK_2.4GHz_FF0A58".psk = "";
   };
 
   services.openssh = {

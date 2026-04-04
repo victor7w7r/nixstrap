@@ -5,5 +5,8 @@ RUN git clone https://github.com/mobile-nixos/mobile-nixos
 WORKDIR /build/mobile-nixos
 #RUN git checkout sdm845-bleeding-edge
 COPY local.nix .
+ENV NIXPKGS_ALLOW_UNFREE=1
+ENV NIXPKGS_ALLOW_INSECURE=1
+
 RUN nix-build --argstr device oneplus-fajita -A outputs.android-fastboot-images
 CMD cp -r ./result/* /dist/*
