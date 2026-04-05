@@ -12,6 +12,6 @@
         (import ./kernel.nix)
       ]
     else
-      [ ]
+      [ (import ./armimage.nix) ]
   );
 }

@@ -37,7 +37,7 @@
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    opi-zero2w.url = "github:virusdave/opi-zero2w";
+    opi-zero2w.url = "github:virusdave/nixos-opi-zero2w";
     impermanence.url = "github:nix-community/impermanence";
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -178,9 +178,9 @@
       };
 
       nixosConfigurations = {
-        #nix build .#nixosConfigurations.opi-installer.config.system.build.sdImage
+        #nix build "".#nixosConfigurations.opizero2w.config.system.build.sdImage"
         opizero2w = nixpkgs.lib.nixosSystem {
-          inherit systemarm;
+          system = systemarm;
           modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
             (
               { ... }:
