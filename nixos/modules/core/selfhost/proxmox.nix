@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   services = {
     resolved = {
@@ -9,7 +9,6 @@
     };
     proxmox-ve = {
       enable = true;
-      extraPackages = with pkgs; [ gnutar ];
       ipAddress = "192.168.1.100";
       bridges = [ "vmbr0" ];
     };
