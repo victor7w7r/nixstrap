@@ -21,6 +21,8 @@
     users.root.password = "1234";
   };
 
+  programs.zsh.enable = true;
+
   environment.systemPackages = with pkgs; [
     git
     vim

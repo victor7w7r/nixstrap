@@ -100,6 +100,8 @@ in
       kernelModules = [
         "zfs"
         "apple-bce"
+        "brcmfmac_wcc"
+        "brcmfmac"
         "btrfs"
         "uas"
         "usb_storage"
