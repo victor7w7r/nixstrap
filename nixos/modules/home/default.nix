@@ -39,7 +39,12 @@ let
           ]
       )
       ++ (
-        if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") && (user != "root") then
+        if
+          (host != "v7w7r-nixvm")
+          && (host != "v7w7r-youyeetoox1")
+          && (host != "v7w7r-opizero2w")
+          && (user != "root")
+        then
           [
             (import ./misc)
             (import ./multimedia)

@@ -37,6 +37,7 @@
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opi-zero2w.url = "github:virusdave/opi-zero2w";
     impermanence.url = "github:nix-community/impermanence";
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -102,6 +103,7 @@
       nix-cachyos-kernel,
       nur,
       proxmox-nixos,
+      opi-zero2w,
       impermanence,
       home-manager,
       nix-flatpak,
@@ -113,6 +115,7 @@
     let
       username = "victor7w7r";
       system = "x86_64-linux";
+      systemarm = "aarch64-linux";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
@@ -175,6 +178,38 @@
       };
 
       nixosConfigurations = {
+        #nix build .#nixosConfigurations.opi-installer.config.system.build.sdImage
+        opizero2w = nixpkgs.lib.nixosSystem {
+          inherit systemarm;
+          modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+              }
+            )
+            (import ./configuration.nix)
+            (import ./pkgs)
+            impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
+            nur.modules.nixos.default
+            nixvim.nixosModules.nixvim
+            sops-nix.nixosModules.sops
+            (import ./modules/core)
+            (import ./modules/home)
+          ];
+          specialArgs = {
+            host = "v7w7r-opizero2w";
+            inherit
+              self
+              sops-nix
+              inputs
+              username
+              system
+              ;
+          };
+        };
+
         macmini = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [

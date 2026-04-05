@@ -16,8 +16,15 @@
       dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
       extraPackages = with pkgs; [
+        conmon
+        crun
+        iptables
+        nftables
         podman-compose
         podman-tui
+        slirp4netns
+        skopeo
+        zfs
       ];
     };
     libvirtd = {

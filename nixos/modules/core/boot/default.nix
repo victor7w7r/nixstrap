@@ -1,10 +1,17 @@
-{ ... }:
+{ host, ... }:
 {
   imports = [
-    (import ./bootloader.nix)
     (import ./emulation.nix)
-    (import ./kernel.nix)
-    (import ./persist.nix)
     (import ./sysctl.nix)
-  ];
+  ]
+  ++ (
+    if (host != "v7w7r-opizero2w") then
+      [
+        (import ./bootloader.nix)
+        (import ./persist.nix)
+        (import ./kernel.nix)
+      ]
+    else
+      [ ]
+  );
 }

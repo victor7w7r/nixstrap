@@ -1,7 +1,7 @@
 { pkgs, host, ... }:
 {
   programs.zen-browser = {
-    enable = host != "v7w7r-youyeetoox1";
+    enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-opizero2w";
     setAsDefaultBrowser = true;
     policies = (import ./policies.nix);
     nativeMessagingHosts = with pkgs; [ kdePackages.plasma-browser-integration ];
