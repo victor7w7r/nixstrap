@@ -1,9 +1,7 @@
-FROM docker.io/nixos/nix:latest-arm64 AS builder
+FROM docker.io/nixos/nix:latest-arm64
 WORKDIR /build
 RUN git clone https://github.com/mobile-nixos/mobile-nixos
-#https://github.com/mwlaboratories/mobile-nixos
 WORKDIR /build/mobile-nixos
-#RUN git checkout sdm845-bleeding-edge
 COPY local.nix .
 ENV NIXPKGS_ALLOW_UNFREE=1
 ENV NIXPKGS_ALLOW_INSECURE=1

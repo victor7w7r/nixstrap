@@ -7,7 +7,6 @@
       atool
       brightnessctl
       brush
-      boxxy
       cheat
       choose
       cmd-wrapped
