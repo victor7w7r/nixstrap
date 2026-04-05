@@ -1,4 +1,4 @@
-{ ... }:
+{ system, ... }:
 {
   programs = {
     bottom.enable = true;
@@ -23,7 +23,7 @@
     fd.enable = true;
     mc.enable = true;
     #lazydocker.enable = true;
-    looking-glass-client.enable = true;
+    looking-glass-client.enable = system != "aarch64-linux";
     #lsd.enable = true;
     pyenv = {
       enable = true;

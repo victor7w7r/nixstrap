@@ -12,7 +12,6 @@
       atool
       brightnessctl
       brush
-      boxxy
       cheat
       choose
       cmd-wrapped
@@ -71,7 +70,8 @@
       #https://codeberg.org/sylphenix/sff
       (pkgs.callPackage ./custom/fman.nix { })
     ]
-    ++ (if host != "v7w7r-rc71l" then [ intel-undervolt ] else [ ])
+    ++ (if host != "v7w7r-rc71l" && system != "aarch64-linux" then [ intel-undervolt ] else [ ])
+    ++ (if system != "aarch64-linux" then [ boxxy ] else [ ])
     ++ [
       dust
       dua

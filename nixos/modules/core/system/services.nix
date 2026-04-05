@@ -1,4 +1,5 @@
 {
+  system,
   host,
   lib,
   pkgs,
@@ -47,7 +48,7 @@
     prelockd.enable = host != "v7w7r-youyeetoox1";
     resolved.enable = false;
     #uresourced.enable = true;
-    scx.enable = true;
+    scx.enable = system != "aarch64-linux";
 
     ananicy = {
       enable = true;

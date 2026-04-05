@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ system, pkgs, ... }:
 {
   home.packages = (
     with pkgs;
@@ -7,7 +7,6 @@
       #ayugram-desktop
       lan-mouse
       legcord
-      mailspring
       media-downloader
       mtr-gui
       music-discord-rpc
@@ -17,6 +16,7 @@
       #https://github.com/abdularis/LAN-Share
       #https://github.com/opeolluwa/beats
     ]
+    ++ (if system != "aarch64-linux" then [ mailspring ] else [ ])
   );
 
 }

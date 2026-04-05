@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ system, pkgs, ... }:
 {
   boot.binfmt = {
     registrations = {
@@ -12,12 +12,17 @@
     };
     preferStaticEmulators = true;
     emulatedSystems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-windows"
-      "i686-windows"
-      "wasm32-wasi"
       "wasm64-wasi"
-    ];
+    ]
+    ++ (
+      if system == "aarch64-linux" then
+        [ "x86_64-linux" ]
+      else
+        [
+          "aarch64-linux"
+          "x86_64-windows"
+          "i686-windows"
+        ]
+    );
   };
 }

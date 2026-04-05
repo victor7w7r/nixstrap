@@ -2,6 +2,7 @@
   pkgs,
   lib,
   host,
+  system,
   ...
 }:
 let
@@ -40,7 +41,7 @@ in
     smartd.enable = false;
     #upower.enable = lib.mkDefault host != "v7w7r-youyeetoox1" && host != "v7w7r-macmini81";
     power-profiles-daemon.enable = true;
-    thermald.enable = host != "v7w7r-vm" && host != "v7w7r-rc71l";
+    thermald.enable = host != "v7w7r-vm" && host != "v7w7r-rc71l" && system != "aarch64-linux";
     udev.extraRules = ''
       SUBSYSTEM=="power_supply", ACTION=="change", RUN+="${power-script}"
     '';

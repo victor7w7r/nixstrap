@@ -15,7 +15,6 @@
       qdiskinfo
       snapper-gui
       testdisk-qt
-      usbimager
       woeusb-ng
       #ventoy-full-qt
       #https://aur.archlinux.org/packages/repair-usb-disc-gtk4
@@ -29,6 +28,7 @@
       else
         [ ]
     )
+    ++ (if system != "aarch64-linux" then [ usbimager ] else [ ])
   );
 }
 // (

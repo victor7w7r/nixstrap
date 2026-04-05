@@ -200,12 +200,12 @@
           ];
           specialArgs = {
             host = "v7w7r-opizero2w";
+            system = systemarm;
             inherit
               self
               sops-nix
               inputs
               username
-              system
               ;
           };
         };

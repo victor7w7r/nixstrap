@@ -12,7 +12,6 @@
       cool-retro-term
       git-credential-manager
       lazygit
-      windterm
     ]
     ++ (
       if (host == "v7w7r-macmini81") then
@@ -22,5 +21,6 @@
       else
         [ ]
     )
+    ++ (if system != "aarch64-linux" then [ windterm ] else [ ])
   );
 }

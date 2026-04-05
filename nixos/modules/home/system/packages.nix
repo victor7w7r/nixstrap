@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ system, pkgs, ... }:
 {
   home.packages = (
     with pkgs;
@@ -7,7 +7,6 @@
       bleachbit
       home-manager
       clolcat
-      cpu-x
       czkawka-full
       distroshelf
       fclones-gui
@@ -20,5 +19,6 @@
       #https://github.com/trmckay/fzf-open
       #https://github.com/undergroundwires/privacy.sexy
     ]
+    ++ (if system != "aarch64-linux" then [ cpu-x ] else [ ])
   );
 }

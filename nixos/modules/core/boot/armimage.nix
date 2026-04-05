@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 let
   supportedFilesystems = [
     "btrfs"
@@ -16,7 +16,6 @@ in
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
-      generic-extlinux-compatible.populateCmd = lib.mkDefault "/run/current-system/bin/switch-to-configuration";
     };
     tmp = {
       cleanOnBoot = true;
