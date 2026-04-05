@@ -1,9 +1,9 @@
 {
   "user": "CachyOS",
   "linux": {
-    "version": "6.18.20",
-    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.20-1/cachyos-6.18.20-1.tar.gz",
-    "hash": "sha256-IZlcniGTI60+Gy4Lx+JbNV9D3dlx4mv3iyEYK3HEk8c="
+    "version": "6.18.21",
+    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.21-1/cachyos-6.18.21-1.tar.gz",
+    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjgmh4g="
   },
   "bunker": {
     "user": "amanaaq",
@@ -13,13 +13,13 @@
   },
   "config": {
     "repo": "linux-cachyos",
-    "rev": "de746a9cd1caa808e95805641a9117029e173b34",
+    "rev": "d66e57dc6f5849758cc626fb1a81dd6461448d8e",
     "hash": "sha256-d1GhWEdENpt002r7mmVJ6n4FqJ/W+m8IZJl5ioWDwjo=",
     "hashHardened": "sha256-6IKU3RN5p/0FdJd5fjVzsEuqMQMjL+a7fokuC/Fx6y4="
   },
   "patches": {
     "repo": "kernel-patches",
-    "rev": "948e9c61779b0fafdf0c3b1ee6281502ff178fcc",
+    "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
     "hash": "sha256-bEhPlrOK/xoZztUyzw7cLzXfOHXOeLuRLT1TujFqFMs="
   },
   "tachyon": {
