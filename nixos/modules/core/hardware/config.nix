@@ -24,11 +24,9 @@
       (
         if system != "aarch64-linux" then
           [
-            [
-              linux-firmware
-              rtl8192su-firmware
-              rtl8761b-firmware
-            ]
+            linux-firmware
+            rtl8192su-firmware
+            rtl8761b-firmware
           ]
         else
           [ ]
