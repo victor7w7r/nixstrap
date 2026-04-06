@@ -21,17 +21,24 @@
     enableRedistributableFirmware = lib.mkForce false;
     firmware =
       with pkgs;
-      [
-        linux-firmware
-        rtl8192su-firmware
-        rtl8761b-firmware
-      ]
+      (
+        if system != "aarch64-linux" then
+          [
+            [
+              linux-firmware
+              rtl8192su-firmware
+              rtl8761b-firmware
+            ]
+          ]
+        else
+          [ ]
+      )
       ++ (
         if host == "v7w7r-macmini81" then
           [
             (pkgs.stdenvNoCC.mkDerivation (final: {
               name = "brcm-firmware";
-              src = ./custom/firmware.tar;
+              src = ./custom/bcrm-firmware.tar;
 
               dontUnpack = true;
               installPhase = ''

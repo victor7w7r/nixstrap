@@ -9,9 +9,8 @@
       [
         (import ./bootloader.nix)
         (import ./persist.nix)
-        (import ./kernel.nix)
       ]
     else
-      [ (import ./armimage.nix) ]
+      [ ]
   );
 }

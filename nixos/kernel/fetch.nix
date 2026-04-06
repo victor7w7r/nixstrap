@@ -1,8 +1,8 @@
 {
   pkgs,
-  kernelData,
-  majorMinor,
-  hardened,
+  kernelData ? null,
+  majorMinor ? null,
+  hardened ? false,
   ...
 }:
 {
@@ -58,5 +58,12 @@
         "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch
         cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch"
     '';
+  };
+
+  sunxi = pkgs.fetchFromGitHub {
+    owner = kernelData.sunxi-opizero2w.user;
+    repo = kernelData.sunxi-opizero2w.repo;
+    rev = kernelData.sunxi-opizero2w.rev;
+    hash = kernelData.sunxi-opizero2w.hash;
   };
 }

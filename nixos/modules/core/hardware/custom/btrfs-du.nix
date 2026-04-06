@@ -4,7 +4,6 @@
   fetchFromGitHub,
   ...
 }:
-
 stdenv.mkDerivation rec {
   pname = "btrfs-du";
   version = "HEAD";

@@ -37,7 +37,6 @@
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    opi-zero2w.url = "github:virusdave/nixos-opi-zero2w";
     impermanence.url = "github:nix-community/impermanence";
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -179,7 +178,7 @@
 
       nixosConfigurations = {
         #nix build "".#nixosConfigurations.opizero2w.config.system.build.sdImage"
-        opizero2w = nixpkgs.lib.nixosSystem {
+        opizero2w = nixpkgs-stable.lib.nixosSystem {
           system = systemarm;
           modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
             (
@@ -190,6 +189,7 @@
             )
             (import ./configuration.nix)
             (import ./pkgs)
+            (import ./hosts/opizero2w.nix)
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
             nur.modules.nixos.default

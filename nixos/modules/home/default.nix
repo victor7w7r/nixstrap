@@ -18,7 +18,8 @@ let
         username = user;
         language.base = "es_ES.UTF-8";
         homeDirectory = if user == "root" then "/root" else "/home/${user}";
-        stateVersion = "26.05";
+        stateVersion =
+          if (host != "v7w7r-youyeetoox1" && system != "aarch64-linux") then "25.11" else "26.05";
       };
 
       imports = [
