@@ -6,6 +6,7 @@
       #clamtk
       bleachbit
       home-manager
+      caffeine-ng
       clolcat
       czkawka-full
       distroshelf

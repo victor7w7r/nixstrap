@@ -75,7 +75,7 @@ in
   powerManagement.cpuFreqGovernor = "schedutil";
 
   boot = {
-    kernelParams = params { };
+    kernelParams = [ "resume=/dev/zd0" ] ++ params { };
     kernelPackages = (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
       _self: _super: {
         kernel_configfile = _super.kernel.configfile;

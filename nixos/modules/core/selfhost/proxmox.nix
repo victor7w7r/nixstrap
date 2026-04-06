@@ -1,5 +1,6 @@
 { lib, ... }:
 {
+  # wol -i 192.168.1.255 00:11:22:33:44:55
   services = {
     resolved = {
       enable = lib.mkForce true;

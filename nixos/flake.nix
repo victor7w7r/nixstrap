@@ -102,7 +102,6 @@
       nix-cachyos-kernel,
       nur,
       proxmox-nixos,
-      opi-zero2w,
       impermanence,
       home-manager,
       nix-flatpak,
@@ -177,10 +176,10 @@
       };
 
       nixosConfigurations = {
-        #nix build "".#nixosConfigurations.opizero2w.config.system.build.sdImage"
+        #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
         opizero2w = nixpkgs-stable.lib.nixosSystem {
           system = systemarm;
-          modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
+          modules = [
             (
               { ... }:
               {
@@ -201,6 +200,7 @@
           specialArgs = {
             host = "v7w7r-opizero2w";
             system = systemarm;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
               self
               sops-nix

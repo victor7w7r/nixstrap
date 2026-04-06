@@ -52,6 +52,7 @@
       tmux
       veracrypt
       vtm
+      wol
       wtfutil
       xz
       #(pkgs.callPackage ./custom/hf.nix { })

@@ -1,12 +1,12 @@
 { ... }:
 {
-  nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
+  nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
   programs = {
     #aichat.enable = true;
     #aider-chat.enable = true;
     ccache = {
       enable = true;
-      cacheDir = "/var/cache/ccache";
+      cacheDir = "/nix/var/cache/ccache-kernel";
     };
     direnv = {
       enable = false;

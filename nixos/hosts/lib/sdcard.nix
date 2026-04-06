@@ -8,11 +8,10 @@
   postBuildCommands ? "",
   preBuildCommands ? "",
   host,
-  ...
 }:
 let
   imageName =
-    "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}.img";
+    "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
 
   closureInfo = pkgs.buildPackages.closureInfo {
     rootPaths = [ config.system.build.toplevel ];
@@ -68,7 +67,24 @@ in
     "/nix" = {
       device = "/dev/disk/by-label/${rootVolumeLabel}";
       fsType = "f2fs";
-      autoResize = true;
+      options = [
+        "lazytime"
+        "noatime"
+        "compress_chksum"
+        "compress_algorithm=zstd:3"
+        "age_extent_cache"
+        "compress_extension=so"
+        "inline_xattr"
+        "inline_data"
+        "inline_dentry"
+        "errors=remount-ro"
+        "compress_extension=bin"
+        "atgc"
+        "flush_merge"
+        "discard"
+        "checkpoint_merge"
+        "gc_merge"
+      ];
     };
     "/boot" = {
       device = "/dev/disk/by-label/NIXOSFIRMWARE";
@@ -80,8 +96,6 @@ in
     };
   };
 
-  sdImage.storePaths = [ config.system.build.toplevel ];
-  image.extension = "img.zst";
   system.nixos.tags = [ "sd-card" ];
   system.build.image = config.system.build.sdImage;
   system.build.sdImage = pkgs.callPackage (
@@ -110,7 +124,7 @@ in
 
       buildCommand = ''
         mkdir -p $out/nix-support $out/sd-image
-        export img=$out/sd-image/${config.image.baseName}.img
+        export img=$out/sd-image/${imageName}.img
 
         echo "${pkgs.stdenv.buildPlatform.system}" > $out/nix-support/system
         (

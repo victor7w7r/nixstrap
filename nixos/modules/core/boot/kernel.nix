@@ -10,12 +10,6 @@ let
   ];
 in
 {
-  /*
-    specialisation = with lib; {
-    secure.configuration.boot.kernelPackages = mkForce pkgs.linuxPackages_hardened;
-    };
-  */
-
   boot = {
     consoleLogLevel = 4;
     modprobeConfig.enable = true;
@@ -33,7 +27,7 @@ in
           };
         }
       else
-        { }
+        { generic-extlinux-compatible.enable = true; }
     );
 
     tmp = {

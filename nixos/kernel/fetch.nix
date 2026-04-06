@@ -1,6 +1,6 @@
 {
   pkgs,
-  kernelData ? null,
+  kernelData,
   majorMinor ? null,
   hardened ? false,
   ...
