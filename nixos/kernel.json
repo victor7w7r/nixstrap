@@ -8,7 +8,7 @@
   "linux-legacy": {
     "version": "6.12.80",
     "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.80.tar.xz",
-    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjggh4g="
+    "hash": "sha256-QUg5M8wxQ7UZkSuaUfWjyUXf5baLBHU836YEBjggh4g="
   },
   "bunker": {
     "user": "amanaaq",
