@@ -17,6 +17,11 @@
     hash = kernelData.linux-legacy.hash;
   };
 
+  hardened-legacy = pkgs.fetchurl {
+    url = kernelData.hardened-legacy.url;
+    hash = kernelData.hardened-legacy.hash;
+  };
+
   asus = pkgs.fetchgit {
     url = kernelData.asus.url;
     rev = kernelData.asus.rev;

@@ -77,7 +77,7 @@ let
     "${fetch.patches}/${majorMinor}/0003-cachy.patch"
     "${fetch.patches}/${majorMinor}/0004-fixes.patch"
     "${fetch.patches}/${majorMinor}/0007-zstd.patch"
-    "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"
+    "${fetch.hardened-legacy}"
   ];
 in
 

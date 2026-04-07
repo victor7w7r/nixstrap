@@ -10,6 +10,10 @@
     "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.80.tar.xz",
     "hash": "sha256-ySWR2Jbnns3bwzGRNvDC+FXoMrOX3nWT8BOtdZCkPlM="
   },
+  "hardened-legacy": {
+    "url": "https://github.com/anthraxx/linux-hardened/releases/download/v6.12.79-hardened1/linux-hardened-v6.12.79-hardened1.patch",
+    "hash": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+  },
   "bunker": {
     "user": "amanaaq",
     "repo": "bunker-patches",
