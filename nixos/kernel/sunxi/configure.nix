@@ -82,7 +82,7 @@ let
 in
 
 pkgs.stdenv.mkDerivation (attrs: {
-  inherit patches preConfigure postPatch;
+  inherit patches postPatch;
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
@@ -91,15 +91,13 @@ pkgs.stdenv.mkDerivation (attrs: {
   installPhase = "cp config $out";
   buildPhase = ''
     export ARCH=arm64
-    export CC=${pkgs.stdenv.cc}/bin/${pkgs.stdenv.cc.targetPrefix}gcc
-    export HOSTCC=${pkgs.buildPackages.stdenv.cc}/bin/gcc
 
     cp "${fetch.sunxi-kconfig}" ".config"
 
-    make $makeFlags ARCH=arm64 CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix} olddefconfig
+    make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
-    make $makeFlags ARCH=arm64 CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix} olddefconfig
+    make $makeFlags ARCH=arm64 olddefconfig
   '';
 
   meta = pkgs.linuxPackages.kernel.passthru.configfile.meta // {
