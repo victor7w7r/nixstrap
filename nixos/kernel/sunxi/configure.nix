@@ -96,10 +96,10 @@ pkgs.stdenv.mkDerivation (attrs: {
 
     cp "${fetch.sunxi-kconfig}" ".config"
 
-    make $makeFlags olddefconfig
+    make $makeFlags ARCH=arm64 CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix} olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
-    make $makeFlags olddefconfig
+    make $makeFlags ARCH=arm64 CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix} olddefconfig
   '';
 
   meta = pkgs.linuxPackages.kernel.passthru.configfile.meta // {
