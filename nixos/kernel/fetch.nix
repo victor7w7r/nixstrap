@@ -3,6 +3,7 @@
   kernelData,
   majorMinor ? null,
   hardened ? false,
+  isLegacy ? false,
   ...
 }:
 {
@@ -52,7 +53,7 @@
     owner = kernelData.user;
     repo = kernelData.patches.repo;
     rev = kernelData.patches.rev;
-    sha256 = kernelData.patches.hash;
+    sha256 = if isLegacy then kernelData.patches.legacyHash else kernelData.patches.hash;
     postFetch = ''
       find "$out" -type d -empty -delete
         ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
