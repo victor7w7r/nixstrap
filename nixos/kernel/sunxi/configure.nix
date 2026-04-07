@@ -8,7 +8,12 @@
 let
   majorMinor = lib.versions.majorMinor kernelData.linux-org.version;
   fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData; });
-  prepare = (pkgs.callPackage ./prepare.nix { inherit kernel; });
+  prepare = (
+    import ./prepare.nix {
+      inherit kernel;
+      targetPrefix = pkgs.stdenv.cc.targetPrefix;
+    }
+  );
   localVer = "-v7w7r-sunxi-hardened";
   config = (import ./config.nix);
 
@@ -35,7 +40,7 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   nativeBuildInputs = kernel.nativeBuildInputs ++ [ pkgs.ccache ];
 
-  #preConfigure = prepare.preConfigure;
+  preConfigure = prepare.preConfigure;
   postPatch = prepare.postPatch;
 
   installPhase = "cp config $out";
