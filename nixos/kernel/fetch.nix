@@ -71,8 +71,8 @@
             ''
               ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.c" -x "*/kernel/user_namespace.c" \
               -x "*/kernel/sysctl.h" -x "*/kernel/user_namespace.h" \
-              "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch || true
-              cat cachy-filter.patch > "$out/${majorMinor}/misc/0003-cachy.patch" || true
+              "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch
+              cat cachy-filter.patch > "$out/${majorMinor}/misc/0003-cachy.patch"
             ''
           else
             ""
