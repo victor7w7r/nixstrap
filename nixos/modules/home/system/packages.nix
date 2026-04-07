@@ -1,6 +1,5 @@
 {
   system,
-  inputs,
   pkgs,
   ...
 }:
@@ -14,7 +13,8 @@
       caffeine-ng
       clolcat
       czkawka-full
-      inputs.thorium
+      chromium
+      #(inputs.thorium.thorium-avx .overrideAttrs (oldAttrs: { }))
       distroshelf
       fclones-gui
       fortune

@@ -35,7 +35,7 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   nativeBuildInputs = kernel.nativeBuildInputs ++ [ pkgs.ccache ];
 
-  preConfigure = prepare.preConfigure;
+  #preConfigure = prepare.preConfigure;
   postPatch = prepare.postPatch;
 
   installPhase = "cp config $out";
