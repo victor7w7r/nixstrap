@@ -1,4 +1,9 @@
-{ system, pkgs, ... }:
+{
+  system,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home.packages = (
     with pkgs;
@@ -9,6 +14,7 @@
       caffeine-ng
       clolcat
       czkawka-full
+      inputs.thorium
       distroshelf
       fclones-gui
       fortune

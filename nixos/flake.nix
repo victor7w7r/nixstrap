@@ -44,6 +44,7 @@
     impermanence.url = "github:nix-community/impermanence";
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    thorium.url = "github:almahdi/nix-thorium";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";

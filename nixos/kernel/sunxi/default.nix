@@ -10,7 +10,12 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  prepare = (pkgs.callPackage ./prepare.nix { inherit kernel; });
+  prepare = (
+    import ./prepare.nix {
+      inherit kernel;
+      targetPrefix = pkgs.stdenv.cc.targetPrefix;
+    }
+  );
   patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {

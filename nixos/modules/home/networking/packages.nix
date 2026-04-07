@@ -12,7 +12,6 @@
       music-discord-rpc
       (pkgs.callPackage ./custom/jdownloader.nix { })
       #franz
-      #https://github.com/almahdi/nix-thorium
       #https://github.com/abdularis/LAN-Share
       #https://github.com/opeolluwa/beats
     ]

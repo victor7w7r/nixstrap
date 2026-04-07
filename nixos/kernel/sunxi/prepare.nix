@@ -1,4 +1,4 @@
-{ pkgs, kernel }:
+{ targetPrefix, kernel }:
 {
   postPatch = kernel.postPatch + ''
     if ! grep -q 'obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/' drivers/net/wireless/Makefile; then
@@ -50,7 +50,7 @@
         chmod +x "$wrapper_path"
       }
 
-      ccache_wrap "${pkgs.stdenv.cc.targetPrefix}cc" "$TMPDIR/cc-with-ccache"
+      ccache_wrap "${targetPrefix}cc" "$TMPDIR/cc-with-ccache"
       ccache_wrap cc "$TMPDIR/hostcc-with-ccache"
       ccache_wrap c++ "$TMPDIR/hostcxx-with-ccache"
 
