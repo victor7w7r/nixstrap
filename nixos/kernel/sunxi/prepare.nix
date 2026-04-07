@@ -1,6 +1,6 @@
-{ targetPrefix, kernel }:
+{ targetPrefix }:
 {
-  postPatch = kernel.postPatch + ''
+  postPatch = ''
     if ! grep -q 'obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/' drivers/net/wireless/Makefile; then
       echo 'obj-$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/' >> drivers/net/wireless/Makefile
     fi
@@ -30,7 +30,7 @@
     fi
   '';
 
-  preConfigure = kernel.preConfigure + ''
+  preConfigure = ''
       export CCACHE_DIR=/nix/var/cache/ccache-kernel
       export CCACHE_COMPRESS=1
       export CCACHE_UMASK=007

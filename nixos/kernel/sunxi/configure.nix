@@ -10,7 +10,6 @@ let
   fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
   prepare = (
     import ./prepare.nix {
-      inherit kernel;
       targetPrefix = pkgs.stdenv.cc.targetPrefix;
     }
   );
