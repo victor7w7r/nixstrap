@@ -25,7 +25,6 @@ let
       allowImportFromDerivation = false;
       version = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
       modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
-      postPatch = prepare.postPatch;
 
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
@@ -41,6 +40,7 @@ let
     }).overrideAttrs
       (attrs: {
         preConfigure = prepare.preConfigure;
+        postPatch = prepare.postPatch;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
