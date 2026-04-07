@@ -88,7 +88,7 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   nativeBuildInputs = kernel.nativeBuildInputs;
 
-  installPhase = "cp config $out";
+  installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
 
