@@ -6,21 +6,14 @@
   ...
 }:
 let
-  majorMinor = lib.versions.majorMinor kernelData.linux-legacy.version;
+  majorMinor = lib.versions.majorMinor kernelData.linux-hardened-legacy.version;
   fetch = (
     pkgs.callPackage ../fetch.nix {
       inherit kernelData majorMinor;
       isLegacy = true;
     }
   );
-  prepare = (
-    import ./prepare.nix {
-      targetPrefix = pkgs.stdenv.cc.targetPrefix;
-    }
-  );
-  preConfigure = prepare.preConfigure;
-  postPatch = prepare.postPatch;
-  localVer = "-v7w7r-sunxi";
+  localVer = "-v7w7r-sunxi-hardened";
   config = (import ./config.nix);
 
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
@@ -77,13 +70,12 @@ let
     "${fetch.patches}/${majorMinor}/0003-cachy.patch"
     "${fetch.patches}/${majorMinor}/0004-fixes.patch"
     "${fetch.patches}/${majorMinor}/0007-zstd.patch"
-    #"${fetch.hardened-legacy}"
   ];
 in
 
 pkgs.stdenv.mkDerivation (attrs: {
-  inherit patches postPatch;
-  src = fetch.linux-legacy;
+  inherit patches;
+  src = fetch.linux-hardened-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
   nativeBuildInputs = kernel.nativeBuildInputs;
@@ -106,11 +98,6 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   passthru = {
     version = kernelData.linux.version;
-    inherit
-      localVer
-      patches
-      preConfigure
-      postPatch
-      ;
+    inherit localVer patches;
   };
 })

@@ -12,14 +12,11 @@
     hash = kernelData.linux.hash;
   };
 
-  linux-legacy = pkgs.fetchurl {
-    url = kernelData.linux-legacy.url;
-    hash = kernelData.linux-legacy.hash;
-  };
-
-  hardened-legacy = pkgs.fetchurl {
-    url = kernelData.hardened-legacy.url;
-    hash = kernelData.hardened-legacy.hash;
+  linux-hardened-legacy = pkgs.fetchFromGitHub {
+    owner = kernelData.linux-hardened-legacy.user;
+    repo = kernelData.linux-hardened-legacy.repo;
+    rev = kernelData.linux-hardened-legacy.rev;
+    hash = kernelData.linux-hardened-legacy.hash;
   };
 
   asus = pkgs.fetchgit {

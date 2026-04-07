@@ -33,8 +33,6 @@ let
       ];
     }).overrideAttrs
       (attrs: {
-        preConfigure = configure.passthru.preConfigure;
-        postPatch = configure.passthru.postPatch;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
