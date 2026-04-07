@@ -45,7 +45,6 @@
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
     batfetch = {
@@ -91,7 +90,6 @@
       url = "github:catppuccin/refind";
       flake = false;
     };
-
     kwin-effects-better-blur-dx = {
       url = "github:xarblu/kwin-effects-better-blur-dx";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -101,12 +99,10 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-stable,
       self,
       nix-cachyos-kernel,
       nur,
       proxmox-nixos,
-      mobile-nixos,
       impermanence,
       home-manager,
       nix-flatpak,
@@ -126,51 +122,50 @@
 
       home = (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-      # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
     in
     {
-      packages.${system} = {
-        kerneldebug =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-youyeetoox1";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel;
+      # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
+      packages = {
+        "${systemarm}" = {
+          kerneldebug =
+            (pkgs.callPackage ./kernel/sunxi {
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel;
 
-        configdebug =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-youyeetoox1";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel.configure;
+          sunxiconfig =
+            (pkgs.callPackage ./kernel/sunxi {
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel.kconfigToNix;
+        };
+        "${system}" = {
+          rogallyconfig =
+            (pkgs.callPackage ./kernel {
+              host = "v7w7r-rc71l";
+              inherit helpers inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel.kconfigToNix;
 
-        rogallyconfig =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-rc71l";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel.kconfigToNix;
+          higoleconfig =
+            (pkgs.callPackage ./kernel {
+              host = "v7w7r-higole";
+              inherit helpers inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel.kconfigToNix;
 
-        higoleconfig =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-higole";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel.kconfigToNix;
+          serverconfig =
+            (pkgs.callPackage ./kernel {
+              host = "v7w7r-youyeetoox1";
+              inherit helpers inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel.kconfigToNix;
 
-        serverconfig =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-youyeetoox1";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel.kconfigToNix;
-
-        macminiconfig =
-          (pkgs.callPackage ./kernel {
-            host = "v7w7r-macmini81";
-            inherit helpers inputs;
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-          }).kernel.kconfigToNix;
+          macminiconfig =
+            (pkgs.callPackage ./kernel {
+              host = "v7w7r-macmini81";
+              inherit helpers inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).kernel.kconfigToNix;
+        };
       };
 
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
@@ -182,7 +177,7 @@
 
       nixosConfigurations = {
         #nix build ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
-        opizero2w = nixpkgs-stable.lib.nixosSystem {
+        opizero2w = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
             (
@@ -292,7 +287,6 @@
               ;
           };
         };
-
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -332,7 +326,7 @@
           };
         };
 
-        server = nixpkgs-stable.lib.nixosSystem {
+        server = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             (

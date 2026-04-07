@@ -1,6 +1,4 @@
 {
-  helpers,
-  host,
   lib,
   pkgs,
   kernelData,
@@ -8,25 +6,23 @@
 }:
 let
   configure = pkgs.callPackage ./configure.nix {
-    inherit
-      host
-      kernelData
-      kernel
-      helpers
-      ;
+    inherit kernelData kernel;
   };
 
-  kconfigToNix = pkgs.callPackage ./generated/generate.nix { inherit configure; };
+  kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
+  prepare = (pkgs.callPackage ./prepare.nix { inherit kernel; });
   patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
-      config = (import ./generated) { inherit host; };
+      config = (import ./config.aarch64-linux.nix);
       configfile = configure;
       allowImportFromDerivation = false;
       version = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
       modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
-      stdenv = helpers.stdenvLLVM;
+
+      preConfigure = prepare.preConfigure;
+      postPatch = prepare.postPatch;
 
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
@@ -43,11 +39,6 @@ let
       (attrs: {
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
-          features = {
-            ia32Emulation = true;
-            netfilterRPFilter = true;
-            efiBootStub = true;
-          };
         };
       });
 in

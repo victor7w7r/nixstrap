@@ -1,0 +1,24 @@
+[
+  "-e CRYPTO_ZSTD"
+  "-e DRM_LIMA"
+  "-e DRM_SUN4I"
+  "-d DRM_RADEON"
+
+  "-d WLAN_VENDOR_ATH"
+  "-e WLAN_VENDOR_BROADCOM"
+  "-d WLAN_VENDOR_INTEL"
+  "-d WLAN_VENDOR_MARVELL"
+  "-d WLAN_VENDOR_TI"
+
+  "-e SPARD_WLAN_SUPPORT"
+  "-e AW_WIFI_DEVICE_UWE5622"
+  "-m WLAN_UWE5622"
+  "-m SPRDWL_NG"
+  "-m TTY_OVERY_SDIO"
+  "-m SUNXI_ADDR_MGT"
+
+  "-e SOUND"
+  "-e SND"
+  "-e SND_SOC"
+  "-e SND_SUN4I_CODEC"
+]

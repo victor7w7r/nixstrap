@@ -4,15 +4,15 @@
     enable = true;
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 11;
+      size = 10;
     };
     shellIntegration = {
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
     settings = {
-      background_blur = 5;
-      background_opacity = "0.7";
+      background_blur = 2;
+      background_opacity = "0.5";
       close_on_child_death = true;
       confirm_os_window_close = 0;
       cursor = "#f5e0dc";

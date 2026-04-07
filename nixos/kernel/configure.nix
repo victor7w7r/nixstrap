@@ -132,14 +132,9 @@ pkgs.stdenv.mkDerivation (attrs: {
       lld_20
     ];
 
-  installPhase = ''
-    runHook preInstall
-    cp .config $out
-    runHook postInstall
-  '';
+  installPhase = "cp .config $out";
 
   buildPhase = ''
-    runHook preBuild
     cp "${fetch.kConfig}" ".config"
 
     ${((import ./modules) { inherit host; })}
@@ -147,8 +142,6 @@ pkgs.stdenv.mkDerivation (attrs: {
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
     make $makeFlags olddefconfig
-
-    runHook postBuild
   '';
 
   meta = pkgs.linuxPackages.kernel.passthru.configfile.meta // {

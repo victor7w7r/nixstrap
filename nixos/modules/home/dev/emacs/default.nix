@@ -1,13 +1,8 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
 
   programs.doom-emacs = {
-    enable = false;
+    enable = true;
     emacs = pkgs.emacs-nox;
     doomDir = ./.;
     doomLocalDir = "${config.home.homeDirectory}/.local/share/emacs";

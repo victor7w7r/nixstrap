@@ -13,14 +13,9 @@ let
     BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
     filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
   };
-  kernel = (pkgs.callPackage ../kernel/sunxi.nix) { inherit kernelData; };
+  kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
-  nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
-  programs.ccache = {
-    enable = true;
-    cacheDir = "/nix/var/cache/ccache-kernel";
-  };
   imports = [
     (import ./lib/sdcard.nix {
       inherit config pkgs host;
@@ -36,6 +31,12 @@ in
       '';
     })
   ];
+
+  nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
+  programs.ccache = {
+    enable = true;
+    cacheDir = "/nix/var/cache/ccache-kernel";
+  };
 
   boot = {
     kernelParams = lib.mkDefault [

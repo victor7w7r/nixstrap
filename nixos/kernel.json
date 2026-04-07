@@ -5,6 +5,11 @@
     "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.21-1/cachyos-6.18.21-1.tar.gz",
     "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjgmh4g="
   },
+  "linux-legacy": {
+    "version": "6.12.80",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.80.tar.xz",
+    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjggh4g="
+  },
   "bunker": {
     "user": "amanaaq",
     "repo": "bunker-patches",
@@ -25,6 +30,7 @@
   "tachyon": {
     "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",
     "rev": "465087d9f514ffebcfda87ae9ec184e843616313",
+    "legacyRev": "465087d9f514ffebcfda87ae9ec184e843616313",
     "hash": "sha256-18432fSAU0uzrAWr4nBvhXjBX4C8Xvt6Ci/Pl/qjP0k="
   },
   "asus": {
@@ -36,6 +42,12 @@
     "user": "virusdave",
     "repo": "nixos-opi-zero2w",
     "rev": "1337ecfb2443f059f8971eb89eae487fbc6b0dcc",
+    "hash": "sha256-dS4XyDDVCjGEFDX4zgaalQqMlfWL7JfeLGJpLwcAAFE="
+  },
+  "sunxi-kconfig": {
+    "user": "armbian",
+    "repo": "build",
+    "rev": "28862c7c0e0e914640a40286766030b3fba1bc41",
     "hash": "sha256-dS4XyDDVCjGEFDX4zgaalQqMlfWL7JfeLGJpLwcAAFE="
   },
   "sdm845": {

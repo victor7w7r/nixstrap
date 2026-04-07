@@ -4,7 +4,7 @@
   ...
 }:
 let
-  kernel = (pkgs.callPackage ./fetch.nix { inherit kernelData; }).sdm845;
+  kernel = (pkgs.callPackage ../fetch.nix { inherit kernelData; }).sdm845;
 in
 pkgs.stdenv.mkDerivation {
   src = kernel;
