@@ -3,7 +3,7 @@ set -eu
 
 SUNXICONFIG="sunxiconfig"
 
-run-build() {
+runbuild() {
     local PC=$1
     nix build \
         --extra-experimental-features 'nix-command flakes' \
@@ -11,7 +11,7 @@ run-build() {
         --no-link --print-out-paths
 }
 
-if res=$(run-build $SUNXICONFIG); then
+if res=$(runbuild $SUNXICONFIG); then
     cat "$res" >"kernel/sunxi/config.aarch64-linux.nix"
 else
     exit 1
