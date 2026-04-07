@@ -90,6 +90,10 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   installPhase = "cp config $out";
   buildPhase = ''
+    export ARCH=arm64
+    export CC=${pkgs.stdenv.cc}/bin/${pkgs.stdenv.cc.targetPrefix}gcc
+    export HOSTCC=${pkgs.buildPackages.stdenv.cc}/bin/gcc
+
     cp "${fetch.sunxi-kconfig}" ".config"
 
     make $makeFlags olddefconfig
