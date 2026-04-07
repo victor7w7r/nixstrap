@@ -83,7 +83,7 @@ in
 
 pkgs.stdenv.mkDerivation (attrs: {
   inherit patches preConfigure postPatch;
-  src = fetch.linux;
+  src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
   nativeBuildInputs = kernel.nativeBuildInputs ++ [ pkgs.ccache ];
