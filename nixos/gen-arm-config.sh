@@ -8,7 +8,7 @@ runbuild() {
     nix build \
         --extra-experimental-features 'nix-command flakes' \
         -L ".#packages.aarch64-linux.${PC}" \
-        --no-link --print-out-paths
+        --no-link --print-out-paths --show-trace
 }
 
 if res=$(runbuild $SUNXICONFIG); then
