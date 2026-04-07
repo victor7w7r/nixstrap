@@ -120,6 +120,9 @@
         inherit system;
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
       };
+      armPkgs = import nixpkgs {
+        system = systemarm;
+      };
 
       home = (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
@@ -129,12 +132,12 @@
       packages = {
         "${systemarm}" = {
           kerneldebug =
-            (pkgs.callPackage ./kernel/sunxi {
+            (armPkgs.callPackage ./kernel/sunxi {
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel;
 
           sunxiconfig =
-            (pkgs.callPackage ./kernel/sunxi {
+            (armPkgs.callPackage ./kernel/sunxi {
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
         };
