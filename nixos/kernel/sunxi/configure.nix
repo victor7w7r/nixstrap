@@ -86,7 +86,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
-  nativeBuildInputs = kernel.nativeBuildInputs ++ [ pkgs.ccache ];
+  nativeBuildInputs = kernel.nativeBuildInputs;
 
   installPhase = "cp config $out";
   buildPhase = ''
