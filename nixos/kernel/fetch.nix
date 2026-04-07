@@ -65,6 +65,17 @@
         ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
         "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch || true
         cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch" || true
+
+        ${
+          if isLegacy then
+            ''
+              ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.c" -x "*/kernel/user_namespace.c" \
+              "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch || true
+              cat cachy-filter.patch > "$out/${majorMinor}/misc/0003-cachy.patch" || true
+            ''
+          else
+            ""
+        }
     '';
   };
 
