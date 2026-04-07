@@ -66,9 +66,12 @@ in
   };
   swapDevices = [
     {
-      device = "/dev/zd0";
+      device = "/dev/zvol/zswap/local/swap";
       discardPolicy = "both";
-      options = [ "nofail" ];
+      options = [
+        "nofail"
+        "x-systemd.device-timeout=5s"
+      ];
     }
   ];
 
