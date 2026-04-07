@@ -26,7 +26,6 @@
       xkb = {
         layout = "us";
         variant = "intl-unicode";
-        options = "caps:ctrl_modifier";
       };
       excludePackages = with pkgs; [ xterm ];
     };

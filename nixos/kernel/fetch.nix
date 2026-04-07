@@ -69,7 +69,7 @@
         ${
           if isLegacy then
             ''
-              ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.c" -x "*/kernel/user_namespace.c" \
+              ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.*" -x "*/kernel/user_namespace.*" \
               "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch || true
               cat cachy-filter.patch > "$out/${majorMinor}/misc/0003-cachy.patch" || true
             ''

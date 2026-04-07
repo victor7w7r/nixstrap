@@ -14,7 +14,7 @@
             displayName = "es";
           }
         ];
-        options = [ "caps:ctrl_modifier" ];
+        options = [ ];
       };
 
       mice = [
