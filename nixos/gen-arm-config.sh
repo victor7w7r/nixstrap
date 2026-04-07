@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -eu
 
 SUNXICONFIG="sunxiconfig"
@@ -11,7 +11,7 @@ run-build() {
         --no-link --print-out-paths
 }
 
-if res=$(run-build-arm $SUNXICONFIG); then
+if res=$(run-build $SUNXICONFIG); then
     cat "$res" >"kernel/sunxi/config.aarch64-linux.nix"
 else
     exit 1
