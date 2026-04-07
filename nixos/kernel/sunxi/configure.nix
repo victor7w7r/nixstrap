@@ -24,7 +24,7 @@ let
     )
   );
 
-  patches = (map (file: { patch = "${sunxiPatches}/${file}"; }) sunxiPaths) ++ [
+  patches = (map (file: "${sunxiPatches}/${file}") sunxiPaths) ++ [
     "${fetch.patches}/${majorMinor}/0002-bbr3.patch"
     "${fetch.patches}/${majorMinor}/0003-cachy.patch"
     "${fetch.patches}/${majorMinor}/0004-fixes.patch"
