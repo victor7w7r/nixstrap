@@ -10,12 +10,6 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  prepare = (
-    import ./prepare.nix {
-      inherit kernel;
-      targetPrefix = pkgs.stdenv.cc.targetPrefix;
-    }
-  );
   patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
@@ -39,8 +33,8 @@ let
       ];
     }).overrideAttrs
       (attrs: {
-        preConfigure = prepare.preConfigure;
-        postPatch = prepare.postPatch;
+        preConfigure = configure.passthru.preConfigure;
+        postPatch = configure.passthru.postPatch;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };

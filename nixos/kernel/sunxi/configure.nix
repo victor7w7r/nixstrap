@@ -14,6 +14,8 @@ let
       targetPrefix = pkgs.stdenv.cc.targetPrefix;
     }
   );
+  preConfigure = prepare.preConfigure;
+  postPatch = prepare.postPatch;
   localVer = "-v7w7r-sunxi-hardened";
   config = (import ./config.nix);
 
@@ -34,14 +36,11 @@ let
 in
 
 pkgs.stdenv.mkDerivation (attrs: {
-  inherit patches;
+  inherit patches preConfigure postPatch;
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
 
   nativeBuildInputs = kernel.nativeBuildInputs ++ [ pkgs.ccache ];
-
-  preConfigure = prepare.preConfigure;
-  postPatch = prepare.postPatch;
 
   installPhase = "cp config $out";
   buildPhase = ''
@@ -59,6 +58,11 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   passthru = {
     version = kernelData.linux.version;
-    inherit localVer patches;
+    inherit
+      localVer
+      patches
+      preConfigure
+      postPatch
+      ;
   };
 })
