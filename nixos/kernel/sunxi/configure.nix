@@ -7,7 +7,7 @@
 }:
 let
   majorMinor = lib.versions.majorMinor kernelData.linux-legacy.version;
-  fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData; });
+  fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
   prepare = (
     import ./prepare.nix {
       inherit kernel;
