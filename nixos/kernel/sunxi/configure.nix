@@ -20,7 +20,7 @@ let
   );
   preConfigure = prepare.preConfigure;
   postPatch = prepare.postPatch;
-  localVer = "-v7w7r-sunxi-hardened";
+  localVer = "-v7w7r-sunxi";
   config = (import ./config.nix);
 
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
@@ -77,7 +77,7 @@ let
     "${fetch.patches}/${majorMinor}/0003-cachy.patch"
     "${fetch.patches}/${majorMinor}/0004-fixes.patch"
     "${fetch.patches}/${majorMinor}/0007-zstd.patch"
-    "${fetch.hardened-legacy}"
+    #"${fetch.hardened-legacy}"
   ];
 in
 
