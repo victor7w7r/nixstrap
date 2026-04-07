@@ -28,7 +28,7 @@
     "repo": "kernel-patches",
     "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
     "hash": "sha256-bEhPlrOK/xoZztUyzw7cLzXfOHXOeLuRLT1TujFqFMs=",
-    "legacyHash": "sha256-lsl2aqDSWQvkmkaT5JGWU6clN7ZiUB9W36dEBNBsyu8="
+    "legacyHash": "sha256-h+PTacj/TL5zcy8xFuQ7C/dW7ReVKC0W/sAa0ihBg+Q="
   },
   "tachyon": {
     "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",
