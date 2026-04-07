@@ -5,21 +5,12 @@ MCONFIG="macminiconfig"
 ROGCONFIG="rogallyconfig"
 HCONFIG="higoleconfig"
 SRVCONFIG="serverconfig"
-SUNXICONFIG="sunxiconfig"
 
 run-build() {
     local PC=$1
     nix build \
         --extra-experimental-features 'nix-command flakes' \
         -L ".#packages.x86_64-linux.${PC}" \
-        --no-link --print-out-paths
-}
-
-run-build-arm() {
-    local PC=$1
-    nix build \
-        --extra-experimental-features 'nix-command flakes' \
-        -L ".#packages.aarch64-linux.${PC}" \
         --no-link --print-out-paths
 }
 
@@ -43,12 +34,6 @@ fi
 
 if res=$(run-build $HCONFIG); then
     cat "$res" >"kernel/generated/${HCONFIG}.x86_64-linux.nix"
-else
-    exit 1
-fi
-
-if res=$(run-build-arm $SUNXICONFIG); then
-    cat "$res" >"kernel/sunxi/config.aarch64-linux.nix"
 else
     exit 1
 fi
