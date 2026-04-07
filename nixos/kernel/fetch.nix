@@ -66,4 +66,13 @@
     rev = kernelData.sunxi-opizero2w.rev;
     hash = kernelData.sunxi-opizero2w.hash;
   };
+
+  sdm845 = pkgs.fetchFromGitea {
+    domain = kernelData.sdm845.domain;
+    owner = kernelData.sdm845.owner;
+    repo = kernelData.sdm845.repo;
+    rev = kernelData.sdm845.rev;
+    hash = kernelData.sdm845.hash;
+  };
+
 }

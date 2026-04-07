@@ -1100,6 +1100,22 @@
         "type": "github"
       }
     },
+    "mobile-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772289954,
+        "narHash": "sha256-iDdtwk/dFb6AsXMtcOpZixxXl6C1HNUPe6cglxxHO7M=",
+        "owner": "mobile-nixos",
+        "repo": "mobile-nixos",
+        "rev": "1a9e0af79dc7b5e29ed772f1a8a76fcbd9d45fdf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mobile-nixos",
+        "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
     "nix-alien": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1760,6 +1776,7 @@
         "hyprpicker": "hyprpicker",
         "impermanence": "impermanence",
         "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
+        "mobile-nixos": "mobile-nixos",
         "nix-alien": "nix-alien",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",

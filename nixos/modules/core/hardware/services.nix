@@ -46,7 +46,7 @@ in
       SUBSYSTEM=="power_supply", ACTION=="change", RUN+="${power-script}"
     '';
     pipewire = {
-      enable = (host != "v7w7r-nixvm" && host != "v7w7r-youyeetoox1");
+      enable = (host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l");
       package = lib.mkForce (
         if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire
       );
@@ -69,7 +69,7 @@ in
       pulse.enable = true;
       socketActivation = true;
       wireplumber = {
-        enable = true;
+        enable = (host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l");
         package = lib.mkForce (
           pkgs.wireplumber.override {
             pipewire = audioT2.pipewirePackage;

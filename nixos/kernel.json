@@ -37,5 +37,13 @@
     "repo": "nixos-opi-zero2w",
     "rev": "1337ecfb2443f059f8971eb89eae487fbc6b0dcc",
     "hash": "sha256-dS4XyDDVCjGEFDX4zgaalQqMlfWL7JfeLGJpLwcAAFE="
+  },
+  "sdm845": {
+    "domain": "codeberg.org",
+    "owner": "sdm845",
+    "repo": "linux",
+    "version": "6.19.0-rc4-next-20260106",
+    "rev": "dc7b19cffd9ef96b28da5441061ff26dce1025a6",
+    "hash": "sha256-5DJ/G7I193TVnVn08dA0UYtzSf6g/Us6/ep8DCaFAdQ="
   }
 }

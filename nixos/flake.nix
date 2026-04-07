@@ -32,6 +32,10 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mobile-nixos = {
+      url = "github:mobile-nixos/mobile-nixos";
+      flake = false;
+    };
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.7.0";
     compose2nix = {
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
@@ -102,6 +106,7 @@
       nix-cachyos-kernel,
       nur,
       proxmox-nixos,
+      mobile-nixos,
       impermanence,
       home-manager,
       nix-flatpak,
@@ -176,7 +181,7 @@
       };
 
       nixosConfigurations = {
-        #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
+        #nix build ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
         opizero2w = nixpkgs-stable.lib.nixosSystem {
           system = systemarm;
           modules = [
