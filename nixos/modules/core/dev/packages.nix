@@ -44,7 +44,6 @@
       tracexec
     ]
     ++ [
-      inputs.nix-search-tv.packages.x86_64-linux.default
       #(pkgs.callPackage ./custom/elia-chat.nix { })
       #(pkgs.callPackage ./custom/gpterminator.nix { })
       (pkgs.callPackage ./custom/jwt-ui.nix { })
@@ -53,5 +52,13 @@
       (pkgs.callPackage ./custom/mynav.nix { })
       (pkgs.callPackage ./custom/ugm.nix { })
       (pkgs.callPackage ./custom/updo.nix { })
-    ];
+    ]
+    ++ (
+      if system == "x86_64-linux" then
+        [
+          inputs.nix-search-tv.packages.x86_64-linux.default
+        ]
+      else
+        [ ]
+    );
 }
