@@ -13,7 +13,7 @@ let
       isLegacy = true;
     }
   );
-  localVer = "-v7w7r-sunxi-hardened";
+  localVer = "-hardened1-v7w7r-sunxi";
   config = (import ./config.nix);
   modules = ./modules.db;
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
