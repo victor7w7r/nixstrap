@@ -1,6 +1,7 @@
 8021q
 ac200_phy
 binfmt_misc
+btrfs
 display_connector
 dump_reg
 dw_hdmi_cec
@@ -31,6 +32,7 @@ nft_chain_nat
 nft_compat
 nft_masq
 nls_iso8859_1
+ntfs3
 polyval_ce
 polyval_generic
 pwm_sunxi_enhance
