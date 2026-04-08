@@ -22,13 +22,6 @@
     theme=LayanDark
   '';
 
-  home.file.".config/kwalletrc".text = ''
-    [Wallet]
-    First Use=false
-    Enabled=true
-    Default Wallet=kdewallet
-  '';
-
   imports = [
     (import ./config/essentials.nix)
     (import ./config/kwin.nix)

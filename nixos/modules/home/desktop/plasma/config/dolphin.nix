@@ -24,7 +24,8 @@
         ShowToolTips = true;
         ShowZoomSlider = true;
         UseTabForSwitchingSplitView = true;
-        ViewPropsTimestamp = "2025,9,30,20,15,20.832";
+        Version = 202;
+        ViewPropsTimestamp = "2026,4,8,6,53,20.3";
       };
       InformationPanel.dateFormat = "ShortFormat";
       "KFileDialog Settings" = {
@@ -35,9 +36,11 @@
       PreviewSettings.Plugins = "appimagethumbnail,cursorthumbnail,mobithumbnail,audiothumbnail,textthumbnail,fontthumbnail,ffmpegthumbs,djvuthumbnail,gsthumbnail,rawthumbnail,directorythumbnail,kraorathumbnail,opendocumentthumbnail,windowsexethumbnail,avif,glycin-heif,heif,glycin-image-rs,glycin-jxl,jxl,librsvg,glycin-svg,imagethumbnail,windowsimagethumbnail,exrthumbnail,jpegthumbnail,svgthumbnail,comicbookthumbnail,ebookthumbnail,exe-thumbnailer";
     };
     kiorc = {
-      Confirmations.ConfirmDelete = false;
-      Confirmations.ConfirmEmptyTrash = false;
-      Confirmations.ConfirmTrash = false;
+      Confirmations = {
+        ConfirmDelete = false;
+        ConfirmEmptyTrash = false;
+        ConfirmTrash = false;
+      };
       "Executable scripts".behaviourOnLaunch = "alwaysAsk";
     };
     kservicemenurc.Show = {
@@ -62,12 +65,12 @@
       tagsfileitemaction = false;
       wallpaperfileitemaction = true;
     };
-    ktrashrc = {
-      "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".Days = 7;
-      "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".LimitReachedAction = 0;
-      "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".Percent = 10;
-      "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".UseSizeLimit = true;
-      "\\/home\\/victor7w7r\\/.local\\/share\\/Trash".UseTimeLimit = false;
+    ktrashrc."\\/home\\/victor7w7r\\/.local\\/share\\/Trash" = {
+      Days = 7;
+      LimitReachedAction = 0;
+      Percent = 10;
+      UseSizeLimit = true;
+      UseTimeLimit = false;
     };
   };
 }
