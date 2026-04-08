@@ -24,8 +24,8 @@ let
       config = (import ./generated) { inherit host; };
       configfile = configure;
       allowImportFromDerivation = false;
-      version = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
-      modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
+      version = "${configure.version}${configure.passthru.localVer}";
+      modDirVersion = "${configure.version}${configure.passthru.localVer}";
       stdenv = helpers.stdenvLLVM;
 
       kernelPatches = map (file: {
