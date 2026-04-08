@@ -100,7 +100,7 @@ pkgs.stdenv.mkDerivation (attrs: {
   };
 
   passthru = {
-    version = kernelData.linux.version;
+    version = kernelData.linux-hardened-legacy.versionn;
     inherit localVer patches;
   };
 })
