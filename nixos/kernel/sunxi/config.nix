@@ -6,7 +6,9 @@
   "--set-val HZ 300"
   "--set-val NR_CPUS 8"
 
+  "-e AUTOFS_FS"
   "-e CRYPTO_ZSTD"
+  "-e CRYPTO_USER_API_HASH"
   "-e DRM_LIMA"
   "-e DRM_SUN4I"
   "-e F2FS_FS"
@@ -26,6 +28,8 @@
   "-e ZRAM_DEF_COMP_LZ4"
   "-e ZRAM_LZ4_COMPRESS"
   "-e TMPFS"
+  "-e TMPFS_POSIX_ACL"
+  "-e TMPFS_POSIX_XATTR"
 
   "-m ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM"
   "-m ARM_SCMI_CPUFREQ"

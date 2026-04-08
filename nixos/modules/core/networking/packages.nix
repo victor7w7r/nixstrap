@@ -16,7 +16,6 @@
       net-tools
       netscanner
       openresolv
-      pyload-ng
       #rquickshare
       rustscan
       slirp4netns
