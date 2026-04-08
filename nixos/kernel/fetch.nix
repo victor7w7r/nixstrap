@@ -58,14 +58,6 @@
     sha256 = if isLegacy then kernelData.patches.legacyHash else kernelData.patches.hash;
     postFetch = ''
       find "$out" -type d -empty -delete
-        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
-        "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch || true
-        cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch" || true
-
-        ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
-        "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch || true
-        cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch" || true
-
         ${
           if isLegacy then
             ''
@@ -75,7 +67,15 @@
               cat cachy-filter.patch > "$out/${majorMinor}/misc/0003-cachy.patch"
             ''
           else
-            ""
+            ''
+              ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
+              "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch
+              cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch"
+
+              ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
+              "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch
+              cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch"
+            ''
         }
     '';
   };
