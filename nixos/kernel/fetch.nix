@@ -62,7 +62,7 @@
           if isLegacy then
             ''
               ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.c" -x "*/kernel/user_namespace.c" \
-              -x "*/kernel/user_namespace.h" \
+              -x "*/include/linux/user_namespace.h" \
               "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch
               cat cachy-filter.patch > "$out/${majorMinor}/0003-cachy.patch"
             ''
