@@ -76,7 +76,6 @@
       xkb = {
         layout = "us";
         variant = "intl-unicode";
-        options = "caps:ctrl_modifier";
       };
       displayManager = {
         autoLogin = {
