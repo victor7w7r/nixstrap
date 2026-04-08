@@ -46,8 +46,7 @@ in
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
     extraModprobeConfig = "options zram num_devices=1";
-    kernelPackages = lib.mkForce kernel.packages;
-    kernelPatches = kernel.patches;
+    kernelPackages = kernel.packages;
     kernelModules = [
       "sprdwl_ng"
       "sprdbt_tty"

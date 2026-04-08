@@ -102,14 +102,6 @@ in
     pkgs.pciutils
   ];
 
-  security.pam.services.ly = {
-    name = "ly";
-    enable = true;
-    startSession = true;
-    allowNullPassword = false;
-    fprintAuth = true;
-  };
-
   hardware = {
     amdgpu.opencl.enable = true;
     uinput.enable = true;

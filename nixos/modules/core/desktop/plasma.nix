@@ -34,6 +34,7 @@
     '';
   };
   security.pam.services = {
+    sddm.kwallet.enable = true;
     "${username}".kwallet = {
       enable = true;
       package = pkgs.kdePackages.kwallet-pam;
