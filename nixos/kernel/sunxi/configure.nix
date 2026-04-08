@@ -15,7 +15,7 @@ let
   );
   localVer = "-v7w7r-sunxi-hardened";
   config = (import ./config.nix);
-
+  modules = ./modules.db;
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
 
   patches = [
@@ -84,6 +84,10 @@ pkgs.stdenv.mkDerivation (attrs: {
     export ARCH=arm64
 
     cp "${fetch.sunxi-kconfig}" ".config"
+
+    export LSMOD=$(mktemp)
+    cat "${modules}" | sort > $LSMOD
+    (yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
     make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config

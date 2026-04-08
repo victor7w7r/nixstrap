@@ -1,5 +1,4 @@
 [
-
   "--set-str DEFAULT_HOSTNAME v7w7r"
   "--set-str DEFAULT_NET_SCH fq"
   "--set-str DEFAULT_TCP_CONG bbr"
@@ -18,14 +17,15 @@
   "-e NO_HZ_IDLE"
   "-e PREEMPT_NONE"
   "-e PREEMPT_NONE_BUILD"
-  "-e HZ_300"
 
   "-e ZRAM_DEF_COMP_LZ4"
   "-e ZRAM_LZ4_COMPRESS"
 
-  "-m EXFAT_FS"
   "-m NET_SCH_FQ_CODEL"
   "-m KVM"
+  "-m SUNXI_ADDR_MGT"
+  "-m SPRDWL_NG"
+  "-m TTY_OVERY_SDIO"
   "-m TCP_CONG_CUBIC"
   "-m VIRTIO"
   "-m ZRAM"
@@ -51,15 +51,13 @@
   "-d PROFILING"
   "-d SECURITY_SELINUX"
   "-d SECURITY_TOMOYO"
-  "-m SUNXI_ADDR_MGT"
-  "-m SPRDWL_NG"
+
   "-d SOUND"
   "-d SND"
   "-d SND_SOC"
   "-d SND_SUN4I_CODEC"
   "-d STAGING"
   "-d SPARD_WLAN_SUPPORT"
-  "-m TTY_OVERY_SDIO"
   "-d WLAN_VENDOR_ATH"
   "-d WLAN_VENDOR_BROADCOM"
   "-d WLAN_VENDOR_INTEL"
@@ -69,3 +67,5 @@
   "-d WATCHDOG"
   "-d ZRAM_BACKEND_842"
 ]
+++ (import ../config/develop.nix)
+++ (import ../config/vendors.nix)
