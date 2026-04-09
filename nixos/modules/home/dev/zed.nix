@@ -142,10 +142,6 @@
       };
 
       icon_theme = "Material Icon Theme";
-      title_bar = {
-        show_menus = true;
-        show_branch_name = true;
-      };
     };
   };
 }

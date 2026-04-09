@@ -20,8 +20,8 @@
       nemu
       netcat-openbsd
       oxker
-      qemu-user
-      qemu-utils
+      #qemu-user
+      #qemu-utils
       pods
       podman-tui
       usbkvm

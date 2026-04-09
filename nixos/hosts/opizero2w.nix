@@ -32,6 +32,12 @@ in
     })
   ];
 
+  nixpkgs.overlays = [
+    (_final: super: {
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
   programs.ccache = {
     enable = true;

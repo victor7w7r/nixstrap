@@ -1,6 +1,7 @@
 { system, pkgs, ... }:
 {
-  boot.binfmt = {
+  /*
+    boot.binfmt = {
     registrations = {
       javascript-bun = {
         recognitionType = "extension";
@@ -24,5 +25,6 @@
           "i686-windows"
         ]
     );
-  };
+    };
+  */
 }

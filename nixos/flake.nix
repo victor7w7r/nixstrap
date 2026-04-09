@@ -121,6 +121,9 @@
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
       };
       armPkgs = import nixpkgs {
+        overlays = [
+          (import "${inputs.mobile-nixos}/overlay/overlay.nix")
+        ];
         system = systemarm;
       };
 
@@ -131,15 +134,16 @@
       # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
       packages = {
         "${systemarm}" = {
-          kerneldebug =
-            (armPkgs.callPackage ./kernel/sunxi {
-              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-            }).kernel;
-
           sunxiconfig =
             (armPkgs.callPackage ./kernel/sunxi {
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
+
+          qcomconfig =
+            (armPkgs.callPackage ./kernel/sdm845 {
+              inherit inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).build.kconfigToNix;
         };
         "${system}" = {
           rogallyconfig =
@@ -187,6 +191,7 @@
             (
               { ... }:
               {
+                nixpkgs.crossSystem.config = "aarch64-unknown-linux-gnu";
                 nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
               }
             )

@@ -236,7 +236,7 @@
         "doh-rollout.home-region" = "EC";
         "dom.allow_scripts_to_close_windows" = true;
         "dom.battery.enabled" = false;
-        "dom.block_multiple_popups" = lock-true;
+        #"dom.block_multiple_popups" = lock-true;
         "dom.element.animate.enabled" = true;
         "dom.event.clipboardevents.enabled" = true;
         "dom.event.contextmenu.enabled" = false;
@@ -418,7 +418,7 @@
         "privacy.clearOnShutdown.siteSettings" = lock-true;
         "privacy.donottrackheader.enabled" = lock-true;
         "privacy.donottrackheader.value" = 1;
-        "privacy.firstparty.isolate" = true;
+        #"privacy.firstparty.isolate" = true;
         "privacy.history.custom" = true;
         "privacy.globalprivacycontrol.enabled" = lock-true;
         "privacy.globalprivacycontrol.functionality.enabled" = lock-true;
@@ -428,7 +428,7 @@
         "privacy.popups.disable_from_plugins" = 3;
         "privacy.query_stripping.enabled" = lock-true;
         "privacy.query_stripping.enabled.pbmode" = lock-true;
-        "privacy.resistFingerprinting" = lock-true;
+        #"privacy.resistFingerprinting" = lock-true;
         "privacy.sanitize.sanitizeOnShutdown" = lock-true;
         "privacy.spoof_english" = 1;
         "privacy.trackingprotection.enabled" = lock-true;

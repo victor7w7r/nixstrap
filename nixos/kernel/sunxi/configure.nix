@@ -72,7 +72,7 @@ let
   ];
 in
 
-pkgs.stdenv.mkDerivation (attrs: {
+pkgs.stdenv.mkDerivation {
   inherit patches;
   src = fetch.linux-hardened-legacy;
   name = "linux-${majorMinor}${localVer}-config";
@@ -103,4 +103,4 @@ pkgs.stdenv.mkDerivation (attrs: {
     version = kernelData.linux-hardened-legacy.version;
     inherit localVer patches;
   };
-})
+}
