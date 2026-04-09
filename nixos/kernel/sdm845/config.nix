@@ -1,7 +1,7 @@
 [
   "--set-str DEFAULT_HOSTNAME v7w7r"
   "--set-str DEFAULT_NET_SCH fq"
-  "--set-str DEFAULT_TCP_CONG bbr"
+  "--set-str DEFAULT_TCP_CONG cubic"
 
   "--set-val HZ 300"
   "--set-val NR_CPUS 8"
@@ -18,7 +18,6 @@
   "-e F2FS_FS_LZ4HC"
   "-e F2FS_FS_SECURITY"
   "-e F2FS_FS_ZSTD"
-  "-e DEFAULT_BBR"
   "-e DEFAULT_FQ"
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
@@ -66,6 +65,7 @@
 
   "-e GPIO_SHARED_PROXY"
 
+  "-e KVM"
   "-e XFRM"
   "-e XFRM_ALGO"
   "-e XFRM_USER"
@@ -149,7 +149,6 @@
   "-e IP_NF_RAW"
 
   "-m NET_SCH_FQ_CODEL"
-  "-m KVM"
   "-m SUNXI_ADDR_MGT"
   "-m SPRDWL_NG"
   "-m TTY_OVERY_SDIO"

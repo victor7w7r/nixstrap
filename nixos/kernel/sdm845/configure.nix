@@ -10,13 +10,9 @@ let
   localVer = "-v7w7r-sdm845";
   config = (import ./config.nix);
   patches = [
-    "${fetch.patches}/${majorMinor}/misc/0001-bore-cachy.patch"
     "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
     "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
     "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
-    "${fetch.patches}/${majorMinor}/0002-bbr3.patch"
-    "${fetch.patches}/${majorMinor}/0003-cachy.patch"
-    "${fetch.patches}/${majorMinor}/0004-fixes.patch"
   ];
 in
 pkgs.stdenv.mkDerivation {
