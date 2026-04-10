@@ -27,7 +27,7 @@ in
           };
         }
       else
-        { generic-extlinux-compatible.enable = true; }
+        { }
     );
 
     tmp = {

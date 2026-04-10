@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  kernelData,
   inputs,
   ...
 }:
@@ -12,6 +13,18 @@
 
   environment.systemPackages = [ (pkgs.callPackage ./custom/sdm845-alsa.nix { }) ];
   hardware.enableRedistributableFirmware = true;
+  mobile.quirks.qualcomm.sdm845-modem.enable = true;
+  mobile.quirks.audio.alsa-ucm-meld = true;
+  mobile.usb = {
+    mode = "gadgetfs";
+    idVendor = lib.mkDefault "18D1";
+    idProduct = lib.mkDefault "D001";
+    gadgetfs.functions = {
+      adb = "ffs.adb";
+      mass_storage = "mass_storage.0";
+      rndis = "rndis.usb0";
+    };
+  };
 
   mobile = {
     hardware = {
@@ -22,7 +35,7 @@
 
     boot.stage-1 = {
       compression = "xz";
-      kernel.package = (pkgs.callPackage ../../kernel/sdm845 { });
+      kernel.package = (pkgs.callPackage ../../kernel/sdm845 { inherit kernelData; }).build;
       firmware = [
         (pkgs.runCommand "initrd-firmware" { } ''
           cp -vrf ${config.mobile.device.firmware} $out
@@ -41,7 +54,6 @@
     system = {
       type = "android";
       android = {
-        useSparseImage = true;
         ab_partitions = lib.mkDefault true;
         bootimg.flash = {
           offset_base = "0x00000000";
@@ -56,19 +68,4 @@
     };
   };
 
-  quirks = {
-    audio.alsa-ucm-meld = true;
-    qualcomm.sdm845-modem.enable = true;
-  };
-
-  usb = {
-    mode = "gadgetfs";
-    idVendor = lib.mkDefault "18D1";
-    idProduct = lib.mkDefault "D001";
-    gadgetfs.functions = {
-      adb = "ffs.adb";
-      mass_storage = "mass_storage.0";
-      rndis = "rndis.usb0";
-    };
-  };
 }

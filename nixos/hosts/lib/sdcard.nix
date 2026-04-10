@@ -100,26 +100,20 @@ in
   system.build.image = config.system.build.sdImage;
   system.build.sdImage = pkgs.callPackage (
     {
-      stdenv,
-      dosfstools,
-      mtools,
-      libfaketime,
-      fakeroot,
-      util-linux,
-      f2fs-tools,
-      zstd,
+      pkgsBuildHost,
+      buildPackages,
     }:
-    stdenv.mkDerivation {
+    pkgsBuildHost.stdenv.mkDerivation {
       name = imageName;
 
       nativeBuildInputs = [
-        dosfstools
-        mtools
-        libfaketime
-        fakeroot
-        util-linux
-        f2fs-tools
-        zstd
+        buildPackages.dosfstools
+        buildPackages.mtools
+        buildPackages.libfaketime
+        buildPackages.fakeroot
+        buildPackages.util-linux
+        buildPackages.f2fs-tools
+        buildPackages.zstd
       ];
 
       buildCommand = ''

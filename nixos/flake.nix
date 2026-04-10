@@ -184,14 +184,17 @@
       };
 
       nixosConfigurations = {
-        #nix build ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
+        #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
         opizero2w = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
             (
               { ... }:
               {
-                nixpkgs.crossSystem.config = "aarch64-unknown-linux-gnu";
+                nixpkgs.crossSystem = {
+                  config = "aarch64-unknown-linux-gnu";
+                  system = "aarch64-linux";
+                };
                 nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
               }
             )
@@ -208,6 +211,46 @@
           ];
           specialArgs = {
             host = "v7w7r-opizero2w";
+            system = systemarm;
+            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            inherit
+              self
+              sops-nix
+              inputs
+              username
+              ;
+          };
+        };
+
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.u-boot.disk-image"
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-bootimg"
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.rootfs"
+        fajita = nixpkgs.lib.nixosSystem {
+          system = systemarm;
+          modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.crossSystem = {
+                  config = "aarch64-unknown-linux-gnu";
+                  system = "aarch64-linux";
+                };
+                nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+              }
+            )
+            (import ./configuration.nix)
+            (import ./pkgs)
+            (import ./hosts/fajita.nix)
+            impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
+            nur.modules.nixos.default
+            nixvim.nixosModules.nixvim
+            sops-nix.nixosModules.sops
+            (import ./modules/core)
+            (import ./modules/home)
+          ];
+          specialArgs = {
+            host = "v7w7r-fajita";
             system = systemarm;
             kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             inherit
