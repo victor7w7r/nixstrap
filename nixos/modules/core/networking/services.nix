@@ -16,7 +16,7 @@
   // (
     if host == "v7w7r-fajita" then
       {
-        openssh = lib.force {
+        openssh = lib.mkForce {
           enable = true;
           settings = {
             AcceptEnv = null;
@@ -27,7 +27,7 @@
       }
     else
       {
-        openssh = lib.force {
+        openssh = lib.mkForce {
           settings.AcceptEnv = null;
           enable = true;
         };
