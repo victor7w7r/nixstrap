@@ -27,10 +27,6 @@
       {
         openssh = {
           enable = true;
-          AcceptEnv = [
-            "LANG"
-            "LC_*"
-          ];
         };
       }
   );
