@@ -1,9 +1,9 @@
-{ ... }:
+{ host, ... }:
 {
   imports = [
-    (import ./config.nix)
-    (import ./emacs)
-    (import ./packages.nix)
-    (import ./zed.nix)
-  ];
+    ./config.nix
+    ./emacs
+    ./packages.nix
+  ]
+  ++ (if host != "v7w7r-opizero2w" then [ ./zed.nix ] else [ ]);
 }

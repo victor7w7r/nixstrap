@@ -28,7 +28,7 @@
       ];
     };
     libvirtd = {
-      enable = true;
+      enable = host != "v7w7r-opizero2w" && host != "v7w7r-fajita";
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;

@@ -34,9 +34,7 @@ let
             (import ./zen)
           ]
         else
-          [
-
-          ]
+          [ ]
       )
       ++ (
         if
@@ -48,6 +46,15 @@ let
           [
             (import ./misc)
             (import ./multimedia)
+          ]
+        else
+          [ ]
+      )
+      ++ (
+        if (host != "v7w7r-opizero2w") then
+          [
+            (import ./hardware)
+            (import ./networking)
           ]
         else
           [ ]

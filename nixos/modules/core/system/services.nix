@@ -25,7 +25,7 @@
     };
 
     kmscon = {
-      enable = host != "v7w7r-youyeetoox1";
+      enable = host != "v7w7r-youyeetoox1" && host != "v7w7r-opizero2w";
       hwRender = false;
       fonts = [
         {
