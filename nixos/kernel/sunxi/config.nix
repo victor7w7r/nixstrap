@@ -80,5 +80,5 @@
   "-d ZRAM_BACKEND_842"
 ]
 ++ (import ../config/develop.nix)
-++ (import ../config/cmdline.nix)
+++ (import ../config/cmdline.nix) { host = ""; }
 ++ (import ../config/vendors.nix) { isPC = false; }

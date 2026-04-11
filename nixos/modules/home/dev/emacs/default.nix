@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-
   programs.doom-emacs = {
     enable = true;
     emacs = pkgs.emacs-nox;

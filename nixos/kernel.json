@@ -3,7 +3,7 @@
   "linux": {
     "version": "6.18.22",
     "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.22-1/cachyos-6.18.22-1.tar.gz",
-    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5AAABHU836YEBjgmh4g="
+    "hash": "sha256-vRszbKgSN+3DSWfyZ7RUhDn/KliucXU8XLy7YJe5TZQ="
   },
   "linux-legacy": {
     "version": "6.12.81",

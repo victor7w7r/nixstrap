@@ -12,8 +12,7 @@
     hash = kernelData.linux.hash;
   };
 
-  linux-legacy = pkgs.fetchFromGitHub {
-    version = kernelData.linux-legacy.version;
+  linux-legacy = pkgs.fetchurl {
     url = kernelData.linux-legacy.url;
     hash = kernelData.linux-legacy.hash;
   };

@@ -2,8 +2,15 @@
 {
   imports = [
     ./config.nix
-    ./emacs
     ./packages.nix
   ]
-  ++ (if host != "v7w7r-opizero2w" then [ ./zed.nix ] else [ ]);
+  ++ (
+    if host != "v7w7r-opizero2w" && host != "v7w7r-fajita" then
+      [
+        ./zed.nix
+        ./emacs
+      ]
+    else
+      [ ]
+  );
 }
