@@ -9,7 +9,7 @@
       enable = true;
     }
     // (
-      if host == "" then
+      if host == "v7w7r-fajita" then
         {
           settings = {
             PermitRootLogin = "yes";
