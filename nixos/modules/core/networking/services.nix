@@ -1,4 +1,4 @@
-{ host, ... }:
+{ lib, host, ... }:
 {
   services = {
     #aria2.enable = true; NEEDS KEY
@@ -12,12 +12,12 @@
       writeable = true;
     };
     #openvpn.package = true;
-  };
-  /*
-    // (
+  }
+
+  // (
     if host == "v7w7r-fajita" then
       {
-        openssh = {
+        openssh = lib.mkDefault {
           enable = true;
           settings = {
             PermitRootLogin = "yes";
@@ -27,10 +27,10 @@
       }
     else
       {
-        openssh = {
+        openssh = lib.mkDefault {
           enable = true;
         };
       }
-      );
-  */
+  );
+
 }

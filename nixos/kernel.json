@@ -5,12 +5,10 @@
     "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.21-1/cachyos-6.18.21-1.tar.gz",
     "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjgmh4g="
   },
-  "linux-hardened-legacy": {
-    "version": "6.12.79",
-    "user": "anthraxx",
-    "repo": "linux-hardened",
-    "rev": "98ee240b6552b05e0d17ba87f34664ac3b9e495b",
-    "hash": "sha256-TKrLHk4aB47vqehEdp5ks4WtMCq/XCDr9ro3eQOoPvE="
+  "linux-legacy": {
+    "version": "6.12.81",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.81.tar.xz",
+    "hash": "sha256-TKrLHk4aB47vqehEdp5ks4WtMCq/XCAAAro3eQOoPvE="
   },
   "bunker": {
     "user": "amanaaq",

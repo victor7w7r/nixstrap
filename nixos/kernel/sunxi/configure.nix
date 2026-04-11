@@ -6,7 +6,7 @@
   ...
 }:
 let
-  majorMinor = lib.versions.majorMinor kernelData.linux-hardened-legacy.version;
+  majorMinor = lib.versions.majorMinor kernelData.linux-legacy.version;
   fetch = (
     pkgs.callPackage ../fetch.nix {
       inherit kernelData majorMinor;
@@ -74,7 +74,7 @@ in
 
 pkgs.stdenv.mkDerivation {
   inherit patches;
-  src = fetch.linux-hardened-legacy;
+  src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
   nativeBuildInputs = kernel.nativeBuildInputs;
@@ -100,7 +100,7 @@ pkgs.stdenv.mkDerivation {
   };
 
   passthru = {
-    version = kernelData.linux-hardened-legacy.version;
+    version = kernelData.linux-legacy.version;
     inherit localVer patches;
   };
 }
