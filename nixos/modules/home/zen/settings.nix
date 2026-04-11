@@ -102,7 +102,7 @@
         "browser.profiles.enabled" = true;
         "browser.privatebrowsing.forceMediaMemoryCache" = lock-true;
         "browser.protections_panel.infoMessage.seen" = lock-true;
-        "browser.safebrowsing.allowOverride" = false;
+        "browser.safebrowsing.allowOverride" = true;
         "browser.safebrowsing.blockedURIs.enabled" = false;
         "browser.safebrowsing.debug" = false;
         "browser.safebrowsing.downloads.enabled" = false;
@@ -445,6 +445,8 @@
         "security.pki.crlite_mode" = 2;
         "security.remote_settings.crlite_filters.enabled" = true;
         "security.tls.enable_0rtt_data" = false;
+        "security.cert_pinning.enforcement_level" = 0;
+        "security.ssl.enable_ocsp_stapling" = false;
         "services.settings.poll_interval" = 300;
 
         "services.sync.declinedEngines" = "addons,prefs";

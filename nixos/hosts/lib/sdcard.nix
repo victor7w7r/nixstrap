@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  firmwareSize ? 512,
+  firmwareSize ? 64,
   rootVolumeLabel ? "",
   populateFirmwareCommands ? "",
   populateRootCommands ? "",
@@ -34,7 +34,7 @@ let
 
     eval $(partx $img -o START,SECTORS --nr 1 --pairs)
     truncate -s $((SECTORS * 512)) firmware_part.img
-    mkfs.vfat --invariant -i 0x2178694e -n NIXFIRM firmware_part.img
+    mkfs.vfat --invariant -i 0x2178694e -n BOOT firmware_part.img
     mkdir firmware
 
     ${populateFirmwareCommands}
@@ -87,7 +87,7 @@ in
       ];
     };
     "/boot" = {
-      device = "/dev/disk/by-label/NIXFIRM";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
       options = [
         "nofail"
@@ -139,7 +139,7 @@ in
           xargs -I % cp -a --reflink=auto % -t ./rootImage/nix/store/ < ${closureInfo}/store-paths
           (
             GLOBIGNORE=".:.."
-            shopt -u dotglob
+            shopt -u dotglobed
 
             for f in ./files/*; do
                 cp -a --reflink=auto -t ./rootImage/ "$f"
@@ -174,7 +174,7 @@ in
 
           ${postBuildCommands}
 
-          zstd -T$NIX_BUILD_CORES --rm $img
+          #zstd -T$NIX_BUILD_CORES --rm $img
         '';
       }
     ) { };

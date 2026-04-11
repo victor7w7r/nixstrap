@@ -26,9 +26,7 @@ in
           -c ${config.system.build.toplevel} \
           -d firmware/boot
       '';
-      postBuildCommands = ''
-        dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc
-      '';
+      postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
     })
   ];
 
@@ -46,8 +44,9 @@ in
 
   boot = {
     kernelParams = lib.mkDefault [
-      "console=ttyS0,115200n8"
-      "console=tty0"
+      "console=ttyS0,115200"
+      "console=tty1"
+      "earlycon=uart,mmio32,0x05000000"
     ];
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
@@ -56,6 +55,11 @@ in
     kernelModules = [
       "sprdwl_ng"
       "sprdbt_tty"
+      "sun4i_drm"
+      "sun8i_mixer"
+      "hdmi"
+      "dw_hdmi"
+      "display_connector"
       "sunxi_addr"
       "zram"
       "zstd"
@@ -81,6 +85,7 @@ in
     firmware = [ (pkgs.callPackage ./custom/sunxi.nix { }) ];
     deviceTree = {
       enable = true;
+      filter = "sun50i-h618-orangepi-zero2w.dtb";
       name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
     };
   };
