@@ -184,4 +184,4 @@
   "-d ZRAM_BACKEND_842"
 ]
 ++ (import ../config/develop.nix)
-++ (import ../config/vendors.nix)
+++ (import ../config/vendors.nix) { isPC = false; }

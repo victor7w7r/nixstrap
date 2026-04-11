@@ -5,7 +5,6 @@
     cockpit.enable = true;
     croc.enable = true;
     dnsmasq.enable = true;
-    openssh.enable = true;
     tailscale.enable = true;
     ttyd = {
       enable = true;
@@ -17,9 +16,10 @@
   // (
     if host == "v7w7r-fajita" then
       {
-        openssh = lib.mkDefault {
+        openssh = lib.force {
           enable = true;
           settings = {
+            AcceptEnv = null;
             PermitRootLogin = "yes";
             PasswordAuthentication = true;
           };
@@ -27,7 +27,8 @@
       }
     else
       {
-        openssh = lib.mkDefault {
+        openssh = lib.force {
+          settings.AcceptEnv = null;
           enable = true;
         };
       }

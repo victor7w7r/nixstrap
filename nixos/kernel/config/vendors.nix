@@ -1,15 +1,23 @@
-[
-  "-e NET_VENDOR_AQUANTIA"
-  "-e NET_VENDOR_BROADCOM"
-  "-e NET_VENDOR_REALTEK"
-  "-e NET_VENDOR_MICROSOFT"
-
-  "-e WLAN_VENDOR_BROADCOM"
-  "-e WLAN_VENDOR_INTEL"
-  "-e WLAN_VENDOR_MEDIATEK"
-  "-e WLAN_VENDOR_REALTEK"
-  "-e WLAN_VENDOR_RALINK"
-
+{
+  isPC ? true,
+}:
+(
+  if isPC then
+    [
+      "-e NET_VENDOR_AQUANTIA"
+      "-e NET_VENDOR_BROADCOM"
+      "-e NET_VENDOR_REALTEK"
+      "-e NET_VENDOR_MICROSOFT"
+      "-e WLAN_VENDOR_BROADCOM"
+      "-e WLAN_VENDOR_INTEL"
+      "-e WLAN_VENDOR_MEDIATEK"
+      "-e WLAN_VENDOR_REALTEK"
+      "-e WLAN_VENDOR_RALINK"
+    ]
+  else
+    [ ]
+)
+++ [
   "-d CHROME_PLATFORMS"
   "-d CPU_SUP_CENTAUR"
   "-d CPU_SUP_ZHAOXIN"

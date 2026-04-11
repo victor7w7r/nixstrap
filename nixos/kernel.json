@@ -1,9 +1,9 @@
 {
   "user": "CachyOS",
   "linux": {
-    "version": "6.18.21",
-    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.21-1/cachyos-6.18.21-1.tar.gz",
-    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5aaLBHU836YEBjgmh4g="
+    "version": "6.18.22",
+    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.22-1/cachyos-6.18.22-1.tar.gz",
+    "hash": "sha256-QUz5M8wxQ7UZkSuaUfWjyUXf5AAABHU836YEBjgmh4g="
   },
   "linux-legacy": {
     "version": "6.12.81",

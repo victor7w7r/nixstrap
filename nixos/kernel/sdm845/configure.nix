@@ -10,7 +10,6 @@ let
   localVer = "-v7w7r-sdm845";
   config = (import ./config.nix);
   patches = [
-    "${fetch.patches}/${majorMinor}/misc/poc-selector.patch"
     "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
     "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
   ];
