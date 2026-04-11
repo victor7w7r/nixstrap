@@ -36,13 +36,11 @@
       enable = host != "v7w7r-youyeetoox1";
       useLocalResolver = true;
       dnsExtensionMechanism = false;
-      /*
-        extraConfig = ''
+      extraConfig = ''
         local_nameservers=""
         name_server_blacklist="0.0.0.0 127.0.0.1"
         resolv_conf_local_only=NO
-        '';
-      */
+      '';
     };
     firewall = {
       allowPing = true;

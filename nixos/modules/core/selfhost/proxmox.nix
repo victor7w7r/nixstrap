@@ -5,9 +5,7 @@
   services = {
     resolved = {
       enable = lib.mkForce true;
-      extraConfig = ''
-        DNSStubListener=no
-      '';
+      settings.Resolve.DNSStubListener = "no";
     };
     proxmox-ve = {
       enable = true;
