@@ -5,7 +5,6 @@
     cockpit.enable = true;
     croc.enable = true;
     dnsmasq.enable = true;
-
     tailscale.enable = true;
     ttyd = {
       enable = true;
@@ -25,6 +24,14 @@
         };
       }
     else
-      { openssh.enable = true; }
+      {
+        openssh = {
+          enable = true;
+          AcceptEnv = [
+            "LANG"
+            "LC_*"
+          ];
+        };
+      }
   );
 }
