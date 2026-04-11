@@ -68,6 +68,14 @@ in
   systemd.tmpfiles.rules = [
     "L+ /lib/firmware - - - - /run/current-system/firmware"
   ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 100;
+  };
+
   hardware = {
     enableAllHardware = true;
     firmware = [ (pkgs.callPackage ./custom/sunxi.nix { }) ];

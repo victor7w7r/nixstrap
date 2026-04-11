@@ -46,7 +46,12 @@ in
       SUBSYSTEM=="power_supply", ACTION=="change", RUN+="${power-script}"
     '';
     pipewire = {
-      enable = (host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l");
+      enable = (
+        host == "v7w7r-macmini81"
+        || host == "v7w7r-higole"
+        || host == "v7w7r-rc71l"
+        || host == "v7w7r-fajita"
+      );
       package = lib.mkForce (
         if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire
       );

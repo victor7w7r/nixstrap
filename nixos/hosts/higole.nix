@@ -71,6 +71,13 @@ in
 
   powerManagement.cpuFreqGovernor = "conservative";
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 60;
+    priority = 100;
+  };
+
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [ "resume=/dev/vg0/swapcrypt" ] ++ params { };

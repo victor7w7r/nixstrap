@@ -47,6 +47,14 @@ in
   powerManagement.cpuFreqGovernor = "schedutil";
 
   swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 60;
+    priority = 100;
+  };
+
   boot = {
     resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [

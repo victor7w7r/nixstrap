@@ -68,6 +68,7 @@ in
       dataset = "ssdshared";
     };
   };
+
   swapDevices = [
     {
       device = "/dev/zd0";

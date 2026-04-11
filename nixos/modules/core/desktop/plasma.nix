@@ -39,7 +39,6 @@
       enable = true;
       package = pkgs.kdePackages.kwallet-pam;
     };
-
   };
   environment = {
     plasma6.excludePackages = with pkgs; [

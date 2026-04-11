@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  firmwareSize ? 16,
+  firmwareSize ? 512,
   rootVolumeLabel ? "",
   populateFirmwareCommands ? "",
   populateRootCommands ? "",
@@ -34,7 +34,7 @@ let
 
     eval $(partx $img -o START,SECTORS --nr 1 --pairs)
     truncate -s $((SECTORS * 512)) firmware_part.img
-    mkfs.vfat --invariant -i 0x2178694e -n NIXOSFIRMWARE firmware_part.img
+    mkfs.vfat --invariant -i 0x2178694e -n NIXFIRM firmware_part.img
     mkdir firmware
 
     ${populateFirmwareCommands}
@@ -87,7 +87,7 @@ in
       ];
     };
     "/boot" = {
-      device = "/dev/disk/by-label/NIXOSFIRMWARE";
+      device = "/dev/disk/by-label/NIXFIRM";
       fsType = "vfat";
       options = [
         "nofail"
@@ -98,72 +98,86 @@ in
 
   system.nixos.tags = [ "sd-card" ];
   system.build.image = config.system.build.sdImage;
-  system.build.sdImage = pkgs.callPackage (
-    {
-      pkgsBuildHost,
-      buildPackages,
-    }:
-    pkgsBuildHost.stdenv.mkDerivation {
-      name = imageName;
+  system.build.sdImage =
+    let
+      nativePkgs = import pkgs.path {
+        system = "x86_64-linux";
+      };
+    in
+    nativePkgs.callPackage (
+      {
+        stdenv,
+        libfaketime,
+        fakeroot,
+        util-linux,
+        f2fs-tools,
+        zstd,
+      }:
+      stdenv.mkDerivation {
+        name = imageName;
+        nativeBuildInputs = [
+          nativePkgs.dosfstools
+          nativePkgs.mtools
+          libfaketime
+          fakeroot
+          util-linux
+          f2fs-tools
+          zstd
+        ];
 
-      nativeBuildInputs = [
-        buildPackages.dosfstools
-        buildPackages.mtools
-        buildPackages.libfaketime
-        buildPackages.fakeroot
-        buildPackages.util-linux
-        buildPackages.f2fs-tools
-        buildPackages.zstd
-      ];
+        buildCommand = ''
+          mkdir -p $out/nix-support $out/sd-image
+          export img=$out/sd-image/${imageName}.img
 
-      buildCommand = ''
-        mkdir -p $out/nix-support $out/sd-image
-        export img=$out/sd-image/${imageName}.img
+          echo "${pkgs.stdenv.buildPlatform.system}" > $out/nix-support/system
+          (
+            mkdir -p ./files
+            ${populateRootCommands}
+          )
 
-        echo "${pkgs.stdenv.buildPlatform.system}" > $out/nix-support/system
-        (
-          mkdir -p ./files
-          ${populateRootCommands}
-        )
+          mkdir -p ./rootImage/nix/store
+          xargs -I % cp -a --reflink=auto % -t ./rootImage/nix/store/ < ${closureInfo}/store-paths
+          (
+            GLOBIGNORE=".:.."
+            shopt -u dotglob
 
-        mkdir -p ./rootImage/nix/store
-        xargs -I % cp -a --reflink=auto % -t ./rootImage/nix/store/ < ${closureInfo}/store-paths
-        (
-          GLOBIGNORE=".:.."
-          shopt -u dotglob
+            for f in ./files/*; do
+                cp -a --reflink=auto -t ./rootImage/ "$f"
+            done
+          )
 
-          for f in ./files/*; do
-              cp -a --reflink=auto -t ./rootImage/ "$f"
-          done
-        )
+          cp ${closureInfo}/registration ./rootImage/nix-path-registration
 
-        cp ${closureInfo}/registration ./rootImage/nix-path-registration
+          numInodes=$(find ./rootImage | wc -l)
+          numDataBlocks=$(du -s -c -B 4096 --apparent-size ./rootImage | tail -1 | awk '{ print int($1 * 1.20) }')
+          bytes=$((2 * 4096 * $numInodes + 4096 * $numDataBlocks))
+          bytes=$((bytes + 100 * 1024 * 1024))
+          bytes=$((bytes * 15 / 10))
+          bytes=$(( ((bytes + 2097151) / 2097152) * 2097152 ))
 
-        numInodes=$(find ./rootImage | wc -l)
-        numDataBlocks=$(du -s -c -B 4096 --apparent-size ./rootImage | tail -1 | awk '{ print int($1 * 1.20) }')
-        bytes=$((2 * 4096 * $numInodes + 4096 * $numDataBlocks))
-        bytes=$((bytes + 100 * 1024 * 1024))
+          truncate -s $bytes ./root.img
 
-        truncate -s $bytes ./root.img
+          faketime -f "1970-01-01 00:00:01" fakeroot mkfs.f2fs -f -l "${rootVolumeLabel}" \
+            -O extra_attr,compression,flexible_inline_xattr -q ./root.img
 
-        faketime -f "1970-01-01 00:00:01" fakeroot mkfs.f2fs -f -l "${rootVolumeLabel}" \
-          -O extra_attr,inode_checksum,sb_checksum,compression,flexible_inline_xattr,lost_found \
-          ./root.img
+          faketime -f "1970-01-01 00:00:01" fakeroot sload.f2fs -f ./rootImage ./root.img || {
+            echo "Error"
+          }
 
-        faketime -f "1970-01-01 00:00:01" fakeroot sload.f2fs -f ./rootImage ./root.img
+          fakeroot fsck.f2fs -f ./root.img ||true
 
-        ${preBuildCommands}
-        ${firmware}
+          ${preBuildCommands}
+          ${firmware}
 
-        eval $(partx $img -o START,SECTORS --nr 2 --pairs)
-        dd conv=notrunc if=./root.img of=$img seek=$START count=$SECTORS
+          eval $(partx $img -o START,SECTORS --nr 2 --pairs)
+          dd conv=notrunc if=./root.img of=$img seek=$START count=$SECTORS
 
-        ${postBuildCommands}
+          ${postBuildCommands}
 
-        zstd -T$NIX_BUILD_CORES --rm $img
-      '';
-    }
-  ) { };
+          zstd -T$NIX_BUILD_CORES --rm $img
+        '';
+      }
+    ) { };
 
   boot.postBootCommands = ''
     REG_FILE="/nix/nix-path-registration"

@@ -24,6 +24,7 @@
   "-e NO_HZ_IDLE"
   "-e PREEMPT_NONE"
   "-e PREEMPT_NONE_BUILD"
+  "-e REGMAP_IRQ"
   "-e ZRAM_DEF_COMP_LZ4"
   "-e ZRAM_LZ4_COMPRESS"
   "-e TMPFS"

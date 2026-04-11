@@ -20,6 +20,13 @@
   ]
   ++ (import "${inputs.mobile-nixos}/modules/module-list.nix");
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 60;
+    priority = 100;
+  };
+
   mobile = {
     system.android.device_name = "OnePlus6T";
     device = {

@@ -64,6 +64,7 @@ in
       depends = [ "/nix/persist" ];
     };
   };
+
   swapDevices = [
     {
       device = "/dev/zvol/zswap/local/swap";
@@ -74,6 +75,13 @@ in
       ];
     }
   ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 100;
+  };
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
