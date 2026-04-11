@@ -1,7 +1,0 @@
-services:
-  fajita-builder:
-    build: .
-    platform: linux/arm64
-    container_name: fajita-builder
-    volumes:
-      - ./dist:/dist
