@@ -47,12 +47,14 @@
         system.stateVersion = "26.05";
         boot.isContainer = true;
         networking = {
-          nftables.enable = true;
-          firewall.allowedTCPPorts = [
-            5984
-            8080
-            8443
+          defaultGateway = "192.168.1.1";
+          nameservers = [
+            "192.168.1.1"
+            "8.8.8.8"
+            "1.1.1.1"
           ];
+          nftables.enable = true;
+          firewall.enable = false;
         };
         services.couchdb = {
           enable = true;
