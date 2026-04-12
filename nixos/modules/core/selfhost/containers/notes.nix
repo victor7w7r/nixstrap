@@ -103,6 +103,8 @@
             "d /opt/couchdb/data 0770 couchdb couchdb - -"
             "d /opt/couchdb/etc/local.d 0770 couchdb couchdb - -"
             "d /run/secrets/couchdb-admins.ini 0770 couchdb couchdb - -"
+            "d /web/vaults 0770 couchdb couchdb - -"
+            "d /web/config 0770 couchdb couchdb - -"
           ];
           services.couchdb-healthcheck = {
             description = "CouchDB Healthcheck";
