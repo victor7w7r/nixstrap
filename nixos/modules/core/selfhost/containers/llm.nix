@@ -4,7 +4,7 @@
   hardware.graphics.enable = true;
 
   containers.llm = {
-    autoStart = true;
+    autoStart = false;
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.123/24";
