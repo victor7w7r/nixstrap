@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   containers.notes = {
     autoStart = true;
@@ -37,8 +37,7 @@
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
-          adminUser = "admin";
-          adminPass = "password";
+          extraConfigFiles = [ config.sops.secrets."couchdb-admins.ini".path ];
         };
 
         systemd.services.couchdb-healthcheck = {
@@ -48,7 +47,6 @@
           '';
           startAt = "*:*:0/30";
         };
-
       };
   };
 }
