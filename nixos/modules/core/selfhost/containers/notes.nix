@@ -46,9 +46,9 @@
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
         sops = {
-          defaultSopsFile = "/secrets/sec.yaml";
-          validateSopsFiles = false;
           age.keyFile = "/var/lib/sops-nix/keys.txt";
+          defaultSopsFile = "/var/lib/sops-nix/secrets.yaml";
+          validateSopsFiles = false;
           secrets.password-db = {
             owner = "couchdb";
           };
