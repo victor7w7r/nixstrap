@@ -46,17 +46,20 @@
       allowPing = true;
       enable = true;
       logRefusedPackets = true;
-      #allowedUDPPorts = [ 59010 59011 53317 4501 5353 ];
       allowedTCPPorts = [
         22
         53
         67
         80
         443
+        2222
         8006
         3389
+        5984
         5900
         9090
+        10080
+        25565
       ];
     };
   };
