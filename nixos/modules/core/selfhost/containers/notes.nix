@@ -22,8 +22,8 @@
         hostPath = "/nix/persist/containers/notes/etc";
         isReadOnly = false;
       };
-      "/run/secrets/couchdb-admins.ini" = {
-        hostPath = "/run/secrets/couchdb-admins.ini";
+      "/run/secrets/rendered/couchdb-admins.ini" = {
+        hostPath = "/run/secrets/rendered/couchdb-admins.ini";
       };
     };
 
