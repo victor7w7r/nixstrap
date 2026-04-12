@@ -99,7 +99,6 @@
     age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       seckey-d = { };
-      password-db = { };
       ssh-vm-pub = { };
       ssh-vm-key = { };
       age-vm-key = { };
