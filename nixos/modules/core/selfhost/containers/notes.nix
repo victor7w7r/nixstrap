@@ -47,7 +47,7 @@
     ];
 
     config =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         system.stateVersion = "26.05";
         boot.isContainer = true;
@@ -57,6 +57,7 @@
             "8.8.8.8"
             "1.1.1.1"
           ];
+          useHostResolvConf = lib.mkForce false;
           nftables.enable = false;
           firewall.enable = false;
           resolvconf.enable = true;
