@@ -44,7 +44,6 @@
 
           ollama = {
             enable = true;
-            acceleration = "rocm";
             loadModels = [
               "mistral"
               "dolphin-llama3:8b"

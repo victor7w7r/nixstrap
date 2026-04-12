@@ -11,6 +11,11 @@
         hostPort = 2222;
         protocol = "tcp";
       }
+      {
+        containerPort = 3001;
+        hostPort = 3001;
+        protocol = "tcp";
+      }
     ];
     bindMounts = {
       "/var/lib/gogs" = {
@@ -22,7 +27,10 @@
     config =
       { ... }:
       {
-        networking.firewall.allowedTCPPorts = [ 2222 ];
+        networking.firewall.allowedTCPPorts = [
+          2222
+          3001
+        ];
         system.stateVersion = "26.05";
         services.gogs = {
           enable = true;
@@ -34,7 +42,7 @@
             passwordFile = "/etc/nix/gogs-pw";
           };
           domain = "git.v7w7r.local";
-          rootUrl = "https://git.v7w7r.local";
+          rootUrl = "http://git.v7w7r.local";
           httpPort = 3001;
           cookieSecure = true;
           extraConfig = ''
