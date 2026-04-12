@@ -25,7 +25,6 @@
         services.minecraft-server = {
           enable = true;
           package = pkgs.papermc;
-          debug = true;
           openFirewall = true;
           eula = true;
           declarative = true;
@@ -45,6 +44,7 @@
             allow-cheats = false;
             allow-flight = true;
             allow-nether = true;
+            debug = true;
             enable-rcon = true;
             difficulty = "hard";
             gamemode = 1;
