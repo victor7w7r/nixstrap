@@ -21,7 +21,7 @@
     };
 
     config =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         networking.firewall.allowedTCPPorts = [ 3500 ];
         system.stateVersion = "26.05";
@@ -29,6 +29,12 @@
           enable = true;
           extraPackages = [ pkgs.intel-compute-runtime ];
         };
+
+        nixpkgs.config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "open-webui"
+          ];
 
         systemd.services.ollama.environment = {
           OLLAMA_INTEL_GPU = "1";
