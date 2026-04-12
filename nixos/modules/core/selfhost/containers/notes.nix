@@ -47,7 +47,7 @@
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
-          extraConfigFiles = [ config.sops.templates."couchdb-admins.ini".path ];
+          extraConfigFiles = [ "/var/lib/couchdb-admins.ini" ];
         };
 
         systemd.services.couchdb-healthcheck = {
