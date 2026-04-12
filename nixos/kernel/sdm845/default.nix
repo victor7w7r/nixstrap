@@ -15,14 +15,7 @@ let
   );
 in
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      libxkbcommon = prev.libxkbcommon.overrideAttrs (oldAttrs: {
-        doCheck = false;
-        doInstallCheck = false;
-      });
-    })
-  ];
+
   build =
     (pkgs.mobile-nixos.kernel-builder {
       inherit (configure) src;
