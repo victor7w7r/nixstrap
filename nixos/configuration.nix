@@ -105,7 +105,7 @@
       '';
     };
     secrets = {
-      sops.secrets.password-db = {
+      password-db = {
         owner = "couchdb";
       };
       seckey-d = { };
