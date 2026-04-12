@@ -29,16 +29,16 @@
           eula = true;
           declarative = true;
           dataDir = "/var/lib/minecraft";
-          whitelist = {
-            username1 = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            username2 = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy";
-          };
           /*
-            AUTOPAUSE_TIMEOUT_EST = "3600"; # 1 Hour
-            AUTOPAUSE_TIMEOUT_INIT = "600"; # 10 Minutes
-            ENABLE_AUTOPAUSE = "TRUE";
-            MAX_TICK_TIME = "-1";
-            TZ = "America/Guayaquil";
+            whitelist = {
+              username1 = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+              username2 = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy";
+            };
+              AUTOPAUSE_TIMEOUT_EST = "3600"; # 1 Hour
+              AUTOPAUSE_TIMEOUT_INIT = "600"; # 10 Minutes
+              ENABLE_AUTOPAUSE = "TRUE";
+              MAX_TICK_TIME = "-1";
+              TZ = "America/Guayaquil";
           */
           serverProperties = {
             allow-cheats = false;
