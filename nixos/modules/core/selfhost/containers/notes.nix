@@ -45,11 +45,15 @@
       { pkgs, ... }:
       {
         system.stateVersion = "26.05";
-        networking.firewall.allowedTCPPorts = [
-          5984
-          8080
-          8443
-        ];
+        boot.isContainer = true;
+        networking = {
+          nftables.enable = true;
+          firewall.allowedTCPPorts = [
+            5984
+            8080
+            8443
+          ];
+        };
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
