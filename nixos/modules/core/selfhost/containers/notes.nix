@@ -22,10 +22,6 @@
         hostPath = "/nix/persist/containers/notes/etc";
         isReadOnly = false;
       };
-      "/var/lib/couchdb-admins.ini" = {
-        hostPath = config.sops.templates."couchdb-admins.ini".path;
-        isReadOnly = true;
-      };
       "/var/lib/sops-nix/secrets.yaml" = {
         hostPath = "/etc/nixos/nixos/secrets/sec.yaml";
         isReadOnly = true;
@@ -66,7 +62,7 @@
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
-          extraConfigFiles = [ "/var/lib/couchdb-admins.ini" ];
+          extraConfigFiles = [ "/run/secrets/couchdb-admins.ini" ];
         };
 
         systemd.services.couchdb-healthcheck = {
