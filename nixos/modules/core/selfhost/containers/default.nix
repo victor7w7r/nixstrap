@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./notes.nix
+  ];
+}
