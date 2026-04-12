@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   containers.notes = {
     autoStart = true;
@@ -33,7 +33,7 @@
     };
 
     config =
-      { pkgs, inputs, ... }:
+      { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [
           curl
