@@ -16,8 +16,8 @@ let
       config = (import ./config.aarch64-linux.nix);
       configfile = configure;
       allowImportFromDerivation = false;
-      version = "${configure.version}-hardened1${configure.passthru.localVer}";
-      modDirVersion = "${configure.version}-hardened1${configure.passthru.localVer}";
+      version = "${configure.version}${configure.passthru.localVer}";
+      modDirVersion = "${configure.version}${configure.passthru.localVer}";
 
       kernelPatches = map (file: {
         name = baseNameOf (toString file);

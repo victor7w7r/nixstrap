@@ -47,27 +47,27 @@
     xclip
     xcolor
     xsel
-    xfce.catfish
-    xfce.gigolo
-    xfce.ristretto
-    xfce.xfce4-appfinder
-    xfce.xfce4-clipman-plugin
-    xfce.xfce4-cpufreq-plugin
-    xfce.xfce4-cpugraph-plugin
-    xfce.xfce4-fsguard-plugin
-    xfce.xfce4-genmon-plugin
-    xfce.xfce4-netload-plugin
-    xfce.xfce4-notifyd
-    xfce.xfce4-panel
-    xfce.xfce4-panel-profiles
-    xfce.xfce4-pulseaudio-plugin
-    xfce.xfce4-taskmanager
-    xfce.xfce4-screenshooter
-    xfce.xfce4-sensors-plugin
-    xfce.xfce4-systemload-plugin
-    xfce.xfce4-whiskermenu-plugin
-    xfce.xfce4-xkb-plugin
-    xfce.xfdashboard
+    catfish
+    gigolo
+    ristretto
+    xfce4-appfinder
+    xfce4-clipman-plugin
+    xfce4-cpufreq-plugin
+    xfce4-cpugraph-plugin
+    xfce4-fsguard-plugin
+    xfce4-genmon-plugin
+    xfce4-netload-plugin
+    xfce4-notifyd
+    xfce4-panel
+    xfce4-panel-profiles
+    xfce4-pulseaudio-plugin
+    xfce4-taskmanager
+    xfce4-screenshooter
+    xfce4-sensors-plugin
+    xfce4-systemload-plugin
+    xfce4-whiskermenu-plugin
+    xfce4-xkb-plugin
+    xfdashboard
     #xfce4-diskperf-plugin
     #xfce4-mount-plugin
     #thunar-extended
