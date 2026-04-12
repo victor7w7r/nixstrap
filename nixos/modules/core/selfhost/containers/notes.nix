@@ -1,11 +1,5 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
-  users.users.couchdb = {
-    isSystemUser = true;
-    group = "couchdb";
-  };
-  users.groups.couchdb = { };
-
   containers.notes = {
     autoStart = true;
     privateNetwork = true;
@@ -32,6 +26,14 @@
         hostPath = config.sops.templates."couchdb-admins.ini".path;
         isReadOnly = true;
       };
+      "/var/lib/sops-nix/secrets.yaml" = {
+        hostPath = "/etc/nixos/nixos/secrets/sec.yaml";
+        isReadOnly = true;
+      };
+      "/var/lib/sops-nix/keys.txt" = {
+        hostPath = "/home/victor7w7r/.config/sops/age/keys.txt";
+        isReadOnly = true;
+      };
     };
 
     config =
@@ -44,6 +46,22 @@
 
         networking.firewall.allowedTCPPorts = [ 5984 ];
         system.stateVersion = "26.05";
+
+        imports = [ inputs.sops-nix.nixosModules.sops ];
+
+        sops = {
+          defaultSopsFile = "/var/lib/sops-nix/secrets.yaml";
+          age.keyFile = "/var/lib/sops-nix/keys.txt";
+          secrets.password-db.owner = "couchdb";
+          templates."couchdb-admins.ini" = {
+            owner = "couchdb";
+            content = ''
+              [admins]
+              admin = ${config.sops.placeholder.password-db}
+            '';
+          };
+        };
+
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
