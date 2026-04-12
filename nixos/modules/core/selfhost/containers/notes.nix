@@ -57,10 +57,11 @@
             "8.8.8.8"
             "1.1.1.1"
           ];
-          resolvconf.enable = true;
-          nftables.enable = true;
+          nftables.enable = false;
           firewall.enable = false;
+          resolvconf.enable = true;
         };
+        services.resolved.enable = false;
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
