@@ -17,9 +17,3 @@ if res=$(runbuild $SUNXICONFIG); then
 else
     exit 1
 fi
-
-if res=$(runbuild $QCOMCONFIG); then
-    cat "$res" >"kernel/sdm845/config.aarch64-linux.nix"
-else
-    exit 1
-fi

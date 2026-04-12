@@ -67,7 +67,7 @@ let
     "${sunxiPatch}/patches.armbian/arm64-allwinner-Add-sun50i-h618-bananapi-m4-berry-support.patch"
     "${sunxiPatch}/patches.armbian/sun50i-h616-Add-the-missing-digital-audio-nodes.patch"
     "${fetch.patches}/${majorMinor}/0002-bbr3.patch"
-    "${fetch.patches}/${majorMinor}/0003-cachy.patch"
+    #"${fetch.patches}/${majorMinor}/0003-cachy.patch"
     "${fetch.patches}/${majorMinor}/0007-zstd.patch"
   ];
 in

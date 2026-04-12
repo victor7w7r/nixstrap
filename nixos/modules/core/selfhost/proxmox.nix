@@ -10,9 +10,11 @@
     proxmox-ve = {
       enable = true;
       ipAddress = "192.168.1.100";
-      bridges = [ "vmbr0" ];
+      bridges = [ "br0" ];
     };
   };
+
+  virtualisation.oci-containers.backend = "podman";
 
   networking = {
     useNetworkd = true;
@@ -38,10 +40,10 @@
         "10-lan" = {
           matchConfig.Name = [ "enp1s0" ];
           linkConfig.RequiredForOnline = "yes";
-          networkConfig.Bridge = "vmbr0";
+          networkConfig.Bridge = "br0";
         };
         "10-lan-bridge" = {
-          matchConfig.Name = "vmbr0";
+          matchConfig.Name = "br0";
           linkConfig.RequiredForOnline = "routable";
           address = [ "192.168.1.100/24" ];
           gateway = [ "192.168.1.1" ];
@@ -55,8 +57,8 @@
         };
       };
 
-      netdevs."vmbr0".netdevConfig = {
-        Name = "vmbr0";
+      netdevs."br0".netdevConfig = {
+        Name = "br0";
         Kind = "bridge";
       };
     };

@@ -15,8 +15,7 @@
       dockerCompat = true;
       dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
-      /*
-        extraPackages = with pkgs; [
+      extraPackages = with pkgs; [
         conmon
         crun
         iptables
@@ -26,8 +25,7 @@
         slirp4netns
         skopeo
         zfs
-        ];
-      */
+      ];
     };
     libvirtd = {
       enable = host != "v7w7r-opizero2w" && host != "v7w7r-fajita";
