@@ -1,5 +1,11 @@
 { config, ... }:
 {
+  users.users.couchdb = {
+    isSystemUser = true;
+    group = "couchdb";
+  };
+  users.groups.couchdb = { };
+
   containers.notes = {
     autoStart = true;
     privateNetwork = true;
