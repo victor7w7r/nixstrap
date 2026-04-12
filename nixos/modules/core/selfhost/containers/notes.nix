@@ -46,7 +46,7 @@
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
         sops = {
-          defaultSopsFile = "../../../../secrets/sec.yaml";
+          defaultSopsFile = "/secrets/sec.yaml";
           validateSopsFiles = false;
           age.keyFile = "/var/lib/sops-nix/keys.txt";
           secrets.password-db = {
