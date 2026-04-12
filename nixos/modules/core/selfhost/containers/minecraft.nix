@@ -1,7 +1,7 @@
 { ... }:
 {
   containers.minecraft = {
-    autoStart = true;
+    autoStart = false;
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.121/24";
