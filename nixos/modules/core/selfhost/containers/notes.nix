@@ -3,7 +3,6 @@
   containers.notes = {
     autoStart = true;
     privateNetwork = true;
-    privileged = true;
     hostBridge = "br0";
     localAddress = "192.168.1.120/24";
     forwardPorts = [
