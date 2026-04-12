@@ -98,7 +98,7 @@
     defaultSopsFile = ./secrets/sec.yaml;
     age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
-      password-db.owner = "couchdb";
+      password-db = { };
       seckey-d = { };
       ssh-vm-pub = { };
       ssh-vm-key = { };
