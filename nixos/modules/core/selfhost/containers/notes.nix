@@ -28,6 +28,10 @@
         hostPath = "/nix/persist/containers/notes/etc";
         isReadOnly = false;
       };
+      "/var/lib/couchdb-admins.ini" = {
+        hostPath = config.sops.templates."couchdb-admins.ini".path;
+        isReadOnly = true;
+      };
     };
 
     config =
