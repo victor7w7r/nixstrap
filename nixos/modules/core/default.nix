@@ -3,7 +3,6 @@
   imports = [
     (import ./boot)
     (import ./system)
-    (import ./hardware)
     (import ./misc)
     (import ./networking)
     (import ./security)
@@ -19,6 +18,9 @@
       [ ]
   )
   ++ (if (host != "v7w7r-opizero2w") then [ (import ./desktop) ] else [ ])
+  ++ (
+    if (host != "v7w7r-opizero2w") || (host != "v7w7r-fajita") then [ (import ./hardware) ] else [ ]
+  )
   ++ (if (host != "v7w7r-nixvm") && (host != "v7w7r-youyeetoox1") then [ (import ./virt) ] else [ ])
   ++ (if host == "v7w7r-youyeetoox1" then [ (import ./selfhost) ] else [ ]);
 }

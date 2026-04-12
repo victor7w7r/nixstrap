@@ -6,7 +6,7 @@
     dconf.enable = true;
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         thunar-archive-plugin
         thunar-media-tags-plugin
         thunar-volman
@@ -31,7 +31,7 @@
     };
     xrdp = {
       enable = true;
-      defaultWindowManager = "${pkgs.xfce.xfce4-session}/bin/startxfce4";
+      defaultWindowManager = "${pkgs.xfce4-session}/bin/startxfce4";
       openFirewall = true;
     };
   };
