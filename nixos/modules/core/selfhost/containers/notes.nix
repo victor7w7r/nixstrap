@@ -51,6 +51,7 @@
 
         sops = {
           defaultSopsFile = "/var/lib/sops-nix/secrets.yaml";
+          validateSopsFiles = false;
           age.keyFile = "/var/lib/sops-nix/keys.txt";
           secrets.password-db.owner = "couchdb";
           templates."couchdb-admins.ini" = {
