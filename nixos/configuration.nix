@@ -104,12 +104,9 @@
       ssh-vm-key = { };
       age-vm-key = { };
     };
-    templates."couchdb-admins.ini" = {
-      owner = "couchdb";
-      content = ''
-        [admins]
-        admin = ${config.sops.placeholder.password-db}
-      '';
-    };
+    templates."couchdb-admins.ini".content = ''
+      [admins]
+      admin = ${config.sops.placeholder.password-db}
+    '';
   };
 }

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   containers.notes = {
     autoStart = true;
