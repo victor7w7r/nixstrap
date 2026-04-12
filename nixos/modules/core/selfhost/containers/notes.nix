@@ -41,6 +41,11 @@
       };
     };
 
+    extraFlags = [
+      "--system-call-filter=keyctl"
+      "--system-call-filter=bpf"
+    ];
+
     config =
       { pkgs, ... }:
       {
@@ -49,10 +54,10 @@
         networking = {
           defaultGateway = "192.168.1.1";
           nameservers = [
-            "192.168.1.1"
             "8.8.8.8"
             "1.1.1.1"
           ];
+          resolvconf.enable = true;
           nftables.enable = true;
           firewall.enable = false;
         };
