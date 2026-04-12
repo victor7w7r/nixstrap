@@ -1,10 +1,10 @@
 { ... }:
 {
-  services.harmonia.enable = true;
+  services.harmonia.cache.enable = true;
   # nix-store --generate-binary-cache-key cache.v7w7r.local \
   #   /nix/persist/var/lib/secrets/harmonia.secret \
   #   /nix/persist/var/lib/secrets/harmonia.pub
-  services.harmonia.signKeyPaths = [ "/var/lib/secrets/harmonia.secret" ];
+  services.harmonia.cache.signKeyPaths = [ "/var/lib/secrets/harmonia.secret" ];
 
   services.nginx = {
     enable = true;

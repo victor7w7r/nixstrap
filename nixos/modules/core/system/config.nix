@@ -35,6 +35,9 @@
         description = "${username}";
         group = "users";
         isNormalUser = true;
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJfxc7Zd0lk/x02sH8OK5lNIQ3aQP/EzBQKAEkGQN1d6 arkano036@gmail.com"
+        ];
         hashedPassword = "$y$j9T$ieUYJ2thSsvR1M37kWe651$yt0z7Ga3..johS8fyA1Y9GaoddW.jfE838xXiFhcus1";
         uid = 1000;
         subUidRanges = [

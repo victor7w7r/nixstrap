@@ -6,29 +6,25 @@
       enableCache = true;
     };
     polkit.enable = true;
-
     rtkit.enable = true;
     #clamav-gui clamav-unofficial-sigs
     sudo-rs = {
       enable = true;
+      package = pkgs.sudo-rs;
+      execWheelOnly = true;
       wheelNeedsPassword = false;
       extraRules = [
         {
+          users = [ "victor7w7r" ];
           commands = [
             {
-              command = "${pkgs.systemd}/bin/systemctl suspend";
-              options = [ "NOPASSWD" ];
-            }
-            {
-              command = "${pkgs.systemd}/bin/reboot";
-              options = [ "NOPASSWD" ];
-            }
-            {
-              command = "${pkgs.systemd}/bin/poweroff";
-              options = [ "NOPASSWD" ];
+              command = "ALL";
+              options = [
+                "NOPASSWD"
+                "SETENV"
+              ];
             }
           ];
-          groups = [ "wheel" ];
         }
       ];
     };

@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 {
   containers.notes = {
     autoStart = true;
@@ -33,7 +33,7 @@
     };
 
     config =
-      { pkgs, ... }:
+      { pkgs, inputs, ... }:
       {
         environment.systemPackages = with pkgs; [
           curl
@@ -46,10 +46,12 @@
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
         sops = {
-          defaultSopsFile = "/var/lib/sops-nix/secrets.yaml";
+          defaultSopsFile = "../../../../secrets/sec.yaml";
           validateSopsFiles = false;
           age.keyFile = "/var/lib/sops-nix/keys.txt";
-          secrets.password-db.owner = "couchdb";
+          secrets.password-db = {
+            owner = "couchdb";
+          };
           templates."couchdb-admins.ini" = {
             owner = "couchdb";
             content = ''
