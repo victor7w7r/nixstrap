@@ -1,122 +1,91 @@
 { ... }:
-
 {
-  hardware.graphics.enable = true;
-
-  containers.llm = {
+  containers.minecraft = {
     autoStart = true;
-    bindMounts."/dev/dri" = {
-      hostPath = "/dev/dri";
-      isReadOnly = false;
+    privateNetwork = true;
+    hostBridge = "br0";
+    localAddress = "192.168.1.121/24";
+    forwardPorts = [
+      {
+        containerPort = 25565;
+        hostPort = 25565;
+        protocol = "tcp";
+      }
+    ];
+    bindMounts = {
+      "/var/lib/minecraft" = {
+        hostPath = "/nix/persist/containers/minecraft";
+        isReadOnly = false;
+      };
     };
-
     config =
       { pkgs, ... }:
       {
-        hardware.graphics.enable = true;
-        hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
-
-        services = {
-          open-webui = {
-            enable = true;
-            port = 3500;
-            environment.OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+        networking.firewall.allowedTCPPorts = [ 25565 ];
+        services.minecraft-server = {
+          enable = true;
+          package = pkgs.papermc;
+          debug = true;
+          openFirewall = true;
+          eula = true;
+          declarative = true;
+          dataDir = "/var/lib/minecraft";
+          whitelist = {
+            username1 = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            username2 = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy";
           };
-
-          ollama = {
-            enable = true;
-            acceleration = "rocm";
-            loadModels = [
-              "mistral"
-              "dolphin-llama3:8b"
-              "solar:10.7b"
-            ];
+          /*
+            AUTOPAUSE_TIMEOUT_EST = "3600"; # 1 Hour
+            AUTOPAUSE_TIMEOUT_INIT = "600"; # 10 Minutes
+            ENABLE_AUTOPAUSE = "TRUE";
+            MAX_TICK_TIME = "-1";
+            TZ = "America/Guayaquil";
+          */
+          serverProperties = {
+            allow-cheats = false;
+            allow-flight = true;
+            allow-nether = true;
+            enable-rcon = true;
+            difficulty = "hard";
+            gamemode = 1;
+            generate-structures = true;
+            level-name = "v7w7r World";
+            log-ips = true;
+            max-players = 10;
+            motd = "NixOS Minecraft server!";
+            online-mode = true;
+            pvp = true;
+            server-port = 25565;
+            spawn-animals = true;
+            spawn-monsters = true;
+            spawn-npcs = true;
+            snooper-enabled = true;
+            view-distance = "20";
+            white-list = true;
           };
+          jvmOpts = ''
+            -Xms2G
+            -Xmx2G
+            -XX:+UseG1GC
+            -XX:+ParallelRefProcEnabled
+            -XX:MaxGCPauseMillis=100
+            -XX:+UnlockExperimentalVMOptions
+            -XX:+DisableExplicitGC
+            -XX:+AlwaysPreTouch
+            -XX:G1NewSizePercent=30
+            -XX:G1MaxNewSizePercent=40
+            -XX:G1HeapRegionSize=8M
+            -XX:G1ReservePercent=20
+            -XX:G1HeapWastePercent=5
+            -XX:G1MixedGCCountTarget=4
+            -XX:InitiatingHeapOccupancyPercent=15
+            -XX:G1MixedGCLiveThresholdPercent=90
+            -XX:G1RSetUpdatingPauseTimePercent=5
+            -XX:SurvivorRatio=32
+            -XX:+PerfDisableSharedMem
+            -XX:MaxTenuringThreshold=1
+          '';
         };
-
-        systemd.services.ollama.environment = {
-          OLLAMA_INTEL_GPU = "1";
-          OLLAMA_ORIGINS = "chrome-extension://*,moz-extension://*";
-        };
-
-        networking.firewall.allowedTCPPorts = [ 3500 ];
-        system.stateVersion = "26.05"; # O la que uses
       };
   };
 }
-
-/*
-  {
-    lib,
-    config,
-    ...
-  }:
-  let
-    inherit (config.services.docker-minecraft-server) modrinth-pack;
-    MINECRAFT_VERSION = "1.21.3";
-    SERVER_NAME = "v7w7r-mcserver";
-    SERVER_NAME_SLUG = lib.strings.toLower (lib.strings.sanitizeDerivationName SERVER_NAME);
-    rcon_web_admin_env = "";
-  in
-  {
-    virtualisation.oci-containers.containers = {
-      "rcon-web-admin" = {
-        image = "itzg/rcon";
-        # https://github.com/rcon-web-admin/rcon-web-admin#environment-variables
-        environment = {
-          RWA_RCON_HOST = "${SERVER_NAME_SLUG}"; # See docker container `itzg/minecraft-server`: --network-alias=${SERVER_NAME_SLUG}
-        };
-        environmentFiles = [ rcon_web_admin_env.path ];
-        ports = [
-          "4326:4326"
-          "4327:4327"
-        ];
-        extraOptions = [
-          "--network-alias=rcon-web-admin"
-          "--network=${SERVER_NAME_SLUG}_default"
-        ];
-      };
-
-      "${SERVER_NAME_SLUG}" = {
-        image = "itzg/minecraft-server:java21-graalvm";
-        environment = rec {
-          inherit SERVER_NAME;
-          ALLOW_FLIGHT = "TRUE";
-          ALLOW_NETHER = "TRUE";
-          AUTOPAUSE_TIMEOUT_EST = "3600"; # 1 Hour
-          AUTOPAUSE_TIMEOUT_INIT = "600"; # 10 Minutes
-          DEBUG = "FALSE";
-          DIFFICULTY = "hard";
-          ENABLE_AUTOPAUSE = "TRUE";
-          EULA = "TRUE";
-          LEVEL = "${SERVER_NAME} World 1";
-          MAX_PLAYERS = "10";
-          MAX_TICK_TIME = "-1";
-          MEMORY = "2G";
-          HARDCORE = "TRUE";
-          ONLINE_MODE = "TRUE";
-          OVERRIDE_SERVER_PROPERTIES = "TRUE";
-          OP_PERMISSION_LEVEL = "4"; # https://minecraft.fandom.com/wiki/Permission_level#Java_Edition
-          SNOOPER_ENABLED = "FALSE";
-          SPAWN_ANIMALS = "TRUE";
-          SPAWN_NPCS = "TRUE";
-          SPAWN_MONSTERS = "TRUE";
-          TZ = "America/Guayaquil";
-          VERSION = MINECRAFT_VERSION;
-          VIEW_DISTANCE = "20";
-        };
-        environmentFiles = [ rcon_web_admin_env.path ];
-        volumes = [
-          "/srv/minecraft/${SERVER_NAME_SLUG}-data:/data:rw"
-          "${modrinth-pack}:/extras/modrinth-pack/:ro"
-        ];
-        ports = [ "25565:25565/tcp" ];
-        log-driver = "journald";
-        extraOptions = [
-          "--network-alias=${SERVER_NAME_SLUG}"
-          "--network=${SERVER_NAME_SLUG}_default"
-        ];
-      };
-    };
-  }
-*/

@@ -4,7 +4,7 @@
 }:
 let
   vars = config.media.config;
-  dataDir = "/mnt/storage/data/Seafile";
+  dataDir = "/nix/persist/cloud";
 in
 {
   media.gateway.services.seafile = {
@@ -35,16 +35,10 @@ in
       REDIS_HOST = "host.containers.internal";
       REDIS_PORT = "6379";
     };
-    environmentFiles = [
-      config.sops.secrets.seafile-env.path
-    ];
-    volumes = [
-      "${dataDir}:/shared"
-    ];
+    environmentFiles = [ config.sops.secrets.seafile-env.path ];
+    volumes = [ "${dataDir}:/shared" ];
     ports = [ "10080:80" ];
-    extraOptions = [
-      "--add-host=host.containers.internal:host-gateway"
-    ];
+    extraOptions = [ "--add-host=host.containers.internal:host-gateway" ];
   };
 
   systemd.services.podman-seafile = {

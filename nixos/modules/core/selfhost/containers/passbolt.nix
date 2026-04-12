@@ -18,8 +18,8 @@
     ];
 
     volumes = [
-      "$DIR/passbolt/gpg:/etc/passbolt/gpg"
-      "$DIR/passbolt/jwt:/etc/passbolt/jwt"
+      "/nix/persist/containers/passbolt/gpg:/etc/passbolt/gpg"
+      "/nix/persist/containers/passbolt/jwt:/etc/passbolt/jwt"
     ];
 
     environment = {
@@ -50,7 +50,7 @@
     ];
 
     volumes = [
-      "$DIR/mariadb:/var/lib/mysql"
+      "/nix/persist/containers/passbolt/mariadb:/var/lib/mysql"
     ];
 
     environment = {

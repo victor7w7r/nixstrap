@@ -15,11 +15,11 @@
 
     bindMounts = {
       "/opt/couchdb/data" = {
-        hostPath = "/mnt/user/appdata/couchdb-notes/data";
+        hostPath = "/nix/persist/containers/notes/data";
         isReadOnly = false;
       };
       "/opt/couchdb/etc/local.d" = {
-        hostPath = "/mnt/user/appdata/couchdb-notes/etc";
+        hostPath = "/nix/persist/containers/notes/etc";
         isReadOnly = false;
       };
     };
@@ -32,6 +32,8 @@
           gnugrep
         ];
 
+        networking.firewall.allowedTCPPorts = [ 5984 ];
+        system.stateVersion = "26.05";
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
@@ -47,8 +49,6 @@
           startAt = "*:*:0/30";
         };
 
-        networking.firewall.allowedTCPPorts = [ 5984 ];
-        system.stateVersion = "24.11";
       };
   };
 }

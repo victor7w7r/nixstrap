@@ -123,13 +123,13 @@
       armPkgs = import nixpkgs {
         system = systemarm;
         overlays = [
-          (import "${inputs.mobile-nixos}/overlay/overlay.nix")
           (final: prev: {
             libxkbcommon = prev.libxkbcommon.overrideAttrs (oldAttrs: {
               doCheck = false;
               doInstallCheck = false;
             });
           })
+          (import "${inputs.mobile-nixos}/ov erlay/overlay.nix")
         ];
       };
 
