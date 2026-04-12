@@ -98,7 +98,8 @@
     defaultSopsFile = ./secrets/sec.yaml;
     age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     templates."couchdb-admins.ini" = {
-      owner = "couchdb";
+      owner = "5984";
+      mode = "0644";
       content = ''
         [admins]
         admin = ${config.sops.placeholder.password-db}
