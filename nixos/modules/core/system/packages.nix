@@ -75,14 +75,15 @@
     ++ (if system != "aarch64-linux" then [ boxxy ] else [ ])
     ++ [
       dust
+      duff
       dua
       gdu
-      ncdu
-      duff
       fclones
-      mmv-go
       fdupes
+      mmv-go
+      ncdu
       rdfind
+      parted
       rnr
       (pkgs.callPackage ./custom/diskonaut.nix { })
     ]

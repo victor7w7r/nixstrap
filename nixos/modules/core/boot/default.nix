@@ -1,15 +1,15 @@
 { host, ... }:
 {
   imports = [
-    (import ./emulation.nix)
-    (import ./kernel.nix)
-    (import ./sysctl.nix)
-    (import ./persist.nix)
+    ./kernel.nix
+    ./sysctl.nix
+    ./persist.nix
   ]
   ++ (
-    if (host != "v7w7r-opizero2w") then
+    if (host != "v7w7r-opizero2w" && host != "v7w7r-fajita") then
       [
-        (import ./bootloader.nix)
+        ./bootloader.nix
+        ./emulation.nix
       ]
     else
       [ ]

@@ -121,10 +121,10 @@
         overlays = [ nix-cachyos-kernel.overlays.pinned ];
       };
       armPkgs = import nixpkgs {
+        system = systemarm;
         overlays = [
           (import "${inputs.mobile-nixos}/overlay/overlay.nix")
         ];
-        system = systemarm;
       };
 
       home = (pkgs.callPackage ./modules/home { inherit self inputs username; }).home-manager;
