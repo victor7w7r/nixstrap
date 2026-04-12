@@ -22,18 +22,13 @@
         hostPath = "/nix/persist/containers/notes/etc";
         isReadOnly = false;
       };
-      "/var/lib/sops-nix/secrets.yaml" = {
-        hostPath = "/etc/nixos/nixos/secrets/sec.yaml";
-        isReadOnly = true;
-      };
-      "/var/lib/sops-nix/keys.txt" = {
-        hostPath = "/home/victor7w7r/.config/sops/age/keys.txt";
-        isReadOnly = true;
+      "/run/secrets/couchdb-admins.ini" = {
+        hostPath = "/run/secrets/couchdb-admins.ini";
       };
     };
 
     config =
-      { pkgs, config, ... }:
+      { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [
           curl
@@ -43,29 +38,17 @@
         networking.firewall.allowedTCPPorts = [ 5984 ];
         system.stateVersion = "26.05";
 
-        imports = [ inputs.sops-nix.nixosModules.sops ];
-
-        sops = {
-          age.keyFile = "/var/lib/sops-nix/keys.txt";
-          defaultSopsFile = "/var/lib/sops-nix/secrets.yaml";
-          validateSopsFiles = false;
-          secrets.password-db = {
-            owner = "couchdb";
-          };
-          templates."couchdb-admins.ini" = {
-            owner = "couchdb";
-            content = ''
-              [admins]
-              admin = ${config.sops.placeholder.password-db}
-            '';
-          };
-        };
-
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
-          extraConfigFiles = [ config.sops.templates."couchdb-admins.ini".path ];
+          extraConfigFiles = [ "/run/secrets/couchdb-admins.ini" ];
         };
+
+        systemd.tmpfiles.rules = [
+          "d /opt/couchdb/data 0770 couchdb couchdb - -"
+          "d /opt/couchdb/etc/local.d 0770 couchdb couchdb - -"
+          "d /run/secrets/couchdb-admins.ini 0770 couchdb couchdb - -"
+        ];
 
         systemd.services.couchdb-healthcheck = {
           description = "CouchDB Healthcheck";

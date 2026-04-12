@@ -98,10 +98,18 @@
     defaultSopsFile = ./secrets/sec.yaml;
     age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
+      password-db.owner = "couchdb";
       seckey-d = { };
       ssh-vm-pub = { };
       ssh-vm-key = { };
       age-vm-key = { };
+    };
+    templates."couchdb-admins.ini" = {
+      owner = "couchdb";
+      content = ''
+        [admins]
+        admin = ${config.sops.placeholder.password-db}
+      '';
     };
   };
 }
