@@ -60,9 +60,8 @@
           useHostResolvConf = lib.mkForce false;
           nftables.enable = false;
           firewall.enable = false;
-          resolvconf.enable = true;
         };
-        services.resolved.enable = false;
+        services.resolved.enable = true;
         services.couchdb = {
           enable = true;
           bindAddress = "0.0.0.0";
