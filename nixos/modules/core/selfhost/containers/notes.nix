@@ -5,10 +5,7 @@
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.120/24";
-    nameservers = [
-      "192.168.1.1"
-      "8.8.8.8"
-    ];
+
     forwardPorts = [
       {
         containerPort = 5984;
@@ -57,6 +54,10 @@
         boot.isContainer = true;
         networking = {
           useHostResolvConf = lib.mkForce false;
+          nameservers = [
+            "192.168.1.1"
+            "8.8.8.8"
+          ];
           firewall = {
             enable = true;
             allowedTCPPorts = [
