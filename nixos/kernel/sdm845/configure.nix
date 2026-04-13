@@ -6,7 +6,7 @@
 }:
 let
   majorMinor = lib.versions.majorMinor kernelData.sdm845.version;
-  fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
+  fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData; });
   localVer = "-v7w7r-sdm845";
   config = (import ./config.nix);
   patches = [
@@ -42,6 +42,6 @@ pkgs.stdenv.mkDerivation {
 
   passthru = {
     inherit localVer patches;
-    version = kernelData.linux.version;
+    version = kernelData.sdm845.version;
   };
 }

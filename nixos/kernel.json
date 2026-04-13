@@ -55,7 +55,7 @@
     "domain": "codeberg.org",
     "owner": "sdm845",
     "repo": "linux",
-    "version": "6.19.0-rc4-next-20260106",
+    "version": "6.19.0",
     "rev": "dc7b19cffd9ef96b28da5441061ff26dce1025a6",
     "hash": "sha256-5DJ/G7I193TVnVn08dA0UYtzSf6g/Us6/ep8DCaFAdQ="
   }

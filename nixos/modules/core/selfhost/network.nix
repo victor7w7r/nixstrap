@@ -11,7 +11,6 @@
     interfaces."enp1s0".wakeOnLan.enable = true;
     useNetworkd = true;
     useDHCP = false;
-    trustedInterfaces = [ "ve-+" ];
     nat = {
       enable = true;
       internalInterfaces = [ "ve-+" ];
