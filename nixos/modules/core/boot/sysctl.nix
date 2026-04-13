@@ -35,6 +35,7 @@
     "net.ipv6.neigh.default.gc_thresh3" = 8192;
     "net.ipv4.ip_forward" = 1;
     "net.ipv4.conf.all.accept_redirects" = 0;
+    "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv4.conf.default.accept_redirects" = 0;
     "net.ipv4.conf.all.secure_redirects" = 0;
     "net.ipv4.conf.all.send_redirects" = 0;

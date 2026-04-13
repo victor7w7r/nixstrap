@@ -3,8 +3,9 @@
   imports = [
     ./containers
     ./harmonia.nix
-    ./proxmox.nix
+    ./virt.nix
     ./sleep.nix
+    ./network.nix
     ./tunnel.nix
   ];
 }
