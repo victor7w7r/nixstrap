@@ -98,6 +98,7 @@
     defaultSopsFile = ./secrets/sec.yaml;
     age.sshKeyPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
+      cloudflare-token = { };
       password-db = { };
       seckey-d = { };
       ssh-vm-pub = { };

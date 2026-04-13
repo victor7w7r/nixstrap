@@ -2,22 +2,12 @@
   config,
   ...
 }:
-let
-  vars = config.media.config;
-  dataDir = "/nix/persist/cloud";
-in
 {
   media.gateway.services.seafile = {
     port = 10080;
     settings.bypassAuth = true;
     exposeViaTailscale = true;
   };
-
-  sops.secrets.seafile-env = { };
-
-  systemd.tmpfiles.rules = [
-    "d ${dataDir} 0750 ${vars.user} ${vars.group} -"
-  ];
 
   virtualisation.oci-containers.containers.seafile = {
     #https://manual.seafile.com/11.0/docker/docker-compose/ce/11.0/docker-compose.yml
@@ -36,7 +26,7 @@ in
       REDIS_PORT = "6379";
     };
     environmentFiles = [ config.sops.secrets.seafile-env.path ];
-    volumes = [ "${dataDir}:/shared" ];
+    volumes = [ "/nix/persist/cloud:/shared" ];
     ports = [ "10080:80" ];
     extraOptions = [ "--add-host=host.containers.internal:host-gateway" ];
   };

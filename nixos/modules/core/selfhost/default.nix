@@ -5,5 +5,6 @@
     ./harmonia.nix
     ./proxmox.nix
     ./sleep.nix
+    ./tunnel.nix
   ];
 }

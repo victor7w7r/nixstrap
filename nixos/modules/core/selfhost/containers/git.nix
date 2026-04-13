@@ -27,11 +27,11 @@
     config =
       { ... }:
       {
+        system.stateVersion = "26.05";
         networking.firewall.allowedTCPPorts = [
           2222
           3001
         ];
-        system.stateVersion = "26.05";
         services.gogs = {
           enable = true;
           stateDir = "/var/lib/gogs";
