@@ -178,6 +178,8 @@
   "-d PROFILING"
   "-d SECURITY_SELINUX"
   "-d SECURITY_TOMOYO"
+  "-d XFS_FS"
+  "-d BTRFS_FS"
 
   "-d STAGING"
   "-d SPARD_WLAN_SUPPORT"

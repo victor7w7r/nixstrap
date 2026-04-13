@@ -139,7 +139,7 @@ in
           xargs -I % cp -a --reflink=auto % -t ./rootImage/nix/store/ < ${closureInfo}/store-paths
           (
             GLOBIGNORE=".:.."
-            shopt -u dotglobed
+            shopt -u dotglob
 
             for f in ./files/*; do
                 cp -a --reflink=auto -t ./rootImage/ "$f"

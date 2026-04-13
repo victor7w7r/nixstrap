@@ -43,6 +43,12 @@ in
           inherit kconfigToNix configure;
         };
 
+        installTargets = [ "modules_install" ];
+        installFlags = [
+          "INSTALL_MOD_PATH=$(out)"
+          "INSTALL_PATH=$(out)"
+        ];
+
         configurePhase = ''
           runHook preConfigure
 
