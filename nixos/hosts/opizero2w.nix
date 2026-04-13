@@ -1,9 +1,9 @@
 {
   lib,
   config,
+  modulesPath,
   pkgs,
   kernelData,
-  host,
   ...
 }:
 let
@@ -16,7 +16,30 @@ let
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
+
   imports = [
+    (modulesPath + "/installer/sd-card/sd-image.nix")
+  ];
+  sdImage = {
+    firmwareSize = 32;
+    populateFirmwareCommands = "";
+
+    populateRootCommands = ''
+      mkdir -p ./files/boot
+      ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+        -c ${config.system.build.toplevel} \
+        -d ./files/boot
+    '';
+
+    postBuildCommands = ''
+      dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img \
+        bs=1024 seek=8 \
+        conv=notrunc
+    '';
+  };
+
+  /*
+    imports = [
     (import ./lib/sdcard.nix {
       inherit config pkgs host;
       rootVolumeLabel = "OPIZERO2W";
@@ -28,7 +51,8 @@ in
       '';
       postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
     })
-  ];
+    ];
+  */
 
   nixpkgs.overlays = [
     (_final: super: {
