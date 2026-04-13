@@ -13,7 +13,10 @@
     useDHCP = false;
     nat = {
       enable = true;
-      internalInterfaces = [ "vb-+" ];
+      internalInterfaces = [
+        "ve-+"
+        "vb-+"
+      ];
       externalInterface = "br0";
     };
     nameservers = [
