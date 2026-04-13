@@ -25,7 +25,7 @@
   "patches": {
     "repo": "kernel-patches",
     "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
-    "hash": "sha256-AET51FLI4KNQHff8LIETou8JtGBiBxTGXbz51P7lrbM=",
+    "hash": "sha256-jGs8YAxf2L/5ZtB8cKnQHdlxThhJ2UjyLt5RXqtOtI8=",
     "legacyHash": "sha256-KJuzgInoyz4XCTeXD0Leu1MhVCqd8/AjRsvn604BKPg="
   },
   "tachyon": {
