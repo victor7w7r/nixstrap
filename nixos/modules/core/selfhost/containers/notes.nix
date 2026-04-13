@@ -53,9 +53,10 @@
         system.stateVersion = "26.05";
         boot.isContainer = true;
         networking = {
+          defaultGateway = "192.168.1.1";
           useHostResolvConf = lib.mkForce false;
           nameservers = [
-            "192.168.1.1"
+            "1.1.1.1"
             "8.8.8.8"
           ];
           firewall = {

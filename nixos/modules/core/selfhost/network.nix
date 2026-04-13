@@ -11,10 +11,11 @@
     interfaces."enp1s0".wakeOnLan.enable = true;
     useNetworkd = true;
     useDHCP = false;
+    trustedInterfaces = [ "ve-+" ];
     nat = {
       enable = true;
       internalInterfaces = [ "ve-+" ];
-      externalInterface = "enp1s0";
+      externalInterface = "br0";
     };
     nameservers = [
       "1.1.1.1"
