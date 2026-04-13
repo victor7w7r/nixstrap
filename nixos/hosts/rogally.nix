@@ -59,6 +59,7 @@ in
     resumeDevice = "/dev/vg0/swapcrypt";
     kernelParams = [
       "resume=/dev/vg0/swapcrypt"
+      "amd_pstate=passive"
     ]
     ++ params { };
     kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
