@@ -125,7 +125,15 @@
         ];
 
         virtualisation = {
-          docker.enable = true;
+          docker = {
+            enable = true;
+            daemon.settings = {
+              dns = [
+                "8.8.8.8"
+                "1.1.1.1"
+              ];
+            };
+          };
           oci-containers = {
             backend = "docker";
             containers."obsidian-web" = {
