@@ -129,7 +129,7 @@
           oci-containers = {
             backend = "docker";
             containers."obsidian-web" = {
-              image = "ghcr.io/sytone/obsidian-remote:latest";
+              image = "sytone/obsidian-remote:latest";
               autoStart = true;
               environment = { };
               ports = [
