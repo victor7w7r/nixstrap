@@ -7,7 +7,6 @@
 let
   configure = pkgs.callPackage ./configure.nix { inherit kernelData; };
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  patches = configure.passthru.patches;
   kconfigFile = pkgs.writeText "kconfig-mobile" (
     lib.concatStringsSep "\n" (
       lib.mapAttrsToList (name: value: "${name}=${value}") (import ./config.aarch64-linux.nix)
@@ -19,7 +18,6 @@ in
   build =
     (pkgs.mobile-nixos.kernel-builder {
       inherit (configure) src;
-      inherit patches;
       configfile = configure;
       nativeBuildInputs = with pkgs; [
         python3

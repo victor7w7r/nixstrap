@@ -13,7 +13,7 @@ runbuild() {
 }
 
 if res=$(runbuild $QCOMCONFIG); then
-    cat "$res" >"kernel/adm845/config.aarch64-linux.nix"
+    cat "$res" >"kernel/sdm845/config.aarch64-linux.nix"
 else
     exit 1
 fi
