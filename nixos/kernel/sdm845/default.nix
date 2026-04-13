@@ -30,13 +30,6 @@ in
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
       isCompressed = "gz";
       installTargets = [ "modules_install" ];
-
-      postInstall = ''
-        echo ":: Installing Image.gz kernel"
-        cp -v "$buildRoot/arch/arm64/boot/Image.gz" "$out/Image.gz"
-        ln -sv Image.gz "$out/vmlinuz" || true
-        depmod -b "$out" -F "$buildRoot/System.map" "${configure.version}"
-      '';
     }).overrideAttrs
       (attrs: {
         passthru = attrs.passthru // {
@@ -48,6 +41,16 @@ in
           "INSTALL_MOD_PATH=$(out)"
           "INSTALL_PATH=$(out)"
         ];
+
+        postInstall = ''
+          mkdir -p $out
+
+          cp -v arch/arm64/boot/Image.gz $out/Image.gz
+          ln -sv Image.gz "$out/vmlinuz" || true
+
+          cp .config $out/config-${configure.version}
+          depmod -b $out -F System.map "${configure.version}"
+        '';
 
         configurePhase = ''
           runHook preConfigure
