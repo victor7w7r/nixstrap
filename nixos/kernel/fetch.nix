@@ -71,6 +71,7 @@
               cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch" || true
 
               ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
+              -x "*/drivers/input/joystick/xpad.c" \
               "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch || true
               cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch" || true
             ''

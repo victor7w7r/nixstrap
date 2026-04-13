@@ -21,6 +21,7 @@
     config =
       { pkgs, ... }:
       {
+        system.stateVersion = "26.05";
         networking.firewall.allowedTCPPorts = [ 25565 ];
         services.minecraft-server = {
           enable = true;
