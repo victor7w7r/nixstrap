@@ -4,12 +4,9 @@
   pkgs,
   kernelData,
   inputs,
+  device ? "fajita",
   ...
 }:
-let
-  majorMinor = lib.versions.majorMinor kernelData.sdm845.version;
-  fetch = (pkgs.callPackage ../../kernel/fetch.nix { inherit kernelData majorMinor; });
-in
 {
   services.udev.extraRules = ''
     SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT}=="1", SUBSYSTEMS=="input", ATTRS{name}=="pmi8998_haptics", TAG+="uaccess", ENV{FEEDBACKD_TYPE}="vibra"
@@ -67,7 +64,7 @@ in
           pagesize = "4096";
         };
         appendDTB = lib.mkDefault [
-          "dtbs/qcom/sdm845-${config.mobile.device.name}.dtb"
+          "${pkgs.callPackage ../../kernel/sdm845/dtb.nix { inherit kernelData device; }}"
         ];
       };
     };
