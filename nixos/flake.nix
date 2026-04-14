@@ -250,14 +250,14 @@
             (import ./pkgs)
             (import ./hosts/fajita.nix)
             impermanence.nixosModules.impermanence
-            (import "${inputs.mobile-nixos}/modules/module-list.nix")
             home-manager.nixosModules.home-manager
             nur.modules.nixos.default
             nixvim.nixosModules.nixvim
             sops-nix.nixosModules.sops
             (import ./modules/core)
             (import ./modules/home)
-          ];
+          ]
+          ++ (import "${inputs.mobile-nixos}/modules/module-list.nix");
           specialArgs = {
             host = "v7w7r-fajita";
             system = systemarm;
