@@ -112,7 +112,6 @@
       proxmox-nixos,
       impermanence,
       home-manager,
-      opi-zero2w,
       nix-flatpak,
       nixvim,
       sops-nix,
@@ -198,10 +197,7 @@
             (
               { ... }:
               {
-                nixpkgs.crossSystem = {
-                  config = "aarch64-unknown-linux-gnu";
-                  system = "aarch64-linux";
-                };
+                nixpkgs.hostPlatform = "aarch64-linux";
                 nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
               }
             )
@@ -239,10 +235,7 @@
             (
               { ... }:
               {
-                nixpkgs.crossSystem = {
-                  config = "aarch64-unknown-linux-gnu";
-                  system = "aarch64-linux";
-                };
+                nixpkgs.hostPlatform = "aarch64-linux";
                 nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
               }
             )
