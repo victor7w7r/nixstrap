@@ -1,6 +1,6 @@
-{ ... }:
+{ host, ... }:
 {
-  services.easyeffects.enable = true;
+  services.easyeffects.enable = host != "v7w7r-fajita";
   xdg.configFile =
     let
       dir = "easyeffects/db";
