@@ -17,7 +17,7 @@
       deepfilternet
       lsp-plugins
       libebur128
-      zam-plugins
+      #zam-plugins
       zita-convolver
       mda_lv2
       speexdsp
