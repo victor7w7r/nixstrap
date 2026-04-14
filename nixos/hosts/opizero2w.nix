@@ -31,8 +31,8 @@ let
         p.pyelftools
       ]))
     ];
-
   };
+
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
@@ -55,92 +55,96 @@ in
     cacheDir = "/nix/var/cache/ccache-kernel";
   };
 
-  fileSystems."/nix".neededForBoot = true;
+  /*
+    fileSystems."/nix".neededForBoot = true;
 
-  disko.devices = {
-    nodev."/" = {
-      fsType = "ext4";
-      mountOptions = [
-        "noatime"
-        "defaults"
-        /*"size=1G"*/
-      ];
-    };
+      disko.devices = {
+        nodev."/" = {
+          fsType = "tmpfs";
+          mountOptions = [
+            "relatime"
+            # "size=1G"
+          ];
+        };
 
-    disk = {
-      sd = {
-        type = "disk";
-        device = "/dev/mmcblk0";
-        content = {
-          type = "gpt";
-          partitions = {
-            firmware = {
-              size = "1024M";
-              label = "FIRMWARE";
-              type = "0700";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot/firmware";
-                mountOptions = [
-                  "noatime"
-                  "noauto"
-                  "x-systemd.automount"
-                  "x-systemd.idle-timeout=1min"
-                ];
-              };
-            };
+        disk = {
+          sd = {
+            type = "disk";
+            device = "/dev/mmcblk0";
+            content = {
+              type = "gpt";
+              partitions = {
+                firmware = {
+                  size = "1024M";
+                  label = "FIRMWARE";
+                  type = "0700";
+                  content = {
+                    type = "filesystem";
+                    format = "vfat";
+                    mountpoint = "/boot/firmware";
+                    mountOptions = [
+                      "noatime"
+                      "noauto"
+                      "x-systemd.automount"
+                      "x-systemd.idle-timeout=1min"
+                    ];
+                  };
+                };
 
-            boot = {
-              size = "512M";
-              label = "BOOT";
-              type = "0700";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = [
-                  "noatime"
-                  "noauto"
-                  "x-systemd.automount"
-                  "x-systemd.idle-timeout=1min"
-                ];
-              };
-            };
+                boot = {
+                  size = "512M";
+                  label = "BOOT";
+                  type = "0700";
+                  content = {
+                    type = "filesystem";
+                    format = "vfat";
+                    mountpoint = "/boot";
+                    mountOptions = [
+                      "noatime"
+                      "noauto"
+                      "x-systemd.automount"
+                      "x-systemd.idle-timeout=1min"
+                    ];
+                  };
+                };
 
-            nix = {
-              label = "NIX";
-              size = "100%";
-              content = {
-                type = "filesystem";
-                mountpoint = "/nix";
-                format = "ext4";
-                mountOptions = [
-                  "lazytime"
-                  "noatime"
-                  "defaults"
-                  /*"compress_chksum"
-                  "compress_algorithm=zstd:3"
-                  "age_extent_cache"
-                  "compress_extension=so"
-                  "inline_xattr"
-                  "inline_data"
-                  "inline_dentry"
-                  "errors=remount-ro"
-                  "compress_extension=bin"
-                  "atgc"
-                  "flush_merge"
-                  "discard"
-                  "checkpoint_merge"
-                  "gc_merge"*/
-                ];
+                nix = {
+                  label = "NIX";
+                  size = "100%";
+                  content = {
+                    type = "filesystem";
+                    mountpoint = "/nix";
+                    format = "ext4";
+                    mountOptions = [
+                      "lazytime"
+                      "noatime"
+                      "defaults"
+                      /*
+                        "compress_chksum"
+                        "compress_algorithm=zstd:3"
+                        "age_extent_cache"
+                        "compress_extension=so"
+                        "inline_xattr"
+                        "inline_data"
+                        "inline_dentry"
+                        "errors=remount-ro"
+                        "compress_extension=bin"
+                        "atgc"
+                        "flush_merge"
+                        "discard"
+                        "checkpoint_merge"
+                        "gc_merge"
+                    ];
+                  };
+                };
               };
             };
           };
         };
       };
-    };
-  };
+
+      fileSystems."/".fsType = lib.mkDefault "tmpfs";
+  */
 
   boot = {
     kernelParams = [

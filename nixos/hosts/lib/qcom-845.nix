@@ -6,11 +6,14 @@
   inputs,
   ...
 }:
+let
+  majorMinor = lib.versions.majorMinor kernelData.sdm845.version;
+  fetch = (pkgs.callPackage ../../kernel/fetch.nix { inherit kernelData majorMinor; });
+in
 {
   services.udev.extraRules = ''
     SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT}=="1", SUBSYSTEMS=="input", ATTRS{name}=="pmi8998_haptics", TAG+="uaccess", ENV{FEEDBACKD_TYPE}="vibra"
   '';
-
   environment.systemPackages = [ (pkgs.callPackage ./custom/sdm845-alsa.nix { }) ];
   hardware.enableRedistributableFirmware = true;
   mobile.quirks.qualcomm.sdm845-modem.enable = true;
@@ -63,7 +66,9 @@
           offset_tags = "0x00000100";
           pagesize = "4096";
         };
-        appendDTB = lib.mkDefault [ "dtbs/qcom/sdm845-${config.mobile.device.name}.dtb" ];
+        appendDTB = lib.mkDefault [
+          "${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-${config.mobile.device.name}.dtb"
+        ];
       };
     };
   };
