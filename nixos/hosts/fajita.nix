@@ -6,6 +6,15 @@
   pkgs,
   ...
 }:
+let
+  kernel =
+    pkgs.callPackage ../kernel/sdm845
+      {
+        inherit kernelData;
+        device = "fajita";
+      }
+      .build;
+in
 {
   imports = [
     (import ./lib/qcom-845.nix {
@@ -19,7 +28,7 @@
     })
   ]
   ++ (import "${inputs.mobile-nixos}/modules/module-list.nix");
-
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor kernel);
   zramSwap = {
     enable = true;
     algorithm = "zstd";

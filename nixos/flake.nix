@@ -231,9 +231,8 @@
           };
         };
 
-        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.u-boot.disk-image"
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-bootimg"
-        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.rootfs"
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.generatedFilesystems.rootfs"
         fajita = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
