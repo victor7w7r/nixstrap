@@ -28,6 +28,7 @@ in
       isModular = true;
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
+      makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
       isCompressed = "gz";
       installTargets = [ "modules_install" ];
     }).overrideAttrs
@@ -50,6 +51,10 @@ in
 
           cp .config $out/config-${configure.version}
           depmod -b $out -F System.map "${configure.version}"
+
+          make dtbs $makeFlags
+          mkdir -p $out/dtbs/qcom
+          cp arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts $out/dtbs/qcom/
         '';
 
         configurePhase = ''
