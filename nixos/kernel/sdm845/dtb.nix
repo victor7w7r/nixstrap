@@ -10,7 +10,7 @@ let
 in
 pkgs.stdenv.mkDerivation {
   name = "dtb-sdm845";
-  src = "${fetch.sdm845}/arch/arm64/boot/dts/qcom";
+  src = "${fetch.sdm845}";
 
   nativeBuildInputs = [
     pkgs.dtc
@@ -18,7 +18,11 @@ pkgs.stdenv.mkDerivation {
   ];
 
   buildPhase = ''
-    cpp -nostdinc -I . -I include -undef -x assembler-with-cpp sdm845-oneplus-${device}.dts > sdm845-oneplus-${device}.tmp.dts
+    cpp -nostdinc \
+        -I . \
+        -I include \
+        -undef -x assembler-with-cpp \
+        arch/arm64/boot/dts/qcom/sdm845-oneplus-${device}.dts > sdm845-oneplus-${device}.tmp.dts
     dtc -I dts -O dtb -o sdm845-oneplus-${device}.dtb sdm845-oneplus-${device}.tmp.dts
   '';
 
