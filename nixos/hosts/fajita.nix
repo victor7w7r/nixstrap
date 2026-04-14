@@ -7,13 +7,7 @@
   ...
 }:
 let
-  kernel =
-    pkgs.callPackage ../kernel/sdm845
-      {
-        inherit kernelData;
-        device = "fajita";
-      }
-      .build;
+  kernel = (pkgs.callPackage ../kernel/sdm845 { inherit kernelData; }).build;
 in
 {
   imports = [
