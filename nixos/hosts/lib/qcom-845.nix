@@ -64,7 +64,9 @@
           pagesize = "4096";
         };
         appendDTB = lib.mkDefault [
-          "${pkgs.callPackage ../../kernel/sdm845/dtb.nix { inherit kernelData device; }}"
+          "${
+            pkgs.callPackage ../../kernel/sdm845/dtb.nix { inherit kernelData device; }
+          }/sdm845-oneplus-${device}.dtb"
         ];
       };
     };
