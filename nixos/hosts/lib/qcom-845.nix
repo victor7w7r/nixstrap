@@ -11,7 +11,7 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT}=="1", SUBSYSTEMS=="input", ATTRS{name}=="pmi8998_haptics", TAG+="uaccess", ENV{FEEDBACKD_TYPE}="vibra"
   '';
-  environment.systemPackages = [ (pkgs.callPackage ./custom/sdm845-alsa.nix { }) ];
+  environment.systemPackages = [ (pkgs.callPackage ../custom/sdm845-alsa.nix { }) ];
   hardware.enableRedistributableFirmware = true;
   mobile.quirks.qualcomm.sdm845-modem.enable = true;
   mobile.quirks.audio.alsa-ucm-meld = true;
