@@ -67,7 +67,7 @@ in
           pagesize = "4096";
         };
         appendDTB = lib.mkDefault [
-          "qcom/sdm845-${config.mobile.device.name}.dtb"
+          "dtbs/qcom/sdm845-${config.mobile.device.name}.dtb"
         ];
       };
     };
