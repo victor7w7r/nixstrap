@@ -55,15 +55,15 @@ in
     cacheDir = "/nix/var/cache/ccache-kernel";
   };
 
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
 
   disko.devices = {
     nodev."/" = {
-      fsType = "tmpfs";
+      fsType = "ext4";
       mountOptions = [
-        "relatime"
-        "mode=755"
-        "size=1G"
+        "noatime"
+        "defaults"
+        /*"size=1G"*/
       ];
     };
 
@@ -114,11 +114,12 @@ in
               content = {
                 type = "filesystem";
                 mountpoint = "/nix";
-                format = "f2fs";
+                format = "ext4";
                 mountOptions = [
                   "lazytime"
                   "noatime"
-                  "compress_chksum"
+                  "defaults"
+                  /*"compress_chksum"
                   "compress_algorithm=zstd:3"
                   "age_extent_cache"
                   "compress_extension=so"
@@ -131,7 +132,7 @@ in
                   "flush_merge"
                   "discard"
                   "checkpoint_merge"
-                  "gc_merge"
+                  "gc_merge"*/
                 ];
               };
             };

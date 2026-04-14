@@ -41,6 +41,10 @@
       url = "https://flakehub.com/f/aksiksi/compose2nix/0.3.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -104,6 +108,7 @@
       self,
       nix-cachyos-kernel,
       nur,
+      disko,
       proxmox-nixos,
       impermanence,
       home-manager,
@@ -187,31 +192,6 @@
 
       nixosConfigurations = {
         #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
-        opi-installer = nixpkgs.lib.nixosSystem {
-          system = systemarm;
-          modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
-            (
-              { pkgs, ... }:
-              {
-                nixpkgs.crossSystem = {
-                  config = "aarch64-unknown-linux-gnu";
-                  system = "aarch64-linux";
-                };
-                nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-                networking.hostName = "opi-installer";
-                boot.loader.grub.enable = false;
-                boot.loader.generic-extlinux-compatible.enable = true;
-                services.openssh.enable = true;
-                users.users.root.initialHashedPassword = "!";
-                environment.systemPackages = with pkgs; [
-                  git
-                  htop
-                ];
-              }
-            )
-          ];
-        };
-
         opizero2w = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
@@ -230,6 +210,8 @@
             (import ./hosts/opizero2w.nix)
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            disko.nixosModules.disko
             nur.modules.nixos.default
             nixvim.nixosModules.nixvim
             sops-nix.nixosModules.sops
