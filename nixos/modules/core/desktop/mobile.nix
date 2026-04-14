@@ -1,23 +1,30 @@
 { pkgs, ... }:
+let
+  ini = pkgs.formats.ini { };
+in
 {
+  environment.etc."xdg/kdeglobals".source = ini.generate "kdeglobals" {
+    KDE.LookAndFeelPackage = "org.kde.plasma.phone";
+  };
+  environment.etc."xdg/kwinrc".source = ini.generate "kwinrc" {
+    Wayland."InputMethod[$e]" =
+      "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+    Wayland.VirtualKeyboardEnabled = "true";
+    "org.kde.kdecoration2".NoPlugin = "true";
+  };
+
   services = {
-    libinput.enable = true;
-    xserver = {
-      enable = true;
-      desktopManager.plasma5.mobile.enable = true;
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "victor7w7wr";
-        };
-        defaultSession = "plasma-mobile";
-        sessionPackages = [ pkgs.kdePackages.plasma-mobile ];
-        lightdm = {
-          enable = true;
-          extraSeatDefaults = ''
-            session-cleanup-script=${pkgs.procps}/bin/pkill -P1 -fx ${pkgs.lightdm}/sbin/lightdm
-          '';
-        };
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        settings.General.DisplayServer = "wayland";
+      };
+      sessionPackages = [ pkgs.kdePackages.plasma-mobile ];
+      defaultSession = "plasma-mobile";
+      autoLogin = {
+        enable = true;
+        user = "victor7w7wr";
       };
     };
   };
