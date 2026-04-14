@@ -41,6 +41,7 @@ let
           (host != "v7w7r-nixvm")
           && (host != "v7w7r-youyeetoox1")
           && (host != "v7w7r-opizero2w")
+          && (host != "v7w7r-fajita")
           && (user != "root")
         then
           [
