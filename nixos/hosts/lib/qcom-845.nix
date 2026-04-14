@@ -67,7 +67,7 @@ in
           pagesize = "4096";
         };
         appendDTB = lib.mkDefault [
-          "${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-${config.mobile.device.name}.dtb"
+          "qcom/sdm845-${config.mobile.device.name}.dtb"
         ];
       };
     };
