@@ -52,10 +52,6 @@
       {
         system.stateVersion = "26.05";
         boot.isContainer = true;
-        boot.kernel.sysctl = {
-          "net.ipv6.conf.all.disable_ipv6" = 1;
-          "net.ipv6.conf.default.disable_ipv6" = 1;
-        };
         networking = {
           defaultGateway = "192.168.1.100";
           useHostResolvConf = lib.mkForce false;

@@ -6,8 +6,8 @@
     "hash": "sha256-vRszbKgSN+3DSWfyZ7RUhDn/KliucXU8XLy7YJe5TZQ="
   },
   "linux-legacy": {
-    "version": "6.12.81",
-    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.81.tar.xz",
+    "version": "6.18.22",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.22.tar.xz",
     "hash": "sha256-wrCcNkOUanCXxTceHcsSPGZQXqMPr9Cwoi3B1fAiiEc="
   },
   "bunker": {
@@ -55,7 +55,7 @@
     "domain": "codeberg.org",
     "owner": "sdm845",
     "repo": "linux",
-    "version": "6.19.0",
+    "version": "6.19.0-rc4-next-20260106",
     "rev": "dc7b19cffd9ef96b28da5441061ff26dce1025a6",
     "hash": "sha256-5DJ/G7I193TVnVn08dA0UYtzSf6g/Us6/ep8DCaFAdQ="
   }

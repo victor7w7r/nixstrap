@@ -1418,6 +1418,22 @@
     },
     "nixpkgs_12": {
       "locked": {
+        "lastModified": 1772047000,
+        "narHash": "sha256-7DaQVv4R97cii/Qdfy4tmDZMB2xxtyIvNGSwXBBhSmo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1267bb4920d0fc06ea916734c11b0bf004bbe17e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_13": {
+      "locked": {
         "lastModified": 1719082008,
         "narHash": "sha256-jHJSUH619zBQ6WdC21fFAlDxHErKVDJ5fpN0Hgx4sjs=",
         "owner": "NixOS",
@@ -1432,7 +1448,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_13": {
+    "nixpkgs_14": {
       "locked": {
         "lastModified": 1744536153,
         "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
@@ -1448,7 +1464,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_14": {
+    "nixpkgs_15": {
       "locked": {
         "lastModified": 1708655239,
         "narHash": "sha256-ZrP/yACUvDB+zbqYJsln4iwotbH6CTZiTkANJ0AgDv4=",
@@ -1654,6 +1670,24 @@
         "type": "github"
       }
     },
+    "opi-zero2w": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_12"
+      },
+      "locked": {
+        "lastModified": 1772415536,
+        "narHash": "sha256-dS4XyDDVCjGEFDX4zgaalQqMlfWL7JfeLGJpLwcAAFE=",
+        "owner": "virusdave",
+        "repo": "nixos-opi-zero2w",
+        "rev": "1337ecfb2443f059f8971eb89eae487fbc6b0dcc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "virusdave",
+        "repo": "nixos-opi-zero2w",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -1724,7 +1758,7 @@
     "pyprland": {
       "inputs": {
         "flake-compat": "flake-compat_7",
-        "nixpkgs": "nixpkgs_12",
+        "nixpkgs": "nixpkgs_13",
         "pyproject-nix": "pyproject-nix",
         "systems": "systems_9"
       },
@@ -1789,6 +1823,7 @@
         "nixpkgs": "nixpkgs_10",
         "nixvim": "nixvim",
         "nur": "nur",
+        "opi-zero2w": "opi-zero2w",
         "plasma-manager": "plasma-manager",
         "proxmox-nixos": "proxmox-nixos",
         "pyprland": "pyprland",
@@ -1817,7 +1852,7 @@
     },
     "rust-overlay": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13"
+        "nixpkgs": "nixpkgs_14"
       },
       "locked": {
         "lastModified": 1747190175,
@@ -2027,7 +2062,7 @@
     },
     "thorium": {
       "inputs": {
-        "nixpkgs": "nixpkgs_14"
+        "nixpkgs": "nixpkgs_15"
       },
       "locked": {
         "lastModified": 1710661150,

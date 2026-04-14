@@ -1,7 +1,7 @@
 {
   lib,
+  host,
   config,
-  modulesPath,
   pkgs,
   kernelData,
   ...
@@ -18,28 +18,6 @@ in
 {
 
   imports = [
-    (modulesPath + "/installer/sd-card/sd-image.nix")
-  ];
-  sdImage = {
-    firmwareSize = 32;
-    populateFirmwareCommands = "";
-
-    populateRootCommands = ''
-      mkdir -p ./files/boot
-      ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
-        -c ${config.system.build.toplevel} \
-        -d ./files/boot
-    '';
-
-    postBuildCommands = ''
-      dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img \
-        bs=1024 seek=8 \
-        conv=notrunc
-    '';
-  };
-
-  /*
-    imports = [
     (import ./lib/sdcard.nix {
       inherit config pkgs host;
       rootVolumeLabel = "OPIZERO2W";
@@ -51,8 +29,7 @@ in
       '';
       postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
     })
-    ];
-  */
+  ];
 
   nixpkgs.overlays = [
     (_final: super: {
@@ -68,9 +45,9 @@ in
 
   boot = {
     kernelParams = lib.mkDefault [
-      "console=ttyS0,115200"
       "console=tty1"
-      "earlycon=uart,mmio32,0x05000000"
+      "video=HDMI-A-1:1080p60"
+      "earlycon=uart8250,mmio32,0x05000000"
     ];
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
@@ -109,7 +86,6 @@ in
     firmware = [ (pkgs.callPackage ./custom/sunxi.nix { }) ];
     deviceTree = {
       enable = true;
-      filter = "sun50i-h618-orangepi-zero2w.dtb";
       name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
     };
   };

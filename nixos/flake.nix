@@ -45,6 +45,7 @@
     gestures.url = "github:ferstar/gestures";
     nix-gaming.url = "github:fufexan/nix-gaming";
     thorium.url = "github:almahdi/nix-thorium";
+    opi-zero2w.url = "github:virusdave/nixos-opi-zero2w";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
@@ -106,6 +107,7 @@
       proxmox-nixos,
       impermanence,
       home-manager,
+      opi-zero2w,
       nix-flatpak,
       nixvim,
       sops-nix,
@@ -185,6 +187,31 @@
 
       nixosConfigurations = {
         #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
+        opi-installer = nixpkgs.lib.nixosSystem {
+          system = systemarm;
+          modules = opi-zero2w.lib.withOpiZero2wInstallerEssentials [
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.crossSystem = {
+                  config = "aarch64-unknown-linux-gnu";
+                  system = "aarch64-linux";
+                };
+                nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+                networking.hostName = "opi-installer";
+                boot.loader.grub.enable = false;
+                boot.loader.generic-extlinux-compatible.enable = true;
+                services.openssh.enable = true;
+                users.users.root.initialHashedPassword = "!";
+                environment.systemPackages = with pkgs; [
+                  git
+                  htop
+                ];
+              }
+            )
+          ];
+        };
+
         opizero2w = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
