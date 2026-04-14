@@ -250,6 +250,7 @@
             (import ./pkgs)
             (import ./hosts/fajita.nix)
             impermanence.nixosModules.impermanence
+            (import "${inputs.mobile-nixos}/modules/module-list.nix")
             home-manager.nixosModules.home-manager
             nur.modules.nixos.default
             nixvim.nixosModules.nixvim

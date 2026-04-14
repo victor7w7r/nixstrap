@@ -20,9 +20,8 @@ in
         pkgs
         ;
     })
-  ]
-  ++ (import "${inputs.mobile-nixos}/modules/module-list.nix");
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor kernel);
+  ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   zramSwap = {
     enable = true;
     algorithm = "zstd";
