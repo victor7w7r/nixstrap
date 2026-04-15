@@ -228,6 +228,7 @@
         };
 
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-bootimg"
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-fastboot-images"
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.generatedFilesystems.rootfs"
         fajita = nixpkgs.lib.nixosSystem {
           system = systemarm;
@@ -236,9 +237,15 @@
               { ... }:
               {
                 nixpkgs.hostPlatform = "aarch64-linux";
-                nixpkgs.buildPlatform = "x86_64-linux";
                 nixpkgs.config.allowUnsupportedSystem = true;
-                nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+                nixpkgs.overlays = [
+                  inputs.emacs-overlay.overlay
+                  (final: prev: {
+                    cached-nix-shell = prev.cached-nix-shell.overrideAttrs (old: {
+                      CARGO_FEATURE_NO_ASM = "1";
+                    });
+                  })
+                ];
               }
             )
             (import ./configuration.nix)
