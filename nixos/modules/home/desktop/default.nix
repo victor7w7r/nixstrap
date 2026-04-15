@@ -2,7 +2,7 @@
 {
   imports =
     (
-      if (host != "v7w7r-youyeetoox1" && host != "v7w7r-opizero2w") then
+      if (host != "v7w7r-youyeetoox1" && host != "v7w7r-opizero2w" && host != "v7w7r-fajita") then
         [
           ./plasma
           ./xdg.nix

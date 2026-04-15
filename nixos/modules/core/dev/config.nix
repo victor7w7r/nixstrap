@@ -1,6 +1,5 @@
 { ... }:
 {
-  nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
   programs = {
     #aichat.enable = true;
     #aider-chat.enable = true;

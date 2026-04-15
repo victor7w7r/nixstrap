@@ -10,7 +10,7 @@
     (import ./zsh)
   ]
   ++ (
-    if username != "root" && host != "v7w7r-opizero2w" then
+    if username != "root" && host != "v7w7r-opizero2w" && host != "v7w7r-fajita" then
       [
         (import ./kitty.nix)
         (import ./services.nix)
