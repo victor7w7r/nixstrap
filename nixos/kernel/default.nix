@@ -36,11 +36,14 @@ let
       extraMakeFlags = [
         "LOCALVERSION=${configure.passthru.localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
+        "KBUILD_LDFLAGS+=--thinlto-cache-dir=/var/cache/clang-thinlto"
         "NIX_ENFORCE_NO_NATIVE=0"
         "KCFLAGS=-Wno-unknown-warning-option -Wno-ignored-optimization-argument"
       ];
     }).overrideAttrs
       (attrs: {
+        nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
+        preConfigure = import ./cache.nix + (attrs.preConfigure or "");
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           features = {

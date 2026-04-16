@@ -1,5 +1,9 @@
 { ... }:
 {
+  nix.settings.extra-sandbox-paths = [
+    "/nix/var/cache/ccache-kernel"
+    "/nix/var/cache/clang-thinlto"
+  ];
   programs = {
     #aichat.enable = true;
     #aider-chat.enable = true;

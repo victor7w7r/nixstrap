@@ -127,6 +127,7 @@ pkgs.stdenv.mkDerivation (attrs: {
     kernel.nativeBuildInputs
     ++ kernel.buildInputs
     ++ [
+      ccache
       clang_20
       llvm_20
       lld_20
@@ -134,7 +135,12 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   installPhase = "cp .config $out";
 
+  makeFlags = [
+    "KBUILD_LDFLAGS+=--thinlto-cache-dir=/nix/var/cache/clang-thinlto"
+  ];
+
   buildPhase = ''
+    ${import ./cache.nix}
     cp "${fetch.kConfig}" ".config"
 
     ${((import ./modules) { inherit host; })}

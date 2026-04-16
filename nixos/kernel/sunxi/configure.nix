@@ -77,11 +77,12 @@ pkgs.stdenv.mkDerivation {
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 
-  nativeBuildInputs = kernel.nativeBuildInputs;
+  nativeBuildInputs = with pkgs; kernel.nativeBuildInputs ++ [ ccache ];
 
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
+    ${import ../cache.nix}
 
     cp "${fetch.sunxi-kconfig}" ".config"
 

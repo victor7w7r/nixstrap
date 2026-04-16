@@ -26,12 +26,15 @@ pkgs.stdenv.mkDerivation {
     bison
     flex
     perl
+    ccache
     python3
   ];
 
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
+    ${import ../cache.nix}
+
     cp arch/arm64/configs/sdm845.config .config
 
     make $makeFlags ARCH=arm64 olddefconfig

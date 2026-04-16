@@ -42,7 +42,6 @@ in
     })
   ];
 
-  nix.settings.extra-sandbox-paths = [ "/nix/var/cache/ccache-kernel" ];
   programs.ccache = {
     enable = true;
     cacheDir = "/nix/var/cache/ccache-kernel";
