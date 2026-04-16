@@ -8,10 +8,7 @@ SRVCONFIG="serverconfig"
 
 run-build() {
     local PC=$1
-    nix build \
-        --extra-experimental-features 'nix-command flakes' \
-        -L ".#packages.x86_64-linux.${PC}" \
-        --no-link --print-out-paths
+    nix build -L ".#packages.x86_64-linux.${PC}" --no-link --print-out-paths
 }
 
 if res=$(run-build $SRVCONFIG); then

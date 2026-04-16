@@ -28,6 +28,7 @@
         ViewPropsTimestamp = "2026,4,8,6,53,20.3";
       };
       InformationPanel.dateFormat = "ShortFormat";
+      VersionControl.enabledPlugins = "Git";
       "KFileDialog Settings" = {
         "Places Icons Auto-resize" = false;
         "Places Icons Static Size" = 22;
@@ -66,7 +67,7 @@
       wallpaperfileitemaction = true;
     };
     ktrashrc."\\/home\\/victor7w7r\\/.local\\/share\\/Trash" = {
-      Days = 7;
+      Days = 4;
       LimitReachedAction = 0;
       Percent = 10;
       UseSizeLimit = true;

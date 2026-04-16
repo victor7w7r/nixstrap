@@ -9,7 +9,7 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  patches = configure.passthru.patches;
+  #patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
@@ -19,10 +19,12 @@ let
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
 
-      kernelPatches = map (file: {
+      /*
+        kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
-      }) patches;
+        }) patches;
+      */
 
       extraMakeFlags = [
         "LOCALVERSION=${configure.passthru.localVer}"

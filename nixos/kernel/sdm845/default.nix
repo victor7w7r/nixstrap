@@ -30,20 +30,14 @@ in
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
       makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
       isCompressed = "gz";
-      installTargets = [
-        "zinstall"
-        "modules_install"
-      ];
+      installTargets = [ "modules_install" ];
     }).overrideAttrs
       (attrs: {
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
 
-        installTargets = [
-          "zinstall"
-          "modules_install"
-        ];
+        installTargets = [ "modules_install" ];
         installFlags = [
           "INSTALL_MOD_PATH=$(out)"
           "INSTALL_PATH=$(out)"

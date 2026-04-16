@@ -37,6 +37,7 @@
       mokutil
       rsyncy
       p7zip
+      picocom
       phraze
       progress
       pv

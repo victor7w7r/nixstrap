@@ -73,7 +73,7 @@ let
 in
 
 pkgs.stdenv.mkDerivation {
-  inherit patches;
+  #inherit patches;
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
 

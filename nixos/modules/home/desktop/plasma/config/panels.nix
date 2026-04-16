@@ -45,7 +45,7 @@
             appearance = {
               showTooltips = true;
               highlightWindows = true;
-              indicateAudioStreams = true;
+              indicateAudioStreams = false;
               fill = true;
             };
             launchers = [
@@ -56,7 +56,6 @@
             ];
           };
         }
-        "org.kde.plasma.trash"
       ];
     }
     {

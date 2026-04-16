@@ -137,7 +137,6 @@
       helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
     in
     {
-      # nix build -L ".#nixosConfigurations.server.config.system.build.kernel"
       packages = {
         "${systemarm}" = {
           sunxiconfig =
@@ -191,6 +190,7 @@
 
       nixosConfigurations = {
         #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.sdImage"
+        #nix build -L ".#nixosConfigurations.opizero2w.config.system.build.toplevel"
         opizero2w = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
@@ -206,7 +206,6 @@
             (import ./hosts/opizero2w.nix)
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             disko.nixosModules.disko
             nur.modules.nixos.default
             nixvim.nixosModules.nixvim

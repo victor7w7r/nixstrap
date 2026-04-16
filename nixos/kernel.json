@@ -8,7 +8,7 @@
   "linux-legacy": {
     "version": "6.18.22",
     "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.22.tar.xz",
-    "hash": "sha256-wrCcNkOUanCXxTceHcsSPGZQXqMPr9Cwoi3B1fAiiEc="
+    "hash": "sha256-ojyS+vNlc4XCxrX07dj4G4CJB+vmA/owaZ6uIk2lX1k="
   },
   "bunker": {
     "user": "amanaaq",
@@ -26,7 +26,7 @@
     "repo": "kernel-patches",
     "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
     "hash": "sha256-jGs8YAxf2L/5ZtB8cKnQHdlxThhJ2UjyLt5RXqtOtI8=",
-    "legacyHash": "sha256-KJuzgInoyz4XCTeXD0Leu1MhVCqd8/AjRsvn604BKPg="
+    "legacyHash": "sha256-y6AZZjFQ7+2qNW2PJKBCHpq9tjffi0GtDjLZPKxnWo0="
   },
   "tachyon": {
     "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon",

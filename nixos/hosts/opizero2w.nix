@@ -1,5 +1,6 @@
 {
-  lib,
+  config,
+  host,
   pkgs,
   kernelData,
   ...
@@ -15,33 +16,25 @@ let
       url = "https://ftp.denx.de/pub/u-boot/u-boot-2024.04.tar.bz2";
       hash = "sha256-GKhT/jn6160DqQzC1Cda6u1tppc13vrDSSuAUIhD3Uo=";
     };
-
-    nativeBuildInputs = with pkgs; [
-      dtc
-      armTrustedFirmwareTools
-      bison
-      flex
-      which
-      swig
-      openssl
-
-      (python3.withPackages (p: [
-        p.setuptools
-        p.libfdt
-        p.pyelftools
-      ]))
-    ];
   };
 
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
-  sdImage = {
-    compressImage = true;
-    postBuildCommands = ''
-      dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc
-    '';
-  };
+
+  imports = [
+    (import ./lib/sdcard.nix {
+      inherit config pkgs host;
+      rootVolumeLabel = "OPIZERO2W";
+      populateFirmwareCommands = ''
+        mkdir -p firmware/boot
+        ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+          -c ${config.system.build.toplevel} \
+          -d firmware/boot
+      '';
+      postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
+    })
+  ];
 
   nixpkgs.overlays = [
     (_final: super: {
@@ -55,108 +48,19 @@ in
     cacheDir = "/nix/var/cache/ccache-kernel";
   };
 
-  /*
-    fileSystems."/nix".neededForBoot = true;
-
-      disko.devices = {
-        nodev."/" = {
-          fsType = "tmpfs";
-          mountOptions = [
-            "relatime"
-            # "size=1G"
-          ];
-        };
-
-        disk = {
-          sd = {
-            type = "disk";
-            device = "/dev/mmcblk0";
-            content = {
-              type = "gpt";
-              partitions = {
-                firmware = {
-                  size = "1024M";
-                  label = "FIRMWARE";
-                  type = "0700";
-                  content = {
-                    type = "filesystem";
-                    format = "vfat";
-                    mountpoint = "/boot/firmware";
-                    mountOptions = [
-                      "noatime"
-                      "noauto"
-                      "x-systemd.automount"
-                      "x-systemd.idle-timeout=1min"
-                    ];
-                  };
-                };
-
-                boot = {
-                  size = "512M";
-                  label = "BOOT";
-                  type = "0700";
-                  content = {
-                    type = "filesystem";
-                    format = "vfat";
-                    mountpoint = "/boot";
-                    mountOptions = [
-                      "noatime"
-                      "noauto"
-                      "x-systemd.automount"
-                      "x-systemd.idle-timeout=1min"
-                    ];
-                  };
-                };
-
-                nix = {
-                  label = "NIX";
-                  size = "100%";
-                  content = {
-                    type = "filesystem";
-                    mountpoint = "/nix";
-                    format = "ext4";
-                    mountOptions = [
-                      "lazytime"
-                      "noatime"
-                      "defaults"
-                      /*
-                        "compress_chksum"
-                        "compress_algorithm=zstd:3"
-                        "age_extent_cache"
-                        "compress_extension=so"
-                        "inline_xattr"
-                        "inline_data"
-                        "inline_dentry"
-                        "errors=remount-ro"
-                        "compress_extension=bin"
-                        "atgc"
-                        "flush_merge"
-                        "discard"
-                        "checkpoint_merge"
-                        "gc_merge"
-                    ];
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
-
-      fileSystems."/".fsType = lib.mkDefault "tmpfs";
-  */
-
   boot = {
     kernelParams = [
       "earlycon"
       "console=ttyS0,115200n8"
+      "loglevel=7"
+      "console=ttyS0,115200"
+      "earlycon=uart,mmio32,0x05000000"
+      "clk_ignore_unused"
     ];
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
     extraModprobeConfig = "options zram num_devices=1";
-    #kernelPackages = kernel.packages;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
-    initrd.availableKernelModules = [ "sunxi-mmc" ];
+    kernelPackages = kernel.packages;
   };
 
   networking.wireless.enable = true;
@@ -173,6 +77,7 @@ in
 
   hardware.deviceTree = {
     enable = true;
+    filter = "sun50i-h618-orangepi-zero2w.dtb";
     name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
   };
 }

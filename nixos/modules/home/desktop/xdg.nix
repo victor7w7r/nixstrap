@@ -30,9 +30,9 @@
       enable = true;
       defaultApplications = {
         "application/pdf" = [ "zen-beta.desktop" ];
-        "video/png" = [ "vlc.desktop" ];
-        "video/jpg" = [ "vlc.desktop" ];
-        "video/*" = [ "vlc.desktop" ];
+        "video/png" = [ "zen-beta.desktop" ];
+        "video/jpg" = [ "zen-beta.desktop" ];
+        "video/*" = [ "zen-beta.desktop" ];
         "x-scheme-handler/http" = [ "zen-beta.desktop" ];
         "x-scheme-handler/chrome" = [ "zen-beta.desktop" ];
         "x-scheme-handler/https" = [ "zen-beta.desktop" ];
