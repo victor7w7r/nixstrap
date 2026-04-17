@@ -55,6 +55,8 @@ let
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
+        buildPhase = (attrs.buildPhase or "") + ''ccache -s | grep "cache directory"'';
+
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           features = {
