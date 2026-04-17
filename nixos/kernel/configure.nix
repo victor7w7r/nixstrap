@@ -140,7 +140,6 @@ pkgs.stdenv.mkDerivation (attrs: {
   ];
 
   buildPhase = ''
-    ${(import ./cache.nix) { }}
     cp "${fetch.kConfig}" ".config"
 
     ${((import ./modules) { inherit host; })}

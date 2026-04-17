@@ -1,6 +1,7 @@
 {
   isClang ? true,
 }:
+
 ''
       export CCACHE_COMPRESS=1
       export CCACHE_DIR=/nix/var/cache/ccache-kernel
@@ -30,12 +31,11 @@
           ccache_wrap "clang" "$TMPDIR/ccache-wrappers/hostcc-with-ccache"
           ccache_wrap "clang++" "$TMPDIR/ccache-wrappers/hostcxx-with-ccache"
         ''
-
       else
         ''
           ccache_wrap "cc" "$TMPDIR/ccache-wrappers/cc-with-ccache"
           ccache_wrap "cc" "$TMPDIR/ccache-wrappers/hostcc-with-ccache"
-          ccache_wrap "clang++" "$TMPDIR/ccache-wrappers/hostcxx-with-ccache"
+          ccache_wrap "c++" "$TMPDIR/ccache-wrappers/hostcxx-with-ccache"
         ''
     }
     export makeFlags="CC=$TMPDIR/ccache-wrappers/cc-with-ccache HOSTCC=$TMPDIR/ccache-wrappers/hostcc-with-ccache HOSTCXX=$TMPDIR/ccache-wrappers/hostcxx-with-ccache $makeFlags"
