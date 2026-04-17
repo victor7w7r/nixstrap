@@ -161,6 +161,7 @@
   "-d ACCESSIBILITY"
   "-d DEBUG_FS"
   "-d DRM_RADEON"
+  "-d FB_HYPERV"
   "-d KEXEC"
   "-d KEXEC_JUMP"
   "-d INPUT_JOYSTICK"
