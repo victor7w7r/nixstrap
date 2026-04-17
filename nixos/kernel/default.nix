@@ -38,18 +38,6 @@ let
         "LOCALVERSION=${configure.passthru.localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
-        "CC=${stdenv.cc}/bin/clang"
-        #"LD=${stdenv.cc}/bin/ld.lld"
-        #"HOSTLD=${stdenv.cc}/bin/ld.lld"
-        "AR=${stdenv.cc}/bin/ar"
-        "HOSTAR=${stdenv.cc}/bin/ar"
-        "NM=${stdenv.cc}/bin/nm"
-        "STRIP=${stdenv.cc}/bin/strip"
-        "OBJCOPY=${stdenv.cc}/bin/objcopy"
-        "OBJDUMP=${stdenv.cc}/bin/objdump"
-        "READELF=${stdenv.cc}/bin/readelf"
-        "HOSTCC=${stdenv.cc}/bin/clang"
-        "HOSTCXX=${stdenv.cc}/bin/clang++"
         "KCFLAGS=-Wno-unknown-warning-option -Wno-ignored-optimization-argument"
       ];
     }).overrideAttrs

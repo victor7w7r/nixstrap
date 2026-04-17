@@ -42,11 +42,6 @@ in
     })
   ];
 
-  programs.ccache = {
-    enable = true;
-    cacheDir = "/nix/var/cache/ccache";
-  };
-
   boot = {
     kernelParams = [
       "earlycon"
