@@ -56,7 +56,10 @@ let
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
         patchPhase = ''
-          echo $CCACHE_DIR
+            export CCACHE_COMPRESS=1
+            export CCACHE_DIR="/nix/var/cache/ccache"
+            export CCACHE_SLOPPINESS=random_seed
+            export CCACHE_UMASK=007
           ${attrs.buildPhase or ""}
         '';
         passthru = attrs.passthru // {
