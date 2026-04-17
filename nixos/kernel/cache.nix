@@ -5,7 +5,7 @@
   export CCACHE_COMPRESS=1
   export CCACHE_DIR=/nix/var/cache/ccache-kernel
   export CCACHE_UMASK=007
-  source ${./cachewrp}
+  source ${./cachewrp.sh}
   mkdir -p $TMPDIR/ccache-wrappers
 
   ${
