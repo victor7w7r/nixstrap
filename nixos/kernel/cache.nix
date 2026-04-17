@@ -3,12 +3,11 @@
 }:
 
 let
-  shebang = "#!/bin/sh";
   wrapperBody = ''
     for arg in "$@"; do
-      if [ "$arg" = "-" ]; then
-        exec "$real_compiler" "$@"
-      fi
+      case "$arg" in
+        "-") exec "$real_compiler" "$@" ;;
+      esac
     done
     exec ccache "$real_compiler" "$@"
   '';
@@ -21,11 +20,12 @@ in
   ccache_wrap() {
     local real_compiler="$1"
     local wrapper_path="$2"
-    printf "%s\n%s" "${shebang}" "${wrapperBody}" > "$wrapper_path"
+    printf '#!/bin/sh\nreal_compiler="%s"\n%s' "$real_compiler" "${wrapperBody}" > "$wrapper_path"
     chmod +x "$wrapper_path"
   }
 
   mkdir -p $TMPDIR/ccache-wrappers
+
   ${
     if isClang then
       ''
