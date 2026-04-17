@@ -42,8 +42,8 @@ let
 
         installTargets = [ "modules_install" ];
         installFlags = [
-          "INSTALL_MOD_PATH=$(out)"
-          "INSTALL_PATH=$(out)"
+          "INSTALL_MOD_PATH=$out"
+          "INSTALL_PATH=$out"
           "KBUILD_IMAGE=arch/arm64/boot/Image.gz"
         ];
 
@@ -58,7 +58,10 @@ let
 
           ln -sv Image.gz "$out/vmlinuz" || true
           cp .config $out/config-${configure.version}
-          depmod -b $out -F System.map "${configure.version}${configure.passthru.localVer}"
+
+            KERNELRELEASE=$(make -s ARCH=arm64 kernelrelease)
+            mkdir -p "$out/lib/modules/$KERNELRELEASE"
+            depmod -b $out -F System.map "$KERNELRELEASE"
         '';
 
         configurePhase = ''
