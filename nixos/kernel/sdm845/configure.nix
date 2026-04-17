@@ -40,6 +40,10 @@ pkgs.stdenv.mkDerivation {
     make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
+
+    scripts/config --undefine FB_HYPERV
+    scripts/config --disable FB_HYPERV
+
     make $makeFlags ARCH=arm64 olddefconfig
   '';
 
