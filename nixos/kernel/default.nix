@@ -56,7 +56,6 @@ let
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
         patchPhase = ''
-          ccache -s | grep "cache directory"
           echo $CCACHE_DIR
           ${attrs.buildPhase or ""}
         '';
