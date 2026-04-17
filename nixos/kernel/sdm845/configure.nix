@@ -41,8 +41,9 @@ pkgs.stdenv.mkDerivation {
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
 
-    scripts/config --undefine FB_HYPERV
-    scripts/config --disable FB_HYPERV
+    sed -i '/CONFIG_FB_HYPERV/d' .config
+    sed -i '/CONFIG_XEN/d' .config
+    sed -i '/CONFIG_VIRTUALIZATION/d' .config
 
     make $makeFlags ARCH=arm64 olddefconfig
   '';
