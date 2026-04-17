@@ -263,8 +263,8 @@
         };
 
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-bootimg"
-        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-fastboot-images"
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.generatedFilesystems.rootfs"
+        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-fastboot-images"
         fajita = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [

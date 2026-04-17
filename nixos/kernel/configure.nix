@@ -121,9 +121,9 @@ pkgs.stdenv.mkDerivation (attrs: rec {
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
   LLVM = "1";
-  #stdenv = pkgs.ccacheStdenv.override {
-  stdenv = helpers.stdenvLLVM;
-  #};
+  stdenv = pkgs.ccacheStdenv.override {
+    stdenv = helpers.stdenvLLVM;
+  };
   extraMakeFlags = [
     "CC=${stdenv.cc}/bin/clang"
     #"LD=${stdenv.cc}/bin/ld.lld"
