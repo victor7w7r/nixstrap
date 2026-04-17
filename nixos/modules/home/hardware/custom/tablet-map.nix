@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   fetchFromGitHub,
   rustPlatform,
   ...
@@ -19,9 +18,12 @@ rustPlatform.buildRustPackage {
   nativeBuildInputs = with pkgs; [
     stdenv.cc
     pkg-config
+    pkgs.sccache
   ];
 
   cargoHash = "sha256-8aPasJIznPhBC4jrX+9rX81M9EyDjtmhaMd4NZKxQwc=";
+  RUSTC_WRAPPER = "sccache";
+  SCCACHE_DIR = "/nix/var/cache/sccache";
 
   installPhase = ''
     mkdir -p $out/bin

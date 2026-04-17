@@ -1,4 +1,5 @@
 {
+  pkgs,
   fetchFromGitHub,
   rustPlatform,
   ...
@@ -6,6 +7,8 @@
 rustPlatform.buildRustPackage {
   pname = "t2fanrd";
   version = "0.9.0";
+
+  nativeBuildInputs = [ pkgs.sccache ];
 
   src = fetchFromGitHub {
     owner = "GnomedDev";
@@ -15,6 +18,8 @@ rustPlatform.buildRustPackage {
   };
 
   cargoHash = "sha256-FKQYiaOTZxD95AWD2zbVjENzMAPrFl/rzhwbkAgGbx0=";
+  RUSTC_WRAPPER = "sccache";
+  SCCACHE_DIR = "/nix/var/cache/sccache";
 
   installPhase = ''
     ls -R

@@ -6,7 +6,10 @@ let
 in
 rustPlatform.buildRustPackage rec {
   inherit pname version;
-  nativeBuildInputs = [ pkgs.pkg-config ];
+  nativeBuildInputs = [
+    pkgs.pkg-config
+    pkgs.sccache
+  ];
 
   src = fetchFromGitHub {
     owner = "imsnif";
@@ -15,6 +18,8 @@ rustPlatform.buildRustPackage rec {
     sha256 = "sha256-pLQosVnAQZ82OUcR/wD8QnYs9JVJZ+HrB0NNkcdTq94=";
   };
 
+  RUSTC_WRAPPER = "sccache";
+  SCCACHE_DIR = "/nix/var/cache/sccache";
   cargoLock.lockFile = "${src}/Cargo.lock";
 
 }
