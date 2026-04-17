@@ -76,18 +76,18 @@ pkgs.stdenv.mkDerivation {
   #inherit patches;
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
+  stdenv = pkgs.ccacheStdenv;
 
   nativeBuildInputs = with pkgs; kernel.nativeBuildInputs ++ [ ccache ];
-
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
 
     cp "${fetch.sunxi-kconfig}" ".config"
 
-    export LSMOD=$(mktemp)
-    cat "${modules}" | sort > $LSMOD
-    (yes "" | make LSMOD=$LSMOD localmodconfig) || true
+    #export LSMOD=$(mktemp)
+    #cat "${modules}" | sort > $LSMOD
+    #(yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
     make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config

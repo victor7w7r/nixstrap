@@ -61,6 +61,10 @@
       optimise.automatic = true;
       #package = lib.mkDefault (pkgs.lix);
       settings = {
+        extra-sandbox-paths = [
+          "/nix/var/cache/ccache"
+          "/nix/var/cache/sccache"
+        ];
         max-jobs = if is-term-hosts then "auto" else 3;
         cores = if is-term-hosts then 0 else (if is-mac then 6 else 4);
         auto-optimise-store = true;

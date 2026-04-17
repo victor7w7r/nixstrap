@@ -1,9 +1,5 @@
 { ... }:
 {
-  nix.settings.extra-sandbox-paths = [
-    "/nix/var/cache/ccache"
-    "/nix/var/cache/sccache"
-  ];
   programs = {
     #aichat.enable = true;
     #aider-chat.enable = true;

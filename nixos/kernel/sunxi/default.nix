@@ -16,6 +16,7 @@ let
       config = (import ./config.aarch64-linux.nix);
       configfile = configure;
       allowImportFromDerivation = false;
+      stdenv = pkgs.ccacheStdenv;
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
 
