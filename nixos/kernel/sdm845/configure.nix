@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
   inherit patches;
   src = fetch.sdm845;
   name = "linux-${majorMinor}${localVer}-config";
-
+  stdenv = pkgs.ccacheStdenv;
   nativeBuildInputs = with pkgs; [
     gnumake
     gcc

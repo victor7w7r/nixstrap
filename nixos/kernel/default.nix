@@ -19,7 +19,7 @@ let
   kconfigToNix = pkgs.callPackage ./generated/generate.nix { inherit configure; };
   patches = configure.passthru.patches;
   kernel =
-    (pkgs.linuxManualConfig rec {
+    (pkgs.linuxManualConfig {
       inherit (configure) src;
       config = (import ./generated) { inherit host; };
       configfile = configure;
