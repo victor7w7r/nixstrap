@@ -20,7 +20,7 @@ in
   ccache_wrap() {
     local real_compiler="$1"
     local wrapper_path="$2"
-    printf '#!/bin/sh\nreal_compiler="%s"\n%s' "$real_compiler" "${wrapperBody}" > "$wrapper_path"
+    printf "#!/bin/sh\nreal_compiler='%s'\n%s" "$real_compiler" "${wrapperBody}" > "$wrapper_path"
     chmod +x "$wrapper_path"
   }
 
