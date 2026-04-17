@@ -135,11 +135,9 @@ pkgs.stdenv.mkDerivation (attrs: {
 
   installPhase = "cp .config $out";
 
-  /*
-    makeFlags = [
+  makeFlags = [
     "KBUILD_LDFLAGS+=--thinlto-cache-dir=/nix/var/cache/clang-thinlto"
-    ];
-  */
+  ];
 
   buildPhase = ''
     ${(import ./cache.nix) { }}
