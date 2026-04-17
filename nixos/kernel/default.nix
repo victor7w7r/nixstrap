@@ -43,7 +43,7 @@ let
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        preConfigure = (import ./cache.nix) { } + (attrs.preConfigure or "");
+        #preConfigure = (import ./cache.nix) { } + (attrs.preConfigure or "");
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           features = {
@@ -55,7 +55,6 @@ let
       });
 in
 {
-
   programs.ccache = {
     enable = true;
     cacheDir = "/nix/var/cache/ccache-kernel";
