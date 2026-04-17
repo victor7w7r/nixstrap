@@ -26,7 +26,6 @@ pkgs.stdenv.mkDerivation {
     bison
     flex
     perl
-    ccache
     python3
   ];
 

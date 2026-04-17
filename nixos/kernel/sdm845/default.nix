@@ -19,7 +19,6 @@ let
       nativeBuildInputs = with pkgs; [
         python3
         zstd
-        ccache
         kmod
         gzip
       ];

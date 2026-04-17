@@ -2,7 +2,6 @@
 {
   nix.settings.extra-sandbox-paths = [
     "/nix/var/cache/ccache-kernel"
-    "/nix/var/cache/clang-thinlto"
   ];
   programs = {
     #aichat.enable = true;
@@ -10,6 +9,14 @@
     ccache = {
       enable = true;
       cacheDir = "/nix/var/cache/ccache-kernel";
+      extraConfig = ''
+        compression = false
+        file_clone = true
+        max_size = 25G
+        sloppiness = random_seed
+        umask = 007
+        compiler_check = content
+      '';
     };
     direnv = {
       enable = false;

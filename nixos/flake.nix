@@ -4,7 +4,6 @@
   nixConfig = {
     extra-sandbox-paths = [
       "/nix/var/cache/ccache-kernel"
-      "/nix/var/cache/clang-thinlto"
     ];
     extra-substituters = [
       "https://nix-gaming.cachix.org"
@@ -243,7 +242,6 @@
                 nixpkgs.config.allowUnsupportedSystem = true;
                 nix.settings.extra-sandbox-paths = [
                   "/nix/var/cache/ccache-kernel"
-                  "/nix/var/cache/clang-thinlto"
                 ];
                 nixpkgs.overlays = [
                   inputs.emacs-overlay.overlay

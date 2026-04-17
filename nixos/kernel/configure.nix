@@ -143,7 +143,6 @@ pkgs.stdenv.mkDerivation (attrs: rec {
     kernel.nativeBuildInputs
     ++ kernel.buildInputs
     ++ [
-      ccache
       clang_20
       llvm_20
       lld_20
