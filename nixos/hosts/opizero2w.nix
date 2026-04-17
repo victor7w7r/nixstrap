@@ -44,7 +44,7 @@ in
 
   programs.ccache = {
     enable = true;
-    cacheDir = "/nix/var/cache/ccache-kernel";
+    cacheDir = "/nix/var/cache/ccache";
   };
 
   boot = {

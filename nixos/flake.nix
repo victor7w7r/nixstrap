@@ -3,7 +3,7 @@
 
   nixConfig = {
     extra-sandbox-paths = [
-      "/nix/var/cache/ccache-kernel"
+      "/nix/var/cache/ccache"
     ];
     extra-substituters = [
       "https://nix-gaming.cachix.org"
@@ -241,7 +241,7 @@
                 nixpkgs.hostPlatform = "aarch64-linux";
                 nixpkgs.config.allowUnsupportedSystem = true;
                 nix.settings.extra-sandbox-paths = [
-                  "/nix/var/cache/ccache-kernel"
+                  "/nix/var/cache/ccache"
                 ];
                 nixpkgs.overlays = [
                   inputs.emacs-overlay.overlay
