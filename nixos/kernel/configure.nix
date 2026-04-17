@@ -143,6 +143,8 @@ pkgs.stdenv.mkDerivation (attrs: {
     ${(import ./cache.nix) { }}
     cp "${fetch.kConfig}" ".config"
 
+    mkdir -p include/config
+    make $makeFlags kernelrelease > include/config/kernel.release
     ${((import ./modules) { inherit host; })}
     make $makeFlags olddefconfig
     patchShebangs scripts/config
