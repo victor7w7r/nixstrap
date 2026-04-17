@@ -12,8 +12,6 @@ let
       lib.mapAttrsToList (name: value: "${name}=${value}") (import ./config.aarch64-linux.nix)
     )
   );
-in
-{
   build =
     (pkgs.mobile-nixos.kernel-builder {
       inherit (configure) src;
@@ -35,7 +33,7 @@ in
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        preConfigure = import ../cache.nix + (attrs.preConfigure or "");
+        preConfigure = (import ../cache.nix) { isClang = false; } + (attrs.preConfigure or "");
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
@@ -71,4 +69,8 @@ in
           runHook postConfigure
         '';
       });
+in
+{
+  inherit build;
+  packages = pkgs.linuxPackagesFor build;
 }

@@ -2,6 +2,10 @@
   description = "victor7w7r nixtrap config for common and specific hosts";
 
   nixConfig = {
+    extra-sandbox-paths = [
+      "/nix/var/cache/ccache-kernel"
+      "/nix/var/cache/clang-thinlto"
+    ];
     extra-substituters = [
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
@@ -237,6 +241,10 @@
               {
                 nixpkgs.hostPlatform = "aarch64-linux";
                 nixpkgs.config.allowUnsupportedSystem = true;
+                nix.settings.extra-sandbox-paths = [
+                  "/nix/var/cache/ccache-kernel"
+                  "/nix/var/cache/clang-thinlto"
+                ];
                 nixpkgs.overlays = [
                   inputs.emacs-overlay.overlay
                   (final: prev: {

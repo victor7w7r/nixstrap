@@ -50,11 +50,15 @@ in
   boot = {
     kernelParams = [
       "earlycon"
-      "console=ttyS0,115200n8"
       "loglevel=7"
       "console=ttyS0,115200"
       "earlycon=uart,mmio32,0x05000000"
       "clk_ignore_unused"
+    ];
+    initrd.availableKernelModules = [
+      "sunxi-mmc"
+      "mmc_block"
+      "nvmem_sunxi_sid"
     ];
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;

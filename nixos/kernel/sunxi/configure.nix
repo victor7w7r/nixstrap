@@ -82,7 +82,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
-    ${import ../cache.nix}
+    ${(import ../cache.nix) { isClang = false; }}
 
     cp "${fetch.sunxi-kconfig}" ".config"
 

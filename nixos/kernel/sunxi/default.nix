@@ -35,7 +35,7 @@ let
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        preConfigure = import ../cache.nix + (attrs.preConfigure or "");
+        preConfigure = (import ../cache.nix) { isClang = false; } + (attrs.preConfigure or "");
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
