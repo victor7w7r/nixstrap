@@ -124,20 +124,7 @@ pkgs.stdenv.mkDerivation (attrs: rec {
   stdenv = pkgs.ccacheStdenv.override {
     stdenv = helpers.stdenvLLVM;
   };
-  extraMakeFlags = [
-    "CC=${stdenv.cc}/bin/clang"
-    #"LD=${stdenv.cc}/bin/ld.lld"
-    #"HOSTLD=${stdenv.cc}/bin/ld.lld"
-    "AR=${stdenv.cc}/bin/ar"
-    "HOSTAR=${stdenv.cc}/bin/ar"
-    "NM=${stdenv.cc}/bin/nm"
-    "STRIP=${stdenv.cc}/bin/strip"
-    "OBJCOPY=${stdenv.cc}/bin/objcopy"
-    "OBJDUMP=${stdenv.cc}/bin/objdump"
-    "READELF=${stdenv.cc}/bin/readelf"
-    "HOSTCC=${stdenv.cc}/bin/clang"
-    "HOSTCXX=${stdenv.cc}/bin/clang++"
-  ];
+
   nativeBuildInputs =
     with pkgs;
     kernel.nativeBuildInputs
