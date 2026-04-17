@@ -116,12 +116,28 @@ let
         ]
     );
 in
-pkgs.stdenv.mkDerivation (attrs: {
+pkgs.stdenv.mkDerivation (attrs: rec {
   inherit patches;
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
   LLVM = "1";
-  stdenv = helpers.stdenvLLVM;
+  stdenv = pkgs.ccacheStdenv.override {
+    stdenv = helpers.stdenvLLVM;
+  };
+  extraMakeFlags = [
+    "CC=${stdenv.cc}/bin/clang"
+    #"LD=${stdenv.cc}/bin/ld.lld"
+    #"HOSTLD=${stdenv.cc}/bin/ld.lld"
+    "AR=${stdenv.cc}/bin/ar"
+    "HOSTAR=${stdenv.cc}/bin/ar"
+    "NM=${stdenv.cc}/bin/nm"
+    "STRIP=${stdenv.cc}/bin/strip"
+    "OBJCOPY=${stdenv.cc}/bin/objcopy"
+    "OBJDUMP=${stdenv.cc}/bin/objdump"
+    "READELF=${stdenv.cc}/bin/readelf"
+    "HOSTCC=${stdenv.cc}/bin/clang"
+    "HOSTCXX=${stdenv.cc}/bin/clang++"
+  ];
   nativeBuildInputs =
     with pkgs;
     kernel.nativeBuildInputs
@@ -134,10 +150,6 @@ pkgs.stdenv.mkDerivation (attrs: {
     ];
 
   installPhase = "cp .config $out";
-
-  makeFlags = [
-    "KBUILD_LDFLAGS+=--thinlto-cache-dir=/nix/var/cache/clang-thinlto"
-  ];
 
   buildPhase = ''
     ${(import ./cache.nix) { }}
