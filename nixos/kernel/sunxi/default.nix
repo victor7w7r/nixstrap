@@ -9,23 +9,21 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  #patches = configure.passthru.patches;
+  patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
       config = (import ./config.aarch64-linux.nix);
       configfile = configure;
       allowImportFromDerivation = false;
-      stdenv = pkgs.ccacheStdenv;
+      stdenv = pkgs.gcc14Stdenv;
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
 
-      /*
-        kernelPatches = map (file: {
+      kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
-        }) patches;
-      */
+      }) patches;
 
       extraMakeFlags = [
         "LOCALVERSION=${configure.passthru.localVer}"
@@ -36,7 +34,9 @@ let
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        stdenv = pkgs.ccacheStdenv;
+        stdenv = pkgs.gcc14Stdenv.override {
+          stdenv = pkgs.ccacheStdenv;
+        };
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };

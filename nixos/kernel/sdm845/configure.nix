@@ -18,10 +18,12 @@ pkgs.stdenv.mkDerivation {
   inherit patches;
   src = fetch.sdm845;
   name = "linux-${majorMinor}${localVer}-config";
-  stdenv = pkgs.ccacheStdenv;
+  stdenv = pkgs.gcc14Stdenv.override {
+    stdenv = pkgs.ccacheStdenv;
+  };
   nativeBuildInputs = with pkgs; [
     gnumake
-    gcc
+    gcc14
     bc
     bison
     flex

@@ -76,7 +76,9 @@ pkgs.stdenv.mkDerivation {
   #inherit patches;
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
-  stdenv = pkgs.ccacheStdenv;
+  stdenv = pkgs.gcc14Stdenv.override {
+    stdenv = pkgs.ccacheStdenv;
+  };
 
   nativeBuildInputs = with pkgs; kernel.nativeBuildInputs ++ [ ccache ];
   installPhase = "cp .config $out";

@@ -26,9 +26,7 @@ let
       allowImportFromDerivation = false;
       version = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
       modDirVersion = lib.versions.pad 3 "${configure.version}${configure.passthru.localVer}";
-      stdenv = pkgs.ccacheStdenv.override {
-        stdenv = helpers.stdenvLLVM;
-      };
+
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
@@ -39,19 +37,12 @@ let
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
         "KCFLAGS=-Wno-unknown-warning-option -Wno-ignored-optimization-argument"
+        "CC=ccache cc"
+        "HOSTCC=ccache cc"
       ];
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        /*
-          patchPhase = ''
-            export CCACHE_COMPRESS=1
-            export CCACHE_DIR="/nix/var/cache/ccache"
-            export CCACHE_SLOPPINESS=random_seed
-            export CCACHE_UMASK=007
-          ${attrs.buildPhase or ""}
-          '';
-        */
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
           features = {

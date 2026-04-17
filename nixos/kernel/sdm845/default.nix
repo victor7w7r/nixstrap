@@ -31,7 +31,10 @@ let
       installTargets = [ "modules_install" ];
     }).overrideAttrs
       (attrs: {
-        stdenv = pkgs.ccacheStdenv;
+        stdenv = pkgs.gcc14Stdenv.override {
+          stdenv = pkgs.ccacheStdenv;
+        };
+
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
