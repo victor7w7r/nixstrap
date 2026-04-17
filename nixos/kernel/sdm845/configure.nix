@@ -32,7 +32,6 @@ pkgs.stdenv.mkDerivation {
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64
-    ${(import ../cache.nix) { isClang = false; }}
 
     cp arch/arm64/configs/sdm845.config .config
 
