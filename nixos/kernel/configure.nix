@@ -151,7 +151,6 @@ pkgs.stdenv.mkDerivation (attrs: rec {
   installPhase = "cp .config $out";
 
   buildPhase = ''
-    ccache -s | grep "cache directory"
     cp "${fetch.kConfig}" ".config"
 
     ${((import ./modules) { inherit host; })}
