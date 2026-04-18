@@ -41,6 +41,7 @@
       myrescue
       safecopy
       scrounge-ntfs
+      sof-firmware
       stress
       testdisk
       #https://aur.archlinux.org/packages/r-linux

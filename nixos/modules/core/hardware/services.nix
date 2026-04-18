@@ -68,18 +68,18 @@ in
       };
       alsa = {
         enable = true;
-        #support32Bit = true;
+        support32Bit = true;
       };
       jack.enable = true;
       pulse.enable = true;
       socketActivation = true;
       wireplumber = {
         enable = (host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l");
-        package = lib.mkForce (
-          pkgs.wireplumber.override {
-            pipewire = audioT2.pipewirePackage;
-          }
-        );
+        package =
+          if host == "v7w7r-macmini81" then
+            lib.mkForce (pkgs.wireplumber.override { pipewire = audioT2.pipewirePackage; })
+          else
+            pkgs.wireplumber;
       };
     };
   };

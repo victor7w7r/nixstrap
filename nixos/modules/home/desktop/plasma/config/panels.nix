@@ -136,7 +136,13 @@
           name = "org.kde.plasma.systemmonitor";
           config =
             let
-              fan = if host == "v7w7r-macmini81" then "lmsensors/applesmc-acpi-0" else "";
+              fan =
+                if host == "v7w7r-macmini81" then
+                  "lmsensors/applesmc-acpi-0"
+                else if host == "v7w7r-rc71l" then
+                  "lmsensors/asus-isa-000a"
+                else
+                  "";
             in
             {
               CurrentPreset = "org.kde.plasma.systemmonitor";
@@ -156,7 +162,13 @@
               Sensors."totalSensors" = ''["${fan}/fan1"]'';
               SensorColors."${fan}/temp1" = "245,161,86";
               "org.kde.ksysguard.piechart/General" = {
-                rangeTo = 4500;
+                rangeTo =
+                  if host == "v7w7r-macmini81" then
+                    4500
+                  else if host == "v7w7r-rc71l" then
+                    7800
+                  else
+                    "";
                 rangeAuto = false;
               };
             };

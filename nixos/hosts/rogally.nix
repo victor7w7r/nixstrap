@@ -62,15 +62,22 @@ in
       "amd_pstate=passive"
     ]
     ++ params { };
+    blacklistedKernelModules = [
+      "snd_rn_pci_acp3x"
+      "snd_pci_acp3x"
+    ];
     kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     initrd = {
       checkJournalingFS = lib.mkForce false;
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
+        "snd_pci_ps.acp_config=3"
+        "snd_amd_sdw_acp=1"
         "cpufreq_reflex"
         "amdgpu"
       ];
+
       availableKernelModules = [
         "xhci_pci"
         "nvme"
@@ -93,6 +100,7 @@ in
     alsa-plugins
     alsa-utils
     alsa-firmware
+    alsa-ucm-conf
     asusctl
     amdgpu_top
     bluetui
@@ -112,6 +120,7 @@ in
   ];
 
   hardware = {
+    enableAllFirmware = true;
     amdgpu.opencl.enable = true;
     uinput.enable = true;
   };
