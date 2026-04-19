@@ -401,7 +401,7 @@
               { ... }:
               {
                 nixpkgs.overlays = [
-                  nix-cachyos-kernel.overlays.pinned
+                  nix-cachyos-kernel.overlays.default
                   inputs.emacs-overlay.overlay
                   proxmox-nixos.overlays.${system}
                 ];
