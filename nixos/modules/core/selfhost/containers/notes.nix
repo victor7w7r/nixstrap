@@ -62,6 +62,7 @@
           ];
           firewall = {
             enable = true;
+            trustedInterfaces = [ "docker0" ];
             allowedTCPPorts = [
               5984
               8080
