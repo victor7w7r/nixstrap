@@ -100,7 +100,7 @@ let
           [
             "${fetch.tachyon}/patches/0158-clocksource-only-perform-extended-clocksource-checks.patch"
           ]
-          ++ builtins.map (p: "${fetch.asus.outPath}/${p}") [
+          ++ map (p: "${fetch.asus.outPath}/${p}") [
             "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
             "0040-workaround_hardware_decoding_amdgpu.patch"
             "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A.patch"
@@ -121,9 +121,12 @@ pkgs.stdenv.mkDerivation (attrs: rec {
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
   LLVM = "1";
-  stdenv = pkgs.ccacheStdenv.override {
-    stdenv = helpers.stdenvLLVM;
-  };
+  stdenv = helpers.stdenvLLVM;
+  /*
+    pkgs.ccacheStdenv.override {
+     stdenv = helpers.stdenvLLVM;
+     };
+  */
 
   nativeBuildInputs =
     with pkgs;
