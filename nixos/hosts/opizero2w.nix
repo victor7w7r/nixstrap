@@ -18,6 +18,7 @@ let
       python3Packages.setuptools
       pkg-config
       python3Packages.libfdt
+      gnutls
       bison
       flex
       swig
