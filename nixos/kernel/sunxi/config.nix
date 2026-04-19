@@ -52,6 +52,8 @@
   "-d DRM_RADEON"
   "-d KEXEC"
   "-d KEXEC_JUMP"
+  "-d JFS_FS"
+  "-d XFS_FS"
   "-d INPUT_JOYSTICK"
   "-d INPUT_TABLET"
   "-d INPUT_TOUCHSCREEN"

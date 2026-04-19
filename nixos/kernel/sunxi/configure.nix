@@ -76,11 +76,14 @@ pkgs.stdenv.mkDerivation {
   #inherit patches;
   src = fetch.linux-legacy;
   name = "linux-${majorMinor}${localVer}-config";
-  stdenv = pkgs.gcc14Stdenv.override {
+  stdenv = pkgs.gcc14Stdenv;
+  /*
+    .override {
     stdenv = pkgs.ccacheStdenv;
-  };
+    };
+  */
 
-  nativeBuildInputs = with pkgs; kernel.nativeBuildInputs ++ [ ccache ];
+  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64

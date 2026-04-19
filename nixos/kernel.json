@@ -2,12 +2,12 @@
   "user": "CachyOS",
   "linux": {
     "version": "6.18.22",
-    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.22-1/cachyos-6.18.22-1.tar.gz",
-    "hash": "sha256-vRszbKgSN+3DSWfyZ7RUhDn/KliucXU8XLy7YJe5TZQ="
+    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.23-1/cachyos-6.18.23-1.tar.gz",
+    "hash": "sha256-vRszbKgSN+AAAWfyZ7RUhDn/KliucXU8XLy7YJe5TZQ="
   },
   "linux-legacy": {
     "version": "6.12.81",
-    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.81.tar.xz",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.81.tar.gz",
     "hash": "sha256-wrCcNkOUanCXxTceHcsSPGZQXqMPr9Cwoi3B1fAiiEc="
   },
   "bunker": {

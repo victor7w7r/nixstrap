@@ -33,10 +33,12 @@ let
       ];
     }).overrideAttrs
       (attrs: {
-        nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
-        stdenv = pkgs.gcc14Stdenv.override {
+        nativeBuildInputs = (attrs.nativeBuildInputs or [ ]);
+        /*
+          .override {
           stdenv = pkgs.ccacheStdenv;
-        };
+          };
+        */
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
