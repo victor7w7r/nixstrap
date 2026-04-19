@@ -62,23 +62,17 @@ in
       "amd_pstate=passive"
     ]
     ++ params { };
-    blacklistedKernelModules = [
-      "snd_rn_pci_acp3x"
-      "snd_pci_acp3x"
-    ];
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
     initrd = {
       checkJournalingFS = lib.mkForce false;
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
-        "snd_pci_ps.acp_config=3"
-        "snd_amd_sdw_acp=1"
         "cpufreq_reflex"
         "amdgpu"
-      ];
-
-      availableKernelModules = [
+        "snd_usb_audio"
+        "snd_hda_intel"
         "xhci_pci"
         "nvme"
         "thunderbolt"

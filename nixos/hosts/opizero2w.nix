@@ -11,11 +11,19 @@ let
     extraMeta.platforms = [ "aarch64-linux" ];
     BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
     filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
-    version = "2024.04";
-    src = pkgs.fetchurl {
-      url = "https://ftp.denx.de/pub/u-boot/u-boot-2024.04.tar.bz2";
-      hash = "sha256-GKhT/jn6160DqQzC1Cda6u1tppc13vrDSSuAUIhD3Uo=";
-    };
+    nativeBuildInputs = with pkgs; [
+      swig
+      openssl
+      python3
+      python3Packages.setuptools
+      pkg-config
+      python3Packages.libfdt
+      bison
+      flex
+      swig
+      bc
+      dtc
+    ];
   };
 
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
@@ -75,7 +83,7 @@ in
 
   hardware.deviceTree = {
     enable = true;
-    filter = "sun50i-h618-orangepi-zero2w.dtb";
+    #filter = "sun50i-h618-orangepi-zero2w.dtb";
     name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
   };
 }
