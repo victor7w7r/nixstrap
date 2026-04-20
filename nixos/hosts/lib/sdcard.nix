@@ -119,6 +119,7 @@ in
           pkgs.dosfstools
           pkgs.mtools
           libfaketime
+          pkgs.parted
           fakeroot
           util-linux
           f2fs-tools
@@ -171,6 +172,8 @@ in
 
           eval $(partx $img -o START,SECTORS --nr 2 --pairs)
           dd conv=notrunc if=./root.img of=$img seek=$START count=$SECTORS
+
+          parted -s $img set 1 boot on
 
           ${postBuildCommands}
 
