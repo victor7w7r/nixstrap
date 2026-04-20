@@ -49,35 +49,32 @@ let
       '';
     }).overrideAttrs
       (attrs: {
-        /*
-          stdenv = pkgs.gcc14Stdenv.override {
-            stdenv = pkgs.ccacheStdenv;
-          };
-          ignoreConfigErrors = true;
-          passthru = attrs.passthru // {
-            inherit kconfigToNix configure;
-          };
-            installTargets = [ "modules_install" ];
-            installFlags = [
-              "INSTALL_MOD_PATH=$out"
-              "INSTALL_PATH=$out"
-              "KBUILD_IMAGE=arch/arm64/boot/Image.gz"
-              ];
+        stdenv = pkgs.gcc14Stdenv.override {
+          stdenv = pkgs.ccacheStdenv;
+        };
+        ignoreConfigErrors = true;
+        passthru = attrs.passthru // {
+          inherit kconfigToNix configure;
+        };
+        checkPhase = "true";
 
-          preConfigure = (attrs.preConfigure or "") + ''
-            export IGNORE_CONFIG_ERRORS=1
-          '';
+        installTargets = [ "modules_install" ];
 
-          configurePhase = ''
-            runHook preConfigure
+        installFlags = [
+          #"INSTALL_MOD_PATH=$out"
+          "INSTALL_PATH=$out"
+          #"KBUILD_IMAGE=arch/arm64/boot/Image.gz"
+        ];
 
-            cp ${kconfigFile} .config
-            chmod +w .config
-            make olddefconfig
+        configurePhase = ''
+          runHook preConfigure
 
-            runHook postConfigure
-            '';
-        */
+          cp ${kconfigFile} .config
+          chmod +w .config
+          make olddefconfig
+
+          runHook postConfigure
+        '';
 
       });
 in
