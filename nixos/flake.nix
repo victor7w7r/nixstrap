@@ -150,6 +150,12 @@
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
 
+          qcomkernel =
+            (armPkgs.callPackage ./kernel/sdm845 {
+              inherit inputs;
+              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
+            }).build;
+
           qcomconfig =
             (armPkgs.callPackage ./kernel/sdm845 {
               inherit inputs;

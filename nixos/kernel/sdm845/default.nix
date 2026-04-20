@@ -63,17 +63,6 @@ let
             mkdir -p "$out/lib/modules/$KERNELRELEASE"
             depmod -b $out -F System.map "$KERNELRELEASE"
         '';
-
-        configurePhase = ''
-          runHook preConfigure
-
-          cp ${kconfigFile} .config
-
-          chmod +w .config
-          make olddefconfig
-
-          runHook postConfigure
-        '';
       });
 in
 {
