@@ -58,6 +58,7 @@ in
       "console=ttyS0,115200"
       "earlycon=uart,mmio32,0x05000000"
       "clk_ignore_unused"
+      "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
     ];
     initrd = {
       kernelModules = [

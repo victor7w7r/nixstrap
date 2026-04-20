@@ -51,12 +51,10 @@ let
           inherit kconfigToNix configure;
         };
 
-        /*
-          installFlags = [
-          "INSTALL_MOD_PATH=$out"
-          "INSTALL_PATH=$out"
-          ];
-        */
+        installFlags = [
+          "INSTALL_MOD_PATH=$(out)"
+          #"INSTALL_PATH=$out"
+        ];
 
         configurePhase = ''
           runHook preConfigure
