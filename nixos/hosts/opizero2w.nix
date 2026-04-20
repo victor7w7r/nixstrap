@@ -59,13 +59,26 @@ in
       "earlycon=uart,mmio32,0x05000000"
       "clk_ignore_unused"
     ];
-    initrd.availableKernelModules = [
-      "sunxi-mmc"
-      "mmc_block"
-      "nvmem_sunxi_sid"
-    ];
-    loader.grub.enable = false;
-    loader.generic-extlinux-compatible.enable = true;
+    initrd = {
+      kernelModules = [
+        "sunxi-mmc"
+        "sdhci_pci"
+        "usb_storage"
+        "uas"
+        "uhci_hcd"
+        "ehci_hcd"
+        "xhci_pci"
+        "mmc_block"
+        "sdhci_acpi"
+        "sdhci"
+        "nvmem_sunxi_sid"
+      ];
+      supportedFilesystems = [ "f2fs" ];
+    };
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
     extraModprobeConfig = "options zram num_devices=1";
     kernelPackages = kernel.packages;
   };

@@ -36,12 +36,9 @@ pkgs.stdenv.mkDerivation {
     export ARCH=arm64
 
     cp arch/arm64/configs/sdm845.config .config
-
-    make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config
-    scripts/config ${lib.concatStringsSep " " config}
-
-    make $makeFlags ARCH=arm64 olddefconfig
+    ./scripts/config ${lib.concatStringsSep " " config}
+    make $makeFlags olddefconfig
   '';
 
   passthru = {
