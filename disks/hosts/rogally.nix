@@ -8,7 +8,7 @@ let
     recovery = winmod.recovery { };
     win = winmod.win { };
     syscrypt = (import ../lib/luks-lvm.nix) {
-      size = "100G";
+      size = "112G";
       vg = "vg0";
       priority = 6;
     };
@@ -20,7 +20,7 @@ let
   };
 
   lvs = {
-    swapcrypt = (import ../lib/swap.nix) { };
+    swapcrypt = (import ../lib/swap.nix) { size = "12G"; };
     syscrypt = (import ../lib/btrfs.nix) {
       name = "system";
       size = "100%";

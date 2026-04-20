@@ -61,6 +61,16 @@ in
       "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
     ];
     initrd = {
+      systemd.contents = {
+        "/share/terminfo".source = "${pkgs.ncurses}/share/terminfo";
+      };
+      extraUtilsCommands = ''
+        copy_bin_and_libs ${pkgs.ncurses}/bin/tic
+        mkdir -p $out/share/terminfo
+        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/l
+        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/v
+        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/x
+      '';
       kernelModules = [
         "sunxi-mmc"
         "sdhci_pci"
@@ -74,7 +84,6 @@ in
         "sdhci"
         "nvmem_sunxi_sid"
       ];
-      supportedFilesystems = [ "f2fs" ];
     };
     loader = {
       grub.enable = false;
@@ -98,7 +107,7 @@ in
 
   hardware.deviceTree = {
     enable = true;
-    #filter = "sun50i-h618-orangepi-zero2w.dtb";
+    filter = "sun50i-h618-orangepi-zero2w.dtb";
     name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
   };
 }

@@ -64,9 +64,10 @@ in
         "size=1G"
       ];
     };
-    "/nix" = {
+    "/.rootfs" = {
       device = "/dev/disk/by-label/${rootVolumeLabel}";
       fsType = "f2fs";
+      neededForBoot = true;
       options = [
         "lazytime"
         "noatime"
@@ -93,6 +94,13 @@ in
         "nofail"
         "noauto"
       ];
+    };
+
+    "/nix" = {
+      device = "/.rootfs/nix";
+      neededForBoot = true;
+      options = [ "bind" ];
+      depends = [ "/.rootfs" ];
     };
   };
 
@@ -183,7 +191,7 @@ in
     ) { };
 
   boot.postBootCommands = ''
-    REG_FILE="/nix/nix-path-registration"
+    REG_FILE="/.rootfs/nix-path-registration"
     if [ -f "$REG_FILE" ]; then
       set -euo pipefail
       set -x

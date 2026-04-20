@@ -29,7 +29,7 @@ let
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
       makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
       isCompressed = "gz";
-      installTargets = [ "modules_install" ];
+      installTargets = [ ];
 
       postInstall = ''
         mkdir -p $out
@@ -43,18 +43,15 @@ let
       '';
     }).overrideAttrs
       (attrs: {
-        stdenv = pkgs.gcc14Stdenv.override {
-          stdenv = pkgs.ccacheStdenv;
-        };
+        stdenv = pkgs.gcc14Stdenv.override { stdenv = pkgs.ccacheStdenv; };
         ignoreConfigErrors = true;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
 
-        installFlags = [
-          "INSTALL_MOD_PATH=$(out)"
-          "INSTALL_PATH=$out"
-        ];
+        installTargets = [ "modules_install" ];
+
+        installFlags = [ "INSTALL_MOD_PATH=$out" ];
 
         configurePhase = ''
           runHook preConfigure

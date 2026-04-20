@@ -7,8 +7,8 @@ let
     emergency = (import ../lib/emergency.nix) { priority = 3; };
     recovery = winmod.recovery { };
     win = winmod.win { size = "90G"; };
-    systempv = (import ../lib/luks-lvm.nix) {
-      size = "95G";
+    syscrypt = (import ../lib/luks-lvm.nix) {
+      size = "112G";
       group = "emmc";
       vg = "vg0";
       priority = 4;
@@ -19,6 +19,7 @@ let
   lvs = {
     swapcrypt = (import ../lib/swap.nix) {
       discardPolicy = "once";
+      size = "16G";
     };
     syscrypt = (import ../lib/f2fs.nix) {
       name = "system";
