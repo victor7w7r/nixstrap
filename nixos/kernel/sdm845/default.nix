@@ -68,6 +68,11 @@ let
           runHook preConfigure
 
           cp ${kconfigFile} .config
+
+          sed -i '/CONFIG_FB_HYPERV/d' .config
+          sed -i '/CONFIG_XEN/d' .config
+          sed -i '/CONFIG_VIRTUALIZATION/d' .config
+
           chmod +w .config
           make olddefconfig
 
