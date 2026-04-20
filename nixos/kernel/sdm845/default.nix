@@ -47,6 +47,16 @@ let
           "KBUILD_IMAGE=arch/arm64/boot/Image.gz"
         ];
 
+        configurePhase = ''
+          runHook preConfigure
+
+          cp ${kconfigFile} .config
+          chmod +w .config
+          make olddefconfig
+
+          runHook postConfigure
+        '';
+
         postInstall = ''
           mkdir -p $out
 
