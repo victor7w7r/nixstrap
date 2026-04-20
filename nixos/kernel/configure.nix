@@ -128,7 +128,15 @@ pkgs.stdenv.mkDerivation (attrs: rec {
      };
   */
 
-  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
+  nativeBuildInputs =
+    with pkgs;
+    kernel.nativeBuildInputs
+    ++ kernel.buildInputs
+    ++ [
+      llvm_20
+      clang_20
+      lld_20
+    ];
 
   installPhase = "cp .config $out";
 

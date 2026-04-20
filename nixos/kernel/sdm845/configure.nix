@@ -32,10 +32,6 @@ pkgs.stdenv.mkDerivation {
   ];
 
   installPhase = "cp .config $out";
-  patchPhase = ''
-    ls .
-    exit 1
-  '';
   buildPhase = ''
     export ARCH=arm64
 
