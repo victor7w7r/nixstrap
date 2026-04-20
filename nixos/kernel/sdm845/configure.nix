@@ -37,6 +37,9 @@ pkgs.stdenv.mkDerivation {
 
     cp arch/arm64/configs/sdm845.config .config
 
+    ls .
+    exit 1
+
     make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}

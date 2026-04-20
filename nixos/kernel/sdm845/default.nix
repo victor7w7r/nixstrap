@@ -64,13 +64,6 @@ let
             depmod -b $out -F System.map "$KERNELRELEASE"
         '';
 
-        patchPhase = ''
-          ${attrs.patchPhase}
-
-          ls .
-          exit 1
-        '';
-
         configurePhase = ''
           runHook preConfigure
 
