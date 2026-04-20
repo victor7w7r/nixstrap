@@ -104,7 +104,7 @@ in
         system = "x86_64-linux";
       };
     in
-    nativePkgs.callPackage (
+    pkgs.callPackage (
       {
         stdenv,
         libfaketime,
@@ -116,8 +116,8 @@ in
       stdenv.mkDerivation {
         name = imageName;
         nativeBuildInputs = [
-          nativePkgs.dosfstools
-          nativePkgs.mtools
+          pkgs.dosfstools
+          pkgs.mtools
           libfaketime
           fakeroot
           util-linux
