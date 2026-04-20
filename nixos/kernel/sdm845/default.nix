@@ -19,6 +19,7 @@ let
       nativeBuildInputs = with pkgs; [
         python3
         zstd
+        ccache
         kmod
         gzip
       ];
@@ -29,23 +30,44 @@ let
       makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
       isCompressed = "gz";
       installTargets = [ "modules_install" ];
+
+      postInstall = ''
+        mkdir -p $out
+
+        if [ -f arch/arm64/boot/Image.gz ]; then
+         cp -v arch/arm64/boot/Image.gz $out/Image.gz
+        elif [ -f arch/arm64/boot/Image ]; then
+          gzip -c arch/arm64/boot/Image > $out/Image.gz
+        fi
+
+        ln -sv Image.gz "$out/vmlinuz" || true
+        cp .config $out/config-${configure.version}
+
+        KERNELRELEASE=$(make -s ARCH=arm64 kernelrelease)
+        mkdir -p "$out/lib/modules/$KERNELRELEASE"
+        depmod -b $out -F System.map "$KERNELRELEASE"
+      '';
     }).overrideAttrs
       (attrs: {
         stdenv = pkgs.gcc14Stdenv.override {
           stdenv = pkgs.ccacheStdenv;
         };
-
-        nativeBuildInputs = (attrs.nativeBuildInputs or [ ]) ++ [ pkgs.ccache ];
+        ignoreConfigErrors = true;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
+        /*
+          installTargets = [ "modules_install" ];
+          installFlags = [
+            "INSTALL_MOD_PATH=$out"
+            "INSTALL_PATH=$out"
+            "KBUILD_IMAGE=arch/arm64/boot/Image.gz"
+            ];
+        */
 
-        installTargets = [ "modules_install" ];
-        installFlags = [
-          "INSTALL_MOD_PATH=$out"
-          "INSTALL_PATH=$out"
-          "KBUILD_IMAGE=arch/arm64/boot/Image.gz"
-        ];
+        preConfigure = (attrs.preConfigure or "") + ''
+          export IGNORE_CONFIG_ERRORS=1
+        '';
 
         configurePhase = ''
           runHook preConfigure
@@ -57,22 +79,6 @@ let
           runHook postConfigure
         '';
 
-        postInstall = ''
-          mkdir -p $out
-
-          if [ -f arch/arm64/boot/Image.gz ]; then
-           cp -v arch/arm64/boot/Image.gz $out/Image.gz
-          elif [ -f arch/arm64/boot/Image ]; then
-            gzip -c arch/arm64/boot/Image > $out/Image.gz
-          fi
-
-          ln -sv Image.gz "$out/vmlinuz" || true
-          cp .config $out/config-${configure.version}
-
-            KERNELRELEASE=$(make -s ARCH=arm64 kernelrelease)
-            mkdir -p "$out/lib/modules/$KERNELRELEASE"
-            depmod -b $out -F System.map "$KERNELRELEASE"
-        '';
       });
 in
 {
