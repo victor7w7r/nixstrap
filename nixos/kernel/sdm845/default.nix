@@ -34,18 +34,12 @@ let
       postInstall = ''
         mkdir -p $out
 
-        if [ -f arch/arm64/boot/Image.gz ]; then
-         cp -v arch/arm64/boot/Image.gz $out/Image.gz
-        elif [ -f arch/arm64/boot/Image ]; then
-          gzip -c arch/arm64/boot/Image > $out/Image.gz
-        fi
+        cp -v "$buildRoot/arch/arm64/boot/Image.gz" "$out/Image.gz"
 
         ln -sv Image.gz "$out/vmlinuz" || true
         cp .config $out/config-${configure.version}
 
-        KERNELRELEASE=$(make -s ARCH=arm64 kernelrelease)
-        mkdir -p "$out/lib/modules/$KERNELRELEASE"
-        depmod -b $out -F System.map "$KERNELRELEASE"
+        depmod -b "$out" -F "$buildRoot/System.map" "${configure.version}"
       '';
     }).overrideAttrs
       (attrs: {
@@ -56,14 +50,13 @@ let
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
-        checkPhase = "true";
 
-        installTargets = [ "modules_install" ];
-
-        installFlags = [
+        /*
+          installFlags = [
           "INSTALL_MOD_PATH=$out"
           "INSTALL_PATH=$out"
-        ];
+          ];
+        */
 
         configurePhase = ''
           runHook preConfigure
