@@ -87,16 +87,10 @@ in
 
   boot = {
     kernelParams = [ "resume=/dev/zd0" ] ++ params { };
-    kernelPackages = (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
-      _self: _super: {
-        kernel_configfile = _super.kernel.configfile;
-        zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernelBuild.kernel; };
-      }
-    );
+    kernelPackages = helpers.kernelModuleLLVMOverride (kernelBuild.packages);
 
-    #pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     zfs = {
-      package = config.boot.kernelPackages.zfs_cachyos;
+      package = pkgs.zfs_unstable;
       forceImportAll = false;
       forceImportRoot = true;
     };
