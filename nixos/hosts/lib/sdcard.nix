@@ -174,7 +174,7 @@ in
 
           ${postBuildCommands}
 
-          #zstd -T$NIX_BUILD_CORES --rm $img
+          zstd -T$NIX_BUILD_CORES --rm $img
         '';
       }
     ) { };
