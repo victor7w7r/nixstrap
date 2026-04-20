@@ -32,13 +32,14 @@ pkgs.stdenv.mkDerivation {
   ];
 
   installPhase = "cp .config $out";
+  patchPhase = ''
+    ls .
+    exit 1
+  '';
   buildPhase = ''
     export ARCH=arm64
 
     cp arch/arm64/configs/sdm845.config .config
-
-    ls .
-    exit 1
 
     make $makeFlags ARCH=arm64 olddefconfig
     patchShebangs scripts/config
