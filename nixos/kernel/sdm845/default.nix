@@ -61,9 +61,8 @@ let
         installTargets = [ "modules_install" ];
 
         installFlags = [
-          #"INSTALL_MOD_PATH=$out"
+          "INSTALL_MOD_PATH=$out"
           "INSTALL_PATH=$out"
-          #"KBUILD_IMAGE=arch/arm64/boot/Image.gz"
         ];
 
         configurePhase = ''
