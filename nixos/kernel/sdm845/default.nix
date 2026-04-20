@@ -53,7 +53,7 @@ let
 
         installFlags = [
           "INSTALL_MOD_PATH=$(out)"
-          #"INSTALL_PATH=$out"
+          "INSTALL_PATH=$out"
         ];
 
         configurePhase = ''
