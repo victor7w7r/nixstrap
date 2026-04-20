@@ -37,13 +37,13 @@ pkgs.stdenv.mkDerivation {
 
     cp arch/arm64/configs/sdm845.config .config
 
-    make $makeFlags ARCH=arm64 olddefconfig
-    patchShebangs scripts/config
-    scripts/config ${lib.concatStringsSep " " config}
-
     sed -i '/CONFIG_FB_HYPERV/d' .config
     sed -i '/CONFIG_XEN/d' .config
     sed -i '/CONFIG_VIRTUALIZATION/d' .config
+
+    make $makeFlags ARCH=arm64 olddefconfig
+    patchShebangs scripts/config
+    scripts/config ${lib.concatStringsSep " " config}
 
     make $makeFlags ARCH=arm64 olddefconfig
   '';
