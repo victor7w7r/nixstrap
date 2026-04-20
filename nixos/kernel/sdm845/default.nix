@@ -64,7 +64,8 @@ let
             depmod -b $out -F System.map "$KERNELRELEASE"
         '';
 
-        configurePhase = ''
+        /*
+          configurePhase = ''
           runHook preConfigure
 
           cp ${kconfigFile} .config
@@ -72,12 +73,9 @@ let
           chmod +w .config
           make olddefconfig
 
-          echo "TESTDATAAAAAAA"
-          ls .
-          exit 1
-
           runHook postConfigure
-        '';
+          '';
+        */
       });
 in
 {
