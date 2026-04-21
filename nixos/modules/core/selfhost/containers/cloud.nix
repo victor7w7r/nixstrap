@@ -1,5 +1,7 @@
 { ... }:
 {
+  #docker exec -it seafile /scripts/setup.sh
+  #systemctl restart docker-seafile.service
   containers.cloud = {
     autoStart = true;
     privateNetwork = true;
@@ -116,7 +118,10 @@
               "seafile" = {
                 image = "seafileltd/seafile-mc:11.0-latest";
                 autoStart = true;
-                extraOptions = [ "--network=seafile-net" ];
+                extraOptions = [
+                  "--network=seafile-net"
+                  "--dns=8.8.8.8"
+                ];
                 ports = [ "80:80" ];
                 environment = {
                   DB_HOST = "db";
