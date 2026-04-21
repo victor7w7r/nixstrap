@@ -15,7 +15,10 @@
 let
   persist = import ./persist.nix { inherit persistSize persistLabel; };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
-  store = pkgs.callPackage ./store.nix { inherit storeLabel storeFs; };
+  closureInfo = pkgs.buildPackages.closureInfo {
+    rootPaths = [ config.system.build.toplevel ];
+  };
+  store = pkgs.callPackage ./store.nix { inherit storeLabel storeFs closureInfo; };
   imageName =
     "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
   build = pkgs.callPackage ./build.nix {

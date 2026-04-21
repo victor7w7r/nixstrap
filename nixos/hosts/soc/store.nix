@@ -1,14 +1,10 @@
 {
-  pkgs,
-  config,
+  closureInfo,
   storeFs ? "xfs",
   storeLabel ? "store",
   ...
 }:
 let
-  closureInfo = pkgs.buildPackages.closureInfo {
-    rootPaths = [ config.system.build.toplevel ];
-  };
 
   fakeInvoke = ''faketime -f "1970-01-01 00:00:01" fakeroot'';
   opts =
