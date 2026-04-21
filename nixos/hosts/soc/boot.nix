@@ -10,6 +10,7 @@
 
   bootImgSize=$(( (gap + bootSizeMB + persistSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
 
+  pwd
   ls .
 
   truncate -s $bootImgSize $bootImg
