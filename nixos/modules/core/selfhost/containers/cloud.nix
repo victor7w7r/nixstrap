@@ -67,7 +67,12 @@
           };
           mysql = {
             enable = true;
-            package = pkgs.mariadb_1011.override { withPam = false; };
+            package = pkgs.mariadb_1011.overrideAttrs (oldAttrs: {
+              configureFlags = oldAttrs.configureFlags ++ [
+                "-DWITHOUT_AUTH_PAM=ON"
+                "-DWITH_PAM=OFF"
+              ];
+            });
             initialScript = pkgs.writeText "init-sql" ''
               ALTER USER 'root'@'localhost' IDENTIFIED BY 'db_dev';
               CREATE DATABASE IF NOT EXISTS seafile_db;
