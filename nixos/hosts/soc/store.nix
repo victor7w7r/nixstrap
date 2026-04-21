@@ -50,7 +50,7 @@ in
           MakeFileSystemOptions=${opts}
           Minimize=yes
           EOF
-          ${fakeInvoke} ${pkgs.buildPackages.systemdMinimal}/bin/systemd-repart --definitions=./repart.d \
+          ${fakeInvoke} ${pkgs.systemdUkify}/bin/systemd-repart --definitions=./repart.d \
             --empty=create --size=auto --dry-run=no --root=./rootImage \
             ./root.img
         ''
