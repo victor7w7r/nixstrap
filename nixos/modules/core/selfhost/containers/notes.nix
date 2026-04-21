@@ -57,6 +57,7 @@
       {
         system.stateVersion = "26.05";
         boot.isContainer = true;
+
         networking = {
           defaultGateway = "192.168.1.100";
           useHostResolvConf = lib.mkForce false;

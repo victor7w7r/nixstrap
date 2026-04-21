@@ -5,7 +5,12 @@
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.124/24";
-
+    additionalCapabilities = [
+      "CAP_SYS_ADMIN"
+      "CAP_NET_ADMIN"
+      "CAP_MKNOD"
+      "CAP_SYS_CHROOT"
+    ];
     forwardPorts = [
       {
         containerPort = 80;
@@ -25,6 +30,11 @@
       };
     };
 
+    extraFlags = [
+      "--system-call-filter=keyctl"
+      "--system-call-filter=bpf"
+    ];
+
     config =
       { pkgs, lib, ... }:
       {
@@ -43,6 +53,7 @@
             allowedTCPPorts = [
               5984
               8080
+              3306
               8443
             ];
           };
@@ -60,6 +71,7 @@
             initialRootPassword = "db_dev";
             settings = {
               mysqld = {
+                bind-address = "0.0.0.0";
                 log_console = true;
               };
             };
@@ -72,6 +84,7 @@
         enable = true;
         daemon.settings = {
           "bridge" = "none";
+          "storage-driver" = "vfs";
           dns = [
             "8.8.8.8"
             "1.1.1.1"
@@ -83,19 +96,16 @@
         containers."seafile" = {
           image = "seafileltd/seafile-mc:11.0-latest";
           autoStart = true;
+          extraOptions = [ "--network=host" ];
           environment = {
-            DB_HOST = "db";
+            DB_HOST = "127.0.0.1";
             DB_ROOT_PASSWD = "db_dev";
             TIME_ZONE = "America/Guayaquil";
-            SEAFILE_ADMIN_EMAIL = "me@example.com";
+            SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
             SEAFILE_ADMIN_PASSWORD = "asecret";
             #SEAFILE_SERVER_HOSTNAME
             #SEAFILE_SERVER_LETSENCRYPT
           };
-          ports = [
-            "80:80"
-            "443:443"
-          ];
           volumes = [ "/opt/seafile-data:/shared" ];
         };
       };
