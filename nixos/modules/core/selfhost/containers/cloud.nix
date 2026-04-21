@@ -119,7 +119,7 @@
                 extraOptions = [ "--network=seafile-net" ];
                 ports = [ "80:80" ];
                 environment = {
-                  DB_HOST = "127.0.0.1";
+                  DB_HOST = "db";
                   DB_ROOT_PASSWD = "db_dev";
                   TIME_ZONE = "America/Guayaquil";
                   SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
