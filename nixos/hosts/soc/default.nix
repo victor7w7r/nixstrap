@@ -5,7 +5,6 @@
   bootSize ? 64,
   persistSize ? 2048,
   persistLabel ? "persist",
-  persistKeyFile ? "",
   storeLabel ? "store",
   storeFs ? "xfs",
   populateFirmwareCommands ? "",
@@ -14,7 +13,7 @@
   preBuildCommands ? "",
 }:
 let
-  persist = import ./persist.nix { inherit persistSize persistLabel persistKeyFile; };
+  persist = import ./persist.nix { inherit persistSize persistLabel; };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
   store = pkgs.callPackage ./store.nix { inherit storeLabel storeFs; };
   imageName =
