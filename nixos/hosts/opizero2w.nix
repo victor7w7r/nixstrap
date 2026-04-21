@@ -71,6 +71,7 @@ in
       device = "/dev/disk/by-label/store";
     };
     "/nix/persist" = f2fs {
+      label = "persist";
       device = "/dev/disk/by-label/persist";
       depends = [ "/nix" ];
     };
