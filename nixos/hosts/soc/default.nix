@@ -13,7 +13,7 @@
   preBuildCommands ? "",
 }:
 let
-  persist = import ./persist.nix { inherit persistSize persistLabel; };
+  persist = import ./persist.nix { inherit pkgs persistSize persistLabel; };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
   closureInfo = pkgs.buildPackages.closureInfo {
     rootPaths = [ config.system.build.toplevel ];

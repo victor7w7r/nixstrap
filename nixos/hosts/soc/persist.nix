@@ -1,4 +1,5 @@
 {
+  pkgs,
   persistSize ? 2048,
   persistLabel ? "persist",
 }:
@@ -26,7 +27,7 @@ in
   SizeMaxBytes=$bytes
   EOF
 
-  ${fakeInvoke} systemd-repart --definitions=.repart-persist.d \
+  ${fakeInvoke} ${pkgs.buildPackages.systemdMinimal}/bin/systemd-repart --definitions=.repart-persist.d \
     --empty=create --size=auto --dry-run=no ./persist.img
 
   fsck.f2fs -f ./persist.img ||true

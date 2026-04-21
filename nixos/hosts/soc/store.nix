@@ -1,4 +1,5 @@
 {
+  pkgs,
   closureInfo,
   storeFs ? "xfs",
   storeLabel ? "store",
@@ -49,7 +50,7 @@ in
           MakeFileSystemOptions=${opts}
           Minimize=yes
           EOF
-          ${fakeInvoke} systemd-repart --definitions=./repart.d \
+          ${fakeInvoke} ${pkgs.buildPackages.systemdMinimal}/bin/systemd-repart --definitions=./repart.d \
             --empty=create --size=auto --dry-run=no --root=./rootImage \
             ./root.img
         ''
