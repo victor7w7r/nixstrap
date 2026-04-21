@@ -17,6 +17,8 @@ let
   persist = import ./persist.nix { inherit persistSize persistLabel persistKeyFile; };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
   store = pkgs.callPackage ./store.nix { inherit storeLabel storeFs; };
+  imageName =
+    "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
   build = pkgs.callPackage ./build.nix {
     inherit
       host
@@ -25,6 +27,7 @@ let
       preBuildCommands
       boot
       store
+      imageName
       postBuildCommands
       ;
   };

@@ -1,5 +1,4 @@
 {
-  host,
   populateRootCommands,
   persist,
   preBuildCommands,
@@ -7,7 +6,7 @@
   store,
   postBuildCommands,
 
-  config,
+  imageName,
   pkgs,
   stdenv,
   libfaketime,
@@ -18,8 +17,7 @@
   ...
 }:
 let
-  imageName =
-    "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
+
 in
 stdenv.mkDerivation {
   name = imageName;
