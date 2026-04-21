@@ -14,7 +14,7 @@ in
 
   mkdir -p ./emptySource
   mkdir -p repart-persist.d
-  cat <<EOF > repart.d/10-root.conf
+  cat <<EOF > repart-persist.d/10-persist.conf
   [Partition]
   Type=linux-generic
   Format=f2fs
