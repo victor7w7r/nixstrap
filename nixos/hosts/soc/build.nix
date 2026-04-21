@@ -26,7 +26,6 @@ stdenv.mkDerivation {
     mtools
     libfaketime
     fakeroot
-    libcryptsetup
     util-linux
     f2fs-tools
     zstd
