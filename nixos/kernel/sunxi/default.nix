@@ -16,9 +16,9 @@ let
       config = (import ./config.aarch64-linux.nix);
       configfile = configure;
       allowImportFromDerivation = false;
-      stdenv = pkgs.gcc14Stdenv;
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
+      stdenv = pkgs.gcc14Stdenv;
 
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
@@ -34,11 +34,6 @@ let
     }).overrideAttrs
       (attrs: {
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]);
-        /*
-          .override {
-          stdenv = pkgs.ccacheStdenv;
-          };
-        */
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };

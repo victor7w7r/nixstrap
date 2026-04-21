@@ -1,5 +1,4 @@
 {
-  pkgs,
   persistSize ? 2048,
   persistLabel ? "persist",
 }:
@@ -11,20 +10,10 @@ in
   bytes=$(( persistSizeMB * 1024 * 1024 ))
   bytes=$(( ((bytes + 2097151) / 2097152) * 2097152 ))
 
-  mkdir -p ./emptySource
-  mkdir -p repart-persist.d
-  cat <<EOF > repart-persist.d/10-persist.conf
-  [Partition]
-  Type=linux-generic
-  Format=f2fs
-  Label=${persistLabel}
-  CopyFiles=./emptySource
-  MakeFileSystemOptions=-O extra_attr,compression,flexible_inline_xattr -f
-  Minimize=yes
-  SizeMinBytes=$bytes
-  SizeMaxBytes=$bytes
-  EOF
+  truncate -s $bytes ./persist.img
 
-  ${fakeInvoke} ${pkgs.systemdUkify}/bin/systemd-repart --definitions=.repart-persist.d \
-    --empty=create --size=auto --dry-run=no ./persist.img
+  ${fakeInvoke} mkfs.f2fs -f -l "${persistLabel}" \
+    -O extra_attr,compression,flexible_inline_xattr -q ./persist.img
+
+  fakeroot fsck.f2fs -f ./persist.img || true
 ''

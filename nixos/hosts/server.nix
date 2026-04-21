@@ -103,6 +103,7 @@ in
         "btrfs"
         "sdhci_pci"
         "usb_storage"
+        "br_netfilter"
         "uas"
         "uhci_hcd"
         "ehci_hcd"

@@ -29,7 +29,7 @@ let
       ;
   };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
-  persist = import ./persist.nix { inherit pkgs persistSize persistLabel; };
+  persist = import ./persist.nix { inherit persistSize persistLabel; };
 in
 stdenv.mkDerivation {
   name = imageName;

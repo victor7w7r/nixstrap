@@ -4,7 +4,6 @@
     autoStart = true;
     privateNetwork = true;
     hostBridge = "br0";
-    hostAddress = "192.168.1.100/24";
     localAddress = "192.168.1.120/24";
 
     forwardPorts = [

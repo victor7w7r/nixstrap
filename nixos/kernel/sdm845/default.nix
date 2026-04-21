@@ -12,10 +12,10 @@ let
       lib.mapAttrsToList (name: value: "${name}=${value}") (import ./config.aarch64-linux.nix)
     )
   );
-  build = (
-    pkgs.mobile-nixos.kernel-builder {
-      inherit (configure) src;
-      configfile = ./sdm845.config;
+  build =
+    (pkgs.mobile-nixos.kernel-builder {
+      inherit (configure) patches src;
+      configfile = configure;
       nativeBuildInputs = with pkgs; [
         python3
         zstd
@@ -25,11 +25,13 @@ let
       ];
 
       isModular = true;
+      enableRemovingWerror = true;
+      installTargets = [ "modules_install" ];
+
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
       makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
       isCompressed = "gz";
-      installTargets = [ ];
 
       postInstall = ''
         mkdir -p $out
@@ -41,32 +43,31 @@ let
 
         depmod -b "$out" -F "$buildRoot/System.map" "${configure.version}"
       '';
-    }
-  );
-  /*
+    })
+
     .overrideAttrs
-    (attrs: {
-      stdenv = pkgs.gcc14Stdenv.override { stdenv = pkgs.ccacheStdenv; };
-      ignoreConfigErrors = true;
-      passthru = attrs.passthru // {
-        inherit kconfigToNix configure;
-      };
+      (attrs: {
+        ignoreConfigErrors = true;
+        passthru = attrs.passthru // {
+          inherit kconfigToNix configure;
+        };
 
-      installTargets = [ "modules_install" ];
-      installFlags = [ "INSTALL_MOD_PATH=$out" ];
+        /*
+          installFlags = [ "INSTALL_MOD_PATH=$out" ];
 
-      configurePhase = ''
-        runHook preConfigure
+          configurePhase = ''
+            runHook preConfigure
 
-        cp ${kconfigFile} .config
-        chmod +w .config
-        make olddefconfig
+            cp ${kconfigFile} .config
+            chmod +w .config
+            make olddefconfig
 
-        runHook postConfigure
-      '';
+            runHook postConfigure
+            '';
+        */
 
-    });
-  */
+      });
+
 in
 {
   inherit build;
