@@ -132,7 +132,7 @@
         virtualisation = {
           docker = {
             enable = true;
-            storageDriver = "vfs";
+            storageDriver = "overlay2";
             daemon.settings = {
               "bridge" = "none";
               dns = [
