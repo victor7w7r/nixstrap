@@ -50,7 +50,6 @@
     extraFlags = [
       "--system-call-filter=keyctl"
       "--system-call-filter=bpf"
-      "--bind-ro=/sys/fs/cgroup"
     ];
 
     config =
@@ -135,7 +134,6 @@
         virtualisation = {
           docker = {
             enable = true;
-            storageDriver = "overlay2";
             daemon.settings = {
               "bridge" = "none";
               "storage-driver" = "vfs";
