@@ -77,38 +77,38 @@
             };
           };
         };
-      };
 
-    virtualisation = {
-      docker = {
-        enable = true;
-        daemon.settings = {
-          "bridge" = "none";
-          "storage-driver" = "vfs";
-          dns = [
-            "8.8.8.8"
-            "1.1.1.1"
-          ];
-        };
-      };
-      oci-containers = {
-        backend = "docker";
-        containers."seafile" = {
-          image = "seafileltd/seafile-mc:11.0-latest";
-          autoStart = true;
-          extraOptions = [ "--network=host" ];
-          environment = {
-            DB_HOST = "127.0.0.1";
-            DB_ROOT_PASSWD = "db_dev";
-            TIME_ZONE = "America/Guayaquil";
-            SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
-            SEAFILE_ADMIN_PASSWORD = "asecret";
-            #SEAFILE_SERVER_HOSTNAME
-            #SEAFILE_SERVER_LETSENCRYPT
+        virtualisation = {
+          docker = {
+            enable = true;
+            daemon.settings = {
+              "bridge" = "none";
+              "storage-driver" = "vfs";
+              dns = [
+                "8.8.8.8"
+                "1.1.1.1"
+              ];
+            };
           };
-          volumes = [ "/opt/seafile-data:/shared" ];
+          oci-containers = {
+            backend = "docker";
+            containers."seafile" = {
+              image = "seafileltd/seafile-mc:11.0-latest";
+              autoStart = true;
+              extraOptions = [ "--network=host" ];
+              environment = {
+                DB_HOST = "127.0.0.1";
+                DB_ROOT_PASSWD = "db_dev";
+                TIME_ZONE = "America/Guayaquil";
+                SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
+                SEAFILE_ADMIN_PASSWORD = "asecret";
+                #SEAFILE_SERVER_HOSTNAME
+                #SEAFILE_SERVER_LETSENCRYPT
+              };
+              volumes = [ "/opt/seafile-data:/shared" ];
+            };
+          };
         };
       };
-    };
   };
 }
