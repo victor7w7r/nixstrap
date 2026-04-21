@@ -68,12 +68,22 @@
           mysql = {
             enable = true;
             package = pkgs.mariadb;
-            initialRootPassword = "db_dev";
-            settings = {
-              mysqld = {
-                bind-address = "0.0.0.0";
-                log_console = true;
-              };
+            initialScript = pkgs.writeText "init-sql" ''
+              ALTER USER 'root'@'localhost' IDENTIFIED BY 'db_dev';
+              CREATE DATABASE IF NOT EXISTS seafile_db;
+              FLUSH PRIVILEGES;
+            '';
+            ensureUsers = [
+              {
+                name = "seafile_user";
+                ensurePermissions = {
+                  "seafile_db.*" = "ALL PRIVILEGES";
+                };
+              }
+            ];
+            settings.mysqld = {
+              bind-address = "0.0.0.0";
+              log_console = true;
             };
           };
         };
