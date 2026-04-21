@@ -30,13 +30,9 @@ let
   };
 in
 {
-  system = {
-    nixos.tags = [ "sd-card" ];
-    build = {
-      image = config.system.build.sdImage;
-      system.build.sdImage = build;
-    };
-  };
+  system.nixos.tags = [ "sd-card" ];
+  system.build.image = config.system.build.sdImage;
+  system.build.sdImage = build;
 
   boot.postBootCommands = ''
     set -euo pipefail
