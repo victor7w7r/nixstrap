@@ -20,7 +20,7 @@
     ];
 
     bindMounts = {
-      "/var/lib/mysql" = {
+      "/opt/seafile-mysql/db" = {
         hostPath = "/nix/persist/containers/seafile/mysql";
         isReadOnly = false;
       };
@@ -59,39 +59,20 @@
           };
         };
 
-        services = {
-          resolved.enable = true;
-          memcached = {
-            enable = true;
-            maxMemory = 256;
-          };
-          mysql = {
-            enable = true;
-            package = pkgs.mariadb_1011.overrideAttrs (oldAttrs: {
-              configureFlags = oldAttrs.configureFlags ++ [
-                "-DWITHOUT_AUTH_PAM=ON"
-                "-DWITH_PAM=OFF"
-              ];
-            });
-            initialScript = pkgs.writeText "init-sql" ''
-              ALTER USER 'root'@'localhost' IDENTIFIED BY 'db_dev';
-              CREATE DATABASE IF NOT EXISTS seafile_db;
-              FLUSH PRIVILEGES;
-            '';
-            ensureUsers = [
-              {
-                name = "seafile_user";
-                ensurePermissions = {
-                  "seafile_db.*" = "ALL PRIVILEGES";
-                };
-              }
-            ];
-            settings.mysqld = {
-              innodb_use_native_aio = 0;
-              bind-address = "0.0.0.0";
-              log_console = true;
-            };
-          };
+        services.resolved.enable = true;
+
+        systemd.services.create-seafile-net = {
+          serviceConfig.Type = "oneshot";
+          wantedBy = [
+            "docker-seafile-mysql.service"
+            "docker-seafile.service"
+          ];
+          script = ''
+            check=$(${pkgs.docker}/bin/docker network ls -qf name=seafile-net)
+            if [ -z "$check" ]; then
+              ${pkgs.docker}/bin/docker network create seafile-net
+            fi
+          '';
         };
 
         virtualisation = {
@@ -108,20 +89,50 @@
           };
           oci-containers = {
             backend = "docker";
-            containers."seafile" = {
-              image = "seafileltd/seafile-mc:11.0-latest";
-              autoStart = true;
-              extraOptions = [ "--network=host" ];
-              environment = {
-                DB_HOST = "127.0.0.1";
-                DB_ROOT_PASSWD = "db_dev";
-                TIME_ZONE = "America/Guayaquil";
-                SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
-                SEAFILE_ADMIN_PASSWORD = "asecret";
-                #SEAFILE_SERVER_HOSTNAME
-                #SEAFILE_SERVER_LETSENCRYPT
+            containers = {
+              "seafile-mysql" = {
+                image = "mariadb:10.11";
+                environment = {
+                  MYSQL_ROOT_PASSWORD = "db_dev";
+                  MYSQL_LOG_CONSOLE = "true";
+                  MARIADB_AUTO_UPGRADE = "1";
+                };
+                volumes = [
+                  "/opt/seafile-mysql/db:/var/lib/mysql"
+                ];
+                extraOptions = [ "--network=seafile-net" ];
               };
-              volumes = [ "/opt/seafile-data:/shared" ];
+
+              "seafile-memcached" = {
+                image = "memcached:1.6.18";
+                cmd = [
+                  "memcached"
+                  "-m"
+                  "256"
+                ];
+                extraOptions = [ "--network=seafile-net" ];
+              };
+
+              "seafile" = {
+                image = "seafileltd/seafile-mc:11.0-latest";
+                autoStart = true;
+                extraOptions = [ "--network=seafile-net" ];
+                ports = [ "80:80" ];
+                environment = {
+                  DB_HOST = "127.0.0.1";
+                  DB_ROOT_PASSWD = "db_dev";
+                  TIME_ZONE = "America/Guayaquil";
+                  SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
+                  SEAFILE_ADMIN_PASSWORD = "asecret";
+                  #SEAFILE_SERVER_HOSTNAME
+                  #SEAFILE_SERVER_LETSENCRYPT
+                };
+                dependsOn = [
+                  "seafile-mysql"
+                  "seafile-memcached"
+                ];
+                volumes = [ "/opt/seafile-data:/shared" ];
+              };
             };
           };
         };
