@@ -99,6 +99,7 @@ in
       kernelModules = [
         "cpufreq_reflex"
         "mmc_block"
+        "overlay"
         "zfs"
         "btrfs"
         "sdhci_pci"

@@ -8,6 +8,8 @@
     additionalCapabilities = [
       "CAP_SYS_ADMIN"
       "CAP_NET_ADMIN"
+      "CAP_MKNOD"
+      "CAP_SYS_CHROOT"
     ];
     forwardPorts = [
       {
@@ -48,6 +50,7 @@
     extraFlags = [
       "--system-call-filter=keyctl"
       "--system-call-filter=bpf"
+      "--bind-ro=/sys/fs/cgroup"
     ];
 
     config =
@@ -135,6 +138,7 @@
             storageDriver = "overlay2";
             daemon.settings = {
               "bridge" = "none";
+              "storage-driver" = "vfs";
               dns = [
                 "8.8.8.8"
                 "1.1.1.1"
