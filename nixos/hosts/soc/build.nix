@@ -29,6 +29,7 @@ stdenv.mkDerivation {
     util-linux
     f2fs-tools
     zstd
+    systemdMinimal
   ];
 
   buildCommand = ''
