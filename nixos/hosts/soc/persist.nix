@@ -11,8 +11,6 @@ in
   bytes=$(( persistSizeMB * 1024 * 1024 ))
   bytes=$(( ((bytes + 2097151) / 2097152) * 2097152 ))
 
-  truncate -s $bytes ./persist.img
-
   mkdir -p ./emptySource
   mkdir -p repart-persist.d
   cat <<EOF > repart-persist.d/10-persist.conf
