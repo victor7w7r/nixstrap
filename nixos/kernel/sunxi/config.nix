@@ -65,7 +65,6 @@
   "-d HPFS_FS"
   "-d HFSPLUS_FS"
   "-d JFS_FS"
-  "-d XFS_FS"
   "-d NFC"
   "-d INPUT_JOYSTICK"
   "-d INPUT_TABLET"

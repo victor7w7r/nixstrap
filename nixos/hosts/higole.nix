@@ -34,16 +34,6 @@ in
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/shared";
 
-    "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=2G"
-        "mode=755"
-      ];
-    };
-
     "/nix" = f2fs {
       label = "system";
       device = "/dev/vg0/system";

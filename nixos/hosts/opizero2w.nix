@@ -26,22 +26,20 @@ let
       dtc
     ];
   };
-
+  f2fs = import ./lib/f2fs.nix;
+  xfs = import ./lib/xfs.nix;
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
-
   imports = [
-    (import ./lib/sdcard.nix {
+    (import ./soc {
       inherit config pkgs host;
-      rootVolumeLabel = "OPIZERO2W";
+      postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
       populateFirmwareCommands = ''
         mkdir -p firmware/boot
         ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
-          -c ${config.system.build.toplevel} \
-          -d firmware/boot
+          -c ${config.system.build.toplevel} -d firmware/boot
       '';
-      postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$img bs=1024 seek=8 conv=notrunc";
     })
   ];
 
@@ -50,6 +48,33 @@ in
       makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
+
+  fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+      options = [
+        "nofail"
+        "noauto"
+      ];
+    };
+    "/nix" = xfs {
+      device = "/dev/disk/by-label/store";
+    };
+    "/nix/persist" = f2fs {
+      device = "/dev/disk/by-label/persist";
+      depends = [ "/nix" ];
+    };
+  };
 
   boot = {
     kernelParams = [
