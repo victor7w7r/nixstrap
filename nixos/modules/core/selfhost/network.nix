@@ -9,7 +9,6 @@
 
   networking = {
     interfaces."enp1s0".wakeOnLan.enable = true;
-    bridgeUnits."br0".bridgeConfig.stp = false;
     useNetworkd = true;
     useDHCP = false;
     nat = {
