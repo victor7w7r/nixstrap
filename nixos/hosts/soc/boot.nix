@@ -10,6 +10,8 @@
 
   bootImgSize=$(( (gap + bootSizeMB + persistSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
 
+  ls .
+
   truncate -s $bootImgSize $bootImg
 
   sfdisk --no-reread --no-tell-kernel $bootImg <<EOF

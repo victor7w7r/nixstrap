@@ -32,7 +32,6 @@ in
     bytes=$((bytes * 15 / 10))
     bytes=$(( ((bytes + 2097151) / 2097152) * 2097152 ))
 
-    # 3. Crear la imagen de la partición (root.img)
     truncate -s $bytes ./root.img
 
     ${

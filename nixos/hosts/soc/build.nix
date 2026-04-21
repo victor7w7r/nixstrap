@@ -35,6 +35,7 @@ stdenv.mkDerivation {
   buildCommand = ''
     export bootImg=$out/${imageName}.img
     export storeImg=$out/store-${imageName}.img
+
     (
       mkdir -p ./files
       ${populateRootCommands}
