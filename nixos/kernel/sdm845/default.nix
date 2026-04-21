@@ -12,8 +12,8 @@ let
       lib.mapAttrsToList (name: value: "${name}=${value}") (import ./config.aarch64-linux.nix)
     )
   );
-  build =
-    (pkgs.mobile-nixos.kernel-builder {
+  build = (
+    pkgs.mobile-nixos.kernel-builder {
       inherit (configure) src;
       configfile = configure;
       nativeBuildInputs = with pkgs; [
@@ -41,29 +41,32 @@ let
 
         depmod -b "$out" -F "$buildRoot/System.map" "${configure.version}"
       '';
-    }).overrideAttrs
-      (attrs: {
-        stdenv = pkgs.gcc14Stdenv.override { stdenv = pkgs.ccacheStdenv; };
-        ignoreConfigErrors = true;
-        passthru = attrs.passthru // {
-          inherit kconfigToNix configure;
-        };
+    }
+  );
+  /*
+    .overrideAttrs
+    (attrs: {
+      stdenv = pkgs.gcc14Stdenv.override { stdenv = pkgs.ccacheStdenv; };
+      ignoreConfigErrors = true;
+      passthru = attrs.passthru // {
+        inherit kconfigToNix configure;
+      };
 
-        installTargets = [ "modules_install" ];
+      installTargets = [ "modules_install" ];
+      installFlags = [ "INSTALL_MOD_PATH=$out" ];
 
-        installFlags = [ "INSTALL_MOD_PATH=$out" ];
+      configurePhase = ''
+        runHook preConfigure
 
-        configurePhase = ''
-          runHook preConfigure
+        cp ${kconfigFile} .config
+        chmod +w .config
+        make olddefconfig
 
-          cp ${kconfigFile} .config
-          chmod +w .config
-          make olddefconfig
+        runHook postConfigure
+      '';
 
-          runHook postConfigure
-        '';
-
-      });
+    });
+  */
 in
 {
   inherit build;
