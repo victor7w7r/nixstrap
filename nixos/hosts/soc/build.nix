@@ -1,11 +1,14 @@
 {
   populateRootCommands,
-  persist,
   preBuildCommands,
-  boot,
-  store,
   postBuildCommands,
-
+  bootSize,
+  persistSize,
+  persistLabel,
+  storeLabel,
+  storeFs,
+  populateFirmwareCommands,
+  closureInfo,
   imageName,
   pkgs,
   stdenv,
@@ -17,7 +20,16 @@
   ...
 }:
 let
-
+  store = import ./store.nix {
+    inherit
+      pkgs
+      storeLabel
+      storeFs
+      closureInfo
+      ;
+  };
+  boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
+  persist = import ./persist.nix { inherit pkgs persistSize persistLabel; };
 in
 stdenv.mkDerivation {
   name = imageName;

@@ -3,10 +3,8 @@
   closureInfo,
   storeFs ? "xfs",
   storeLabel ? "store",
-  ...
 }:
 let
-
   fakeInvoke = ''faketime -f "1970-01-01 00:00:01" fakeroot'';
   opts =
     if storeFs == "xfs" then
