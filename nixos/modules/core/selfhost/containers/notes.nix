@@ -148,11 +148,8 @@
             containers."obsidian-web" = {
               image = "sytone/obsidian-remote:latest";
               autoStart = true;
+              extraOptions = [ "--network=host" ];
               environment = { };
-              ports = [
-                "8080:8080"
-                "8443:8443"
-              ];
               volumes = [
                 "/web/vaults:/vaults"
                 "/web/config:/config"
