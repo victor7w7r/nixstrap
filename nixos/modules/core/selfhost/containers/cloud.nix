@@ -67,7 +67,7 @@
           };
           mysql = {
             enable = true;
-            package = pkgs.mariadb_1011;
+            package = pkgs.mariadb_1011.override { withPam = false; };
             initialScript = pkgs.writeText "init-sql" ''
               ALTER USER 'root'@'localhost' IDENTIFIED BY 'db_dev';
               CREATE DATABASE IF NOT EXISTS seafile_db;
@@ -82,8 +82,8 @@
               }
             ];
             settings.mysqld = {
-              bind-address = "0.0.0.0";
               innodb_use_native_aio = 0;
+              bind-address = "0.0.0.0";
               log_console = true;
             };
           };
