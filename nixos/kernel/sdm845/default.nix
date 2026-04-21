@@ -15,7 +15,7 @@ let
   build = (
     pkgs.mobile-nixos.kernel-builder {
       inherit (configure) src;
-      configfile = configure;
+      configfile = ./sdm845.config;
       nativeBuildInputs = with pkgs; [
         python3
         zstd
