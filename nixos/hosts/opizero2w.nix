@@ -90,13 +90,6 @@ in
       systemd.contents = {
         "/share/terminfo".source = "${pkgs.ncurses}/share/terminfo";
       };
-      extraUtilsCommands = ''
-        copy_bin_and_libs ${pkgs.ncurses}/bin/tic
-        mkdir -p $out/share/terminfo
-        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/l
-        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/v
-        cp -rt $out/share/terminfo ${pkgs.ncurses}/share/terminfo/x
-      '';
       kernelModules = [
         "sunxi-mmc"
         "sdhci_pci"
