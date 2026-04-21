@@ -2381,6 +2381,9 @@
   "CONFIG_ARM_PMU" = "y";
   "CONFIG_ARM_PMUV3" = "y";
   "CONFIG_RAS" = "y";
+  "CONFIG_ANDROID_BINDER_IPC" = "y";
+  "CONFIG_ANDROID_BINDERFS" = "y";
+  "CONFIG_ANDROID_BINDER_DEVICES" = "binder,hwbinder,vndbinder";
   "CONFIG_NVMEM" = "y";
   "CONFIG_NVMEM_SYSFS" = "y";
   "CONFIG_NVMEM_LAYOUTS" = "y";

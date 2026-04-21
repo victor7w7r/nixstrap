@@ -5,7 +5,10 @@
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.120/24";
-
+    additionalCapabilities = [
+      "CAP_SYS_ADMIN"
+      "CAP_NET_ADMIN"
+    ];
     forwardPorts = [
       {
         containerPort = 5984;
@@ -129,6 +132,7 @@
         virtualisation = {
           docker = {
             enable = true;
+            storageDriver = "vfs";
             daemon.settings = {
               "bridge" = "none";
               dns = [
