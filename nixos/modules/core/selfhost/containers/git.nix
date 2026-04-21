@@ -5,60 +5,90 @@
     privateNetwork = true;
     hostBridge = "br0";
     localAddress = "192.168.1.122/24";
+    additionalCapabilities = [
+      "CAP_SYS_ADMIN"
+      "CAP_NET_ADMIN"
+      "CAP_MKNOD"
+      "CAP_SYS_CHROOT"
+    ];
     forwardPorts = [
       {
-        containerPort = 2222;
-        hostPort = 2222;
+        containerPort = 6610;
+        hostPort = 6610;
         protocol = "tcp";
       }
       {
-        containerPort = 3001;
-        hostPort = 3001;
+        containerPort = 6611;
+        hostPort = 6611;
         protocol = "tcp";
       }
     ];
     bindMounts = {
-      "/var/lib/gogs" = {
-        hostPath = "/nix/persist/containers/gogs";
+      "/opt/onedev" = {
+        hostPath = "/nix/persist/containers/git";
         isReadOnly = false;
       };
     };
 
+    extraFlags = [
+      "--system-call-filter=keyctl"
+      "--system-call-filter=bpf"
+    ];
+
     config =
-      { ... }:
+      { lib, ... }:
       {
         system.stateVersion = "26.05";
-        networking.firewall.allowedTCPPorts = [
-          2222
-          3001
-        ];
-        services.gogs = {
-          enable = true;
-          stateDir = "/var/lib/gogs";
-          database = {
-            type = "postgres";
-            host = "127.0.0.1";
-            port = 5432;
-            passwordFile = "/etc/nix/gogs-pw";
+        boot.isContainer = true;
+        networking = {
+          defaultGateway = "192.168.1.100";
+          useHostResolvConf = lib.mkForce false;
+          nameservers = [
+            "1.1.1.1"
+            "8.8.8.8"
+          ];
+          firewall = {
+            enable = true;
+            allowedTCPPorts = [
+              6610
+              6611
+            ];
           };
-          domain = "git.v7w7r.local";
-          rootUrl = "http://git.v7w7r.local";
-          httpPort = 3001;
-          cookieSecure = true;
-          extraConfig = ''
-            [server]
-            START_SSH_SERVER = true
-            SSH_PORT = 2222
-            SSH_LISTEN_PORT = 2222
-
-            OFFLINE_MODE = true
-            DISABLE_REGISTRATION = true
-            REQUIRE_SIGNIN_VIEW = true
-
-            [log]
-            ROOT_PATH = /var/lib/gogs/log
-          '';
         };
       };
+
+    virtualisation = {
+      docker = {
+        enable = true;
+        daemon.settings = {
+          "bridge" = "none";
+          "storage-driver" = "vfs";
+          dns = [
+            "8.8.8.8"
+            "1.1.1.1"
+          ];
+        };
+      };
+
+      oci-containers = {
+        backend = "docker";
+        containers.onedev = {
+          image = "1dev/server";
+          autoStart = true;
+          ports = [
+            "6610:6610"
+            "6611:6611"
+          ];
+          environment = {
+            # initial_server_url = "https://${builtins.toString networkConfig.publicIp}/onedev/";
+          };
+          extraOptions = [ "--network=host" ];
+          volumes = [
+            "onedev:/opt/onedev"
+            "/var/run/docker.sock:/var/run/docker.sock"
+          ];
+        };
+      };
+    };
   };
 }
