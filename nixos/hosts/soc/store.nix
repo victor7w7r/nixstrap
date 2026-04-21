@@ -49,6 +49,7 @@ in
           MakeFileSystemOptions=${opts}
           Minimize=yes
           EOF
+          ls .
           ${fakeInvoke} systemd-repart --definitions=./repart.d \
             --empty=create --size=auto --dry-run=no --root=./rootImage \
             ./root.img
