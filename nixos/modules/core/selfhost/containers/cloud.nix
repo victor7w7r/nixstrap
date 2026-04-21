@@ -1,6 +1,6 @@
 { ... }:
 {
-  #docker exec -it seafile /scripts/setup.sh
+  #docker exec -it seafile python3 /scripts/start.py
   #systemctl restart docker-seafile.service
   containers.cloud = {
     autoStart = true;
@@ -27,7 +27,7 @@
         isReadOnly = false;
       };
       "/opt/seafile-data" = {
-        hostPath = "/nix/persist/cloud";
+        hostPath = "/nix/persist/containers/seafile/shared";
         isReadOnly = false;
       };
     };
@@ -63,18 +63,24 @@
 
         services.resolved.enable = true;
 
-        systemd.services.create-seafile-net = {
-          serviceConfig.Type = "oneshot";
-          wantedBy = [
-            "docker-seafile-mysql.service"
-            "docker-seafile.service"
+        systemd = {
+          tmpfiles.rules = [
+            "d /opt/seafile-data 0770 1000 1000 - -"
           ];
-          script = ''
-            check=$(${pkgs.docker}/bin/docker network ls -qf name=seafile-net)
-            if [ -z "$check" ]; then
-              ${pkgs.docker}/bin/docker network create seafile-net
-            fi
-          '';
+
+          services.create-seafile-net = {
+            serviceConfig.Type = "oneshot";
+            wantedBy = [
+              "docker-seafile-mysql.service"
+              "docker-seafile.service"
+            ];
+            script = ''
+              check=$(${pkgs.docker}/bin/docker network ls -qf name=seafile-net)
+              if [ -z "$check" ]; then
+                ${pkgs.docker}/bin/docker network create seafile-net
+              fi
+            '';
+          };
         };
 
         virtualisation = {
@@ -124,7 +130,7 @@
                 ];
                 ports = [ "80:80" ];
                 environment = {
-                  DB_HOST = "db";
+                  DB_HOST = "seafile-mysql";
                   DB_ROOT_PASSWD = "db_dev";
                   TIME_ZONE = "America/Guayaquil";
                   SEAFILE_ADMIN_EMAIL = "arkano036@gmail.com";
