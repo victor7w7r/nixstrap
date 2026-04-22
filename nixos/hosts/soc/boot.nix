@@ -1,5 +1,5 @@
 {
-  bootSize ? 64,
+  bootSize ? 128,
   persistSize ? 2048,
   populateFirmwareCommands ? "",
 }:
@@ -30,8 +30,11 @@
 
   find firmware -exec touch --date=2000-01-01 {} +
   cd firmware
+  for d in $(find . -type d -mindepth 1 | sort); do
+    faketime "2000-01-01 00:00:00" mmd -i ../firmware_part.img "::/$d"
+  done
   for f in $(find . -type f | sort); do
-    mcopy -pvm -i ../firmware_part.img "$f" "::/$(echo $f | sed 's|^\./||')"
+    mcopy -pvm -i ../firmware_part.img "$f" "::/$f"
   done
   cd ..
 

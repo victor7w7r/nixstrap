@@ -44,6 +44,10 @@
 
   mobile = {
     system.android.device_name = "OnePlus6T";
+    generatedFilesystems.rootfs = lib.mkDefault {
+      filesystem = lib.mkForce "btrfs";
+      extraPadding = lib.mkForce (pkgs.image-builder.helpers.size.MiB 128);
+    };
     device = {
       name = "oneplus-fajita";
       supportLevel = "best-effort";

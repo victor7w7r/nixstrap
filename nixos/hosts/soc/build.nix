@@ -1,6 +1,4 @@
 {
-  populateRootCommands,
-  preBuildCommands,
   postBuildCommands,
   bootSize,
   persistSize,
@@ -22,7 +20,6 @@
 let
   store = import ./store.nix {
     inherit
-      pkgs
       storeLabel
       storeFs
       closureInfo
@@ -30,40 +27,43 @@ let
   };
   boot = import ./boot.nix { inherit bootSize persistSize populateFirmwareCommands; };
   persist = import ./persist.nix { inherit persistSize persistLabel; };
+  #nativePkgs = import pkgs.path { system = pkgs.system; };
 in
 stdenv.mkDerivation {
   name = imageName;
   nativeBuildInputs = with pkgs; [
+    bcachefs-tools
+    btrfs-progs
     dosfstools
-    mtools
-    libfaketime
     fakeroot
-    util-linux
     f2fs-tools
+    gnutar
+    libfaketime
+    buildPackages.libguestfs-with-appliance
+    mtools
+    pv
+    systemdUkify
+    util-linux
+    xfsprogs
     zstd
-    systemdMinimal
   ];
 
   buildCommand = ''
-    export bootImg=$out/${imageName}.img
-    export storeImg=$out/store-${imageName}.img
-
-    (
-      mkdir -p ./files
-      ${populateRootCommands}
-    )
+    export bootImg=boot.img
 
     ${persist}
-    ${preBuildCommands}
     ${boot}
 
     eval $(partx $bootImg -o START,SECTORS --nr 2 --pairs)
     dd conv=notrunc if=./persist.img of=$bootImg seek=$START count=$SECTORS
 
-    ${store}
     ${postBuildCommands}
+    ${store}
 
     zstd -T$NIX_BUILD_CORES --rm $bootImg
-    zstd -T$NIX_BUILD_CORES --rm $storeImg
+    zstd -T$NIX_BUILD_CORES --rm store.img
+
+    mkdir -p $out
+    cp -a ./* $out/
   '';
 }

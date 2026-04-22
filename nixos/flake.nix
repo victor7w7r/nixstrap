@@ -210,6 +210,7 @@
               { ... }:
               {
                 nixpkgs.hostPlatform = "aarch64-linux";
+                nixpkgs.config.allowUnsupportedSystem = true;
                 nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
               }
             )

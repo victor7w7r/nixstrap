@@ -2,15 +2,13 @@
   config,
   host,
   pkgs,
-  bootSize ? 64,
+  bootSize ? 128,
   persistSize ? 2048,
   persistLabel ? "persist",
   storeLabel ? "store",
   storeFs ? "xfs",
   populateFirmwareCommands ? "",
-  populateRootCommands ? "",
   postBuildCommands ? "",
-  preBuildCommands ? "",
 }:
 let
   closureInfo = pkgs.buildPackages.closureInfo {
@@ -28,8 +26,6 @@ let
       storeLabel
       populateFirmwareCommands
       bootSize
-      populateRootCommands
-      preBuildCommands
       imageName
       postBuildCommands
       ;

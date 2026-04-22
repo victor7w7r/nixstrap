@@ -15,5 +15,5 @@ in
   ${fakeInvoke} mkfs.f2fs -f -l "${persistLabel}" \
     -O extra_attr,compression,flexible_inline_xattr -q ./persist.img
 
-  fakeroot fsck.f2fs -f ./persist.img || true
+  ${fakeInvoke} fsck.f2fs -f ./persist.img || true
 ''

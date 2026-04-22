@@ -15,7 +15,7 @@ let
   build =
     (pkgs.mobile-nixos.kernel-builder {
       inherit (configure) patches src;
-      configfile = configure;
+      configfile = ./sdm845.config;
       nativeBuildInputs = with pkgs; [
         python3
         zstd
@@ -47,11 +47,9 @@ let
 
     .overrideAttrs
       (attrs: {
-        ignoreConfigErrors = true;
         passthru = attrs.passthru // {
           inherit kconfigToNix configure;
         };
-
         /*
           installFlags = [ "INSTALL_MOD_PATH=$out" ];
 
@@ -65,9 +63,7 @@ let
             runHook postConfigure
             '';
         */
-
       });
-
 in
 {
   inherit build;
