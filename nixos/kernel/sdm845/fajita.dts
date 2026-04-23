@@ -55,8 +55,8 @@
  * The TFA9894 codec is currently unsupported.
  * We need to delete the node to allow the soundcard
  * to probe for headphones/earpiece.
- */
 /delete-node/ &speaker_playback_dai;
+ */
 
 &rmi4_f12 {
 	touchscreen-y-mm = <148>;

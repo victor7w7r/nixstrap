@@ -64,8 +64,7 @@
 			"AMIC5", "MIC BIAS4";
 };
 
-/delete-node/ &speaker_playback_dai;
-
+/* /delete-node/ &speaker_playback_dai; */
 &wcd9340 {
 	qcom,micbias1-microvolt = <1800000>;
 	qcom,micbias2-microvolt = <2700000>;
