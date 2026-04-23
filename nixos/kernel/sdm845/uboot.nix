@@ -35,8 +35,7 @@ let
 
       rm dts/upstream/src/arm64/qcom/sdm845-oneplus-fajita.dts
 
-      cp -r ${./${device}.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
-      cp -r ${./common.dtsi} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/* dts/upstream/src/arm64/qcom/*
       cp -r ${fetch.sdm845}/include/dt-bindings/input/qcom,spmi-haptics.h dts/upstream/include/dt-bindings/input
       cp -r ${fetch.sdm845}/include/dt-bindings/sound/qcom,q6asm.h dts/upstream/include/dt-bindings/sound
       cp -r ${fetch.sdm845}/include/dt-bindings/sound/qcom,q6afe.h dts/upstream/include/dt-bindings/sound
