@@ -24,8 +24,8 @@ let
       config = (import ./generated) { inherit host; };
       configfile = configure;
       allowImportFromDerivation = false;
-      version = "7.0.0-rc2-next-20260306-v7w7r-sdm845";
-      modDirVersion = "7.0.0-rc2-next-20260306-v7w7r-sdm845";
+      version = "${configure.version}${configure.passthru.localVer}";
+      modDirVersion = "${configure.version}${configure.passthru.localVer}";
       # stdenv = pkgs.ccacheStdenv.override {
       stdenv = helpers.stdenvLLVM;
       # };
