@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  kernel,
   kernelData,
   ...
 }:
@@ -21,16 +22,8 @@ pkgs.stdenv.mkDerivation {
   stdenv = pkgs.gcc14Stdenv.override {
     stdenv = pkgs.ccacheStdenv;
   };
-  nativeBuildInputs = with pkgs; [
-    gnumake
-    gcc14
-    bc
-    bison
-    flex
-    perl
-    python3
-  ];
 
+  nativeBuildInputs = kernel.nativeBuildInputs ++ kernel.buildInputs;
   installPhase = "cp .config $out";
   buildPhase = ''
     export ARCH=arm64

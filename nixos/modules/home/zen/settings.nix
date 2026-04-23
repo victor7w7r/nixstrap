@@ -398,8 +398,8 @@
         "pdfjs.enabledCache.state" = true;
         "pdfjs.enableScripting" = false;
         "pdfjs.migrationVersion" = 2;
-        "permissions.default.geo" = 2;
-        "permissions.default.camera" = 2;
+        "permissions.default.geo" = 0;
+        "permissions.default.camera" = 0;
         "permissions.default.microphone" = 0;
         "permissions.default.desktop-notification" = 0;
         "permissions.default.xr" = 2;

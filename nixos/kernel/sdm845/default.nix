@@ -2,70 +2,54 @@
   lib,
   pkgs,
   kernelData,
+  device ? "fajita",
   ...
 }:
 let
-  configure = pkgs.callPackage ./configure.nix { inherit kernelData; };
+  configure = pkgs.callPackage ./configure.nix { inherit kernelData kernel; };
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  kconfigFile = pkgs.writeText "kconfig-mobile" (
-    lib.concatStringsSep "\n" (
-      lib.mapAttrsToList (name: value: "${name}=${value}") (import ./config.aarch64-linux.nix)
-    )
-  );
-  build =
-    (pkgs.mobile-nixos.kernel-builder {
-      inherit (configure) patches src;
-      configfile = ./sdm845.config;
-      nativeBuildInputs = with pkgs; [
-        python3
-        zstd
-        ccache
-        kmod
-        gzip
-      ];
-
-      isModular = true;
-      enableRemovingWerror = true;
-      installTargets = [ "modules_install" ];
-
+  patches = configure.passthru.patches;
+  uboot = pkgs.callPackage ./uboot.nix {
+    inherit device kernel;
+    inherit (configure) src;
+  };
+  kernel =
+    (pkgs.linuxManualConfig {
+      inherit (configure) src;
+      config = (import ./config.aarch64-linux.nix);
+      configfile = configure;
+      allowImportFromDerivation = false;
       version = "${configure.version}${configure.passthru.localVer}";
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
-      makeImageDtbWith = "qcom/sdm845-oneplus-fajita.dtb";
-      isCompressed = "gz";
 
-      postInstall = ''
-        mkdir -p $out
+      kernelPatches = map (file: {
+        name = baseNameOf (toString file);
+        patch = file;
+      }) patches;
 
-        cp -v "$buildRoot/arch/arm64/boot/Image.gz" "$out/Image.gz"
+      stdenv = lib.recursiveUpdate pkgs.stdenv {
+        hostPlatform.linux-kernel.extraConfig = "";
+      };
 
-        ln -sv Image.gz "$out/vmlinuz" || true
-        cp .config $out/config-${configure.version}
-
-        depmod -b "$out" -F "$buildRoot/System.map" "${configure.version}"
-      '';
-    })
-
-    .overrideAttrs
+      extraMakeFlags = [
+        "LOCALVERSION=${configure.passthru.localVer}"
+        "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
+        "NIX_ENFORCE_NO_NATIVE=0"
+        "KCFLAGS=-Wno-unknown-warning-option -Wno-ignored-optimization-argument"
+      ];
+    }).overrideAttrs
       (attrs: {
         passthru = attrs.passthru // {
-          inherit kconfigToNix configure;
+          isModular = false;
+          inherit kconfigToNix uboot configure;
+          features = {
+            isModular = false;
+            efiBootStub = true;
+          };
         };
-        /*
-          installFlags = [ "INSTALL_MOD_PATH=$out" ];
-
-          configurePhase = ''
-            runHook preConfigure
-
-            cp ${kconfigFile} .config
-            chmod +w .config
-            make olddefconfig
-
-            runHook postConfigure
-            '';
-        */
       });
 in
 {
-  inherit build;
-  packages = pkgs.linuxPackagesFor build;
+  inherit kernel;
+  packages = pkgs.linuxPackagesFor kernel;
 }

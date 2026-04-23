@@ -150,11 +150,10 @@
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
 
-          qcomkernel =
-            (armPkgs.callPackage ./kernel/sdm845 {
+            uboot = (armPkgs.callPackage ./kernel/sdm845 {
               inherit inputs;
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-            }).build;
+            }).kernel.uboot;
 
           qcomconfig =
             (armPkgs.callPackage ./kernel/sdm845 {
@@ -239,9 +238,8 @@
           };
         };
 
-        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-bootimg"
+        #nix build -L ".#packages.aarch64-linux.fajita.uboot"
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.generatedFilesystems.rootfs"
-        #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.android.android-fastboot-images"
         fajita = nixpkgs.lib.nixosSystem {
           system = systemarm;
           modules = [
