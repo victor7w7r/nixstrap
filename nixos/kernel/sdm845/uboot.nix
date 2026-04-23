@@ -37,9 +37,9 @@ let
         if device == "fajita" then "enchilada" else "fajita"
       }.dts
 
-      cp -r ${./dts.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+      cp -r ${./common.dtsi} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
       cp -r ${./${device}.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-enchilada.dts
-      cp -r ${./dts.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+      cp -r ${./common.dtsi} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
 
       cp -r ${fetch.sdm845}/include/dt-bindings/input/qcom,spmi-haptics.h dts/upstream/include/dt-bindings/input
       cp -r ${fetch.sdm845}/include/dt-bindings/sound/qcom,q6voice.h dts/upstream/include/dt-bindings/sound
