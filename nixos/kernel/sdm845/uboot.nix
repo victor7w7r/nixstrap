@@ -45,6 +45,7 @@ let
 
       cp -r ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/*
 
+      chmod -R +w dts/include/dt-bindings/
       chmod -R +w dts/upstream/src/arm64/
     '';
     extraMakeFlags = [ "DEVICE_TREE=qcom/sdm845-oneplus-${device}" ];
