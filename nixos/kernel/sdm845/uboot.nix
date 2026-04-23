@@ -33,19 +33,19 @@ let
       cat configs/qcom_defconfig board/qualcomm/qcom-phone.config > f
       mv f configs/qcom_defconfig
 
-      rm -rf dts/upstream/include/dt-bindings
-      mkdir -p dts/upstream/include/dt-bindings
-      cp -r ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/
+      rm dts/upstream/src/arm64/qcom/sdm845-oneplus-${
+        if device == "fajita" then "enchilada" else "fajita"
+      }.dts
 
-      rm -rf dts/upstream/src/arm64/qcom
-      mkdir -p dts/upstream/src/arm64/qcom
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-${device}.dts dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845.dtsi dts/upstream/src/arm64/qcom/sdm845.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-wcd9340.dtsi dts/upstream/src/arm64/qcom/sdm845-wcd9340.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pm8998.dtsi dts/upstream/src/arm64/qcom/pm8998.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pmi8998.dtsi dts/upstream/src/arm64/qcom/pmi8998.dtsi
+      cp -r ${./dts.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+      cp -r ${./${device}.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-enchilada.dts
+      cp -r ${./dts.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+
+      cp -r ${fetch.sdm845}/include/dt-bindings/input/qcom,spmi-haptics.h dts/upstream/include/dt-bindings/input
+      cp -r ${fetch.sdm845}/include/dt-bindings/sound/qcom,q6voice.h dts/upstream/include/dt-bindings/sound
+      cp -r ${fetch.sdm845}/include/uapi/linux/input-event-codes.h dts/upstream/include/dt-bindings/input/linux-event-codes.h
+
+      chmod -R +w dts/upstream/src/arm64/
     '';
     extraMakeFlags = [ "DEVICE_TREE=qcom/sdm845-oneplus-${device}" ];
     defconfig = "qcom_defconfig";
