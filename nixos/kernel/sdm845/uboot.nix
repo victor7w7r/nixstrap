@@ -30,23 +30,26 @@ let
       CONFIG_VIDEO_FONT_8X16=y
     '';
     prePatch = ''
-      cat configs/qcom_defconfig board/qualcomm/qcom-phone.config > f
-      mv f configs/qcom_defconfig
+       cat configs/qcom_defconfig board/qualcomm/qcom-phone.config > f
+       mv f configs/qcom_defconfig
 
-      rm dts/upstream/src/arm64/qcom/sdm845-oneplus-fajita.dts
+       rm dts/upstream/src/arm64/qcom/sdm845-oneplus-${
+         if device == "fajita" then "enchilada" else "fajita"
+       }.dts
 
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-${device}.dts dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845.dtsi dts/upstream/src/arm64/qcom/sdm845.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-wcd9340.dtsi dts/upstream/src/arm64/qcom/sdm845-wcd9340.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pm8998.dtsi dts/upstream/src/arm64/qcom/pm8998.dtsi
-      cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pmi8998.dtsi dts/upstream/src/arm64/qcom/pmi8998.dtsi
+      chmod -R +w dts/upstream/src/arm64/qcom/
+      chmod -R +w dts/upstream/include/dt-bindings/
+      cp -rn ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/
 
-      cp -r ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/*
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-${device}.dts dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845.dtsi dts/upstream/src/arm64/qcom/sdm845.dtsi
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-wcd9340.dtsi dts/upstream/src/arm64/qcom/sdm845-wcd9340.dtsi
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pm8998.dtsi dts/upstream/src/arm64/qcom/pm8998.dtsi
+       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/pmi8998.dtsi dts/upstream/src/arm64/qcom/pmi8998.dtsi
 
-      chmod -R +w dts/include/dt-bindings/
-      chmod -R +w dts/upstream/src/arm64/
+       cp -r ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/*
     '';
     extraMakeFlags = [ "DEVICE_TREE=qcom/sdm845-oneplus-${device}" ];
     defconfig = "qcom_defconfig";
