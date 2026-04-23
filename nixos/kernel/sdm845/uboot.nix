@@ -33,9 +33,7 @@ let
       cat configs/qcom_defconfig board/qualcomm/qcom-phone.config > f
       mv f configs/qcom_defconfig
 
-      rm dts/upstream/src/arm64/qcom/sdm845-oneplus-${
-        if device == "fajita" then "enchilada" else "fajita"
-      }.dts
+      rm dts/upstream/src/arm64/qcom/*
 
       chmod -R +w dts/upstream/src/arm64/qcom/
       chmod -R +w dts/upstream/include/dt-bindings/
