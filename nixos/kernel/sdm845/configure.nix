@@ -11,8 +11,8 @@ let
   localVer = "-v7w7r";
   config = (import ./config.nix);
   patches = [
-    "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
-    "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
+    # "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
+    # "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
   ];
 in
 pkgs.stdenv.mkDerivation {
