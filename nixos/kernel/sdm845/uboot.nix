@@ -38,7 +38,7 @@ let
       }.dts
 
       cp -r ${./common.dtsi} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
-      cp -r ${./${device}.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-enchilada.dts
+      cp -r ${./${device}.dts} dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
       cp -r ${./common.dtsi} dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
 
       cp -r ${fetch.sdm845}/include/dt-bindings/input/qcom,spmi-haptics.h dts/upstream/include/dt-bindings/input
