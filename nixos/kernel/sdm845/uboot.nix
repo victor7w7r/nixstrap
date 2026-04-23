@@ -33,12 +33,12 @@ let
       cat configs/qcom_defconfig board/qualcomm/qcom-phone.config > f
       mv f configs/qcom_defconfig
 
-      rm dts/upstream/src/arm64/qcom/*
+      rm -rf dts/upstream/include/dt-bindings
+      mkdir -p dts/upstream/include/dt-bindings
+      cp -r ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/
 
-      chmod -R +w dts/upstream/src/arm64/qcom/
-      chmod -R +w dts/upstream/include/dt-bindings/
-      cp -rn ${fetch.sdm845}/include/dt-bindings/* dts/upstream/include/dt-bindings/
-
+      rm -rf dts/upstream/src/arm64/qcom
+      mkdir -p dts/upstream/src/arm64/qcom
       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-${device}.dts dts/upstream/src/arm64/qcom/sdm845-oneplus-${device}.dts
       cp -r ${fetch.sdm845}/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi dts/upstream/src/arm64/qcom/sdm845-oneplus-common.dtsi
