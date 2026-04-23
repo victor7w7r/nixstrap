@@ -64,11 +64,7 @@
 			"AMIC5", "MIC BIAS4";
 };
 
-&speaker_playback_dai {
-	codec {
-		sound-dai = <&max98927_codec>;
-	};
-};
+/delete-node/ &speaker_playback_dai;
 
 &wcd9340 {
 	qcom,micbias1-microvolt = <1800000>;
