@@ -8,7 +8,7 @@
 let
   majorMinor = lib.versions.majorMinor kernelData.sdm845.version;
   fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
-  localVer = "sdm845-v7w7r";
+  localVer = "-sdm845-v7w7r";
   config = (import ./config.nix);
   patches = [
     "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
