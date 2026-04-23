@@ -40,10 +40,7 @@ stdenv.mkDerivation {
     gnutar
     libfaketime
     (libguestfs-with-appliance.overrideAttrs (oldAttrs: {
-      configureFlags = (oldAttrs.configureFlags or [ ]) ++ [
-        "--disable-appliance"
-        "--disable-daemon"
-      ];
+      configureFlags = (oldAttrs.configureFlags or [ ]) ++ [ "--disable-appliance" ];
       doInstallCheck = false;
     }))
     mtools
