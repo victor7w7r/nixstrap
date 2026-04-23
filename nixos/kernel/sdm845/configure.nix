@@ -32,7 +32,6 @@ pkgs.stdenv.mkDerivation {
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
     scripts/config --undefine CONFIG_LOCALVERSION
-    scripts/config --set-str CONFIG_LOCALVERSION "${localVer}"
     make $makeFlags olddefconfig
   '';
 
