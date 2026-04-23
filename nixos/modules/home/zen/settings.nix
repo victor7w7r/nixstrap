@@ -37,10 +37,7 @@
         "browser.cache.memory.capacity" = 131072;
         "browser.cache.memory.max_entry_size" = 32768;
         "browser.cache.max_shutdown_io_lag" = 100;
-        "browser.contentblocking.category" = {
-          Value = "strict";
-          Status = "locked";
-        };
+        "browser.contentblocking.category" = "standard";
         "browser.download.dir" = "/media/ext";
         "browser.download.folderList" = 2;
         "browser.download.lastDir" = "/media/ext";
@@ -371,7 +368,7 @@
         "network.allow-experiments" = false;
         "network.buffer.cache.size" = 65535;
         "network.cookie.CHIPS.lastMigrateDatabase" = 2;
-        "network.cookie.cookieBehavior" = 5;
+        "network.cookie.cookieBehavior" = 1;
         "network.dns.disablePrefetch" = true;
         "network.dns.disablePrefetchFromHTTPS" = true;
         "network.dnsCacheExpiration" = 3600;
@@ -407,7 +404,7 @@
         "plugins.enumerable_names" = "";
         "plugin.state.flash" = 0;
 
-        "privacy.antitracking.isolateContentScriptResources" = true;
+        "privacy.antitracking.isolateContentScriptResources" = false;
         "privacy.clearOnShutdown.cache" = lock-true;
         "privacy.clearOnShutdown.cookies" = lock-false;
         "privacy.clearOnShutdown.downloads" = lock-true;
@@ -435,8 +432,8 @@
         "privacy.trackingprotection.fingerprinting.enabled" = lock-true;
         "privacy.trackingprotection.socialtracking.enabled" = lock-true;
         "privacy.trackingprotection.cryptomining.enabled" = lock-true;
-        "privacy.userContext.enabled" = true;
-        "privacy.userContext.ui.enabled" = true;
+        "privacy.userContext.enabled" = false;
+        "privacy.userContext.ui.enabled" = false;
         "privacy.userContext.longPressBehavior" = 2;
         "reader.parse-on-load.enabled" = false;
 

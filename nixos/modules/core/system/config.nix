@@ -57,6 +57,8 @@
           "gamemode"
           "input"
           "kvm"
+          "adbusers"
+          "dialout"
           "libvirtd"
           "libvirt-qemu"
           "networkmanager"

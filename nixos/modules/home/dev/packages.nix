@@ -1,6 +1,8 @@
 {
   pkgs,
   host,
+  system,
+  inputs,
   ...
 }:
 {
@@ -11,6 +13,9 @@
       neovim
       cool-retro-term
       git-credential-manager
+      (inputs.claude-desktop.packages.${system}.claude-desktop.override {
+        nodePackages = { inherit (pkgs) asar; };
+      })
       lazygit
     ]
     ++ (

@@ -84,16 +84,9 @@ in
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     ];
     kernelParams = [ "video=DP-3:1600x900@60" ] ++ params { };
-    kernelPackages = lib.mkForce (
-      (helpers.kernelModuleLLVMOverride (kernelBuild.packages)).extend (
-        _self: _super: {
-          kernel_configfile = _super.kernel.configfile;
-          zfs_cachyos = pkgs.cachyosKernels.zfs-cachyos-lto.override { kernel = kernelBuild.kernel; };
-        }
-      )
-    );
+    kernelPackages = lib.mkForce (helpers.kernelModuleLLVMOverride (kernelBuild.packages));
     zfs = {
-      package = config.boot.kernelPackages.zfs_cachyos;
+      package = pkgs.zfs_unstable;
       forceImportAll = false;
       forceImportRoot = true;
     };

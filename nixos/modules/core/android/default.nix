@@ -1,11 +1,26 @@
 { pkgs, ... }:
+let
+  xiaomiVendor = "2717";
+  oneplusVendor = "18d1";
+in
 {
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${xiaomiVendor}", MODE="[]", GROUP="adbusers", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${xiaomiVendor}", ATTR{idProduct}=="ff40", SYMLINK+="android_adb"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${xiaomiVendor}", ATTR{idProduct}=="ff40", SYMLINK+="android_fastboot"
+
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${oneplusVendor}", MODE="[]", GROUP="adbusers", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${oneplusVendor}", ATTR{idProduct}=="d00d", SYMLINK+="android_adb"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="${oneplusVendor}", ATTR{idProduct}=="d00d", SYMLINK+="android_fastboot"
+  '';
+
   environment.systemPackages = with pkgs; [
     adbfs-rootless
     adb-sync
     adbtuifm
     androguard
     android-file-transfer
+    android-tools
     gnirehtet
     qtscrcpy
     payload-dumper-go

@@ -57,6 +57,12 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
+
+    claude-desktop = {
+      url = "github:k3d3/claude-desktop-linux-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     batfetch = {
       url = "github:ashish-kus/batfetch";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -150,7 +156,8 @@
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
 
-            uboot = (armPkgs.callPackage ./kernel/sdm845 {
+          uboot =
+            (armPkgs.callPackage ./kernel/sdm845 {
               inherit inputs;
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.uboot;
