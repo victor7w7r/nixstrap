@@ -8,7 +8,7 @@
 let
   majorMinor = lib.versions.majorMinor kernelData.sdm845.version;
   fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
-  localVer = "-v7w7r";
+  localVer = "-v7w7r-sdm845";
   config = (import ./config.nix);
   patches = [
     # "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
@@ -31,6 +31,8 @@ pkgs.stdenv.mkDerivation {
     cp arch/arm64/configs/sdm845.config .config
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
+    scripts/config --undefine CONFIG_LOCALVERSION
+    scripts/config --set-str CONFIG_LOCALVERSION "${localVer}"
     make $makeFlags olddefconfig
   '';
 
