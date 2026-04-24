@@ -2,7 +2,7 @@
   config,
   host,
   pkgs,
-  bootSize ? 128,
+  bootSize ? 256,
   persistSize ? 2048,
   persistLabel ? "persist",
   storeLabel ? "store",
