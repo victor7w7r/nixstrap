@@ -47,7 +47,7 @@ stdenv.mkDerivation {
   ];
 
   buildCommand = ''
-    export bootImg=boot.img
+    export bootImg=bootbuild.img
 
     ${persist}
     ${boot}

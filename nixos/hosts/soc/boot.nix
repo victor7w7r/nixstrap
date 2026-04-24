@@ -1,6 +1,6 @@
 {
-  bootSize ? 256,
-  persistSize ? 2048,
+  bootSize,
+  persistSize,
   populateFirmwareCommands ? "",
 }:
 ''
