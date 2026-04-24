@@ -1,5 +1,5 @@
 {
-  bootSize ? 256,
+  bootSize ? 512,
   persistSize ? 2048,
   populateFirmwareCommands ? "",
 }:
