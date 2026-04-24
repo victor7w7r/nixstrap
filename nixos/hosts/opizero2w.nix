@@ -88,7 +88,6 @@ in
 
   boot = {
     kernelParams = [
-      "earlycon"
       "loglevel=7"
       "console=ttyS0,115200"
       "earlycon=uart,mmio32,0x05000000"
@@ -135,7 +134,6 @@ in
 
   hardware.deviceTree = {
     enable = true;
-    filter = "sun50i-h618-orangepi-zero2w.dtb";
     name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
   };
 }
