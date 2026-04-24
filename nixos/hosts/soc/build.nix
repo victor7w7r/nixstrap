@@ -4,7 +4,7 @@
   persistSize,
   persistLabel,
   storeLabel,
-  storeFs,
+  isHDD,
   populateFirmwareCommands,
   closureInfo,
   imageName,
@@ -21,7 +21,7 @@ let
   store = import ./store.nix {
     inherit
       storeLabel
-      storeFs
+      isHDD
       closureInfo
       ;
   };
@@ -33,9 +33,9 @@ stdenv.mkDerivation {
   name = imageName;
   nativeBuildInputs = with pkgs; [
     bcachefs-tools
-    btrfs-progs
     dosfstools
     fakeroot
+    e2fsprogs
     f2fs-tools
     gnutar
     libfaketime
@@ -43,7 +43,6 @@ stdenv.mkDerivation {
     pv
     systemdUkify
     util-linux
-    xfsprogs
     zstd
   ];
 

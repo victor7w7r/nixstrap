@@ -1,14 +1,14 @@
 {
   closureInfo,
-  storeFs ? "xfs",
+  isHDD,
   storeLabel ? "store",
 }:
 let
   fsOpts =
-    if storeFs == "xfs" then
-      ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1 -n size=64k"''
+    if isHDD then
+      ''export SYSTEMD_REPART_MKFS_OPTIONS_EXT4="-E lazy_itable_init=1,lazy_journal_init=1 -m 0 -i 8192 -J size=16 -O 64bit,dir_index,dir_nlink,extent,ext_attr,extra_isize,filetype,flex_bg,has_journal,metadata_csum,resize_inode,uninit_bg,sparse_super"''
     else
-      "--compression=zstd --background_compression=zstd";
+      ''export SYSTEMD_REPART_MKFS_OPTIONS_BCACHEFS="--compression=zstd --background_compression=zstd"'';
   fakeInvoke = ''faketime -f "1970-01-01 00:00:01" fakeroot'';
 in
 ''
@@ -19,21 +19,15 @@ in
   [Partition]
   Type=root
   Label=${storeLabel}
-  Format=xfs
-  SizeMinBytes=1G
-  CopyFiles=${closureInfo}/registration:/store/.nix-path-registration
+  Format=${if isHDD then "ext4" else "bcachefs"}
+  SizeMinBytes=10G
+  PaddingBytes=2G
+  Minimize=no
+  Weight=1000
+  CopyFiles=${closureInfo}/registration:/nix-path-registration
   EOF
 
   for path in $(cat ${closureInfo}/store-paths); do
-    if find "$path" -name "* *" -print -quit | grep -q .; then
-      echo "Skipping: $path"
-      continue
-    fi
-
-    if find "$path" -type l -exec readlink {} + | grep -q " "; then
-      echo "Skipping: $path"
-      continue
-    fi
     echo "CopyFiles=$path:''${path#/nix}" >> repart.d/10-store.conf
   done
 

@@ -27,7 +27,6 @@ let
     ];
   };
   f2fs = import ./lib/f2fs.nix;
-  xfs = import ./lib/xfs.nix;
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
@@ -67,8 +66,18 @@ in
         "noauto"
       ];
     };
-    "/nix" = xfs {
+    "/nix" = {
       device = "/dev/disk/by-label/store";
+      neededForBoot = true;
+      fsType = "ext4";
+      options = [
+        "noatime"
+        "nodiscard"
+        "lazytime"
+        "commit=60"
+        "data=ordered"
+        "barrier=0"
+      ];
     };
     "/nix/persist" = f2fs {
       label = "persist";
