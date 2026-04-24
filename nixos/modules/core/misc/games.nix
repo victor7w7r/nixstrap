@@ -20,7 +20,7 @@
       toilet
     ]
     ++ [
-      chess-tui
+      #chess-tui INCLUDES ALSA
       nbsdgames
       tty-solitaire
     ]

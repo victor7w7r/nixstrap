@@ -6,35 +6,37 @@
 let
   fsOpts =
     if storeFs == "xfs" then
-      ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1,reflink=1 -n size=64k"''
+      ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1 -n size=64k"''
     else
       "--compression=zstd --background_compression=zstd";
+  fakeInvoke = ''faketime -f "1970-01-01 00:00:01" fakeroot'';
 in
 ''
-  export LIBGUESTFS_BACKEND=direct
   ${fsOpts}
 
   mkdir -p repart.d
-  cat <<EOF > repart.d/10-root.conf
+  cat <<EOF > repart.d/10-store.conf
   [Partition]
   Type=root
   Label=${storeLabel}
+  Format=xfs
   SizeMinBytes=1G
+  CopyFiles=${closureInfo}/registration:/store/.nix-path-registration
   EOF
 
-  systemd-repart --definitions=$PWD/repart.d --empty=create --size=auto --dry-run=no store.img
+  for path in $(cat ${closureInfo}/store-paths); do
+    if find "$path" -name "* *" -print -quit | grep -q .; then
+      echo "Skipping: $path"
+      continue
+    fi
 
-  mkdir -p ./rootImage/nix/store
-  cp ${closureInfo}/registration ./rootImage/nix-path-registration
-  echo "Hola desde el host, probando el XFS" > prueba.txt
-  #tar-in <(tar -cf - -C / -T ${closureInfo}/store-paths -C $PWD/rootImage .) /
+    if find "$path" -type l -exec readlink {} + | grep -q " "; then
+      echo "Skipping: $path"
+      continue
+    fi
+    echo "CopyFiles=$path:''${path#/nix}" >> repart.d/10-store.conf
+  done
 
-  guestfish -a store.img <<EOF
-    run
-    mkfs xfs /dev/sda1
-    mount /dev/sda1 /
-    upload prueba.txt /prueba_adentro.txt
-    sync
-    quit
-  EOF
+  ${fakeInvoke} systemd-repart --dry-run=no --empty=create \
+    --size=auto --definitions=./repart.d store.img
 ''

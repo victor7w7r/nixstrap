@@ -7,7 +7,6 @@
 }:
 {
   services = {
-    gvfs.enable = true;
     glances.enable = false;
     locate.enable = true;
     lvm.boot.thin.enable = true;
@@ -50,18 +49,6 @@
     #uresourced.enable = true;
     scx.enable = system != "aarch64-linux";
 
-    ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-rules-cachyos;
-      extraRules = [
-        {
-          "name" = "gamescope";
-          "nice" = -20;
-        }
-      ];
-    };
-
     /*
       nohang = {
       enable = true;
@@ -79,5 +66,24 @@
       MaxLevelConsole=debug
       TTYPath=/dev/ttyS0
     '';
-  };
+  }
+  // (
+    if host != "v7w7r-opizero2w" then
+      {
+        gvfs.enable = true;
+        ananicy = {
+          enable = true;
+          package = pkgs.ananicy-cpp;
+          rulesProvider = pkgs.ananicy-rules-cachyos;
+          extraRules = [
+            {
+              "name" = "gamescope";
+              "nice" = -20;
+            }
+          ];
+        };
+      }
+    else
+      { }
+  );
 }

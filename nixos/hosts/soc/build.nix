@@ -39,10 +39,6 @@ stdenv.mkDerivation {
     f2fs-tools
     gnutar
     libfaketime
-    (libguestfs-with-appliance.overrideAttrs (oldAttrs: {
-      configureFlags = (oldAttrs.configureFlags or [ ]) ++ [ "--disable-appliance" ];
-      doInstallCheck = false;
-    }))
     mtools
     pv
     systemdUkify

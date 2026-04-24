@@ -166,7 +166,7 @@
             (armPkgs.callPackage ./kernel/sdm845 {
               inherit inputs;
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-            }).build.kconfigToNix;
+            }).kernel.kconfigToNix;
         };
         "${system}" = {
           rogallyconfig =
@@ -245,7 +245,7 @@
           };
         };
 
-        #nix build -L ".#packages.aarch64-linux.fajita.uboot"
+        #nix build -L ".#packages.aarch64-linux.uboot"
         #nix build -L ".#nixosConfigurations.fajita.config.mobile.outputs.generatedFilesystems.rootfs"
         fajita = nixpkgs.lib.nixosSystem {
           system = systemarm;

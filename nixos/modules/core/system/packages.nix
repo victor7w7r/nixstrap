@@ -42,7 +42,7 @@
       progress
       pv
       rage
-      sampler
+      #sampler
       ssh-to-age
       sbctl
       sd
@@ -67,7 +67,7 @@
       termscp
       tran
       trash-cli
-      tuifimanager
+      #tuifimanager
       walk
       #https://codeberg.org/sylphenix/sff
       (pkgs.callPackage ./custom/fman.nix { })
@@ -116,7 +116,7 @@
       manix
       namaka
       niv
-      inputs.nix-alien.packages.${system}.nix-alien
+      #inputs.nix-alien.packages.${system}.nix-alien
       nix-diff
       nix-du
       nix-health

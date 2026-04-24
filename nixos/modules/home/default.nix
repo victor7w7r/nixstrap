@@ -25,18 +25,6 @@ let
         (import ./system)
       ]
       ++ (
-        if (user != "root") then
-          [
-            (import ./desktop)
-            (import ./dev)
-            (import ./hardware)
-            (import ./networking)
-            (import ./zen)
-          ]
-        else
-          [ ]
-      )
-      ++ (
         if
           (host != "v7w7r-nixvm")
           && (host != "v7w7r-youyeetoox1")
@@ -59,7 +47,20 @@ let
           ]
         else
           [ ]
+      )
+      ++ (
+        if (user != "root") then
+          [
+            (import ./desktop)
+            (import ./dev)
+            (import ./hardware)
+            (import ./networking)
+            (import ./zen)
+          ]
+        else
+          [ ]
       );
+
     };
 in
 {

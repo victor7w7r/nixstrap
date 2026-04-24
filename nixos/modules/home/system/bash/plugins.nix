@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  home.file.".config/bash/bash_it" = {
+  /*
+    home.file.".config/bash/bash_it" = {
     source = pkgs.fetchFromGitHub {
       owner = "Bash-it";
       repo = "bash-it";
@@ -15,7 +16,8 @@
       '';
     };
     recursive = true;
-  };
+    };
+  */
 
   home.file.".blerc".text = ''
     bleopt prompt_ps1_transient=always:trim

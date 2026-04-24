@@ -1,4 +1,9 @@
-{ pkgs, system, ... }:
+{
+  pkgs,
+  system,
+  host,
+  ...
+}:
 let
   supportedFilesystems = [
     "btrfs"
