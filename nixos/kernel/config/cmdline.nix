@@ -8,7 +8,7 @@ let
   vm = "iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0";
   save = "rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs";
   perf = "split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0";
-  rescue = "sysrq_always_enabled=0 udev.log_level=3 verbose=1";
+  rescue = "sysrq_always_enabled=0"; # udev.log_level=3 verbose=1
   sata =
     if host == "v7w7r-youyeetoox1" || host == "v7w7r-macmini81" then
       "libahci.ignore_sss=1 ahci.mobile_lpm_policy=2"
