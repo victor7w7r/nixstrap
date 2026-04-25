@@ -61,7 +61,7 @@ let
     #"${sunxiPatch}/patches.armbian/ARM64-dts-sun50i-h616-BigTreeTech-CB1-Enable-EMAC1.patch"
     "${sunxiPatch}/patches.armbian/arm64-dts-sun50i-h616-Add-i2c3-pa-pwm-pins.patch"
     "${sunxiPatch}/patches.armbian/arm64-dts-allwinner-Add-axp313a.dtsi.patch"
-    "${sunxiPatch}/patches.armbian/arm64-allwinner-Add-sun50i-h618-bananapi-m4-berry-support.patch"
+    #"${sunxiPatch}/patches.armbian/arm64-allwinner-Add-sun50i-h618-bananapi-m4-berry-support.patch"
     #"${fetch.patches}/${majorMinor}/0002-bbr3.patch"
     #"${fetch.patches}/${majorMinor}/0003-cachy.patch"
   ];
