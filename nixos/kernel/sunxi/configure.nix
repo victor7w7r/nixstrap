@@ -78,8 +78,8 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     export ARCH=arm64
 
-    cp ${./sunxi.defconfig} .
-    make $makeFlags ARCH=arm64 ./sunxi.defconfig
+    #cp ${./sunxi.defconfig} arch/arm64/configs/
+    make $makeFlags ARCH=arm64 defconfig
 
     export LSMOD=$(mktemp)
     cat "${modules}" | sort > $LSMOD
