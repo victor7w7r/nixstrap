@@ -9,7 +9,7 @@ let
   };
 
   kconfigToNix = pkgs.callPackage ../generated/generate.nix { inherit configure; };
-  patches = configure.passthru.patches;
+  #patches = configure.passthru.patches;
   kernel =
     (pkgs.linuxManualConfig {
       inherit (configure) src;
@@ -20,10 +20,12 @@ let
       modDirVersion = "${configure.version}${configure.passthru.localVer}";
       stdenv = pkgs.gcc14Stdenv;
 
-      kernelPatches = map (file: {
-        name = baseNameOf (toString file);
-        patch = file;
-      }) patches;
+      /*
+        kernelPatches = map (file: {
+          name = baseNameOf (toString file);
+          patch = file;
+          }) patches;
+      */
 
       extraMakeFlags = [
         "LOCALVERSION=${configure.passthru.localVer}"
@@ -35,8 +37,7 @@ let
       (attrs: {
         postPatch = ''
           ${attrs.postPatch}
-
-          ${import ./wifi-patch.nix}
+          #${import ./wifi-patch.nix}
         '';
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]);
         passthru = attrs.passthru // {

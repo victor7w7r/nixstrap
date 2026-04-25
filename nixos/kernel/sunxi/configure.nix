@@ -17,7 +17,8 @@ let
   modules = ./modules.db;
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
 
-  patches = [
+  /*
+    patches = [
     "${sunxiPatch}/patches.megous/of-property-fw_devlink-Support-allwinner-sram-links.patch"
     "${sunxiPatch}/patches.megous/Fix-broken-allwinner-sram-dependency-on-h616-h618.patch"
     "${sunxiPatch}/patches.drm/drm-sun4i-add-sun50i-h616-hdmi-phy-support.patch"
@@ -64,11 +65,12 @@ let
     "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"
     "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
     "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
-  ];
+    ];
+  */
 in
 
 pkgs.stdenv.mkDerivation {
-  inherit patches;
+  #inherit patches;
   src = fetch.linux;
   name = "linux-${majorMinor}${localVer}-config";
 
@@ -95,6 +97,6 @@ pkgs.stdenv.mkDerivation {
 
   passthru = {
     version = kernelData.linux.version;
-    inherit localVer patches;
+    inherit localVer;
   };
 }
