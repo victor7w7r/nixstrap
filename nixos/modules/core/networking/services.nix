@@ -5,7 +5,7 @@
     cockpit.enable = true;
     croc.enable = true;
     dnsmasq.enable = true;
-    tailscale.enable = true;
+    tailscale.enable = host != "v7w7r-opizero2w";
     ttyd = {
       enable = true;
       writeable = true;

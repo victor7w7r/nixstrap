@@ -62,8 +62,9 @@ let
     "${sunxiPatch}/patches.armbian/arm64-dts-sun50i-h616-Add-i2c3-pa-pwm-pins.patch"
     "${sunxiPatch}/patches.armbian/arm64-dts-allwinner-Add-axp313a.dtsi.patch"
     #"${sunxiPatch}/patches.armbian/arm64-allwinner-Add-sun50i-h618-bananapi-m4-berry-support.patch"
-    #"${fetch.patches}/${majorMinor}/0002-bbr3.patch"
-    #"${fetch.patches}/${majorMinor}/0003-cachy.patch"
+    "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"
+    "${fetch.patches}/${majorMinor}/misc/reflex-governor.patch"
+    "${fetch.patches}/${majorMinor}/misc/nap-governor.patch"
   ];
 in
 
@@ -77,7 +78,8 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     export ARCH=arm64
 
-    make $makeFlags ARCH=arm64 defconfig
+    cp ${./sunxi.defconfig} .
+    make $makeFlags ARCH=arm64 ./sunxi.defconfig
 
     export LSMOD=$(mktemp)
     cat "${modules}" | sort > $LSMOD
