@@ -106,6 +106,9 @@ in
         "uhci_hcd"
         "ehci_hcd"
         "xhci_pci"
+        "sunxi_addr"
+        "sprdwl_ng"
+        "sprdbt_tty"
         "mmc_block"
         "sdhci_acpi"
         "sdhci"
@@ -132,8 +135,11 @@ in
     priority = 100;
   };
 
-  hardware.deviceTree = {
-    enable = true;
-    name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
+  hardware = {
+    firmware = [ (pkgs.callPackage ../patches/uwe5622/firmware.nix { }) ];
+    deviceTree = {
+      enable = true;
+      name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
+    };
   };
 }
