@@ -17,21 +17,21 @@
         ];
         locations = {
           "/" = {
-            proxy_pass = "https://127.0.0.1:8006";
+            proxyPass = "https://127.0.0.1:8006";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
             ];
           };
           "/pc" = {
-            proxy_pass = "http://127.0.0.1:9090";
+            proxyPass = "http://127.0.0.1:9090";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
             ];
           };
           "/chat" = {
-            proxy_pass = "http://10.10.0.4:8080";
+            proxyPass = "http://10.10.0.4:8080";
           };
         };
       };
@@ -47,21 +47,21 @@
         ];
         locations = {
           "/" = {
-            proxy_pass = "http://10.10.0.2:80";
+            proxyPass = "http://10.10.0.2:80";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
             ];
           };
           "/git" = {
-            proxy_pass = "http://10.10.0.3:6610";
+            proxyPass = "http://10.10.0.3:6610";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
             ];
           };
           "/ssh" = {
-            proxy_pass = "http://10.10.0.3:6611";
+            proxyPass = "http://10.10.0.3:6611";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
@@ -81,7 +81,7 @@
         ];
         locations = {
           "/" = {
-            proxy_pass = "http://10.10.0.3:8080";
+            proxyPass = "http://10.10.0.3:8080";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
@@ -89,7 +89,7 @@
           };
           "/db" = {
             #TCP TUNNEL
-            proxy_pass = "http://10.10.0.3:5984";
+            proxyPass = "http://10.10.0.3:5984";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
@@ -97,7 +97,7 @@
           };
           "/mc" = {
             #TCP TUNNEL
-            proxy_pass = "http://10.10.0.5:25565";
+            proxyPass = "http://10.10.0.5:25565";
             proxy_setHeaders = [
               "Host $host"
               "X-Real-IP $remote_addr"
