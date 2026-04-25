@@ -9,10 +9,6 @@
 let
   kernel = (pkgs.callPackage ../kernel/sdm845) { inherit kernelData; };
   f2fs = import ./lib/f2fs.nix;
-  boot = import ./lib/boot.nix {
-    emergencyDisk = "emmc";
-    efiDisk = "emmc";
-  };
 in
 {
   imports = [
