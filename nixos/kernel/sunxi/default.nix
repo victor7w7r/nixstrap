@@ -34,8 +34,8 @@ let
     }).overrideAttrs
       (attrs: {
         postPatch = ''
-          ${attrs.postPatch}
-          #${import ./wifi-patch.nix}
+           ${attrs.postPatch}
+          ${import ./wifi-patch.nix}
         '';
         nativeBuildInputs = (attrs.nativeBuildInputs or [ ]);
         passthru = attrs.passthru // {
