@@ -6,10 +6,9 @@ let
       ./macmini81.db
     else if host == "v7w7r-youyeetoox1" then
       ./youyeetoox1.db
-    else if host == "v7w7r-rc71l" then
-      ./rc71l.db
     else
-      ./higole.db;
+      ./rc71l.db;
+
 in
 ''
   export LSMOD=$(mktemp)

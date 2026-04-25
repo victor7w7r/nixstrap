@@ -11,7 +11,7 @@ let
 in
 {
   boot.initrd.systemd.services = {
-    rollback-btrfs = lib.mkIf (!specialHosts && host != "v7w7r-higole") {
+    rollback-btrfs = lib.mkIf (host == "v7w7r-rc71l") {
       wantedBy = [ "initrd.target" ];
       after = [ "initrd-root-device.target" ];
       before = [ "sysroot.mount" ];

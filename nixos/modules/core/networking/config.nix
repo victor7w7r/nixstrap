@@ -18,7 +18,7 @@
     networkmanager = {
       enable = host != "v7w7r-youyeetoox1" && system != "aarch64-linux";
       settings.main.rc-manager = "resolvconf";
-      wifi.powersave = host != "v7w7r-higole";
+      wifi.powersave = false;
       unmanaged =
         [ ]
         ++ (

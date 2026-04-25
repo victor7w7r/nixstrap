@@ -3,7 +3,6 @@ set -eu
 
 MCONFIG="macminiconfig"
 ROGCONFIG="rogallyconfig"
-HCONFIG="higoleconfig"
 SRVCONFIG="serverconfig"
 
 run-build() {
@@ -25,12 +24,6 @@ fi
 
 if res=$(run-build $ROGCONFIG); then
     cat "$res" >"kernel/generated/${ROGCONFIG}.x86_64-linux.nix"
-else
-    exit 1
-fi
-
-if res=$(run-build $HCONFIG); then
-    cat "$res" >"kernel/generated/${HCONFIG}.x86_64-linux.nix"
 else
     exit 1
 fi

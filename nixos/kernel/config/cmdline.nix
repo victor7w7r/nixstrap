@@ -26,14 +26,7 @@ let
       + "intel_pstate=passive intel_iommu=on pcie_ports=compat"
     else
       "";
-  higole =
-    if host == "v7w7r-higole" then
-      "fbcon=rotate:1 usbcore.autosuspend=1 snd_hda_intel.power_save=1 "
-      + "i915.enable_psr=0 acpi_backlight=vendor mem_sleep_default=deep "
-      + "i2c_dw.disable_fast_mode=1 i915.enable_dpcd_backlight=1"
-    else
-      "";
-  cmd = "${red} ${green} ${blue} ${opt} ${sec} ${vm} ${save} ${amd} ${perf} ${sata} ${rescue} ${intel} ${higole}";
+  cmd = "${red} ${green} ${blue} ${opt} ${sec} ${vm} ${save} ${amd} ${perf} ${sata} ${rescue} ${intel}";
 in
 [
   "-e CMDLINE_BOOL"

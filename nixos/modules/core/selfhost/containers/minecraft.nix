@@ -3,8 +3,8 @@
   containers.minecraft = {
     autoStart = false;
     privateNetwork = true;
-    hostBridge = "br0";
-    localAddress = "192.168.1.121/24";
+    hostBridge = "brint";
+    localAddress = "10.10.0.5/24";
     forwardPorts = [
       {
         containerPort = 25565;

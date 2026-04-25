@@ -10,14 +10,19 @@
   networking = {
     interfaces."enp1s0".wakeOnLan.enable = true;
     useNetworkd = true;
+    firewall.allowedTCPPorts = [
+      443
+      8443
+    ];
     useDHCP = false;
     nat = {
       enable = true;
+      externalInterface = "br0";
       internalInterfaces = [
         "ve-+"
         "vb-+"
+        "brint"
       ];
-      externalInterface = "br0";
     };
     nameservers = [
       "1.1.1.1"
@@ -27,9 +32,15 @@
 
   systemd.network = {
     enable = true;
-    netdevs."br0".netdevConfig = {
-      Name = "br0";
-      Kind = "bridge";
+    netdevs = {
+      "br0".netdevConfig = {
+        Name = "br0";
+        Kind = "bridge";
+      };
+      "20-br-int".netdevConfig = {
+        Name = "brint";
+        Kind = "bridge";
+      };
     };
     networks = {
       "10-lan" = {
@@ -42,6 +53,19 @@
         linkConfig.RequiredForOnline = "routable";
         address = [ "192.168.1.100/24" ];
         gateway = [ "192.168.1.1" ];
+        networkConfig = {
+          IPv6AcceptRA = true;
+          DNS = [
+            "1.1.1.1"
+            "8.8.8.8"
+          ];
+        };
+      };
+
+      "20-brint-bridge" = {
+        matchConfig.Name = "brint";
+        address = [ "10.10.0.1/24" ];
+        linkConfig.ActivationPolicy = "always-up";
         networkConfig = {
           IPv6AcceptRA = true;
           DNS = [

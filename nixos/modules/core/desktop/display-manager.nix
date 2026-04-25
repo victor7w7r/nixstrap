@@ -83,7 +83,7 @@
         theme = "sddm-astronaut-theme";
       };
       ly = {
-        enable = host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l";
+        enable = host == "v7w7r-macmini81" || host == "v7w7r-rc71l";
         settings = {
           animation = "gameoflife";
           auth_fails = 3;
@@ -113,7 +113,7 @@
           tty = 1;
         }
         // (
-          if host == "v7w7r-higole" || host == "v7w7r-rc71l" then
+          if host == "v7w7r-rc71l" then
             {
               battery_id = "BAT0";
             }

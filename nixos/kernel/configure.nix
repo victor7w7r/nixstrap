@@ -22,8 +22,6 @@ let
       "-server${middle}"
     else if host == "v7w7r-rc71l" then
       "-handheld${middle}"
-    else if host == "v7w7r-higole" then
-      "-lowperf${middle}"
     else
       "";
 

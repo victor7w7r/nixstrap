@@ -6,8 +6,8 @@
   containers.llm = {
     autoStart = false;
     privateNetwork = true;
-    hostBridge = "br0";
-    localAddress = "192.168.1.123/24";
+    hostBridge = "brint";
+    localAddress = "10.10.0.4/24";
     forwardPorts = [
       {
         containerPort = 3500;

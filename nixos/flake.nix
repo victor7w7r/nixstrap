@@ -176,13 +176,6 @@
               kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
             }).kernel.kconfigToNix;
 
-          higoleconfig =
-            (pkgs.callPackage ./kernel {
-              host = "v7w7r-higole";
-              inherit helpers inputs;
-              kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-            }).kernel.kconfigToNix;
-
           serverconfig =
             (pkgs.callPackage ./kernel {
               host = "v7w7r-youyeetoox1";
@@ -328,45 +321,6 @@
           };
         };
 
-        higole = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [
-                  nix-cachyos-kernel.overlays.pinned
-                  inputs.emacs-overlay.overlay
-                ];
-              }
-            )
-            (import ./configuration.nix)
-            (import ./pkgs)
-            nixos-hardware.nixosModules.common-pc-ssd
-            nixos-hardware.nixosModules.common-pc-laptop
-            nixos-hardware.nixosModules.common-cpu-intel
-            nix-flatpak.nixosModules.nix-flatpak
-            impermanence.nixosModules.impermanence
-            home-manager.nixosModules.home-manager
-            nur.modules.nixos.default
-            nixvim.nixosModules.nixvim
-            sops-nix.nixosModules.sops
-            (import ./hosts/higole.nix)
-            (import ./modules/core)
-            (import ./modules/home)
-          ];
-          specialArgs = {
-            host = "v7w7r-higole";
-            kernelData = nixpkgs.lib.trivial.importJSON ./kernel.json;
-            inherit
-              self
-              sops-nix
-              inputs
-              username
-              system
-              ;
-          };
-        };
         rogally = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [

@@ -3,8 +3,8 @@
   containers.cp = {
     autoStart = false;
     privateNetwork = true;
-    hostBridge = "br0";
-    localAddress = "192.168.1.126/24";
+    hostBridge = "brint";
+    localAddress = "10.10.0.6/24";
     additionalCapabilities = [
       "CAP_SYS_ADMIN"
       "CAP_NET_ADMIN"

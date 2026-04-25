@@ -11,25 +11,18 @@ let
     let
       policyFile = "/sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference";
       hwpFile = "/sys/devices/system/cpu/cpufreq/policy*/hwp_dynamic_boost";
-
-      hwp = if host == "v7w7r-higole" then "0" else "1";
-      acProfile = if host == "v7w7r-higole" then "balanced" else "performance";
-      batteryProfile = if host == "v7w7r-higole" then "power-saver" else "balanced";
-
-      acPolicy = if host == "v7w7r-higole" then "performance" else "power";
-      batteryPolicy = if host == "v7w7r-higole" then "power" else "balance_power";
     in
     pkgs.writeShellScript "power-script" ''
        STATE=$(cat /sys/class/power_supply/AC*/online 2>/dev/null || echo 1)
 
        if [ "$STATE" = "1" ]; then
-         echo "${acPolicy}" > ${policyFile}
-         echo ${hwp} > ${hwpFile}
-         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${acProfile}
+         echo "power" > ${policyFile}
+         echo "1" > ${hwpFile}
+         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
        else
-      echo "${batteryPolicy}" > ${policyFile}
+      echo "power" > ${policyFile}
          echo 0 > ${hwpFile}
-         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set ${batteryProfile}
+         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced
        fi
     '';
 in
@@ -46,12 +39,7 @@ in
       SUBSYSTEM=="power_supply", ACTION=="change", RUN+="${power-script}"
     '';
     pipewire = {
-      enable = (
-        host == "v7w7r-macmini81"
-        || host == "v7w7r-higole"
-        || host == "v7w7r-rc71l"
-        || host == "v7w7r-fajita"
-      );
+      enable = (host == "v7w7r-macmini81" || host == "v7w7r-rc71l" || host == "v7w7r-fajita");
       package = lib.mkForce (
         if host == "v7w7r-macmini81" then audioT2.pipewirePackage else pkgs.pipewire
       );
@@ -74,7 +62,7 @@ in
       pulse.enable = true;
       socketActivation = true;
       wireplumber = {
-        enable = (host == "v7w7r-macmini81" || host == "v7w7r-higole" || host == "v7w7r-rc71l");
+        enable = (host == "v7w7r-macmini81" || host == "v7w7r-rc71l");
         package =
           if host == "v7w7r-macmini81" then
             lib.mkForce (pkgs.wireplumber.override { pipewire = audioT2.pipewirePackage; })
@@ -120,7 +108,7 @@ in
         Type = "oneshot";
         ExecStart =
           let
-            is-mac = host == "v7w7r-macmini81" || host == "v7w7r-higole";
+            is-mac = host == "v7w7r-macmini81";
             value = if is-mac then "80" else "70";
           in
           "${pkgs.bash}/bin/bash -c 'echo ${value} > /sys/devices/system/cpu/intel_pstate/max_perf_pct'";
