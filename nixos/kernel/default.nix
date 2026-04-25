@@ -1,7 +1,6 @@
 {
   helpers,
   host,
-  lib,
   pkgs,
   kernelData,
   ...

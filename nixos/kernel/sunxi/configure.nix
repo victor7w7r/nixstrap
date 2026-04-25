@@ -10,7 +10,6 @@ let
   fetch = (
     pkgs.callPackage ../fetch.nix {
       inherit kernelData majorMinor;
-      isLegacy = true;
     }
   );
   localVer = "-v7w7r-sunxi";

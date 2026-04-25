@@ -3,7 +3,6 @@
   kernelData,
   majorMinor ? null,
   hardened ? false,
-  isLegacy ? false,
   ...
 }:
 {
@@ -53,29 +52,19 @@
     owner = kernelData.user;
     repo = kernelData.patches.repo;
     rev = kernelData.patches.rev;
-    sha256 = if isLegacy then kernelData.patches.legacyHash else kernelData.patches.hash;
+    sha256 = kernelData.patches.hash;
     postFetch = ''
       find "$out" -type d -empty -delete
-        ${
-          if isLegacy then
-            ''
-              ${pkgs.patchutils}/bin/filterdiff -x "*/kernel/sysctl.c" -x "*/kernel/user_namespace.c" \
-              -x "*/include/linux/user_namespace.h" \
-              "$out/${majorMinor}/0003-cachy.patch" > cachy-filter.patch || true
-              cat cachy-filter.patch > "$out/${majorMinor}/0003-cachy.patch" || true
-            ''
-          else
-            ''
-              ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
-              "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch || true
-              cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch" || true
+        ${''
+          ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/gpu/drm/amd/*" \
+          "$out/${majorMinor}/0007-hdmi.patch" > hdmi-filter.patch || true
+          cat hdmi-filter.patch > "$out/${majorMinor}/0007-hdmi.patch" || true
 
-              ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
-              -x "*/drivers/input/joystick/xpad.c" \
-              "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch || true
-              cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch" || true
-            ''
-        }
+          ${pkgs.patchutils}/bin/filterdiff -x "*/drivers/hid/Makefile" \
+          -x "*/drivers/input/joystick/xpad.c" \
+          "$out/${majorMinor}/misc/0001-handheld.patch" > handheld-filter.patch || true
+          cat handheld-filter.patch > "$out/${majorMinor}/misc/0001-handheld.patch" || true
+        ''}
     '';
   };
 
