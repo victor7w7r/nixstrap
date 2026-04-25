@@ -26,7 +26,10 @@
   "-e NO_HZ"
   "-e NO_HZ_COMMON"
   "-e NO_HZ_IDLE"
+  "-e ICPLUS_PHY"
+  "-e FIXED_PHY"
   "-e MMC_SUNXI"
+  "-e MDIO_SUN4I"
   "-e PREEMPT_NONE"
   "-e PREEMPT_NONE_BUILD"
   "-e PINCTRL_SUN50I_H616"
@@ -36,6 +39,7 @@
   "-e TMPFS_POSIX_ACL"
   "-e SUNXI_ADDR_MGT"
   "-e SUNXI_MMC"
+  "-e SUN8I_EMAC"
   "-e TMPFS_POSIX_XATTR"
   "-e USER_NS"
 
