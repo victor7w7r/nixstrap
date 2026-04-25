@@ -136,7 +136,7 @@ in
   };
 
   hardware = {
-    firmware = [ (pkgs.callPackage ../patches/uwe5622/firmware.nix { }) ];
+    firmware = [ (pkgs.callPackage ./custom/uwe5622.nix { }) ];
     deviceTree = {
       enable = true;
       name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
