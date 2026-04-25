@@ -12,7 +12,7 @@ let
       inherit kernelData majorMinor;
     }
   );
-  localVer = "-v7w7r-sunxi";
+  localVer = "-v7w7r-sunxi-hardened";
   config = (import ./config.nix);
   modules = ./modules.db;
   sunxiPatch = "${fetch.sunxi}/patches/uwe5622/armbian-sunxi-6.12";
@@ -77,8 +77,8 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     export ARCH=arm64
 
-    #cp ${./sunxi.defconfig} arch/arm64/configs/
-    make $makeFlags ARCH=arm64 defconfig
+    cp "${fetch.sunxi-kconfig}" ".config"
+    make $makeFlags ARCH=arm64 olddefconfig
 
     export LSMOD=$(mktemp)
     cat "${modules}" | sort > $LSMOD

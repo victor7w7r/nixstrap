@@ -75,7 +75,7 @@
     hash = kernelData.sunxi-kconfig.hash;
     postFetch = ''
       hold="$(mktemp -d)" && conf="$hold/conf"
-      cp "$out/config/kernel/linux-sunxi-legacy.config" "$conf"
+      cp "$out/config/kernel/linux-sunxi64-current.config" "$conf"
       rm -rfv "$out" && cp -v "$conf" "$out"
     '';
   };
