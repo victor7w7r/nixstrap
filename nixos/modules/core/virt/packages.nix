@@ -34,10 +34,7 @@
       waydroid-helper
       win-spice
       yad
-      #cockpit-files
-      #cockpit-machines
       #cockpit-navigator
-      #cockpit-podman
       #cockpit-storaged
     ]
     ++ (
