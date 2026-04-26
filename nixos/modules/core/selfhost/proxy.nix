@@ -11,7 +11,7 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
+            addr = "127.0.0.1";
             port = 8080;
           }
         ];
@@ -34,7 +34,7 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
+            addr = "127.0.0.1";
             port = 8081;
           }
         ];
@@ -57,7 +57,7 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
+            addr = "127.0.0.1";
             port = 8082;
           }
         ];
