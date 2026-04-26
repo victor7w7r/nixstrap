@@ -48,6 +48,7 @@
   "-e SUN8I_EMAC"
   "-e TMPFS_POSIX_XATTR"
   "-e USER_NS"
+  "-e UNIX"
 
   "-m WLAN_UWE5622"
   "-m PHY_SUN6I_DSI"
