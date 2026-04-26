@@ -8,6 +8,8 @@
     virtualHosts = {
       "funnel" = {
         serverName = config.sops.placeholder.tunnel;
+        addSSL = false;
+        forceSSL = false;
         listen = [
           {
             addr = "0.0.0.0";
@@ -30,6 +32,8 @@
 
       "funnel-2" = {
         serverName = config.sops.placeholder.tunnel;
+        addSSL = false;
+        forceSSL = false;
         listen = [
           {
             addr = "0.0.0.0";
@@ -52,6 +56,8 @@
 
       "funnel-3" = {
         serverName = config.sops.placeholder.tunnel;
+        addSSL = false;
+        forceSSL = false;
         listen = [
           {
             addr = "0.0.0.0";

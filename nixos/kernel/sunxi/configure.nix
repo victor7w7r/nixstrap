@@ -18,10 +18,10 @@ let
 
   patchesRoute = "${fetch.armbian}/patch/kernel/archive/sunxi-6.18";
   patchLines = lib.splitString "\n" (builtins.readFile "${patchesRoute}/series.conf");
-  patchesList = lib.filter (line: line != "" && !(lib.hasPrefix "#" line)) (
+  patchesList = lib.filter (line: line != "" && !(lib.hasPrefix "#" line || lib.hasPrefix "-" line)) (
     map lib.strings.trim patchLines
   );
-  selectedPatches = map (relPath: { patch = "${patchesRoute}/${relPath}"; }) patchesList;
+  selectedPatches = map (path: [ "${patchesRoute}/${path}" ]) patchesList;
 
   patches = selectedPatches ++ [
     "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"
@@ -40,7 +40,8 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     export ARCH=arm64
 
-    make ${./orangepi_defconfig}
+    cp ${./orangepi_defconfig} ./orangepi_defconfig
+    make orangepi_defconfig
 
     cp "${./sunxi64.config}" ".config"
     make $makeFlags olddefconfig
