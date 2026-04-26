@@ -17,10 +17,11 @@ let
   modules = ./modules.db;
 
   patchesRoute = "${fetch.armbian}/patch/kernel/archive/sunxi-6.18";
+  patchLines = lib.splitString "\n" (builtins.readFile "${patchesRoute}/series.conf");
   patchesList = lib.filter (line: line != "" && !(lib.hasPrefix "#" line)) (
-    map lib.strings.trim lib.splitString "\n" (builtins.readFile "${patchesRoute}/series.conf")
+    map lib.strings.trim patchLines
   );
-  selectedPatches = map (relPath: { patch = patchesRoute + "/${relPath}"; }) patchesList;
+  selectedPatches = map (relPath: { patch = "${patchesRoute}/${relPath}"; }) patchesList;
 
   patches = selectedPatches ++ [
     "${fetch.patches}/${majorMinor}/misc/0001-hardened.patch"

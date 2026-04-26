@@ -38,7 +38,7 @@
     "user": "armbian",
     "repo": "build",
     "rev": "28862c7c0e0e914640a40286766030b3fba1bc41",
-    "hash": "sha256-Tbts03PwsHyx/DO/8uTztyFrvEWBIO26moHR/Krbutk="
+    "hash": "sha256-WceocNFiLeZ8QLQPwTDOodGgvChO/ga9k20Ygx9igLY="
   },
   "sdm845": {
     "domain": "codeberg.org",
