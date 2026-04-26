@@ -14,7 +14,6 @@
           {
             addr = "0.0.0.0";
             port = 443;
-            ssl = true;
           }
         ];
         locations = {
@@ -38,7 +37,6 @@
           {
             addr = "0.0.0.0";
             port = 8443;
-            ssl = true;
           }
         ];
         locations = {
@@ -62,7 +60,6 @@
           {
             addr = "0.0.0.0";
             port = 10000;
-            ssl = true;
           }
         ];
         locations = {
