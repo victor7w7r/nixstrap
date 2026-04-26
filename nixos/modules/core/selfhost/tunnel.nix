@@ -16,7 +16,7 @@ let
   };
 in
 lib.mkMerge [
-  (mkFunnel "1" 443 443)
-  (mkFunnel "2" 8443 8443)
-  (mkFunnel "3" 10000 10000)
+  (mkFunnel "1" 443 8080)
+  (mkFunnel "2" 8443 8081)
+  (mkFunnel "3" 10000 8082)
 ]

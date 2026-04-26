@@ -11,8 +11,8 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
-            port = 443;
+            addr = "127.0.0.1";
+            port = 8080;
           }
         ];
         locations = {
@@ -34,8 +34,8 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
-            port = 8443;
+            addr = "127.0.0.1";
+            port = 8081;
           }
         ];
         locations = {
@@ -57,8 +57,8 @@
         forceSSL = false;
         listen = [
           {
-            addr = "0.0.0.0";
-            port = 10000;
+            addr = "127.0.0.1";
+            port = 8082;
           }
         ];
         locations = {
