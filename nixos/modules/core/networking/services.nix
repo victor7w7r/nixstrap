@@ -19,6 +19,8 @@
       settings.WebService = {
         ProtocolHeader = "X-Forwarded-Proto";
         AllowUnencrypted = true;
+        LoginTo = true;
+        AllowMultiHost = true;
         Origins = lib.mkForce (
           builtins.concatStringsSep " " [
             "http://127.0.0.1:9090"
