@@ -18,8 +18,8 @@ in
   ];
 
   imports = [
-    (pkgs.callPackage ./soc {
-      inherit host;
+    (import ./soc {
+      inherit config pkgs host;
       postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc";
       populateFirmwareCommands = ''
         mkdir -p firmware/boot
