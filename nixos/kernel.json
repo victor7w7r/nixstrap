@@ -34,13 +34,7 @@
     "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
     "hash": "sha256-3G/oLfYdL+g+OoacjOuEwFg7/EyLPxKCnlZfHOYWmTk="
   },
-  "sunxi-opizero2w": {
-    "user": "virusdave",
-    "repo": "nixos-opi-zero2w",
-    "rev": "1337ecfb2443f059f8971eb89eae487fbc6b0dcc",
-    "hash": "sha256-dS4XyDDVCjGEFDX4zgaalQqMlfWL7JfeLGJpLwcAAFE="
-  },
-  "sunxi-kconfig": {
+  "armbian": {
     "user": "armbian",
     "repo": "build",
     "rev": "28862c7c0e0e914640a40286766030b3fba1bc41",

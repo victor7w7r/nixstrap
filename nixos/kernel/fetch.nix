@@ -11,11 +11,6 @@
     hash = kernelData.linux.hash;
   };
 
-  linux-legacy = pkgs.fetchurl {
-    url = kernelData.linux-legacy.url;
-    hash = kernelData.linux-legacy.hash;
-  };
-
   asus = pkgs.fetchgit {
     url = kernelData.asus.url;
     rev = kernelData.asus.rev;
@@ -68,23 +63,11 @@
     '';
   };
 
-  sunxi-kconfig = pkgs.fetchFromGitHub {
-    owner = kernelData.sunxi-kconfig.user;
-    repo = kernelData.sunxi-kconfig.repo;
-    rev = kernelData.sunxi-kconfig.rev;
-    hash = kernelData.sunxi-kconfig.hash;
-    postFetch = ''
-      hold="$(mktemp -d)" && conf="$hold/conf"
-      cp "$out/config/kernel/linux-sunxi64-current.config" "$conf"
-      rm -rfv "$out" && cp -v "$conf" "$out"
-    '';
-  };
-
-  sunxi = pkgs.fetchFromGitHub {
-    owner = kernelData.sunxi-opizero2w.user;
-    repo = kernelData.sunxi-opizero2w.repo;
-    rev = kernelData.sunxi-opizero2w.rev;
-    hash = kernelData.sunxi-opizero2w.hash;
+  armbian = pkgs.fetchFromGitHub {
+    owner = kernelData.armbian.user;
+    repo = kernelData.armbian.repo;
+    rev = kernelData.armbian.rev;
+    hash = kernelData.armbian.hash;
   };
 
   sdm845 = pkgs.fetchFromGitea {
