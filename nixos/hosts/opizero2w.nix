@@ -6,45 +6,26 @@
   ...
 }:
 let
-  uboot = pkgs.buildUBoot {
-    defconfig = "orangepi_zero2w_defconfig";
-    extraMeta.platforms = [ "aarch64-linux" ];
-    BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
-    filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
-    nativeBuildInputs = with pkgs; [
-      swig
-      openssl
-      python3
-      python3Packages.setuptools
-      pkg-config
-      python3Packages.libfdt
-      gnutls
-      bison
-      flex
-      swig
-      bc
-      dtc
-    ];
-  };
+  uboot = import ./custom/sunxi-uboot.nix { inherit pkgs; };
   f2fs = import ./lib/f2fs.nix;
   kernel = (pkgs.callPackage ../kernel/sunxi) { inherit kernelData; };
 in
 {
+  nixpkgs.overlays = [
+    (_final: super: {
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   imports = [
-    (import ./soc {
-      inherit config pkgs host;
+    (pkgs.callPackage ./soc {
+      inherit host;
       postBuildCommands = "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc";
       populateFirmwareCommands = ''
         mkdir -p firmware/boot
         ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
           -c ${config.system.build.toplevel} -d firmware/boot
       '';
-    })
-  ];
-
-  nixpkgs.overlays = [
-    (_final: super: {
-      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
 
@@ -88,31 +69,22 @@ in
 
   boot = {
     kernelParams = [
-      "loglevel=7"
-      "console=ttyS0,115200"
-      "earlycon=uart,mmio32,0x05000000"
-      "clk_ignore_unused"
-      "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
+      #"earlycon"
+      "console=ttyS0,115200n8"
+      "console=tty0"
     ];
     initrd = {
-      systemd.contents = {
-        "/share/terminfo".source = "${pkgs.ncurses}/share/terminfo";
-      };
+      systemd.contents."/share/terminfo".source = "${pkgs.ncurses}/share/terminfo";
       kernelModules = [
         "sunxi-mmc"
-        "sdhci_pci"
         "usb_storage"
         "uas"
         "uhci_hcd"
         "ehci_hcd"
         "xhci_pci"
-        "sunxi_addr"
-        "sprdwl_ng"
-        "sprdbt_tty"
-        "mmc_block"
         "sdhci_acpi"
         "sdhci"
-        "nvmem_sunxi_sid"
+        "g_ether"
       ];
     };
     loader = {

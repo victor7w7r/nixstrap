@@ -58,7 +58,7 @@ in
 
   boot = {
     kernelPackages = kernel.packages;
-    consoleLogLevel = 7;
+    consoleLogLevel = 4;
     loader = {
       grub.enable = false;
       systemd-boot.enable = true;
@@ -134,5 +134,4 @@ in
     enable = true;
     name = "qcom/sdm845-oneplus-fajita.dtb";
   };
-
 }

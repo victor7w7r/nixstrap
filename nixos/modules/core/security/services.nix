@@ -1,7 +1,7 @@
 { ... }:
 {
   services = {
-    #fail2ban.enable = true;
+    fail2ban.enable = true;
     #opensnitch.enable = true;
     #clamav = {
     #  daemon.enable = true;

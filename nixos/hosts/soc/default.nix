@@ -9,6 +9,7 @@
   isHDD ? true,
   populateFirmwareCommands ? "",
   postBuildCommands ? "",
+  ...
 }:
 let
   closureInfo = pkgs.buildPackages.closureInfo {

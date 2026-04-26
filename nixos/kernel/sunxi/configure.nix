@@ -40,19 +40,15 @@ pkgs.stdenv.mkDerivation {
   buildPhase = ''
     export ARCH=arm64
 
-    cp ${./orangepi_defconfig} ./orangepi_defconfig
-    make orangepi_defconfig
-
     cp "${./sunxi64.config}" ".config"
-    make $makeFlags olddefconfig
-
     export LSMOD=$(mktemp)
     cat "${modules}" | sort > $LSMOD
     (yes "" | make LSMOD=$LSMOD localmodconfig) || true
 
+    make ARCH=arm64 $makeFlags olddefconfig
     patchShebangs scripts/config
     scripts/config ${lib.concatStringsSep " " config}
-    make $makeFlags olddefconfig
+    make ARCH=arm64 $makeFlags olddefconfig
   '';
 
   meta = pkgs.linuxPackages.kernel.passthru.configfile.meta // {
