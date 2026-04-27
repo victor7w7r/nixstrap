@@ -15,10 +15,10 @@
     inherit name content;
     type = "luks";
     settings = { inherit keyFile allowDiscards; };
-    preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
-    postCreateHook = ''
-      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${name} --label "${name}"
-      ${postCreate}
-    '';
+    #preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
+    #postCreateHook = ''
+    #  cryptsetup config /dev/disk/by-partlabel/disk-${group}-${name} --label "${name}"
+    #  ${postCreate}
+    #'';
   };
 }
