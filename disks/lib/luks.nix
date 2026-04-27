@@ -1,9 +1,9 @@
 {
-  content,
   name,
   group,
   priority,
   size ? "100%",
+  content ? null,
   allowDiscards ? true,
   isForTest ? false,
   postCreate ? "",
