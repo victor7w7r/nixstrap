@@ -93,6 +93,9 @@ let
       logdev = "/dev/mapper/storagelog";
     };
   };
+
+  partlabel = "/dev/disk/by-partlabel";
+  idpart = "/dev/disk/by-id";
 in
 {
   disko.devices = {
