@@ -1,7 +1,7 @@
 {
   name,
   group,
-  priority,
+  priority ? null,
   size ? "100%",
   content ? null,
   allowDiscards ? true,

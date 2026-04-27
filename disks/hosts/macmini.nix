@@ -110,9 +110,14 @@ in
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = {
           type = "luks";
-          content = {
-            type = "lvm_pv";
-            vg = "vg0";
+          content = (import ../lib/luks.nix) {
+            name = "persist";
+            size = "100%";
+            group = "persist";
+            content = {
+              type = "lvm_pv";
+              vg = "vg0";
+            };
           };
         };
       };
@@ -122,9 +127,14 @@ in
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = {
           type = "luks";
-          content = {
-            type = "lvm_pv";
-            vg = "vg1";
+          content = (import ../lib/luks.nix) {
+            name = "storage";
+            size = "100%";
+            group = "storage";
+            content = {
+              type = "lvm_pv";
+              vg = "vg1";
+            };
           };
         };
       };
