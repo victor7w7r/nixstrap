@@ -34,7 +34,6 @@ let
       group = "ssd";
       priority = 6;
       content =  {
-        name = "persistlog";
         type = "filesystem";
         size = "100%";
       };
@@ -45,7 +44,6 @@ let
       group = "ssd";
       priority = 7;
       content =  {
-        name = "storagelog";
         type = "filesystem";
         size = "100%";
       };
@@ -57,7 +55,6 @@ let
       priority = 8;
       postCreate = "make-bcache -C /dev/mapper/persistcache";
       content =  {
-        name = "persistcache";
         type = "filesystem";
         size = "100%";
       };
@@ -69,7 +66,6 @@ let
       priority = 9;
       postCreate = "make-bcache -C /dev/mapper/storagecache";
       content =  {
-        name = "storagecache";
         type = "filesystem";
         size = "100%";
       };
