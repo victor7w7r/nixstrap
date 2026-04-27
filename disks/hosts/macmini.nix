@@ -65,7 +65,7 @@ let
   lvs0 = {
     persist = (import ../lib/xfs.nix) {
       name = "persist";
-      size = "100%";
+      size = "85%";
       mountpoint = "/nix/persist";
       logdev = "/dev/mapper/persistlog";
     };
@@ -74,7 +74,7 @@ let
   lvs1 = {
     storage = (import ../lib/xfs.nix) {
       name = "storage";
-      size = "100%";
+      size = "85%";
       mountpoint = "/nix/persist/storage";
       logdev = "/dev/mapper/storagelog";
     };
@@ -112,10 +112,10 @@ in
           name = "persist";
           size = "100%";
           group = "persist";
-          content = {
-            type = "lvm_pv";
-            vg = "vg0";
-          };
+          postCreate = ''
+            make-bcache -B /dev/mapper/persist
+            #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part8 | grep 'cset.uuid' | awk '{print $2}')
+          '';
         };
       };
 
@@ -127,10 +127,25 @@ in
           name = "storage";
           size = "100%";
           group = "storage";
-          content = {
-            type = "lvm_pv";
-            vg = "vg1";
-          };
+          postCreate = "make-bcache -B /dev/mapper/storage";
+        };
+      };
+
+      bcache0 = {
+        type = "disk";
+        device = "/dev/bcache0";
+        content = {
+          vg = "vg0";
+          type = "lvm_pv";
+        };
+      };
+
+      bcache1 = {
+        type = "disk";
+        device = "/dev/bcache1";
+        content = {
+          vg = "vg1";
+          type = "lvm_pv";
         };
       };
     };
