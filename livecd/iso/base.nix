@@ -4,7 +4,6 @@
   lib,
   pkgs,
   modulesPath,
-  rotated,
   ...
 }:
 {
@@ -22,7 +21,6 @@
 
   isoImage = {
     configurationName = flavor;
-    makeBiosBootable = rotated;
     makeEfiBootable = true;
     makeUsbBootable = true;
     squashfsCompression = "xz -Xbcj x86 -Xdict-size 100% -b 512K -limit 75 -percentage";
