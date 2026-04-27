@@ -124,7 +124,10 @@ in
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = {
           type = "luks";
-          content = { };
+          content = {
+            type = "lvm_pv";
+            vg = "vg0";
+          };
         };
       };
 
