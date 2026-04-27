@@ -133,8 +133,8 @@ in
   services.udev.packages = [ audio.audioUdev ];
 
   systemd.tmpfiles.rules = [
-    "w /sys/block/bcache0/bcache/cache_mode - - - - writeback"
-    "w /sys/block/bcache1/bcache/cache_mode - - - - writeback"
+    "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough"
+    "w /sys/block/bcache1/bcache/cache_mode - - - - writethrough"
   ];
 
 }

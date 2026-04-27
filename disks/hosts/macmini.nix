@@ -67,7 +67,7 @@ let
       name = "persist";
       size = "85%";
       mountpoint = "/nix/persist";
-      logdev = "/dev/mapper/persistlog";
+      logdev = "/dev/mapper/persistlogcrypt";
     };
   };
 
@@ -76,7 +76,7 @@ let
       name = "storage";
       size = "85%";
       mountpoint = "/nix/persist/storage";
-      logdev = "/dev/mapper/storagelog";
+      logdev = "/dev/mapper/storagelogcrypt";
     };
   };
 
@@ -115,6 +115,7 @@ in
           postCreate = ''
             make-bcache -B /dev/mapper/persist
             #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part8 | grep 'cset.uuid' | awk '{print $2}')
+            #echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
           '';
         };
       };
@@ -127,7 +128,11 @@ in
           name = "storage";
           size = "100%";
           group = "storage";
-          postCreate = "make-bcache -B /dev/mapper/storage";
+          postCreate = ''
+            make-bcache -B /dev/mapper/storage
+            #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part9 | grep 'cset.uuid' | awk '{print $2}')
+            #echo $CACHE_SET_UUID > /sys/block/bcache1/bcache/attach
+          '';
         };
       };
 
