@@ -8,10 +8,10 @@ let
       size = "110G";
       priority = 2;
     };
-    root = (import ../lib/btrfs.nix) {
-      name = "root";
+    root = (import ../lib/bcachefs.nix).partition {
+      name = "broot.ssd1";
       size = "10G";
-      mountpoint = "/";
+      priority = 3;
     };
     shared = (import ../lib/shared.nix) { };
   };
@@ -72,7 +72,7 @@ let
     };
 
     system = (import ../lib/bcachefs.nix).partition {
-      name = "system";
+      name = "bsystem.ssd1";
       size = "100%";
       priority = 10;
     };
