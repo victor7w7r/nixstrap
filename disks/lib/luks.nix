@@ -1,27 +1,24 @@
 {
-  name ? "syscrypt",
-  partlabel ? "systempv",
-  vg ? "vg0",
-  allowDiscards ? true,
+  content,
+  name,
+  group,
+  priority,
   size ? "100%",
-  group ? "main",
+  allowDiscards ? true,
   isForTest ? false,
+  postCreate ? "",
   keyFile ? "/tmp/key.txt",
-  priority ? 3,
 }:
 {
   inherit size priority;
   content = {
-    inherit name;
+    inherit name content;
     type = "luks";
-    content = {
-      inherit vg;
-      type = "lvm_pv";
-    };
     settings = { inherit keyFile allowDiscards; };
     preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
     postCreateHook = ''
-      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${partlabel} --label "${name}"
+      cryptsetup config /dev/disk/by-partlabel/disk-${group}-${name} --label "${name}"
+      ${postCreate}
     '';
   };
 }

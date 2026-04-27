@@ -7,24 +7,22 @@ let
     emergency = (import ../lib/emergency.nix) { priority = 3; };
     recovery = winmod.recovery { };
     win = winmod.win { };
-    syscrypt = (import ../lib/luks-lvm.nix) {
-      size = "112G";
-      vg = "vg0";
+    swapcrypt = (import ../lib/luks.nix) {
+      name = "swapcrypt";
+      size = "14G"
+      group = "disk-main";
+      content = (import ../lib/swap.nix) { };
+      priority = 5;
+    };
+    system = (import ../lib/bcachefs.nix).partition {
+      name = "system";
+      size = "110G";
       priority = 6;
     };
     games = (import ../lib/shared.nix) {
       name = "games";
       mountContent = "games";
       mountSnap = "gamessnap";
-    };
-  };
-
-  lvs = {
-    swapcrypt = (import ../lib/swap.nix) { size = "12G"; };
-    syscrypt = (import ../lib/btrfs.nix) {
-      name = "system";
-      size = "100%";
-      subvolumes = (import ../lib/subvolumes-btrfs.nix) { };
     };
   };
 in
@@ -38,9 +36,13 @@ in
         inherit partitions;
       };
     };
-    lvm_vg."vg0" = {
-      type = "lvm_vg";
-      inherit lvs;
+    bcachefs_filesystems.broot = (import ../lib/bcachefs.nix).filesystem {
+      subvolumes = {
+        "subvolumes/nix" = {
+          mountpoint = "/nix";
+          mountOptions = extraOptions;
+        };
+      };
     };
   };
 }

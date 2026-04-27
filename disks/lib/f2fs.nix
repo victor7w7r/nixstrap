@@ -1,10 +1,8 @@
 {
   name,
+  priority,
   size ? null,
   mountpoint ? "/",
-  priority ? null,
-  postCreateHook ? "",
-  postMountHook ? "",
 }:
 let
   args = (import ./f2fs-args.nix) { inherit name; };
@@ -12,7 +10,8 @@ let
   extraArgs = args.extraArgs;
 in
 {
-  inherit name size;
+  inherit name size priority;
+  type = "8300";
   content = {
     type = "filesystem";
     format = "f2fs";
@@ -20,17 +19,6 @@ in
       mountpoint
       mountOptions
       extraArgs
-      postCreateHook
-      postMountHook
       ;
   };
 }
-// (
-  if priority != null then
-    {
-      inherit priority;
-      type = "8300";
-    }
-  else
-    { }
-)

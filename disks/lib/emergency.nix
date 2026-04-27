@@ -12,7 +12,7 @@
     priority
     mountpoint
     ;
-  mountOptions = [
+  singleOptions = [
     "lazytime"
     "noatime"
     "compress=zstd:2"

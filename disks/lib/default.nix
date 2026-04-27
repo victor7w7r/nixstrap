@@ -9,5 +9,6 @@
     (import ./shared.nix)
     (import ./subvolumes-btrfs.nix)
     (import ./windows.nix)
+    (import ./xfs.nix)
   ];
 }

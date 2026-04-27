@@ -13,11 +13,12 @@
       "dm-snapshot"
     ];
     kernel.sysctl."vm.overcommit_memory" = "1";
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
     initrd = {
       availableKernelModules = [
         "dm-thin-pool"
         "dm-snapshot"
+        "bcache"
       ];
       services.lvm.enable = true;
       compressorArgs = [
@@ -45,12 +46,13 @@
     );
     supportedFilesystems = lib.mkForce [
       "btrfs"
+      "xfs"
+      "bcachefs"
       "ext4"
       "exfat"
       "f2fs"
       "ntfs"
       "vfat"
-      "zfs"
     ];
   };
 }

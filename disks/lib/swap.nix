@@ -1,6 +1,6 @@
 {
   resumeDevice ? true,
-  size ? "8G",
+  size ? "100%",
   discardPolicy ? "both", # pages, once
 }:
 {

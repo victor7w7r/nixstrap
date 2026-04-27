@@ -1,23 +1,19 @@
 let
   winmod = import ../lib/windows.nix;
-  zfs = import ../lib/zfs.nix;
 
-  applepartitions = {
+  macpartitions = {
     esp = (import ../lib/esp.nix) { };
     macos = {
       name = "macos";
       size = "110G";
       priority = 2;
     };
-    sysetc = zfs.partition {
-      size = "2G";
-      pool = "zetc";
-      priority = 3;
+    root = (import ../lib/btrfs.nix) {
+      name = "root";
+      size = "10G";
+      mountpoint = "/";
     };
-    shared = zfs.partition {
-      size = "100%";
-      pool = "zshared";
-    };
+    shared = (import ../lib/shared.nix) { };
   };
 
   ssdpartitions = {
@@ -25,181 +21,77 @@ let
     msr = winmod.msr { };
     recovery = winmod.recovery { priority = 3; };
     win = winmod.win { priority = 4; };
-    swap = zfs.partition {
-      size = "2G";
-      pool = "zswap";
+    swapcrypt = (import ../lib/luks.nix) {
+      name = "swapcrypt";
+      size = "64G"
+      group = "ssd";
+      content = (import ../lib/swap.nix) { };
       priority = 5;
     };
-    syslog = zfs.partition {
-      size = "2G";
-      pool = "zsys";
+    persistlogcrypt = (import ../lib/luks.nix) {
+      name = "persistlogcrypt";
+      size = "512M";
+      group = "ssd";
       priority = 6;
+      content =  {
+        name = "persistlog";
+        size = "100%";
+      };
     };
-    datalog = zfs.partition {
-      size = "2G";
-      pool = "zdata";
+    storagelogcrypt = (import ../lib/luks.nix) {
+      name = "storagelogcrypt";
+      size = "512M";
+      group = "ssd";
       priority = 7;
+      content =  {
+        name = "storagelog";
+        size = "100%";
+      };
     };
-    sysspecial = zfs.partition {
-      size = "40G";
-      pool = "zsys";
+    persistcachecrypt = (import ../lib/luks.nix) {
+      name = "persistcachecrypt";
+      size = "90G";
+      group = "ssd";
       priority = 8;
+      postCreate = "make-bcache -C /dev/mapper/persistcache";
+      content =  {
+        name = "persistcache";
+        size = "100%";
+      };
     };
-    dataspecial = zfs.partition {
-      size = "40G";
-      pool = "zdata";
+    storagecachecrypt = (import ../lib/luks.nix) {
+      name = "storagecachecrypt";
+      size = "90G";
+      group = "ssd";
       priority = 9;
+      postCreate = "make-bcache -C /dev/mapper/storagecache";
+      content =  {
+        name = "storagecache";
+        size = "100%";
+      };
     };
-    syscache = zfs.partition {
-      size = "70G";
-      pool = "zsys";
+
+    system = (import ../lib/bcachefs.nix).partition {
+      name = "system";
+      size = "100%";
       priority = 10;
     };
-    datacache = zfs.partition {
-      size = "70G";
-      pool = "zdata";
-      priority = 11;
-    };
-    root = zfs.partition {
-      size = "30G";
-      pool = "zroot";
-      priority = 12;
-    };
-    ssdshared = zfs.partition {
+  };
+
+  lvs0 = {
+    persist = (import ../lib/xfs.nix) {
+      name = "persist";
       size = "100%";
-      pool = "zssdshared";
+      logdev = "/dev/mapper/persistlog";
     };
   };
 
-  partlabel = "/dev/disk/by-partlabel";
-  idpart = "/dev/disk/by-id";
-
-  zroot = zfs.pool {
-    isRoot = true;
-    mode = "";
-    datasets =
-      zfs.preDataset { name = "local"; }
-      // zfs.dataset {
-        preDataset = "local";
-        options = {
-          compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
-        };
-      };
-  };
-  zsys = zfs.pool {
-    vdev = [ { members = [ "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT" ]; } ];
-    log = [ { members = [ "${partlabel}/disk-ssd-syslog" ]; } ];
-    special = [ { members = [ "${partlabel}/disk-ssd-sysspecial" ]; } ];
-    cache = [ "${partlabel}/disk-ssd-syscache" ];
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        name = "nix";
-        pool = "zsys";
-        mountpoint = "/nix";
-        options = {
-          canmount = "on";
-          compression = "zstd";
-          "com.sun:auto-snapshot" = "true";
-        };
-      }
-      // zfs.dataset {
-        name = "persist";
-        pool = "zsys";
-        mountpoint = "/nix/persist";
-        options = {
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
-  zdata = zfs.pool {
-    vdev = [ { members = [ "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK" ]; } ];
-    log = [ { members = [ "${partlabel}/disk-ssd-datalog" ]; } ];
-    special = [ { members = [ "${partlabel}/disk-ssd-dataspecial" ]; } ];
-    cache = [ "${partlabel}/disk-ssd-datacache" ];
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zdata";
-        name = "storage";
-        mountpoint = "/nix/persist/storage";
-        options = {
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
-  zetc = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zetc";
-        name = "etc";
-        mountpoint = "/nix/persist/etc";
-      };
-  };
-
-  zshared = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zshared";
-        name = "shared";
-        mountpoint = "/nix/persist/shared";
-        options = {
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
-  zssdshared = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zssdshared";
-        name = "ssdshared";
-        mountpoint = "/nix/persist/ssdshared";
-        options = {
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
-  zswap = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { name = "local"; }
-      // zfs.volume {
-        name = "swap";
-        size = "1800M";
-        preDataset = "local";
-        options = {
-          compression = "zle";
-          logbias = "throughput";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          primarycache = "metadata";
-          secondarycache = "none";
-        };
-        content = {
-          type = "swap";
-          discardPolicy = "both";
-        };
-      };
+  lvs1 = {
+    storage = (import ../lib/xfs.nix) {
+      name = "storage";
+      size = "100%";
+      logdev = "/dev/mapper/storagelog";
+    };
   };
 in
 {
@@ -213,6 +105,7 @@ in
           partitions = applepartitions;
         };
       };
+
       ssd = {
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
@@ -221,25 +114,61 @@ in
           partitions = ssdpartitions;
         };
       };
-      sysnix = zfs.entireDisk {
-        device = "ata-ST500LT012-1DG142_S3PMCMHT";
-        pool = "zsys";
+
+      #LUKS (enteramente sin GPT) -> bcache -> LVM -> XFS
+      persist = {
+        type = "disk";
+        device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
+        content = {
+          type = "gpt";
+          partitions = (import ../lib/luks.nix) {
+            name = "persistcrypt";
+            size = "100%";
+            group = "persist";
+            priority = 1;
+            content = {
+              type = "lvm_pv";
+              vg = "vg0";
+            };
+          };
+        };
       };
-      data = zfs.entireDisk {
-        device = "ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
-        pool = "zdata";
+
+      storage = {
+        type = "disk";
+        device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
+        content = {
+          type = "gpt";
+          partitions = (import ../lib/luks.nix) {
+            name = "storagecrypt";
+            size = "100%";
+            group = "storage";
+            priority = 1;
+            content = {
+              type = "lvm_pv";
+              vg = "vg1";
+            };
+          };
+        };
       };
     };
-    zpool = {
-      inherit
-        zsys
-        zdata
-        zetc
-        zshared
-        zssdshared
-        #zswap
-        zroot
-        ;
+
+    lvm_vg = {
+      "vg0" = {
+        type = "lvm_vg";
+        lvs = lvs0;
+      };
+      "vg1" = {
+        type = "lvm_vg";
+        lvs = lvs1;
+      };
+    };
+
+    bcachefs_filesystems.broot = (import ../lib/bcachefs.nix).filesystem {
+      subvolumes = {
+        "subvolumes/nix".mountpoint = "/nix";
+        "subvolumes/etc".mountpoint = "/nix/persist/etc";
+      };
     };
   };
 }

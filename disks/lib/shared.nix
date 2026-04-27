@@ -12,14 +12,14 @@
     size
     priority
     ;
-  mountOptions = [
+  singleOptions = [
     "lazytime"
     "noatime"
     "compress-force=zstd:2"
   ]
   ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
 
-  subvolumes = {
+  volumes = {
     "/${mountContent}".mountpoint = "/run/media/${mountContent}";
     "/.${mountSnap}".mountpoint = "/run/media/.${mountSnap}";
   };
