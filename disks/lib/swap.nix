@@ -4,9 +4,6 @@
   discardPolicy ? "both", # pages, once
 }:
 {
-  inherit size;
-  content = {
-    type = "swap";
-    inherit resumeDevice discardPolicy;
-  };
+  type = "swap";
+  inherit resumeDevice discardPolicy;
 }
