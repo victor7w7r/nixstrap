@@ -108,16 +108,13 @@ in
       persist = {
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
-        content = {
-          type = "luks";
-          content = (import ../lib/luks.nix) {
-            name = "persist";
-            size = "100%";
-            group = "persist";
-            content = {
-              type = "lvm_pv";
-              vg = "vg0";
-            };
+        content = (import ../lib/luks.nix) {
+          name = "persist";
+          size = "100%";
+          group = "persist";
+          content = {
+            type = "lvm_pv";
+            vg = "vg0";
           };
         };
       };
@@ -125,19 +122,17 @@ in
       storage = {
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
-        content = {
-          type = "luks";
-          content = (import ../lib/luks.nix) {
-            name = "storage";
-            size = "100%";
-            group = "storage";
-            content = {
-              type = "lvm_pv";
-              vg = "vg1";
-            };
+        content = (import ../lib/luks.nix) {
+          name = "storage";
+          size = "100%";
+          group = "storage";
+          content = {
+            type = "lvm_pv";
+            vg = "vg1";
           };
         };
       };
+
     };
 
     lvm_vg = {
