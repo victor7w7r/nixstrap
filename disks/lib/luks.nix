@@ -6,12 +6,12 @@
   content ? null,
   allowDiscards ? true,
   isForTest ? false,
+  entireDisk ? false,
   postCreate ? "",
   keyFile ? "/tmp/key.txt",
 }:
-{
-  inherit size priority;
-  content = {
+let
+  body = {
     inherit name content;
     type = "luks";
     settings = { inherit keyFile allowDiscards; };
@@ -21,4 +21,7 @@
       ${postCreate}
     '';
   };
+in if entireDisk then body else {
+  inherit size priority;
+  content = body;
 }

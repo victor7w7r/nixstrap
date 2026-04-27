@@ -109,6 +109,7 @@ in
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = (import ../lib/luks.nix) {
+          entireDisk = true;
           name = "persist";
           size = "100%";
           group = "persist";
@@ -123,6 +124,7 @@ in
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = (import ../lib/luks.nix) {
+          entireDisk = true;
           name = "storage";
           size = "100%";
           group = "storage";
