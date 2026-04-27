@@ -66,6 +66,7 @@ let
     persist = (import ../lib/xfs.nix) {
       name = "persist";
       size = "100%";
+      mountpoint = "/nix/persist";
       logdev = "/dev/mapper/persistlog";
     };
   };
@@ -74,6 +75,7 @@ let
     storage = (import ../lib/xfs.nix) {
       name = "storage";
       size = "100%";
+      mountpoint = "/nix/persist/storage";
       logdev = "/dev/mapper/storagelog";
     };
   };
