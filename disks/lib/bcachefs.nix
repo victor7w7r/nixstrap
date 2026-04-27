@@ -4,7 +4,7 @@
       name,
       size,
       priority ? 5,
-      filesystem ? "broot"
+      filesystem ? "broot",
       extraOptions ? []
     }:
     {
