@@ -41,6 +41,7 @@
          mountpoint = "/nix/persist";
          mountOptions = extraOptions;
        };
+      }
     }:
     {
       inherit passwordFile mountpoint subvolumes;
