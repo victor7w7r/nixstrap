@@ -104,10 +104,9 @@ in
         };
       };
 
-      #LUKS (enteramente sin GPT) -> bcache -> LVM -> XFS
       persist = {
         type = "disk";
-        device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
+        device = "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
         content = (import ../lib/luks.nix) {
           entireDisk = true;
           name = "persist";
@@ -122,7 +121,7 @@ in
 
       storage = {
         type = "disk";
-        device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
+        device = "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT";
         content = (import ../lib/luks.nix) {
           entireDisk = true;
           name = "storage";
