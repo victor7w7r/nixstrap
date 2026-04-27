@@ -147,6 +147,7 @@ in
     };
 
     bcachefs_filesystems.bsystem = (import ../lib/bcachefs.nix).filesystem {
+      uuid = "6b51f4f3-a3f5-4b9a-ab7b-16dbdeaa3b88";
       subvolumes = {
         "subvolumes/nix".mountpoint = "/nix";
         "subvolumes/etc".mountpoint = "/nix/persist/etc";

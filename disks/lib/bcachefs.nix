@@ -27,6 +27,7 @@
     {
       passwordFile ? null,
       mountpoint ? null,
+      uuid ? null,
       extraOptions ? [ ],
       extraFormatArgs ? [ ],
       subvolumes ? {
@@ -45,7 +46,7 @@
       }
     }:
     {
-      inherit passwordFile mountpoint subvolumes;
+      inherit passwordFile mountpoint subvolumes uuid;
       type = "bcachefs_filesystem";
       extraFormatArgs = [
         "--compression=lz4"
