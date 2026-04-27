@@ -3,7 +3,7 @@
   size,
   mountpoint,
   logdev ? null,
-  logsize ? null
+  logsize ? null,
   extraOptions ? [ ],
   isRaid ? false,
   isVmStorage ? false,
