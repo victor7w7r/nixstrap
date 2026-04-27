@@ -35,7 +35,7 @@ let
       priority = 6;
       content =  {
         name = "persistlog";
-        type = "8300";
+        type = "none";
         size = "100%";
       };
     };
@@ -46,7 +46,7 @@ let
       priority = 7;
       content =  {
         name = "storagelog";
-        type = "8300";
+        type = "none";
         size = "100%";
       };
     };
@@ -58,7 +58,7 @@ let
       postCreate = "make-bcache -C /dev/mapper/persistcache";
       content =  {
         name = "persistcache";
-        type = "8300";
+        type = "none";
         size = "100%";
       };
     };
@@ -70,7 +70,7 @@ let
       postCreate = "make-bcache -C /dev/mapper/storagecache";
       content =  {
         name = "storagecache";
-        type = "8300";
+        type = "none";
         size = "100%";
       };
     };
