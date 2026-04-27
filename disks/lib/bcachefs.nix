@@ -28,6 +28,7 @@
       passwordFile ? null,
       mountpoint ? null,
       extraOptions ? [ ],
+      extraFormatArgs ? [ ],
       subvolumes ? {
        "subvolumes/root" = {
          mountpoint = "/";
