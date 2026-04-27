@@ -35,7 +35,6 @@ let
       priority = 6;
       content =  {
         type = "filesystem";
-        size = "100%";
       };
     };
     storagelogcrypt = (import ../lib/luks.nix) {
@@ -45,7 +44,6 @@ let
       priority = 7;
       content =  {
         type = "filesystem";
-        size = "100%";
       };
     };
     persistcachecrypt = (import ../lib/luks.nix) {
@@ -56,7 +54,6 @@ let
       postCreate = "make-bcache -C /dev/mapper/persistcache";
       content =  {
         type = "filesystem";
-        size = "100%";
       };
     };
     storagecachecrypt = (import ../lib/luks.nix) {
@@ -67,7 +64,6 @@ let
       postCreate = "make-bcache -C /dev/mapper/storagecache";
       content =  {
         type = "filesystem";
-        size = "100%";
       };
     };
 
