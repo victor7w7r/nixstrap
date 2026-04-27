@@ -16,7 +16,8 @@ in
   inherit size name;
   content = {
     inherit mountpoint;
-    type = "xfs";
+    type = "filesystem";
+    format = "xfs";
     mountOptions = [
       "noatime"
       "nodiratime"
