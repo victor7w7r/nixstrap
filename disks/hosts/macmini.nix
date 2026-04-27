@@ -123,17 +123,8 @@ in
         type = "disk";
         device = "${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
         content = {
-          type = "gpt";
-          partitions = (import ../lib/luks.nix) {
-            name = "persistcrypt";
-            size = "100%";
-            group = "persist";
-            priority = 1;
-            content = {
-              type = "lvm_pv";
-              vg = "vg0";
-            };
-          };
+          type = "luks";
+          content = { };
         };
       };
 
