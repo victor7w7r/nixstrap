@@ -23,7 +23,7 @@ let
     win = winmod.win { priority = 4; };
     swapcrypt = (import ../lib/luks.nix) {
       name = "swapcrypt";
-      size = "64G"
+      size = "64G";
       group = "ssd";
       content = (import ../lib/swap.nix) { };
       priority = 5;
