@@ -133,7 +133,6 @@ in
           };
         };
       };
-
     };
 
     lvm_vg = {
@@ -147,7 +146,7 @@ in
       };
     };
 
-    bcachefs_filesystems.broot = (import ../lib/bcachefs.nix).filesystem {
+    bcachefs_filesystems.bsystem = (import ../lib/bcachefs.nix).filesystem {
       subvolumes = {
         "subvolumes/nix".mountpoint = "/nix";
         "subvolumes/etc".mountpoint = "/nix/persist/etc";
