@@ -34,7 +34,7 @@ let
       group = "ssd";
       priority = 6;
       content =  {
-        type = "filesystem";
+        type = "raw";
       };
     };
     storagelogcrypt = (import ../lib/luks.nix) {
@@ -43,7 +43,7 @@ let
       group = "ssd";
       priority = 7;
       content =  {
-        type = "filesystem";
+        type = "raw";
       };
     };
     persistcachecrypt = (import ../lib/luks.nix) {
@@ -53,7 +53,7 @@ let
       priority = 8;
       postCreate = "make-bcache -C /dev/mapper/persistcache";
       content =  {
-        type = "filesystem";
+        type = "raw";
       };
     };
     storagecachecrypt = (import ../lib/luks.nix) {
@@ -63,7 +63,7 @@ let
       priority = 9;
       postCreate = "make-bcache -C /dev/mapper/storagecache";
       content =  {
-        type = "filesystem";
+        type = "raw";
       };
     };
 
