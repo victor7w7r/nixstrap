@@ -55,6 +55,7 @@ let
       postCreate = "make-bcache -C /dev/mapper/storagecache";
     };
     system = (import ../lib/bcachefs.nix).partition {
+      filesystem = "bsystem";
       name = "bsystem.ssd1";
       size = "100%";
       priority = 10;
@@ -177,11 +178,19 @@ in
       };
     };
 
-    bcachefs_filesystems.bsystem = (import ../lib/bcachefs.nix).filesystem {
-      uuid = "73cb3bc2-8160-469c-bff2-a55d8f017b6d";
-      subvolumes = {
-        "subvolumes/nix".mountpoint = "/nix";
-        "subvolumes/etc".mountpoint = "/nix/persist/etc";
+    bcachefs_filesystems = {
+      bsystem = (import ../lib/bcachefs.nix).filesystem {
+        uuid = "73cb3bc2-8160-469c-bff2-a55d8f017b6d";
+        subvolumes = {
+          "subvolumes/nix".mountpoint = "/nix";
+          "subvolumes/etc".mountpoint = "/nix/persist/etc";
+        };
+      };
+
+      broot = (import ../lib/bcachefs.nix).filesystem {
+        mountpoint = "/";
+        subvolumes = null;
+        uuid = "f9d26816-07f4-42cf-a9ae-f698ff56b172";
       };
     };
   };
