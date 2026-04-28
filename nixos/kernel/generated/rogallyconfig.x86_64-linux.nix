@@ -368,7 +368,7 @@
   "CONFIG_HOTPLUG_CPU" = "y";
   "CONFIG_LEGACY_VSYSCALL_XONLY" = "y";
   "CONFIG_CMDLINE_BOOL" = "y";
-  "CONFIG_CMDLINE" = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs mitigations=off nospectre_v1 nospectre_v2 spec_store_bypass_disable=off amd_iommu=on amdgpu.sg_display=0 split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0  sysrq_always_enabled=0 udev.log_level=3 verbose=1  ";
+  "CONFIG_CMDLINE" = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs mitigations=off nospectre_v1 nospectre_v2 spec_store_bypass_disable=off amd_iommu=on amdgpu.sg_display=0 split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0  sysrq_always_enabled=0 ";
   "CONFIG_MODIFY_LDT_SYSCALL" = "y";
   "CONFIG_HAVE_LIVEPATCH" = "y";
   "CONFIG_X86_BUS_LOCK_DETECT" = "y";
@@ -1295,6 +1295,7 @@
   "CONFIG_ATA_SFF" = "y";
   "CONFIG_ATA_BMDMA" = "y";
   "CONFIG_MD" = "y";
+  "CONFIG_BCACHE" = "m";
   "CONFIG_BLK_DEV_DM_BUILTIN" = "y";
   "CONFIG_BLK_DEV_DM" = "m";
   "CONFIG_DM_DEBUG" = "y";
@@ -1895,6 +1896,19 @@
   "CONFIG_EXT4_FS_SECURITY" = "y";
   "CONFIG_JBD2" = "y";
   "CONFIG_FS_MBCACHE" = "y";
+  "CONFIG_XFS_FS" = "y";
+  "CONFIG_XFS_SUPPORT_V4" = "y";
+  "CONFIG_XFS_SUPPORT_ASCII_CI" = "y";
+  "CONFIG_XFS_QUOTA" = "y";
+  "CONFIG_XFS_POSIX_ACL" = "y";
+  "CONFIG_XFS_RT" = "y";
+  "CONFIG_XFS_DRAIN_INTENTS" = "y";
+  "CONFIG_XFS_LIVE_HOOKS" = "y";
+  "CONFIG_XFS_MEMORY_BUFS" = "y";
+  "CONFIG_XFS_BTREE_IN_MEM" = "y";
+  "CONFIG_XFS_ONLINE_SCRUB" = "y";
+  "CONFIG_XFS_ONLINE_SCRUB_STATS" = "y";
+  "CONFIG_XFS_ONLINE_REPAIR" = "y";
   "CONFIG_BTRFS_FS" = "y";
   "CONFIG_BTRFS_FS_POSIX_ACL" = "y";
   "CONFIG_F2FS_FS" = "m";
@@ -2203,6 +2217,7 @@
   "CONFIG_INTERVAL_TREE_SPAN_ITER" = "y";
   "CONFIG_XARRAY_MULTI" = "y";
   "CONFIG_ASSOCIATIVE_ARRAY" = "y";
+  "CONFIG_CLOSURES" = "y";
   "CONFIG_HAS_IOMEM" = "y";
   "CONFIG_HAS_IOPORT" = "y";
   "CONFIG_HAS_IOPORT_MAP" = "y";
