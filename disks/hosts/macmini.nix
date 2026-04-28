@@ -182,8 +182,24 @@ in
       bsystem = (import ../lib/bcachefs.nix).filesystem {
        uuid = "66684a8a-b6ef-45ac-9e24-9ee3a2b4b540";
         subvolumes = {
-          "subvolumes/nix".mountpoint = "/nix";
-          "subvolumes/etc".mountpoint = "/nix/persist/etc";
+          "subvolumes/nix" = {
+            mountpoint = "/nix";
+            mountOptions = [
+              "nodiratime"
+              "noatime"
+              "discard"
+              "fsck"
+            ];
+          };
+          "subvolumes/etc" = {
+            mountpoint = "/nix/persist/etc";
+            mountOptions = [
+              "nodiratime"
+              "noatime"
+              "discard"
+              "fsck"
+            ];
+          };
         };
       };
 
