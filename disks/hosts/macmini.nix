@@ -180,10 +180,10 @@ in
 
     bcachefs_filesystems = {
       bsystem = (import ../lib/bcachefs.nix).filesystem {
-       # uuid = "73cb3bc2-8160-469c-bff2-a55d8f017b6d";
+       uuid = "73cb3bc2-8160-469c-bff2-a55d8f017b6d";
         subvolumes = {
           "subvolumes/nix".mountpoint = "/nix";
-          "subvolumes/etc".mountpoint = "/nix/persist/etc";
+          #"subvolumes/etc".mountpoint = "/nix/persist/etc";
         };
       };
 
