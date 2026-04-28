@@ -22,6 +22,7 @@ let
     emergencyDisk = "ssd";
   };
   bcachefs = (import ./lib/bcachefs.nix);
+  xfs = (import ./lib/xfs.nix);
   shared = (import ./lib/shared.nix) { };
   audio = (pkgs.callPackage ./custom/apple-t2-better-audio.nix { });
 in
