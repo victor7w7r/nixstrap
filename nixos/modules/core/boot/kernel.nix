@@ -72,7 +72,7 @@ in
             users.root.shell = "${pkgs.bashInteractive}/bin/bash";
             contents = {
               "/etc/ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-              "/etc/terminfo".source = "${pkgs.ncurses}/share/terminfo";
+              #"/etc/terminfo".source = "${pkgs.ncurses}/share/terminfo";
             };
             initrdBin = [ pkgs.coreutils ];
             storePaths = [
