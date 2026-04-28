@@ -6,11 +6,13 @@
 }:
 let
   supportedFilesystems = [
+    "bcachefs"
     "btrfs"
     "ext4"
     "exfat"
     "f2fs"
     "ntfs"
+    "xfs"
     "vfat"
   ];
 in

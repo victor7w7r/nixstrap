@@ -21,6 +21,8 @@ let
   boot = (import ./lib/boot.nix) {
     emergencyDisk = "ssd";
   };
+  bcachefs = (import ./lib/bcachefs.nix);
+  shared = (import ./lib/shared.nix) { };
   audio = (pkgs.callPackage ./custom/apple-t2-better-audio.nix { });
 in
 {
@@ -30,47 +32,41 @@ in
     })
   ];
 
+
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    "/" = zfs { preDataset = "local"; };
-    "/nix" = zfs {
-      pool = "zsys";
-      dataset = "nix";
-      depends = [ "/" ];
+    inherit (shared);
+
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
     };
-    "/nix/persist" = zfs {
-      pool = "zsys";
-      dataset = "persist";
+    "/nix" = bcachefs {
+      extraOptions = [ "X-mount.subdir=subvolumes/nix" ];
+    };
+
+    "/nix/persist/etc" = bcachefs {
+      extraOptions = [ "X-mount.subdir=subvolumes/etc" ];
+    };
+
+    "/nix/persist" = xfs {
       depends = [ "/nix" ];
     };
-    "/nix/persist/etc" = zfs {
-      pool = "zetc";
-      dataset = "etc";
+
+    "/nix/persist/storage" = xfs {
+      device = "/dev/vg0/storage";
       depends = [ "/nix/persist" ];
-    };
-    "/nix/persist/storage" = zfs {
-      pool = "zdata";
-      neededForBoot = false;
-      depends = [ "/nix/persist" ];
-      dataset = "storage";
-    };
-    "/nix/persist/shared" = zfs {
-      pool = "zshared";
-      neededForBoot = false;
-      depends = [ "/nix/persist" ];
-      dataset = "shared";
-    };
-    "/nix/persist/ssdshared" = zfs {
-      pool = "zssdshared";
-      neededForBoot = false;
-      depends = [ "/nix/persist" ];
-      dataset = "ssdshared";
     };
   };
 
   swapDevices = [
     {
-      device = "/dev/zd0";
+      device = "/dev/mapper/swapcrypt";
       discardPolicy = "both";
       options = [ "nofail" ];
     }
@@ -90,6 +86,7 @@ in
         "brcmfmac_wcc"
         "brcmfmac"
         "btrfs"
+        "bcache"
         "uas"
         "usb_storage"
         "ahci"
@@ -112,7 +109,65 @@ in
           "${pkgs.coreutils}/bin/sleep"
           "${pkgs.systemd}/bin/udevadm"
         ];
+        services = {
+          setup-storage-stack = let
+            partlabel = "/dev/disk/by-partlabel";
+            idpart = "/dev/disk/by-id";
+          in {
+            wantedBy = [ "initrd.target" ];
+            before = [
+              "initrd-fs.target"
+              "sysroot.mount"
+            ];
+            after = [
+              "systemd-modules-load.service"
+            ];
+            unitConfig.DefaultDependencies = false;
+            path = [
+              pkgs.util-linux
+              pkgs.bcachefs-tools
+              pkgs.systemd
+              pkgs.coreutils
+            ];
+            script = ''
+              set -e
+              mkdir -p /media
+              DEVICE="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
 
+              udevadm trigger --action=add --subsystem-match=block
+              for i in {1..30}; do
+                if [ ! -e "$DEVICE" ]; then
+                    udevadm settle --timeout=3 || true
+                fi
+                if [ -e "$DEVICE" ]; then
+                    echo "Appear in attempt $i"
+                    if mount -t btrfs -o rw,noatime,ssd,discard=async "$DEVICE" /media; then
+                        break
+                    fi
+                fi
+                echo "Waiting SCSI/USB... ($i/30)"
+                sleep 1
+                done
+
+                cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /tmp/key.txt
+                cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /tmp/key.txt
+
+                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt
+                cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt
+                echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
+
+                cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
+                cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
+                echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
+
+                vgscan -ay
+            '';
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
+          };
+        };
       };
     };
 

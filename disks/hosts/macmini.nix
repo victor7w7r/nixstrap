@@ -54,7 +54,6 @@ let
       priority = 9;
       postCreate = "make-bcache -C /dev/mapper/storagecache";
     };
-
     system = (import ../lib/bcachefs.nix).partition {
       name = "bsystem.ssd1";
       size = "100%";

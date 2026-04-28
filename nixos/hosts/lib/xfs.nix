@@ -1,17 +1,17 @@
 {
   depends ? [ ],
-  device ? "/dev/vg0/system",
+  device ? "/dev/vg0/persist",
+  isSolid ? false,
 }:
 {
   fsType = "xfs";
   options = [
-    "attr2"
     "noatime"
+    "nodiratime"
     "lazytime"
-    "nodiscard"
+    "logbufs=8"
     "logbsize=256k"
-    "inode64"
-  ];
+  ] ++ (if isSolid then [ "discard" ] else [ ]);
   inherit device depends;
   neededForBoot = true;
 }

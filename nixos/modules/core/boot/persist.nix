@@ -23,7 +23,6 @@ in
       "/etc/adjtime"
       "/etc/logo.svg"
       "/etc/machine-id"
-      "/etc/zfs/zpool.cache"
     ];
     users.root.directories = [
       "/root/.zsh"
