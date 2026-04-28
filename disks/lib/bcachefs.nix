@@ -34,28 +34,25 @@
        "subvolumes/root" = {
          mountpoint = "/";
          mountOptions = [
-           "lazytime"
+           "nodiratime"
            "noatime"
            "discard"
-           "fsck"
          ] ++ extraOptions;
        };
        "subvolumes/nix" = {
          mountpoint = "/nix";
          mountOptions = [
-           "lazytime"
+           "nodiratime"
            "noatime"
            "discard"
-           "fsck"
          ] ++ extraOptions;
        };
        "subvolumes/persist" = {
          mountpoint = "/nix/persist";
          mountOptions = [
-           "lazytime"
+           "nodiratime"
            "noatime"
            "discard"
-           "fsck"
          ] ++ extraOptions;
        };
       }
