@@ -116,7 +116,7 @@ in
           postMount = ''
             cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt
             cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt
-            echo /dev/mapper/persist | tee /sys/fs/bcache/register
+            echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''
             make-bcache -B /dev/mapper/persist
@@ -138,7 +138,7 @@ in
           postMount = ''
             cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt
             cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt
-            echo /dev/mapper/storage | tee /sys/fs/bcache/register
+            echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''
             make-bcache -B /dev/mapper/storage
