@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    bottles
+    #bottles
     umu-launcher
     goverlay
     inotify-info
