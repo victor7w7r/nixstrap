@@ -16,6 +16,7 @@
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="
@@ -56,7 +57,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     thorium.url = "github:almahdi/nix-thorium";
     opi-zero2w.url = "github:virusdave/nixos-opi-zero2w";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs.url = "github:NixOS/nixpkgs/3d2dd99d0b9980068a6beed9395cd6abc9d9bd12";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
 
