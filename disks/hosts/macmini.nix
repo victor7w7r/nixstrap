@@ -88,6 +88,7 @@ in
     disk = {
       main = {
         type = "disk";
+        priority = 1;
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
