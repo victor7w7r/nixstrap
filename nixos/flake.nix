@@ -7,6 +7,7 @@
       "/nix/var/cache/sccache"
     ];
     extra-substituters = [
+      "https://cache.nixos.org/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://attic.xuyh0120.win/lantian"
@@ -14,6 +15,7 @@
       "https://cache.saumon.network/proxmox-nixos"
     ];
     extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="
