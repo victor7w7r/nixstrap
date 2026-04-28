@@ -189,7 +189,7 @@ in
 
       broot = (import ../lib/bcachefs.nix).filesystem {
         mountpoint = "/";
-        subvolumes = null;
+        subvolumes = { };
         uuid = "f9d26816-07f4-42cf-a9ae-f698ff56b172";
       };
     };
