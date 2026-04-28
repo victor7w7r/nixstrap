@@ -109,9 +109,13 @@ in
         device = "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
         content = (import ../lib/luks.nix) {
           entireDisk = true;
+          allowDiscards = false;
           name = "persist";
           size = "100%";
           group = "persist";
+          postMount = ''
+            echo /dev/mapper/persist | tee /sys/fs/bcache/register
+          '';
           postCreate = ''
             make-bcache -B /dev/mapper/persist
             #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part8 | grep 'cset.uuid' | awk '{print $2}')
@@ -125,9 +129,13 @@ in
         device = "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT";
         content = (import ../lib/luks.nix) {
           entireDisk = true;
+          allowDiscards = false;
           name = "storage";
           size = "100%";
           group = "storage";
+          postMount = ''
+            echo /dev/mapper/storage | tee /sys/fs/bcache/register
+          '';
           postCreate = ''
             make-bcache -B /dev/mapper/storage
             #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part9 | grep 'cset.uuid' | awk '{print $2}')

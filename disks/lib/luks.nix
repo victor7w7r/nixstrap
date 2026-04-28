@@ -8,11 +8,13 @@
   isForTest ? false,
   entireDisk ? false,
   postCreate ? "",
+  postMount ? "",
   keyFile ? "/tmp/key.txt",
 }:
 let
   body = {
     inherit name content;
+    postMountHook = postMount;
     type = "luks";
     settings = { inherit keyFile allowDiscards; };
     preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
