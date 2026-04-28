@@ -114,8 +114,8 @@ in
           size = "100%";
           group = "persist";
           postMount = ''
-            cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt
-            cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt
+            cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
+            cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
             echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''
@@ -136,8 +136,8 @@ in
           size = "100%";
           group = "storage";
           postMount = ''
-            cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt
-            cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt
+            cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
+            cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
             echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''
