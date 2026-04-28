@@ -33,15 +33,30 @@
       subvolumes ? {
        "subvolumes/root" = {
          mountpoint = "/";
-         mountOptions = extraOptions;
+         mountOptions = [
+           "lazytime"
+           "noatime"
+           "discard"
+           "fsck"
+         ] ++ extraOptions;
        };
        "subvolumes/nix" = {
          mountpoint = "/nix";
-         mountOptions = extraOptions;
+         mountOptions = [
+           "lazytime"
+           "noatime"
+           "discard"
+           "fsck"
+         ] ++ extraOptions;
        };
        "subvolumes/persist" = {
          mountpoint = "/nix/persist";
-         mountOptions = extraOptions;
+         mountOptions = [
+           "lazytime"
+           "noatime"
+           "discard"
+           "fsck"
+         ] ++ extraOptions;
        };
       }
     }:
@@ -51,6 +66,8 @@
       extraFormatArgs = [
         "--compression=lz4"
         "--background_compression=lz4"
+        "--metadata_checksum=xxhash"
+        "--data_checksum=xxhash"
       ] ++ extraFormatArgs;
     };
 }
