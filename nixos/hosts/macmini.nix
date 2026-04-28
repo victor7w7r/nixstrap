@@ -150,15 +150,15 @@ in
                 sleep 1
                 done
 
-                cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /tmp/key.txt
-                cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /tmp/key.txt
+                cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
+                cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
 
-                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt
-                cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt
+                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
+                cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
                 echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
 
-                cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
-                cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
+                cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key || true
+                cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key || true
                 echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
 
                 vgscan -ay
