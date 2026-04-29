@@ -123,6 +123,7 @@ in
           setup-storage-stack = let
             partlabel = "/dev/disk/by-partlabel";
             idpart = "/dev/disk/by-id";
+            keydevice = "${idpart}/usb-Generic_Mass-Storage_20240418000000-0:0-part1";
           in {
             wantedBy = [ "initrd.target" ];
             requiredBy = [ "sysroot.mount" ];
@@ -144,28 +145,38 @@ in
             ];
             script = ''
               set -e
-              mkdir -p /media && echo "Unlocking and scanning devices..."
-              cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
-              cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
-              cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
-              cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
-              cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key
-              cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key
+              mkdir -p /media
 
-              for i in {1..30}; do
-                if [ -e "${idpart}/usb-Generic_Mass-Storage_20240418000000-0:0-part1" ] && [ -e /dev/mapper/persist ] && [ -e /dev/mapper/storage ]; then
+              for i in {1..10}; do
+                if [ -e "${keydevice}" ]; then
                     echo "Appear in attempt $i"
-                    if mount -t btrfs -o rw,noatime,ssd,discard=async "$DEVICE" /media; then
+                    if mount -t btrfs -o ro,noatime,ssd,discard=async "$DEVICE" /media; then
+                        echo "Found key device"
                         break
                     fi
                 fi
-                echo "Waiting needed devices... ($i/30)"
-                udevadm settle --timeout=3 || true
-                udevadm trigger --action=add --subsystem-match=block
+                echo "Waiting key device... ($i/10)"
+                udevadm settle --timeout=2 || true && udevadm trigger --action=add --subsystem-match=block
                 sleep 1
-                done
+               done
 
-                vgscan && vgchange -ay
+               cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
+               cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key
+
+               for i in {1..30}; do
+                 if [ -e /dev/bcache0 ] && [ -e /dev/bcache1 ] && [ -e /dev/mapper/persist ]  && [ -e /dev/mapper/storage ]; then
+                    echo "Appear in attempt $i"
+                    break
+                 fi
+                 echo "Waiting persist and storage devices... ($i/30)"
+                 vgscan && vgchange -ay
+                 udevadm settle --timeout=3 || true && udevadm trigger --action=add --subsystem-match=block
+                 sleep 1
+                done
 
                 echo "Cleaning store partition..."
                 bcachefs fsck ${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part10
