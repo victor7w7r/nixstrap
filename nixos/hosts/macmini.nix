@@ -52,8 +52,8 @@ in
     };
 
     "/nix/persist/etc" = bcachefs {
-      extraOptions = [ "X-mount.subdir=subvolumes/etc" ];
       extraOptions = [
+        "X-mount.subdir=subvolumes/etc"
         "x-systemd.device-timeout=0"
         "x-systemd.mount-timeout=0"
       ];
