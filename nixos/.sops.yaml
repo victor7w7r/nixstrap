@@ -3,7 +3,7 @@ keys:
   - &vm_machine age1gzpr4f8nfrlfly7wy9rsyt8nlvh4yeefa5mh37eks4t0j04aq3nq90ld0w
   - &rogally_machine age15j0h5gj395yhfj6qxpxf5k3539hf9eg9u0sy2463lumlrf3qaews76tz4q
   - &server_machine age1ktgk5rck3lzmeg2d64wkx2l5v6yq9salpl89gvprem43zr05yyks44n365
-  - &mac_machine age1t53da6zcc26g8txl4sgt6s5uvgmz3mhq2wsg4ljsxlsj54uluczq0u8auj
+  - &mac_machine age1um6hefxrk8nmjtugnsxfuyltxlk8trxgul5mzlek3m0ncas8gufs2006rt
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
