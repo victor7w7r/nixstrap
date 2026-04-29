@@ -1,16 +1,5 @@
 { host, ... }:
 {
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      systemd = prev.systemd.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
-          final.python3Packages.pefile
-        ];
-      });
-    })
-  ];
-
   systemd = {
     enableEmergencyMode = true;
     network.wait-online.enable = false;
