@@ -47,16 +47,16 @@ in
     "/nix" = bcachefs {
       extraOptions = [
         "X-mount.subdir=subvolumes/nix"
-        "x-systemd.device-timeout=0"
-        "x-systemd.mount-timeout=0"
+        "x-systemd.device-timeout=300"
+        "x-systemd.mount-timeout=300"
       ];
     };
 
     "/nix/persist/etc" = bcachefs {
       extraOptions = [
         "X-mount.subdir=subvolumes/etc"
-        "x-systemd.device-timeout=0"
-        "x-systemd.mount-timeout=0"
+        "x-systemd.device-timeout=300"
+        "x-systemd.mount-timeout=300"
       ];
     };
 
@@ -66,7 +66,7 @@ in
     };
 
     "/nix/persist/storage" = xfs {
-      device = "/dev/vg0/storage";
+      device = "/dev/vg1/storage";
       depends = [ "/nix/persist" ];
       extraOptions = [ "logdev=/dev/mapper/storagelogcrypt" ];
     };
