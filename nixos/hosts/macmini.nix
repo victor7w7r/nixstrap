@@ -160,6 +160,7 @@ in
               pkgs.bcachefs-tools
               pkgs.cryptsetup
               pkgs.systemd
+              pkgs.e2fsprogs
               pkgs.coreutils
               pkgs.lvm2
             ];
