@@ -15,13 +15,16 @@ in
     directories = [
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
-      "/etc/ssh"
       "/var/log"
       "/var/lib"
     ];
     files = [
       "/etc/adjtime"
       "/etc/logo.svg"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
       "/etc/machine-id"
     ];
     users.root.directories = [
@@ -37,8 +40,8 @@ in
         "repositories"
         "scripts"
         "remote"
-        ".cache/antidote"
         ".ssh"
+        ".cache"
         ".config/bruno"
         ".config/freerdp"
         ".config/JetBrains"

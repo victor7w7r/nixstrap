@@ -105,6 +105,7 @@ in
     extraModulePackages = [
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     ];
+     resumeDevice = "/dev/mapper/swapcrypt";
     kernelParams = [ "video=DP-3:1600x900@60" "systemd.gpt_auto=0" "rootwait" "zram.num_devices=2" ] ++ params { };
     kernelPackages = lib.mkForce (helpers.kernelModuleLLVMOverride (kernelBuild.packages));
     initrd = {
@@ -193,6 +194,8 @@ in
 
                cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
                cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-swapcrypt swapcrypt --key-file /media/secret.key
+               cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
                cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
                cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key
