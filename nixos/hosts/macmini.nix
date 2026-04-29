@@ -43,6 +43,7 @@ in
       neededForBoot = true;
       options = [ "noatime" "x-systemd.device-timeout=0" ];
     };
+
     "/nix" = bcachefs {
       extraOptions = [
         "X-mount.subdir=subvolumes/nix"
@@ -61,11 +62,13 @@ in
 
     "/nix/persist" = xfs {
       depends = [ "/nix" ];
+      extraOptions = [ "logdev=/dev/mapper/persistlogcrypt" ];
     };
 
     "/nix/persist/storage" = xfs {
       device = "/dev/vg0/storage";
       depends = [ "/nix/persist" ];
+      extraOptions = [ "logdev=/dev/mapper/storagelogcrypt" ];
     };
   };
 
@@ -155,6 +158,10 @@ in
             ];
             after = [ "systemd-modules-load.service" ];
             unitConfig.DefaultDependencies = false;
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
             path = [
               pkgs.util-linux
               pkgs.bcachefs-tools
@@ -205,19 +212,10 @@ in
                  udevadm settle --timeout=3 || true && udevadm trigger --action=add --subsystem-match=block
                  sleep 1
                 done
-
-                echo "Cleaning store partition..."
-                bcachefs fsck ${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part10
             '';
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-            };
           };
         };
       };
     };
-
   };
-
 }
