@@ -102,6 +102,7 @@ in
         # "vfio_iommu_type1"
         # "vfi"
       ];
+      services.lvm.enable = true;
       systemd = {
         storePaths = [
           "${pkgs.btrfs-progs}/bin/btrfs"
@@ -127,8 +128,10 @@ in
             path = [
               pkgs.util-linux
               pkgs.bcachefs-tools
+              pkgs.cryptsetup
               pkgs.systemd
               pkgs.coreutils
+              pkgs.lvm2
             ];
             script = ''
               set -e
