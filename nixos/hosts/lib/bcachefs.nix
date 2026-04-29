@@ -9,7 +9,6 @@
     "lazytime"
     "noatime"
     "discard"
-    "fsck"
     "X-mount.mkdir"
   ] ++ extraOptions;
 

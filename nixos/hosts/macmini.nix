@@ -48,7 +48,11 @@ in
       ];
     };
     "/nix" = bcachefs {
-      extraOptions = [ "X-mount.subdir=subvolumes/nix" ];
+      extraOptions = [
+        "X-mount.subdir=subvolumes/nix"
+        "x-systemd.mount-timeout=infinity"
+        "x-systemd.device-timeout=infinity"
+      ];
     };
 
     "/nix/persist/etc" = bcachefs {
@@ -121,13 +125,12 @@ in
             idpart = "/dev/disk/by-id";
           in {
             wantedBy = [ "initrd.target" ];
+            requiredBy = [ "sysroot.mount" ];
             before = [
               "initrd-fs.target"
               "sysroot.mount"
             ];
-            after = [
-              "systemd-modules-load.service"
-            ];
+            after = [ "systemd-modules-load.service" ];
             unitConfig.DefaultDependencies = false;
             path = [
               pkgs.util-linux
@@ -140,7 +143,7 @@ in
             script = ''
               set -e
               mkdir -p /media
-              DEVICE="/dev/disk/by-id/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
+              DEVICE="${idpart}/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
 
               udevadm trigger --action=add --subsystem-match=block
               for i in {1..30}; do
@@ -157,6 +160,7 @@ in
                 sleep 1
                 done
 
+                echo "Unlocking and scanning devices..."
                 cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
                 cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
 
@@ -168,8 +172,10 @@ in
                 cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key || true
                 echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
 
-                vgscan
-                vgchange -ay
+                vgscan && vgchange -ay
+
+                echo "Cleaning store partition..."
+                bcachefs fsck ${idpart}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part10
             '';
             serviceConfig = {
               Type = "oneshot";
