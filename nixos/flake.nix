@@ -57,7 +57,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     thorium.url = "github:almahdi/nix-thorium";
     opi-zero2w.url = "github:virusdave/nixos-opi-zero2w";
-    nixpkgs.url = "github:NixOS/nixpkgs/3d2dd99d0b9980068a6beed9395cd6abc9d9bd12";
+    nixpkgs.url = "github:NixOS/nixpkgs/02d39f4e47361b4cd90a1c7eef93d98e604e3725";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-search-tv.url = "github:3timeslazy/nix-search-tv";
 
