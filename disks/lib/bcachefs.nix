@@ -61,8 +61,8 @@
       inherit passwordFile mountpoint subvolumes uuid;
       type = "bcachefs_filesystem";
       extraFormatArgs = [
-        "--compression=lz4"
-        "--background_compression=lz4"
+        "--compression=zstd"
+        "--background_compression=zstd"
         "--metadata_checksum=xxhash"
         "--data_checksum=xxhash"
       ] ++ extraFormatArgs;
