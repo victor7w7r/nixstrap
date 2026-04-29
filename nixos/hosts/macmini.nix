@@ -50,8 +50,8 @@ in
     "/nix" = bcachefs {
       extraOptions = [
         "X-mount.subdir=subvolumes/nix"
-        "x-systemd.mount-timeout=infinity"
-        "x-systemd.device-timeout=infinity"
+        "x-systemd.device-timeout=0"
+        "x-systemd.mount-timeout=0"
       ];
     };
 
@@ -83,7 +83,7 @@ in
     extraModulePackages = [
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     ];
-    kernelParams = [ "video=DP-3:1600x900@60" ] ++ params { };
+    kernelParams = [ "video=DP-3:1600x900@60" "systemd.gpt_auto=0" "rootwait" ] ++ params { };
     kernelPackages = lib.mkForce (helpers.kernelModuleLLVMOverride (kernelBuild.packages));
     initrd = {
       kernelModules = [
@@ -127,6 +127,8 @@ in
             wantedBy = [ "initrd.target" ];
             requiredBy = [ "sysroot.mount" ];
             before = [
+              "dev-mapper-persist.device"
+              "dev-mapper-storage.device"
               "initrd-fs.target"
               "sysroot.mount"
             ];
@@ -142,35 +144,26 @@ in
             ];
             script = ''
               set -e
-              mkdir -p /media
-              DEVICE="${idpart}/usb-Generic_Mass-Storage_20240418000000-0:0-part1"
+              mkdir -p /media && echo "Unlocking and scanning devices..."
+              cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
+              cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
+              cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
+              cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
+              cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key
+              cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key
 
-              udevadm trigger --action=add --subsystem-match=block
               for i in {1..30}; do
-                if [ ! -e "$DEVICE" ]; then
-                    udevadm settle --timeout=3 || true
-                fi
-                if [ -e "$DEVICE" ]; then
+                if [ -e "${idpart}/usb-Generic_Mass-Storage_20240418000000-0:0-part1" ] && [ -e /dev/mapper/persist ] && [ -e /dev/mapper/storage ]; then
                     echo "Appear in attempt $i"
                     if mount -t btrfs -o rw,noatime,ssd,discard=async "$DEVICE" /media; then
                         break
                     fi
                 fi
-                echo "Waiting SCSI/USB... ($i/30)"
+                echo "Waiting needed devices... ($i/30)"
+                udevadm settle --timeout=3 || true
+                udevadm trigger --action=add --subsystem-match=block
                 sleep 1
                 done
-
-                echo "Unlocking and scanning devices..."
-                cryptsetup open ${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK persist --key-file /media/secret.key
-                cryptsetup open ${idpart}/ata-ST500LT012-1DG142_S3PMCMHT storage --key-file /media/secret.key
-
-                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
-                cryptsetup open ${partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /media/secret.key
-                echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
-
-                cryptsetup open ${partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /media/secret.key || true
-                cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key || true
-                echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
 
                 vgscan && vgchange -ay
 
