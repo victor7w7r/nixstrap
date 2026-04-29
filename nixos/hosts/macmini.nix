@@ -84,9 +84,13 @@ in
     initrd = {
       kernelModules = [
         "apple-bce"
+        "aes_ni"
         "brcmfmac_wcc"
         "brcmfmac"
         "btrfs"
+        "cryptd"
+        "dm_crypt"
+        "dm_mod"
         "bcache"
         "uas"
         "usb_storage"
@@ -164,7 +168,8 @@ in
                 cryptsetup open ${partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /media/secret.key || true
                 echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
 
-                vgscan -ay
+                vgscan
+                vgchange -ay
             '';
             serviceConfig = {
               Type = "oneshot";
