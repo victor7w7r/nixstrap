@@ -38,13 +38,10 @@ in
     inherit (shared);
 
     "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=2G"
-        "mode=755"
-      ];
+      device = "/dev/zram1";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [ "noatime" "x-systemd.device-timeout=0" ];
     };
     "/nix" = bcachefs {
       extraOptions = [
@@ -105,7 +102,7 @@ in
     extraModulePackages = [
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     ];
-    kernelParams = [ "video=DP-3:1600x900@60" "systemd.gpt_auto=0" "rootwait" ] ++ params { };
+    kernelParams = [ "video=DP-3:1600x900@60" "systemd.gpt_auto=0" "rootwait" "zram.num_devices=2" ] ++ params { };
     kernelPackages = lib.mkForce (helpers.kernelModuleLLVMOverride (kernelBuild.packages));
     initrd = {
       kernelModules = [
@@ -127,6 +124,7 @@ in
         "ehci_hcd"
         "xhci_pci"
         "usbcore"
+        "zram"
         # "vfio_virqfd"
         # "vfio_pci"
         # "vfio_iommu_type1"
@@ -168,6 +166,9 @@ in
             script = ''
               set -e
               mkdir -p /media
+
+              echo 4G > /sys/block/zram1/disksize
+              mkfs.ext4 -m 0 -O "^has_journal,^huge_file,^flex_bg" /dev/zram1
 
               for i in {1..10}; do
                 if [ -e "${keydevice}" ]; then
