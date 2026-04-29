@@ -9,6 +9,8 @@
     "lazytime"
     "noatime"
     "discard"
+    "compression=lz4"
+    "background_compression=zstd"
     "X-mount.mkdir"
   ] ++ extraOptions;
 
