@@ -35,7 +35,7 @@ stdenv.mkDerivation {
     bcachefs-tools
     dosfstools
     fakeroot
-    e2fsprogs
+    xfsprogs
     f2fs-tools
     gnutar
     libfaketime
