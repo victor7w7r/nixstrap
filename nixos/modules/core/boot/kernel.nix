@@ -1,12 +1,10 @@
 {
   pkgs,
   system,
-  host,
   ...
 }:
 let
   supportedFilesystems = [
-    "bcachefs"
     "btrfs"
     "ext4"
     "exfat"

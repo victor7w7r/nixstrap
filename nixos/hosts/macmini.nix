@@ -107,6 +107,7 @@ in
     extraModulePackages = [
       (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
     ];
+    supportedFilesystems = [ "bcachefs" ];
     resumeDevice = "/dev/mapper/swapcrypt";
     kernelParams = [
       "video=DP-3:1600x900@60"
