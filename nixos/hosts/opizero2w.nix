@@ -50,13 +50,14 @@ in
     "/nix" = {
       device = "/dev/disk/by-label/store";
       neededForBoot = true;
-      fsType = "ext4";
+      fsType = "xfs";
       options = [
         "noatime"
-        "nodiscard"
+        "nodiratime"
         "lazytime"
+        "logbufs=8"
+        "logbsize=256k"
         "commit=60"
-        "data=ordered"
         "barrier=0"
       ];
     };
