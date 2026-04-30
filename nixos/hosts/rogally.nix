@@ -20,6 +20,7 @@ let
       ;
   };
   btrfs = (import ./lib/btrfs.nix);
+  bcachefs = (import ./lib/bcachefs.nix);
   shared = (import ./lib/shared.nix) {
     sharedDir = "/run/media/games";
     partlabel = "games";
@@ -36,17 +37,44 @@ in
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
     inherit (shared) "/run/media/games";
-    "/" = btrfs { };
-    "/nix" = btrfs { subvol = "nix"; };
-    "/nix/persist" = btrfs {
-      subvol = "persist";
+
+    "/" = {
+      device = "/dev/zram1";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [
+        "noatime"
+        "x-systemd.device-timeout=0"
+      ];
+    };
+
+    "/nix" = bcachefs {
+      extraOptions = [
+        "X-mount.subdir=subvolumes/nix"
+        "x-systemd.device-timeout=300"
+        "x-systemd.mount-timeout=300"
+      ];
+    };
+
+    "/nix/persist" = bcachefs {
+      extraOptions = [
+        "X-mount.subdir=subvolumes/persist"
+        "x-systemd.device-timeout=300"
+        "x-systemd.mount-timeout=300"
+      ];
       depends = [ "/nix" ];
     };
   };
 
-  powerManagement.cpuFreqGovernor = "schedutil";
+  swapDevices = [
+    {
+      device = "/dev/mapper/swapcrypt";
+      discardPolicy = "both";
+      options = [ "nofail" ];
+    }
+  ];
 
-  swapDevices = [ { device = "/dev/vg0/swapcrypt"; } ];
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   zramSwap = {
     enable = true;
@@ -56,7 +84,7 @@ in
   };
 
   boot = {
-    resumeDevice = "/dev/vg0/swapcrypt";
+    resumeDevice = "/dev/mapper/swapcrypt";
     kernelParams = [
       "resume=/dev/vg0/swapcrypt"
       "amd_pstate=passive"
@@ -80,9 +108,10 @@ in
         "usbhid"
         "sd_mod"
         "sdhci_pci"
+        "zram"
       ];
       luks.devices.syscrypt = {
-        device = "/dev/disk/by-partlabel/disk-main-syscrypt";
+        device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
         crypttabExtraOpts = [ "tpm2-device=auto" ];
         preLVM = true;
       };

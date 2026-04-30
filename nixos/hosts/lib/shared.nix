@@ -11,7 +11,7 @@
       "lazytime"
       "noatime"
       "discard=async"
-      "compress-force=zstd:2"
+      "compress=lzo"
     ];
   };
 }

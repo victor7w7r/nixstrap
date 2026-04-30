@@ -1,11 +1,9 @@
 let
-  zfs = import ../lib/zfs.nix;
-
   mmcpartitions = {
     esp = (import ../lib/esp.nix) { };
     store = (import ../lib/f2fs.nix) {
       name = "store";
-      size = "110G";
+      size = "150G";
       mountpoint = "/nix";
       priority = 2;
     };
@@ -19,137 +17,51 @@ let
 
   nvmepartitions = {
     emergency = (import ../lib/emergency.nix) { priority = 1; };
-    swap = zfs.partition {
-      size = "11G";
-      pool = "zswap";
-      priority = 2;
-    };
-    cloudlog = zfs.partition {
+    swapcrypt = (import ../lib/luks.nix) {
+      name = "swapcrypt";
       size = "16G";
-      pool = "zcloud";
+      group = "nvme";
+      content = (import ../lib/swap.nix) { };
       priority = 3;
     };
-    cloudspecial = zfs.partition {
-      size = "50G";
-      pool = "zcloud";
+    cloudlogcrypt = (import ../lib/luks.nix) {
+      name = "cloudlogcrypt";
+      size = "1G";
+      group = "nvme";
       priority = 4;
     };
-    cloudcache = zfs.partition {
-      size = "100G";
-      pool = "zcloud";
+    cloudcachecrypt = (import ../lib/luks.nix) {
+      name = "cloudcachecrypt";
+      size = "nvme";
+      group = "ssd";
       priority = 5;
+      postCreate = "make-bcache -C /dev/mapper/cloudcachecrypt";
     };
-    root = zfs.partition {
-      size = "30G";
-      pool = "zroot";
-      priority = 6;
-    };
-    persist = zfs.partition {
+    persist = (import ../lib/xfs.nix) {
+      name = "persist";
       size = "100%";
-      pool = "zpersist";
+      mountpoint = "/nix/persist";
+      isSolid = true;
+      isVmStorage = true;
+    };
+  };
+
+  lvs = {
+    thinpool = {
+      size = "3.5G";
+      lvm_type = "thin-pool";
+    };
+    persist = (import ../lib/xfs.nix) {
+      name = "persist";
+      size = "100%";
+      mountpoint = "/nix/persist/cloud";
+      logdev = "/dev/mapper/cloudlogcrypt";
+      isRaid = true;
     };
   };
 
   partlabel = "/dev/disk/by-partlabel";
   idpart = "/dev/disk/by-id";
-
-  zroot = zfs.pool {
-    isRoot = true;
-    mode = "";
-    datasets =
-      zfs.preDataset { name = "local"; }
-      // zfs.dataset {
-        preDataset = "local";
-        options = {
-          compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
-        };
-      };
-  };
-  zcloud = zfs.pool {
-    vdev = [
-      {
-        mode = "raidz1";
-        members = [
-          "${idpart}/ata-MM1000GBKAL_9XG3YGXQ"
-          "${idpart}/ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"
-          "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"
-          "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"
-          "${idpart}/ata-TOSHIBA_DT01ACA100_Y7JAA68MS"
-        ];
-      }
-    ];
-    log = [ { members = [ "${partlabel}/disk-nvme-cloudlog" ]; } ];
-    special = [ { members = [ "${partlabel}/disk-nvme-cloudspecial" ]; } ];
-    cache = [ "${partlabel}/disk-nvme-cloudcache" ];
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zcloud";
-        name = "cloud";
-        mountpoint = "/nix/persist/cloud";
-        options = {
-          compression = "zstd";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
-  zswap = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { name = "local"; }
-      // zfs.volume {
-        name = "swap";
-        preDataset = "local";
-        size = "8G";
-        options = {
-          compression = "zle";
-          logbias = "throughput";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          primarycache = "metadata";
-          secondarycache = "none";
-        };
-        content = {
-          type = "swap";
-          discardPolicy = "both";
-        };
-      };
-  };
-  zpersist = zfs.pool {
-    mode = "";
-    datasets =
-      zfs.preDataset { }
-      // zfs.dataset {
-        pool = "zpersist";
-        name = "persist";
-        mountpoint = "/nix/persist";
-        options = {
-          compression = "zstd";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      }
-      // zfs.dataset {
-        pool = "zpersist";
-        name = "proxmox";
-        isLegacy = false;
-        options = {
-          compression = "lz4";
-          "xattr" = "sa";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///media/secret.key";
-          "com.sun:auto-snapshot" = "true";
-        };
-      };
-  };
 in
 {
   disko.devices = {
@@ -162,6 +74,7 @@ in
           partitions = mmcpartitions;
         };
       };
+
       nvme = {
         type = "disk";
         device = "/dev/nvme0n1";
@@ -170,29 +83,96 @@ in
           partitions = nvmepartitions;
         };
       };
-      cloud1 = zfs.entireDisk {
-        device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X";
+
+      bcache0 = {
+        type = "disk";
+        device = "/dev/bcache0";
+        content = {
+          vg = "vg0";
+          type = "lvm_pv";
+        };
       };
-      cloud2 = zfs.entireDisk {
-        device = "ata-MM1000GBKAL_9XG3YGXQ";
+
+      node."/tmp" = {
+        fsType = "tmpfs";
+        mountOptions = [ "size=2G" ];
       };
-      cloud3 = zfs.entireDisk {
-        device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
+
+      lvm_vg.vg0 = {
+        type = "lvm_vg";
+        inherit lvs;
       };
-      cloud4 = zfs.entireDisk {
-        device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154";
+
+      cloud1 = {
+        type = "disk";
+        device = "${idpart}/ata-MM1000GBKAL_9XG3YGXQ";
+        content = {
+          type = "mdraid";
+          name = "raid0";
+          size = "100%";
+        };
       };
-      cloud5 = zfs.entireDisk {
-        device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS";
+
+      cloud2 = {
+        type = "disk";
+        device = "${idpart}/ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154";
+        content = {
+          type = "mdraid";
+          name = "raid0";
+          size = "100%";
+        };
       };
-    };
-    zpool = {
-      inherit
-        zpersist
-        zswap
-        zcloud
-        zroot
-        ;
+
+      cloud3 = {
+        type = "disk";
+        device = "${idpart}/ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H";
+        content = {
+          type = "mdraid";
+          name = "raid0";
+          size = "100%";
+        };
+      };
+
+      cloud4 = {
+        type = "disk";
+        device = "${idpart}/ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X";
+        content = {
+          type = "mdraid";
+          name = "raid0";
+          size = "100%";
+        };
+      };
+
+      cloud5 = {
+        type = "disk";
+        device = "${idpart}/ata-TOSHIBA_DT01ACA100_Y7JAA68MS";
+        content = {
+          type = "mdraid";
+          name = "raid0";
+          size = "100%";
+        };
+      };
+
+      mdadm.raid0 = {
+        type = "mdadm";
+        level = 4;
+        content = (import ../lib/luks.nix) {
+          entireDisk = true;
+          allowDiscards = false;
+          name = "cloud";
+          size = "100%";
+          group = "cloud"; # FIX
+          postMount = ''
+            cryptsetup open ${partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
+            cryptsetup open ${partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
+          '';
+          postCreate = ''
+            make-bcache -B /dev/mapper/cloud
+            #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part9 | grep 'cset.uuid' | awk '{print $2}')
+            #echo $CACHE_SET_UUID > /sys/block/bcache1/bcache/attach
+          '';
+        };
+      };
     };
   };
 }

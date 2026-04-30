@@ -45,14 +45,14 @@ let
       size = "90G";
       group = "ssd";
       priority = 8;
-      postCreate = "make-bcache -C /dev/mapper/persistcache";
+      postCreate = "make-bcache -C /dev/mapper/persistcachecrypt";
     };
     storagecachecrypt = (import ../lib/luks.nix) {
       name = "storagecachecrypt";
       size = "90G";
       group = "ssd";
       priority = 9;
-      postCreate = "make-bcache -C /dev/mapper/storagecache";
+      postCreate = "make-bcache -C /dev/mapper/storagecachecrypt";
     };
     system = (import ../lib/bcachefs.nix).partition {
       filesystem = "bsystem";

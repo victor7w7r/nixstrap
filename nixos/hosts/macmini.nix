@@ -1,7 +1,6 @@
 {
   inputs,
   host,
-  config,
   kernelData,
   lib,
   pkgs,
@@ -35,7 +34,7 @@ in
 
   fileSystems = {
     inherit (boot) "/boot" "/boot/emergency";
-    inherit (shared) ;
+    inherit (shared) "/run/media/shared";
 
     "/" = {
       device = "/dev/zram1";
