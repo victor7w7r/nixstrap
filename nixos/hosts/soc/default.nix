@@ -69,16 +69,16 @@ in
         fi
 
         if [ "$target_fs" == "f2fs" ]; then
-            ${pkgs.f2fs-tools}/bin/resize.f2fs "$rootPart" || true
-        elif [ "$target_fs" == "ext4" ]; then
-            ${pkgs.e2fsprogs}/bin/resize2fs "$rootPart" || true
+         ${pkgs.f2fs-tools}/bin/resize.f2fs "$rootPart" || true
+        elif [ "$target_fs" == "xfs" ]; then
+          ${pkgs.xfsprogs}/bin/xfs_growfs "$mount_point" || true
         elif [ "$target_fs" == "bcachefs" ]; then
-            ${pkgs.bcachefs-tools}/bin/bcachefs filesystem resize "$mount_point" 1 120G || true
+          ${pkgs.bcachefs-tools}/bin/bcachefs filesystem resize "$mount_point" 1 120G || true
         fi
     }
 
     set_big "/persist" "f2fs"
-    set_big "/nix" "ext4"
+    set_big "/nix" ${if isHDD then "xfs" else "bcachefs"}
 
     if [ -f "/nix/nix-path-registration" ]; then
       REG_FILE="/nix/nix-path-registration"
