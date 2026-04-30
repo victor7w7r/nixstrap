@@ -9,8 +9,8 @@ let
     win = winmod.win { };
     swapcrypt = (import ../lib/luks.nix) {
       name = "swapcrypt";
-      size = "14G"
-      group = "disk-main";
+      size = "14G";
+      group = "main";
       content = (import ../lib/swap.nix) { };
       priority = 5;
     };
@@ -36,11 +36,27 @@ in
         inherit partitions;
       };
     };
-    bcachefs_filesystems.broot = (import ../lib/bcachefs.nix).filesystem {
-      subvolumes = {
-        "subvolumes/nix" = {
-          mountpoint = "/nix";
-          mountOptions = extraOptions;
+    bcachefs_filesystems = {
+      broot = (import ../lib/bcachefs.nix).filesystem {
+        uuid = "f9d26816-07f4-42cf-a9ae-f698ff56b172";
+        passwordFile = "/tmp/key.txt";
+        subvolumes = {
+          "subvolumes/nix" = {
+            mountpoint = "/nix";
+            mountOptions = [
+              "nodiratime"
+              "noatime"
+              "discard"
+            ];
+          };
+          "subvolumes/persist" = {
+            mountpoint = "/nix/persist";
+            mountOptions = [
+              "nodiratime"
+              "noatime"
+              "discard"
+            ];
+          };
         };
       };
     };

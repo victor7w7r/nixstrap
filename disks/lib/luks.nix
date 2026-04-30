@@ -23,7 +23,11 @@ let
       ${postCreate}
     '';
   };
-in if entireDisk then body else {
-  inherit size priority;
-  content = body;
-}
+in
+if entireDisk then
+  body
+else
+  {
+    inherit size priority;
+    content = body;
+  }

@@ -1,7 +1,7 @@
 {
   depends ? [ ],
   device ? "/dev/disk/by-partlabel/disk-ssd-system",
-  extraOptions ? [ ]
+  extraOptions ? [ ],
 }:
 {
   fsType = "bcachefs";
@@ -12,7 +12,8 @@
     "compression=lz4"
     "background_compression=zstd"
     "X-mount.mkdir"
-  ] ++ extraOptions;
+  ]
+  ++ extraOptions;
 
   inherit device depends;
   neededForBoot = true;

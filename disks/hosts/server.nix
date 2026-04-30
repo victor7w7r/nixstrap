@@ -103,7 +103,7 @@ let
       zfs.preDataset { name = "local"; }
       // zfs.volume {
         name = "swap";
-        preDataset = ''local'';
+        preDataset = "local";
         size = "8G";
         options = {
           compression = "zle";

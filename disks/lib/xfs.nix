@@ -7,7 +7,7 @@
   extraOptions ? [ ],
   isRaid ? false,
   isVmStorage ? false,
-  isSolid ? false
+  isSolid ? false,
 }:
 let
   agcount = if isRaid || isVmStorage || isSolid then "4" else "2";
@@ -25,10 +25,27 @@ in
       "logbufs=8"
       "logbsize=256k"
     ]
-      ++ (if logdev != null then [ "logdev=${logdev}" ] else [ ])
-      ++ (if isSolid then [ "discard" ] else [ "largeio" "swalloc" ])
-      ++ (if isRaid then [ "sunit=1024" "swidth=4096" "inode64" ] else [ ])
-      ++ extraOptions;
+    ++ (if logdev != null then [ "logdev=${logdev}" ] else [ ])
+    ++ (
+      if isSolid then
+        [ "discard" ]
+      else
+        [
+          "largeio"
+          "swalloc"
+        ]
+    )
+    ++ (
+      if isRaid then
+        [
+          "sunit=1024"
+          "swidth=4096"
+          "inode64"
+        ]
+      else
+        [ ]
+    )
+    ++ extraOptions;
     extraArgs = [
       "-d"
       "agcount=${agcount},cowextsize=64${if isRaid then ",sunit=1024,swidth=4096" else ""}"
@@ -37,7 +54,9 @@ in
       "-m"
       "bigtime=1,crc=1,finobt=1,inobtcount=1,rmapbt=1,reflink=1"
       "-l"
-      "${if logdev != null then "logdev=${logdev}" else ""}${if logsize != null then ",logsize=${logsize}" else ""}"
+      "${if logdev != null then "logdev=${logdev}" else ""}${
+        if logsize != null then ",logsize=${logsize}" else ""
+      }"
       "-L"
       name
     ];

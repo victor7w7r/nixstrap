@@ -76,7 +76,7 @@
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJfxc7Zd0lk/x02sH8OK5lNIQ3aQP/EzBQKAEkGQN1d6 arkano036@gmail.com"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGTZ3iQqtjrClKVnqQ0w9Yn2sUoE9lAAW8ZYhR45nV5 arkano036@gmail.com"
       ];
       extraGroups = [
         "input"

@@ -333,7 +333,8 @@
   "CONFIG_HOTPLUG_CPU" = "y";
   "CONFIG_LEGACY_VSYSCALL_NONE" = "y";
   "CONFIG_CMDLINE_BOOL" = "y";
-  "CONFIG_CMDLINE" = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs  split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0 libahci.ignore_sss=1 ahci.mobile_lpm_policy=2 sysrq_always_enabled=0 i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 intel_pstate=passive intel_iommu=on pcie_ports=compat";
+  "CONFIG_CMDLINE" =
+    "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs  split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0 libahci.ignore_sss=1 ahci.mobile_lpm_policy=2 sysrq_always_enabled=0 i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 intel_pstate=passive intel_iommu=on pcie_ports=compat";
   "CONFIG_HAVE_LIVEPATCH" = "y";
   "CONFIG_X86_BUS_LOCK_DETECT" = "y";
   "CONFIG_CC_HAS_NAMED_AS_FIXED_SANITIZERS" = "y";

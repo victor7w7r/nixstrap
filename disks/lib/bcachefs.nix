@@ -5,7 +5,7 @@
       size,
       priority ? 5,
       filesystem ? "broot",
-      extraOptions ? []
+      extraOptions ? [ ],
     }:
     {
       inherit priority size name;
@@ -19,7 +19,8 @@
           "-L"
           name
           "--discard"
-        ] ++ extraOptions;
+        ]
+        ++ extraOptions;
       };
     };
 
@@ -31,40 +32,49 @@
       extraOptions ? [ ],
       extraFormatArgs ? [ ],
       subvolumes ? {
-       "subvolumes/root" = {
-         mountpoint = "/";
-         mountOptions = [
-           "nodiratime"
-           "noatime"
-           "discard"
-         ] ++ extraOptions;
-       };
-       "subvolumes/nix" = {
-         mountpoint = "/nix";
-         mountOptions = [
-           "nodiratime"
-           "noatime"
-           "discard"
-         ] ++ extraOptions;
-       };
-       "subvolumes/persist" = {
-         mountpoint = "/nix/persist";
-         mountOptions = [
-           "nodiratime"
-           "noatime"
-           "discard"
-         ] ++ extraOptions;
-       };
-      }
+        "subvolumes/root" = {
+          mountpoint = "/";
+          mountOptions = [
+            "nodiratime"
+            "noatime"
+            "discard"
+          ]
+          ++ extraOptions;
+        };
+        "subvolumes/nix" = {
+          mountpoint = "/nix";
+          mountOptions = [
+            "nodiratime"
+            "noatime"
+            "discard"
+          ]
+          ++ extraOptions;
+        };
+        "subvolumes/persist" = {
+          mountpoint = "/nix/persist";
+          mountOptions = [
+            "nodiratime"
+            "noatime"
+            "discard"
+          ]
+          ++ extraOptions;
+        };
+      },
     }:
     {
-      inherit passwordFile mountpoint subvolumes uuid;
+      inherit
+        passwordFile
+        mountpoint
+        subvolumes
+        uuid
+        ;
       type = "bcachefs_filesystem";
       extraFormatArgs = [
         "--compression=lz4"
         "--background_compression=zstd"
         "--metadata_checksum=xxhash"
         "--data_checksum=xxhash"
-      ] ++ extraFormatArgs;
+      ]
+      ++ extraFormatArgs;
     };
 }

@@ -2,7 +2,7 @@
   depends ? [ ],
   device ? "/dev/vg0/persist",
   isSolid ? false,
-  extraOptions ? []
+  extraOptions ? [ ],
 }:
 {
   fsType = "xfs";
@@ -14,7 +14,9 @@
     "logbsize=256k"
     "x-systemd.device-timeout=0"
     "x-systemd.mount-timeout=0"
-  ] ++ (if isSolid then [ "discard" ] else [ ]) ++ extraOptions;
+  ]
+  ++ (if isSolid then [ "discard" ] else [ ])
+  ++ extraOptions;
   inherit device depends;
   neededForBoot = true;
 }

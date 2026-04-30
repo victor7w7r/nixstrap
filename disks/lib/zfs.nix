@@ -99,49 +99,49 @@
 
   #ZFS_FS Vol
   dataset =
-     {
-       preDataset ? "safe",
-       pool ? "zroot",
-       name ? "root",
-       mountpoint ? "/",
-       options ? { },
-       isRoot ? false,
-       isLegacy ? true,
-       enableSnap ? true,
-     }:
-     {
-       "${preDataset}/${name}" = {
-         type = "zfs_fs";
-         options = {
-           mountpoint = if isLegacy then "legacy" else "none";
-           canmount = "on";
-           atime = "off";
-         }
-         // options;
-         postCreateHook = ''
-           ${
-             if isRoot then
-               ''
-                 zfs snapshot zroot/${preDataset}/root@empty
-                 zfs snapshot zroot/${preDataset}/root@lastboot
-               ''
-             else
-               ""
-           }
-           ${
-             if enableSnap then
-               ''
-                 zfs list -t snapshot -H -o name \
-                 | grep -E '^${pool}/${preDataset}/${name}@empty$' \
-                 || zfs snapshot ${pool}/${preDataset}/${name}@empty
-               ''
-             else
-               ""
-           }
-         '';
-       }
-       // (if isLegacy then { inherit mountpoint; } else { });
-     };
+    {
+      preDataset ? "safe",
+      pool ? "zroot",
+      name ? "root",
+      mountpoint ? "/",
+      options ? { },
+      isRoot ? false,
+      isLegacy ? true,
+      enableSnap ? true,
+    }:
+    {
+      "${preDataset}/${name}" = {
+        type = "zfs_fs";
+        options = {
+          mountpoint = if isLegacy then "legacy" else "none";
+          canmount = "on";
+          atime = "off";
+        }
+        // options;
+        postCreateHook = ''
+          ${
+            if isRoot then
+              ''
+                zfs snapshot zroot/${preDataset}/root@empty
+                zfs snapshot zroot/${preDataset}/root@lastboot
+              ''
+            else
+              ""
+          }
+          ${
+            if enableSnap then
+              ''
+                zfs list -t snapshot -H -o name \
+                | grep -E '^${pool}/${preDataset}/${name}@empty$' \
+                || zfs snapshot ${pool}/${preDataset}/${name}@empty
+              ''
+            else
+              ""
+          }
+        '';
+      }
+      // (if isLegacy then { inherit mountpoint; } else { });
+    };
 
   #ZVol Sparse
   volume =

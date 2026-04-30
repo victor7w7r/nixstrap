@@ -19,8 +19,8 @@ in
       '';
 
       character = {
-        success_symbol = ''[${symbol}](bold ${symbolColor})'';
-        error_symbol = ''[${symbol}](bold ${symbolColor})'';
+        success_symbol = "[${symbol}](bold ${symbolColor})";
+        error_symbol = "[${symbol}](bold ${symbolColor})";
         vimcmd_symbol = "[](bold turquoise)";
       };
 

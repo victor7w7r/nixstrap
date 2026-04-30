@@ -7,6 +7,7 @@
   extraOptions ? [ ],
   volumes ? { },
   isRoot ? false,
+  isLzo ? false,
 }:
 let
   mountOptions = [
@@ -15,22 +16,27 @@ let
     "discard=async"
     "compress=zstd:1"
   ]
-  ++ extraOptions;
+  ++ extraOptions
+  ++ (if isLzo then [ "compress=lzo" ] else [ "compress=zstd:1" ]);
 
-  subvolumes = if isRoot then {
-    "@" = {
-      mountpoint = "/";
-      inherit mountOptions;
-    };
-    "@nix" = {
-      mountpoint = "/nix";
-      mountOptions = mountOptions ++ [ "noacl" ];
-    };
-    "@persist" = {
-      mountpoint = "/nix/persist";
-      inherit mountOptions;
-    };
-  } else volumes;
+  subvolumes =
+    if isRoot then
+      {
+        "@" = {
+          mountpoint = "/";
+          inherit mountOptions;
+        };
+        "@nix" = {
+          mountpoint = "/nix";
+          mountOptions = mountOptions ++ [ "noacl" ];
+        };
+        "@persist" = {
+          mountpoint = "/nix/persist";
+          inherit mountOptions;
+        };
+      }
+    else
+      volumes;
 in
 {
   inherit name size priority;

@@ -225,16 +225,18 @@
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
         #FXEnableSlowAnimation = false;
-        /*FXInfoPanesExpanded = {
+        /*
+          FXInfoPanesExpanded = {
           General = true;
           OpenWith = true;
           Privileges = true;
-          };*/
+          };
+        */
         #FXPreferredGroupBy = "Name";
         FXPreferredViewStyle = "icnv";
         _FXShowPosixPathInTitle = true;
         #OpenWindowForNewRemovableDisk = false;
-       # QLEnableTextSelection = true;
+        # QLEnableTextSelection = true;
         #QLEnableSlowMotion = false;
         ShowStatusBar = true;
         ShowPathbar = true;

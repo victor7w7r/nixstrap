@@ -1,5 +1,10 @@
 { lib, ... }:
-let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
+let
+  mkGreedy = caskName: {
+    name = caskName;
+    greedy = true;
+  };
+in
 {
   homebrew = {
     enable = true;
@@ -15,15 +20,16 @@ let   mkGreedy = caskName: { name = caskName; greedy = true; }; in
       brewfile = true;
     };
 
-/*    masApps = {
-      "Amphetamine" = 937984704;
-      "Apple Configurator" = 1037126344;
-      "CCMenu" = 603117688;
-      "DrCleaner" = 921458519;
-      "Xcode" = 497799835;
-      "Unzip One" = 1127253508;
-    };
-*/
+    /*
+      masApps = {
+         "Amphetamine" = 937984704;
+         "Apple Configurator" = 1037126344;
+         "CCMenu" = 603117688;
+         "DrCleaner" = 921458519;
+         "Xcode" = 497799835;
+         "Unzip One" = 1127253508;
+       };
+    */
     casks = lib.map mkGreedy [
       "alt-tab"
       "android-platform-tools"
