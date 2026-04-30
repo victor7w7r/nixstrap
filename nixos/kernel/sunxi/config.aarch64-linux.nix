@@ -307,8 +307,7 @@
   "CONFIG_RANDOMIZE_BASE" = "y";
   "CONFIG_RANDOMIZE_MODULE_REGION_FULL" = "y";
   "CONFIG_CC_HAVE_STACKPROTECTOR_SYSREG" = "y";
-  "CONFIG_CMDLINE" =
-    "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs  split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0  sysrq_always_enabled=0 i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 intel_pstate=passive intel_iommu=on pcie_ports=compat";
+  "CONFIG_CMDLINE" = "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166 vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173 vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200 pti=on page_alloc.shuffle=1 elevator=none page_poison=1 oops=panic randomize_kstack_offset=on iommu=pt pcie_acs_override=downstream,multifunction kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 rcutree.enable_rcu_lazy=1 rcupdate.rcu_expedited=1 threadirqs  split_lock_detect=off tsc=reliable nowatchdog nmi_watchdog=0  sysrq_always_enabled=0 i915.enable_guc=2 kvm_intel.emulate_invalid_guest_state=0 kvm_intel.nested=1 intel_pstate=passive intel_iommu=on pcie_ports=compat";
   "CONFIG_CMDLINE_FROM_BOOTLOADER" = "y";
   "CONFIG_EFI_STUB" = "y";
   "CONFIG_EFI" = "y";
@@ -667,6 +666,8 @@
   "CONFIG_SKB_EXTENSIONS" = "y";
   "CONFIG_NET_DEVMEM" = "y";
   "CONFIG_PACKET" = "y";
+  "CONFIG_UNIX" = "y";
+  "CONFIG_AF_UNIX_OOB" = "y";
   "CONFIG_NETWORK_SECMARK" = "y";
   "CONFIG_NET_PTP_CLASSIFY" = "y";
   "CONFIG_NETWORK_PHY_TIMESTAMPING" = "y";
@@ -871,9 +872,6 @@
   "CONFIG_VT_CONSOLE" = "y";
   "CONFIG_VT_CONSOLE_SLEEP" = "y";
   "CONFIG_VT_HW_CONSOLE_BINDING" = "y";
-  "CONFIG_UNIX" = "y";
-  "CONFIG_AF_UNIX_OOB" = "y";
-  "CONFIG_UNIX_DIAG" = "y";
   "CONFIG_UNIX98_PTYS" = "y";
   "CONFIG_LDISC_AUTOLOAD" = "y";
   "CONFIG_SERIAL_EARLYCON" = "y";
@@ -1296,6 +1294,18 @@
   "CONFIG_EXT4_FS_SECURITY" = "y";
   "CONFIG_JBD2" = "y";
   "CONFIG_FS_MBCACHE" = "y";
+  "CONFIG_XFS_FS" = "y";
+  "CONFIG_XFS_SUPPORT_V4" = "y";
+  "CONFIG_XFS_SUPPORT_ASCII_CI" = "y";
+  "CONFIG_XFS_QUOTA" = "y";
+  "CONFIG_XFS_POSIX_ACL" = "y";
+  "CONFIG_XFS_RT" = "y";
+  "CONFIG_XFS_DRAIN_INTENTS" = "y";
+  "CONFIG_XFS_LIVE_HOOKS" = "y";
+  "CONFIG_XFS_MEMORY_BUFS" = "y";
+  "CONFIG_XFS_BTREE_IN_MEM" = "y";
+  "CONFIG_XFS_ONLINE_SCRUB" = "y";
+  "CONFIG_XFS_ONLINE_REPAIR" = "y";
   "CONFIG_BTRFS_FS" = "m";
   "CONFIG_BTRFS_FS_POSIX_ACL" = "y";
   "CONFIG_F2FS_FS" = "y";
