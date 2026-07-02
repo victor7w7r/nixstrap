@@ -1,19 +1,12 @@
+{ den, kernel, ... }:
 {
-  den,
-  inputs,
-  generic,
-  kernel,
-  ...
-}:
-{
-  #nix build -L ".#nixosConfigurations.generic.config.system.build.toplevel"
-  imports = [ (inputs.den.namespace "generic" false) ];
-
   den = {
     hosts.x86_64-linux.generic.users.snowflake = { };
+    #nix build -L ".#nixosConfigurations.generic.config.system.build.toplevel"
     aspects.generic = {
       includes = with den.aspects; [
-        generic.disks
+        generic._
+
         cli._
         dev.mise
         gui._
@@ -26,29 +19,13 @@
         secrets
       ];
 
-      /*
-        params = import ./lib/kernel-params.nix;
-        boot = import ./lib/boot.nix { };
-        btrfs = (import ./lib/btrfs.nix);
-
-        fileSystems = {
-          inherit (boot) "/boot" "/boot/emergency";
-          "/" = btrfs { };
-          "/nix" = btrfs { subvol = "nix"; };
-          "/nix/persist" = btrfs {
-            subvol = "persist";
-            depends = [ "/nix" ];
-          };
-        };
-      */
-
       nixos =
         { pkgs, modulesPath, ... }:
         {
           networking.hostName = "v7w7r-generic";
           virtualisation.vmVariant.virtualisation.useEFIBoot = true;
-
           imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
+
           boot = {
             kernelParams = [
               "intel_pstate=disable"
@@ -56,7 +33,6 @@
               "i915.enable_psr=0"
             ];
             kernelPackages = (kernel.hosts.generic pkgs).generic-kernelPackages;
-            # ++ params { };
             initrd = {
               availableKernelModules = [
                 "ahci"

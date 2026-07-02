@@ -1,22 +1,18 @@
 { lib, ... }:
 {
-  handheld.services =
+  den.aspects.handheld.services =
     { user, ... }:
     {
       nixos.services = {
         acpid.enable = true;
         asusd.enable = true;
         #auto-cpufreq.enable = true;
-
+        lact.enable = true;
         tuned.enable = false;
         inputplumber.enable = lib.mkForce false;
         powerstation.enable = false;
 
-        btrfs.autoScrub = {
-          enable = true;
-          fileSystems = [ "/run/media/games" ];
-          interval = "weekly";
-        };
+        btrfs.autoScrub.fileSystems = [ "/run/media/games" ];
 
         handheld-daemon = {
           enable = true;

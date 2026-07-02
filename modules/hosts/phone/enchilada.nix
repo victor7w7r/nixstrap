@@ -1,31 +1,9 @@
-{ den, phone, ... }:
+{ den, ... }:
 {
   den = {
     hosts.aarch64-linux.phone-enchilada.users.victor7w7r = { };
     aspects.phone-enchilada = {
-      includes = with den.aspects; [
-        phone.common
-
-        audio._
-        cli._
-        dev.ccache
-        dev.zed
-        dev.tools
-        gui._
-        misc.comm
-        misc.fetch
-        pentest._
-        zen._
-
-        android
-        bluetooth
-        kitty
-        libvirt
-        plasma
-        secrets
-        victor7w7r
-        waydroid
-      ];
+      includes = with den.aspects; [ phone.common ];
 
       nixos = {
         networking.hostName = "v7w7r-enchilada";

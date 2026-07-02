@@ -1,12 +1,6 @@
+{ disko, lib, ... }:
 {
-  disko,
-  inputs,
-  lib,
-  ...
-}:
-{
-  server.disks-logical.nixos =
-    { ... }:
+  den.aspects.server.disks-logical.nixos =
     let
       partlabel = "/dev/disk/by-partlabel";
       lvs = {
@@ -28,8 +22,6 @@
       };
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
-
       fileSystems = {
         "/nix/persist".neededForBoot = true;
         "/" = lib.mkDefault {

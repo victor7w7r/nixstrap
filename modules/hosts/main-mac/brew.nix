@@ -5,7 +5,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  main-mac.brew.darwin =
+  den.aspects.main-mac.brew.darwin =
     { user, ... }:
     {
       imports = [ inputs.nix-homebrew.darwinModules.nix-homebrew ];

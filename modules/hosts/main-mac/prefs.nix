@@ -1,5 +1,5 @@
 {
-  main-mac.prefs.darwin.system = {
+  den.aspects.main-mac.prefs.darwin.system = {
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;

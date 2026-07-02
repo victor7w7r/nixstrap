@@ -1,14 +1,10 @@
 {
   den,
-  inputs,
   initrd-services,
-  superlab,
   kernel,
   ...
 }:
 {
-  imports = [ (inputs.den.namespace "superlab" false) ];
-
   den = {
     hosts.aarch64-linux.superlab.users.victor7w7r = { };
 

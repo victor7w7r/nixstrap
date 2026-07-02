@@ -1,9 +1,4 @@
-{
-  den,
-  lib,
-  live,
-  ...
-}:
+{ den, lib, ... }:
 {
   den = {
     hosts.x86_64-linux.graphical-live.users.snowflake = { };
@@ -11,20 +6,15 @@
     aspects.graphical-live = {
       includes = with den.aspects; [
         live.common
-        (den.batteries.tty-autologin "snowflake")
         audio._
-        cli._
         dev.zed
         gui._
 
         kitty
-        secrets
-        snowflake
         xfce
       ];
 
       nixos = {
-        networking.hostName = "v7w7r-live";
         system.nixos.variant_id = lib.mkDefault "graphical";
         isoImage.edition = "xfce";
         powerManagement.enable = true;

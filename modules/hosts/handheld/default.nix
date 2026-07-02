@@ -1,26 +1,20 @@
 {
   den,
-  inputs,
   lib,
-  handheld,
   initrd-services,
   kernel,
   ...
 }:
 {
-  imports = [ (inputs.den.namespace "handheld" false) ];
-
   den = {
     hosts.x86_64-linux.handheld.users.victor7w7r = { };
     aspects.handheld =
       { user, ... }:
       {
         includes = with den.aspects; [
-          handheld.disks
-          handheld.hardware
-          handheld.initrd
-          handheld.services
           (initrd-services.lib.zram { })
+          handheld._
+
           audio._
           cli._
           dev.ccache
@@ -47,7 +41,14 @@
           { pkgs, ... }:
           {
             networking.hostName = "v7w7r-rc71l";
-            hardware.bolt.enable = true;
+
+            boot = {
+              extraModprobeConfig = "options kvm-amd nested=1";
+              resumeDevice = "/dev/mapper/swapcrypt";
+              kernelPackages = (kernel.hosts.handheld pkgs).handheld-kernelPackages;
+              kernelParams = [ "resume=/dev/mapper/swapcrypt" ];
+            };
+
             environment = {
               persistence."/nix/persist" = {
                 directories = lib.mkAfter [
@@ -71,30 +72,12 @@
               ];
             };
 
-            services.lact.enable = true;
-            #system.requiredKernelConfig = pkgs.lib.mkForce [ ];
-
-            boot = {
-              extraModprobeConfig = "options kvm-amd nested=1";
-              resumeDevice = "/dev/mapper/swapcrypt";
-              kernelPackages = (kernel.hosts.handheld pkgs).handheld-kernelPackages;
-              kernelParams = [ "resume=/dev/mapper/swapcrypt" ];
-            };
-
             zramSwap = {
               enable = true;
               algorithm = "zstd";
               memoryPercent = 60;
               priority = 100;
             };
-
-            swapDevices = [
-              {
-                device = "/dev/mapper/swapcrypt";
-                discardPolicy = "both";
-                options = [ "nofail" ];
-              }
-            ];
 
             systemd.services.supergfxd.path = with pkgs; [
               kmod

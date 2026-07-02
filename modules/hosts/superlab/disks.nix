@@ -1,11 +1,6 @@
+{ disko, lib, ... }:
 {
-  disko,
-  inputs,
-  lib,
-  ...
-}:
-{
-  superlab.disks.nixos =
+  den.aspects.superlab.disks.nixos =
     let
       nvmepartitions.store = disko.xfs.call {
         name = "store";
@@ -23,8 +18,6 @@
       };
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
-
       fileSystems = {
         "/nix/persist".neededForBoot = true;
         "/" = lib.mkDefault {

@@ -1,9 +1,4 @@
-{
-  disko,
-  lib,
-  inputs,
-  ...
-}:
+{ disko, lib, ... }:
 {
   den.aspects.main.disks.nixos =
     let
@@ -86,7 +81,13 @@
       };
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
+      swapDevices = [
+        {
+          device = "/dev/mapper/swapcrypt";
+          discardPolicy = "both";
+          options = [ "nofail" ];
+        }
+      ];
 
       fileSystems = {
         "/nix/persist".neededForBoot = true;

@@ -1,5 +1,5 @@
 {
-  handheld.initrd.nixos.boot.initrd = {
+  den.aspects.handheld.initrd.nixos.boot.initrd = {
     kernelModules = [
       "dm-snapshot"
       "kvm-amd"

@@ -1,13 +1,5 @@
+{ den, kernel, ... }:
 {
-  den,
-  inputs,
-  server,
-  kernel,
-  ...
-}:
-{
-  imports = [ (inputs.den.namespace "server" false) ];
-
   den = {
     hosts.x86_64-linux.server.users.victor7w7r = { };
 
@@ -15,10 +7,7 @@
       { user, ... }:
       {
         includes = with den.aspects; [
-          server.disks-logical
-          server.disks-physical
-          server.initrd
-          server.systemd
+          server._
 
           cli._
           dev.mise
@@ -67,6 +56,8 @@
               systemPackages = with pkgs; [
                 mdadm
                 intel-undervolt
+                iproute2
+                procps
               ];
             };
 

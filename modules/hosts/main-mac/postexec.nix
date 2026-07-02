@@ -1,5 +1,5 @@
 {
-  main-mac.postexec.darwin =
+  den.aspects.main-mac.postexec.darwin =
     { user, ... }:
     {
       system.activationScripts.postActivation.text = ''

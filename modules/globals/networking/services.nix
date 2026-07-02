@@ -1,6 +1,12 @@
 { lib, ... }:
 {
   den.default = {
+    provides.to-users.homeManager =
+      { isPersistent, ... }:
+      {
+        services.pbgopy.enable = isPersistent;
+      };
+
     nixos =
       { isPersistent, ... }:
       {
@@ -36,9 +42,4 @@
       };
   };
 
-  provides.to-users.homeManager =
-    { isPersistent, ... }:
-    {
-      services.pbgopy.enable = isPersistent;
-    };
 }

@@ -1,17 +1,17 @@
 { lib, ... }:
 {
-  handheld.hardware.nixos =
+  den.aspects.handheld.hardware.nixos =
     { pkgs, ... }:
-    let
-      pscript = pkgs.writeScriptBin "charge-upto" ''
-        #!${pkgs.bash}/bin/bash
-        echo ''${1:-100} > /sys/class/power_supply/BAT?/charge_control_end_threshold
-      '';
-    in
     {
-      environment.systemPackages = [ pscript ];
+      environment.systemPackages = [
+        (pkgs.writeScriptBin "charge-upto" ''
+          #!${pkgs.bash}/bin/bash
+          echo ''${1:-100} > /sys/class/power_supply/BAT?/charge_control_end_threshold
+        '')
+      ];
 
       hardware = {
+        bolt.enable = true;
         amdgpu = {
           opencl.enable = true;
           initrd.enable = true;
@@ -19,30 +19,6 @@
         cpu.amd.updateMicrocode = true;
         xone.enable = true;
       };
-
-      /*
-        systemd.services.battery-charge-threshold = {
-          wantedBy = [
-            "local-fs.target"
-            "suspend.target"
-            "suspend-then-hibernate.target"
-            "hibernate.target"
-          ];
-          after = [
-            "local-fs.target"
-            "suspend.target"
-            "suspend-then-hibernate.target"
-            "hibernate.target"
-          ];
-          startLimitBurst = 5;
-          startLimitIntervalSec = 1;
-          serviceConfig = {
-            Type = "oneshot";
-            Restart = "on-failure";
-            ExecStart = "${pkgs.runtimeShell} -c 'echo 85 > /sys/class/power_supply/BAT?/charge_control_end_threshold'";
-          };
-        };
-      */
 
       services = {
         xserver.videoDrivers = lib.mkDefault [ "modesetting" ];

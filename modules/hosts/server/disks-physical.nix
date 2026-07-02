@@ -1,6 +1,6 @@
-{ disko, inputs, ... }:
+{ disko, ... }:
 {
-  server.disks-physical.nixos =
+  den.aspects.server.disks-physical.nixos =
     { ... }:
     let
       partlabel = "/dev/disk/by-partlabel";
@@ -77,7 +77,6 @@
       */
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
       disko.devices = {
         disk = {
           emmc = {

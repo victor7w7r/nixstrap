@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  main-mac.system.darwin =
+  den.aspects.main-mac.system.darwin =
     {
       host,
       pkgs,

@@ -1,11 +1,6 @@
+{ disko, lib, ... }:
 {
-  disko,
-  inputs,
-  lib,
-  ...
-}:
-{
-  pizero.disks.nixos =
+  den.aspects.pizero.disks.nixos =
     let
       diskpartitions.store = disko.xfs.call {
         name = "store";
@@ -23,8 +18,6 @@
       };
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
-
       fileSystems = {
         "/nix/persist".neededForBoot = true;
         "/" = lib.mkDefault {

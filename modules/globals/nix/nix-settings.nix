@@ -9,6 +9,8 @@
     os.nixpkgs.config.allowUnfree = true;
 
     nixos = {
+      imports = [ inputs.disko.nixosModules.disko ];
+
       nix.settings =
         (removeAttrs conf.lib.config.flake-config [ "__provider" ])
         // (removeAttrs conf.lib.config.nix-config [ "__provider" ]);

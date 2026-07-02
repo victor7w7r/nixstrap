@@ -33,6 +33,13 @@
           ]);
       };
 
+    provides.to-users.homeManager =
+      { isPersistent, pkgs, ... }:
+      {
+        home.packages = with pkgs; [ axel ];
+        programs.himalaya.enable = isPersistent;
+      };
+
     nixos =
       {
         isPersistent,
@@ -62,11 +69,4 @@
         };
       };
   };
-
-  provides.to-users.homeManager =
-    { isPersistent, pkgs, ... }:
-    {
-      home.packages = with pkgs; [ axel ];
-      programs.himalaya.enable = isPersistent;
-    };
 }

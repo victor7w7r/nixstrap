@@ -1,5 +1,5 @@
 {
-  main-mac.launchctl.nixos.system.activationScripts.postActivation.text = ''
+  den.aspects.main-mac.launchctl.nixos.system.activationScripts.postActivation.text = ''
     sudo launchctl disable gui/501/com.apple.XProtect.agent.scan.startup
     sudo launchctl disable gui/501/com.apple.XProtect.agent.scan
     sudo launchctl disable system/com.apple.XProtect.daemon.scan

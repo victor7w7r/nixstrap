@@ -1,5 +1,5 @@
 {
-  pizero.passbolt.nixos =
+  den.aspects.pizero.passbolt.nixos =
     { pkgs, ... }:
     {
       age = {

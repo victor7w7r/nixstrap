@@ -1,5 +1,0 @@
-{
-  handheld.kernel.nixos.services = {
-
-  };
-}

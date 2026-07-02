@@ -42,6 +42,7 @@
 
         btrfs = {
           autoScrub.enable = true;
+          interval = "weekly";
         };
         napper = {
           snapshotRootOnBoot = true;

@@ -1,16 +1,10 @@
-{
-  den,
-  inputs,
-  ...
-}:
+{ den, ... }:
 {
   flake-file.inputs.nixos-wsl = {
     url = "github:nix-community/nixos-wsl";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-compat.follows = "";
   };
-
-  imports = [ (inputs.den.namespace "wsl" false) ];
 
   den = {
     hosts.x86_64-linux.wsl = {

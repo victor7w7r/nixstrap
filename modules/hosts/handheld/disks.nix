@@ -1,6 +1,6 @@
-{ disko, inputs, ... }:
+{ disko, ... }:
 {
-  handheld.disks.nixos =
+  den.aspects.handheld.disks.nixos =
     let
       partitions = {
         esp = disko.esp.call { };
@@ -29,7 +29,14 @@
       };
     in
     {
-      imports = [ inputs.disko.nixosModules.disko ];
+
+      swapDevices = [
+        {
+          device = "/dev/mapper/swapcrypt";
+          discardPolicy = "both";
+          options = [ "nofail" ];
+        }
+      ];
 
       fileSystems."/" = {
         device = "/dev/zram1";

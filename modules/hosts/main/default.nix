@@ -5,10 +5,7 @@
 
     aspects.main = {
       includes = with den.aspects; [
-        main.audio
-        main.disks
-        main.initrd
-        main.services
+        main._
 
         audio._
         cli._
@@ -59,13 +56,7 @@
             bolt.enable = true;
             cpu.intel.updateMicrocode = true;
           };
-          swapDevices = [
-            {
-              device = "/dev/mapper/swapcrypt";
-              discardPolicy = "both";
-              options = [ "nofail" ];
-            }
-          ];
+
           systemd.tmpfiles.rules = [
             "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
             "w /sys/devices/system/cpu/intel_pstate/max_perf_pct - - - - 80"
