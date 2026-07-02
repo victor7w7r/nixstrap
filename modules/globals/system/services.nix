@@ -9,6 +9,7 @@
       isSuperlab,
       isX86,
       pkgs,
+      self',
       ...
     }:
     {
@@ -40,11 +41,12 @@
           TTYPath=/dev/ttyS0
         '';
 
-        btrfs = {
-          autoScrub.enable = true;
+        btrfs.autoScrub = {
+          enable = false;
           interval = "weekly";
         };
-        napper = {
+
+        snapper = {
           snapshotRootOnBoot = true;
           persistentTimer = true;
         };

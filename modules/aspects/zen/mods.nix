@@ -1,5 +1,5 @@
 {
-  den.aspects.zen.mods.homeManager.zen-profile = {
+  den.aspects.zen.mods.homeManager.programs.zen-browser.profiles.default = {
     settings = {
       #"sine.is-cosine" = true;
       "sine.mods-reinstalled" = true;

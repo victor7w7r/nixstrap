@@ -1,4 +1,9 @@
-{ den, lib, ... }:
+{
+  den,
+  inputs,
+  lib,
+  ...
+}:
 {
   flake-file.inputs = {
     zen-browser = {
@@ -11,29 +16,12 @@
     };
   };
 
-  den.policies.default-profile-to-programs =
-    { host, ... }:
-    [
-      (den.lib.policy.route {
-        fromClass = "zen-profile";
-        intoClass = host.class;
-        path = [
-          "programs"
-          "zen-browser"
-          "profiles"
-          "default"
-        ];
-      })
-    ];
-
-  den.default.includes = [ den.policies.default-profile-to-programs ];
-
   den.aspects.zen.default =
     { user, ... }:
     {
       nixos =
         { isPersistent, ... }:
-        lib.optional isPersistent {
+        lib.optionalAttrs isPersistent {
           environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
             ".cache/zen"
             ".config/zen"
@@ -43,7 +31,6 @@
       provides.to-users.homeManager =
         {
           config,
-          inputs,
           pkgs,
           ...
         }:

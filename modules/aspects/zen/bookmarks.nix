@@ -1,5 +1,5 @@
 {
-  den.aspects.zen.bookmarks.homeManager.zen-profile.bookmarks = {
+  den.aspects.zen.bookmarks.homeManager.programs.zen-browser.profiles.default.bookmarks = {
     force = true;
     settings = [
       {

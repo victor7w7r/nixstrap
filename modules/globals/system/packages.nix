@@ -36,6 +36,7 @@
         programs = {
           #bash.blesh.enable = true;
           less.enable = true;
+          nano.enable = false;
           pay-respects.enable = true;
           skim.enable = true;
         };
@@ -120,7 +121,6 @@
             };
           };
 
-          nano.enable = false;
           command-not-found.enable = lib.mkDefault false;
           fish.generateCompletions = lib.mkDefault false;
 

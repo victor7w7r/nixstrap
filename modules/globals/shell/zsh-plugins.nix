@@ -50,7 +50,7 @@
             name = "wd";
             src = pkgs.zsh-wd;
             file = "share/wd/wd.plugin.zsh";
-            completions = [ "share/zsh/site-functions" ];
+            functions = [ "share/zsh/site-functions" ];
           }
           {
             name = "autopair";
@@ -85,7 +85,7 @@
             name = "nix-zsh-completions";
             src = pkgs.nix-zsh-completions;
             file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
-            completions = [ "share/zsh/site-functions" ];
+            functions = [ "share/zsh/site-functions" ];
           }
           {
             name = "zsh-navigation-tools";
@@ -102,7 +102,7 @@
           {
             name = "nix-zsh-completions";
             src = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
-            completions = [ "share/zsh/site-functions" ];
+            functions = [ "share/zsh/site-functions" ];
           }
         ];
         antidote = {

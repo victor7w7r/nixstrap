@@ -45,7 +45,7 @@
               kopia-ui
               kid3-kde
               lan-mouse
-              legcord
+              #legcord
               lightworks
               lunacy
               #mailspring

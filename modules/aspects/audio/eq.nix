@@ -5,7 +5,7 @@
     {
       nixos =
         { isPersistent, ... }:
-        lib.optional isPersistent {
+        lib.optionalAttrs isPersistent {
           environment.persistence."/nix/persist".users."${user.name}".directories = [
             ".config/easyeffects/db"
           ];

@@ -1,5 +1,5 @@
 {
-  den.aspects.zen.policies.homeManager.zen-profile.policies = {
+  den.aspects.zen.policies.homeManager.programs.zen-browser.profiles.default.policies = {
     AllowFileSelectionDialogs = true;
     AppAutoUpdate = false;
     AutofillAddressEnabled = false;

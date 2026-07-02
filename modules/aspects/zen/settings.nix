@@ -1,5 +1,5 @@
 {
-  den.aspects.zen.settings.homeManager.zen-profile.settings =
+  den.aspects.zen.settings.homeManager.programs.zen-browser.profiles.default.settings =
     let
       lock-false = {
         Value = false;

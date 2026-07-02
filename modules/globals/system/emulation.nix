@@ -34,7 +34,7 @@
             };
 
             armv7l-linux = {
-              interpreter = "${pkgs.qemu-user-arm}/bin/qemu-arm";
+              interpreter = "${pkgs.pkgsStatic.qemu-user}/bin/qemu-arm";
               magicOrExtension = ''\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00'';
               mask = ''\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\x00\xff\xfe\xff\xff\xff'';
             };

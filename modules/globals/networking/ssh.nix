@@ -19,9 +19,8 @@
 
     provides.to-users.homeManager.programs.ssh = {
       enable = true;
-      extraConfig = "Include ~/.ssh/config.d/*";
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "ssh.github.com" = {
           hostname = "ssh.github.com";
           user = "git";
