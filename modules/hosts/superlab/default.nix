@@ -17,31 +17,25 @@
         (initrd-services.lib.zram { })
         superlab.disks
 
-        base._
-        base.tmux._
-        base.shell._
+        audio._
+        cli._
         dev._
         gui._
-        initrd._
-        networking._
-        nix
-        plasma._
-        sound._
-        tweaks._
-        vim._
-        virtualisation._
+        misc.comm
+        misc.fetch
+        pentest._
         zen._
 
         android
         bluetooth
-        btrfs
-        fetch
-        forensics
-        hardware
+        cockpit
         kitty
+        libvirt
+        plasma
         secrets
         victor7w7r
-        zed
+        waydroid
+        xr
       ];
 
       nixos =

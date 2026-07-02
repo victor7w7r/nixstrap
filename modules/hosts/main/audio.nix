@@ -1,5 +1,5 @@
 {
-  main.audio.nixos =
+  den.aspects.main.audio.nixos =
     { self', ... }:
     {
       nixpkgs.overlays = [

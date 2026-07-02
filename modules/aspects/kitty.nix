@@ -1,5 +1,5 @@
 {
-  den.aspects.kitty.homeManager.programs.kitty = {
+  den.aspects.kitty.provides.to-users.homeManager.programs.kitty = {
     enable = true;
     font = {
       name = "JetBrainsMono Nerd Font";

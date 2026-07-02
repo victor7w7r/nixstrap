@@ -26,7 +26,7 @@
       };
     };
 
-    homePackages =
+    provides.to-users.homePackages =
       { isPersistent, pkgs, ... }:
       {
         fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono Nerd Font" ];

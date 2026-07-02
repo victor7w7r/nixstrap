@@ -12,21 +12,11 @@
       includes = with den.aspects; [
         live.common
         (den.batteries.tty-autologin "snowflake")
-
-        base._
-        base.tmux._
-        base.shell._
-        dev._
+        audio._
+        cli._
+        dev.zed
         gui._
-        initrd._
-        networking._
-        nix
-        tweaks._
-        vim._
 
-        bluetooth
-        btrfs
-        hardware
         kitty
         secrets
         snowflake

@@ -20,18 +20,19 @@
 
     aspects.wsl = {
       includes = with den.aspects; [
-        base._
-        base.tmux._
-        base.shell._
-        dev._
-        networking._
-        nix
-        tweaks._
-        vim._
+        cli._
+        dev.mise
+        dev.tools
+        dev.ccache
+        gui._
+        misc.comm
+        misc.fetch
+        pentest._
 
-        btrfs
-        fetch
+        cockpit
+        libvirt
         secrets
+        waydroid
         victor7w7r
       ];
 

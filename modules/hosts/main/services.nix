@@ -1,5 +1,5 @@
 {
-  main.services.nixos =
+  den.aspects.main.services.nixos =
     { pkgs, self', ... }:
     {
       systemd.services = {

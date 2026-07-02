@@ -48,7 +48,7 @@
               legcord
               lightworks
               lunacy
-              mailspring
+              #mailspring
               media-downloader
               mission-center
               morphosis

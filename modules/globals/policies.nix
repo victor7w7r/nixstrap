@@ -55,8 +55,22 @@
         (den.lib.policy.resolve {
           isX86 = host.system == "x86_64-linux";
           isArm = host.system == "aarch64-linux";
+          isArmv7 = host.system == "armv7l-linux";
           isNixos = host.class == "nixos";
           isDarwin = host.class == "darwin";
+        })
+      ];
+
+    sysctl-to-boot =
+      { host, ... }:
+      [
+        (den.lib.policy.route {
+          fromClass = "sysctl";
+          intoClass = host.class;
+          path = [
+            "boot"
+            "kernel"
+          ];
         })
       ];
   };
@@ -65,5 +79,6 @@
     host-guards
     sys-guards
     composite-host-guards
+    sysctl-to-boot
   ];
 }

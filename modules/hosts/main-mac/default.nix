@@ -71,20 +71,12 @@
         main-mac.prefs
         main-mac.system
 
-        base._
-        base.tmux._
-        base.shell._
+        cli._
         dev._
-        nix
-        vim._
+        misc.comm
+        misc.fetch
         zen._
-
-        android
-        fetch
-        forensics
-        hardware
         kitty
-        zed
       ];
     };
   };

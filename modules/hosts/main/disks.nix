@@ -5,7 +5,7 @@
   ...
 }:
 {
-  main.disks.nixos =
+  den.aspects.main.disks.nixos =
     let
       partlabel = "/dev/disk/by-partlabel";
       idpart = "/dev/disk/by-id";

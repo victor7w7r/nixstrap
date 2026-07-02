@@ -14,21 +14,16 @@
     aspects.generic = {
       includes = with den.aspects; [
         generic.disks
-
-        base._
-        base.tmux._
-        base.shell._
-        dev._
+        cli._
+        dev.mise
         gui._
-        initrd._
-        networking._
-        nix
-        plasma._
-        vim._
+        misc.comm
+        misc.fetch
+        zen._
 
-        tweaks._
-        fetch
-        snowflake
+        kitty
+        plasma
+        secrets
       ];
 
       /*

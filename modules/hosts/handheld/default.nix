@@ -12,7 +12,6 @@
 
   den = {
     hosts.x86_64-linux.handheld.users.victor7w7r = { };
-
     aspects.handheld =
       { user, ... }:
       {
@@ -22,39 +21,33 @@
           handheld.initrd
           handheld.services
           (initrd-services.lib.zram { })
-
-          base._
-          base.tmux._
-          base.shell._
-          dev._
+          audio._
+          cli._
+          dev.ccache
+          dev.zed
+          dev.tools
           gui._
-          initrd._
-          networking._
-          nix
-          plasma._
-          sound._
-          tweaks._
-          vim._
-          virtualisation._
+          misc._
+          pentest._
           zen._
 
           android
           bluetooth
-          btrfs
-          communication
-          fetch
-          gaming
-          hardware
           kitty
+          libvirt
+          plasma
+          secrets
           secrets
           victor7w7r
-          zed
+          waydroid
+          xr
         ];
 
         nixos =
           { pkgs, ... }:
           {
             networking.hostName = "v7w7r-rc71l";
+            hardware.bolt.enable = true;
             environment = {
               persistence."/nix/persist" = {
                 directories = lib.mkAfter [
@@ -64,14 +57,16 @@
                 users."${user.name}".directories = [ ".config/rog" ];
               };
               systemPackages = with pkgs; [
-                asusctl
                 amdgpu_top
+                asusctl
+                bolt
                 brightnessctl
                 kdePackages.plasma-thunderbolt
+                qjoypad
                 radeontop
                 ryzenadj
                 tbtools
-                qjoypad
+                tbtools
                 thunderbolt
               ];
             };
@@ -115,6 +110,7 @@
         provides.to-users.homeManager =
           { config, ... }:
           {
+            programs.looking-glass-client.enable = true;
             home.file."games".source = config.lib.file.mkOutOfStoreSymlink "/run/media/games";
           };
       };

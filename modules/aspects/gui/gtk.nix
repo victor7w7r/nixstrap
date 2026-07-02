@@ -43,17 +43,14 @@
         gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
       };
 
-      home.packages = (
-        with pkgs;
-        [
-          layan-gtk-theme
-          (pkgs.colloid-icon-theme.override {
-            schemeVariants = [ "catppuccin" ];
-            colorVariants = [ "purple" ];
-          })
-          capitaine-cursors
-          capitaine-cursors-themed
-        ]
-      );
+      home.packages = with pkgs; [
+        layan-gtk-theme
+        (colloid-icon-theme.override {
+          schemeVariants = [ "catppuccin" ];
+          colorVariants = [ "purple" ];
+        })
+        capitaine-cursors
+        capitaine-cursors-themed
+      ];
     };
 }

@@ -1,28 +1,21 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-  den.aspects.base.gui.flatpak =
+  den.aspects.gui.flatpak =
     { user, ... }:
     {
-      nixos =
-        { isVisual, isPersistent, ... }:
-        lib.optionalAttrs (isVisual && isPersistent) {
-          environment.persistence."/nix/persist".users."${user.name}".directories = [ ".config/flatpak" ];
-          programs.appimage = {
-            enable = true;
-            binfmt = true;
-          };
-        };
+      nixos.environment.persistence."/nix/persist".users."${user.name}".directories = [
+        ".config/flatpak"
+      ];
+      programs.appimage = {
+        enable = true;
+        binfmt = true;
+      };
 
       provides.to-users.homeManager =
+        { pkgs, ... }:
         {
-          isVisual,
-          isPersistent,
-          pkgs,
-          ...
-        }:
-        lib.optionalAttrs (isVisual && isPersistent) {
           imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
           services.flatpak = {
             enable = true;

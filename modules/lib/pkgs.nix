@@ -10,7 +10,6 @@
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:/nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     xrlinux = {
       url = "github:wheaney/XRLinuxDriver";
@@ -50,24 +49,19 @@
       pkgsNameSeparator = "-";
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        overlays = [
-          #inputs.deploy-rs.overlays.default
-          (final: _: {
-            master = import inputs.nixpkgs-master {
-              inherit (final) config;
-              inherit system;
-            };
-            unstable = import inputs.nixpkgs-unstable {
-              inherit (final) config;
-              inherit system;
-            };
-            inherit main-kernel;
-          })
-        ];
         config = {
           allowUnfree = true;
           allowUnsupportedSystem = false;
         };
+        overlays = [
+          (final: _: {
+            inherit main-kernel;
+            unstable = import inputs.nixpkgs-unstable {
+              inherit (final) config;
+              inherit system;
+            };
+          })
+        ];
       };
     };
 

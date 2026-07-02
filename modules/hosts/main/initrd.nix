@@ -1,5 +1,5 @@
 {
-  main.initrd.nixos =
+  den.aspects.main.initrd.nixos =
     { pkgs, ... }:
     {
       boot.initrd = {

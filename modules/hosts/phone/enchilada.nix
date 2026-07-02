@@ -5,29 +5,26 @@
     aspects.phone-enchilada = {
       includes = with den.aspects; [
         phone.common
-        base._
-        base.tmux._
-        base.shell._
-        dev._
+
+        audio._
+        cli._
+        dev.ccache
+        dev.zed
+        dev.tools
         gui._
-        initrd._
-        networking._
-        nix
-        plasma._
-        sound._
-        tweaks._
-        vim._
-        virtualisation._
+        misc.comm
+        misc.fetch
+        pentest._
         zen._
 
+        android
         bluetooth
-        btrfs
-        fetch
-        hardware
         kitty
+        libvirt
+        plasma
         secrets
         victor7w7r
-        zed
+        waydroid
       ];
 
       nixos = {

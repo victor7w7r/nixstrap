@@ -26,20 +26,16 @@
         pizero.disks
         pizero.passbolt
 
-        base._
-        base.tmux._
-        base.shell._
-        dev._
-        initrd._
-        networking._
-        nix
-        tweaks._
-        virtualisation._
-        vim._
+        cli._
+        dev.mise
+        dev.tools
+        dev.ccache
+        misc.comm
+        misc.fetch
+        pentest._
 
-        btrfs
-        fetch
-        hardware
+        cockpit
+        libvirt
         secrets
         victor7w7r
       ];

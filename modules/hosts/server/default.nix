@@ -20,32 +20,28 @@
           server.initrd
           server.systemd
 
-          base._
-          base.tmux._
-          base.shell._
-          dev._
-          initrd._
-          networking._
-          nix
-          server._
-          tweaks._
-          virtualisation._
-          vim._
+          cli._
+          dev.mise
+          dev.tools
+          dev.ccache
+          gui._
+          misc.comm
+          misc.fetch
+          pentest._
 
-          btrfs
-          fetch
-          forensics
-          hardware
+          cockpit
+          kitty
+          libvirt
           secrets
           victor7w7r
-          xfce
-          zed
         ];
 
         nixos =
           { config, pkgs, ... }:
           {
             networking.hostName = "v7w7r-youyeetoox1";
+            hardware.cpu.intel.updateMicrocode = true;
+
             boot = {
               initrd.services.lvm.enable = true;
               extraModulePackages = [ config.boot.kernelPackages.r8168 ];
@@ -62,10 +58,17 @@
               };
             };
 
-            environment.systemPackages = with pkgs; [
-              mdadm
-              intel-undervolt
+            systemd.tmpfiles.rules = [
+              "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
             ];
+
+            environment = {
+              etc."intel-undervolt.conf".text = "power package 8 28 10 2.4";
+              systemPackages = with pkgs; [
+                mdadm
+                intel-undervolt
+              ];
+            };
 
             zramSwap = {
               enable = true;
@@ -75,6 +78,7 @@
             };
 
             services = {
+              thermald.enable = true;
               lvm.boot.thin.enable = true;
               rustdesk-server.enable = true;
             };

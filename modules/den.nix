@@ -11,10 +11,6 @@
     den.url = "github:denful/den";
     flake-file.url = "github:vic/flake-file";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   den.default.includes =
