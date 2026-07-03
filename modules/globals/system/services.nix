@@ -51,7 +51,7 @@
           persistentTimer = true;
         };
 
-        envfs.enable = true;
+        #envfs.enable = true;
         fstrim.enable = true;
         fwupd.enable = hasVisualKeyboard;
         irqbalance.enable = hasVisualKeyboard;
