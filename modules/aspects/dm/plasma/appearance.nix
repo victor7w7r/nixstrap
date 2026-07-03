@@ -1,4 +1,3 @@
-{ self, ... }:
 {
   den.aspects.plasma.appearance.provides.to-users.homeManager = {
     programs.plasma = {
@@ -63,7 +62,7 @@
       };
     };
 
-    home.file.".face.icon".source = "${self}/assets/avatar.png";
+    #home.file.".face.icon".source = "${self}/assets/avatar.png";
 
     qt = {
       enable = true;
