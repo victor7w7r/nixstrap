@@ -35,7 +35,7 @@
             ];
           };
           ttyd = {
-            enable = true;
+            enable = false;
             writeable = true;
           };
         };
