@@ -12,7 +12,6 @@
           self'.packages.audio-share
           self'.packages.cliwrap
           self'.packages.gspot
-          self'.packages.helvum
           kew
           musikcube
           self'.packages.lyricstify
