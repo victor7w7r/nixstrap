@@ -2,7 +2,6 @@
   den.aspects.gui.gtk.provides.to-users.homeManager =
     { pkgs, ... }:
     {
-
       gtk = {
         #appmenu-gtk-module
         enable = true;

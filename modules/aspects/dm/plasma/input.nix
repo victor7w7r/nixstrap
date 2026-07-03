@@ -25,6 +25,13 @@
         }
         {
           accelerationProfile = "none";
+          name = "MosArt Semiconductor Corp. Wireless Keyboard/Mouse";
+          vendorId = "062a";
+          acceleration = -0.1;
+          productId = "4101";
+        }
+        {
+          accelerationProfile = "none";
           name = "E-Signal USB Gaming Mouse";
           vendorId = "04d9";
           acceleration = -0.5;
