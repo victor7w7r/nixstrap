@@ -18,7 +18,7 @@
         {
           imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
           services.flatpak = {
-            enable = true;
+            enable = false;
             update = {
               auto = {
                 enable = true;

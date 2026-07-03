@@ -38,8 +38,8 @@
               clamtk
               cool-retro-term
               cpu-x
-              czkawka-full
-              davinci-resolve
+              #czkawka-full
+              #davinci-resolve
               fclones-gui
               inkscape-with-extensions
               kopia-ui

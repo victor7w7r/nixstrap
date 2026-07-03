@@ -8,7 +8,7 @@ pkgs.python3.pkgs.buildPythonApplication (attrs: {
     owner = "sparklost";
     repo = attrs.pname;
     rev = attrs.version;
-    sha256 = "sha256-Twhr9+gGb+3d91JGU2CUCPtSdOfcLZAq4jvH6llQ9no=";
+    sha256 = "sha256-hLjGP3HkU0E9myACMhClZ6Q3i7zt6ddpi9Vj4GYtT/A=";
   };
 
   propagatedBuildInputs = with pkgs.python3Packages; [

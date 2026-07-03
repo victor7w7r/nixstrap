@@ -4,7 +4,7 @@
     {
       environment.systemPackages = with pkgs; [
         self'.packages.carbonyl
-        self'.packages.endcord
+        #self'.packages.endcord
         self'.packages.mabel
         discordo
         nchat

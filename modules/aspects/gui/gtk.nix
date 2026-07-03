@@ -2,6 +2,7 @@
   den.aspects.gui.gtk.provides.to-users.homeManager =
     { pkgs, ... }:
     {
+
       gtk = {
         #appmenu-gtk-module
         enable = true;
@@ -44,6 +45,7 @@
       };
 
       home.packages = with pkgs; [
+        dconf
         layan-gtk-theme
         (colloid-icon-theme.override {
           schemeVariants = [ "catppuccin" ];
