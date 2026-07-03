@@ -16,7 +16,6 @@
       { pkgs, self', ... }:
       {
         environment.systemPackages = with pkgs; [
-          self'.packages.aerofetch
           self'.packages.cargofetch
           countryfetch
           self'.packages.customfetch
