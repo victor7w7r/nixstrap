@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ den, ... }:
 {
   den.aspects.live.common = {
     includes = with den.aspects; [
@@ -11,6 +11,7 @@
     nixos =
       {
         config,
+        lib,
         modulesPath,
         pkgs,
         ...

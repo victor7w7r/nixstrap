@@ -1,9 +1,4 @@
-{
-  den,
-  inputs,
-  lib,
-  ...
-}:
+{ den, inputs, ... }:
 {
   flake-file.inputs.mobile-nixos = {
     url = "github:mobile-nixos/mobile-nixos";
@@ -34,7 +29,12 @@
     ];
 
     nixos =
-      { config, pkgs, ... }:
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         nixpkgs.overlays = [ (import "${inputs.mobile-nixos}/overlay/overlay.nix") ];
         imports = [

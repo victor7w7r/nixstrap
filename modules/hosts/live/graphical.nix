@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ den, ... }:
 {
   den = {
     hosts.x86_64-linux.graphical-live.users.snowflake = { };
@@ -14,39 +14,41 @@
         xfce
       ];
 
-      nixos = {
-        system.nixos.variant_id = lib.mkDefault "graphical";
-        isoImage.edition = "xfce";
-        powerManagement.enable = true;
-        hardware.graphics = {
-          enable = true;
-          enable32Bit = true;
-        };
+      nixos =
+        { lib, ... }:
+        {
+          system.nixos.variant_id = lib.mkDefault "graphical";
+          isoImage.edition = "xfce";
+          powerManagement.enable = true;
+          hardware.graphics = {
+            enable = true;
+            enable32Bit = true;
+          };
 
-        security.polkit.extraConfig = ''
-          polkit.addRule(function(action, subject) {
-            if (subject.isInGroup("wheel")) {
-              return polkit.Result.YES;
-            }
-          });
-        '';
+          security.polkit.extraConfig = ''
+            polkit.addRule(function(action, subject) {
+              if (subject.isInGroup("wheel")) {
+                return polkit.Result.YES;
+              }
+            });
+          '';
 
-        services = {
-          qemuGuest.enable = true;
-          spice-vdagentd.enable = true;
-          xe-guest-utilities.enable = false;
-          xserver = {
-            exportConfiguration = true;
-            displayManager = {
-              lightdm.enable = lib.mkDefault true;
-              autoLogin = {
-                enable = true;
-                user = "snowflake";
+          services = {
+            qemuGuest.enable = true;
+            spice-vdagentd.enable = true;
+            xe-guest-utilities.enable = false;
+            xserver = {
+              exportConfiguration = true;
+              displayManager = {
+                lightdm.enable = lib.mkDefault true;
+                autoLogin = {
+                  enable = true;
+                  user = "snowflake";
+                };
               };
             };
           };
         };
-      };
 
       provides.to-users.homeManager = {
         services.network-manager-applet.enable = true;

@@ -6,7 +6,7 @@
 #mount -o $OPTS /dev/sde18 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/
 
 #(import "${inputs.mobile-nixos}/modules/module-list.nix");
-{ den, lib, ... }:
+{ den, ... }:
 {
   den = {
     hosts.aarch64-linux.phone-fajita.users.victor7w7r = { };
@@ -14,7 +14,7 @@
       includes = with den.aspects; [ phone.common ];
 
       nixos =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           networking.hostName = "v7w7r-fajita";
           nixpkgs.overlays = [

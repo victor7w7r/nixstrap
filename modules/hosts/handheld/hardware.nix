@@ -1,7 +1,6 @@
-{ lib, ... }:
 {
   den.aspects.handheld.hardware.nixos =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       environment.systemPackages = [
         (pkgs.writeScriptBin "charge-upto" ''

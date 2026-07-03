@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.nix-homebrew = {
     url = "github:zhaofengli/nix-homebrew";
@@ -6,7 +6,7 @@
   };
 
   den.aspects.main-mac.brew.darwin =
-    { user, ... }:
+    { lib, user, ... }:
     {
       imports = [ inputs.nix-homebrew.darwinModules.nix-homebrew ];
 
