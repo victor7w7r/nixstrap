@@ -11,7 +11,7 @@
       ];
 
       hardware = {
-        bolt.enable = true;
+        #bolt.enable = true;
         amdgpu = {
           opencl.enable = true;
           initrd.enable = true;
