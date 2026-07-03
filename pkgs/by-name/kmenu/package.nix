@@ -1,7 +1,7 @@
 { pkgs, stdenvNoCC }:
 stdenvNoCC.mkDerivation (attrs: {
   pname = "kMenu";
-  version = "1.0.0";
+  version = "main";
 
   src = pkgs.fetchFromGitHub {
     owner = "51n7";
