@@ -14,7 +14,6 @@
           self'.packages.gspot
           kew
           musikcube
-          self'.packages.lyricstify
           playerctl
           pavucontrol
           pwvucontrol
