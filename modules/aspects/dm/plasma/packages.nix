@@ -91,7 +91,7 @@
             ]
             ++ (lib.optionals hasVisualKeyboard [
               pkgs.krename
-              pkgs.isoimagewriter
+              kdePackages.isoimagewriter
               pkgs.ulauncher
             ]);
         };
