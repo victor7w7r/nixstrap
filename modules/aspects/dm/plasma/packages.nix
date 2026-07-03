@@ -1,13 +1,18 @@
-{ lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.kwin-effects-better-blur-dx = {
     url = "github:xarblu/kwin-effects-better-blur-dx";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.plasma.packages = {
+  den.aspects.plasma.default-packages = {
     nixos =
-      { hasVisualKeyboard, pkgs, ... }:
+      {
+        hasVisualKeyboard,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [
@@ -64,36 +69,36 @@
               sweeper
               yakuake
               inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
-              libsForQt5.qt5.qtquickcontrols2
-              libsForQt5.qt5.qtgraphicaleffects
+              pkgs.qt5.qtquickcontrols2
+              pkgs.qt5.qtgraphicaleffects
               qtquick3d
               qtvirtualkeyboard
-              heaptrack
-              ffmpegthumbnailer
-              graphviz
-              icoextract
-              icoutils
-              kdiff3
-              kdiskmark
-              krita
-              krusader
-              maliit-keyboard
-              onboard
-              qpwgraph
-              okteta
-              pinentry-qt
-              systemdgenie
+              pkgs.heaptrack
+              pkgs.ffmpegthumbnailer
+              pkgs.graphviz
+              pkgs.icoextract
+              pkgs.icoutils
+              pkgs.kdiff3
+              pkgs.kdiskmark
+              pkgs.krita
+              pkgs.krusader
+              pkgs.maliit-keyboard
+              pkgs.onboard
+              pkgs.qpwgraph
+              pkgs.okteta
+              pkgs.pinentry-qt
+              pkgs.systemdgenie
             ]
-            ++ lib.optionals hasVisualKeyboard [
+            ++ (lib.optionals hasVisualKeyboard [
               krename
               isoimagewriter
               ulauncher
-            ];
+            ]);
         };
       };
 
     provides.to-users.homeManager =
-      { pkgs, ... }:
+      { pkgs, self', ... }:
       {
         home.packages = with pkgs; [
           application-title-bar

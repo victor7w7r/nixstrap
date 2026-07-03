@@ -1,5 +1,5 @@
 {
-  den.aspects.audio.packages = {
+  den.aspects.audio.default-packages = {
     nixos =
       { pkgs, self', ... }:
       {

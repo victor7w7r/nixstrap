@@ -23,6 +23,7 @@
           AnimationDurationFactor = 0;
           ShowDeleteCommand = true;
           SmoothScroll = false;
+          AutomaticLookAndFeel = false;
           widgetStyle = "kvantum-dark";
         };
         "KFileDialog Settings" = {
