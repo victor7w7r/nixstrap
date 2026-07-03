@@ -90,9 +90,9 @@
               pkgs.systemdgenie
             ]
             ++ (lib.optionals hasVisualKeyboard [
-              krename
-              isoimagewriter
-              ulauncher
+              pkgs.krename
+              pkgs.isoimagewriter
+              pkgs.ulauncher
             ]);
         };
       };
