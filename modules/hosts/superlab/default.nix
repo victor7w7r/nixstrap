@@ -27,7 +27,7 @@
         cockpit
         kitty
         libvirt
-        plasma
+        plasma._
         secrets
         victor7w7r
         waydroid

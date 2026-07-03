@@ -15,7 +15,7 @@
         zen._
 
         kitty
-        plasma
+        plasma._
         secrets
       ];
 

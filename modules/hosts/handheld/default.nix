@@ -28,8 +28,7 @@
           bluetooth
           kitty
           libvirt
-          plasma
-          secrets
+          plasma._
           secrets
           victor7w7r
           waydroid
