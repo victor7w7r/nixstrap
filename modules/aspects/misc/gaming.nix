@@ -9,18 +9,21 @@
         environment.persistence."/nix/persist".directories = lib.mkAfter [ ".steam" ];
 
         hardware.steam-hardware.enable = true;
-        programs.steam = {
-          enable = true;
-          dedicatedServer.openFirewall = false;
-          extraCompatPackages = with pkgs; [ proton-ge-bin ];
-          extraPackages = with pkgs; [
-            mangohud
-            gamescope
-          ];
-          localNetworkGameTransfers.openFirewall = true;
-          gamescopeSession.enable = true;
-          protontricks.enable = true;
-          remotePlay.openFirewall = true;
+        programs = {
+          gamemode.enable = true;
+          steam = {
+            enable = true;
+            dedicatedServer.openFirewall = false;
+            extraCompatPackages = with pkgs; [ proton-ge-bin ];
+            extraPackages = with pkgs; [
+              mangohud
+              gamescope
+            ];
+            localNetworkGameTransfers.openFirewall = true;
+            gamescopeSession.enable = true;
+            protontricks.enable = true;
+            remotePlay.openFirewall = true;
+          };
         };
       };
 
@@ -29,7 +32,6 @@
       {
         services.ludusavi.enable = true;
         programs = {
-          gamemode.enable = true;
           mangohud.enable = true;
         };
         home.packages = with pkgs; [
