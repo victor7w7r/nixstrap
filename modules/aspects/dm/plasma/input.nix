@@ -25,7 +25,7 @@
         }
         {
           accelerationProfile = "none";
-          name = "MosArt Semiconductor Corp. Wireless Keyboard/Mouse";
+          name = "MOSART Semi. 2.4G Keyboard Mouse";
           vendorId = "062a";
           acceleration = -0.1;
           productId = "4101";

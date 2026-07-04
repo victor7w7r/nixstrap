@@ -3,7 +3,6 @@
     all = codecs // general // soc // snd-soc;
 
     codecs = {
-      SND_HDA_CIRRUS_SCODEC = "n";
       SND_HDA_CODEC_ALC260 = "n";
       SND_HDA_CODEC_ALC262 = "n";
       SND_HDA_CODEC_ALC268 = "n";
@@ -33,9 +32,6 @@
       SND_HDA_CODEC_SIGMATEL = "n";
       SND_HDA_CODEC_VIA = "n";
       SND_HDA_SCODEC_COMPONENT = "n";
-      SND_HDA_SCODEC_CS35L41 = "n";
-      SND_HDA_SCODEC_CS35L41_I2C = "n";
-      SND_HDA_SCODEC_CS35L41_SPI = "n";
       SND_HDA_SCODEC_CS35L56 = "n";
       SND_HDA_SCODEC_CS35L56_I2C = "n";
       SND_HDA_SCODEC_CS35L56_SPI = "n";
@@ -51,7 +47,6 @@
       SND_ALOOP = "n";
       SND_ALS300 = "n";
       SND_ALS4000 = "n";
-      SND_AMD_ASOC_ACP63 = "n";
       SND_AMD_ASOC_ACP70 = "n";
       SND_AMD_ASOC_REMBRANDT = "n";
       SND_AMD_ASOC_RENOIR = "n";
@@ -88,8 +83,6 @@
       SND_FM801 = "n";
       SND_GINA20 = "n";
       SND_GINA24 = "n";
-      SND_HDA_ACPI = "n";
-      SND_HDA_GENERIC = "n";
       SND_HDA_GENERIC_LEDS = "n";
       SND_HDSP = "n";
       SND_HDSPM = "n";
@@ -326,7 +319,6 @@
       SND_SOC_INTEL_HDA_DSP_COMMON = "n";
       SND_SOC_INTEL_SKL_HDA_DSP_GENERIC_MACH = "n";
       SND_SOC_INTEL_SOF_BOARD_HELPERS = "n";
-      SND_SOC_INTEL_SOF_CIRRUS_COMMON = "n";
       SND_SOC_INTEL_SOF_CML_RT1011_RT5682_MACH = "n";
       SND_SOC_INTEL_SOF_CS42L42_MACH = "n";
       SND_SOC_INTEL_SOF_DA7219_MACH = "n";
@@ -529,7 +521,6 @@
       SND_SOC_TSCS454 = "n";
       SND_SOC_UDA1334 = "n";
       SND_SOC_UDA1342 = "n";
-      SND_SOC_USB = "n";
       SND_SOC_WCD9335 = "n";
       SND_SOC_WCD934X = "n";
       SND_SOC_WCD937X = "n";

@@ -1,8 +1,8 @@
 {
   "linux": {
     "owner": "CachyOS",
-    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.36-1/cachyos-6.18.36-1.tar.gz",
-    "sha256": "sha256-Xbgdbew/XPZ44GXyReR0sh7cFgNc0VXFDNJGu9vxd1g="
+    "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.37-1/cachyos-6.18.37-1.tar.gz",
+    "sha256": "sha256-UHPOll2tBFkYLa9/wmt+/bvgU0S3Zd/1iDHRPSfaWio="
   },
   "kConfig": {
     "owner": "CachyOS",

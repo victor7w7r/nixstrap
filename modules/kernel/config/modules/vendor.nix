@@ -16,6 +16,13 @@
     amd = {
       AMD_PRIVATE_COLOR = "y";
       AMD_RAPL = "m";
+      AMD_PMF = "y";
+      AMD_WBRF = "y";
+      ASUS_ARMOURY = "y";
+      ASUS_LAPTOP = "m";
+      ASUS_NB_WMI = "y";
+      ASUS_WIRELESS = "y";
+      ASUS_WMI = "y";
       BATTERY_ASUS_EC = "y";
       HID = "y";
       HID_ASUS_ALLY = "m";
@@ -23,6 +30,12 @@
       HW_RANDOM_AMD = "y";
       PERF_EVENTS_AMD_POWER = "y";
       PERF_EVENTS_AMD_UNCORE = "y";
+      I2C_HID= "y";
+      I2C_HID_ACPI = "m";
+      I2C_HID_CORE = "m";
+      SENSORS_ASUS_EC = "y";
+      SENSORS_ASUS_ROG_RYUJIN = "y";
+      SENSORS_ASUS_WMI = "y";
       SENSORS_AMD_ENERGY = "m";
       SENSORS_K10TEMP = "m";
       USB_HID = "y";
@@ -35,6 +48,7 @@
       AMD_3D_VCACHE = "n";
       AMD_HFI = "n";
       AMD_HSMP = "n";
+
       AMD_HSMP_ACPI = "n";
       AMD_HSMP_PLAT = "n";
       AMD_IOMMU = "n";
@@ -70,7 +84,11 @@
       HID_HAPTIC = "n";
       HSA_AMD = "n";
       HSA_AMD_SVM = "n";
+      SENSORS_ASUS_EC = "n";
+      SENSORS_ASUS_ROG_RYUJIN = "n";
+      SENSORS_ASUS_WMI = "n";
       HW_RANDOM_AMD = "n";
+      I2C_HID= "n";
       KVM_AMD = "n";
       MT7921E = "n";
       MT7921S = "n";
@@ -87,6 +105,10 @@
       SND_SOC_AMD_PS_MACH = "n";
       SND_SOC_AMD_SOUNDWIRE = "n";
       SND_SOC_CS35L41 = "n";
+      SND_HDA_SCODEC_CS35L41 = "n";
+      SND_HDA_SCODEC_CS35L41_I2C = "n";
+      SND_HDA_SCODEC_CS35L41_SPI = "n";
+      SND_AMD_ASOC_ACP63 = "n";
       SND_SOC_SOF_AMD_TOPLEVEL = "n";
       SOUNDWIRE_AMD = "n";
       USB_PCI_AMD = "n";

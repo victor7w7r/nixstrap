@@ -64,7 +64,6 @@
       I2C_OCORES = "n";
       I2C_PCA_PLATFORM = "n";
       I2C_PCI1XXXX = "n";
-      I2C_PIIX4 = "n";
       I2C_ROBOTFUZZ_OSIF = "n";
       I2C_SCMI = "n";
       I2C_SIMTEC = "n";

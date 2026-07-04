@@ -19,36 +19,29 @@
           size = "110G";
           priority = 7;
         };
-        /*
-          games = disko.btrfs.shared {
-            name = "games";
-            mountContent = "games";
-            mountSnap = "gamessnap";
-          };
-        */
+        games = disko.btrfs.shared {
+          name = "games";
+          mountContent = "games";
+          mountSnap = "gamessnap";
+        };
       };
     in
     {
-
-      swapDevices = [
-        {
-          device = "/dev/mapper/swapcrypt";
-          discardPolicy = "both";
-          options = [ "nofail" ];
-        }
-      ];
-
-      fileSystems."/" = {
-        device = "/dev/zram1";
-        fsType = "ext4";
-        neededForBoot = true;
-        options = [
-          "noatime"
-          "x-systemd.device-timeout=0"
-        ];
-      };
-
       disko.devices = {
+        disk.root = {
+          type = "disk";
+          device = "/dev/zram1";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+            mountOptions = [
+              "noatime"
+              "x-systemd.device-timeout=0"
+            ];
+          };
+        };
+
         disk.main = {
           type = "disk";
           device = "/dev/nvme0n1";
@@ -83,58 +76,3 @@
       };
     };
 }
-
-/*
-  let
-    params = import ./lib/kernel-params.nix;
-    boot = (import ./lib/boot.nix) { };
-    helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-    kernelBuild = (pkgs.callPackage ../kernel) {
-      inherit
-        helpers
-        host
-        kernelData
-        inputs
-        ;
-    };
-    bcachefs = (import ./lib/bcachefs.nix);
-    shared = (import ./lib/shared.nix) {
-      sharedDir = "/run/media/games";
-      partlabel = "games";
-    };
-  in
-
-  fileSystems = {
-    inherit (boot) "/boot" "/boot/emergency";
-    inherit (shared) "/run/media/games";
-
-    "/" = {
-      device = "/dev/zram1";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = [
-        "noatime"
-        "x-systemd.device-timeout=0"
-      ];
-    };
-
-    "/nix" = bcachefs {
-      device = "/dev/disk/by-partlabel/disk-main-system";
-      extraOptions = [
-        "X-mount.subdir=subvolumes/nix"
-        "x-systemd.device-timeout=300"
-        "x-systemd.mount-timeout=300"
-      ];
-    };
-
-    "/nix/persist" = bcachefs {
-      device = "/dev/disk/by-partlabel/disk-main-system";
-      extraOptions = [
-        "X-mount.subdir=subvolumes/persist"
-        "x-systemd.device-timeout=300"
-        "x-systemd.mount-timeout=300"
-      ];
-      depends = [ "/nix" ];
-    };
-  };
-*/

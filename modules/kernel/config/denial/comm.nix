@@ -117,9 +117,6 @@
       SENSORS_AS370 = "n";
       SENSORS_ASB100 = "n";
       SENSORS_ASC7621 = "n";
-      SENSORS_ASUS_EC = "n";
-      SENSORS_ASUS_ROG_RYUJIN = "n";
-      SENSORS_ASUS_WMI = "n";
       SENSORS_ATK0110 = "n";
       SENSORS_ATXP1 = "n";
       SENSORS_AXI_FAN_CONTROL = "n";

@@ -86,7 +86,7 @@
             alignment = "center";
             lengthMode = "fill";
             floating = false;
-            height = 24;
+            height = 32;
             hiding = "none";
             screen = "all";
             opacity = "translucent";

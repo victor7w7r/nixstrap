@@ -135,7 +135,6 @@
       DRAGONRISE_FF = "n";
       GREENASIA_FF = "n";
       HOLTEK_FF = "n";
-      I2C_HID = "n";
       INTEL_ISH_FIRMWARE_DOWNLOADER = "n";
       INTEL_ISH_HID = "n";
       INTEL_QUICKI2C = "n";

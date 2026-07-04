@@ -16,7 +16,6 @@
           initrd.enable = true;
         };
         cpu.amd.updateMicrocode = true;
-        xone.enable = true;
       };
 
       services = {
