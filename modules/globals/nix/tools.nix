@@ -9,7 +9,7 @@
     };
   };
 
-  den.default.nix = {
+  den.default = {
     os =
       { pkgs, self', ... }:
       {

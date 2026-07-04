@@ -22,6 +22,7 @@
             bruno
             jetbrains.datagrip
             windterm
+            meld
             (inputs.claude-desktop.packages.${system}.claude-desktop.override {
               nodePackages = { inherit (pkgs) asar; };
             })

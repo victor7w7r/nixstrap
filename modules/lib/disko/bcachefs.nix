@@ -33,15 +33,6 @@
         extraOptions ? [ ],
         extraFormatArgs ? [ ],
         subvolumes ? {
-          "subvolumes/root" = {
-            mountpoint = "/";
-            mountOptions = [
-              "nodiratime"
-              "noatime"
-              "discard"
-            ]
-            ++ extraOptions;
-          };
           "subvolumes/nix" = {
             mountpoint = "/nix";
             mountOptions = [

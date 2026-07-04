@@ -16,17 +16,5 @@
           };
         };
       };
-
-    provides.to-users.homeManager.programs.ssh = {
-      enable = true;
-      enableDefaultConfig = false;
-      settings = {
-        "ssh.github.com" = {
-          hostname = "ssh.github.com";
-          user = "git";
-          port = 443;
-        };
-      };
-    };
   };
 }
