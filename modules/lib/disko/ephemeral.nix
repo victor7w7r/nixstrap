@@ -1,6 +1,6 @@
 { disko, ... }:
 {
-  disko.ephemeral.root = {
+  disko.ephemeral.root = { }: {
     type = "disk";
     device = "/dev/zram1";
     content = {

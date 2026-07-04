@@ -68,7 +68,7 @@
       (dynamic-denial {
         inherit config;
         attr = "BACKLIGHT";
-        excludes = [ "CLASS_DEVICE" ];
+        excludes = [ "CLASS_DEVICE" "APPLE" ];
       })
       (dynamic-denial {
         inherit config;
@@ -104,6 +104,8 @@
           "ASUS"
           "WACOM"
           "PID"
+          "I2C_HID"
+          "MULTITOUCH"
         ];
       })
       (dynamic-denial {
