@@ -9,7 +9,6 @@
           "br_netfilter"
           "bcache"
           "cryptd"
-          "cpufreq_reflex"
           "dm_crypt"
           "mmc_block"
           "nf_nat"

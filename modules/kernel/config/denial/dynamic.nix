@@ -56,6 +56,7 @@
       (dynamic-denial {
         inherit config;
         attr = "SERIO";
+        excludes = [ "I8042" ];
       })
       (dynamic-denial {
         inherit config;
@@ -68,7 +69,7 @@
       (dynamic-denial {
         inherit config;
         attr = "BACKLIGHT";
-        excludes = [ "CLASS_DEVICE" "APPLE" ];
+        excludes = [ "CLASS_DEVICE" ];
       })
       (dynamic-denial {
         inherit config;

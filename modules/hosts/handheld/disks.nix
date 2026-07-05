@@ -7,35 +7,35 @@
     disk = {
       root = disko.ephemeral.root { };
       main = {
-      type = "disk";
-      device = "/dev/nvme0n1";
-      content = {
-        type = "gpt";
-        partitions = {
-          esp = disko.esp.call { };
-          msr = disko.win.msr { };
-          emergency = disko.btrfs.emergency { priority = 3; };
-          recovery = disko.win.recovery { };
-          win = disko.win.call { };
-          swapcrypt = disko.luks.call {
-            name = "swapcrypt";
-            size = "14G";
-            content = disko.swap.call { };
-            priority = 6;
-          };
-          system = disko.bcachefs.partition {
-            name = "system";
-            size = "110G";
-            priority = 7;
-          };
-          games = disko.btrfs.shared {
-            name = "games";
-            mountContent = "games";
-            mountSnap = "gamessnap";
+        type = "disk";
+        device = "/dev/nvme0n1";
+        content = {
+          type = "gpt";
+          partitions = {
+            esp = disko.esp.call { };
+            msr = disko.win.msr { };
+            emergency = disko.btrfs.emergency { priority = 3; };
+            recovery = disko.win.recovery { };
+            win = disko.win.call { };
+            swapcrypt = disko.luks.call {
+              name = "swapcrypt";
+              size = "14G";
+              content = disko.swap.call { };
+              priority = 6;
+            };
+            system = disko.bcachefs.partition {
+              name = "system";
+              size = "110G";
+              priority = 7;
+            };
+            games = disko.btrfs.shared {
+              name = "games";
+              mountContent = "games";
+              mountSnap = "gamessnap";
+            };
           };
         };
       };
-    };
     };
   };
 }

@@ -77,11 +77,6 @@
               priority = 100;
             };
 
-            systemd.services.supergfxd.path = with pkgs; [
-              kmod
-              pciutils
-            ];
-
             programs.rog-control-center = {
               enable = true;
               autoStart = true;

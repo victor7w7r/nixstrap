@@ -16,7 +16,6 @@
       GREYBUS = "n";
       HSI = "n";
       HOTPLUG_CPU = "n";
-      HOTPLUG_PCI = "n";
       INTEL_IDXD = "n";
       INTEL_IOATDMA = "n";
       INTEL_MEI_GSC_PROXY = "n";
@@ -116,6 +115,7 @@
       X86_IOPL_IOPERM = "n";
       X86_PMEM_LEGACY = "n";
       X86_MPPARSE = "n";
+      X86_PLATFORM_DRIVERS_DELL = "n";
       X86_P4_CLOCKMOD = "n";
       X86_POWERNOW_K8 = "n";
       X86_REROUTE_FOR_BROKEN_BOOT_IRQS = "n";

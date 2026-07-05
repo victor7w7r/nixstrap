@@ -196,15 +196,11 @@
       SPI_ALTERA = "n";
       SPI_ALTERA_CORE = "n";
       SPI_AXI_SPI_ENGINE = "n";
-      SPI_BITBANG = "n";
       SPI_CADENCE = "n";
       SPI_CH341 = "n";
-      SPI_DESIGNWARE = "n";
       SPI_DW_DMA = "n";
       SPI_DW_PCI = "n";
       SPI_DW_MMIO = "n";
-      SPI_GPIO = "n";
-      SPI_INTEL_PLATFORM = "n";
       SPI_KSPI2 = "n";
       SPI_LJCA = "n";
       SPI_MICROCHIP_CORE_QSPI = "n";
@@ -215,11 +211,9 @@
       SPI_SC18IS602 = "n";
       SPI_SIFIVE = "n";
       SPI_MXIC = "n";
-      SPI_VIRTIO = "n";
       SPI_XCOMM = "n";
       SPI_XILINX = "n";
       SPI_ZYNQMP_GQSPI = "n";
-      SPI_AMD = "n";
       SPI_MUX = "n";
       SPI_SPIDEV = "n";
       SPI_LOOPBACK_TEST = "n";

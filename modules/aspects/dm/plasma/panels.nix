@@ -161,7 +161,7 @@
                   let
                     fan =
                       if isMain then
-                        "lmsensors/applesmc-acpi-0"
+                        "lm?/applesmc-acpi-0"
                       else if isHandheld then
                         "lmsensors/asus-isa-000a"
                       else

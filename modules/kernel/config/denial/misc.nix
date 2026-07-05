@@ -174,9 +174,6 @@
     BMI270 = "n";
     BMI270_I2C = "n";
     BMI270_SPI = "n";
-    BMI323 = "n";
-    BMI323_I2C = "n";
-    BMI323_SPI = "n";
     BMP280 = "n";
     BMP280_I2C = "n";
     BMP280_SPI = "n";

@@ -41,9 +41,7 @@
           '';
         installPhase = "mkdir -p $out && cp -r . $out/";
       };
-      bore = [
-        #"${patches}/${majorMinor}/sched/0001-bore-cachy.patch"
-      ];
+      bore = [ "${patches}/${majorMinor}/sched-dev/0001-bore-cachy.patch" ];
       optimization = map (path: "${patches}/${majorMinor}/misc/${path}") [
         "0001-clang-polly.patch"
         "dkms-clang.patch"

@@ -21,7 +21,7 @@
       services = {
         xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
         udev.extraRules = ''
-          ACTION=="add", SUBSYSTEM=="pci", DRIVER=="amdgpu", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/%p/power_dpm_force_performance_level /sys/%p/pp_od_clk_voltage"
+          ACTION=="add", SUBSYSTEM=="pci", DRIVER=="amdgpu", ATTR{power_dpm_force_performance_level}="auto", MODE="0666"
           SUBSYSTEM=="usb", ATTR{idVendor}=="2808", ATTR{idProduct}=="a753", MODE="0660", GROUP="input"
         '';
         fprintd = {

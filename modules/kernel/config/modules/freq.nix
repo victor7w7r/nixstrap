@@ -23,6 +23,8 @@
       SND_JACK = "n";
       SND_OSSEMUL = "n";
       SOUND = "n";
+      SND_HDA_CODEC_REALTEK = "n";
+      SND_HDA_CODEC_REALTEK_LIB = "n";
     };
 
     high = {
@@ -44,7 +46,13 @@
       PREEMPT_DYNAMIC = "y";
       PREEMPT_NONE = "n";
       PREEMPT_VOLUNTARY = "n";
+      RCU_FANOUT = "64";
+      RCU_FANOUT_LEAF = "16";
+      RCU_BOOST = "y";
+      RCU_BOOST_DELAY = "500";
       SCHED_BORE = "y";
+      # SND_HDA_CODEC_REALTEK = "y";
+      # SND_HDA_CODEC_REALTEK_LIB = "y";
     };
   };
 }

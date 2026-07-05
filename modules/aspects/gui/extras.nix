@@ -50,6 +50,7 @@
               lunacy
               #mailspring
               media-downloader
+              meld
               mission-center
               morphosis
               mtr-gui

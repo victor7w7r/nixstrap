@@ -6,7 +6,6 @@
       SND_HDA_CODEC_ALC260 = "n";
       SND_HDA_CODEC_ALC262 = "n";
       SND_HDA_CODEC_ALC268 = "n";
-      SND_HDA_CODEC_ALC269 = "n";
       SND_HDA_CODEC_ALC662 = "n";
       SND_HDA_CODEC_ALC680 = "n";
       SND_HDA_CODEC_ALC861 = "n";
@@ -25,13 +24,10 @@
       SND_HDA_CODEC_CS421X = "n";
       SND_HDA_CODEC_CS8409 = "n";
       SND_HDA_CODEC_HDMI_NVIDIA_MCP = "n";
-      SND_HDA_CODEC_REALTEK = "n";
-      SND_HDA_CODEC_REALTEK_LIB = "n";
       SND_HDA_CODEC_SENARYTECH = "n";
       SND_HDA_CODEC_SI3054 = "n";
       SND_HDA_CODEC_SIGMATEL = "n";
       SND_HDA_CODEC_VIA = "n";
-      SND_HDA_SCODEC_COMPONENT = "n";
       SND_HDA_SCODEC_CS35L56 = "n";
       SND_HDA_SCODEC_CS35L56_I2C = "n";
       SND_HDA_SCODEC_CS35L56_SPI = "n";

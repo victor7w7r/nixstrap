@@ -11,6 +11,7 @@
       services.udev.extraRules = ''
         ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
           ATTR{queue/scheduler}="none"
+        KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
 
         ${lib.optionalString isVisual ''
           KERNEL=="rtc0", GROUP="audio"

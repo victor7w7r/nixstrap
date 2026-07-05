@@ -147,7 +147,7 @@
 
                 nixd = {
                   binary = {
-                    path = "/run/current-system/sw/bin/nixd";
+                    path = "${pkgs.nixd}/bin/nixd";
                   };
                   initialization_options = {
                     formatting = {
@@ -170,7 +170,5 @@
             };
           };
         };
-
     };
-
 }

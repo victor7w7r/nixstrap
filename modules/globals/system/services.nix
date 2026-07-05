@@ -54,7 +54,7 @@
         #envfs.enable = true;
         fstrim.enable = true;
         fwupd.enable = hasVisualKeyboard;
-        irqbalance.enable = hasVisualKeyboard;
+        irqbalance.enable = false;
         locate.enable = true;
         logrotate.enable = isPersistent;
         nohang = lib.optionalAttrs (!hasVisualKeyboard) { enable = true; };

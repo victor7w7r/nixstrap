@@ -7,7 +7,7 @@
   "cachyos": {
     "owner": "CachyOS",
     "repo": "kernel-patches",
-    "rev": "46b45d26b536195f3ee8bc510b96b7fa47567163",
+    "rev": "f33ae5eb9f1e16229e2d48202dd68b3312aa8727",
     "sha256": "sha256-J2/PBS+5u6osnWZUB7UTjLaD+S8diM+6hlOWDoX/+bw="
   },
   "bunker": {

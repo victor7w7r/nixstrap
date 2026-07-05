@@ -10,7 +10,7 @@
     { user, ... }:
     {
       nixos =
-        { pkgs, ... }:
+        { pkgs, lib, ... }:
         {
           programs.kde-pim.enable = true;
 
@@ -37,7 +37,15 @@
             enableQt5Integration = true;
           };
 
-          xdg.portal.extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+          xdg.portal = {
+            enable = true;
+            extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+            config = lib.mkForce {
+              common = {
+                default = [ "kde" ];
+              };
+            };
+          };
         };
 
       provides.to-users.homeManager =

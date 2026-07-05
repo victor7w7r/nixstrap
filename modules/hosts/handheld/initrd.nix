@@ -3,7 +3,6 @@
     kernelModules = [
       "dm-snapshot"
       "kvm-amd"
-      "cpufreq_reflex"
       "amdgpu"
       "snd_usb_audio"
       "snd_hda_intel"

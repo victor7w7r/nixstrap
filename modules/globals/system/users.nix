@@ -15,27 +15,34 @@
       };
     };
 
-    default.provides.to-users.user = {
-      linger = true;
-      extraGroups = [
-        "adbusers"
-        "audio"
-        "dialout"
-        "gamemode"
-        "input"
-        "kvm"
-        "libvirt-qemu"
-        "libvirtd"
-        "plugdev"
-        "power"
-        "qemu"
-        "qemu-libvirtd"
-        "podman"
-        "realtime"
-        "storage"
-        "tty"
-        "video"
-      ];
+    default = {
+      nixos.users = {
+        groups.i2c = { };
+        users."${user.name}".extraGroups = [ "i2c" ];
+      };
+
+      provides.to-users.user = {
+        linger = true;
+        extraGroups = [
+          "adbusers"
+          "audio"
+          "dialout"
+          "gamemode"
+          "input"
+          "kvm"
+          "libvirt-qemu"
+          "libvirtd"
+          "plugdev"
+          "power"
+          "qemu"
+          "qemu-libvirtd"
+          "podman"
+          "realtime"
+          "storage"
+          "tty"
+          "video"
+        ];
+      };
     };
   };
 }

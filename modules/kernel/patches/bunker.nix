@@ -30,7 +30,6 @@
         "grapheneos/0004-disable-memory_hotplug-by-default.patch"
         "grapheneos/0005-usb-extend-deny_new_usb-to-gadget-interfaces.patch"
         "zen/0009-mm-set-default-max-map-count-to-INT_MAX-5.patch"
-        "xanmod/0001-sched-fair-set-tunable-latencies-to-unscaled.patch"
         "xanmod/0003-block-set-rq_affinity-to-force-complete-I-O-on-same-.patch"
         "xanmod/0004-block-mq-deadline-disable-front_merges-by-default.patch"
         "xanmod/0005-block-mq-deadline-increase-write-priority-to-improve.patch"
