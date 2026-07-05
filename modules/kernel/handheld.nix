@@ -29,7 +29,6 @@
         hardware.desktop-wserial
         hardware.native
         net
-        storage.bcachefs
         storage.ntfs
         storage.not-raid
         storage.not-xfs

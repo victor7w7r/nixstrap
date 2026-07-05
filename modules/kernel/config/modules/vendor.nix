@@ -14,11 +14,12 @@
     // not-amd;
 
     amd = {
-      AMD_PMF = "y";
+      AMD_PMF = "m";
       AMD_PRIVATE_COLOR = "y";
-      AMD_RAPL = "m";
       AMD_SECURE_AVIC = "y";
       AMD_WBRF = "y";
+      AMDTEE = "m";
+      AMD_SFH_HID = "y";
       ASUS_ARMOURY = "m";
       ASUS_LAPTOP = "m";
       ASUS_NB_WMI = "m";
@@ -28,6 +29,8 @@
       BMI323 = "y";
       BMI323_I2C = "y";
       BMI323_SPI = "y";
+      CRYPTO_DEV_SP_PSP = "y";
+      CRYPTO_DEV_CCP_DD = "y";
       HID = "y";
       HID_ASUS_ALLY = "m";
       HOTPLUG_PCI = "y";
@@ -80,6 +83,7 @@
       AMD_PMC = "n";
       AMD_PMF = "n";
       AMD_SECURE_AVIC = "n";
+      AMD_SFH_HID = "n";
       AMD_WBRF = "n";
       ASUS_ARMOURY = "n";
       ASUS_LAPTOP = "n";

@@ -22,7 +22,6 @@
         hardware.generic
         hardware.serial
         net
-        storage.bcachefs
         storage.not-raid
         storage.xfs
         vendor.not-vendor

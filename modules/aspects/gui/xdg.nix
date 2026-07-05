@@ -32,7 +32,7 @@
             createDirectories = true;
             download = "${config.home.homeDirectory}/Descargas";
             documents = "${config.home.homeDirectory}/Documentos";
-            pictures = "${config.home.homeDirectory}/Imágenes";
+            pictures = "${config.home.homeDirectory}/Imagenes";
             projects = null;
             music = null;
             videos = null;

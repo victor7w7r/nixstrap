@@ -16,9 +16,11 @@
     };
 
     default = {
-      nixos.users = {
-        groups.i2c = { };
-        users."${user.name}".extraGroups = [ "i2c" ];
+      nixos = { user, ... }: {
+        users = {
+          groups.i2c = { };
+          users."${user.name}".extraGroups = [ "i2c" ];
+        };
       };
 
       provides.to-users.user = {

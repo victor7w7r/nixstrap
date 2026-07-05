@@ -51,10 +51,10 @@
     SECURITY_TIOCSTI_RESTIRCT = "y";
     SPI = "y";
     SPI_BITBANG = "y";
+    SPI_DYNAMIC = "y";
     SPI_MASTER = "y";
     SPI_MEM = "y";
     SPI_SLAVE = "y";
-    SPI_DYNAMIC = "y";
     SQUASHFS = "y";
     THUNDERBOLT = "y";
     TLS = "y";

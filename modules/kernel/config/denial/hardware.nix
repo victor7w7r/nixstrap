@@ -131,7 +131,6 @@
     input = {
       INPUT_JOYDEV = "n";
       INPUT_MOUSEDEV = "n";
-      AMD_SFH_HID = "n";
       DRAGONRISE_FF = "n";
       GREENASIA_FF = "n";
       HOLTEK_FF = "n";

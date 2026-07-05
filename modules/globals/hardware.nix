@@ -40,6 +40,7 @@
           (lib.mkIf isGraphic { graphics.enable = true; })
           (lib.mkIf (isGraphic && isX86) { graphics.enable32Bit = true; })
           {
+            wirelessRegulatoryDatabase = true;
             sensor.iio.enable = true;
             ksm.enable = true;
             #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives

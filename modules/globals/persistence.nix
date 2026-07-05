@@ -32,7 +32,7 @@
           "${user.name}".directories = [
             "Documentos"
             "Descargas"
-            "Imágenes"
+            "Imagenes"
             "repositories"
             "scripts"
             "remote"

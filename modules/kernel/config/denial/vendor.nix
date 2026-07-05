@@ -9,7 +9,6 @@
       ACPI_QUICKSTART = "n";
       ACPI_TOSHIBA = "n";
       ADV_SWBUTTON = "n";
-      ALIENWARE_WMI = "n";
       AMILO_RFKILL = "n";
       APPLE_GMUX = "n";
       ASUS_TF103C_DOCK = "n";

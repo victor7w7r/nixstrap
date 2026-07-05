@@ -21,10 +21,6 @@
       })
       (dynamic-denial {
         inherit config;
-        attr = "DELL";
-      })
-      (dynamic-denial {
-        inherit config;
         attr = "EEPROM";
         excludes = [ "93CX6" ];
       })

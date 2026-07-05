@@ -27,7 +27,6 @@
         freq.high
         hardware.not-phone
         net
-        storage.bcachefs
         storage.not-cdrom
         storage.f2fs
         storage.ntfs

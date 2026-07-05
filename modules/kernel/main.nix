@@ -26,7 +26,6 @@
         hardware.native
         hardware.serial
         net
-        storage.bcachefs
         storage.ntfs
         storage.not-raid
         storage.xfs

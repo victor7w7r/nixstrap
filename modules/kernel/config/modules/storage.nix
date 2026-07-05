@@ -1,19 +1,5 @@
 {
   kernel.config.modules.storage = {
-    bcachefs = {
-      MD = "y";
-      BLK_DEV_MD = "y";
-      CRYPTO_SHA256 = "y";
-      CRYPTO_CHACHA20POLY1305 = "y";
-      CRYPTO_POLY1305 = "y";
-      BCACHEFS_FS = "y";
-      BCACHEFS_ERASURE_CODING = "y";
-      BCACHEFS_POSIX_ACL = "y";
-      BCACHEFS_LOCK_TIME_STATS = "y";
-      BCACHEFS_SIX_OPTIMISTIC_SPIN = "y";
-      BCACHEFS_PATH_TRACEPOINTS = "y";
-    };
-
     not-btrfs = {
       BTRFS_FS = "n";
     };

@@ -147,7 +147,7 @@
 
                 nixd = {
                   binary = {
-                    path = "${pkgs.nixd}/bin/nixd";
+                    path = "nixd";
                   };
                   initialization_options = {
                     formatting = {
