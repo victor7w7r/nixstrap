@@ -31,10 +31,22 @@
       (dynamic-denial {
         inherit config;
         attr = "JOYSTICK";
+        excludes = [
+          "DB9"
+          "GAMECON"
+          "IFORCE_232"
+          "IFORCE_USB"
+          "PSXPAD_SPI_FF"
+          "TURBOGRAFX"
+          "WALKERA0701"
+          "XPAD_FF"
+          "XPAD_LEDS"
+        ];
       })
       (dynamic-denial {
         inherit config;
         attr = "MOUSE";
+        excludes = [ "PS2" ];
       })
       (dynamic-denial {
         inherit config;

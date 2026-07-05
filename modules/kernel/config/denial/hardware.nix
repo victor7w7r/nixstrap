@@ -201,6 +201,7 @@
       INPUT_RT5120_PWRKEY = "n";
       INPUT_TPS6594_PWRBUTTON = "n";
       INPUT_YEALINK = "n";
+      MOUSE_PS2 = "n";
       TABLET_SERIAL_WACOM4 = "n";
       TABLET_USB_ACECAD = "n";
       TABLET_USB_AIPTEK = "n";
