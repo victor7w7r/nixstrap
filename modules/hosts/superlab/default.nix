@@ -39,12 +39,11 @@
         {
           networking.hostName = "v7w7r-radxarock5b";
           boot = {
-            kernelParams = [
-              "console=ttyS2,1500000n8"
-            ];
+            kernelParams = [ "console=ttyS2,1500000n8" ];
             loader = {
+              systemd-boot.enable = true;
+              efi.canTouchEfiVariables = true;
               grub.enable = false;
-              generic-extlinux-compatible.enable = true;
             };
             kernelPackages = (kernel.hosts.superlab pkgs).superlab-kernelPackages;
             #pkgs.ubootRock5ModelB;
@@ -56,6 +55,16 @@
             algorithm = "zstd";
             memoryPercent = 20;
             priority = 100;
+          };
+
+          hardware = {
+            firmware = [ pkgs.armbian-firmware ];
+            deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
+            serial = {
+              enable = true;
+              unit = 2;
+              baudrate = 1500000;
+            };
           };
         };
     };

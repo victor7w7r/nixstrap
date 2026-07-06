@@ -1,86 +1,38 @@
 { disko, ... }:
 {
-  den.aspects.superlab.disks.nixos =
-    let
-      nvmepartitions.store = disko.xfs.call {
-        name = "store";
-        size = "100%";
-        mountpoint = "/nix";
-      };
-      sdpartitions = {
-        boot = disko.esp.call { size = "96M"; };
-        persist = disko.f2fs.call {
-          name = "persist";
-          size = "100%";
-          mountpoint = "/nix/persist";
-          priority = 2;
-        };
-      };
-    in
-    {
-      fileSystems = {
-        "/nix/persist".neededForBoot = true;
-        /*
-          "/" = lib.mkDefault {
-            device = "/dev/zram1";
-            fsType = "ext4";
-            neededForBoot = true;
-            options = [
-              "noatime"
-              "x-systemd.device-timeout=0"
-            ];
-          };
-        */
-      };
-
-      disko.devices.disk = {
-        store = {
-          type = "disk";
-          device = "/dev/sda";
-          content = {
-            type = "gpt";
-            partitions = nvmepartitions;
+  den.aspects.handheld.disks.nixos.disko.devices = with disko; {
+    bcachefs_filesystems.broot = bcachefs.filesystem {
+      uuid = "2564fcf6-551f-4358-b238-2fe638b1c159";
+    };
+    disk = {
+      root = ephemeral.root { };
+      main = disk.gpt {
+        device = "mmcblk0";
+        partitions = {
+          esp = esp.call { size = "500M"; };
+          system = f2fs.call {
+            name = "system";
+            size = "100%";
+            priority = 2;
           };
         };
-
-        sdcard = {
-          type = "disk";
-          device = "/dev/mmcblk0";
-          content = {
-            type = "gpt";
-            partitions = sdpartitions;
+        nvme = disk.gpt {
+          device = "nvme0n1";
+          partitions = {
+            swapcrypt = luks.call {
+              name = "swapcrypt";
+              size = "32G";
+              content = swap.call { };
+              priority = 1;
+            };
+            store = bcachefs.partition {
+              name = "store";
+              size = "100%";
+              priority = 2;
+            };
           };
         };
       };
     };
+  };
 }
-/*
-  fileSystems = {
-  };
-  "/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-    options = [
-      "nofail"
-      "noauto"
-    ];
-  };
-  "/nix" = {
-    device = "/dev/disk/by-label/store";
-    neededForBoot = true;
-    fsType = "xfs";
-    options = [
-      "noatime"
-      "nodiratime"
-      "lazytime"
-      "logbufs=8"
-      "logbsize=256k"
-    ];
-  };
-  "/nix/persist" = f2fs {
-    label = "persist";
-    device = "/dev/disk/by-label/persist";
-    depends = [ "/nix" ];
-  };
-  };
-*/

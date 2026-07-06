@@ -3,7 +3,7 @@
     { self', ... }:
     {
       nixpkgs.overlays = [
-        (_: prev: {
+        (final: prev: {
           pipewire = prev.pipewire.overrideAttrs (oldAttrs: {
             postPatch = (oldAttrs.postPatch or "") + ''
               cp -r ${self'.packages.t2-audio.files}/files/{profile-sets,paths} spa/plugins/alsa/mixer/
@@ -37,6 +37,7 @@
               EOF
             '';
           });
+          wireplumber = prev.wireplumber.override { pipewire = final.pipewire; };
         })
       ];
     };

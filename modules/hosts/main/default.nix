@@ -29,19 +29,19 @@
         xr
       ];
       nixos =
-        { pkgs, ... }:
+        {
+          lib,
+          pkgs,
+          self',
+          ...
+        }:
         {
           networking.hostName = "v7w7r-macmini81";
 
           boot = {
-            /*
-              extraModulePackages = [
-              (pkgs.callPackage ./custom/apple-bce.nix { kernel = kernelBuild.kernel; })
-              ];
-            */
             kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
-            #audioT2 = (pkgs.callPackage ./custom/t2-pipewire.nix { });
             resumeDevice = "/dev/mapper/swapcrypt";
+            extraModulePackages = [ self'.packages.apple-bce ];
           };
 
           environment.systemPackages = with pkgs; [
@@ -53,8 +53,8 @@
 
           services.thermald.enable = true;
           hardware = {
-            bolt.enable = true;
             cpu.intel.updateMicrocode = true;
+            firmware = lib.mkAfter [ self'.packages.brcm-firmware ];
           };
 
           systemd.tmpfiles.rules = [
