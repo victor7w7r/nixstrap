@@ -25,33 +25,31 @@
         };
       };
 
+    subvolume =
+      {
+        name ? "",
+        mountpoint,
+        extraOptions ? [ ],
+      }:
+      {
+        "subvolumes/${name}" = {
+          inherit mountpoint;
+          mountOptions = [
+            "nodiratime"
+            "noatime"
+            "discard"
+          ]
+          ++ extraOptions;
+        };
+      };
+
     filesystem =
       {
         passwordFile ? null,
         mountpoint ? null,
         uuid ? null,
-        extraOptions ? [ ],
         extraFormatArgs ? [ ],
-        subvolumes ? {
-          "subvolumes/nix" = {
-            mountpoint = "/nix";
-            mountOptions = [
-              "nodiratime"
-              "noatime"
-              "discard"
-            ]
-            ++ extraOptions;
-          };
-          "subvolumes/persist" = {
-            mountpoint = "/nix/persist";
-            mountOptions = [
-              "nodiratime"
-              "noatime"
-              "discard"
-            ]
-            ++ extraOptions;
-          };
-        },
+        subvolumes,
       }:
       {
         inherit
