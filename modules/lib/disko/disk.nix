@@ -20,6 +20,20 @@
         };
       };
 
+    lvm =
+      {
+        num ? 0,
+        device,
+      }:
+      {
+        type = "disk";
+        device = "/dev/${device}";
+        content = {
+          vg = "vg${num}";
+          type = "lvm_pv";
+        };
+      };
+
     bcache-lvm =
       {
         num ? 0,
@@ -45,6 +59,20 @@
         };
       };
 
+    mdraid =
+      {
+        device,
+        name ? "raid0",
+      }:
+      {
+        type = "disk";
+        device = "/dev/${disko.constants.id}/${device}";
+        content = {
+          type = "mdraid";
+          inherit name;
+        };
+      };
+
     entire-luks =
       {
         name,
@@ -55,11 +83,11 @@
       }:
       {
         type = "disk";
-        device = "${disko.disk.constants.id}/${device}";
+        inherit device;
         content = disko.luks.call {
           entireDisk = true;
           size = "100%";
-          device = "${disko.disk.constants.id}/${device}";
+          inherit device;
           inherit
             allowDiscards
             name

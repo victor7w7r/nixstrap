@@ -72,7 +72,7 @@
       bcache1 = disk.bcache-lvm { num = 1; };
       persist = disk.entire-luks {
         name = "persist";
-        device = "ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
+        device = "${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
         postMount = ''
           cryptsetup open ${disk.constants.partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
           cryptsetup open ${disk.constants.partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
@@ -86,7 +86,7 @@
       };
       storage = disk.entire-luks {
         name = "storage";
-        device = "ata-ST500LT012-1DG142_S3PMCMHT";
+        device = "${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
         postMount = ''
           cryptsetup open ${disk.constants.partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
           cryptsetup open ${disk.constants.partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
