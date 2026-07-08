@@ -1,10 +1,9 @@
-{ lib, ... }:
 {
   den.aspects.cli.podman =
     { user, ... }:
     {
       nixos =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           environment = {
             persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [

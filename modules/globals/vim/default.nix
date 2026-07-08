@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.nixvim.url = "github:nix-community/nixvim";
 
@@ -13,7 +13,12 @@
     };
 
     nixos =
-      { isPersistent, user, ... }:
+      {
+        isPersistent,
+        lib,
+        user,
+        ...
+      }:
       lib.optionalAttrs isPersistent {
         environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
           ".cache/nvim"

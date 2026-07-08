@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default = {
     os =
@@ -47,6 +46,7 @@
         isEfi,
         isPersistent,
         isTpm,
+        lib,
         pkgs,
         self',
         ...
@@ -87,7 +87,7 @@
       };
 
     provides.to-users.homeManager =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         home.packages = with pkgs; [
           inxi

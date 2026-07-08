@@ -1,7 +1,6 @@
-{ lib, ... }:
 {
   den.aspects.cockpit.nixos =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       services.cockpit = {
         enable = true;

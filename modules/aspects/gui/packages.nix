@@ -1,7 +1,6 @@
-{ lib, ... }:
 {
   den.aspects.gui.packages.nixos =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         evemu

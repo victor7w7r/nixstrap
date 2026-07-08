@@ -1,10 +1,10 @@
-{ lib, ... }:
 {
   den.default.nixos =
     {
       isPersistent,
       isServer,
       isPhone,
+      lib,
       ...
     }:
     {

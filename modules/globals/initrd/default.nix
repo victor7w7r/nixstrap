@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default.nixos =
     {
@@ -6,6 +5,7 @@
       isLive,
       isGeneric,
       hasVisualKeyboard,
+      lib,
       ...
     }:
     {

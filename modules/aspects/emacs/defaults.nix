@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs = {
     emacs-overlay = {
@@ -26,7 +26,7 @@
         };
 
       nixos =
-        { isPersistent, ... }:
+        { isPersistent, lib, ... }:
         {
           environment.persistence."/nix/persist".users."${user.name}".directories =
             lib.optionals isPersistent
@@ -37,11 +37,7 @@
         };
 
       provides.to-users.homeManager =
-        {
-          config,
-          pkgs,
-          ...
-        }:
+        { config, pkgs, ... }:
         {
           imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
           programs.doom-emacs = {

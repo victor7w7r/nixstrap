@@ -1,8 +1,12 @@
-{ lib, ... }:
 {
   den.default = {
     nixos =
-      { isPersistent, user, ... }:
+      {
+        isPersistent,
+        lib,
+        user,
+        ...
+      }:
       {
         environment = lib.mkMerge [
           {

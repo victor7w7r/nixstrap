@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default.nixos =
     {
@@ -8,6 +7,7 @@
       isPhone,
       isSuperlab,
       isX86,
+      lib,
       pkgs,
       self',
       ...

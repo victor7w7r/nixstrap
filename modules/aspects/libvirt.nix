@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.aspects.libvirt.nixos =
-    { isIntel, pkgs, ... }:
+    {
+      isIntel,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       boot = {
         kernelParams = (lib.mkIf isIntel) [ "kvmfr.static_size_mb=128" ];

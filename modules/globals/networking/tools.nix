@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default = {
     os =
@@ -43,6 +42,7 @@
     nixos =
       {
         isPersistent,
+        lib,
         pkgs,
         self',
         ...

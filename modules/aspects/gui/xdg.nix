@@ -1,8 +1,7 @@
-{ lib, ... }:
 {
   den.aspects.gui.xdg = {
     nixos =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         environment.pathsToLink = lib.mkAfter [ "/share/xdg-desktop-portal" ];
         xdg = {

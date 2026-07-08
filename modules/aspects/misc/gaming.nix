@@ -1,10 +1,9 @@
-{ lib, ... }:
 {
   flake-file.inputs.nix-gaming.url = "github:fufexan/nix-gaming";
 
   den.aspects.misc.gaming = {
     nixos =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         environment.persistence."/nix/persist".directories = lib.mkAfter [ ".steam" ];
 

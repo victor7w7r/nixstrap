@@ -1,7 +1,6 @@
-{ lib, ... }:
 {
   den.aspects.dev.mise =
-    { user, ... }:
+    { lib, user, ... }:
     {
       nixos.environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
         ".cache/mise"

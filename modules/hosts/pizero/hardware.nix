@@ -1,7 +1,6 @@
 { sdcard, ... }:
 {
   den.aspects.pizero.hardware = {
-
     includes = [
       (sdcard.lib.call { ubootSelector = "sunxi"; })
     ];

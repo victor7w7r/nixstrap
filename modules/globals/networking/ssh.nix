@@ -1,8 +1,12 @@
-{ lib, ... }:
 {
   den.default = {
     nixos =
-      { isPhone, isLive, ... }:
+      {
+        isPhone,
+        isLive,
+        lib,
+        ...
+      }:
       {
         services.openssh = lib.mkForce {
           enable = true;

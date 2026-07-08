@@ -1,10 +1,9 @@
-{ lib, ... }:
 {
   den.aspects.waydroid =
     { user, ... }:
     {
       nixos =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           virtualisation.waydroid.enable = true;
           environment = {

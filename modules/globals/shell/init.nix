@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.default.provides.to-users.homeManager =
-    { config, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       programs =
         let

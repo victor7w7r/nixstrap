@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.default.nixos =
-    { isX86, pkgs, ... }:
+    {
+      isX86,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       nixpkgs.overlays = [
         (final: prev: {

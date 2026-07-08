@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.aspects.bluetooth.nixos =
-    { isPersistent, pkgs, ... }:
+    {
+      isPersistent,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       environment = lib.mkMerge [
         {

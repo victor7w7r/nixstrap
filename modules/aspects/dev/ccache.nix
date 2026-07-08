@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.aspects.dev.ccache.nixos =
-    { isPersistent, pkgs, ... }:
+    {
+      isPersistent,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       ccacheConfigFile = pkgs.writeText "ccache.conf" ''
         compression = false

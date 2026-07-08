@@ -1,7 +1,7 @@
-{ lib, ... }:
 {
   den.aspects.plasma.sddm.nixos =
     {
+      lib,
       isGeneric,
       isPhone,
       pkgs,

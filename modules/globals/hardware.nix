@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default = {
     os =
@@ -17,6 +16,7 @@
       {
         isGraphic,
         isX86,
+        lib,
         pkgs,
         ...
       }:

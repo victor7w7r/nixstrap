@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.default = {
     provides.to-users.homeManager =
@@ -8,7 +7,7 @@
       };
 
     nixos =
-      { isPersistent, ... }:
+      { isPersistent, lib, ... }:
       {
         systemd.services = {
           NetworkManager-wait-online.enable = false;

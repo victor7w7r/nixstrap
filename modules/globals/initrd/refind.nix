@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.catppuccin-refind = {
     url = "github:catppuccin/refind";
@@ -10,6 +10,7 @@
       config,
       isEfi,
       isTpm,
+      lib,
       pkgs,
       ...
     }:

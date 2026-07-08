@@ -1,9 +1,9 @@
-{ lib, ... }:
 {
   den.default.nixos =
     {
       isIntel,
       isVisual,
+      lib,
       pkgs,
       ...
     }:

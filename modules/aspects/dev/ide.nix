@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   flake-file.inputs.claude-desktop = {
     url = "github:k3d3/claude-desktop-linux-flake";
@@ -6,7 +5,7 @@
   };
 
   den.aspects.dev.ide =
-    { user, ... }:
+    { lib, user, ... }:
     {
       nixos.environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
         ".config/bruno"

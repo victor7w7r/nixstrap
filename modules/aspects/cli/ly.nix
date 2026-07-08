@@ -1,7 +1,11 @@
-{ lib, ... }:
 {
   den.aspects.cli.ly.nixos =
-    { isHandheld, pkgs, ... }:
+    {
+      isHandheld,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       security.pam.services.ly.kwallet = {
         enable = true;

@@ -1,9 +1,14 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs.impermanence.url = "github:nix-community/impermanence";
 
   den.default.nixos =
-    { isPersistent, user, ... }:
+    {
+      isPersistent,
+      lib,
+      user,
+      ...
+    }:
     {
       imports = [ inputs.impermanence.nixosModules.impermanence ];
 

@@ -1,9 +1,4 @@
-{
-  den,
-  inputs,
-  lib,
-  ...
-}:
+{ inputs, ... }:
 {
   flake-file.inputs = {
     zen-browser = {
@@ -17,7 +12,7 @@
   };
 
   den.aspects.zen.default =
-    { user, ... }:
+    { lib, user, ... }:
     {
       nixos =
         { isPersistent, ... }:
