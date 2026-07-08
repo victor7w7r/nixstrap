@@ -14,7 +14,7 @@
           };
         };
         sda = disk.gpt {
-          device = "sda1";
+          device = "sda";
           partitions = {
             swapcrypt = luks.call {
               name = "swapcrypt";

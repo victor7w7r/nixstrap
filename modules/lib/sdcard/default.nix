@@ -7,8 +7,9 @@
       bootSize ? 96,
       isHDD ? true,
       persistSize ? 1024,
+      isExtlinux ? true,
+      ubootSelector ? "",
       persistLabel ? "persist",
-      populateFirmwareCommands ? "",
       postBuildCommands ? "",
       storeLabel ? "store",
     }:
@@ -19,6 +20,7 @@
         {
           config,
           host,
+          lib,
           pkgs,
           ...
         }:
@@ -45,11 +47,31 @@
               |> (closureInfo: ''
                 mkdir -p $out
 
+                ${lib.optionalString isExtlinux ''
+                  mkdir -p firmware/boot
+                  ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+                    -c ${config.system.build.toplevel} -d firmware/boot
+                ''}
+
                 ${(persist persistSize persistLabel)}
-                ${(boot bootSize persistSize populateFirmwareCommands)}
+                ${(boot bootSize persistSize)}
                 dd conv=notrunc if=./persist.img of=boot.img seek=$START count=$SECTORS
 
                 echo "Copying uboot and compressing boot image..."
+
+                ${
+                  if ubootSelector == "sunxi" then
+                    (pkgs.buildUBoot {
+                      defconfig = "orangepi_zero2w_defconfig";
+                      extraMeta.platforms = [ "aarch64-linux" ];
+                      BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
+                      filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
+                    })
+                    |> (uboot: "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc")
+                  else
+                    ""
+                }
+
                 ${postBuildCommands}
                 zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/
 

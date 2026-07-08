@@ -2,7 +2,6 @@
 {
   den = {
     hosts.x86_64-linux.graphical-live.users.snowflake = { };
-
     aspects.graphical-live = {
       includes = with den.aspects; [
         live.common

@@ -3,7 +3,7 @@
   den = {
     hosts.x86_64-linux.minimal-live.users.snowflake = { };
     aspects.minimal-live = {
-      includes = with den.aspects; [ live._ ];
+      includes = with den.aspects; [ live.common ];
       nixos =
         { lib, ... }:
         {
