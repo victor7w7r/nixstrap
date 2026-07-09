@@ -45,6 +45,7 @@
         isMainMac,
         lib,
         pkgs,
+        self',
         ...
       }:
       {
@@ -60,7 +61,7 @@
             #ariang
             slirp4netns
             rquickshare
-            args.self'.packages.ssh-list
+            self'.packages.ssh-list
           ]);
 
         programs = lib.optionalAttrs isPersistent {

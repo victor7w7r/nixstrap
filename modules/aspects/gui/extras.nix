@@ -27,6 +27,7 @@
         {
           isPersistent,
           isServer,
+          isX86,
           lib,
           pkgs,
           self',
@@ -78,7 +79,7 @@
               tahoma2d
               ytdl
             ]
-            ++ (lib.optionals args.isX86 [
+            ++ (lib.optionals isX86 [
               #inputs'.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.thorium-sse3
             ]);
         };

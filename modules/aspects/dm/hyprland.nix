@@ -26,6 +26,7 @@
     {
       pkgs,
       self',
+      host,
       inputs',
       ...
     }:
@@ -40,7 +41,7 @@
         with self'.packages;
         [
           #pyprland.packages."x86_64-linux".pyprland
-          inputs'.rofi-tools.packages.${args.host.system}.default
+          inputs'.rofi-tools.packages.${host.system}.default
           brightnessctl
           dmenu-rs
           figlet
