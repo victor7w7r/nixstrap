@@ -1,13 +1,6 @@
 {
   den.default.nixos =
-    {
-      isIntel,
-      isLive,
-      isGeneric,
-      hasVisualKeyboard,
-      lib,
-      ...
-    }:
+    { lib, ... }@args:
     {
       boot = {
         supportedFilesystems = [
@@ -18,8 +11,8 @@
           "ntfs"
           "vfat"
         ]
-        ++ lib.optionals isIntel [ "xfs" ]
-        ++ lib.optionals (isLive || hasVisualKeyboard || isGeneric) [ "bcachefs" ];
+        ++ lib.optionals args.isIntel [ "xfs" ]
+        ++ lib.optionals (args.isLive || args.hasVisualKeyboard || args.isGeneric) [ "bcachefs" ];
 
         modprobeConfig.enable = true;
         tmp = {

@@ -16,12 +16,10 @@
         };
         iconTheme = {
           name = "Colloid-Purple-Catppuccin-Dark";
-          package = (
-            pkgs.colloid-icon-theme.override {
-              schemeVariants = [ "catppuccin" ];
-              colorVariants = [ "purple" ];
-            }
-          );
+          package = pkgs.colloid-icon-theme.override {
+            schemeVariants = [ "catppuccin" ];
+            colorVariants = [ "purple" ];
+          };
         };
         theme = {
           name = "Layan-Dark";

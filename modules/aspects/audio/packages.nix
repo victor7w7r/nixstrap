@@ -3,35 +3,38 @@
     nixos =
       { pkgs, self', ... }:
       {
-        environment.systemPackages = with pkgs; [
-          asak
-          alsa-plugins
-          alsa-utils
-          alsa-firmware
-          alsa-ucm-conf
-          self'.packages.audio-share
-          self'.packages.cliwrap
-          self'.packages.gspot
-          kew
-          musikcube
-          playerctl
-          pavucontrol
-          pwvucontrol
-          psst
-          sof-firmware
-          spotdl
-          sptlrx
-          youtube-tui
-          ytfzf
-          ytmdl
-          #linuxwave
-          #spotify-adblock-git
-          #spotify-adkiller-dns-block-git
-          #https://github.com/carlocastoldi/blockify
-          #https://github.com/trizen/clyrics
-          #https://github.com/SathyaBhat/spotify-dl
-          #https://github.com/foresterre/imagineer
-        ];
+        environment.systemPackages =
+          with pkgs;
+          with self'.packages;
+          [
+            asak
+            alsa-plugins
+            alsa-utils
+            alsa-firmware
+            alsa-ucm-conf
+            audio-share
+            cliwrap
+            gspot
+            kew
+            musikcube
+            playerctl
+            pavucontrol
+            pwvucontrol
+            psst
+            sof-firmware
+            spotdl
+            sptlrx
+            youtube-tui
+            ytfzf
+            ytmdl
+            #linuxwave
+            #spotify-adblock-git
+            #spotify-adkiller-dns-block-git
+            #https://github.com/carlocastoldi/blockify
+            #https://github.com/trizen/clyrics
+            #https://github.com/SathyaBhat/spotify-dl
+            #https://github.com/foresterre/imagineer
+          ];
       };
 
     provides.to-users.homeManager =

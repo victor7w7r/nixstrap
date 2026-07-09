@@ -8,6 +8,7 @@
       nixos.environment.persistence."/nix/persist".users."${user.name}".directories = [
         ".config/flatpak"
       ];
+
       programs.appimage = {
         enable = true;
         binfmt = true;

@@ -15,20 +15,23 @@
     os =
       { pkgs, self', ... }:
       {
-        environment.systemPackages = with pkgs; [
-          self'.packages.cargofetch
-          countryfetch
-          self'.packages.customfetch
-          self'.packages.envfetch
-          freshfetch
-          macchina
-          nerdfetch
-          octofetch
-          onefetch
-          pfetch-rs
-          uwufetch
-          self'.packages.treefetch
-        ];
+        environment.systemPackages =
+          with pkgs;
+          with self'.packages;
+          [
+            cargofetch
+            countryfetch
+            customfetch
+            envfetch
+            freshfetch
+            macchina
+            nerdfetch
+            octofetch
+            onefetch
+            pfetch-rs
+            uwufetch
+            treefetch
+          ];
       };
 
     nixos =
@@ -40,23 +43,26 @@
         ...
       }:
       {
-        environment.systemPackages = with pkgs; [
-          cpufetch
-          microfetch
-          ramfetch
-          self'.packages.bestfetch
-          self'.packages.frenzch
-          self'.packages.hexfetch
-          self'.packages.hwfetch
-          self'.packages.kat-oh
-          self'.packages.mfetch
-          self'.packages.osu-cli
-          self'.packages.songfetch
-          self'.packages.sysfex
-          self'.packages.zeitfetch
-          #inputs'.batfetch.packages.${host.system}.default
-          #inputs.swiftfetch.packages.${pkgs.system}.swiftfetch
-        ];
+        environment.systemPackages =
+          with pkgs;
+          with self'.packages;
+          [
+            cpufetch
+            microfetch
+            ramfetch
+            bestfetch
+            frenzch
+            hexfetch
+            hwfetch
+            kat-oh
+            mfetch
+            osu-cli
+            songfetch
+            sysfex
+            zeitfetch
+            #inputs'.batfetch.packages.${host.system}.default
+            #inputs.swiftfetch.packages.${pkgs.system}.swiftfetch
+          ];
       };
 
     provides.to-users.homeManager.programs.fastfetch = {

@@ -35,6 +35,7 @@
       "Notification Messages".warnAboutRisksBeforeActingAsAdmin = false;
       PreviewSettings.Plugins = "appimagethumbnail,cursorthumbnail,mobithumbnail,audiothumbnail,textthumbnail,fontthumbnail,ffmpegthumbs,djvuthumbnail,gsthumbnail,rawthumbnail,directorythumbnail,kraorathumbnail,opendocumentthumbnail,windowsexethumbnail,avif,glycin-heif,heif,glycin-image-rs,glycin-jxl,jxl,librsvg,glycin-svg,imagethumbnail,windowsimagethumbnail,exrthumbnail,jpegthumbnail,svgthumbnail,comicbookthumbnail,ebookthumbnail,exe-thumbnailer";
     };
+
     kiorc = {
       Confirmations = {
         ConfirmDelete = false;
@@ -43,6 +44,7 @@
       };
       "Executable scripts".behaviourOnLaunch = "alwaysAsk";
     };
+
     krunnerrc = {
       General = {
         ActivateWhenTypingOnDesktop = false;

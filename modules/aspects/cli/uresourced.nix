@@ -12,7 +12,10 @@
       };
       systemd = {
         packages = with self'.packages; [ uresourced ];
-        services.uresourced.wantedBy = [ "multi-user.target" ];
+        services.uresourced = {
+          enable = true;
+          wantedBy = [ "multi-user.target" ];
+        };
       };
       environment = {
         systemPackages = with self'.packages; [ uresourced ];

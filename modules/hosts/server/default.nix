@@ -36,7 +36,14 @@
               extraModulePackages = [ config.boot.kernelPackages.r8168 ];
               blacklistedKernelModules = [ "r8169" ];
               resumeDevice = "/dev/mapper/swapcrypt";
-              kernelParams = [ "pcie_aspm=off" ];
+              kernelParams = [
+                "pcie_aspm=off"
+                "kvmfr.static_size_mb=128"
+              ];
+              extraModprobeConfig = ''
+                options kvm-intel nested=1
+                options kvm_intel emulate_invalid_guest_state=0
+              '';
               kernelPackages = (kernel.hosts.server pkgs).server-kernelPackages;
               swraid = {
                 enable = true;

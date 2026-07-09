@@ -1,11 +1,6 @@
 {
   den.aspects.cli.ly.nixos =
-    {
-      isHandheld,
-      lib,
-      pkgs,
-      ...
-    }:
+    { lib, pkgs, ... }@args:
     {
       security.pam.services.ly.kwallet = {
         enable = true;
@@ -43,7 +38,7 @@
             xinitrc = "null";
             tty = 1;
           }
-          (lib.mkIf isHandheld {
+          (lib.mkIf args.isHandheld {
             battery_id = "BAT0";
           })
         ];

@@ -40,10 +40,16 @@
 
           boot = {
             kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
+            kernelParams = [ "kvmfr.static_size_mb=128" ];
             resumeDevice = "/dev/mapper/swapcrypt";
             extraModulePackages = [ self'.packages.apple-bce ];
+            extraModprobeConfig = ''
+              options kvm-intel nested=1
+              options kvm_intel emulate_invalid_guest_state=0
+            '';
           };
 
+          virtualisation.kvmgt.enable = true;
           environment.systemPackages = with pkgs; [
             bolt
             tbtools

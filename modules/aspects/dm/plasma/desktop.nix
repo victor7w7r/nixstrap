@@ -5,14 +5,13 @@
       programs.plasma = {
         desktop.widgets = [
           {
-            config = {
-              General = {
-                GrainMode = 4;
-                PixelateMode = 4;
-                hideWidget = true;
-                isEnabled = false;
-              };
+            config.General = {
+              GrainMode = 4;
+              PixelateMode = 4;
+              hideWidget = true;
+              isEnabled = false;
             };
+
             name = "luisbocanegra.desktop.wallpaper.effects";
             position = {
               vertical = 1080 - 32;

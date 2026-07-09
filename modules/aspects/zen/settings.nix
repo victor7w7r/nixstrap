@@ -1,6 +1,5 @@
 {
-  /*
-    den.aspects.zen.settings.provides.to-users.homeManager.programs.zen-browser.profiles.default.settings =
+  den.aspects.zen.settings.provides.to-users.homeManager.programs.zen-browser.profiles.default.settings =
     let
       lock-false = {
         Value = false;
@@ -600,5 +599,4 @@
       "zen.workspaces.indicator-position" = "";
       "zen.workspaces.show-workspace-indicator" = false;
     };
-  */
 }

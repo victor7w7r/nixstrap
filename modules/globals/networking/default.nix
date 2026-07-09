@@ -1,14 +1,8 @@
 {
   den.default.nixos =
+    { lib, ... }@args:
     {
-      isPersistent,
-      isServer,
-      isPhone,
-      lib,
-      ...
-    }:
-    {
-      environment = lib.optionalAttrs (isPersistent || !isServer) {
+      environment = lib.optionalAttrs (args.isPersistent || !args.isServer) {
         persistence."/nix/persist".directories = lib.mkAfter [
           "/etc/NetworkManager/"
           "/var/lib/NetworkManager"
@@ -33,15 +27,15 @@
             wait = "background";
           };
           networkmanager = {
-            enable = !isServer;
+            enable = !args.isServer;
             insertNameservers = nameservers;
             dhcp = "dhcpcd";
-            unmanaged = lib.optionals isPhone [
+            unmanaged = lib.optionals args.isPhone [
               "rndis0"
               "usb0"
             ];
           };
-          modemmanager.enable = lib.mkForce isPhone;
+          modemmanager.enable = lib.mkForce args.isPhone;
           firewall = {
             enable = true;
             allowPing = true;
@@ -53,7 +47,7 @@
               22
               9090
             ]
-            ++ lib.optionals isServer [ 8006 ];
+            ++ lib.optionals args.isServer [ 8006 ];
           };
         });
     };

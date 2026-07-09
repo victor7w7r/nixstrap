@@ -1,28 +1,21 @@
 {
   den.aspects.dev.ccache.nixos =
-    {
-      isPersistent,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      ccacheConfigFile = pkgs.writeText "ccache.conf" ''
-        compression = false
-        file_clone = true
-        max_size = 25G
-        sloppiness = random_seed
-        umask = 007
-        compiler_check = content
-      '';
-    in
-    lib.optionalAttrs isPersistent {
+    { pkgs, ... }:
+    (pkgs.writeText "ccache.conf" ''
+      compression = false
+      file_clone = true
+      max_size = 25G
+      sloppiness = random_seed
+      umask = 007
+      compiler_check = content
+    '')
+    |> (conf: {
       nixpkgs.overlays = [
-        (final: prev: {
+        (final: _: {
           ccacheWrapper = final.ccacheWrapper.override {
             extraConfig = ''
               CCACHE_DIR="/nix/var/cache/ccache"
-              export CCACHE_CONFIGPATH="''${CCACHE_CONFIGPATH:-${ccacheConfigFile}}"
+              export CCACHE_CONFIGPATH="''${CCACHE_CONFIGPATH:-${conf}}"
               if [ ! -d "$CCACHE_DIR" ]; then
                 echo "====="
                 echo "Directory '$CCACHE_DIR' does not exist"
@@ -44,9 +37,7 @@
         })
       ];
 
-      systemd.tmpfiles.rules = [
-        "L+ /nix/var/cache/ccache/ccache.conf - - - - ${ccacheConfigFile}"
-      ];
+      systemd.tmpfiles.rules = [ "L+ /nix/var/cache/ccache/ccache.conf - - - - ${conf}" ];
 
       nix.settings.extra-sandbox-paths = [
         "/nix/var/cache/ccache"
@@ -57,5 +48,5 @@
         enable = true;
         cacheDir = "/nix/var/cache/ccache";
       };
-    };
+    });
 }

@@ -49,37 +49,40 @@
             xfce4-terminal
             xfce4-volumed-pulse
           ];
-          systemPackages = with pkgs; [
-            blueman
-            deja-dup
-            epiphany
-            xarchiver
-            xclip
-            xsel
-            catfish
-            gigolo
-            xarchiver
-            xfce4-appfinder
-            xfce4-clipman-plugin
-            xfce4-cpufreq-plugin
-            xfce4-cpugraph-plugin
-            xfce4-fsguard-plugin
-            xfce4-genmon-plugin
-            xfce4-netload-plugin
-            xfce4-panel
-            xfce4-panel-profiles
-            xfce4-taskmanager
-            xfce4-sensors-plugin
-            xfce4-systemload-plugin
-            xfce4-whiskermenu-plugin
-            xfce4-xkb-plugin
-            xfdashboard
-            thunar-shares-plugin
-            self'.packages.gtkhash-thunar
-            self'.packages.thunar-custom-actions
-            self'.packages.xfce4-diskperf-plugin
-            self'.packages.xfce4-mount-plugin
-          ];
+          systemPackages =
+            with pkgs;
+            with self'.packages;
+            [
+              blueman
+              deja-dup
+              epiphany
+              xarchiver
+              xclip
+              xsel
+              catfish
+              gigolo
+              xarchiver
+              xfce4-appfinder
+              xfce4-clipman-plugin
+              xfce4-cpufreq-plugin
+              xfce4-cpugraph-plugin
+              xfce4-fsguard-plugin
+              xfce4-genmon-plugin
+              xfce4-netload-plugin
+              xfce4-panel
+              xfce4-panel-profiles
+              xfce4-taskmanager
+              xfce4-sensors-plugin
+              xfce4-systemload-plugin
+              xfce4-whiskermenu-plugin
+              xfce4-xkb-plugin
+              xfdashboard
+              thunar-shares-plugin
+              gtkhash-thunar
+              thunar-custom-actions
+              xfce4-diskperf-plugin
+              xfce4-mount-plugin
+            ];
         };
       };
 

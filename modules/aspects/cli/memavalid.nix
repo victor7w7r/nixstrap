@@ -39,8 +39,13 @@
       systemd = {
         packages = with self'.packages; [ memavalid ];
         services.memavalid = {
+          enable = true;
           wantedBy = [ "multi-user.target" ];
           restartTriggers = [ conf ];
+          serviceConfig = {
+            ExecStart = "${self'.packages.memavaild}/bin/memavaild";
+            User = "memavaild";
+          };
         };
       };
     });

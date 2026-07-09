@@ -14,26 +14,29 @@
     os =
       { pkgs, self', ... }:
       {
-        environment.systemPackages = with pkgs; [
-          atac
-          dos2unix
-          curlie
-          httpie
-          fw
-          jless
-          just
-          self'.packages.jwtui
-          ktlint
-          self'.packages.kyun
-          self'.packages.loc
-          self'.packages.mynav
-          posting
-          rainfrog
-          shellcheck
-          ugm
-          self'.packages.updo
-          xh
-        ];
+        environment.systemPackages =
+          with pkgs;
+          with self'.packages;
+          [
+            atac
+            dos2unix
+            curlie
+            httpie
+            fw
+            jless
+            just
+            jwtui
+            ktlint
+            kyun
+            loc
+            mynav
+            posting
+            rainfrog
+            shellcheck
+            ugm
+            updo
+            xh
+          ];
         programs.direnv = {
           enable = false;
           enableZshIntegration = true;

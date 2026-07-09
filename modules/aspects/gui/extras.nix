@@ -2,11 +2,11 @@
   flake-file.inputs.custom-packages.url = "github:Rishabh5321/custom-packages-flake";
 
   den.aspects.gui.extras =
-    { lib, user, ... }:
+    { user, ... }:
     {
       nixos =
-        { isPersistent, isServer, ... }:
-        lib.optionalAttrs (isPersistent && !isServer) {
+        { lib, ... }@args:
+        lib.optionalAttrs (args.isPersistent && !args.isServer) {
           environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
             ".config/legcord"
             ".config/onlyoffice"
@@ -19,18 +19,12 @@
         };
 
       provides.to-users.homeManager =
-        {
-          isPersistent,
-          isServer,
-          isX86,
-          pkgs,
-          self',
-          ...
-        }:
-        lib.optionalAttrs (isPersistent && !isServer) {
+        { lib, pkgs, ... }@args:
+        lib.optionalAttrs (args.isPersistent && !args.isServer) {
           programs.onlyoffice.enable = true;
           home.packages =
             with pkgs;
+            with args.self'.packages;
             [
               bleachbit
               chromium
@@ -64,15 +58,15 @@
               sticky-notes
               tenacity
               vlc
-              self'.packages.davinci-video-converter
-              self'.packages.fzf-open
-              self'.packages.jdownloader
-              self'.packages.linuxthemestore
-              self'.packages.shutter-encoder
-              self'.packages.tahoma2d
-              self'.packages.ytdl
+              davinci-video-converter
+              fzf-open
+              jdownloader
+              linuxthemestore
+              shutter-encoder
+              tahoma2d
+              ytdl
             ]
-            ++ (lib.optionals isX86 [
+            ++ (lib.optionals args.isX86 [
               #inputs'.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.thorium-sse3
             ]);
         };

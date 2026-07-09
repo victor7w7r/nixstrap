@@ -22,23 +22,27 @@
           wiper
         ];
       };
+
     nixos =
       { pkgs, self', ... }:
       {
-        environment.systemPackages = with pkgs; [
-          self'.packages.btrfsd
-          self'.packages.chkufsd
-          self'.packages.compress
-          self'.packages.ext4-crypt
-          self'.packages.repair-usb-disc
-          compsize
-          httm
-          gpart
-          partclone
-          parted
-          tparted
-          wipefreespace
-        ];
+        environment.systemPackages =
+          with pkgs;
+          with self'.packages;
+          [
+            btrfsd
+            chkufsd
+            compress
+            ext4-crypt
+            repair-usb-disc
+            compsize
+            httm
+            gpart
+            partclone
+            parted
+            tparted
+            wipefreespace
+          ];
       };
   };
 }

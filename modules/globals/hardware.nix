@@ -13,13 +13,7 @@
       };
 
     nixos =
-      {
-        isGraphic,
-        isX86,
-        lib,
-        pkgs,
-        ...
-      }:
+      { lib, pkgs, ... }@args:
       {
         environment.systemPackages = with pkgs; [
           dippi
@@ -37,8 +31,8 @@
         ];
 
         hardware = lib.mkMerge [
-          (lib.mkIf isGraphic { graphics.enable = true; })
-          (lib.mkIf (isGraphic && isX86) { graphics.enable32Bit = true; })
+          (lib.mkIf args.isGraphic { graphics.enable = true; })
+          (lib.mkIf (args.isGraphic && args.isX86) { graphics.enable32Bit = true; })
           {
             wirelessRegulatoryDatabase = true;
             sensor.iio.enable = true;

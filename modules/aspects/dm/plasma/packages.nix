@@ -7,12 +7,7 @@
 
   den.aspects.plasma.default-packages = {
     nixos =
-      {
-        hasVisualKeyboard,
-        lib,
-        pkgs,
-        ...
-      }:
+      { lib, pkgs, ... }@args:
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [
@@ -89,7 +84,7 @@
               pkgs.pinentry-qt
               pkgs.systemdgenie
             ]
-            ++ (lib.optionals hasVisualKeyboard [
+            ++ (lib.optionals args.hasVisualKeyboard [
               pkgs.krename
               pkgs.kdePackages.isoimagewriter
               pkgs.ulauncher
@@ -100,25 +95,28 @@
     provides.to-users.homeManager =
       { pkgs, self', ... }:
       {
-        home.packages = with pkgs; [
-          application-title-bar
-          self'.packages.appimage-thumbnailer
-          self'.packages.ffmpeg-audio-thumbnailer
-          self'.packages.jar-thumbnailer
-          self'.packages.kde-control-station
-          self'.packages.kde-thumbnailer-apk
-          self'.packages.kf6-servicemenus-rootactions
-          self'.packages.kmenu
-          kurve
-          self'.packages.kzones
-          self'.packages.layan
-          self'.packages.maxwell
-          self'.packages.plasma-drawer
-          self'.packages.panel-spacer-extended
-          self'.packages.sticky-window-snapping
-          self'.packages.virtual-desktops-only-on-primary
-          self'.packages.wallpaper-effects
-        ];
+        home.packages =
+          with pkgs;
+          with self'.packages;
+          [
+            application-title-bar
+            appimage-thumbnailer
+            ffmpeg-audio-thumbnailer
+            jar-thumbnailer
+            kde-control-station
+            kde-thumbnailer-apk
+            kf6-servicemenus-rootactions
+            kmenu
+            kurve
+            kzones
+            layan
+            maxwell
+            plasma-drawer
+            panel-spacer-extended
+            sticky-window-snapping
+            virtual-desktops-only-on-primary
+            wallpaper-effects
+          ];
       };
   };
 }

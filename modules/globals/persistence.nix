@@ -3,16 +3,11 @@
   flake-file.inputs.impermanence.url = "github:nix-community/impermanence";
 
   den.default.nixos =
-    {
-      isPersistent,
-      lib,
-      user,
-      ...
-    }:
+    { lib, user, ... }@args:
     {
       imports = [ inputs.impermanence.nixosModules.impermanence ];
 
-      environment.persistence."/nix/persist" = lib.optionalAttrs isPersistent {
+      environment.persistence."/nix/persist" = lib.optionalAttrs args.isPersistent {
         hideMounts = true;
         directories = [
           "/etc/nixos"
