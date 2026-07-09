@@ -1,4 +1,9 @@
-{ den, inputs, ... }:
+{
+  den,
+  inputs,
+  tarball,
+  ...
+}:
 {
   flake-file.inputs.mobile-nixos = {
     url = "github:mobile-nixos/mobile-nixos";
@@ -7,6 +12,7 @@
 
   den.aspects.phone.common = {
     includes = with den.aspects; [
+      (tarball.lib.call { })
       audio._
       cli._
       dev.ccache
@@ -18,6 +24,7 @@
       pentest._
       zen._
 
+      phone.disks
       android
       bluetooth
       kitty
@@ -36,7 +43,19 @@
         ...
       }:
       {
-        nixpkgs.overlays = [ (import "${inputs.mobile-nixos}/overlay/overlay.nix") ];
+        nixpkgs.overlays = [
+          (import "${inputs.mobile-nixos}/overlay/overlay.nix")
+          (final: prev: {
+            libinput = prev.libinput.overrideAttrs (oldAttrs: {
+              nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [
+                final.pkg-config
+                final.lua5_4
+              ];
+              buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ final.lua5_4 ];
+            });
+          })
+        ];
+
         imports = [
           inputs.disko.nixosModules.disko
         ]
@@ -148,19 +167,64 @@
           ];
         };
 
-        /*
-          nixpkgs.config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (lib.getName pkg) [
-              "firmware-oneplus-sdm845"
-              "firmware-oneplus-sdm845-xz"
-            ];
-          hardware.firmware = lib.mkAfter [ (pkgs.callPackage ../custom/oneplus.nix { }) ];
+        zramSwap = {
+          enable = true;
+          algorithm = "zstd";
+          memoryPercent = 60;
+          priority = 100;
+        };
 
-          systemd.services.ModemManager.serviceConfig.ExecStart = [
-          "${pkgs.modemmanager}/bin/ModemManager --test-quick-suspend-resume"
-          ];
-        */
       };
   };
 }
+
+/*
+    blacklistedKernelModules = [
+        "qcrypto"
+        "ipa"
+      ];
+      kernelParams = [
+        "clk_ignore_unused"
+        "pd_ignore_unused"
+        "arm64.nopauth"
+        "console=ttyGS0,115200"
+        "console=tty0"
+
+        "rd.systemd.default_standard_output=kmsg+console"
+        "rd.systemd.default_standard_error=kmsg+console"
+        "rd.systemd.journald.forward_to_console=1"
+        "rd.systemd.log_target=console"
+        "rd.systemd.journald.forward_to_console=1"
+      ];
+      initrd = {
+        includeDefaultModules = false;
+        systemd = {
+          tpm2.enable = false;
+          extraBin.buffyboard = "${(pkgs.callPackage ./custom/buffybox.nix { })}/bin/buffyboard";
+          contents."/share".source = "${pkgs.libinput.out}/share";
+          storePaths = [ pkgs.libinput ];
+        };
+        kernelModules = [
+          "qcom_pd_mapper"
+          "sd_mod"
+          "scsi_mod"
+          "dm_mod"
+          "ufshcd-core"
+          "ufs-qcom"
+          "phy-qcom-qmp-ufs"
+        ];
+      };
+    };
+
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "firmware-oneplus-sdm845"
+        "firmware-oneplus-sdm845-xz"
+      ];
+    hardware.firmware = lib.mkAfter [ (pkgs.callPackage ../custom/oneplus.nix { }) ];
+
+    systemd.services.ModemManager.serviceConfig.ExecStart = [
+    "${pkgs.modemmanager}/bin/ModemManager --test-quick-suspend-resume"
+    ];
+*/

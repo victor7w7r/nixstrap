@@ -12,25 +12,23 @@
   };
 
   den.aspects.zen.default =
-    { lib, user, ... }:
+    { user, ... }:
     {
       nixos =
-        { isPersistent, ... }:
-        lib.optionalAttrs isPersistent {
-          environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
-            ".cache/zen"
-            ".config/zen"
-          ];
-        };
+        { lib, isPersistent, ... }:
+        lib.mkMerge [
+          { home-manager.sharedModules = [ inputs.zen-browser.homeModules.beta ]; }
+          (lib.optionalAttrs isPersistent {
+            environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
+              ".cache/zen"
+              ".config/zen"
+            ];
+          })
+        ];
 
       provides.to-users.homeManager =
+        { config, pkgs, ... }:
         {
-          config,
-          pkgs,
-          ...
-        }:
-        {
-          imports = [ inputs.zen-browser.homeModules.beta ];
           home.file.".zen".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zen";
 
           programs.zen-browser = {

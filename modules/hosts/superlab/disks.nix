@@ -1,6 +1,6 @@
 { disko, ... }:
 {
-  den.aspects.handheld.disks.nixos.disko.devices = with disko; {
+  den.aspects.superlab.disks.nixos.disko.devices = with disko; {
     bcachefs_filesystems.broot = bcachefs.filesystem {
       uuid = "2564fcf6-551f-4358-b238-2fe638b1c159";
       subvolumes =

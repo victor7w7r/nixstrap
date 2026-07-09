@@ -68,9 +68,9 @@
           };
         };
       };
-      bcache0 = disk.bcache-lvm { };
-      bcache1 = disk.bcache-lvm { num = 1; };
-      persist = disk.entire-luks {
+      bcache0 = bcachefs.lvm { };
+      bcache1 = bcachefs.lvm { num = 1; };
+      persist = luks.entire {
         name = "persist";
         device = "${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
         postMount = ''
@@ -84,7 +84,7 @@
           #echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
         '';
       };
-      storage = disk.entire-luks {
+      storage = luks.entire {
         name = "storage";
         device = "${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
         postMount = ''

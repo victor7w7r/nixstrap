@@ -1,7 +1,12 @@
 {
   den.default = {
     os =
-      { isPersistent, pkgs, ... }:
+      {
+        isPersistent,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
@@ -21,7 +26,12 @@
       };
 
     provides.to-users.homeManager =
-      { isPersistent, pkgs, ... }:
+      {
+        isPersistent,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         home.packages = with pkgs; [ lazygit ] ++ lib.optionals isPersistent [ git-credential-manager ];
         programs = {

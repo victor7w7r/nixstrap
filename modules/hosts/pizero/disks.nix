@@ -1,6 +1,6 @@
 { disko, ... }:
 {
-  den.aspects.handheld.disks.nixos.disko.devices = with disko; {
+  den.aspects.pizero.disks.nixos.disko.devices = with disko; {
     disk = {
       root = ephemeral.root { };
       main = disk.gpt {

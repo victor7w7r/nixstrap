@@ -3,7 +3,7 @@
   den.aspects.server = {
     disks-logical.nixos.disko.devices = with disko; {
       disk = {
-        bcache = disk.entire-luks {
+        bcache = luks.entire {
           name = "cloud";
           device = "/dev/bcache0";
           postMount = ''
@@ -87,7 +87,7 @@
               priority = 4;
               postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
             };
-            persist = disk.entire-luks {
+            persist = luks.entire {
               name = "persist";
               device = "${disk.constants.partlabel}/disk-nvme-persist";
               content = disko.xfs.call {

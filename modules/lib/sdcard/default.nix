@@ -27,6 +27,7 @@
         {
           system.nixos.tags = [ "sd-card" ];
           system.build.image = config.system.build.sdImage;
+          system.build.bootFiles = (sdcard.lib.kernel pkgs ubootSelector postBuildCommands true);
           system.build.sdImage = pkgs.stdenv.mkDerivation {
             name = "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
             nativeBuildInputs = with pkgs; [
@@ -56,25 +57,9 @@
                 ${(persist persistSize persistLabel)}
                 ${(boot bootSize persistSize)}
                 dd conv=notrunc if=./persist.img of=boot.img seek=$START count=$SECTORS
+                echo "Copying uboot and compressing kernel image..."
 
-                echo "Copying uboot and compressing boot image..."
-
-                ${
-                  if ubootSelector == "sunxi" then
-                    (pkgs.buildUBoot {
-                      defconfig = "orangepi_zero2w_defconfig";
-                      extraMeta.platforms = [ "aarch64-linux" ];
-                      BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
-                      filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
-                    })
-                    |> (uboot: "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc")
-                  else
-                    ""
-                }
-
-                ${postBuildCommands}
-                zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/
-
+                ${(kernel pkgs ubootSelector postBuildCommands false)}
                 ${(store closureInfo isHDD storeLabel)}
               '');
           };

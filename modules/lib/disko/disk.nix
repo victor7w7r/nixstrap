@@ -22,38 +22,25 @@
 
     lvm =
       {
-        num ? 0,
         device,
+        num ? 0,
       }:
       {
         type = "disk";
         device = "/dev/${device}";
         content = {
-          vg = "vg${num}";
-          type = "lvm_pv";
-        };
-      };
-
-    bcache-lvm =
-      {
-        num ? 0,
-      }:
-      {
-        type = "disk";
-        device = "/dev/bcache${num}";
-        content = {
-          vg = "vg${num}";
+          vg = "vg${toString num}";
           type = "lvm_pv";
         };
       };
 
     vg =
       {
-        num ? 0,
         lvs,
+        num ? 0,
       }:
       {
-        "vg${num}" = {
+        "vg${toString num}" = {
           type = "lvm_vg";
           inherit lvs;
         };
@@ -70,30 +57,6 @@
         content = {
           type = "mdraid";
           inherit name;
-        };
-      };
-
-    entire-luks =
-      {
-        name,
-        device,
-        postMount ? "",
-        postCreate ? "",
-        allowDiscards ? false,
-      }:
-      {
-        type = "disk";
-        inherit device;
-        content = disko.luks.call {
-          entireDisk = true;
-          size = "100%";
-          inherit device;
-          inherit
-            allowDiscards
-            name
-            postMount
-            postCreate
-            ;
         };
       };
   };
