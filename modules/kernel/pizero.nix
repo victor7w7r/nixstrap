@@ -2,26 +2,15 @@
 {
   kernel.hosts.pizero =
     pkgs:
-    let
-      src = (kernel.linux.injector pkgs).cachyos;
-      version = kernel.lib.calc-version pkgs src;
-      patchesData = kernel.patches.injector pkgs;
-      cachyosPatches = patchesData.cachyos version.majorMinor;
-      tachyonPatches = patchesData.tachyon;
-      bunkerPatches = patchesData.bunker;
-    in
     (kernel.lib.v7w7r {
-      inherit pkgs src;
+      inherit pkgs;
+      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "sunxi-hardened";
-      config = "${patchesData.armbian.source}/config/kernel/linux-sunxi64-current.config";
-      version = version.string;
+      config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-sunxi64-current.config";
+      version = (kernel.linux.injector pkgs).version.string;
       patches =
-        cachyosPatches.common
-        ++ cachyosPatches.hardened
-        ++ tachyonPatches.common
-        ++ tachyonPatches.notGaming
-        ++ bunkerPatches.common
-        ++ patchesData.armbian.sunxi-patches;
+        with kernel.patches.injector pkgs;
+        cachyos.hardened ++ tachyon.std ++ bunker.hardened ++ armbian.sunxi-patches;
       extraConfig = with kernel.config.modules; [
         (cmdline { })
         default

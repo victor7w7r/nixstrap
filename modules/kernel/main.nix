@@ -2,18 +2,13 @@
 {
   kernel.hosts.main =
     pkgs:
-    let
-      src = (kernel.linux.injector pkgs).cachyos;
-      version = kernel.lib.calc-version pkgs src;
-    in
     (kernel.lib.v7w7r {
-      inherit pkgs src;
+      inherit pkgs;
       localVer = "native";
+      src = (kernel.linux.injector pkgs).cachyos;
       config = (kernel.linux.injector pkgs).kConfig false;
-      version = version.string;
-      patches =
-        with kernel.patches.injector pkgs;
-        (cachyos version.majorMinor).common ++ tachyon.common ++ tachyon.notGaming ++ bunker.common;
+      version = (kernel.linux.injector pkgs).version.string;
+      patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
       extraConfig = with kernel.config.modules; [
         (cmdline {
           isIntel = true;

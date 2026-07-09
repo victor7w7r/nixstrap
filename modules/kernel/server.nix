@@ -2,26 +2,13 @@
 {
   kernel.hosts.server =
     pkgs:
-    let
-      src = (kernel.linux.injector pkgs).cachyos;
-      version = kernel.lib.calc-version pkgs src;
-      patchesData = kernel.patches.injector pkgs;
-      cachyosPatches = patchesData.cachyos version.majorMinor;
-      tachyonPatches = patchesData.tachyon;
-      bunkerPatches = patchesData.bunker;
-    in
     (kernel.lib.v7w7r {
-      inherit pkgs src;
+      inherit pkgs;
+      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "server-hardened-native";
-      version = version.string;
+      version = (kernel.linux.injector pkgs).version.string;
       config = (kernel.linux.injector pkgs).kConfig false;
-      patches =
-        cachyosPatches.optimization
-        ++ cachyosPatches.hardened
-        ++ cachyosPatches.governors
-        ++ tachyonPatches.common
-        ++ tachyonPatches.notGaming
-        ++ bunkerPatches.common;
+      patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
       extraConfig = with kernel.config.modules; [
         (cmdline {
           isIntel = true;

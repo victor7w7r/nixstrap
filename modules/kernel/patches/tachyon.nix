@@ -1,11 +1,11 @@
 {
   kernel.patches.tachyon =
     pkgs:
-    (
-      with (pkgs.lib.trivial.importJSON ./patches.json).tachyon; pkgs.fetchgit { inherit url rev sha256; }
-    )
-    |> (tachyon: {
-      common = map (path: "${tachyon}/patches/${path}") [
+    rec {
+      patches =
+        with (pkgs.lib.trivial.importJSON ./patches.json).tachyon;
+        pkgs.fetchgit { inherit url rev sha256; };
+      common = map (path: "${patches}/patches/${path}") [
         #"0001-add-umonitor-umwait-C0.x-C-states.patch"
         #"0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an.patch"
         #"0001-sched-migrate.patch"
@@ -59,13 +59,17 @@
         #"scale.patch"
         "slack.patch"
       ];
-
-      gaming = map (path: "${tachyon}/patches/${path}") [
-        "0158-clocksource-only-perform-extended-clocksource-checks.patch"
-      ];
-
-      notGaming = map (path: "${tachyon}/patches/${path}") [
-        "0128-itmt_epb-use-epb-to-scale-itmt.patch"
-      ];
+    }
+    |> (tachyon: {
+      std =
+        tachyon.common
+        ++ map (path: "${tachyon.patches}/patches/${path}") [
+          "0128-itmt_epb-use-epb-to-scale-itmt.patch"
+        ];
+      gaming =
+        tachyon.common
+        ++ map (path: "${tachyon.patches}/patches/${path}") [
+          "0158-clocksource-only-perform-extended-clocksource-checks.patch"
+        ];
     });
 }

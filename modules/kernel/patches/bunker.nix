@@ -12,8 +12,8 @@
           ;
       }
     )
-    |> (bunker: {
-      common = map (path: "${bunker}/patches/6.18/${path}") [
+    |> (bunker: rec {
+      std = map (path: "${bunker}/patches/6.18/${path}") [
         "bunker/0006-enable-kstack_erase-by-default.patch"
         "bunker/0008-disable-proc_kcore-by-default.patch"
         "clear/0001-net-dst-reduce-false-sharing-in-dst_entry.patch"
@@ -58,10 +58,11 @@
         "upstream/0018-slab-introduce-kmalloc_flex-and-family.patch"
         "upstream/0019-mount-add-OPEN_TREE_NAMESPACE.patch"
       ];
-
-      hardened = map (path: "${bunker}/patches/6.18/hardened/${path}") [
-        "0001-add-sysctl-to-allow-disabling-unprivileged-CLONE_NEW.patch"
-        "0002-security-add-config-for-default-of-unprivileged_user.patch"
-      ];
+      hardened =
+        std
+        ++ map (path: "${bunker}/patches/6.18/hardened/${path}") [
+          "0001-add-sysctl-to-allow-disabling-unprivileged-CLONE_NEW.patch"
+          "0002-security-add-config-for-default-of-unprivileged_user.patch"
+        ];
     });
 }

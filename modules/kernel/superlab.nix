@@ -2,25 +2,15 @@
 {
   kernel.hosts.superlab =
     pkgs:
-    let
-      src = (kernel.linux.injector pkgs).cachyos;
-      version = kernel.lib.calc-version pkgs src;
-      patchesData = kernel.patches.injector pkgs;
-      cachyosPatches = patchesData.cachyos version.majorMinor;
-      tachyonPatches = patchesData.tachyon;
-      bunkerPatches = patchesData.bunker;
-    in
     (kernel.lib.v7w7r {
-      inherit pkgs src;
-      version = version.string;
-      config = "${patchesData.armbian.source}/config/kernel/linux-rockchip64-current.config";
+      inherit pkgs;
+      src = (kernel.linux.injector pkgs).cachyos;
+      version = (kernel.linux.injector pkgs).version.string;
+      config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-rockchip64-current.config";
       localVer = "rockchip";
       patches =
-        cachyosPatches.common
-        ++ tachyonPatches.common
-        ++ tachyonPatches.notGaming
-        ++ bunkerPatches.common
-        ++ patchesData.armbian.rockchip-patches;
+        with kernel.patches.injector pkgs;
+        cachyos.std ++ tachyon.std ++ bunker.srd ++ armbian.rockchip-patches;
       extraConfig = with kernel.config.modules; [
         (cmdline { })
         default

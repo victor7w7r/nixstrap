@@ -1,7 +1,9 @@
+{ kernel, ... }:
 {
   kernel.patches.cachyos =
-    pkgs: majorMinor:
+    pkgs:
     let
+      majorMinor = (kernel.linux.injector pkgs).version.majorMinor;
       patches = pkgs.stdenvNoCC.mkDerivation {
         name = "cachyos-patches";
         src =
@@ -42,23 +44,24 @@
         installPhase = "mkdir -p $out && cp -r . $out/";
       };
       bore = [ "${patches}/${majorMinor}/sched-dev/0001-bore-cachy.patch" ];
-      optimization = map (path: "${patches}/${majorMinor}/misc/${path}") [
+      opt = map (path: "${patches}/${majorMinor}/misc/${path}") [
+        #"reflex-governor.patch"
         "0001-clang-polly.patch"
         "dkms-clang.patch"
         "poc-selector.patch"
-      ];
-      governors = map (path: "${patches}/${majorMinor}/misc/${path}") [
-        #"reflex-governor.patch"
         "nap-governor.patch"
       ];
     in
     {
-      inherit bore optimization governors;
-      common = bore ++ optimization ++ governors;
-      hardened = map (path: "${patches}/${majorMinor}/misc/${path}") [ "0001-hardened.patch" ];
-      handheld = map (path: "${patches}/${majorMinor}/misc/${path}") [
-        "0001-acpi-call.patch"
-        "0001-handheld.patch"
-      ];
+      inherit bore opt;
+      std = opt + bore;
+      hardened = opt ++ map (path: "${patches}/${majorMinor}/misc/${path}") [ "0001-hardened.patch" ];
+      handheld =
+        bore
+        ++ opt
+        ++ map (path: "${patches}/${majorMinor}/misc/${path}") [
+          "0001-acpi-call.patch"
+          "0001-handheld.patch"
+        ];
     };
 }

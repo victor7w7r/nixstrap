@@ -2,26 +2,15 @@
 {
   kernel.hosts.handheld =
     pkgs:
-    let
-      src = (kernel.linux.injector pkgs).cachyos;
-      version = kernel.lib.calc-version pkgs src;
-      patchesData = kernel.patches.injector pkgs;
-      cachyosPatches = patchesData.cachyos version.majorMinor;
-      bunkerPatches = patchesData.bunker;
-      tachyonPatches = patchesData.tachyon;
-    in
     (kernel.lib.v7w7r {
-      inherit src pkgs;
+      inherit pkgs;
+      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "handheld-native";
       config = (kernel.linux.injector pkgs).kConfig false;
-      version = version.string;
+      version = (kernel.linux.injector pkgs).version.string;
       patches =
-        cachyosPatches.common
-        ++ cachyosPatches.handheld
-        ++ tachyonPatches.common
-        ++ tachyonPatches.gaming
-        ++ bunkerPatches.common
-        ++ patchesData.asus;
+        with kernel.patches.injector pkgs;
+        cachyos.handheld ++ tachyon.gaming ++ bunker.std ++ asus;
       extraConfig = with kernel.config.modules; [
         (cmdline { isAmd = true; })
         default

@@ -1,9 +1,12 @@
+{ kernel, ... }:
 {
   kernel.linux = {
     cachyos =
       pkgs:
       with (pkgs.lib.trivial.importJSON ./packages.json).linux;
       pkgs.fetchurl { inherit url sha256; };
+
+    version = pkgs: (kernel.lib.calc-version pkgs (kernel.linux.cachyos pkgs));
 
     kConfig =
       hardened: pkgs:
