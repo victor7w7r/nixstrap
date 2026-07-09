@@ -1,14 +1,18 @@
 {
   den.default = {
     nixos =
-      { lib, ... }@args:
+      {
+        isLive,
+        isPhone,
+        lib,
+        ...
+      }:
       {
         services.openssh = lib.mkForce {
           enable = true;
           settings = {
             AcceptEnv = null;
-            PermitRootLogin =
-              if (args.isPhone || args.isLive) then "yes" else lib.mkDefault "prohibit-password";
+            PermitRootLogin = if (isPhone || isLive) then "yes" else lib.mkDefault "prohibit-password";
             PasswordAuthentication = true;
             MaxAuthTries = 3;
             ClientAliveInterval = 300;

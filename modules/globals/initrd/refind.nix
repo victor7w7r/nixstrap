@@ -6,8 +6,15 @@
   };
 
   den.default.nixos =
-    { lib, pkgs, ... }@args:
-    lib.optionalAttrs args.isEfi {
+    {
+      config,
+      isEfi,
+      isTpm,
+      lib,
+      pkgs,
+      ...
+    }:
+    lib.optionalAttrs isEfi {
       boot.loader = {
         grub.enable = false;
         systemd-boot.enable = false;
@@ -23,7 +30,7 @@
           {
             efi = "/boot/EFI";
             mocha = "themes/catppuccin/assets/mocha";
-            initrd = "${args.config.system.build.initialRamdisk}/${args.config.system.boot.loader.initrdFile}";
+            initrd = "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}";
           }
           |> (
             common:
@@ -87,7 +94,7 @@
               [[ -f ${common.efi}/initrd ]] && rm ${common.efi}/initrd
 
               cp ${common.initrd} ${common.efi}/initrd
-              cp ${args.config.boot.kernelPackages.kernel}/${args.config.system.boot.loader.kernelFile} ${common.efi}/vmlinuz
+              cp ${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile} ${common.efi}/vmlinuz
 
               echo "$BASE" >> ${common.efi}/versions.txt
               #cp ${common.initrd} /boot/emergency/initrd_$TOPLEVEL
@@ -113,7 +120,7 @@
                   loader /EFI/vmlinuz
                   initrd /EFI/initrd
                   ostype Linux
-                  options "init=$TOPLEVEL/init ${toString args.config.boot.kernelParams}"
+                  options "init=$TOPLEVEL/init ${toString config.boot.kernelParams}"
                   submenuentry "Verbose" {
                     add_options "boot.trace=1 systemd.log_level=debug systemd.log_target=console debug udev.log_level=7 rd.systemd.show_status=true"
                   }
@@ -125,7 +132,7 @@
                   }
                 }
               EOF
-              ${lib.optionalString args.isTpm ''
+              ${lib.optionalString isTpm ''
                 if [ -d /var/lib/sbctl/keys ]; then
                   sbctl sign -s ${common.efi}/refind/refind_x64.efi &> /dev/null
                   sbctl sign -s ${common.efi}/tools/shellx64.efi &> /dev/null

@@ -4,11 +4,16 @@
 
   den.default = {
     os =
-      { lib, pkgs, ... }@args:
+      {
+        isPersistent,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
-          with args.self'.packages;
+          with self'.packages;
           [
             asciiquarium-transparent
             cmatrix
@@ -20,7 +25,7 @@
             sl
             ternimal
           ]
-          ++ lib.optionals args.isPersistent [
+          ++ lib.optionals isPersistent [
             aalib
             astroterm
             cementery-escape
@@ -42,12 +47,17 @@
       };
 
     nixos =
-      { lib, pkgs, ... }@args:
+      {
+        isPersistent,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
-          with args.self'.packages;
-          lib.optionals args.isPersistent [
+          with self'.packages;
+          lib.optionals isPersistent [
             bollywood
             chalk-animation
             conway-screensaver

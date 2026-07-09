@@ -1,7 +1,13 @@
 {
   den.default = {
     os =
-      { pkgs, self', ... }@args:
+      {
+        isPersistent,
+        isMainMac,
+        pkgs,
+        self',
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
@@ -12,7 +18,7 @@
             wget
             wol
           ]
-          ++ (lib.optionals (args.isPersistent || args.isMainMac) [
+          ++ (lib.optionals (isPersistent || isMainMac) [
             #ariang
             doggo
             goto
@@ -34,7 +40,13 @@
       };
 
     nixos =
-      { lib, pkgs, ... }@args:
+      {
+        isPersistent,
+        isMainMac,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
@@ -44,14 +56,14 @@
             net-tools
             wget2
           ]
-          ++ (lib.optionals (args.isPersistent || args.isMainMac) [
+          ++ (lib.optionals (isPersistent || isMainMac) [
             #ariang
             slirp4netns
             rquickshare
             args.self'.packages.ssh-list
           ]);
 
-        programs = lib.optionalAttrs args.isPersistent {
+        programs = lib.optionalAttrs isPersistent {
           bandwhich.enable = true;
           trippy.enable = true;
         };

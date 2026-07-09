@@ -7,7 +7,12 @@
 
   den.aspects.plasma.default-packages = {
     nixos =
-      { lib, pkgs, ... }@args:
+      {
+        hasVisualKeyboard,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [
@@ -84,7 +89,7 @@
               pkgs.pinentry-qt
               pkgs.systemdgenie
             ]
-            ++ (lib.optionals args.hasVisualKeyboard [
+            ++ (lib.optionals hasVisualKeyboard [
               pkgs.krename
               pkgs.kdePackages.isoimagewriter
               pkgs.ulauncher

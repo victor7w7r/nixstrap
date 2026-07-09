@@ -1,8 +1,14 @@
 {
   den.aspects.plasma.sddm.nixos =
-    { lib, pkgs, ... }@args:
-    [
-      (lib.mkIf args.isPhone {
+    {
+      isGeneric,
+      isPhone,
+      lib,
+      pkgs,
+      ...
+    }:
+    lib.mkMerge [
+      (lib.mkIf isPhone {
         environment = {
           etc = {
             "xdg/kdeglobals".source = (pkgs.formats.ini { }).generate "kdeglobals" {
@@ -51,7 +57,7 @@
           package = pkgs.kdePackages.kwallet-pam;
         };
       })
-      (lib.mkIf args.isGeneric {
+      (lib.mkIf isGeneric {
         systemd.services.sddm.environment = {
           QT_IM_MODULE = "qtvirtualkeyboard";
           QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = "0";

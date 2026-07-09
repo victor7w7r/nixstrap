@@ -5,8 +5,13 @@
     { user, ... }:
     {
       nixos =
-        { lib, ... }@args:
-        lib.optionalAttrs (args.isPersistent && !args.isServer) {
+        {
+          isPersistent,
+          isServer,
+          lib,
+          ...
+        }:
+        lib.optionalAttrs (isPersistent && !isServer) {
           environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
             ".config/legcord"
             ".config/onlyoffice"
@@ -19,12 +24,19 @@
         };
 
       provides.to-users.homeManager =
-        { lib, pkgs, ... }@args:
-        lib.optionalAttrs (args.isPersistent && !args.isServer) {
+        {
+          isPersistent,
+          isServer,
+          lib,
+          pkgs,
+          self',
+          ...
+        }:
+        lib.optionalAttrs (isPersistent && !isServer) {
           programs.onlyoffice.enable = true;
           home.packages =
             with pkgs;
-            with args.self'.packages;
+            with self'.packages;
             [
               bleachbit
               chromium

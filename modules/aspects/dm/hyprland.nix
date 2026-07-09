@@ -23,9 +23,14 @@
   };
 
   den.aspects.hyprland.provides.to-users.homeManager =
-    { pkgs, self', ... }@args:
     {
-      imports = with args.inputs'; [
+      pkgs,
+      self',
+      inputs',
+      ...
+    }:
+    {
+      imports = with inputs'; [
         hyprfloat.homeManagerModules.default
         hyprdvd.homeManagerModules.default
       ];
