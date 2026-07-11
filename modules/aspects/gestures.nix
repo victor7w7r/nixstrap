@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake-file.inputs.gestures.url = "github:ferstar/gestures";
 
@@ -11,10 +12,10 @@
       };
 
     provides.to-users.homeManager =
-      { inputs', self', ... }:
+      { self', ... }:
       {
         home.packages = [
-          inputs'.gestures.packages."x86_64-linux".gestures
+          inputs.gestures.packages."x86_64-linux".gestures
           self'.packages.tablet-map
         ];
 
@@ -24,8 +25,8 @@
         systemd.user.services = {
           gestures = {
             Service = {
-              ExecStart = "${inputs'.gestures.packages."x86_64-linux".gestures}/bin/gestures start";
-              ExecReload = "${inputs'.gestures.packages."x86_64-linux".gestures}/bin/gestures reload";
+              ExecStart = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures start";
+              ExecReload = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures reload";
               Restart = "no";
               StandardOutput = "journal";
               StandardError = "journal";

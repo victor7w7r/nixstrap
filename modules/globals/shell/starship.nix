@@ -1,11 +1,6 @@
 {
   den.default.provides.to-users.homeManager =
     { user, ... }:
-    let
-      isRoot = user == "root";
-      symbol = if isRoot then "#" else "\\$";
-      symbolColor = if isRoot then "#ff5990" else "#cc8afc";
-    in
     {
       programs.starship = {
         enable = true;
@@ -19,16 +14,21 @@
             [╰╴](#7088ff)$character
           '';
 
-          character = {
-            success_symbol = "[${symbol}](bold ${symbolColor})";
-            error_symbol = "[${symbol}](bold ${symbolColor})";
-            vimcmd_symbol = "[](bold turquoise)";
-          };
+          character =
+            {
+              symbol = if user == "root" then "#" else "\\$";
+              symbolColor = if user == "root" then "#ff5990" else "#cc8afc";
+            }
+            |> (res: {
+              success_symbol = "[${res.symbol}](bold ${res.symbolColor})";
+              error_symbol = "[${res.symbol}](bold ${res.symbolColor})";
+              vimcmd_symbol = "[](bold turquoise)";
+            });
 
           os = {
             disabled = false;
             format = "[$symbol]($style)";
-            style = "bold ${if isRoot then "#ff5990" else "#7088ff"}";
+            style = "bold ${if user == "root" then "#ff5990" else "#7088ff"}";
             symbols = {
               Windows = " ";
               NixOS = "󱄅 ";

@@ -116,10 +116,7 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    nix-homebrew = {
-      url = "github:zhaofengli/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

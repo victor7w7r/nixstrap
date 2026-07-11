@@ -6,10 +6,7 @@
   };
 
   den = {
-    hosts.x86_64-darwin.main-mac = {
-      hostName = "v7w7r-macmini81";
-      users.victor7w7r = { };
-    };
+    #hosts.x86_64-darwin.main-mac.users.victor7w7r = { };
 
     default.darwin =
       { pkgs, user, ... }:

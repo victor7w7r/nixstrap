@@ -23,7 +23,6 @@
       hardware = lib.optionalAttrs isX86 {
         enableAllFirmware = lib.mkForce false;
         enableRedistributableFirmware = lib.mkForce false;
-
         firmware = with pkgs; [
           linux-firmware
           /*

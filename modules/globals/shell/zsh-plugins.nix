@@ -19,89 +19,89 @@
           "3v1n0/zsh-bash-completions-fallback"
           #ytakahashi/igit (wait)
         */
-        plugins = [
+        plugins = with pkgs; [
           {
             name = "zsh-defer";
-            src = "${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh";
+            src = "${zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh";
           }
           {
             name = "fzf-tab";
-            src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+            src = "${zsh-fzf-tab}/share/fzf-tab";
           }
           {
             name = "zsh-nix-shell";
-            src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
+            src = "${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
           }
           /*
             {
             name = "zsh-clipboard";
-            src = "${pkgs.zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
+            src = "${zsh-clipboard}/share/zsh/plugins/clipboard/zsh-clipboard.plugin.zsh";
             }
           */
           {
             name = "zsh-vi-mode";
-            src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+            src = "${zsh-vi-mode}/share/zsh-vi-mode";
           }
           {
             name = "you-should-use";
-            inherit (pkgs.zsh-you-should-use) src;
+            inherit (zsh-you-should-use) src;
           }
           {
             name = "wd";
-            src = pkgs.zsh-wd;
+            src = zsh-wd;
             file = "share/wd/wd.plugin.zsh";
             functions = [ "share/zsh/site-functions" ];
           }
           {
             name = "autopair";
-            inherit (pkgs.zsh-autopair) src;
+            inherit (zsh-autopair) src;
             file = "zsh-autopair.plugin.zsh";
           }
           {
             name = "bd";
-            src = "${pkgs.zsh-bd}/share/zsh-bd/bd.plugin.zsh";
+            src = "${zsh-bd}/share/zsh-bd/bd.plugin.zsh";
           }
           {
             name = "zsh-histdb";
-            src = "${pkgs.zsh-histdb}/share/zsh-histdb";
+            src = "${zsh-histdb}/share/zsh-histdb";
           }
           {
             name = "zsh-forgit";
-            src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
+            src = "${zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
           }
           {
             name = "zsh-fzf-history-search";
-            src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh";
+            src = "${zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh";
           }
           {
             name = "zhooks";
-            src = "${pkgs.zsh-zhooks}/share/zsh/zhooks";
+            src = "${zsh-zhooks}/share/zsh/zhooks";
           }
           {
             name = "zsh-nix-shell";
-            src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
+            src = "${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
           }
           {
             name = "nix-zsh-completions";
-            src = pkgs.nix-zsh-completions;
+            src = nix-zsh-completions;
             file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
             functions = [ "share/zsh/site-functions" ];
           }
           {
             name = "zsh-navigation-tools";
-            src = pkgs.zsh-navigation-tools;
+            src = zsh-navigation-tools;
           }
           {
             name = "zsh-autosuggestions-abbreviations-strategy";
-            src = pkgs.zsh-autosuggestions-abbreviations-strategy;
+            src = zsh-autosuggestions-abbreviations-strategy;
           }
           {
             name = "zsh-history-search-multi-word";
-            src = "${pkgs.zsh-history-search-multi-word}/share/zsh/zsh-history-search-multi-word/history-search-multi-word.plugin.zsh";
+            src = "${zsh-history-search-multi-word}/share/zsh/zsh-history-search-multi-word/history-search-multi-word.plugin.zsh";
           }
           {
             name = "nix-zsh-completions";
-            src = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+            src = "${nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
             functions = [ "share/zsh/site-functions" ];
           }
         ];

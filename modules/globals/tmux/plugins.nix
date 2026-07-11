@@ -12,7 +12,7 @@
         sidebar
         tmux-fzf
         {
-          plugin = pkgs.tmuxPlugins.fzf-tmux-url;
+          plugin = fzf-tmux-url;
           extraConfig = ''
             set -g @fzf-url-bind 'u'
             TMUX_FZF_LAUNCH_KEY="C-k"
@@ -20,14 +20,14 @@
           '';
         }
         {
-          plugin = pkgs.tmuxPlugins.better-mouse-mode;
+          plugin = better-mouse-mode;
           extraConfig = ''
             set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
             set -g @scroll-down-exit-copy-mode "off"
           '';
         }
         {
-          plugin = pkgs.tmuxPlugins.tmux-floax;
+          plugin = tmux-floax;
           extraConfig = ''
             set -g @floax-bind 'L'
             set -g @floax-border-color 'purple'
@@ -35,7 +35,7 @@
           '';
         }
         {
-          plugin = pkgs.tmuxPlugins.mkTmuxPlugin {
+          plugin = mkTmuxPlugin {
             pluginName = "tmux-suspend";
             version = "097f09dabd64084ab0c72ae75df4b5a89bb431a6";
             rtpFilePath = "suspend.tmux";
@@ -49,7 +49,7 @@
           extraConfig = "set -g @suspend_key 'F5'";
         }
         {
-          plugin = pkgs.tmuxPlugins.mkTmuxPlugin {
+          plugin = mkTmuxPlugin {
             pluginName = "tmux-menus";
             version = "unstable-2023-10-20";
             rtpFilePath = "menus.tmux";
@@ -70,14 +70,14 @@
           '';
         }
         {
-          plugin = pkgs.tmuxPlugins.tmux-sessionx;
+          plugin = tmux-sessionx;
           extraConfig = ''
             set -g @fzf-url-bind 'u'
             TMUX_FZF_LAUNCH_KEY="C-k"
             set -g @fzf-url-history-limit '2000'
           '';
         }
-        (pkgs.tmuxPlugins.mkTmuxPlugin {
+        (mkTmuxPlugin {
           pluginName = "named-snapshot";
           rtpFilePath = "named-snapshot.tmux";
           version = "872fede";
@@ -88,7 +88,7 @@
             hash = "sha256-EW1X+ZVl+hIIqAsj+bv6dkjQtNiBEhUYOQK/8bFEpV8=";
           };
         })
-        (pkgs.tmuxPlugins.mkTmuxPlugin {
+        (mkTmuxPlugin {
           pluginName = "cowboy";
           version = "75702b6d";
           src = pkgs.fetchFromGitHub {
@@ -98,7 +98,7 @@
             sha256 = "sha256-KJNsdDLqT2Uzc25U4GLSB2O1SA/PThmDj9Aej5XjmJs=";
           };
         })
-        (pkgs.tmuxPlugins.mkTmuxPlugin rec {
+        (mkTmuxPlugin rec {
           pluginName = "tmux-notify";
           version = "1.6.0";
           src = pkgs.fetchFromGitHub {
@@ -112,7 +112,7 @@
             find $target -type f -exec sed -i 's|notify-send |${pkgs.libnotify}/bin/notify-send |g' {} +
           '';
         })
-        (pkgs.tmuxPlugins.mkTmuxPlugin {
+        (mkTmuxPlugin {
           pluginName = "tmux-power-zoom";
           version = "1.0.0";
           src = pkgs.fetchFromGitHub {

@@ -13,21 +13,24 @@
       ...
     }:
     {
-      environment.systemPackages = with pkgs; [
-        fatrace
-        self'.packages.lazysys
-        self'.packages.journalview
-        self'.packages.socktop
-        kmon
-        lazyjournal
-        lnav
-        pik
-        s-tui
-        systemctl-tui
-        sysz
-        watchexec
-        zps
-      ];
+      environment.systemPackages =
+        with pkgs;
+        with self'.packages;
+        [
+          fatrace
+          lazysys
+          journalview
+          socktop
+          kmon
+          lazyjournal
+          lnav
+          pik
+          s-tui
+          systemctl-tui
+          sysz
+          watchexec
+          zps
+        ];
 
       services = {
         journald.extraConfig = ''

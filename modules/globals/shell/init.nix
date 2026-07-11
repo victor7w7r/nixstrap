@@ -101,11 +101,12 @@
               source <(cod init $$ zsh)
             '')
             (lib.mkOrder 1500 greetings)
-            (lib.mkOrder 1600 "echo -e '\e[5 q'")
+            #(lib.mkOrder 1600 "echo -e '\e[5 q'")
           ];
 
           bash.bashrcExtra = lib.mkMerge [
             (lib.mkOrder 450 tmux-init)
+            (lib.mkOrder 500 kitty)
             (lib.mkOrder 600 ''
               paths=(
                 ${paths}
