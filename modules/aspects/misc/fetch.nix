@@ -56,7 +56,6 @@
             hwfetch
             kat-oh
             mfetch
-            osu-cli
             songfetch
             sysfex
             zeitfetch

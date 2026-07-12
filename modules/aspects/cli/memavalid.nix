@@ -33,12 +33,12 @@
         };
       };
       environment = {
-        systemPackages = with self'.packages; [ memavalid ];
+        systemPackages = with self'.packages; [ memavaild ];
         etc."memavaild.conf".text = conf;
       };
       systemd = {
-        packages = with self'.packages; [ memavalid ];
-        services.memavalid = {
+        packages = with self'.packages; [ memavaild ];
+        services.memavaild = {
           enable = true;
           wantedBy = [ "multi-user.target" ];
           restartTriggers = [ conf ];

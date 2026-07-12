@@ -22,6 +22,4 @@ stdenvNoCC.mkDerivation {
     cp files/*.rules $out/lib/udev/rules.d/
     cp -r files $out/share/apple-t2-better-audio/files
   '';
-
-  passthru.files = "${placeholder "out"}/share/apple-t2-better-audio";
 }

@@ -177,11 +177,9 @@
           "FTDI_SIO"
         ];
       })
-    ]
-    ++ lib.optionals isArm [
-      (dynamic-denial {
+      (lib.mkIf isArm (dynamic-denial {
         inherit config;
         attr = "RMI4";
-      })
+      }))
     ];
 }

@@ -71,11 +71,11 @@
               sticky-notes
               tenacity
               vlc
-              davinci-video-converter
+              #davinci-video-converter
               fzf-open
               jdownloader
               linuxthemestore
-              shutter-encoder
+              #shutter-encoder
               tahoma2d
               ytdl
             ]

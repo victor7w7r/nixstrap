@@ -54,11 +54,10 @@
     in
     {
       inherit bore opt;
-      std = opt ++ bore;
+      std = opt; # ++bore
       hardened = opt ++ map (path: "${patches}/${majorMinor}/misc/${path}") [ "0001-hardened.patch" ];
-      handheld =
-        bore
-        ++ opt
+      handheld = # ++bore
+        opt
         ++ map (path: "${patches}/${majorMinor}/misc/${path}") [
           "0001-acpi-call.patch"
           "0001-handheld.patch"

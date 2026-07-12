@@ -1,71 +1,60 @@
 {
-  den.default.nixos =
-    {
-      isGeneric,
-      isIntel,
-      isLive,
-      hasVisualKeyboard,
-      lib,
-      ...
-    }:
-    {
-      boot = {
-        supportedFilesystems = [
-          "btrfs"
-          "ext4"
-          "exfat"
-          "f2fs"
-          "ntfs"
-          "vfat"
-        ]
-        ++ lib.optionals isIntel [ "xfs" ]
-        ++ lib.optionals (isLive || hasVisualKeyboard || isGeneric) [ "bcachefs" ];
+  den.default.nixos = {
+    boot = {
+      supportedFilesystems = [
+        "btrfs"
+        "ext4"
+        "exfat"
+        "f2fs"
+        "ntfs"
+        "vfat"
+      ];
 
-        modprobeConfig.enable = true;
-        tmp = {
-          cleanOnBoot = true;
-          useTmpfs = true;
-        };
-        extraModprobeConfig = ''
-          blacklist iTCO_wdt
-          blacklist joydev
-          blacklist mousedev
-          blacklist mac_hid
-          blacklist intel_hid
-        '';
-        initrd = {
-          /*
-            availableKernelModules = [
-              "autofs"
-              "dm-thin-pool"
-              "dm-snapshot"
-              "tpm_tis"
-              "tpm_crb"
-            ];
-            kernelModules = [
-                "tcp_bbr"
-                "dm-thin-pool"
-                "veth"
-                "xt_comment"
-                "xt_CHECKSUM"
-                "xt_MASQUERADE"
-                "vhost_vsock"
-                "iptable_mangle"
-              ];
-              }
-          */
-
-          checkJournalingFS = true;
-          services.lvm.enable = true;
-          compressorArgs = [
-            "-19"
-            "--ultra"
-            "-T0"
-            "--check"
+      modprobeConfig.enable = true;
+      tmp = {
+        cleanOnBoot = true;
+        useTmpfs = true;
+      };
+      extraModprobeConfig = ''
+        blacklist iTCO_wdt
+        blacklist joydev
+        blacklist mousedev
+        blacklist mac_hid
+        blacklist intel_hid
+      '';
+      initrd = {
+        /*
+          availableKernelModules = [
+            "autofs"
+            "dm-thin-pool"
+            "dm-snapshot"
+            "tpm_tis"
+            "tpm_crb"
           ];
-          network.enable = true;
-          verbose = true;
-        };
+          kernelModules = [
+              "tcp_bbr"
+              "dm-thin-pool"
+              "veth"
+              "xt_comment"
+              "xt_CHECKSUM"
+              "xt_MASQUERADE"
+              "vhost_vsock"
+              "iptable_mangle"
+            ];
+            }
+        */
+
+        checkJournalingFS = true;
+        services.lvm.enable = true;
+        compressorArgs = [
+          "-19"
+          "--ultra"
+          "-T0"
+          "--check"
+        ];
+        network.enable = true;
+        verbose = true;
       };
     };
+  };
 }

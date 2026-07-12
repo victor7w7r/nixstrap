@@ -8,6 +8,7 @@
         isPersistent,
         lib,
         pkgs,
+        self',
         ...
       }:
       {
@@ -51,6 +52,7 @@
         isPersistent,
         lib,
         pkgs,
+        self',
         ...
       }:
       {

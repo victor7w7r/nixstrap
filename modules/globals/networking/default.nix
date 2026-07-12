@@ -52,8 +52,8 @@
             allowedTCPPorts = [
               22
               9090
-            ]
-            ++ lib.optionals isServer [ 8006 ];
+              (lib.mkIf isServer 8006)
+            ];
           };
         });
     };

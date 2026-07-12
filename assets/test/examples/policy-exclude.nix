@@ -2,11 +2,12 @@
 {
   den.policies.exclude-pizero =
     { host, ... }:
-    lib.optionals (host.name != "pizero") [
-      (den.lib.policy.resolve {
-        # Enriquece contexto para indicar que NO es pizero
-        isNotPizero = true;
-      })
+    [
+      (lib.mkIf (host.name != "pizero") (
+        den.lib.policy.resolve {
+          isNotPizero = true;
+        }
+      ))
     ];
 
   den.aspects.igloo =

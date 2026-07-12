@@ -5,7 +5,7 @@ pkgs.appimageTools.wrapType2 {
 
   src = fetchurl {
     url = "https://www.shutterencoder.com/sdc_download/497/?key=lfpx4wqaghm4zgswrp015tljfm75ek";
-    sha256 = "sha256-Wz6hIhTmJt6/ux7s0rck7cKgM1CI3jBXOSogLJqYdWA=";
+    sha256 = "sha256-CBgiZGHu7vgD7KK8JLWhlxYlUTBTtrhzPzUYp+bNjdY=";
   };
 
   extraPkgs =

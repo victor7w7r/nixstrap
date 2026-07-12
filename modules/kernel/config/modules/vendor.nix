@@ -52,7 +52,6 @@
       SENSORS_PECI_CPUTEMP = "m";
       SENSORS_PECI_DIMMTEMP = "m";
       SENSORS_STEAMDECK = "m";
-      SERIO = "y";
       SND_SOC_AMD_ACP63_TOPLEVEL = "m";
       SND_SOC_AMD_ACP6x = "m";
       SND_SOC_AMD_MACH = "y";
@@ -125,7 +124,6 @@
       PERF_EVENTS_AMD_POWER = "n";
       PERF_EVENTS_AMD_UNCORE = "n";
       PINCTRL_AMD = "n";
-      SERIO = "n";
       SENSORS_ASUS_EC = "n";
       SENSORS_ASUS_ROG_RYUJIN = "n";
       SENSORS_ASUS_WMI = "n";

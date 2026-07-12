@@ -33,7 +33,7 @@ stdenv.mkDerivation (attrs: {
     owner = "Maxb0tbeep";
     repo = attrs.pname;
     rev = attrs.version;
-    sha256 = "sha256-QxgbpVRHhiheaptqeyy7dlvO1H748wuX1LiXAXLXx7E=";
+    sha256 = "sha256-Voi/HQGFOP14trdAJZ+t0LF8HOSb5+Rbhr4fhvXdGzc=";
   };
 
   nativeBuildInputs = with pkgs; [ nim-unwrapped ];

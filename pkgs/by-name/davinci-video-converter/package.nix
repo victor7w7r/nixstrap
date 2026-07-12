@@ -7,7 +7,7 @@ stdenv.mkDerivation (attrs: {
     owner = "tkmxqrdxddd";
     repo = attrs.pname;
     rev = attrs.version;
-    sha256 = "sha256-EDQi6KVCrzJcVfuDwBRf7wN2BqVAY2q4XB9Le6dy4CU=";
+    sha256 = "sha256-11EfkXlAhxrevmsGAQsf0SY+KvKBvNhX/HHZSBMjEeU=";
   };
 
   makeFlags = [ "PREFIX=$(out)" ];

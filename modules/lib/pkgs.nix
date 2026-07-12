@@ -17,7 +17,7 @@
     };
   };
 
-  imports = [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];
+  imports = builtins.trace [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];
 
   perSystem =
     { pkgs, system, ... }:

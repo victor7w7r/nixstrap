@@ -74,10 +74,10 @@
         bcache1 = bcachefs.lvm { num = 1; };
         persist = luks.entire {
           name = "persist";
-          device = "${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
+          device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
           postMount = ''
-            cryptsetup open ${disk.constants.partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
-            cryptsetup open ${disk.constants.partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
+            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
+            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
             echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''
@@ -88,10 +88,10 @@
         };
         storage = luks.entire {
           name = "storage";
-          device = "${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
+          device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
           postMount = ''
-            cryptsetup open ${disk.constants.partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
-            cryptsetup open ${disk.constants.partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
+            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
+            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
             echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
           '';
           postCreate = ''

@@ -1,9 +1,9 @@
 {
   den.aspects.server.initrd.nixos =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       boot.initrd = {
-        availableKernelModules = [ "i915" ];
+        supportedFilesystems = lib.mkAfter [ "xfs" ];
         kernelModules = [
           "btrfs"
           "br_netfilter"

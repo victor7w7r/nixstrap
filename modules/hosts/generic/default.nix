@@ -20,7 +20,12 @@
       ];
 
       nixos =
-        { pkgs, modulesPath, ... }:
+        {
+          lib,
+          pkgs,
+          modulesPath,
+          ...
+        }:
         {
           networking.hostName = "v7w7r-generic";
           virtualisation.vmVariant.virtualisation.useEFIBoot = true;
@@ -34,6 +39,7 @@
             ];
             kernelPackages = (kernel.hosts.generic pkgs).generic-kernelPackages;
             initrd = {
+              supportedFilesystems = lib.mkAfter [ "bcachefs" ];
               availableKernelModules = [
                 "ahci"
                 "xhci_pci"

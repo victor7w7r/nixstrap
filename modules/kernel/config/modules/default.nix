@@ -44,6 +44,7 @@
     RANDOM_TRUST_CPU = "y";
     RESET_ATTACK_MITIGATION = "y";
     RFKILL = "y";
+    RUST = "n";
     SATA_AHCI_PLATFORM = "y";
     SECURITY_LOCKDOWN_LSM = "y";
     SECURITY_PERF_EVENTS_RESTRICT = "y";

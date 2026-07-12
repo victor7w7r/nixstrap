@@ -8,7 +8,7 @@
     "owner": "CachyOS",
     "repo": "linux-cachyos",
     "rev": "d96a067ff30ed47ff1743d60a569b4badd2d7670",
-    "sha256": "sha256-raAojJGk0aWdscfFn/9ikZ6V5oUuAZcAz5kjAZ2QN3E="
+    "sha256": "sha256-IzB6XWH8zyBhR3zS2eCKwtVOLipOpVSwN8Lnpgn+5k0="
   },
   "sdm845": {
     "domain": "codeberg.org",

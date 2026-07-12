@@ -1,8 +1,12 @@
 {
   den.aspects.main.initrd.nixos =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       boot.initrd = {
+        supportedFilesystems = lib.mkAfter [
+          "bcachefs"
+          "xfs"
+        ];
         kernelModules = [
           "apple-bce"
           "aes_ni"

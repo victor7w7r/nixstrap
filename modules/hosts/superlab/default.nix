@@ -59,10 +59,11 @@
           ];
 
           nixos =
-            { pkgs, ... }:
+            { lib, pkgs, ... }:
             {
               networking.hostName = "v7w7r-radxarock5b";
               boot = {
+                initrd.supportedFilesystems = lib.mkAfter [ "bcachefs" ];
                 kernelParams = [ "console=ttyS2,1500000n8" ];
                 loader = {
                   systemd-boot.enable = true;
