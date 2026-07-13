@@ -20,7 +20,7 @@
         };
         overlays = [
           (final: _: {
-            main-kernel = (kernel.hosts.injector pkgs).main-kernel;
+            main-kernel = (kernel.hosts.main pkgs).main-kernel;
           })
         ];
       };

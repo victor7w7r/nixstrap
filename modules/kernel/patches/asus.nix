@@ -1,11 +1,15 @@
+{ inputs, ... }:
 {
+  flake-file.inputs.asus = {
+    url = "gitlab:asus-linux/linux-g14/0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
+    flake = false;
+  };
+
   kernel.patches.asus =
     pkgs:
     (pkgs.stdenvNoCC.mkDerivation {
       name = "asus-patches";
-      src =
-        with (pkgs.lib.trivial.importJSON ./patches.json).asus;
-        pkgs.fetchgit { inherit url rev sha256; };
+      src = inputs.asus;
       configurePhase = "cp -r $src/* ./";
       buildPhase = ''chmod -R +w . && find . -type f ! -name "*.patch" -delete'';
       installPhase = "mkdir -p $out && cp -r . $out/";

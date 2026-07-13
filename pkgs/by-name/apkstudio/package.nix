@@ -1,15 +1,7 @@
-{ pkgs, fetchurl }:
-pkgs.appimageTools.wrapType2 {
+{ appimageTools, inputs }:
+appimageTools.wrapType2 {
   pname = "apkstudio";
-  version = "6.3.0";
-
-  src = fetchurl {
-    url = "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage";
-    sha256 = "sha256-LHzoyxobE4RovY2haQ7COhhCIgXcB6MRuOwWoijvjfY=";
-  };
-
-  extraPkgs =
-    pkgs: with pkgs; [
-      apktool
-    ];
+  version = "latest";
+  src = inputs.apkstudio;
+  extraPkgs = pkgs: with pkgs; [ apktool ];
 }

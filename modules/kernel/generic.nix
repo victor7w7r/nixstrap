@@ -1,11 +1,11 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.generic =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
       localVer = "v2";
-      src = (kernel.linux.injector pkgs).cachyos;
+      src = inputs.cachyos-linux;
       config = (kernel.linux.injector pkgs).kConfig false;
       version = (kernel.linux.injector pkgs).version.string;
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;

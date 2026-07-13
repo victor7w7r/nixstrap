@@ -1,15 +1,7 @@
-{ pkgs, inputs }:
-pkgs.python3.pkgs.buildPythonApplication (attrs: {
+{ python3, inputs }:
+python3.pkgs.buildPythonApplication {
   pname = "adb_shell";
-  version = "master";
+  version = "latest";
   format = "setuptools";
-
-  src = builtins.trace inputs (
-    pkgs.fetchFromGitHub {
-      owner = "JeffLIrion";
-      repo = attrs.pname;
-      rev = attrs.version;
-      sha256 = "sha256-8Vqd3N87WyfvE2qt+CLaKIYj/rWGNAObaI8LOzV3yAk=";
-    }
-  );
-})
+  src = inputs.adb_shell;
+}

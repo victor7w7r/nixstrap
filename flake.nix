@@ -45,10 +45,58 @@
   };
 
   inputs = {
+    adb_shell = {
+      url = "github:JeffLIrion/adb_shell";
+      flake = false;
+    };
+    adebar = {
+      url = "https://codeberg.org/izzy/Adebar/archive/master.tar.gz";
+      flake = false;
+    };
     agenix.url = "github:ryantm/agenix";
+    aim = {
+      url = "github:mihaigalos/aim";
+      flake = false;
+    };
+    apkinspector = {
+      url = "github:erev0s/apkInspector";
+      flake = false;
+    };
+    apkstudio = {
+      url = "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage";
+      flake = false;
+    };
+    app-manager = {
+      url = "github:ASHWIN990/app-manager";
+      flake = false;
+    };
+    armbian = {
+      url = "github:MichaIng/build/299d8026da8ce06312c2d7d32220c2b01f4a2101";
+      flake = false;
+    };
+    asus = {
+      url = "gitlab:asus-linux/linux-g14/0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
+      flake = false;
+    };
     batfetch = {
       url = "github:ashish-kus/batfetch";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bunker-patches = {
+      url = "github:amaanq/bunker-patches";
+      flake = false;
+    };
+    cachyos-config = {
+      url = "github:CachyOS/linux-cachyos";
+      flake = false;
+    };
+    cachyos-linux = {
+      url = "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz";
+      flake = false;
+    };
+    cachyos-patches = {
+      url = "github:CachyOS/kernel-patches";
+      flake = false;
     };
     catppuccin-refind = {
       url = "github:catppuccin/refind";
@@ -143,9 +191,25 @@
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     pyprland.url = "github:hyprland-community/pyprland";
     rofi-tools.url = "github:szaffarano/rofi-tools";
+    sdm845-linux = {
+      url = "https://codeberg.org/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz";
+      flake = false;
+    };
     swiftfetch = {
       url = "github:ly-sec/swiftfetch";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tachyon-patches = {
+      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz";
+      flake = false;
+    };
+    uwe5622 = {
+      url = "github:Ran-Thegoth/uwe5622";
+      flake = false;
+    };
+    xrlinux = {
+      url = "github:wheaney/XRLinuxDriver";
+      flake = false;
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

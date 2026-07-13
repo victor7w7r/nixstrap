@@ -1,21 +1,16 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
+  flake-file.inputs.armbian = {
+    url = "github:MichaIng/build/299d8026da8ce06312c2d7d32220c2b01f4a2101";
+    flake = false;
+  };
+
   kernel.patches.armbian =
     pkgs:
     let
-      source =
-        with (pkgs.lib.trivial.importJSON ./patches.json).armbian;
-        pkgs.fetchFromGitHub {
-          inherit
-            repo
-            rev
-            owner
-            hash
-            ;
-        };
       rockchip = pkgs.stdenvNoCC.mkDerivation {
         name = "rockchip-patches";
-        src = source;
+        src = inputs.armbian;
         phases = [
           "unpackPhase"
           "buildPhase"
@@ -30,15 +25,17 @@
       patcher =
         with lib;
         isRockchip:
-        source
+        inputs.armbian
         |> builtins.readFile
         |> splitString "\n"
         |> map strings.trim
         |> filter (line: line != "" && !(hasPrefix "#" line || hasPrefix "-" line))
-        |> map (path: if isRockchip then rockchip else "${source}/patch/kernel/archive/sunxi-6.18/${path}");
+        |> map (
+          path: if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/${path}"
+        );
     in
     {
-      inherit source;
+      source = inputs.armbian;
       rockchip-patches = patcher true;
       sunxi-patches = patcher false;
     };

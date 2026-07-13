@@ -1,11 +1,14 @@
+{ inputs, ... }:
 {
+  flake-file.inputs.tachyon-patches = {
+    url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz";
+    flake = false;
+  };
+
   kernel.patches.tachyon =
     pkgs:
-    rec {
-      patches =
-        with (pkgs.lib.trivial.importJSON ./patches.json).tachyon;
-        pkgs.fetchgit { inherit url rev sha256; };
-      common = map (path: "${patches}/patches/${path}") [
+    {
+      common = map (path: "${inputs.tachyon-patches}/patches/${path}") [
         #"0001-add-umonitor-umwait-C0.x-C-states.patch"
         #"0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an.patch"
         #"0001-sched-migrate.patch"
@@ -63,12 +66,12 @@
     |> (tachyon: {
       std =
         tachyon.common
-        ++ map (path: "${tachyon.patches}/patches/${path}") [
+        ++ map (path: "${inputs.tachyon-patches}/patches/${path}") [
           "0128-itmt_epb-use-epb-to-scale-itmt.patch"
         ];
       gaming =
         tachyon.common
-        ++ map (path: "${tachyon.patches}/patches/${path}") [
+        ++ map (path: "${inputs.tachyon-patches}/patches/${path}") [
           "0158-clocksource-only-perform-extended-clocksource-checks.patch"
         ];
     });

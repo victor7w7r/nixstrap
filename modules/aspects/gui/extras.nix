@@ -28,6 +28,7 @@
           isPersistent,
           isServer,
           isX86,
+          inputs',
           lib,
           pkgs,
           self',

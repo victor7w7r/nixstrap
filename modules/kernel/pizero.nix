@@ -1,11 +1,11 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.pizero =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
-      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "sunxi-hardened";
+      src = inputs.cachyos-linux;
       config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-sunxi64-current.config";
       version = (kernel.linux.injector pkgs).version.string;
       patches =

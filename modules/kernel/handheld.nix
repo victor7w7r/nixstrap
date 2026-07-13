@@ -1,11 +1,11 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.handheld =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
-      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "handheld-native";
+      src = inputs.cachyos-linux;
       config = (kernel.linux.injector pkgs).kConfig false;
       version = (kernel.linux.injector pkgs).version.string;
       patches =

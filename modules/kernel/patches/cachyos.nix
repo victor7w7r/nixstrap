@@ -1,22 +1,17 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
+  flake-file.inputs.cachyos-patches = {
+    url = "github:CachyOS/kernel-patches";
+    flake = false;
+  };
+
   kernel.patches.cachyos =
     pkgs:
     let
       majorMinor = (kernel.linux.injector pkgs).version.majorMinor;
       patches = pkgs.stdenvNoCC.mkDerivation {
         name = "cachyos-patches";
-        src =
-          with (pkgs.lib.trivial.importJSON ./patches.json).cachyos;
-          pkgs.fetchFromGitHub {
-            inherit
-              repo
-              rev
-              owner
-              sha256
-              ;
-          };
-
+        src = inputs.cachyos-patches;
         phases = [
           "unpackPhase"
           "buildPhase"

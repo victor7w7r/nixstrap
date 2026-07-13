@@ -1,13 +1,13 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.superlab =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
-      src = (kernel.linux.injector pkgs).cachyos;
+      localVer = "rockchip";
+      src = inputs.cachyos-linux;
       version = (kernel.linux.injector pkgs).version.string;
       config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-rockchip64-current.config";
-      localVer = "rockchip";
       patches =
         with kernel.patches.injector pkgs;
         cachyos.std ++ tachyon.std ++ bunker.srd ++ armbian.rockchip-patches;

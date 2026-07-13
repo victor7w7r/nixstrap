@@ -1,5 +1,35 @@
 {
   "nodes": {
+    "adb_shell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730176068,
+        "narHash": "sha256-8Vqd3N87WyfvE2qt+CLaKIYj/rWGNAObaI8LOzV3yAk=",
+        "owner": "JeffLIrion",
+        "repo": "adb_shell",
+        "rev": "149ffbcff47b5a7fbd476cfdb26931e85be0c09c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JeffLIrion",
+        "repo": "adb_shell",
+        "type": "github"
+      }
+    },
+    "adebar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744842412,
+        "narHash": "sha256-UTBBiwF3RsgwDz6WIXQ+jWIMvMbeFdU9aOUcj7C8wEY=",
+        "rev": "f98cecfacf5eebc84806a23e0ca0ec44b7448fc3",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/izzy/Adebar/archive/f98cecfacf5eebc84806a23e0ca0ec44b7448fc3.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/izzy/Adebar/archive/master.tar.gz"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -18,6 +48,66 @@
       "original": {
         "owner": "ryantm",
         "repo": "agenix",
+        "type": "github"
+      }
+    },
+    "aim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773434434,
+        "narHash": "sha256-p1mjAFKAzvdgQ1Ov8drxHNkYpPg9umf77QTaicCS6oA=",
+        "owner": "mihaigalos",
+        "repo": "aim",
+        "rev": "0183628392e0c3a7bedd00c805f9f2761ba24e7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mihaigalos",
+        "repo": "aim",
+        "type": "github"
+      }
+    },
+    "apkinspector": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771660225,
+        "narHash": "sha256-6efXoiyjTEzadZ5aut4lFbjth03Uyw8REIYQYjvWS/c=",
+        "owner": "erev0s",
+        "repo": "apkInspector",
+        "rev": "68d69b4a072e07cd26418ccab29823ada355ba71",
+        "type": "github"
+      },
+      "original": {
+        "owner": "erev0s",
+        "repo": "apkInspector",
+        "type": "github"
+      }
+    },
+    "apkstudio": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-z5HRznmkHQ1feB+u1eVqi1ZDO1PS7EB2uQWYC+xwNLU=",
+        "type": "file",
+        "url": "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage"
+      }
+    },
+    "app-manager": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665559861,
+        "narHash": "sha256-WJ+AEB3F2oC9ayPi1+wPEc9kOBeB8rDgJcDxEcC5Zi0=",
+        "owner": "ASHWIN990",
+        "repo": "app-manager",
+        "rev": "6fc2010d5b110c57917844191e685e1cf94e37f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ASHWIN990",
+        "repo": "app-manager",
         "type": "github"
       }
     },
@@ -52,6 +142,40 @@
         "owner": "hyprwm",
         "repo": "aquamarine",
         "type": "github"
+      }
+    },
+    "armbian": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776560296,
+        "narHash": "sha256-11QjZu0mhXoTCCQnlMGBL/YqbUMWYVt8/EAetIWsAO0=",
+        "owner": "MichaIng",
+        "repo": "build",
+        "rev": "299d8026da8ce06312c2d7d32220c2b01f4a2101",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MichaIng",
+        "repo": "build",
+        "rev": "299d8026da8ce06312c2d7d32220c2b01f4a2101",
+        "type": "github"
+      }
+    },
+    "asus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769960290,
+        "narHash": "sha256-29C82Hj87of4WZMwcJAkOy5/x59HrCJ92y3c1F+muRI=",
+        "owner": "asus-linux",
+        "repo": "linux-g14",
+        "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "asus-linux",
+        "repo": "linux-g14",
+        "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
+        "type": "gitlab"
       }
     },
     "batfetch": {
@@ -91,6 +215,38 @@
         "type": "github"
       }
     },
+    "bunker-patches": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782596025,
+        "narHash": "sha256-TJE60kgwNy2vIDY3BkqV77bw2uZ4TXYql72ho2pObTc=",
+        "owner": "amaanq",
+        "repo": "bunker-patches",
+        "rev": "b184faed984005db3ca6ffb6db8aacb01a38d04a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "amaanq",
+        "repo": "bunker-patches",
+        "type": "github"
+      }
+    },
+    "cachyos-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783566754,
+        "narHash": "sha256-EyVTx67qTNB2utnXRUgOWnaZxV6c07XE2rVCq/qgWxI=",
+        "owner": "CachyOS",
+        "repo": "linux-cachyos",
+        "rev": "4065d7e175fb182a2e30b982b0d8121c97c8d46b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CachyOS",
+        "repo": "linux-cachyos",
+        "type": "github"
+      }
+    },
     "cachyos-kernel": {
       "flake": false,
       "locked": {
@@ -108,6 +264,35 @@
       }
     },
     "cachyos-kernel-patches": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783564544,
+        "narHash": "sha256-oOgjJXRLkTDfOcgPQpHF7MwIBPOf1pHT77EC/YVfkm4=",
+        "owner": "CachyOS",
+        "repo": "kernel-patches",
+        "rev": "c624c9c8cffc11dd619a7d37f903556c60d24e9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CachyOS",
+        "repo": "kernel-patches",
+        "type": "github"
+      }
+    },
+    "cachyos-linux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783172428,
+        "narHash": "sha256-i/rqcXHHAKqiDGSSwvaJnx9nAt5xcnDdUS+K42fT3j8=",
+        "type": "tarball",
+        "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz"
+      }
+    },
+    "cachyos-patches": {
       "flake": false,
       "locked": {
         "lastModified": 1783564544,
@@ -2450,8 +2635,20 @@
     },
     "root": {
       "inputs": {
+        "adb_shell": "adb_shell",
+        "adebar": "adebar",
         "agenix": "agenix",
+        "aim": "aim",
+        "apkinspector": "apkinspector",
+        "apkstudio": "apkstudio",
+        "app-manager": "app-manager",
+        "armbian": "armbian",
+        "asus": "asus",
         "batfetch": "batfetch",
+        "bunker-patches": "bunker-patches",
+        "cachyos-config": "cachyos-config",
+        "cachyos-linux": "cachyos-linux",
+        "cachyos-patches": "cachyos-patches",
         "catppuccin-refind": "catppuccin-refind",
         "claude-desktop": "claude-desktop",
         "custom-packages": "custom-packages",
@@ -2491,7 +2688,11 @@
         "proxmox-nixos": "proxmox-nixos",
         "pyprland": "pyprland",
         "rofi-tools": "rofi-tools",
+        "sdm845-linux": "sdm845-linux",
         "swiftfetch": "swiftfetch",
+        "tachyon-patches": "tachyon-patches",
+        "uwe5622": "uwe5622",
+        "xrlinux": "xrlinux",
         "zen-browser": "zen-browser"
       }
     },
@@ -2528,6 +2729,20 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "sdm845-linux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778921098,
+        "narHash": "sha256-3sS11Aoal6JNU+uXvOtiQLM40dsCqc/vb4o2ZYB2JgQ=",
+        "rev": "25be2fc4eabe9666f78cc3ec80b938fe2d92efea",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz"
       }
     },
     "swiftfetch": {
@@ -2778,6 +2993,20 @@
         "type": "github"
       }
     },
+    "tachyon-patches": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767402416,
+        "narHash": "sha256-hQIk07TaYnCLA8vouZH7NmeDeA0RgFbHe70q3uroY0g=",
+        "rev": "465087d9f514ffebcfda87ae9ec184e843616313",
+        "type": "tarball",
+        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz"
+      }
+    },
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
@@ -2853,6 +3082,22 @@
         "type": "github"
       }
     },
+    "uwe5622": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1690708939,
+        "narHash": "sha256-HjS+2lRbnytolOS3eQ6nz/yTgkCQ3nMmJtwvKGtv+dw=",
+        "owner": "Ran-Thegoth",
+        "repo": "uwe5622",
+        "rev": "ca207454402d215d676dc0eeba54c2b99245bff9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ran-Thegoth",
+        "repo": "uwe5622",
+        "type": "github"
+      }
+    },
     "xdph": {
       "inputs": {
         "hyprland-protocols": [
@@ -2891,6 +3136,22 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "xrlinux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775152564,
+        "narHash": "sha256-HmYacq1Wc5R5v1svvE6C5o3W7se/HrZnRkiFjKzkUC8=",
+        "owner": "wheaney",
+        "repo": "XRLinuxDriver",
+        "rev": "08b3bc93d1dff5f8843be30fbc262fb5364f7fa3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wheaney",
+        "repo": "XRLinuxDriver",
         "type": "github"
       }
     },

@@ -1,11 +1,11 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.server =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
-      src = (kernel.linux.injector pkgs).cachyos;
       localVer = "server-hardened-native";
+      src = inputs.cachyos-linux;
       version = (kernel.linux.injector pkgs).version.string;
       config = (kernel.linux.injector pkgs).kConfig false;
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;

@@ -1,13 +1,18 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
+  flake-file.inputs = {
+    cachyos-linux = {
+      url = "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz";
+      flake = false;
+    };
+    cachyos-config = {
+      url = "github:CachyOS/linux-cachyos";
+      flake = false;
+    };
+  };
+
   kernel.linux = {
-    cachyos =
-      pkgs:
-      with (pkgs.lib.trivial.importJSON ./packages.json).linux;
-      pkgs.fetchurl { inherit url sha256; };
-
-    version = pkgs: (kernel.lib.calc-version pkgs (kernel.linux.cachyos pkgs));
-
+    version = pkgs: (kernel.lib.calc-version pkgs inputs.cachyos-linux);
     kConfig =
       hardened: pkgs:
       pkgs.stdenvNoCC.mkDerivation {
@@ -17,17 +22,7 @@
           "buildPhase"
           "installPhase"
         ];
-        src =
-          with (pkgs.lib.trivial.importJSON ./packages.json).kConfig;
-          pkgs.fetchFromGitHub {
-            inherit
-              repo
-              rev
-              owner
-              sha256
-              ;
-          };
-
+        src = inputs.cachyos-config;
         buildPhase = ''cp "$src/linux-cachyos-${if hardened then "hardened" else "lts"}/config" ./config'';
         installPhase = "cp config $out";
       };
