@@ -16,9 +16,9 @@
     { user, ... }:
     {
       os =
-        { inputs', pkgs, ... }:
+        { pkgs, ... }:
         {
-          nixpkgs.overlays = with inputs'; [
+          nixpkgs.overlays = with inputs; [
             emacs-overlay.overlay
             emacs-config.overlays.default
           ];

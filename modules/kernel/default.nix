@@ -6,6 +6,7 @@
 }:
 {
   imports = [ (inputs.den.namespace "kernel" true) ];
+  flake-file.inputs.nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
   kernel.lib.v7w7r =
     {
@@ -70,6 +71,23 @@
         '';
       };
     });
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages = lib.mkAfter {
+        handheld-kernel = (kernel.hosts.handheld pkgs).handheld-kernel;
+        handheld-config = (kernel.hosts.handheld pkgs).handheld-config;
+        server-kernel = (kernel.hosts.server pkgs).server-kernel;
+        server-config = (kernel.hosts.server pkgs).server-config;
+        pizero-kernel = (kernel.hosts.pizero pkgs).pizero-kernel;
+        pizero-config = (kernel.hosts.pizero pkgs).pizero-config;
+        superlab-config = (kernel.hosts.superlab pkgs).superlab-config;
+        superlab-kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
+        generic-config = (kernel.hosts.generic pkgs).generic-config;
+        generic-kernel = (kernel.hosts.generic pkgs).generic-kernel;
+      };
+    };
 }
 /*
   lib.optionalAttrs isClang {

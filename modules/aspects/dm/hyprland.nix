@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake-file.inputs = {
     hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/0.53";
@@ -26,12 +27,11 @@
     {
       pkgs,
       self',
-      host,
       inputs',
       ...
     }:
     {
-      imports = with inputs'; [
+      imports = with inputs; [
         hyprfloat.homeManagerModules.default
         hyprdvd.homeManagerModules.default
       ];
@@ -41,7 +41,7 @@
         with self'.packages;
         [
           #pyprland.packages."x86_64-linux".pyprland
-          inputs'.rofi-tools.packages.${host.system}.default
+          inputs'.rofi-tools.packages.default
           brightnessctl
           dmenu-rs
           figlet

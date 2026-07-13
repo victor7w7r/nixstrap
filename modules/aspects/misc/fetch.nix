@@ -36,9 +36,8 @@
 
     nixos =
       {
-        #inputs',
+        inputs',
         pkgs,
-        #host,
         self',
         ...
       }:
@@ -59,8 +58,8 @@
             songfetch
             sysfex
             zeitfetch
-            #inputs'.batfetch.packages.${host.system}.default
-            #inputs.swiftfetch.packages.${pkgs.system}.swiftfetch
+            inputs'.batfetch.packages.default
+            #inputs'.swiftfetch.packages.swiftfetch
           ];
       };
 

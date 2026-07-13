@@ -18,9 +18,8 @@ let
       version + "." + patchlevel + "." + sublevel + (lib.optionalString (extraversion != "") extraversion)
     }";
   };
-  majorMinor = (
-    builtins.trace (lib.versions.majorMinor version.string) (lib.versions.majorMinor version.string)
-  );
+  majorMinor = lib.versions.majorMinor version.string;
+
   isCross = stdenv.hostPlatform != stdenv.buildPlatform;
   fetch = (pkgs.callPackage ../fetch.nix { inherit kernelData majorMinor; });
   localVer = "-v7w7r-sdm845";

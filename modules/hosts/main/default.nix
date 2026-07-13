@@ -37,7 +37,6 @@
         }:
         {
           networking.hostName = "v7w7r-macmini81";
-
           boot = {
             kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [ "kvmfr.static_size_mb=128" ];

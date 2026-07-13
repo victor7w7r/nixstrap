@@ -36,14 +36,9 @@
         ];
 
         nixos =
+          { lib, pkgs, ... }:
           {
-            lib,
-            pkgs,
-            self',
-            ...
-          }:
-          {
-            networking.hostName = builtins.trace self' "v7w7r-rc71l";
+            networking.hostName = "v7w7r-rc71l";
 
             boot = {
               extraModprobeConfig = "options kvm-amd nested=1";

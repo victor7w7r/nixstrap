@@ -80,7 +80,7 @@
               ytdl
             ]
             ++ (lib.optionals isX86 [
-              #inputs'.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.thorium-sse3
+              inputs'.custom-packages.packages.thorium-sse3
             ]);
         };
     };

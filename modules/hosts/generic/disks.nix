@@ -1,6 +1,6 @@
 { disko, ... }:
 {
-  den.aspects.handheld.disks.nixos.disko.devices = with disko; {
+  den.aspects.generic.disks.nixos.disko.devices = with disko; {
     bcachefs_filesystems.broot = bcachefs.filesystem {
       subvolumes =
         (bcachefs.subvolume {

@@ -5,11 +5,13 @@
   imports = [
     (inputs.den.flakeModules.dendritic or { })
     (inputs.flake-file.flakeModules.dendritic or { })
+    inputs.pkgs-by-name-for-flake-parts.flakeModule
   ];
 
   flake-file.inputs = {
     den.url = "github:denful/den";
     flake-file.url = "github:vic/flake-file";
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
 

@@ -129,8 +129,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:/nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nixvim.url = "github:nix-community/nixvim";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
@@ -147,10 +146,6 @@
     swiftfetch = {
       url = "github:ly-sec/swiftfetch";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    xrlinux = {
-      url = "github:wheaney/XRLinuxDriver";
-      flake = false;
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
