@@ -1,5 +1,5 @@
 { inputs, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+stdenvNoCC.mkDerivation {
   pname = "app-manager";
   version = "latest";
   src = inputs.app-manager;
@@ -8,4 +8,4 @@ stdenvNoCC.mkDerivation (attrs: {
     mkdir -p $out/bin
     cp $src/app-manager $out/bin/app-manager
   '';
-})
+}

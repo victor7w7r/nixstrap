@@ -69,7 +69,7 @@
               seafile-client
               sonic-visualiser
               spotify-qt
-              sticky-notes
+              #sticky-notes
               tenacity
               vlc
               #davinci-video-converter

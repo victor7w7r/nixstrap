@@ -1,18 +1,9 @@
-{ pkgs, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ pkgs, inputs }:
+pkgs.stdenvNoCC.mkDerivation {
   pname = "btrfs-data-recovery";
   version = "latest";
-
-  src1 = pkgs.fetchurl {
-    url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map";
-    sha256 = "sha256-dRzKq1c/JMxX25CXIz5xzSszfXm5A24rovZ01b/kZUQ=";
-  };
-
-  src2 = pkgs.fetchurl {
-    url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner";
-    sha256 = "sha256-oV4StV9TPeGEToU9qtKIfyAx2UzTwWLpVutn/FLGMVE=";
-  };
-
+  src1 = inputs.btrfs-data-recovery-map;
+  src2 = inputs.btrfs-data-recovery-scanner;
   dontUnpack = true;
   nativeBuildInputs = with pkgs; [ autoPatchelfHook ];
   buildInputs = with pkgs; [
@@ -32,4 +23,4 @@ stdenvNoCC.mkDerivation (attrs: {
     chmod +x $out/bin/btrfs-recovery-map
     chmod +x $out/bin/btrfs-scanner
   '';
-})
+}

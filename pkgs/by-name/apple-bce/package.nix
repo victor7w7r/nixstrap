@@ -1,22 +1,17 @@
 {
   main-kernel,
   pkgs,
+  inputs,
   llvmPackages,
   overrideCC,
   stdenv,
 }:
-(overrideCC stdenv llvmPackages.clang).mkDerivation (attrs: {
+(overrideCC stdenv llvmPackages.clang).mkDerivation {
   name = "apple-bce";
-  gitCommit = "5dd96d6ca0dd88d4a500639ed3923e258a81eb3f";
   version = "latest";
   LLVM = "1";
 
-  src = pkgs.fetchFromGitHub {
-    owner = "deqrocks";
-    repo = "apple-bce";
-    rev = attrs.gitCommit;
-    sha256 = "sha256-GHc2EujgUzXttODVPmZUmBgetnBWJSaWPKVMNTdf89w=";
-  };
+  src = inputs.apple-bce;
 
   hardeningDisable = [
     "pic"
@@ -42,4 +37,4 @@
     "KDIR=${main-kernel.dev}/lib/modules/${main-kernel.modDirVersion}/build"
     "INSTALL_MOD_PATH=$(out)"
   ];
-})
+}

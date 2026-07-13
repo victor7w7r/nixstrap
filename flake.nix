@@ -70,6 +70,14 @@
       url = "github:ASHWIN990/app-manager";
       flake = false;
     };
+    appimage-thumbnailer = {
+      url = "github:realmazharhussain/appimage-thumbnailer";
+      flake = false;
+    };
+    apple-bce = {
+      url = "github:deqrocks/apple-bce/5dd96d6ca0dd88d4a500639ed3923e258a81eb3f";
+      flake = false;
+    };
     armbian = {
       url = "github:MichaIng/build/299d8026da8ce06312c2d7d32220c2b01f4a2101";
       flake = false;
@@ -78,9 +86,57 @@
       url = "gitlab:asus-linux/linux-g14/0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
       flake = false;
     };
+    audio-share = {
+      url = "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz";
+      flake = false;
+    };
+    audiosource = {
+      url = "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource";
+      flake = false;
+    };
+    autoricer = {
+      url = "github:3rfaan/autoricer";
+      flake = false;
+    };
+    aya = {
+      url = "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage";
+      flake = false;
+    };
     batfetch = {
       url = "github:ashish-kus/batfetch";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bestfetch = {
+      url = "gitlab:Maxb0tbeep/bestfetch";
+      flake = false;
+    };
+    better-adb-sync = {
+      url = "github:jb2170/better-adb-sync";
+      flake = false;
+    };
+    bollywood = {
+      url = "github:abloch/bollywood";
+      flake = false;
+    };
+    breezy-desktop = {
+      url = "github:wheaney/breezy-desktop";
+      flake = false;
+    };
+    btrfs-data-recovery-map = {
+      url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map";
+      flake = false;
+    };
+    btrfs-data-recovery-scanner = {
+      url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner";
+      flake = false;
+    };
+    btrfs-du = {
+      url = "github:nachoparker/btrfs-du";
+      flake = false;
+    };
+    btrfsd = {
+      url = "github:ximion/btrfsd";
+      flake = false;
     };
     bunker-patches = {
       url = "github:amaanq/bunker-patches";
@@ -96,6 +152,18 @@
     };
     cachyos-patches = {
       url = "github:CachyOS/kernel-patches";
+      flake = false;
+    };
+    carbonyl-amd64 = {
+      url = "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip";
+      flake = false;
+    };
+    carbonyl-arm64 = {
+      url = "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip";
+      flake = false;
+    };
+    cargofetch = {
+      url = "github:arjav0703/cargofetch";
       flake = false;
     };
     catppuccin-refind = {
@@ -156,6 +224,22 @@
       url = "github:mobile-nixos/mobile-nixos";
       flake = false;
     };
+    nimBytesized = {
+      url = "gitlab:Maxb0tbeep/bytesized";
+      flake = false;
+    };
+    nimElvis = {
+      url = "github:mattaylor/elvis";
+      flake = false;
+    };
+    nimTermstyle = {
+      url = "github:PMunch/termstyle";
+      flake = false;
+    };
+    nimYaml = {
+      url = "github:flyx/NimYAML";
+      flake = false;
+    };
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-doom-emacs-unstraightened = {
@@ -201,6 +285,30 @@
     };
     tachyon-patches = {
       url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz";
+      flake = false;
+    };
+    tmux-cowboy = {
+      url = "github:tmux-plugins/tmux-cowboy/75702b6d0a866769dd14f3896e9d19f7e0acd4f2";
+      flake = false;
+    };
+    tmux-menus = {
+      url = "github:jaclu/tmux-menus/764ac9cd6bbad199e042419b8074eda18e9d8b2d";
+      flake = false;
+    };
+    tmux-named-snapshot = {
+      url = "github:spywhere/tmux-named-snapshot/872fedef62c1b732a56ca643f2354346912e06c3";
+      flake = false;
+    };
+    tmux-notify = {
+      url = "github:rickstaa/tmux-notify/75702b6d0a866769dd14f3896e9d19f7e0acd4f2";
+      flake = false;
+    };
+    tmux-power-zoom = {
+      url = "github:jaclu/tmux-power-zoom/6d618af224229ae653ffcc6d12c2146d536af79b";
+      flake = false;
+    };
+    tmux-suspend = {
+      url = "github:MunifTanjim/tmux-suspend/1a2f806666e0bfed37535372279fa00d27d50d14";
       flake = false;
     };
     uwe5622 = {

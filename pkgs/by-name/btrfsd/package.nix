@@ -1,14 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "btrfsd";
   version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "ximion";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-XdmmWrgNfZbmMZmuSlCoG8mPqTUe4XPWaFGM7koe/Uw=";
-  };
+  src = inputs.btrfsd;
 
   nativeBuildInputs = with pkgs; [
     meson
@@ -33,4 +27,4 @@ stdenv.mkDerivation (attrs: {
 
   pkgconfigSystemdSystemUnitDir = "${placeholder "out"}/lib/systemd/system";
   mesonBuildType = "debugoptimized";
-})
+}

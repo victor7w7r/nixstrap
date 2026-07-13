@@ -111,6 +111,39 @@
         "type": "github"
       }
     },
+    "appimage-thumbnailer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748278423,
+        "narHash": "sha256-Y7s9qdJIJbUqEP0/6qlTPOtE3efRqL1bx66MJIPgRN4=",
+        "owner": "realmazharhussain",
+        "repo": "appimage-thumbnailer",
+        "rev": "d0f4a494604724429f0c3396f179b44a09fe2b8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "realmazharhussain",
+        "repo": "appimage-thumbnailer",
+        "type": "github"
+      }
+    },
+    "apple-bce": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774651808,
+        "narHash": "sha256-GHc2EujgUzXttODVPmZUmBgetnBWJSaWPKVMNTdf89w=",
+        "owner": "deqrocks",
+        "repo": "apple-bce",
+        "rev": "5dd96d6ca0dd88d4a500639ed3923e258a81eb3f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "deqrocks",
+        "repo": "apple-bce",
+        "rev": "5dd96d6ca0dd88d4a500639ed3923e258a81eb3f",
+        "type": "github"
+      }
+    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -178,6 +211,59 @@
         "type": "gitlab"
       }
     },
+    "audio-share": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741272970,
+        "narHash": "sha256-WTyRgPZgtIn0WJl2+KFiona1DKQVTHT2lTHFvNzvu+E=",
+        "type": "tarball",
+        "url": "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz"
+      }
+    },
+    "audiosource": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-6BQJ7yJxn0ltQnftJbSdTFrk1OgMvTaZNh206bSasjI=",
+        "type": "file",
+        "url": "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource"
+      }
+    },
+    "autoricer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734638746,
+        "narHash": "sha256-8Ff9QhdQ1BrpKN2r81gAGlZGaybCdI2pIl3PQVUaSbU=",
+        "owner": "3rfaan",
+        "repo": "autoricer",
+        "rev": "8129b6256b8529768b18b0888e21257194267324",
+        "type": "github"
+      },
+      "original": {
+        "owner": "3rfaan",
+        "repo": "autoricer",
+        "type": "github"
+      }
+    },
+    "aya": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-CXk6CHtrYOIuKNxLJKXP2WnVDmuvIV7dtUgsIm2sqcU=",
+        "type": "file",
+        "url": "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage"
+      }
+    },
     "batfetch": {
       "inputs": {
         "nixpkgs": [
@@ -198,6 +284,70 @@
         "type": "github"
       }
     },
+    "bestfetch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782729928,
+        "narHash": "sha256-Voi/HQGFOP14trdAJZ+t0LF8HOSb5+Rbhr4fhvXdGzc=",
+        "owner": "Maxb0tbeep",
+        "repo": "bestfetch",
+        "rev": "8c8b798ce83dd16e17df013058738683c15c6db0",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "Maxb0tbeep",
+        "repo": "bestfetch",
+        "type": "gitlab"
+      }
+    },
+    "better-adb-sync": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694218947,
+        "narHash": "sha256-ghOpcnQEZiAEZOiVWhrHa66WgiyyYQZgTJEokJFKMRs=",
+        "owner": "jb2170",
+        "repo": "better-adb-sync",
+        "rev": "2d19f23b2ae8a74e4d4e038df049112408335a6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jb2170",
+        "repo": "better-adb-sync",
+        "type": "github"
+      }
+    },
+    "bollywood": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776893500,
+        "narHash": "sha256-yV0LxCLvoslFRu/FacoaUL1mnZmFy1l9XYP65fNj4dE=",
+        "owner": "abloch",
+        "repo": "bollywood",
+        "rev": "31e1677fd73d455dd95c285fd797f5f0966d26e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abloch",
+        "repo": "bollywood",
+        "type": "github"
+      }
+    },
+    "breezy-desktop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782852565,
+        "narHash": "sha256-rtSHfs9fgMpWLhYP6HuNKuTuMOZMikLQu0BrnVVC8Zw=",
+        "owner": "wheaney",
+        "repo": "breezy-desktop",
+        "rev": "013690580c37e5ec23378e689a25e62050f400ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wheaney",
+        "repo": "breezy-desktop",
+        "type": "github"
+      }
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -212,6 +362,62 @@
         "owner": "Homebrew",
         "ref": "6.0.9",
         "repo": "brew",
+        "type": "github"
+      }
+    },
+    "btrfs-data-recovery-map": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-p0A6GYKBnbfOW0I1FPOtONqf7X0AV8tRm8afVijb6Cg=",
+        "type": "file",
+        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map"
+      }
+    },
+    "btrfs-data-recovery-scanner": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-3vngkkMqDnfJXnYgaBHY5T7lGIWJnAy/urOJkQ6lOnA=",
+        "type": "file",
+        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner"
+      }
+    },
+    "btrfs-du": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1631028819,
+        "narHash": "sha256-5A/WDZkWs1fmwQilukYDC9Fug1vG+LPUQWe79ZwSW1M=",
+        "owner": "nachoparker",
+        "repo": "btrfs-du",
+        "rev": "dc0194d9f31a88a0ca823d734d672a4a53d24029",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nachoparker",
+        "repo": "btrfs-du",
+        "type": "github"
+      }
+    },
+    "btrfsd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782175824,
+        "narHash": "sha256-XdmmWrgNfZbmMZmuSlCoG8mPqTUe4XPWaFGM7koe/Uw=",
+        "owner": "ximion",
+        "repo": "btrfsd",
+        "rev": "7424701d626524f73560397cc62f8f8a410ed46d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ximion",
+        "repo": "btrfsd",
         "type": "github"
       }
     },
@@ -305,6 +511,48 @@
       "original": {
         "owner": "CachyOS",
         "repo": "kernel-patches",
+        "type": "github"
+      }
+    },
+    "carbonyl-amd64": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676679515,
+        "narHash": "sha256-z4oYXTu2olzDioKJpe2ePraG2pQQYoBBR+f8aUiDF7Q=",
+        "type": "tarball",
+        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip"
+      }
+    },
+    "carbonyl-arm64": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676679542,
+        "narHash": "sha256-iV8I0a4xv+UJmqADwHdzMgueoccDVUH+J3wFaBx7rF0=",
+        "type": "tarball",
+        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip"
+      }
+    },
+    "cargofetch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773676992,
+        "narHash": "sha256-zAnQWRqt3qVZx+uKlCteKan9p2NqNvDYgv5dFr5/30g=",
+        "owner": "arjav0703",
+        "repo": "cargofetch",
+        "rev": "6a5dc36a9dbbebf03493816d2798081b737dde77",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arjav0703",
+        "repo": "cargofetch",
         "type": "github"
       }
     },
@@ -530,11 +778,11 @@
     "doomemacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1783792295,
-        "narHash": "sha256-y5qd13wlaLWEm/dDeeWRaXukZ+90KRGksdtNFFkz8D4=",
+        "lastModified": 1783881028,
+        "narHash": "sha256-FXX38mnaQ2BW1P6bDCcE+Q2gOZzxNfhYPvr4R5dqRbo=",
         "owner": "doomemacs",
         "repo": "core",
-        "rev": "0d1b06408720e7642bde537083ffb267a838256c",
+        "rev": "635bc939d3cb835873d7039a6505d78cdb99d313",
         "type": "github"
       },
       "original": {
@@ -567,11 +815,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1783878283,
-        "narHash": "sha256-QqexwbjOKJ0dVm2NA3tMsgdQ9/RWwxT83G4lZ1Ye8Ns=",
+        "lastModified": 1783944029,
+        "narHash": "sha256-koCSvxhJVO2ceDFmnqT4jpWgrlAb3pACWK7NitZP5bU=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c46cc86cbf2b1628d8fb823b09bd367800aad114",
+        "rev": "9bae184ed0c04cf270fbb0c9ba886d49bc9cc5e2",
         "type": "github"
       },
       "original": {
@@ -590,11 +838,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783849966,
-        "narHash": "sha256-+AZA69hZ+XZH3D48ky4/pDcRKrlUZh65+GZd3tH8B/M=",
+        "lastModified": 1783941133,
+        "narHash": "sha256-2IWPXUpBVimmzeMgRbjOjZmSDxe3PFalOlJqDct1Pso=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c80d0bf4911a5841ced1721cd35920037e1532a3",
+        "rev": "4d1f8b51db1a1344a21f4ce26691032358ad80e6",
         "type": "github"
       },
       "original": {
@@ -630,11 +878,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1783828963,
-        "narHash": "sha256-eTytzcUJCaDUZ3/9EF0+V3fvlikQMQBwiX1Sx4Gy+No=",
+        "lastModified": 1783915367,
+        "narHash": "sha256-x4tE9tA8r2cQUu6PmT+9kESsle67A7kZ8dDGZYH0tRE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "8d61e9afde605cd6c22dab68b83d7a71f0a6c5b2",
+        "rev": "a98964eb419c1723464e16e39a16b99da00453c9",
         "type": "gitlab"
       },
       "original": {
@@ -1770,16 +2018,80 @@
     "mobile-nixos": {
       "flake": false,
       "locked": {
-        "lastModified": 1783452618,
-        "narHash": "sha256-uJKeH1QrCiT9xvpFMSUzUAb06Tm1eSAwAQ/okiNkmlw=",
+        "lastModified": 1783912271,
+        "narHash": "sha256-CzwmiKxuh1u+H8hDnrVeUl/fL59PvsgLbr2l0FhqWK0=",
         "owner": "mobile-nixos",
         "repo": "mobile-nixos",
-        "rev": "458448d147d32329da66e6fbd746521924a5eee3",
+        "rev": "2c132754323fc1915e8d21dcfc0ef68ab084c6fb",
         "type": "github"
       },
       "original": {
         "owner": "mobile-nixos",
         "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
+    "nimBytesized": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745343855,
+        "narHash": "sha256-TH7ZoZozwItGmWpeWNOsoxInpZZI0qT6PkiHaZ/WsI8=",
+        "owner": "Maxb0tbeep",
+        "repo": "bytesized",
+        "rev": "ce7734568508024dc0837da99e1ec5a4dfddd831",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "Maxb0tbeep",
+        "repo": "bytesized",
+        "type": "gitlab"
+      }
+    },
+    "nimElvis": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642435904,
+        "narHash": "sha256-KQllIuyEuP4uzKaKBA/2J5/Q3YSaupu7crXV2feXgkA=",
+        "owner": "mattaylor",
+        "repo": "elvis",
+        "rev": "9aac6d4d80b061251ba1b67a0fb68e74f7b4743c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattaylor",
+        "repo": "elvis",
+        "type": "github"
+      }
+    },
+    "nimTermstyle": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1569147881,
+        "narHash": "sha256-PuvUfjskKI5IA4cAOQ6RugHrVyFit1ihGr4vIDymiLI=",
+        "owner": "PMunch",
+        "repo": "termstyle",
+        "rev": "eefd9f17071df2b8c13e18537cd799acd7f41501",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PMunch",
+        "repo": "termstyle",
+        "type": "github"
+      }
+    },
+    "nimYaml": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780151767,
+        "narHash": "sha256-zhsmHEos27bTRUQAeQizf4EsjlnUKnvHjLTLKhG+1bU=",
+        "owner": "flyx",
+        "repo": "NimYAML",
+        "rev": "dbeeafe0155d61ff12a3600d3aea27674e78e34d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flyx",
+        "repo": "NimYAML",
         "type": "github"
       }
     },
@@ -1856,11 +2168,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1783850568,
-        "narHash": "sha256-oaBhy4KNAz5Uh/FySab0gKA6oRHpK9o0bch6DhQvlIM=",
+        "lastModified": 1783942319,
+        "narHash": "sha256-aGfKmxOPYevuuq5xknPM/7IoMMCbVhBcF74BBkZwlaA=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
-        "rev": "2847a1c31640d2b642319ef6c313321a1de9dbb3",
+        "rev": "e34924af2d6cb57a2f7655472cc7fcd45321fec8",
         "type": "github"
       },
       "original": {
@@ -2101,11 +2413,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1783703440,
-        "narHash": "sha256-O3/YajjWo001VUIgD8BwaRdSNLUFe7nZ1qV5TwhRBcw=",
+        "lastModified": 1783856661,
+        "narHash": "sha256-ZGP04e+Q6WyQJGA9ZvI5CL6+heGQldbAG9U1T9NGvmU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8f0500b9660505dc3cb647775fe9a978a74b5283",
+        "rev": "569d578509928497eddc3fdbf94a799027050be4",
         "type": "github"
       },
       "original": {
@@ -2434,11 +2746,11 @@
         "systems": "systems_11"
       },
       "locked": {
-        "lastModified": 1783869492,
-        "narHash": "sha256-47qs7UofgjxU6m7c90RycaHjvEXnVM5DeVEAtaPVPUA=",
+        "lastModified": 1783941741,
+        "narHash": "sha256-F+3M1IZrJa920cx2/k2AMKqedEodxLF7COJVkLJwUBo=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "4ef28e447b9003b67ff7fa9488a3be93c43312db",
+        "rev": "e6715f01d9f56f07a27a01386b85ae22b06f0705",
         "type": "github"
       },
       "original": {
@@ -2642,13 +2954,30 @@
         "apkinspector": "apkinspector",
         "apkstudio": "apkstudio",
         "app-manager": "app-manager",
+        "appimage-thumbnailer": "appimage-thumbnailer",
+        "apple-bce": "apple-bce",
         "armbian": "armbian",
         "asus": "asus",
+        "audio-share": "audio-share",
+        "audiosource": "audiosource",
+        "autoricer": "autoricer",
+        "aya": "aya",
         "batfetch": "batfetch",
+        "bestfetch": "bestfetch",
+        "better-adb-sync": "better-adb-sync",
+        "bollywood": "bollywood",
+        "breezy-desktop": "breezy-desktop",
+        "btrfs-data-recovery-map": "btrfs-data-recovery-map",
+        "btrfs-data-recovery-scanner": "btrfs-data-recovery-scanner",
+        "btrfs-du": "btrfs-du",
+        "btrfsd": "btrfsd",
         "bunker-patches": "bunker-patches",
         "cachyos-config": "cachyos-config",
         "cachyos-linux": "cachyos-linux",
         "cachyos-patches": "cachyos-patches",
+        "carbonyl-amd64": "carbonyl-amd64",
+        "carbonyl-arm64": "carbonyl-arm64",
+        "cargofetch": "cargofetch",
         "catppuccin-refind": "catppuccin-refind",
         "claude-desktop": "claude-desktop",
         "custom-packages": "custom-packages",
@@ -2671,6 +3000,10 @@
         "import-tree": "import-tree",
         "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "mobile-nixos": "mobile-nixos",
+        "nimBytesized": "nimBytesized",
+        "nimElvis": "nimElvis",
+        "nimTermstyle": "nimTermstyle",
+        "nimYaml": "nimYaml",
         "nix-alien": "nix-alien",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
@@ -2691,6 +3024,12 @@
         "sdm845-linux": "sdm845-linux",
         "swiftfetch": "swiftfetch",
         "tachyon-patches": "tachyon-patches",
+        "tmux-cowboy": "tmux-cowboy",
+        "tmux-menus": "tmux-menus",
+        "tmux-named-snapshot": "tmux-named-snapshot",
+        "tmux-notify": "tmux-notify",
+        "tmux-power-zoom": "tmux-power-zoom",
+        "tmux-suspend": "tmux-suspend",
         "uwe5622": "uwe5622",
         "xrlinux": "xrlinux",
         "zen-browser": "zen-browser"
@@ -3005,6 +3344,108 @@
       "original": {
         "type": "tarball",
         "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz"
+      }
+    },
+    "tmux-cowboy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620727745,
+        "narHash": "sha256-KJNsdDLqT2Uzc25U4GLSB2O1SA/PThmDj9Aej5XjmJs=",
+        "owner": "tmux-plugins",
+        "repo": "tmux-cowboy",
+        "rev": "75702b6d0a866769dd14f3896e9d19f7e0acd4f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tmux-cowboy",
+        "rev": "75702b6d0a866769dd14f3896e9d19f7e0acd4f2",
+        "type": "github"
+      }
+    },
+    "tmux-menus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696880703,
+        "narHash": "sha256-tPUUaMASG/DtqxyN2VwCKPivYZkwVKjIScI99k6CJv8=",
+        "owner": "jaclu",
+        "repo": "tmux-menus",
+        "rev": "764ac9cd6bbad199e042419b8074eda18e9d8b2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jaclu",
+        "repo": "tmux-menus",
+        "rev": "764ac9cd6bbad199e042419b8074eda18e9d8b2d",
+        "type": "github"
+      }
+    },
+    "tmux-named-snapshot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720106207,
+        "narHash": "sha256-EW1X+ZVl+hIIqAsj+bv6dkjQtNiBEhUYOQK/8bFEpV8=",
+        "owner": "spywhere",
+        "repo": "tmux-named-snapshot",
+        "rev": "872fedef62c1b732a56ca643f2354346912e06c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spywhere",
+        "repo": "tmux-named-snapshot",
+        "rev": "872fedef62c1b732a56ca643f2354346912e06c3",
+        "type": "github"
+      }
+    },
+    "tmux-notify": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620727745,
+        "narHash": "sha256-KJNsdDLqT2Uzc25U4GLSB2O1SA/PThmDj9Aej5XjmJs=",
+        "owner": "rickstaa",
+        "repo": "tmux-notify",
+        "rev": "75702b6d0a866769dd14f3896e9d19f7e0acd4f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rickstaa",
+        "repo": "tmux-notify",
+        "rev": "75702b6d0a866769dd14f3896e9d19f7e0acd4f2",
+        "type": "github"
+      }
+    },
+    "tmux-power-zoom": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644429328,
+        "narHash": "sha256-zFmEs6A5LJM6zI/aJ6j3Pf1yrNfF2G4ehRJJRz+qEwg=",
+        "owner": "jaclu",
+        "repo": "tmux-power-zoom",
+        "rev": "6d618af224229ae653ffcc6d12c2146d536af79b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jaclu",
+        "repo": "tmux-power-zoom",
+        "rev": "6d618af224229ae653ffcc6d12c2146d536af79b",
+        "type": "github"
+      }
+    },
+    "tmux-suspend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673761096,
+        "narHash": "sha256-+1fKkwDmr5iqro0XeL8gkjOGGB/YHBD25NG+w3iW+0g=",
+        "owner": "MunifTanjim",
+        "repo": "tmux-suspend",
+        "rev": "1a2f806666e0bfed37535372279fa00d27d50d14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MunifTanjim",
+        "repo": "tmux-suspend",
+        "rev": "1a2f806666e0bfed37535372279fa00d27d50d14",
+        "type": "github"
       }
     },
     "treefmt-nix": {

@@ -1,18 +1,10 @@
-{ fetchFromGitHub, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   pname = "breezy-desktop";
-  version = "v2.9.12";
-
-  src = fetchFromGitHub {
-    owner = "wheaney";
-    repo = attrs.pname;
-    rev = attrs.version;
-    hash = "sha256-uAjA9YN82W8W951JRibFqC9nGZ4/8RU6hXPErrPsmTg=";
-  };
-
+  version = "latest";
+  src = inputs.breezy-desktop;
   dontConfigure = true;
   dontBuild = true;
-
   installPhase = ''
     mkdir -p $out/lib/qt6/plugins/kwin/effects/plugins/
     mkdir -p $out/lib/qt6/plugins/plasma/kcms/
@@ -76,4 +68,4 @@ stdenvNoCC.mkDerivation (attrs: {
     EOF
     chmod +x $out/bin/breezy-desktop-kwin-uninstall
   '';
-})
+}

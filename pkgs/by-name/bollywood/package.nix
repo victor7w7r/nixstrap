@@ -1,15 +1,8 @@
-{ pkgs, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenvNoCC.mkDerivation {
   pname = "bollywood";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "abloch";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-yV0LxCLvoslFRu/FacoaUL1mnZmFy1l9XYP65fNj4dE=";
-  };
-
+  version = "latest";
+  src = inputs.bollywood;
   nativeBuildInputs = [ pkgs.makeWrapper ];
 
   installPhase = ''
@@ -44,4 +37,4 @@ stdenvNoCC.mkDerivation (attrs: {
     chmod +x $out/bin/bollywood
     chmod +x $out/bin/stam.sh
   '';
-})
+}
