@@ -229,11 +229,8 @@ stdenvNoCC.mkDerivation {
     })
 
   ];
-
   sourceRoot = ".";
-
   installPhase = ''
-    runHook preInstall
     BASE="2024-03-30-Spring-2024-Fanart-Contest-All-Entries"
     DIR="Spring2024FanartSubmissions"
     mv $BASE/$DIR . && rm -r $BASE && mv $DIR $BASE
@@ -242,6 +239,5 @@ stdenvNoCC.mkDerivation {
     mv $BASE/$DIR . && rm -r $BASE && mv $DIR $BASE
     mkdir -p $out
     cp -r */ $out
-    runHook postInstall
   '';
 }

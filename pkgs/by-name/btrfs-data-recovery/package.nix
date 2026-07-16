@@ -11,9 +11,7 @@ pkgs.stdenvNoCC.mkDerivation {
     sqlite
     stdenv.cc.cc.lib
   ];
-
   autoPatchelfSearchPath = [ "$out/lib" ];
-
   installPhase = ''
     mkdir -p $out/bin $out/lib
     ln -s ${pkgs.ldc}/lib/libphobos2-ldc-shared.so $out/lib/libphobos2-ldc-shared.so.110

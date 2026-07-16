@@ -10,7 +10,6 @@
   name = "apple-bce";
   version = "latest";
   LLVM = "1";
-
   src = inputs.apple-bce;
 
   hardeningDisable = [

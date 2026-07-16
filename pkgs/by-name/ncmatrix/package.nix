@@ -1,15 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "ncmatrix";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "tree-s";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-0p7++CVxUnRLjwYj5w+SxYkrASFyol1KPWZ/zUzc3ws=";
-  };
-
+  version = "latest";
+  src = inputs.ncmatrix;
   postPatch = ''
     touch AUTHORS ChangeLog NEWS README
     ln -s ncmatrix.c cmatrix.c
@@ -23,4 +16,4 @@ stdenv.mkDerivation (attrs: {
   ];
 
   buildInputs = with pkgs; [ ncurses ];
-})
+}

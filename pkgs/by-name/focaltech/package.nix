@@ -1,13 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "libfprint-focaltech";
   version = "1.94.9";
-
-  src = pkgs.fetchurl {
-    url = "https://web.archive.org/web/20250314121447if_/https://raw.githubusercontent.com/ftfpteams/focaltech-linux-fingerprint-driver/refs/heads/main/Fedora_Redhat/libfprint-2-2_1.94.4%2Btod1_redhat_all_x64_20250219.install";
-    sha256 = "0y7kb2mr7zd2irfgsmfgdpb0c7v33cb4hf3hfj7mndalma3xdhzn";
-  };
-
+  src = inputs.focaltech;
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook
     copyPkgconfigItems
@@ -40,7 +35,7 @@ stdenv.mkDerivation (attrs: {
   pkgconfigItems = with pkgs; [
     (makePkgconfigItem rec {
       name = "libfprint-2";
-      inherit version;
+      version = attrs.version;
       cflags = [ "-I${variables.includedir}/libfprint-2" ];
       libs = [
         "-L${variables.libdir}"

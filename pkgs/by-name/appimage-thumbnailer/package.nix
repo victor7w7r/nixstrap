@@ -7,7 +7,6 @@ pkgs.stdenvNoCC.mkDerivation {
     bash
     imagemagick
   ];
-
   installPhase = ''
     mkdir -p $out/bin $out/share/thumbnailers
     mv AppImage-thumbnailer "$out/bin/"

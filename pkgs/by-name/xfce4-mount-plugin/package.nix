@@ -1,8 +1,7 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "xfce4-mount-plugin";
   version = "1.2.0";
-
   src = pkgs.fetchFromGitLab {
     domain = "gitlab.xfce.org";
     owner = "panel-plugins";

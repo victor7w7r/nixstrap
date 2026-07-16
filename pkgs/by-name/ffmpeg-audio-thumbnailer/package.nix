@@ -1,16 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "ffmpeg-audio-thumbnailer";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "saltedcoffii";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-mGhTcpmW0I/9amGep/0hXuoPkRsBaJIyNiFr6e9E0Is=";
-  };
-
+  version = "latest";
+  src = inputs.ffmpeg-audio-thumbnailer;
   buildInputs = with pkgs; [ ffmpeg ];
-
   makeFlags = [ "PREFIX=$(out)" ];
-})
+}

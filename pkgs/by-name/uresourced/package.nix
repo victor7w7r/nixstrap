@@ -1,7 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation {
+{ pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "uresourced";
   version = "0.5.4-907d9198";
+
   src = pkgs.fetchgit {
     url = "https://gitlab.freedesktop.org/benzea/uresourced.git";
     rev = "907d91989f50842caaf9d681e82a9d6791701927";

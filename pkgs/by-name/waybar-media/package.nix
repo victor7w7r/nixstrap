@@ -1,23 +1,14 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "waybar-media";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "yurihs";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-carRNsgQFGUzl8EpLU5+M1xPU6aSQZgoHlC88W/CULk=";
-  };
-
+  version = "latest";
+  src = inputs.waybar-media;
   nativeBuildInputs = with pkgs; [ makeWrapper ];
   buildInputs = with pkgs; [
     python3
     gobject-introspection
   ];
-
   dontBuild = true;
-
   installPhase = ''
     mkdir -p $out/bin
     cp waybar-media.py $out/bin/waybar-media
@@ -32,4 +23,4 @@ stdenv.mkDerivation (attrs: {
       }" \
       --prefix PATH : "${pkgs.lib.makeBinPath [ pkgs.python3 ]}"
   '';
-})
+}

@@ -1,15 +1,8 @@
-{ pkgs, rustPlatform }:
-rustPlatform.buildRustPackage (attrs: {
+{ inputs, pkgs }:
+pkgs.rustPlatform.buildRustPackage {
   pname = "zilch";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "lavafroth";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-JLprFZuOlbj36ai2vvSM6VSWYDD1Bn0CRe5dUcXd7yI=";
-  };
-
+  version = "latest";
+  src = inputs.zilch;
   cargoHash = "sha256-M3+66AsLgkfpg8sHvx4vWFLKSS9a8soSxjFMDe8ip1o=";
 
   nativeBuildInputs = with pkgs; [
@@ -28,7 +21,7 @@ rustPlatform.buildRustPackage (attrs: {
   ];
 
   postInstall = ''
-    wrapProgram $out/bin/${attrs.pname} \
+    wrapProgram $out/bin/zilch \
       --prefix LD_LIBRARY_PATH : "${
         pkgs.lib.makeLibraryPath (
           with pkgs;
@@ -44,4 +37,4 @@ rustPlatform.buildRustPackage (attrs: {
         )
       }"
   '';
-})
+}

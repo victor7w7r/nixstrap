@@ -8,7 +8,6 @@ pkgs.stdenvNoCC.mkDerivation {
     pipewire
     stdenv.cc.cc.lib
   ];
-
   installPhase = ''
     mkdir -p $out/bin
     mv bin/as-cmd $out/bin/audio-share

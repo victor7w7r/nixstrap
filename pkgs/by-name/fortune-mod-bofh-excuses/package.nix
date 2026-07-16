@@ -1,17 +1,10 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortune-mod-bofh-excuses";
   version = "latest";
-
-  src = pkgs.fetchurl {
-    url = "http://www.cs.wisc.edu/~ballard/bofh/bofh-excuses.raw";
-    sha256 = "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=";
-  };
-
+  src = inputs.fortune-mod-bofh-excuses;
   dontUnpack = true;
-
   nativeBuildInputs = with pkgs; [ fortune ];
-
   installPhase = ''
     cp $src bofh-excuses.raw
     ${pkgs.gawk}/bin/awk '{ printf "BOFH excuse #%d:\n\n%s\n%%\n", FNR, $0 }' \
@@ -20,4 +13,4 @@ stdenv.mkDerivation (attrs: {
     install -dm755 -- "$out/share/games/fortunes"
     install -m644 -- bofh-excuses bofh-excuses.dat "$out/share/games/fortunes"
   '';
-})
+}

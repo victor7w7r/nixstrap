@@ -1,22 +1,12 @@
-{ fetchFromGitHub, rustPlatform }:
+{ inputs, rustPlatform }:
 rustPlatform.buildRustPackage {
   pname = "t2fanrd";
   version = "0.9.0";
-
-  src = fetchFromGitHub {
-    owner = "GnomedDev";
-    repo = "T2FanRD";
-    rev = "85027878e4d7fa0170fea1213d6f8dd972d60e83";
-    sha256 = "sha256-vOJAYbB/ZcRxM+/lrkab/PcON3vOz3o6eqPvM9hmaOw=";
-  };
-
+  src = inputs.t2fanrd;
   #nativeBuildInputs = with pkgs; [ sccache ];
-
   installPhase = ''
-    ls -R
     install -m755 -D target/x86_64-unknown-linux-gnu/release/t2fanrd $out/bin/t2fanrd
   '';
-
   cargoHash = "sha256-FKQYiaOTZxD95AWD2zbVjENzMAPrFl/rzhwbkAgGbx0=";
   #RUSTC_WRAPPER = "sccache";
   #SCCACHE_DIR = "/nix/var/cache/sccache";

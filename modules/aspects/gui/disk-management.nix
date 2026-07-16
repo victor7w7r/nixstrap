@@ -1,14 +1,16 @@
 { __findFile, ... }:
 {
   den.aspects.gui.disk-management = {
-    includes = [
+    /*
+      includes = [
       (<den/insecure> [
         "qtwebengine-5.15.19"
         "ventoy-qt5-1.1.10"
         "ventoy-qt5-1.1.12"
         "electron-39.8.10"
       ])
-    ];
+      ];
+    */
 
     provides.to-users.homeManager =
       { pkgs, self', ... }:
@@ -21,7 +23,7 @@
           snapper-gui
           testdisk-qt
           woeusb-ng
-          ventoy-full-qt
+          #ventoy-full-qt
           self'.packages.repair-usb-disc-gtk4
         ];
       };

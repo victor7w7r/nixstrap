@@ -1,16 +1,10 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortune-mod-dhammapada";
-  version = "1.0";
-
-  src = pkgs.fetchurl {
-    url = "https://gitlab.com/bodhi.zazen/display-dhammapada/-/archive/main/display-dhammapada-main.tar.gz";
-    sha256 = "sha256-NXpovMrJXpAgvTxYYFzlQ0qMyloaBQW3MGIob/0pRiU=";
-  };
-
+  version = "latest";
+  src = inputs.fortune-mod-dhammapada;
   dontBuild = true;
   nativeBuildInputs = with pkgs; [ fortune ];
-
   installPhase = ''
     install -d $out/share/games/fortunes
     mkdir -p dhammapada-extract
@@ -27,4 +21,4 @@ stdenv.mkDerivation (attrs: {
     strfile $out/share/games/fortunes/dhammapada.de
     strfile $out/share/games/fortunes/dhammapada.pl
   '';
-})
+}

@@ -29,7 +29,7 @@
           ++ lib.optionals isPersistent [
             aalib
             astroterm
-            cementery-escape
+            cemetery-escape
             chess-tui
             cli-of-life
             clidle

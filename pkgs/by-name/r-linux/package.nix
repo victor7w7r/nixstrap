@@ -2,16 +2,12 @@
   lib,
   pkgs,
   stdenv,
+  inputs,
 }:
-stdenv.mkDerivation (attrs: {
+stdenv.mkDerivation {
   pname = "r-linux";
   version = "6.5.191754";
-
-  src = pkgs.fetchurl {
-    url = "https://www.r-studio.com/downloads/RLinux6_x64.deb";
-    sha256 = "sha256-8QKdTLFFkJlMYFjhJGrTgxC6K6gbrbho8i/9AijxkkY=";
-  };
-
+  src = inputs.r-linux;
   nativeBuildInputs = with pkgs; [
     dpkg
     autoPatchelfHook
@@ -33,7 +29,7 @@ stdenv.mkDerivation (attrs: {
     e2fsprogs
   ];
 
-  unpackCmd = "dpkg-deb --fsys-tarfile $src/usr | tar --no-same-permissions --no-same-owner -xvf -";
+  unpackCmd = "dpkg-deb --fsys-tarfile $src | tar --no-same-permissions --no-same-owner -xvf -";
   dontBuild = true;
   installPhase = ''
         mkdir -p "$out/opt"
@@ -42,7 +38,7 @@ stdenv.mkDerivation (attrs: {
         mkdir -p "$out/share/pixmaps"
         ls .
 
-        cp -r usr/local/R-Linux "$out/opt/"
+        cp -r local/R-Linux "$out/opt/"
 
         head -n -12 "$out/opt/R-Linux/bin/rlinux" > "$out/opt/R-Linux/bin/rlinux.tmp"
 
@@ -69,4 +65,4 @@ stdenv.mkDerivation (attrs: {
     wrapProgram "$out/bin/rlinux" \
       --prefix PATH : "${lib.makeBinPath [ pkgs.xhost ]}"
   '';
-})
+}

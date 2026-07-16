@@ -1,14 +1,9 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "dunst-timer";
-  version = "master";
+  version = "latest";
 
-  src = pkgs.fetchFromGitHub {
-    owner = "bitSheriff";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-2wGjbs8Ppgd3TRabDut13It+LjtWTwJM8vYlPfI9uMo=";
-  };
+  src = inputs.dunst-timer;
 
   nativeBuildInputs = with pkgs; [ makeWrapper ];
   buildInputs = with pkgs; [
@@ -17,7 +12,6 @@ stdenv.mkDerivation (attrs: {
   ];
 
   dontBuild = true;
-
   installPhase = ''
     mkdir -p $out/bin
     cp dunst-timer.py $out/bin/dunst-timer
@@ -30,4 +24,4 @@ stdenv.mkDerivation (attrs: {
       }" \
       --prefix PATH : "${pkgs.lib.makeBinPath [ pkgs.python3 ]}"
   '';
-})
+}

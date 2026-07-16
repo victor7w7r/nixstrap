@@ -1,12 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "gtkhash-thunar";
-  version = "1.5";
-
-  src = pkgs.fetchurl {
-    url = "https://github.com/tristanheaven/gtkhash/releases/download/v${attrs.version}/gtkhash-${attrs.version}.tar.xz";
-    sha256 = "7102a192eca3e82ed67a8252a6850440e50c1dbea7c6364bda154ec80f8ff005";
-  };
+  version = "latest";
+  src = inputs.gtkhash-thunar;
 
   nativeBuildInputs = with pkgs; [
     meson
@@ -14,7 +10,6 @@ stdenv.mkDerivation (attrs: {
     pkg-config
     intltool
     appstream-glib
-
     desktop-file-utils
     wrapGAppsHook3
   ];
@@ -40,4 +35,4 @@ stdenv.mkDerivation (attrs: {
   ];
 
   doCheck = false;
-})
+}

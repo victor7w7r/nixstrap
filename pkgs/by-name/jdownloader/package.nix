@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  stdenvNoCC,
+  inputs,
 }:
 let
   icon = pkgs.fetchurl {
@@ -9,13 +9,8 @@ let
     sha256 = "3ebab992e7dd04ffcb6c30fee1a7e2b43f3537cb2b22124b30325d25bffdac29";
   };
 
-  src = pkgs.fetchurl {
-    url = "https://installer.jdownloader.org/JDownloader.jar";
-    sha256 = "sha256-OIodAo5ly8Y5M6d43bySZ8FOfnhYOJzjGhC+cwit60A=";
-  };
-
   wrapper = pkgs.writeScript "jdownloader" ''
-    #! ${stdenvNoCC.shell}
+    #! ${pkgs.stdenvNoCC.shell}
     PATH=${
       lib.makeBinPath [
         pkgs.jre
@@ -24,19 +19,16 @@ let
     }
     JDJAR=''${XDG_DATA_HOME:-$HOME/.local/share}/jdownloader/JDownloader.jar
     if [ ! -f ''${JDJAR} ]; then
-        install -Dm755 ${src} ''${JDJAR}
+        install -Dm755 ${inputs.jdownloader} ''${JDJAR}
     fi
     ${pkgs.jre}/bin/java -jar ''${JDJAR} "''${@}"
   '';
 in
-stdenvNoCC.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   pname = "jdownloader2";
   version = "2.0";
-
-  inherit src;
-
+  src = inputs.jdownloader;
   dontUnpack = true;
-
   nativeBuildInputs = with pkgs; [
     jre
     graphicsmagick
@@ -57,7 +49,7 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     mkdir -pv $out/bin $out/share/applications
-    cp ${src} $out/bin/JDownloader.jar
+    cp ${inputs.jdownloader} $out/bin/JDownloader.jar
 
     for size in 16 24 32 48 64 128 256 512; do
       mkdir -p $out/share/icons/hicolor/"$size"x"$size"/apps

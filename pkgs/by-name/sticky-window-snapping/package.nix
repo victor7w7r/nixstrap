@@ -1,17 +1,10 @@
-{ fetchFromGitHub, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   pname = "sticky-window-snapping";
-  version = "master";
-
-  src = fetchFromGitHub {
-    owner = "Flupp";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-5xkKNgwzItnpdqk2z/HiCtXNm/ZyjXflSJcT1dAn6nU=";
-  };
-
+  version = "latest";
+  src = inputs.sticky-window-snapping;
   installPhase = ''
     mkdir -p $out/share/kwin/scripts/sticky-window-snapping
     cp -r * $out/share/kwin/scripts/sticky-window-snapping/
   '';
-})
+}

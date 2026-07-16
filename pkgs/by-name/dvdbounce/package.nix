@@ -1,17 +1,10 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "dvdbounce";
-  version = "master";
+  version = "latest";
 
-  src = pkgs.fetchFromGitHub {
-    owner = "George-lewis";
-    repo = "DVDBounce";
-    rev = attrs.version;
-    sha256 = "sha256-S/0sc4Thj1gZGSOxl9bcY+VKcYGhEDi3HzPsBdhKatU=";
-  };
-
+  src = inputs.dvdbounce;
   nativeBuildInputs = with pkgs; [ cmake ];
-
   buildInputs = with pkgs; [
     cxxopts
     libx11

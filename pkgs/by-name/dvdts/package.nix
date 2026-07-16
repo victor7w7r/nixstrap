@@ -1,19 +1,7 @@
-{ buildGoModule, fetchFromGitHub }:
-buildGoModule (attrs: {
+{ buildGoModule, inputs }:
+buildGoModule {
   pname = "dvdts";
-  version = "master";
-
-  src = fetchFromGitHub {
-    owner = "ForumPlayer";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-M8H1oBW89Cy54Iktso4WdXyqsppw1pznziKD+g7teWU=";
-  };
-
+  version = "latest";
+  src = inputs.dvdts;
   vendorHash = "sha256-zEuzEGx8CVk/EeW+DCOg3C8k/SK0V3dnVdEpeFp422w=";
-
-  ldflags = [
-    "-s"
-    "-w"
-  ];
-})
+}

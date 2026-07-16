@@ -1,19 +1,7 @@
-{ buildGoModule, fetchFromGitHub }:
-buildGoModule (attrs: {
+{ buildGoModule, inputs }:
+buildGoModule {
   pname = "pkgtop";
-  version = "master";
-
-  src = fetchFromGitHub {
-    owner = "orhun";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-O1kE2LkIKxzgo8+gAirEhxrhLFkda3lNybeE0w7ajRA=";
-  };
-
+  version = "latest";
+  src = inputs.pkgtop;
   vendorHash = "sha256-dlDbNym7CNn5088znMNgGAr2wBM3+nYv3q362353aLs=";
-
-  ldflags = [
-    "-s"
-    "-w"
-  ];
-})
+}

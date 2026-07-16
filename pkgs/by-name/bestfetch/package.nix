@@ -24,7 +24,6 @@ pkgs.stdenv.mkDerivation (attrs: {
       --nimcache:$TMPDIR/nimcache \
       src/${attrs.pname}.nim
   '';
-
   installPhase = ''
     mkdir -p $out/bin
     if [ -f "src/${attrs.pname}" ]; then

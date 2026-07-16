@@ -1,19 +1,11 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortune-mod-billwurtz";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "Ev1lbl0w";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-IoD7M+1CuaKB06Ku/ddwEiRcAIr5bYdfEu8xeFuPaNo=";
-  };
-
+  version = "latest";
+  src = inputs.fortune-mod-billwurtz;
   nativeBuildInputs = with pkgs; [ fortune ];
-
   installPhase = ''
     install -dm755 -- "$out/share/games/fortunes"
     install -m644 -- billwurtz billwurtz.dat "$out/share/games/fortunes"
   '';
-})
+}

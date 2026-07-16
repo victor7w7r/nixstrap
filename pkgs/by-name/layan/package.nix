@@ -1,14 +1,8 @@
-{ pkgs, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenvNoCC.mkDerivation {
   pname = "layan-kde";
   version = "2025-02-13";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "vinceliuice";
-    repo = attrs.pname;
-    rev = attrs.version;
-    hash = "sha256-Wh8tZcQEdTTlgtBf4ovapojHcpPBZDDkWOclmxZv9zA=";
-  };
+  src = inputs.layan-kde;
 
   installPhase = ''
     mkdir -p $out/share
@@ -37,4 +31,4 @@ stdenvNoCC.mkDerivation (attrs: {
   '';
 
   passthru.updateScript = pkgs.gitUpdater { };
-})
+}

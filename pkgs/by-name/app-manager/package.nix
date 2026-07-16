@@ -4,8 +4,5 @@ stdenvNoCC.mkDerivation {
   version = "latest";
   src = inputs.app-manager;
   dontUnpack = true;
-  installPhase = ''
-    mkdir -p $out/bin
-    cp $src/app-manager $out/bin/app-manager
-  '';
+  installPhase = "mkdir -p $out/bin && cp $src/app-manager $out/bin/app-manager";
 }

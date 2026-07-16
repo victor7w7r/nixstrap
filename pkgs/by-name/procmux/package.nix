@@ -1,19 +1,13 @@
-{ python3, fetchFromGitHub }:
-python3.pkgs.buildPythonApplication (attrs: {
+{ inputs, python3 }:
+python3.pkgs.buildPythonApplication {
   pname = "procmux";
-  version = "main";
+  version = "latest";
   pyproject = true;
-
-  src = fetchFromGitHub {
-    owner = "napisani";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-Yx1S8JMOUhFTX3kB6Y3PqAw27qClkcUvtzrIuj5etZo=";
-  };
+  src = inputs.procmux;
 
   build-system = with python3.pkgs; [
-    setuptools
     hatchling
+    setuptools
   ];
 
   dependencies = with python3.pkgs; [
@@ -23,4 +17,4 @@ python3.pkgs.buildPythonApplication (attrs: {
     #pyte
     pytest
   ];
-})
+}

@@ -1,8 +1,7 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation {
+{ pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "xfce4-diskperf-plugin";
   version = "2.8.0-r124-g6d2e0ee";
-
   src = pkgs.fetchFromGitLab {
     domain = "gitlab.xfce.org";
     owner = "panel-plugins";
@@ -18,7 +17,6 @@ stdenv.mkDerivation {
     intltool
     wrapGAppsHook3
   ];
-
   buildInputs = with pkgs; [
     xfce4-panel
     libxfce4ui

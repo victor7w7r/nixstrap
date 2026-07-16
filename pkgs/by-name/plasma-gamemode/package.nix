@@ -1,5 +1,5 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "plasma-gamemode";
   version = "1.0.0";
 
@@ -12,7 +12,6 @@ stdenv.mkDerivation (attrs: {
   };
 
   dontWrapQtApps = true;
-
   nativeBuildInputs = with pkgs; [
     cmake
     kdePackages.extra-cmake-modules

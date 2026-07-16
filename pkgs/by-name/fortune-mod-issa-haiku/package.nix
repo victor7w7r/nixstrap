@@ -1,18 +1,12 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortune-mod-issa-haiku";
   version = "latest";
-
-  src = pkgs.fetchurl {
-    url = "http://www.tastyrabbit.net/issa-haiku.tar.gz";
-    sha256 = "sha256-f7GqSE6FBpfrke4Pnv56fjy/eqvBAeBvDCBXekwmEnc=";
-  };
-
+  src = inputs.fortune-mod-issa-haiku;
   nativeBuildInputs = with pkgs; [ fortune ];
-  sourceRoot = ".";
-
   installPhase = ''
     install -dm755 -- "$out/share/games/fortunes"
+    ls .
     install -m644 -- issa-haiku issa-haiku.dat "$out/share/games/fortunes"
   '';
-})
+}

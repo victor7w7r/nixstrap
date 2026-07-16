@@ -1,23 +1,12 @@
-{ python3, fetchFromGitHub }:
-python3.pkgs.buildPythonApplication (attrs: {
+{ inputs, python3 }:
+python3.pkgs.buildPythonApplication {
   pname = "songfetch";
-  version = "main";
+  version = "latest";
   pyproject = true;
-
-  src = fetchFromGitHub {
-    owner = "ekrlstd";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-1ZCCfZjTHtmv7ZdmsCZbKiYYo88Wh8wrTXOEhXHawUo=";
-  };
-
-  build-system = with python3.pkgs; [
-    hatchling
-    setuptools
-  ];
-
+  src = inputs.songfetch;
+  build-system = with python3.pkgs; [ setuptools ];
   dependencies = with python3.pkgs; [
     ascii-magic
     pillow
   ];
-})
+}

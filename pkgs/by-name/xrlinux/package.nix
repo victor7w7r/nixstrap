@@ -1,10 +1,10 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "xr-linux-driver";
   version = "2.9.4";
 
   src = pkgs.fetchgit {
-    url = "https://github.com/wheaney/XRLinuxDriver.git";
+    url = "https://github.com/wheaney/XRLinuxDriver";
     rev = "v${attrs.version}";
     fetchSubmodules = true;
     deepClone = false;

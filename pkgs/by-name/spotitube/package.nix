@@ -1,20 +1,8 @@
-{ buildGoModule, fetchFromGitHub }:
-buildGoModule (attrs: {
+{ buildGoModule, inputs }:
+buildGoModule {
   pname = "spotitube";
-  version = "master";
-
-  src = fetchFromGitHub {
-    owner = "streambinder";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-SVgtAQa+frRO7r6CRKv0ZF2yciqjxuJl/Qobn6YdDi0=";
-  };
-
+  version = "latest";
+  src = inputs.spotitube;
   doCheck = false;
-  vendorHash = "sha256-DIhA+QaHgwoJxUcZI+SVxZr31hIsWJ2zyMFThmiO1JE=";
-
-  ldflags = [
-    "-s"
-    "-w"
-  ];
-})
+  vendorHash = "sha256-uxwU7mDCB8jcKWqkvGwGPboWCCA6PkCkgMnlyx4bI/s=";
+}

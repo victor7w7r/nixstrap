@@ -1,26 +1,12 @@
 {
   lib,
+  inputs,
   pkgs,
-  stdenv,
 }:
-stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   pname = "thunar-custom-actions";
-  version = "0.0.22";
-
-  src = pkgs.fetchFromGitLab {
-    owner = "nobodyinperson";
-    repo = pname;
-    rev = "make-manpages-optional";
-    sha256 = "sha256-RMmrx4fcYBLPIOtxUp3AIcF+S/4TV7gkcYvkEC2ixo0=";
-  };
-
-  m4UtilsSrc = pkgs.fetchFromGitLab {
-    owner = "nobodyinperson";
-    repo = "m4-utils";
-    rev = "master";
-    sha256 = "sha256-CAQsfygc/lFZpv6J96ZcFcsjhWXplCVLQEpLZ47O0kQ=";
-  };
-
+  version = "latest";
+  src = inputs.thunar-custom-actions;
   nativeBuildInputs = with pkgs; [
     bc
     gettext
@@ -28,6 +14,7 @@ stdenv.mkDerivation rec {
     imagemagick
     gnupg
     makeWrapper
+    pandoc
     perl
     su
     m4
@@ -36,13 +23,11 @@ stdenv.mkDerivation rec {
     zenity
   ];
 
-  buildInputs = [
-    (pkgs.python3.withPackages (ps: [ ps.lxml ]))
-  ];
+  buildInputs = [ (pkgs.python3.withPackages (ps: [ ps.lxml ])) ];
 
   postUnpack = ''
     rm -rf source/m4/m4-utils
-    cp -r ${m4UtilsSrc} source/m4/m4-utils
+    cp -r ${inputs.m4-utils} source/m4/m4-utils
     chmod -R +w source/m4/m4-utils
   '';
 

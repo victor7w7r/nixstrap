@@ -4,9 +4,5 @@ python3.pkgs.buildPythonApplication {
   version = "latest";
   pyproject = true;
   src = inputs.apkinspector;
-  build-system = with python3.pkgs; [
-    hatchling
-    setuptools
-    poetry-core
-  ];
+  build-system = with python3.pkgs; [ poetry-core ];
 }

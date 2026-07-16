@@ -1,15 +1,8 @@
-{ fetchFromGitHub, stdenvNoCC }:
+{ inputs, stdenvNoCC }:
 stdenvNoCC.mkDerivation {
   pname = "uwe5622-firmware";
-  version = "4050e02";
-
-  src = fetchFromGitHub {
-    owner = "armbian";
-    repo = "firmware";
-    rev = "4050e02da2dce2b74c97101f7964ecfb962f5aec";
-    sha256 = "sha256-wc4xyNtUlONntofWJm8/w0KErJzXKHijOyh9hAYTCoU=";
-  };
-
+  version = "latest";
+  src = inputs.sunxi;
   compressFirmware = false;
   dontFixup = true;
   dontBuild = true;

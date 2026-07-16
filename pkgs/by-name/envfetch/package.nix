@@ -1,15 +1,8 @@
-{ rustPlatform, fetchFromGitHub }:
-rustPlatform.buildRustPackage (attrs: {
+{ inputs, rustPlatform }:
+rustPlatform.buildRustPackage {
   pname = "envfetch";
-  version = "main";
-
-  src = fetchFromGitHub {
-    owner = "ankddev";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-NIlc/vxu8Y9bVMx2exosKZAVAcGbQAmOnjGxAHgNis0=";
-  };
-
+  version = "latest";
+  src = inputs.envfetch;
   doCheck = false;
   cargoHash = "sha256-FPhfhSacdFrWEJg97hyzAbTxKTVkKhIXy4TKOClVOvs=";
-})
+}

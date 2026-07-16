@@ -1,17 +1,10 @@
-{ fetchFromGitHub, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   pname = "virtual-desktops-only-on-primary";
-  version = "master";
-
-  src = fetchFromGitHub {
-    owner = "Ubiquitine";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-zC096vsVCyDAEFpASU2gj0qRgWKYR1m9G6hPZL+61Wo=";
-  };
-
+  version = "latest";
+  src = inputs.virtual-desktops-only-on-primary;
   installPhase = ''
     mkdir -p $out/share/kwin/scripts/virtual-desktops-only-on-primary
     cp -r * $out/share/kwin/scripts/virtual-desktops-only-on-primary/
   '';
-})
+}

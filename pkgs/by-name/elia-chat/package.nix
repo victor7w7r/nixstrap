@@ -1,23 +1,15 @@
-{ python3, fetchFromGitHub }:
+{ inputs, python3 }:
 python3.pkgs.buildPythonApplication (attrs: {
   pname = "elia";
   version = "main";
   pyproject = true;
-
-  src = fetchFromGitHub {
-    owner = "darrenburns";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-FCdY2mS80ZQFLPlcJyT0CGP4dyo766CJUg+10MGFPeU=";
-  };
+  src = inputs.elia-chat;
 
   dontCheckRuntimeDeps = true;
-
   build-system = with python3.pkgs; [
     hatchling
     setuptools
   ];
-
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace "textual==0.79.1" "textual"

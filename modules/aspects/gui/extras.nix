@@ -41,7 +41,6 @@
             with self'.packages;
             [
               bleachbit
-              chromium
               clamtk
               cool-retro-term
               cpu-x
@@ -63,22 +62,24 @@
               mtr-gui
               music-discord-rpc
               #natron
-              pinta
-              rclone-browser
-              rnote
-              seafile-client
-              sonic-visualiser
-              spotify-qt
-              #sticky-notes
-              tenacity
-              vlc
-              #davinci-video-converter
-              fzf-open
-              jdownloader
-              linuxthemestore
-              #shutter-encoder
-              tahoma2d
-              ytdl
+              /*
+                pinta
+                rclone-browser
+                rnote
+                seafile-client
+                sonic-visualiser
+                spotify-qt
+                #sticky-notes
+                tenacity
+                vlc
+                #davinci-video-converter
+                fzf-open
+                jdownloader
+                linuxthemestore
+                #shutter-encoder
+                tahoma2d
+                ytdl
+              */
             ]
             ++ (lib.optionals isX86 [
               inputs'.custom-packages.packages.thorium-sse3

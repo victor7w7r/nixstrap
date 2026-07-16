@@ -1,7 +1,7 @@
 { appimageTools, inputs }:
 appimageTools.wrapType2 {
   pname = "aya";
-  version = "1.14.2";
+  version = "latest";
   src = inputs.aya;
   extraPkgs = pkgs: with pkgs; [ apktool ];
 }

@@ -1,24 +1,14 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "conway-screensaver";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "cdkw2";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-YwiMRH7cj6TSxsBu+sRUnHF1sjVTo6vkQOdvZBTqzrM=";
-  };
-
+  version = "latest";
+  src = inputs.conway-screensaver;
   buildInputs = with pkgs; [ ncurses ];
-
   nativeBuildInputs = with pkgs; [
     autoconf
     automake
   ];
-
   buildFlags = [ "all" ];
-
   installPhase = ''
     mkdir -p $out/bin
     mkdir -p $out/share/doc/conway-screensaver
@@ -29,8 +19,7 @@ stdenv.mkDerivation (attrs: {
 
   postPatch = ''
     if [ -f conway-screensaver.c ]; then
-      echo "Parcheando rutas dentro del código fuente C..."
       sed -i "s|/usr/share/doc|$out/share/doc|g" conway-screensaver.c
     fi
   '';
-})
+}

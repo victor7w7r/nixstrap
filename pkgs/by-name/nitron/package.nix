@@ -1,20 +1,13 @@
-{ pkgs, stdenvNoCC }:
-stdenvNoCC.mkDerivation (attrs: {
+{ inputs, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   pname = "nitronx";
-  version = "1.2";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "UsiFX";
-    repo = "OpenNitroN";
-    rev = attrs.version;
-    sha256 = "sha256-vF1HKJ5yL5ptBFRbhlKGVgtRDpP1pv9ruUWPu46O00M=";
-  };
-
+  version = "latest";
+  src = inputs.nitronx;
+  dontUnpack = true;
   installPhase = ''
     mkdir -p $out/usr/bin
     mkdir -p $out/usr/include
-
-    install -m 755 nitrond $out/usr/bin/nitrond
-    install -m 644 nitronapi.sh $out/usr/include/nitronapi.sh
+    install -m 755 $src/nitrond $out/usr/bin/nitrond
+    install -m 644 $src/nitronapi.sh $out/usr/include/nitronapi.sh
   '';
-})
+}

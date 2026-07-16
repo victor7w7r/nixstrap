@@ -1,14 +1,7 @@
-{ pkgs, rustPlatform }:
-rustPlatform.buildRustPackage (attrs: {
+{ inputs, rustPlatform }:
+rustPlatform.buildRustPackage {
   pname = "kyun";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "lennart-finke";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-8u7HWBL7wUI+Po1RY5FidAj1VEN+grEPIzqfgvSiZ6U=";
-  };
-
+  version = "latest";
+  src = inputs.kyun;
   cargoHash = "sha256-Mqv3iPdbC1UElVtQynBeEaZfNJaIr2sFs3IYCB/SQ/c=";
-})
+}

@@ -1,17 +1,11 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortune-mod-anarchism";
-  version = "1.9.0";
-
-  src = pkgs.fetchurl {
-    url = "http://deb.debian.org/debian/pool/main/b/blag-fortune/blag-fortune_${attrs.version}.orig.tar.gz";
-    sha256 = "sha256-LTUYLpSWvFgQO9ttJjbhjwTit4u/xupR0EkkhyhZgpo=";
-  };
-
+  version = "latest";
+  src = inputs.fortune-mod-anarchism;
   nativeBuildInputs = with pkgs; [ fortune ];
-
   installPhase = ''
     install -dm755 -- "$out/share/games/fortunes"
     install -m644 -- anarchism anarchism.dat "$out/share/games/fortunes"
   '';
-})
+}

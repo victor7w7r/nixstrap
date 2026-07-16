@@ -1,15 +1,8 @@
-{ pkgs, rustPlatform }:
-rustPlatform.buildRustPackage (attrs: {
+{ inputs, pkgs }:
+pkgs.rustPlatform.buildRustPackage {
   pname = "lifecycler";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "cxreiff";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-FvMBIUS7SFpvJQcDL29c50itaLOW0c3W5ktgCbELD+g=";
-  };
-
+  version = "latest";
+  src = inputs.lifecycler;
   nativeBuildInputs = with pkgs; [ pkg-config ];
   buildInputs = with pkgs; [
     alsa-lib
@@ -17,4 +10,4 @@ rustPlatform.buildRustPackage (attrs: {
   ];
 
   cargoHash = "sha256-jUcYyp+hMcdgWkdSf3DywSscGff9DpQ1Dt0pgEiP930=";
-})
+}

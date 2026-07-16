@@ -1,15 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "customfetch";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "Toni500github";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-KZlrh+GWknAQ9RXBLO8hK+MeUrrT2ode9VO+ZohpOJA=";
-  };
-
+  version = "latest";
+  src = inputs.customfetch;
   nativeBuildInputs = with pkgs; [
     gettext
     git
@@ -23,4 +16,4 @@ stdenv.mkDerivation (attrs: {
     "GUI_APP=0"
     "PREFIX=$(out)"
   ];
-})
+}

@@ -1,24 +1,15 @@
-{ pkgs, buildNpmPackage }:
-buildNpmPackage (attrs: {
+{ inputs, pkgs }:
+pkgs.buildNpmPackage {
   pname = "lyricstify";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = attrs.pname;
-    repo = attrs.pname;
-    rev = attrs.version;
-    hash = "sha256-jwCgL2DiHhgbGTk1HOJzIGOBW/P03rA9J3BMX2xNVW0=";
-  };
+  version = "latest";
+  src = inputs.lyricstify;
 
   npmFlags = [ "--legacy-peer-deps" ];
   npmInstallFlags = [ "--legacy-peer-deps" ];
-
   makeCacheWritable = true;
   ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
-
   npmDepsHash = "sha256-+ZrlkuEasg6GjR0CUG/7neNOyp4tNKPHdMK/yrvA8B0=";
-
   nodejs = pkgs.nodejs_22;
 
   installPhase = ''
@@ -35,4 +26,4 @@ buildNpmPackage (attrs: {
 
     chmod +x $out/bin/lyricstify
   '';
-})
+}

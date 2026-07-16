@@ -1,19 +1,7 @@
-{ buildGoModule, fetchFromGitHub }:
-buildGoModule (attrs: {
+{ buildGoModule, inputs }:
+buildGoModule {
   pname = "mynav";
-  version = "main";
-
-  src = fetchFromGitHub {
-    owner = "GianlucaP106";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-mFpeJCF44hddoJNrU2pidm/8xSXEjMPguBEarlGdXDU=";
-  };
-
+  version = "latest";
+  src = inputs.mynav;
   vendorHash = "sha256-EtPGBSW0deqRXO5iQjdgcySbvLSHa1gs25OBlImWWSM=";
-
-  ldflags = [
-    "-s"
-    "-w"
-  ];
-})
+}

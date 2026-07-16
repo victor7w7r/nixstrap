@@ -1,27 +1,17 @@
-{ pkgs, stdenv }:
-
-stdenv.mkDerivation {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation {
   pname = "fortunes-es";
-  version = "1.36";
-
-  src = pkgs.fetchurl {
-    url = "http://ftp.es.debian.org/debian/pool/main/f/fortunes-es/fortunes-es_1.36+nmu1.tar.xz";
-    sha256 = "sha256-Bmr2f2KVZmzPfe7KAVlBbc8/jb+CVVPKsT5GHjRYNFo=";
-  };
-
+  version = "latest";
+  src = inputs.fortunes-es;
   nativeBuildInputs = with pkgs; [
     fortune
     recode
   ];
 
   # dontBuild = true;
-  postPatch = ''
-    find . -name Makefile -exec sed -i 's|/usr/bin/strfile|strfile|g' {} +
-  '';
-
+  postPatch = "find . -name Makefile -exec sed -i 's|/usr/bin/strfile|strfile|g' {} +''";
   installPhase = ''
     install -d "$out/share/games/fortunes"
-
     make prefix="$out" \
       COOKIEDIR="$out/share/games/fortunes" \
       OCOOKIEDIR="$out/share/games/fortunes/off" \

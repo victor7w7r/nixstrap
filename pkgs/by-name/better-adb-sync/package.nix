@@ -4,9 +4,5 @@ python3.pkgs.buildPythonApplication {
   version = "latest";
   pyproject = true;
   src = inputs.better-adb-sync;
-  dontCheckRuntimeDeps = true;
-  build-system = with python3.pkgs; [
-    hatchling
-    setuptools
-  ];
+  build-system = with python3.pkgs; [ setuptools ];
 }

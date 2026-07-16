@@ -1,14 +1,8 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ inputs, pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "ext4-crypt";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "gdelugre";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-QDIk2A7CUP+kfEWYgx36PcAco96741aVysoFsihJQjM=";
-  };
+  version = "latest";
+  src = inputs.ext4-crypt;
 
   nativeBuildInputs = with pkgs; [
     cmake

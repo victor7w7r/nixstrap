@@ -1,15 +1,8 @@
-{ pkgs, rustPlatform }:
-rustPlatform.buildRustPackage (attrs: {
+{ inputs, pkgs }:
+pkgs.rustPlatform.buildRustPackage (attrs: {
   pname = "scrcpy-wrapper";
-  version = "master";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "Bluemangoo";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-68Mrdh8OtVJbC2UP+TqjLajmubXRdrHcjszw5ZfWJA8=";
-  };
-
+  version = "latest";
+  src = inputs.scrcpy-wrapper;
   cargoHash = "sha256-o48iriH7rRsi3XM+dhnrs2HbRAKv82RtiEEG2DPSJjo=";
 
   nativeBuildInputs = with pkgs; [

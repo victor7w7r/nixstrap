@@ -1,22 +1,21 @@
-{ pkgs, fetchFromGitHub }:
-pkgs.python3.pkgs.buildPythonApplication (attrs: {
+{ inputs, pkgs }:
+pkgs.python3.pkgs.buildPythonApplication {
   pname = "endcord";
-  version = "master";
+  version = "latest";
   pyproject = true;
+  src = inputs.endcord;
 
-  src = fetchFromGitHub {
-    owner = "sparklost";
-    repo = attrs.pname;
-    rev = attrs.version;
-    sha256 = "sha256-hLjGP3HkU0E9myACMhClZ6Q3i7zt6ddpi9Vj4GYtT/A=";
-  };
+  build-system = with pkgs.python3.pkgs; [
+    setuptools
+    cython
+  ];
 
   propagatedBuildInputs = with pkgs.python3Packages; [
     filetype
     numpy
     orjson
     pycryptodome
-    pysocks
+    python-socks
     soundcard
     soundfile
     websocket-client
@@ -30,10 +29,4 @@ pkgs.python3.pkgs.buildPythonApplication (attrs: {
         --replace "soundfile>=0.14.0" "soundfile>=0.13.1"
     fi
   '';
-
-  build-system = with pkgs.python3.pkgs; [
-    hatchling
-    setuptools
-    cython
-  ];
-})
+}

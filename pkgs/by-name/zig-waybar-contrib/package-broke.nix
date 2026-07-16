@@ -1,8 +1,7 @@
-{ pkgs, stdenv }:
-stdenv.mkDerivation (attrs: {
+{ pkgs }:
+pkgs.stdenv.mkDerivation (attrs: {
   pname = "zig-waybar-contrib";
   version = "0.17.x";
-
   src = pkgs.fetchFromGitea {
     domain = "codeberg.org";
     owner = "erffy";
@@ -11,10 +10,7 @@ stdenv.mkDerivation (attrs: {
     sha256 = "sha256-RFfynyADrukAyr+QpdlMDLl7R1XQUmB6mlTBYeW8xso=";
   };
 
-  nativeBuildInputs = with pkgs; [
-    zig_0_12.hook
-  ];
-
+  nativeBuildInputs = with pkgs; [ zig_0_12.hook ];
   zigBuildFlags = [ "-Drelease-safe=true" ];
 
   postPatch = ''
@@ -29,6 +25,7 @@ stdenv.mkDerivation (attrs: {
     }
     EOF
   '';
+
   postInstall = ''
     mkdir -p $out/share/zig-waybar-contrib
     sed -i "s|{{EXECUTABLE_PATH}}|$out/bin|g" config.waybar.jsonc

@@ -1,15 +1,8 @@
-{ pkgs, stdenvNoCC }:
-stdenvNoCC.mkDerivation rec {
+{ inputs, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   pname = "ytdl";
-  version = "main";
-
-  src = pkgs.fetchFromGitHub {
-    owner = "codewithmoss";
-    repo = pname;
-    rev = version;
-    sha256 = "sha256-CXfULAr3f3SQSwHmaUPnpW/uwBmr6fwXCmDeiL944f8=";
-  };
-
+  version = "latest";
+  src = inputs.ytdl;
   installPhase = ''
     mkdir -p $out/bin
     cp $src/ytdl.sh $out/bin/ytdl
