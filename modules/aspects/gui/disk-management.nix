@@ -22,7 +22,7 @@
           qdiskinfo
           snapper-gui
           testdisk-qt
-          woeusb-ng
+          #woeusb-ng DEP python3.14-wxpython
           #ventoy-full-qt
           self'.packages.repair-usb-disc-gtk4
         ];

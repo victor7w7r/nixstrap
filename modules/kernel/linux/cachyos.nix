@@ -2,7 +2,7 @@
 {
   flake-file.inputs = {
     cachyos-linux = {
-      url = "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz";
+      url = "github:CachyOS/linux/cachyos-6.18.38-1";
       flake = false;
     };
     cachyos-config = {

@@ -5,8 +5,8 @@
       {
         name,
         priority,
+        mountpoint,
         size ? null,
-        mountpoint ? "/",
       }:
       (disko.f2fs.args name)
       |> (args: {

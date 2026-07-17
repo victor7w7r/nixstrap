@@ -17,7 +17,6 @@
         freq.low
         hardware.not-phone
         net
-        storage.not-btrfs
         storage.not-cdrom
         storage.f2fs
         storage.not-ntfs

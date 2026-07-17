@@ -15,7 +15,7 @@
           slides
           timg
           ttygif
-          vhs
+          #vhs #DEPENDS CHROMIUM
         ];
       };
     nixos =

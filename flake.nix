@@ -25,16 +25,10 @@
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org"
-      "https://cache.garnix.io"
-      "https://cache.saumon.network/proxmox-nixos"
-      "https://nix-gaming.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
     trusted-substituters = [
       "https://cache.nixos.org"
@@ -147,7 +141,7 @@
       flake = false;
     };
     cachyos-linux = {
-      url = "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz";
+      url = "github:CachyOS/linux/cachyos-6.18.38-1";
       flake = false;
     };
     cachyos-patches = {

@@ -1,110 +1,99 @@
-{ disko, ... }:
+{ disko, lib, ... }:
 {
   disko.btrfs = {
     emergency =
       {
-        size ? "3G",
-        name ? "emergency",
-        mountpoint ? "/boot/emergency",
-        isSolid ? true,
+        size ? "2G",
         priority ? 2,
       }:
       disko.btrfs.call {
-        inherit
-          name
-          size
-          priority
-          mountpoint
-          ;
-        singleOptions = [
-          "lazytime"
-          "noatime"
-          "compress=zstd:2"
-        ]
-        ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
+        inherit size priority;
+        name = "emergency";
+        mountpoint = "/boot/emergency";
+        mountOptions = disko.btrfs.mountOptions { };
       };
 
     shared =
       {
         name ? "shared",
-        size ? "100%",
-        priority ? 100,
-        isSolid ? true,
-        mountContent ? "shared",
-        mountSnap ? "sharedsnaps",
       }:
       disko.btrfs.call {
-        inherit
-          name
-          size
-          priority
-          ;
-        singleOptions = [
-          "lazytime"
-          "noatime"
-          "nofail"
-          "compress-force=lzo"
-        ]
-        ++ (if isSolid then [ "discard=async" ] else [ "autodefrag" ]);
-
-        volumes = {
-          "/${mountContent}".mountpoint = "/run/media/${mountContent}";
-          "/.${mountSnap}".mountpoint = "/run/media/.${mountSnap}";
+        inherit name;
+        size = "100%";
+        priority = 100;
+        subvolumes = {
+          "@${name}" = {
+            mountpoint = "/run/media/${name}";
+            mountOptions = (disko.btrfs.mountOptions { });
+          };
+          "@snapshots" = {
+            mountpoint = "/run/media/${name}/.snapshots";
+            mountOptions = (disko.btrfs.mountOptions { });
+          };
         };
       };
+
+    mountOptions =
+      {
+        lowCompress ? false,
+        extraOptions ? [ ],
+      }:
+      [
+        "lazytime"
+        "noatime"
+        "nofail"
+        "discard=async"
+        "compress-force=zstd:${if lowCompress then "1" else "3"}"
+      ]
+      ++ extraOptions;
+
+    subvolumes =
+      {
+        hasEtc ? false,
+        hasPersist ? true,
+      }:
+      lib.mkMerge [
+        (lib.mkIf hasEtc {
+          "@etc" = {
+            mountpoint = "/etc";
+            mountOptions = (disko.btrfs.mountOptions { });
+          };
+        })
+        (lib.mkIf hasPersist {
+          "@persist" = {
+            mountpoint = "/nix/persist";
+            mountOptions = (disko.btrfs.mountOptions { });
+          };
+        })
+        {
+          "@nix" = {
+            mountpoint = "/nix";
+            mountOptions = (disko.btrfs.mountOptions { }) ++ [ "noacl" ];
+          };
+        }
+      ];
 
     call =
       {
         name,
+        size,
         priority ? 3,
-        size ? "100%",
         mountpoint ? null,
-        singleOptions ? [ ],
-        extraOptions ? [ ],
-        volumes ? { },
-        isRoot ? false,
-        isLzo ? false,
+        mountOptions ? [ ],
+        subvolumes ? { },
       }:
-      (
-        [
-          "lazytime"
-          "noatime"
-          "discard=async"
-          "compress=${if isLzo then "lzo" else "zstd:1"}"
-        ]
-        ++ extraOptions
-      )
-      |> (mountOptions: {
+      {
         inherit name size priority;
         type = "8300";
         content = {
-          inherit mountpoint;
-          mountOptions = singleOptions;
+          inherit subvolumes mountpoint mountOptions;
           type = "btrfs";
           extraArgs = [
             "-f"
             "-L"
             "${name}"
           ];
-          subvolumes =
-            if isRoot then
-              {
-                "@" = {
-                  mountpoint = "/";
-                  inherit mountOptions;
-                };
-                "@nix" = {
-                  mountpoint = "/nix";
-                  mountOptions = mountOptions ++ [ "noacl" ];
-                };
-                "@persist" = {
-                  mountpoint = "/nix/persist";
-                  inherit mountOptions;
-                };
-              }
-            else
-              volumes;
         };
-      });
+      };
   };
 }

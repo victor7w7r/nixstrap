@@ -490,12 +490,16 @@
       "locked": {
         "lastModified": 1783172428,
         "narHash": "sha256-i/rqcXHHAKqiDGSSwvaJnx9nAt5xcnDdUS+K42fT3j8=",
-        "type": "tarball",
-        "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz"
+        "owner": "CachyOS",
+        "repo": "linux",
+        "rev": "4787cdafa8c083dea60b466fdb7d3f69a2b7efb8",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/CachyOS/linux/releases/download/cachyos-6.18.38-1/cachyos-6.18.38-1.tar.gz"
+        "owner": "CachyOS",
+        "ref": "cachyos-6.18.38-1",
+        "repo": "linux",
+        "type": "github"
       }
     },
     "cachyos-patches": {

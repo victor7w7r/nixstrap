@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   disko.xfs.call =
     {
@@ -24,8 +25,13 @@
         "lazytime"
         "logbufs=8"
         "logbsize=256k"
+        (lib.mkIf (logdev != null) "logdev=${logdev}")
       ]
-      ++ (if logdev != null then [ "logdev=${logdev}" ] else [ ])
+      ++ (lib.optionals isRaid [
+        "sunit=1024"
+        "swidth=4096"
+        "inode64"
+      ])
       ++ (
         if isSolid then
           [ "discard" ]
@@ -35,32 +41,22 @@
             "swalloc"
           ]
       )
-      ++ (
-        if isRaid then
-          [
-            "sunit=1024"
-            "swidth=4096"
-            "inode64"
-          ]
-        else
-          [ ]
-      )
       ++ extraOptions;
+
       extraArgs = [
-        "-d"
-        "agcount=${if isRaid || isVmStorage || isSolid then "4" else "2"},cowextsize=64${
-          if isRaid then ",sunit=1024,swidth=4096" else ""
-        }"
         "-i"
         "size=512,sparse=1,nrext64=1"
         "-m"
         "bigtime=1,crc=1,finobt=1,inobtcount=1,rmapbt=1,reflink=1"
         "-l"
-        "${if logdev != null then "logdev=${logdev}" else ""}${
-          if logsize != null then ",logsize=${logsize}" else ""
-        }"
+        "${lib.optionalString logdev != null "logdev=${logdev}"}"
+        "${lib.optionalString logsize != null ",logsize=${logsize}"}"
         "-L"
         (if name != null then name else nameLvm)
+        "-d"
+        "agcount=${
+          if isRaid || isVmStorage || isSolid then "4" else "2"
+        },cowextsize=64${lib.optionalString isRaid ",sunit=1024,swidth=4096"}"
       ];
     }
     |> (

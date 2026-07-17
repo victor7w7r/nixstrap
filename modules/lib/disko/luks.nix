@@ -42,8 +42,8 @@
         content = disko.luks.call {
           entireDisk = true;
           size = "100%";
-          inherit device;
           inherit
+            device
             allowDiscards
             name
             postMount

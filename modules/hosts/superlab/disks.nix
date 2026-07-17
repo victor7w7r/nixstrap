@@ -1,44 +1,34 @@
 { disko, ... }:
 {
-  den.aspects.superlab.disks.nixos.disko.devices = with disko; {
-    bcachefs_filesystems.broot = bcachefs.filesystem {
-      uuid = "2564fcf6-551f-4358-b238-2fe638b1c159";
-      subvolumes =
-        (bcachefs.subvolume {
-          name = "nix";
-          mountpoint = "/nix";
-        })
-        // (bcachefs.subvolume {
+  den.aspects.superlab.disks.nixos.disko.devices.disk = with disko; {
+    root = ephemeral.root { };
+    main = disk.gpt {
+      device = "mmcblk0";
+      partitions = {
+        esp = esp.call { size = "256M"; };
+        persist = f2fs.call {
           name = "persist";
-          mountpoint = "/nix/persist";
-        });
-    };
-    disk = {
-      root = ephemeral.root { };
-      main = disk.gpt {
-        device = "mmcblk0";
-        partitions = {
-          esp = esp.call { size = "500M"; };
-          system = f2fs.call {
-            name = "system";
-            size = "100%";
-            priority = 2;
-          };
+          size = "100%";
+          priority = 2;
         };
-        nvme = disk.gpt {
-          device = "nvme0n1";
-          partitions = {
-            swapcrypt = luks.call {
-              name = "swapcrypt";
-              size = "32G";
-              content = swap.call { };
-              priority = 1;
-            };
-            store = bcachefs.partition {
-              name = "store";
-              size = "100%";
-              priority = 2;
-            };
+      };
+    };
+    nvme = disk.gpt {
+      device = "nvme0n1";
+      partitions = {
+        swapcrypt = luks.call {
+          name = "swapcrypt";
+          size = "32G";
+          content = swap.call { };
+          priority = 1;
+        };
+        system = btrfs.call {
+          name = "system";
+          size = "100%";
+          priority = 2;
+          subvolumes = disko.btrfs.subvolumes {
+            hasEtc = true;
+            hasPersist = false;
           };
         };
       };

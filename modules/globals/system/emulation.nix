@@ -10,6 +10,18 @@
       ...
     }:
     {
+
+      nixpkgs.overlays = [
+        (_: prev: {
+          libadwaita = prev.libadwaita.overrideAttrs (oldAttrs: {
+            nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.libxml2 ];
+            preConfigure = ''
+              export XMLLINT="${pkgs.libxml2}/bin/xmllint"
+            '';
+          });
+        })
+      ];
+
       boot.binfmt = lib.optionalAttrs isPersistent {
         preferStaticEmulators = true;
         emulatedSystems = [
@@ -39,11 +51,13 @@
               mask = ''\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\x00\xff\xfe\xff\xff\xff'';
             };
 
-            windows = {
+            /*
+              windows = {
               interpreter = "${pkgs.wine}/bin/wine";
               offset = 0;
               magicOrExtension = "MZ";
-            };
+              };
+            */
           })
 
           (lib.mkIf (isArm || isArmv7) {

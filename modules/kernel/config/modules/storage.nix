@@ -1,9 +1,5 @@
 {
   kernel.config.modules.storage = {
-    not-btrfs = {
-      BTRFS_FS = "n";
-    };
-
     not-cdrom = {
       CDROM = "n";
       UDF_FS = "n";

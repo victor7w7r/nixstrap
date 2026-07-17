@@ -34,11 +34,7 @@
             size = "110G";
             priority = 7;
           };
-          games = btrfs.shared {
-            name = "games";
-            mountContent = "games";
-            mountSnap = "gamessnap";
-          };
+          games = btrfs.shared { name = "games"; };
         };
       };
     };
