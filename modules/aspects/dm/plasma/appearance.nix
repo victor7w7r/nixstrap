@@ -9,7 +9,7 @@
         iconTheme = "Colloid-Purple-Catppuccin-Dark";
         theme = "Layan";
         tooltipDelay = 1;
-        wallpaper = "/etc/nixos/assets/wallpaper.jpg";
+        wallpaper = "${self}/assets/images/wallpaper.jpg";
         windowDecorations.library = "org.kde.kwin.aurorae";
         windowDecorations.theme = "__aurorae__svg__Layan";
       };
@@ -57,14 +57,14 @@
       kscreenlocker = {
         appearance = {
           showMediaControls = false;
-          wallpaper = "/etc/nixos/assets/wallpaper.jpg";
+          wallpaper = "${self}/assets/images/wallpaper.jpg";
         };
         autoLock = false;
         timeout = 0;
       };
     };
 
-    home.file.".face.icon".source = "${self}/assets/avatar.png";
+    home.file.".face.icon".source = "${self}/assets/images/avatar.png";
 
     qt = {
       enable = true;

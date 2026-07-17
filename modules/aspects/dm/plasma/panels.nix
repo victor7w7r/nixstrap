@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   den.aspects.plasma.panels = {
     nixos.systemd.services.random-icon = {
@@ -11,11 +12,11 @@
         FILE_NAME="logo.svg"
         [[ -f "$TARGET_DIR/$FILE_NAME" ]] && rm "$TARGET_DIR/$FILE_NAME"
         case $((RANDOM % 5)) in
-          0) cp /etc/nixos/assets/logo-1.svg "$TARGET_DIR/$FILE_NAME" ;;
-          1) cp /etc/nixos/assets/logo-2.svg "$TARGET_DIR/$FILE_NAME" ;;
-          2) cp /etc/nixos/assets/logo-3.svg "$TARGET_DIR/$FILE_NAME" ;;
-          3) cp /etc/nixos/assets/logo-4.svg "$TARGET_DIR/$FILE_NAME" ;;
-          4) cp /etc/nixos/assets/logo-5.svg "$TARGET_DIR/$FILE_NAME" ;;
+          0) cp ${self}/assets/images/logo-1.svg "$TARGET_DIR/$FILE_NAME" ;;
+          1) cp ${self}/assets/images/logo-2.svg "$TARGET_DIR/$FILE_NAME" ;;
+          2) cp ${self}/assets/images/logo-3.svg "$TARGET_DIR/$FILE_NAME" ;;
+          3) cp ${self}/assets/images/logo-4.svg "$TARGET_DIR/$FILE_NAME" ;;
+          4) cp ${self}/assets/images/logo-5.svg "$TARGET_DIR/$FILE_NAME" ;;
         esac
       '';
     };
