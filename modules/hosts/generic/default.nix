@@ -39,7 +39,6 @@
             ];
             kernelPackages = (kernel.hosts.generic pkgs).generic-kernelPackages;
             initrd = {
-              supportedFilesystems = lib.mkAfter [ "bcachefs" ];
               availableKernelModules = [
                 "ahci"
                 "xhci_pci"

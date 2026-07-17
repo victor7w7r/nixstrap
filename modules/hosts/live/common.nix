@@ -115,7 +115,6 @@
           kernel.sysctl."vm.overcommit_memory" = "1";
           kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
           initrd = {
-            supportedFilesystems = lib.mkAfter [ "bcachefs" ];
             availableKernelModules = [
               "dm-thin-pool"
               "dm-snapshot"

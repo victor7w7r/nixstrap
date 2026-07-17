@@ -39,13 +39,13 @@
                ${pkgs.f2fs-tools}/bin/resize.f2fs "$rootPart" || true
               elif [ "$target_fs" == "xfs" ]; then
                 ${pkgs.xfsprogs}/bin/xfs_growfs "$mount_point" || true
-              elif [ "$target_fs" == "bcachefs" ]; then
-                ${pkgs.bcachefs-tools}/bin/bcachefs filesystem resize "$mount_point" 1 120G || true
+              elif [ "$target_fs" == "btrfs" ]; then
+                ${pkgs.btrfs-progs}/bin/resize.btrfs filesystem resize "$mount_point" 1 120G || true
               fi
           }
 
           set_big "/persist" "f2fs"
-          set_big "/nix" ${if isHDD then "xfs" else "bcachefs"}
+          set_big "/nix" ${if isHDD then "xfs" else "btrfs"}
 
           if [ -f "/nix/nix-path-registration" ]; then
             REG_FILE="/nix/nix-path-registration"

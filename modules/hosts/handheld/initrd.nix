@@ -3,7 +3,6 @@
     { lib, ... }:
     {
       boot.initrd = {
-        supportedFilesystems = lib.mkAfter [ "bcachefs" ];
         kernelModules = [
           "dm-snapshot"
           "kvm-amd"

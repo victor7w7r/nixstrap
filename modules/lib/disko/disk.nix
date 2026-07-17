@@ -20,6 +20,15 @@
         };
       };
 
+    bcache =
+      {
+        num ? 0,
+      }:
+      disko.disk.lvm {
+        inherit num;
+        device = "/dev/bcache${toString num}";
+      };
+
     lvm =
       {
         device,

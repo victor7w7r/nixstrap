@@ -31,7 +31,7 @@
           system.build.sdImage = pkgs.stdenv.mkDerivation {
             name = "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
             nativeBuildInputs = with pkgs; [
-              bcachefs-tools
+              btrfs-progs
               dosfstools
               fakeroot
               f2fs-tools

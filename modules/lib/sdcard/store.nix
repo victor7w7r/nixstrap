@@ -5,7 +5,7 @@
     [Partition]
     Type=root
     Label=${storeLabel}
-    Format=${if isHDD then "xfs" else "bcachefs"}
+    Format=${if isHDD then "xfs" else "btrfs"}
     SizeMinBytes=12G
     Minimize=no
     Weight=1000
@@ -30,7 +30,7 @@
       if isHDD then
         ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1 -n size=64k"''
       else
-        ''export SYSTEMD_REPART_MKFS_OPTIONS_BCACHEFS="--compression=lz4 --background_compression=zstd"''
+        ''export SYSTEMD_REPART_MKFS_OPTIONS_BTRFS=""''
     }
 
     echo "Creating and compressing store partition..."

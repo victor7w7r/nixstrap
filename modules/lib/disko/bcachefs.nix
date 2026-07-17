@@ -26,15 +26,6 @@
         };
       };
 
-    lvm =
-      {
-        num ? 0,
-      }:
-      disko.disk.lvm {
-        inherit num;
-        device = "/dev/bcache${toString num}";
-      };
-
     subvolume =
       {
         name ? "",

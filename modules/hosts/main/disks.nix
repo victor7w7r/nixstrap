@@ -5,6 +5,8 @@
     disko.devices = with disko; {
       disk = {
         root = ephemeral.root { };
+        bcache0 = disk.bcache { };
+        bcache1 = disk.bcache { num = 1; };
         main = disk.gpt {
           device = "nvme0n1";
           partitions = {
@@ -70,8 +72,6 @@
             };
           };
         };
-        bcache0 = bcachefs.lvm { };
-        bcache1 = bcachefs.lvm { num = 1; };
         persist = luks.entire {
           name = "persist";
           device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
