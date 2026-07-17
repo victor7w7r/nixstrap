@@ -41,8 +41,8 @@
       trusted-substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
-        #"https://attic.xuyh0120.win/lantian"
         "https://install.determinate.systems"
+        #"https://attic.xuyh0120.win/lantian"
       ];
 
       extra-substituters = [ ];

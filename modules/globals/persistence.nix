@@ -46,6 +46,7 @@
             ".local/share/zoxide"
             ".local/share/nix"
             ".config/freerdp"
+            ".config/nix"
             ".config/Seafile"
             ".local/share/Trash"
             ".ssh"

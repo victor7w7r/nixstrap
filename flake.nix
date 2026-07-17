@@ -647,7 +647,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.1026231.tar.gz";
     nixvim.url = "github:nix-community/nixvim";
     no-more-secrets = {
       url = "github:bartobri/no-more-secrets";

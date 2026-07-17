@@ -13,7 +13,7 @@
           bridge-utils
           dialog
           freerdp
-          nemu
+          #nemu # needs QEMU
           netcat-openbsd
           qemu-utils
           usbkvm

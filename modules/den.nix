@@ -9,6 +9,7 @@
   ];
 
   flake-file.inputs = {
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.1026231.tar.gz";
     den.url = "github:denful/den";
     flake-file.url = "github:vic/flake-file";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";

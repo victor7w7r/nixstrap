@@ -1,6 +1,6 @@
 { disko, ... }:
 {
-  den.aspects.main.disks-proposal.nixos = {
+  den.aspects.main-proposal.disks-proposal.nixos = {
     fileSystems."/nix/persist".neededForBoot = true;
     disko.devices = with disko; {
       disk = {
