@@ -112,9 +112,6 @@
       B43LEGACY = "n";
       B44 = "n";
       B53 = "n";
-      BRCMFMAC = "n";
-      BRCMSMAC = "n";
-      BRCMUTIL = "n";
       CAN = "n";
       DSA = "n";
       IEEE802154 = "n";

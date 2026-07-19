@@ -21,8 +21,6 @@
           "${bashInteractive}/bin/bash"
           mtdutils
           util-linux
-          ncurses
-          "${btrfs-progs}/bin/btrfs"
           "${util-linux}/bin/mount"
           "${util-linux}/bin/umount"
           "${coreutils}/bin/sleep"
@@ -32,6 +30,7 @@
           nix = "${nix}/bin/nix";
           ip = "${iproute2}/bin/ip";
           curl = "${curl}/bin/curl";
+          clear = "${ncurses}/bin/clear";
           ping = "${iputils}/bin/ping";
           cryptsetup = "${cryptsetup}/bin/cryptsetup";
           efibootmgr = "${pkgs.efibootmgr}/bin/efibootmgr";
