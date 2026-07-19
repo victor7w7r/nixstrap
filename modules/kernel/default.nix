@@ -86,6 +86,8 @@
         superlab-kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
         generic-config = (kernel.hosts.generic pkgs).generic-config;
         generic-kernel = (kernel.hosts.generic pkgs).generic-kernel;
+      	main-kernel = (kernel.hostsm.ain pkgs).main-kernel;
+        main-config = (kernel.hosts.main pkgs).main-config;
       };
     };
 }

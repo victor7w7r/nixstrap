@@ -49,8 +49,8 @@
         "-m"
         "bigtime=1,crc=1,finobt=1,inobtcount=1,rmapbt=1,reflink=1"
         "-l"
-        "${lib.optionalString logdev != null "logdev=${logdev}"}"
-        "${lib.optionalString logsize != null ",logsize=${logsize}"}"
+        "${lib.optionalString (logdev != null) "logdev=${logdev}"}"
+        "${lib.optionalString (logsize != null) ",logsize=${logsize}"}"
         "-L"
         (if name != null then name else nameLvm)
         "-d"

@@ -1,6 +1,7 @@
 {
   kernel.config.modules.default = {
     ATA = "y";
+    BCACHE = "y";
     BLK_DEV_LOOP = "y";
     BLK_DEV_NVME = "y";
     BLK_DEV_SR = "y";

@@ -22,7 +22,7 @@
         hardware.serial
         net
         storage.ntfs
-        storage.not-raid
+	storage.raid
         storage.xfs
         vendor.intel
       ];
