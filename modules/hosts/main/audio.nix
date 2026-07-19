@@ -3,15 +3,10 @@
     { self', ... }:
     {
       environment.etc = {
-        # 1. Enlazamos los directorios originales pero con nombres únicos para que no choquen
         "alsa-card-profile/mixer/paths".source =
           "${self'.packages.t2-audio}/share/apple-t2-better-audio/files/paths";
-
-        # Si la carpeta profile-sets original ya trae archivos que necesitas, le cambiamos la ruta de montaje
         "alsa-card-profile/mixer/profile-sets-base".source =
           "${self'.packages.t2-audio}/share/apple-t2-better-audio/files/profile-sets";
-
-        # 2. Creamos tu archivo de configuración en la ruta limpia oficial que espera PipeWire
         "alsa-card-profile/mixer/profile-sets/apple-t2x1.conf".text = ''
           [General]
           auto-profiles = yes

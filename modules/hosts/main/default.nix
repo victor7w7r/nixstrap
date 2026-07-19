@@ -68,8 +68,7 @@
           systemd.tmpfiles.rules = [
             "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
             "w /sys/devices/system/cpu/intel_pstate/max_perf_pct - - - - 80"
-            "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough"
-            "w /sys/block/bcache1/bcache/cache_mode - - - - writethrough"
+            "w /sys/block/bcache0/bcache/cache_mode - - - - writeback"
           ];
         };
 
