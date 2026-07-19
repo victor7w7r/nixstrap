@@ -1,10 +1,9 @@
 { disko, ... }:
 {
-  den.aspects.main-proposal.disks-proposal.nixos = {
-    fileSystems."/nix/persist".neededForBoot = true;
-    disko.devices = with disko; {
+  den.aspects =
+    with disko;
+    {
       disk = {
-        root = ephemeral.root { };
         bcache0 = disk.bcache { };
         main = disk.gpt {
           device = "nvme0n1";
@@ -50,24 +49,8 @@
             shared = btrfs.shared { name = "ssdshared"; };
           };
         };
-        persist = luks.entire {
-          name = "persist";
-          device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
-          postMount = ''
-            echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
-          '';
-          postCreate = ''
-            make-bcache -B /dev/mapper/persist
-            #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part8 | grep 'cset.uuid' | awk '{print $2}')
-            #echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
-          '';
-        };
-        storage = luks.entire {
-          name = "storage";
-          device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
-        };
       };
-      lvm_vg =
+      lvm =
         (disk.vg {
           lvs = {
             persist = disko.xfs.call {
@@ -83,10 +66,43 @@
             storage = disko.xfs.call {
               name = "storage";
               size = "85%";
-              mountpoint = "/nix/storage";
+              mountpoint = "/nix/persist/storage";
             };
           };
         });
-    };
-  };
+    }
+    |> (topology: {
+      main-proposal.disks-proposal.nixos = {
+        fileSystems."/nix/persist".neededForBoot = true;
+        disko.devices = {
+          lvm_vg = topology.lvm;
+          disk = {
+            root = ephemeral.root { };
+          }
+          // topology.disk;
+        };
+      };
+      main-chroot.nixos.disko.devices = {
+        lvm_vg = topology.lvm;
+        disk = {
+          persist = luks.entire {
+            name = "persist";
+            device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
+            postMount = ''
+              echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
+            '';
+            postCreate = ''
+              make-bcache -B /dev/mapper/persist
+              #CACHE_SET_UUID=$(sudo bcache-super-show /dev/disk/by-id/ata-Micron_2400_MTFDKBK512QFM_232240F15D36-part8 | grep 'cset.uuid' | awk '{print $2}')
+              #echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
+            '';
+          };
+          storage = luks.entire {
+            name = "storage";
+            device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
+          };
+        }
+        // topology.disk;
+      };
+    });
 }

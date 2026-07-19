@@ -24,6 +24,7 @@
         ShowZoomSlider = true;
         UseTabForSwitchingSplitView = true;
         Version = 202;
+        TerminalPanelVisible = false;
         ViewPropsTimestamp = "2026,4,8,6,53,20.3";
       };
       InformationPanel.dateFormat = "ShortFormat";

@@ -87,11 +87,18 @@
             alignment = "center";
             lengthMode = "fill";
             floating = false;
-            height = 32;
+            height = 26;
             hiding = "none";
             screen = "all";
             opacity = "translucent";
             widgets = [
+              {
+                name = "org.kde.plasma.panelspacer";
+                config.General = {
+                  expanding = false;
+                  length = 5;
+                };
+              }
               {
                 name = "org.51n7.kMenu";
                 config = {
@@ -117,7 +124,7 @@
                     widgetButtonsAnimation = 0;
                     widgetButtonsAuroraeTheme = "Layan";
                     widgetButtonsIconsTheme = "Aurorae";
-                    widgetButtonsMargins = 9;
+                    widgetButtonsMargins = 7;
                     widgetElements = "windowTitle";
                     widgetElementsDisabledMode = "HideKeepSpace";
                     widgetElementsMaximized = [
@@ -162,7 +169,7 @@
                   let
                     fan =
                       if isMain then
-                        "lm?/applesmc-acpi-0"
+                        "lmsensors/applesmc-acpi-0"
                       else if isHandheld then
                         "lmsensors/asus-isa-000a"
                       else
@@ -362,6 +369,13 @@
                     position = "belowTime";
                   };
                   calendar.firstDayOfWeek = "monday";
+                };
+              }
+              {
+                name = "org.kde.plasma.panelspacer";
+                config.General = {
+                  expanding = false;
+                  length = 5;
                 };
               }
             ];

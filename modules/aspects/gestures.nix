@@ -3,13 +3,13 @@
   flake-file.inputs.gestures.url = "github:ferstar/gestures";
 
   den.aspects.gestures = {
-    nixos =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = with pkgs; [ ydotool ];
-        services.udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="input"'';
-        programs.ydotool.enable = true;
+    nixos = {
+      services.udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="input"'';
+      programs.ydotool = {
+        enable = true;
+        group = "users";
       };
+    };
 
     provides.to-users.homeManager =
       { self', ... }:

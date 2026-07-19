@@ -9,7 +9,6 @@
         ];
         kernelModules = [
           "apple-bce"
-          "aes_ni"
           "brcmfmac_wcc"
           "brcmfmac"
           "btrfs"
@@ -28,8 +27,9 @@
           # "vfio_iommu_type1"
           # "vfi"
         ];
-        h
+        luks.devices = { };
         systemd.services = {
+          systemd-cryptsetup-generator.enable = false;
           "systemd-cryptsetup@persist.service".enable = false;
           "systemd-cryptsetup@persistcachecrypt.service".enable = false;
           "systemd-cryptsetup@persistlogcrypt.service".enable = false;

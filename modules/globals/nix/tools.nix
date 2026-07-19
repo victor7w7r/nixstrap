@@ -23,6 +23,7 @@
           manix
           namaka
           niv
+          nixd
           nix-diff
           nix-du
           nix-health

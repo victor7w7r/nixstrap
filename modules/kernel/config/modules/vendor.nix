@@ -64,9 +64,6 @@
       USB_HID = "y";
     }
     // not-intel;
-
-    not-vendor = not-amd // not-intel;
-
     not-amd = {
       AMD_3D_VCACHE = "n";
       AMD_HFI = "n";
@@ -181,6 +178,16 @@
       X86_INTEL_PSTATE = "n";
       X86_INTEL_TSX_MODE_AUTO = "n";
       X86_MCE_INTEL = "n";
+    };
+
+    not-vendor = not-amd // not-intel;
+
+    not-broadcom = {
+      BCMA = "n";
+      CORDIC = "n";
+      UIO = "n";
+      WLAN_VENDOR_BROADCOM = "n";
+      NET_VENDOR_BROADCOM = "n";
     };
   };
 }

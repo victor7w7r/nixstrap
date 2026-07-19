@@ -3,7 +3,7 @@ pkgs.rustPlatform.buildRustPackage {
   pname = "socktop";
   version = "latest";
   src = inputs.socktop;
-  cargoHash = "sha256-usaBZ5xIPYKU4Qca8fI8Bg+XcsDUQNiQDdoohXvtu6w=";
+  cargoHash = "sha256-MWy3gv7kqddrkUDyP56EfTWRw1q1wHVt69MYnJCyeQQ=";
   nativeBuildInputs = with pkgs; [ pkg-config ];
   buildInputs = with pkgs; [ libdrm ];
 }

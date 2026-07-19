@@ -10,7 +10,10 @@
       hardware.uinput.enable = true;
       services = {
         gvfs.enable = true;
-        xserver.enable = lib.mkForce true;
+        xserver = {
+          enable = lib.mkForce true;
+          options = "caps:ctrl_modifier";
+        };
         libinput = {
           enable = true;
           mouse.accelProfile = "flat";

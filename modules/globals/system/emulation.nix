@@ -10,18 +10,6 @@
       ...
     }:
     {
-
-      nixpkgs.overlays = [
-        (_: prev: {
-          libadwaita = prev.libadwaita.overrideAttrs (oldAttrs: {
-            nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.libxml2 ];
-            preConfigure = ''
-              export XMLLINT="${pkgs.libxml2}/bin/xmllint"
-            '';
-          });
-        })
-      ];
-
       boot.binfmt = lib.optionalAttrs isPersistent {
         preferStaticEmulators = true;
         emulatedSystems = [

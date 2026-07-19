@@ -1,7 +1,10 @@
 { den, kernel, ... }:
 {
   den = {
-    hosts.x86_64-linux.main.users.victor7w7r = { };
+    hosts.x86_64-linux = {
+      main-chroot.users.victor7w7r = { };
+      main.users.victor7w7r = { };
+    };
 
     aspects.main = {
       includes = with den.aspects; [

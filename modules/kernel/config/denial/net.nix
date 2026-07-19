@@ -94,7 +94,6 @@
       ARCNET = "n";
       ATM = "n";
       BATMAN_ADV = "n";
-      BCMA = "n";
       BONDIN = "n";
       CAIF = "n";
       DIBS = "n";

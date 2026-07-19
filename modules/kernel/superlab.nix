@@ -23,6 +23,7 @@
         storage.not-raid
         storage.not-xfs
         vendor.not-vendor
+        vendor.not-broadcom
       ];
     })
     |> (generated: {

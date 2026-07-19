@@ -1,6 +1,5 @@
 {
   kernel.config.denial.crypto = {
-    CORDIC = "n";
     CRC7 = "n";
     CRC_ITU_T = "n";
     CRYPTO_842 = "n";

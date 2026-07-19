@@ -2,43 +2,43 @@
   den.aspects.main.audio.nixos =
     { self', ... }:
     {
-      nixpkgs.overlays = [
-        (final: prev: {
-          pipewire = prev.pipewire.overrideAttrs (oldAttrs: {
-            postPatch = (oldAttrs.postPatch or "") + ''
-              cp -r ${self'.packages.t2-audio}/share/apple-t2-better-audio/files/{profile-sets,paths} spa/plugins/alsa/mixer/
+      environment.etc = {
+        # 1. Enlazamos los directorios originales pero con nombres únicos para que no choquen
+        "alsa-card-profile/mixer/paths".source =
+          "${self'.packages.t2-audio}/share/apple-t2-better-audio/files/paths";
 
-              cat > spa/plugins/alsa/mixer/profile-sets/apple-t2x1.conf << EOF
-              [General]
-              auto-profiles = yes
+        # Si la carpeta profile-sets original ya trae archivos que necesitas, le cambiamos la ruta de montaje
+        "alsa-card-profile/mixer/profile-sets-base".source =
+          "${self'.packages.t2-audio}/share/apple-t2-better-audio/files/profile-sets";
 
-              [Mapping Speakers]
-              device-strings = hw:%f,0
-              paths-output = analog-output-mono
-              channel-map = mono
-              direction = output
+        # 2. Creamos tu archivo de configuración en la ruta limpia oficial que espera PipeWire
+        "alsa-card-profile/mixer/profile-sets/apple-t2x1.conf".text = ''
+          [General]
+          auto-profiles = yes
 
-              [Mapping Headphones]
-              device-strings = hw:%f,2
-              paths-output = t2-headphones
-              channel-map = left,right
-              direction = output
+          [Mapping Speakers]
+          device-strings = hw:%f,0
+          paths-output = analog-output-mono
+          channel-map = mono
+          direction = output
 
-              [Mapping HeadsetMic]
-              device-strings = hw:%f,3
-              paths-input = t2-headset-mic
-              channel-map = mono
-              direction = input
+          [Mapping Headphones]
+          device-strings = hw:%f,2
+          paths-output = t2-headphones
+          channel-map = left,right
+          direction = output
 
-              [Profile Default]
-              description = Default Profile
-              output-mappings = Speakers Headphones
-              input-mappings = HeadsetMic
-              EOF
-            '';
-          });
-          wireplumber = prev.wireplumber.override { pipewire = final.pipewire; };
-        })
-      ];
+          [Mapping HeadsetMic]
+          device-strings = hw:%f,3
+          paths-input = t2-headset-mic
+          channel-map = mono
+          direction = input
+
+          [Profile Default]
+          description = Default Profile
+          output-mappings = Speakers Headphones
+          input-mappings = HeadsetMic
+        '';
+      };
     };
 }

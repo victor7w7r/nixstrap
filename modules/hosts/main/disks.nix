@@ -21,7 +21,7 @@
               size = "10G";
               priority = 3;
             };
-            shared = btrfs.shared { };
+            #shared = btrfs.shared { };
           };
         };
         ssd = disk.gpt {
@@ -76,9 +76,12 @@
           name = "persist";
           device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
           postMount = ''
-            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
-            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
-            echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
+            FS_TYPE=$(findmnt -n -o FSTYPE /)
+            if [[ "$FS_TYPE" != "ext4" && ! -d "/sysroot" ]]; then
+              cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /tmp/key.txt || true
+              cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-persistlogcrypt persistlogcrypt --key-file /tmp/key.txt || true
+              echo /dev/mapper/persist | tee /sys/fs/bcache/register || true
+            fi
           '';
           postCreate = ''
             make-bcache -B /dev/mapper/persist
@@ -90,9 +93,12 @@
           name = "storage";
           device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
           postMount = ''
-            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
-            cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
-            echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
+            FS_TYPE=$(findmnt -n -o FSTYPE /)
+            if [[ "$FS_TYPE" != "ext4" && ! -d "/sysroot" ]]; then
+              cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagecachecrypt storagecachecrypt --key-file /tmp/key.txt || true
+              cryptsetup open /dev/${disk.constants.partlabel}/disk-ssd-storagelogcrypt storagelogcrypt --key-file /tmp/key.txt || true
+              echo /dev/mapper/storage | tee /sys/fs/bcache/register || true
+            fi
           '';
           postCreate = ''
             make-bcache -B /dev/mapper/storage
@@ -118,7 +124,7 @@
             storage = disko.xfs.call {
               name = "storage";
               size = "85%";
-              mountpoint = "/nix/storage";
+              mountpoint = "/nix/persist/storage";
               logdev = "/dev/mapper/storagelogcrypt";
             };
           };

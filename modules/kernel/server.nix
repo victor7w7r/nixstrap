@@ -26,6 +26,7 @@
         storage.not-cdrom
         storage.xfs
         vendor.intel
+        vendor.not-broadcom
       ];
     })
     |> (generated: {

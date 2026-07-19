@@ -44,7 +44,6 @@
             ".cache/thumbnails"
             ".local/share/cod"
             ".local/share/zoxide"
-            ".local/share/nix"
             ".config/freerdp"
             ".config/nix"
             ".config/Seafile"

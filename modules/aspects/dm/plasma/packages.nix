@@ -80,10 +80,10 @@
               pkgs.icoutils
               pkgs.kdiff3
               pkgs.kdiskmark
-              #pkgs.krita
+              pkgs.krita
               pkgs.krusader
               pkgs.maliit-keyboard
-              #pkgs.onboard webkitgtk
+              pkgs.onboard
               pkgs.qpwgraph
               pkgs.okteta
               pkgs.pinentry-qt

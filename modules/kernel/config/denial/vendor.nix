@@ -124,7 +124,6 @@
       NET_VENDOR_ARC = "n";
       NET_VENDOR_ASIX = "n";
       NET_VENDOR_ATHEROS = "n";
-      NET_VENDOR_BROADCOM = "n";
       NET_VENDOR_BROCADE = "n";
       NET_VENDOR_CADENCE = "n";
       NET_VENDOR_CAVIUM = "n";
@@ -186,7 +185,6 @@
       WLAN_VENDOR_ADMTEK = "n";
       WLAN_VENDOR_ATH = "n";
       WLAN_VENDOR_ATMEL = "n";
-      WLAN_VENDOR_BROADCOM = "n";
       WLAN_VENDOR_INTEL = "n";
       WLAN_VENDOR_INTERSIL = "n";
       WLAN_VENDOR_MARVELL = "n";
