@@ -96,8 +96,9 @@
                 priority = 4;
                 postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
               };
-              persist = luks.entire {
+              persist = luks.call {
                 name = "persist";
+                size = "100%";
                 device = "${disk.constants.partlabel}/disk-nvme-persist";
                 allowDiscards = true;
                 content = disko.xfs.call {
