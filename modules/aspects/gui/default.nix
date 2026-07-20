@@ -6,18 +6,21 @@
         libinput
         evemu
       ];
+
       hardware.uinput.enable = true;
       services = {
         gvfs.enable = true;
-        xserver.enable = lib.mkForce true;
-        keyd = {
-          enable = true;
-          keyboards.default = {
-            ids = [ "*" ];
-            settings = {
-              main = {
-                capslock = "capslock";
-              };
+        xserver = {
+          enable = lib.mkForce true;
+          xkb = {
+            enable = true;
+            extraLayouts.custom_caps = {
+              description = "Custom Caps Lock Modifier";
+              languages = [
+                "eng"
+                "spa"
+              ];
+              symbolsFile = ./capslock;
             };
           };
         };
