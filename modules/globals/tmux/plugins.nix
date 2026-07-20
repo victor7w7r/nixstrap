@@ -32,7 +32,7 @@
     };
   };
 
-  den.provides.to-users.homeManager =
+  den.default.provides.to-users.homeManager =
     { pkgs, ... }:
     {
       programs.tmux.plugins = with pkgs.tmuxPlugins; [

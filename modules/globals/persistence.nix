@@ -55,7 +55,6 @@
           ];
           root.directories = [
             ".zsh"
-            ".tmux"
             ".cache/antidote"
           ];
         };

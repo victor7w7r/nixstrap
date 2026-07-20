@@ -14,7 +14,7 @@
       {
         programs.tmux = {
           enable = true;
-          baseIndex = 11;
+          baseIndex = 1;
           aggressiveResize = true;
           disableConfirmationPrompt = true;
           clock24 = false;
