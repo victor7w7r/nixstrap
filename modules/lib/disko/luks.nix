@@ -36,7 +36,6 @@
         postCreate ? "",
         allowDiscards ? false,
         content ? null,
-        extraOptions ? [ ],
       }:
       {
         type = "disk";
@@ -49,7 +48,6 @@
             device
             content
             allowDiscards
-            extraOptions
             postMount
             postCreate
             ;
