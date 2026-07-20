@@ -3,7 +3,7 @@
   den.aspects.handheld.disks.nixos.disko.devices.disk = with disko; {
     root = ephemeral.root { };
     main = disk.gpt {
-      device = "mmcblk0";
+      device = "nvme0n1";
       partitions = {
         esp = esp.call { };
         msr = win.msr { };
