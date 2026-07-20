@@ -1,72 +1,80 @@
 { disko, ... }:
 {
-  den.aspects.server = {
-    disks-logical.nixos.disko.devices = with disko; {
-      disk = {
-        bcache = luks.entire {
-          name = "cloud";
-          device = "/dev/bcache0";
-          postMount = ''
-            cryptsetup open ${partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
-            cryptsetup open ${partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
-          '';
-        };
-        cloud = disk.lvm { device = "mapper/cloud"; };
+  den.aspects =
+    with disko;
+    let
+      cloud = disk.lvm { device = "mapper/cloud"; };
+      lvm_vg = xfs.lvm {
+        name = "persist";
+        size = "3T";
+        isRaid = true;
+        logdev = "/dev/mapper/cloudlogcrypt";
+        mountpoint = "/nix/persist/cloud";
+        extraOptions = [
+          "largeio"
+          "swalloc"
+          "sunit=1024"
+          "swidth=4096"
+          "inode64"
+          "logdev=/dev/mapper/cloudlogcrypt"
+          "x-systemd.device-timeout=300"
+          "x-systemd.mount-timeout=300"
+        ];
       };
-      lvm_vg = disk.vg {
-        lvs = {
-          thinpool = {
+      emmc = disk.gpt {
+        device = "${disk.constants.id}/mmc-SCA256_0x3870d703";
+        partitions = {
+          esp = esp.call { };
+          store = f2fs.call {
+            name = "store";
+            size = "150G";
+            mountpoint = "/nix";
+            priority = 2;
+          };
+          shared = f2fs.call {
+            name = "shared";
             size = "100%";
-            lvm_type = "thin-pool";
-          };
-          cloud = disko.xfs.call {
-            size = "3T";
-            mountpoint = "/nix/persist/cloud";
-            logdev = "/dev/mapper/cloudlogcrypt";
-            isRaid = true;
-            nameLvm = "cloud";
-            extraSetupDisk = {
-              pool = "thinpool";
-              lvm_type = "thinlv";
-            };
-            extraOptions = [
-              "largeio"
-              "swalloc"
-              "sunit=1024"
-              "swidth=4096"
-              "inode64"
-              "logdev=/dev/mapper/cloudlogcrypt"
-              "x-systemd.device-timeout=300"
-              "x-systemd.mount-timeout=300"
-            ];
+            mountpoint = "/run/media/shared";
+            priority = 3;
           };
         };
       };
-    };
-    disks-physical.nixos.disko.devices = with disko; {
-      disk = {
-        emmc = disk.gpt {
-          device = "${disk.constants.id}/mmc-SCA256_0x3870d703";
-          partitions = {
-            esp = esp.call { };
-            store = f2fs.call {
-              name = "store";
-              size = "150G";
-              mountpoint = "/nix";
-              priority = 2;
-            };
-            shared = f2fs.call {
-              name = "shared";
-              size = "100%";
-              mountpoint = "/run/media/shared";
-              priority = 3;
-            };
-          };
+      mdadm = {
+        raid0 = {
+          type = "mdadm";
+          level = 5;
         };
-        nvme = disk.gpt {
+      };
+      nvme =
+        {
+          extraParts ? { },
+        }:
+        disk.gpt {
           device = "nvme0n1";
           partitions = {
             emergency = btrfs.emergency { priority = 1; };
+          }
+          // extraParts;
+        };
+    in
+    {
+      server.disks.nixos = {
+        fileSystems = {
+          "/nix/persist".neededForBoot = true;
+          "/etc".neededForBoot = true;
+        };
+        disko.devices = {
+          inherit lvm_vg mdadm;
+          disk = {
+            inherit emmc cloud;
+            nvme = nvme { };
+          };
+        };
+      };
+      server-physical-chroot.nixos.disko.devices = {
+        inherit emmc mdadm;
+        nvme = nvme {
+          extraParts = {
             swapcrypt = luks.call {
               name = "swapcrypt";
               device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
@@ -104,18 +112,29 @@
             };
           };
         };
-        cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
-        cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
-        cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };
-        cloud4 = disk.mdraid { device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"; };
-        cloud5 = disk.mdraid { device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS"; };
+        disk = {
+          cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
+          cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
+          cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };
+          cloud4 = disk.mdraid { device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"; };
+          cloud5 = disk.mdraid { device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS"; };
+        };
       };
-      mdadm.raid0 = {
-        type = "mdadm";
-        level = 5;
+      server-logical-chroot.nixos.disko.devices = {
+        inherit lvm_vg;
+        disk = {
+          inherit cloud;
+          bcache = luks.entire {
+            name = "cloud";
+            device = "/dev/bcache0";
+            postMount = ''
+              cryptsetup open ${partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
+              cryptsetup open ${partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
+            '';
+          };
+        };
       };
     };
-  };
 }
 
 /*

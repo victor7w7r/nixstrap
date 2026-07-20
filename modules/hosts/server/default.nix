@@ -1,7 +1,11 @@
 { den, kernel, ... }:
 {
   den = {
-    hosts.x86_64-linux.server.users.victor7w7r = { };
+    hosts.x86_64-linux = {
+      server-physical-chroot.users.victor7w7r = { };
+      server-logical-chroot.users.victor7w7r = { };
+      server.users.victor7w7r = { };
+    };
 
     aspects.server =
       { user, ... }:
