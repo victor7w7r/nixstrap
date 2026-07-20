@@ -1,28 +1,34 @@
 { disko, ... }:
 {
-  den.aspects.handheld.disks.nixos.disko.devices.disk = with disko; {
-    root = ephemeral.root { };
-    main = disk.gpt {
-      device = "nvme0n1";
-      partitions = {
-        esp = esp.call { };
-        msr = win.msr { };
-        emergency = btrfs.emergency { priority = 3; };
-        recovery = win.recovery { };
-        win = win.call { };
-        swapcrypt = luks.call {
-          name = "swapcrypt";
-          size = "14G";
-          content = swap.call { };
-          priority = 6;
+  den.aspects.handheld.disks.nixos = {
+    fileSystems = {
+      "/nix/persist".neededForBoot = true;
+      "/etc".neededForBoot = true;
+    };
+    disko.devices.disk = with disko; {
+      root = ephemeral.root { };
+      main = disk.gpt {
+        device = "nvme0n1";
+        partitions = {
+          esp = esp.call { };
+          msr = win.msr { };
+          emergency = btrfs.emergency { priority = 3; };
+          recovery = win.recovery { };
+          win = win.call { };
+          swapcrypt = luks.call {
+            name = "swapcrypt";
+            size = "14G";
+            content = swap.call { };
+            priority = 6;
+          };
+          system = btrfs.call {
+            name = "system";
+            size = "110G";
+            priority = 7;
+            subvolumes = btrfs.subvolumes { hasEtc = true; };
+          };
+          games = btrfs.shared { name = "games"; };
         };
-        system = btrfs.call {
-          name = "system";
-          size = "110G";
-          priority = 7;
-          subvolumes = btrfs.subvolumes { hasEtc = true; };
-        };
-        games = btrfs.shared { name = "games"; };
       };
     };
   };
