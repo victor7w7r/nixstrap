@@ -59,9 +59,6 @@
     in
     {
       server.disks.nixos = {
-        fileSystems = {
-          "/nix/persist".neededForBoot = true;
-        };
         disko.devices = {
           inherit lvm_vg mdadm;
           disk = {
