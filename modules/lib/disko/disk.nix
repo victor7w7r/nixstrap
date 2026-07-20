@@ -20,6 +20,20 @@
         };
       };
 
+    lvm =
+      {
+        device,
+        num ? 0,
+      }:
+      {
+        type = "disk";
+        device = "/dev/${device}";
+        content = {
+          vg = "vg${toString num}";
+          type = "lvm_pv";
+        };
+      };
+
     bcache =
       {
         num ? 0,

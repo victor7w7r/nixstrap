@@ -25,7 +25,7 @@
       };
       ssd =
         {
-          extraParts ? null,
+          extraParts ? { },
         }:
         disk.gpt {
           device = "${disk.constants.id}/ata-Micron_2400_MTFDKBK512QFM_232240F15D36";
@@ -34,7 +34,7 @@
             msr = win.msr { };
             recovery = win.recovery { priority = 3; };
             win = win.call { priority = 4; };
-            shared = btrfs.shared { name = "ssdshared"; };
+            # shared = btrfs.shared { name = "ssdshared"; };
           }
           // extraParts;
         };
