@@ -4,7 +4,7 @@
     # wol -i 192.168.1.255 00:11:22:33:44:55
     # wol aa:bb:cc:dd:ee:ff
     services = {
-      network-manager-applet.enable = true;
+      #home network-manager-applet.enable = true;
       resolved = {
         enable = lib.mkForce true;
         settings.Resolve.DNSStubListener = "no";
