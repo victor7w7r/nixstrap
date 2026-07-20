@@ -72,7 +72,7 @@
         };
       };
       server-physical-chroot.nixos.disko.devices = {
-        inherit emmc mdadm;
+        inherit mdadm;
         nvme = nvme {
           extraParts = {
             swapcrypt = luks.call {
@@ -113,6 +113,7 @@
           };
         };
         disk = {
+          inherit emmc;
           cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
           cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
           cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };

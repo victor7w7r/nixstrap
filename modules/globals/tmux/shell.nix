@@ -28,7 +28,7 @@
           right_status "#(${colors} 4)" "#(${temp})"
           right_status "#(${colors} 5)" "#(${cpu})"
           right_status "#(${colors} 6)" "#(${battery})"
-          right_status "#(${colors} 0)" "#(date +'%%-d/%%-m %%I:%%M%%P' | sed 's/m$//')"
+          right_status "#(${colors} 0)" "#(date +'%%-d/%%-m %%I:%%M')"
           #right_status "#(colors_exec 3)" "#($ext/extensions/mommy.sh)"
           #right_status "#e4cfff" "#($current_dir/network.sh)"
           #right_status "#e4cfff" "#($current_dir/mpc.sh)"
