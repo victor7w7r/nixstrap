@@ -51,7 +51,7 @@
         Use = true;
         DisplayNames = ",es";
         VariantList = "intl-unicode,";
-        Options = "caps:ctrl_modifier";
+        Options = "custom:caps_lock_instant";
         LayoutList = "us,latam";
         ResetOldOptions = true;
       };

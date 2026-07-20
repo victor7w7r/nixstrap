@@ -62,7 +62,6 @@
               mtr-gui
               music-discord-rpc
               #natron
-              pinta
               rclone-browser
               rnote
               seafile-client
