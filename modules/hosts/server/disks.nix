@@ -61,7 +61,6 @@
       server.disks.nixos = {
         fileSystems = {
           "/nix/persist".neededForBoot = true;
-          "/etc".neededForBoot = true;
         };
         disko.devices = {
           inherit lvm_vg mdadm;
