@@ -8,11 +8,13 @@
       imports = [ inputs.proxmox-nixos.nixosModules.proxmox-ve ];
 
       services = {
-        proxmox-ve = {
+        /*
+          proxmox-ve = {
           enable = true;
           ipAddress = "192.168.1.100";
           bridges = [ "br0" ];
-        };
+          };
+        */
         xrdp = {
           enable = true;
           defaultWindowManager = "${pkgs.xfce4-session}/bin/startxfce4";
