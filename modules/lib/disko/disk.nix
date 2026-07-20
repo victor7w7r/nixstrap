@@ -29,32 +29,6 @@
         device = "/dev/bcache${toString num}";
       };
 
-    lvm =
-      {
-        device,
-        num ? 0,
-      }:
-      {
-        type = "disk";
-        device = "/dev/${device}";
-        content = {
-          vg = "vg${toString num}";
-          type = "lvm_pv";
-        };
-      };
-
-    vg =
-      {
-        lvs,
-        num ? 0,
-      }:
-      {
-        "vg${toString num}" = {
-          type = "lvm_vg";
-          inherit lvs;
-        };
-      };
-
     mdraid =
       {
         device,

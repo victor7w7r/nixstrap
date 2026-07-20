@@ -64,10 +64,12 @@
       ];
     };
     configFile = {
-      kxkbrc.Layout = lib.mkForce {
+      /*
+        kxkbrc.Layout = lib.mkForce {
         Options = "caps:ctrl_modifier";
         ResetOldOptions = true;
-      };
+        };
+      */
       kcminputrc = {
         "ButtonRebinds/Tablet/Wacom Intuos5 touch S (WL) Pad"."0" = "Disabled";
         "ButtonRebinds/Tablet/Wacom Intuos5 touch S (WL) Pad"."1" = "Disabled";

@@ -52,9 +52,7 @@
               util-linux
             ];
             script = ''
-              set -e
               mkdir -p /media
-
               echo 4G > /sys/block/zram1/disksize
               mkfs.ext4 -m 0 -O "^has_journal,^huge_file,^flex_bg" /dev/zram1
 
@@ -77,7 +75,7 @@
                cryptsetup open ${partlabel}/disk-ssd-persistcachecrypt persistcachecrypt --key-file /media/secret.key
 
                for i in {1..30}; do
-                 if [ -e /dev/bcache0 ] && [ -e /dev/mapper/persist ]  && [ -e /dev/mapper/storage ]; then
+                 if [ -e /dev/bcache0 ] && [ -e /dev/mapper/persist ] && [ -e /dev/mapper/storage ]; then
                     echo "Appear in attempt $i"
                     udevadm trigger --action=add --subsystem-match=block
                     udevadm settle
@@ -93,6 +91,5 @@
             '';
           };
       };
-
     };
 }

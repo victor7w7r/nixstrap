@@ -7,7 +7,6 @@
       icon = "org.kde.dolphin";
       type = "Application";
       comment = "Gestión de archivos";
-      #mimeType = "inode/directory";
       categories = [
         "Qt"
         "KDE"
@@ -28,7 +27,11 @@
       icon = "krdc";
       type = "Application";
       comment = "Conectar con RDP o VNC a otro equipo";
-      #mimeType = "x-scheme-handler/vnc;x-scheme-handler/rdp;application/x-krdc;";
+      mimeType = [
+        "x-scheme-handler/vnc"
+        "x-scheme-handler/rdp"
+        "application/x-krdc"
+      ];
       categories = [
         "Qt"
         "KDE"
@@ -158,7 +161,7 @@
       mimeType = [
         "video/png"
         "video/jpg"
-        "video/*"
+        "video/mp4"
       ];
     };
   };

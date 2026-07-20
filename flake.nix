@@ -2,7 +2,6 @@
 # Use `nix run .#write-flake` to regenerate it.
 {
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
-
   nixConfig = {
     accept-flake-config = true;
     allow-import-from-derivation = true;

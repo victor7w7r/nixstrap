@@ -125,6 +125,7 @@
                     widgetButtonsAuroraeTheme = "Layan";
                     widgetButtonsIconsTheme = "Aurorae";
                     widgetButtonsMargins = 7;
+                    widgetMargins = 0;
                     widgetElements = "windowTitle";
                     widgetElementsDisabledMode = "HideKeepSpace";
                     widgetElementsMaximized = [

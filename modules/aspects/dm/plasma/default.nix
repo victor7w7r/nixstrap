@@ -24,7 +24,6 @@
             files = [
               ".config/kwalletrc"
               ".config/kwinoutputconfig.json"
-              ".local/state/dolphinstaterc"
             ];
           };
 
