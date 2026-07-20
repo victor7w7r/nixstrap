@@ -73,47 +73,47 @@
       };
       server-physical-chroot.nixos.disko.devices = {
         inherit mdadm;
-        nvme = nvme {
-          extraParts = {
-            swapcrypt = luks.call {
-              name = "swapcrypt";
-              device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
-              size = "16G";
-              content = swap.call { };
-              priority = 2;
-            };
-            cloudlogcrypt = luks.call {
-              name = "cloudlogcrypt";
-              size = "1G";
-              device = "${disk.constants.partlabel}/disk-nvme-cloudlogcrypt";
-              priority = 3;
-            };
-            cloudcachecrypt = luks.call {
-              name = "cloudcachecrypt";
-              size = "180G";
-              device = "${disk.constants.partlabel}/disk-nvme-cloudcachecrypt";
-              priority = 4;
-              postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
-            };
-            persist = luks.entire {
-              name = "persist";
-              device = "${disk.constants.partlabel}/disk-nvme-persist";
-              allowDiscards = true;
-              content = disko.xfs.call {
+        disk = {
+          nvme = nvme {
+            extraParts = {
+              swapcrypt = luks.call {
+                name = "swapcrypt";
+                device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
+                size = "16G";
+                content = swap.call { };
+                priority = 2;
+              };
+              cloudlogcrypt = luks.call {
+                name = "cloudlogcrypt";
+                size = "1G";
+                device = "${disk.constants.partlabel}/disk-nvme-cloudlogcrypt";
+                priority = 3;
+              };
+              cloudcachecrypt = luks.call {
+                name = "cloudcachecrypt";
+                size = "180G";
+                device = "${disk.constants.partlabel}/disk-nvme-cloudcachecrypt";
+                priority = 4;
+                postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
+              };
+              persist = luks.entire {
                 name = "persist";
-                mountpoint = "/nix/persist";
-                entireDisk = true;
-                isSolid = true;
-                isVmStorage = true;
-                extraOptions = [
-                  "x-systemd.device-timeout=300"
-                  "x-systemd.mount-timeout=300"
-                ];
+                device = "${disk.constants.partlabel}/disk-nvme-persist";
+                allowDiscards = true;
+                content = disko.xfs.call {
+                  name = "persist";
+                  mountpoint = "/nix/persist";
+                  entireDisk = true;
+                  isSolid = true;
+                  isVmStorage = true;
+                  extraOptions = [
+                    "x-systemd.device-timeout=300"
+                    "x-systemd.mount-timeout=300"
+                  ];
+                };
               };
             };
           };
-        };
-        disk = {
           inherit emmc;
           cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
           cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
