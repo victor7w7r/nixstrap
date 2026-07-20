@@ -35,6 +35,8 @@
         postMount ? "",
         postCreate ? "",
         allowDiscards ? false,
+        content ? null,
+        extraOptions ? [ ],
       }:
       {
         type = "disk";
@@ -43,9 +45,11 @@
           entireDisk = true;
           size = "100%";
           inherit
-            device
-            allowDiscards
             name
+            device
+            content
+            allowDiscards
+            extraOptions
             postMount
             postCreate
             ;

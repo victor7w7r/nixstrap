@@ -98,6 +98,7 @@
             persist = luks.entire {
               name = "persist";
               device = "${disk.constants.partlabel}/disk-nvme-persist";
+              allowDiscards = true;
               content = disko.xfs.call {
                 name = "persist";
                 mountpoint = "/nix/persist";
