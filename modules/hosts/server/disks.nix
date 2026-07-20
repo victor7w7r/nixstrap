@@ -5,7 +5,7 @@
     let
       cloud = disk.lvm { device = "mapper/cloud"; };
       lvm_vg = xfs.lvm {
-        name = "persist";
+        name = "cloud";
         size = "3T";
         isRaid = true;
         logdev = "/dev/mapper/cloudlogcrypt";
