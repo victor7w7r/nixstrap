@@ -1,22 +1,18 @@
 { lib, ... }:
 {
-  den.default.provides.to-users.homeManager.programs.tmux.extraConfig = lib.mkAfter ''
-    unbind C-b
+  den.default.provides.to-users.homeManager.programs.tmux.extraConfig = lib.mkOrder 100 ''
     unbind r
     unbind '"'
     unbind %
 
-    set -g prefix C-a
     bind r source-file ~/.config/tmux/tmux.conf \; display-message "Recargada la configuración exitosamente"
     bind o run-shell "open #{pane_current_path}"
-    bind-key a send-prefix
 
     bind c new-window -c "#{pane_current_path}"
     bind-key C command-prompt -p "Nombre de la ventana:" "new-window -n '%%'"
     #bind b copy-mode
     bind-key C-u last-window
     bind-key C-r clear-history
-    bind-key r command-prompt -I "#W" "rename-window '%%'"
     bind-key R command-prompt -I "#W" "rename-session '%%'"
     bind-key Q kill-window
     bind-key q kill-pane

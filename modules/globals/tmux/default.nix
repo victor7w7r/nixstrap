@@ -1,9 +1,4 @@
-{
-  inputs,
-  lib,
-  tmux,
-  ...
-}:
+{ inputs, lib, ... }:
 {
   imports = [ (inputs.den.namespace "tmux" false) ];
 
@@ -19,7 +14,7 @@
       {
         programs.tmux = {
           enable = true;
-          baseIndex = 1;
+          baseIndex = 11;
           aggressiveResize = true;
           disableConfirmationPrompt = true;
           clock24 = false;
@@ -29,24 +24,8 @@
           mouse = true;
           prefix = "C-a";
           sensibleOnTop = false;
+          terminal = "tmux-256color";
           shell = "${pkgs.zsh}/bin/zsh";
-          extraConfig = ''
-            run ${
-              pkgs.writeShellScript "status" (
-                tmux.shell.status {
-                  git = pkgs.writeShellScript "git-ext" tmux.ext.string.git;
-                  ssh = pkgs.writeShellScript "ssh-ext" tmux.ext.string.ssh;
-                  colors = pkgs.writeShellScript "colors-ext" tmux.ext.string.colors;
-                  network = pkgs.writeShellScript "network-ping" tmux.ext.string.network-ping;
-                  ram = pkgs.writeShellScript "ram-ext" tmux.ext.string.ram-ping;
-                  cpu = pkgs.writeShellScript "cpu-ext" tmux.ext.string.cpu-info;
-                  battery = pkgs.writeShellScript "battery-ext" tmux.ext.string.battery;
-                }
-              )
-            }
-            run -b ${pkgs.writeShellScript "foreground" tmux.shell.string.foreground}
-            run -b ${pkgs.writeShellScript "colors" tmux.shell.string.colors}
-          '';
         };
       };
   };

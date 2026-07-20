@@ -2,7 +2,10 @@
   den.aspects.gui.default.nixos =
     { lib, pkgs, ... }:
     {
-      environment.systemPackages = with pkgs; [ evemu ];
+      environment.systemPackages = with pkgs; [
+        libinput
+        evemu
+      ];
       hardware.uinput.enable = true;
       services = {
         gvfs.enable = true;
@@ -13,7 +16,7 @@
             ids = [ "*" ];
             settings = {
               main = {
-                capslock = "leftcontrol";
+                capslock = "capslock";
               };
             };
           };
