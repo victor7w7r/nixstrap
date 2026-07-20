@@ -26,8 +26,8 @@
           "lazytime"
           "logbufs=8"
           "logbsize=256k"
-          (lib.mkIf (logdev != null) "logdev=${logdev}")
         ]
+        ++ (lib.optionals (logdev != null) [ "logdev=${logdev}" ])
         ++ (lib.optionals isRaid [
           "sunit=1024"
           "swidth=4096"
