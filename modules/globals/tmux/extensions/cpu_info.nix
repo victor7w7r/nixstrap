@@ -1,5 +1,5 @@
 {
-  tmux.ext.string.cpu-info = ''
+  tmux.ext.string.cpu-info = pkgs: ''
     normalize_percent_len() {
       max_len=5
       percent_len=''${#1}
@@ -12,7 +12,7 @@
     get_percent() {
       case $(uname -s) in
       Linux)
-        percent=$(LC_NUMERIC=en_US.UTF-8 top -bn2 -d 0.01 | grep "Cpu(s)" | tail -1 | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
+        percent=$(mpstat 1 1 | awk 'END{print 100 - $NF "%"}')
         normalize_percent_len "$percent"
         ;;
 
@@ -36,6 +36,6 @@
       esac
     }
 
-    echo " $(get_percent)" && sleep 3
+    echo "$(get_percent)" && sleep 2
   '';
 }

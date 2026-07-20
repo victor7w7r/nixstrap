@@ -3,14 +3,16 @@
     ping_function() {
       case $(uname -s) in
       Linux | Darwin)
-        pingtime=$(ping -c 1 "8.8.8.8" | tail -1 | awk '{print $4}' | cut -d '/' -f 2)
-        echo "$pingtime ms"
+        if pingtime=$(ping -c 1 -W 2 "8.8.8.8" 2>/dev/null | tail -1 | awk -F'/' '{printf "%.0f\n", $5}') && [ -n "$pingtime" ]; then
+          echo "''${pingtime}ms"
+        else
+          echo "0ms"
+        fi
         ;;
       CYGWIN* | MINGW32* | MSYS* | MINGW*) ;;
       esac
     }
-
     ping_function
-    sleep 5
+    sleep 3
   '';
 }

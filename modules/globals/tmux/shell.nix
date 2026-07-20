@@ -8,8 +8,9 @@
         colors = pkgs.writeShellScript "colors-ext" tmux.ext.string.colors;
         network = pkgs.writeShellScript "network-ping" tmux.ext.string.network-ping;
         ram = pkgs.writeShellScript "ram-ext" tmux.ext.string.ram-ping;
-        cpu = pkgs.writeShellScript "cpu-ext" tmux.ext.string.cpu-info;
+        cpu = pkgs.writeShellScript "cpu-ext" (tmux.ext.string.cpu-info pkgs);
         battery = pkgs.writeShellScript "battery-ext" tmux.ext.string.battery;
+        temp = pkgs.writeShellScript "temp-ext" tmux.ext.string.temp;
       in
       lib.mkOrder 400 ''
         run ${pkgs.writeShellScript "status" ''
@@ -24,9 +25,10 @@
           right_status "#(${colors} 1)" "#(${ssh})"
           right_status "#(${colors} 2)" "#(${network})"
           right_status "#(${colors} 3)" "#(${ram})"
-          right_status "#(${colors} 4)" "#(${cpu})"
-          right_status "#(${colors} 5)" "#(${battery})"
-          right_status "#(${colors} 6)" "%%d-%b %I:%M%P "
+          right_status "#(${colors} 4)" "#(${temp})"
+          right_status "#(${colors} 5)" "#(${cpu})"
+          right_status "#(${colors} 6)" "#(${battery})"
+          right_status "#(${colors} 0)" "%%d-%b %I:%M%P "
           #right_status "#(colors_exec 3)" "#($ext/extensions/mommy.sh)"
           #right_status "#e4cfff" "#($current_dir/network.sh)"
           #right_status "#e4cfff" "#($current_dir/mpc.sh)"

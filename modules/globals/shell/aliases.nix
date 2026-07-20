@@ -69,7 +69,6 @@
           rrr = "ranger";
           nnn = "nnn -e";
           faf = "fastfetch -c $HOME/.config/fastfetch/config.conf";
-          top = "htop";
           bmtop = ''btm $([ "$COLOR_SCHEME" = "light" ] && echo "--color default-light")'';
           flatupdate = "flatpak update; flatpak remove --unused";
 

@@ -18,6 +18,7 @@
             ".config/vlc"
             ".local/share/PrismLauncher"
             ".local/share/com.vixalien.sticky"
+            ".local/share/jdownloader"
             ".local/share/onlyoffice"
             ".local/share/vlc"
           ];
@@ -44,17 +45,16 @@
               clamtk
               cool-retro-term
               cpu-x
-              #czkawka-full
+              czkawka-full
               #davinci-resolve
               fclones-gui
               inkscape-with-extensions
               kopia-ui
               kid3-kde
               lan-mouse
-              #legcord
+              legcord
               lightworks
               lunacy
-              #mailspring
               media-downloader
               meld
               mission-center
@@ -67,7 +67,7 @@
               seafile-client
               sonic-visualiser
               spotify-qt
-              #sticky-notes
+              sticky-notes
               tenacity
               vlc
               #davinci-video-converter

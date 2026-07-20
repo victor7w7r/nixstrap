@@ -3,10 +3,9 @@
     get_ratio() {
       case $(uname -s) in
       Linux)
-        usage="$(free -h | awk 'NR==2 {print $3}')"
-        total="$(free -h | awk 'NR==2 {print $2}')"
-        formated="''${usage}/''${total}"
-        echo "$formated" | sed 's/i/B/g'
+        usage="$(free -m | awk 'NR==2 {print $3}')"
+        total="$(free -m | awk 'NR==2 {print $2}')"
+        echo "''${usage}/''${total}"
         ;;
       Darwin)
         used_mem=$(vm_stat | grep ' active\|wired\|compressor\|speculative' | sed 's/[^0-9]//g' | paste -sd ' ' - | awk -v pagesize="$(pagesize)" '{printf "%d\n", ($1+$2+$3+$5) * pagesize / 1048576}')
@@ -57,7 +56,7 @@
 
     main() {
       ram_ratio=$(get_ratio)
-      echo "  $ram_ratio"
+      echo "$ram_ratio"
     }
 
     main
