@@ -101,7 +101,7 @@
               "shared".source = config.lib.file.mkOutOfStoreSymlink "/run/media/shared";
               "cloud".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/cloud";
               ".xinitrc".text = ''
-                export XAUTHORITY=/home/${user}/.Xauthority
+                export XAUTHORITY=/home/${user.name}/.Xauthority
                 export XDG_SESSION_TYPE=x11
                 export DESKTOP_SESSION=xfce
                 exec startxfce4
