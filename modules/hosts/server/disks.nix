@@ -78,7 +78,7 @@
             extraParts = {
               swapcrypt = luks.call {
                 name = "swapcrypt";
-                device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
+                device = "${disk.constants.partlabel}/disk-nvme-swapcrypt";
                 size = "16G";
                 content = swap.call { };
                 priority = 2;
@@ -131,8 +131,8 @@
             name = "cloud";
             device = "/dev/bcache0";
             postMount = ''
-              cryptsetup open ${partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
-              cryptsetup open ${partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
+              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
+              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
             '';
           };
         };
