@@ -13,6 +13,7 @@
           with pkgs;
           [
             curlFull
+            nmap
             gping
             inetutils
             wget

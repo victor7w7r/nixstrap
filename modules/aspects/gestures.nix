@@ -20,25 +20,40 @@
         systemd.user.services = {
           ydotoold = {
             Service = {
-              ExecStart = "${pkgs.ydotool}/bin/ydotoold --socket-path=/run/user/1000/.ydotool_socket";
+              ExecStart = "${pkgs.ydotool}/bin/ydotoold --socket-path=%t/.ydotool_socket";
               Restart = "always";
+              RestartSec = "2s";
             };
             Install.WantedBy = [ "default.target" ];
           };
           gestures = {
+            Unit = {
+              Description = "Libinput gestures service";
+              Requires = [ "ydotoold.service" ];
+              After = [ "ydotoold.service" ];
+              BindsTo = [ "ydotoold.service" ];
+            };
             Service = {
               ExecStart = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures start";
               ExecReload = "${inputs.gestures.packages."x86_64-linux".gestures}/bin/gestures reload";
-              Restart = "no";
+              Restart = "always";
+              RestartSec = "3s";
               StandardOutput = "journal";
               StandardError = "journal";
             };
             Install.WantedBy = [ "default.target" ];
           };
           tablet-map = {
+            Unit = {
+              Description = "Tablet Map daemon";
+              Requires = [ "ydotoold.service" ];
+              After = [ "ydotoold.service" ];
+              BindsTo = [ "ydotoold.service" ];
+            };
             Service = {
               ExecStart = "${self'.packages.tablet-map}/bin/tablet_map";
-              Restart = "no";
+              Restart = "always";
+              RestartSec = "3s";
               StandardOutput = "journal";
               StandardError = "journal";
             };

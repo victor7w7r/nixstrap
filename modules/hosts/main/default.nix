@@ -39,7 +39,26 @@
           ...
         }:
         {
-          networking.hostName = "v7w7r-macmini81";
+          networking = {
+            hostName = "v7w7r-macmini81";
+            networkmanager = {
+              unmanaged = [ "enp2s0f1u1" ];
+              ensureProfiles.profiles."static-network" = {
+                connection = {
+                  id = "static-network";
+                  type = "ethernet";
+                  interface-name = "enp4s0";
+                  autoconnect = true;
+                };
+                ipv4 = {
+                  method = "manual";
+                  address1 = "192.168.100.6/24,192.168.100.1";
+                  dns = "1.1.1.1;8.8.8.8;";
+                };
+                ipv6.method = "disabled";
+              };
+            };
+          };
           boot = {
             kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [ "kvmfr.static_size_mb=128" ];
@@ -56,6 +75,7 @@
             bolt
             tbtools
             thunderbolt
+            rkdeveloptool
             kdePackages.plasma-thunderbolt
           ];
 
