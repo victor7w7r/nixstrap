@@ -55,8 +55,8 @@
           linkConfig.RequiredForOnline = "no";
           bridgeConfig = { };
           networkConfig.ConfigureWithoutCarrier = true;
-          address = [ "192.168.1.100/24" ];
-          gateway = [ "192.168.1.1" ];
+          address = [ "192.168.100.10/24" ];
+          gateway = [ "192.168.100.1" ];
         };
       };
     };
