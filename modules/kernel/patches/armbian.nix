@@ -25,13 +25,16 @@
       patcher =
         with lib;
         isRockchip:
-        inputs.armbian
+        (if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/series.conf")
         |> builtins.readFile
         |> splitString "\n"
         |> map strings.trim
         |> filter (line: line != "" && !(hasPrefix "#" line || hasPrefix "-" line))
         |> map (
-          path: if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/${path}"
+          path:
+          "${inputs.armbian}/patch/kernel/archive/${
+            if isRockchip then "rockchip64" else "sunxi"
+          }-6.18/${path}"
         );
     in
     {
