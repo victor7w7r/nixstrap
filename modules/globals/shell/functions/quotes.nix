@@ -94,6 +94,11 @@
           88) echo "Soy como un reloj, me adapto a cualquier muñeca" ;;
           89) echo "Casi conecto el internet" ;;
           90) echo "Suban la dificultad a los bots :v" ;;
+          91) echo "UN ENEMIGO DEL FORTNITE" ;;
+          92) echo "como tan mushasho" ;;
+          93) echo "es k el sans dijo: EEEEE E E EEE E E E EEEEEE E E E E EE" ;;
+          94) echo "picadura de la cobra gey" ;;
+
         esac
       '';
       random-quote = ''

@@ -47,10 +47,14 @@
             }
 
             if [[ "$OSTYPE" == "darwin"* ]]; then
-              if commandexist clolcat; then uname -v | clolcat; else uname -v | clolcat; fi
+              if commandexist clolcat; then
+                uname -v | clolcat -F 0.2 -S "$(( RANDOM % 21 ))"
+              else
+                uname -v | clolcat -F 0.2 -S "$(( RANDOM % 21 ))"
+              fi
             else
               if commandexist clolcat; then
-              uname -m -n -o -v | clolcat
+                uname -m -n -o -v | clolcat -F 0.2 -S "$(( RANDOM % 21 ))"
               elif commandexist meow; then
                 uname -m -n -o -v | meow
               else
@@ -59,7 +63,7 @@
             fi
 
             if commandexist clolcat; then
-              echo "Welcome to $(uname)!" | clolcat
+              echo "Welcome to $(uname)!" | clolcat -F 0.3 -S "$(( RANDOM % 21 ))"
             elif commandexist meow; then
               echo "Welcome to $(uname)!" | meow
             else
@@ -67,7 +71,7 @@
             fi
 
             if commandexist cowsay && commandexist clolcat; then
-              random-quote | cowsay "$(random-opts)" --random | clolcat
+              random-quote | cowthink "$(random-opts)" --random | clolcat -F 0.2 -S "$(( RANDOM % 21 ))"
             elif commandexist cowsay && commandexist meow; then
               random-quote | cowsay "$(random-opts)" --random | meow
             elif commandexist cowsay; then

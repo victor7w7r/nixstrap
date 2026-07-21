@@ -73,6 +73,7 @@
           virtualisation.kvmgt.enable = true;
           environment.systemPackages = with pkgs; [
             bolt
+            picocom
             tbtools
             thunderbolt
             rkdeveloptool

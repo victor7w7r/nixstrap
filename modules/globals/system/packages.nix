@@ -134,7 +134,7 @@
           (pkgs.writeShellScriptBin "fortune" ''
             exec ${
               pkgs.fortune.override { withOffensive = true; }
-            }/bin/fortune "${cookies}/share/games/fortunes" "$@"
+            }/bin/fortune -s "${cookies}/share/games/fortunes" "$@"
           '')
           mommy
         ];

@@ -10,10 +10,10 @@
           persist = f2fs.call {
             name = "persist";
             size = "100%";
+            mountpoint = "/nix/persist";
             priority = 2;
           };
         };
-
       };
       sda = disk.gpt {
         device = "sda";
