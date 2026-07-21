@@ -54,8 +54,8 @@
     hardened =
       std
       ++ map (path: "${inputs.bunker-patches}/patches/6.18/hardened/${path}") [
-        "0001-add-sysctl-to-allow-disabling-unprivileged-CLONE_NEW.patch"
-        "0002-security-add-config-for-default-of-unprivileged_user.patch"
+        #"0001-add-sysctl-to-allow-disabling-unprivileged-CLONE_NEW.patch"
+        #"0002-security-add-config-for-default-of-unprivileged_user.patch"
       ];
   };
 }
