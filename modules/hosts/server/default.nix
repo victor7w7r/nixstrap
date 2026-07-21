@@ -82,7 +82,7 @@
             services = {
               thermald.enable = true;
               lvm.boot.thin.enable = true;
-              rustdesk-server.enable = true;
+              rustdesk-server.enable = false;
             };
 
             swapDevices = [
