@@ -11,7 +11,7 @@
     };
     settings = {
       background_blur = 2;
-      background_opacity = "0.5";
+      background_opacity = "0.8";
       close_on_child_death = true;
       confirm_os_window_close = 0;
       cursor = "#f5e0dc";

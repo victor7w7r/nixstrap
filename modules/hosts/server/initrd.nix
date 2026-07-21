@@ -65,7 +65,6 @@
               };
               path = [
                 pkgs.util-linux
-                pkgs.bcachefs-tools
                 pkgs.cryptsetup
                 pkgs.systemd
                 pkgs.e2fsprogs
