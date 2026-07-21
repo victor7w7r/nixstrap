@@ -18,63 +18,45 @@
           plasma6.excludePackages = with pkgs.kdePackages; [
             elisa
             khelpcenter
+            ktexteditor
             kate
           ];
           systemPackages =
             with pkgs.kdePackages;
             [
-              ark
-              baloo-widgets
-              dolphin
-              dolphin-plugins
-              ffmpegthumbs
               filelight
-              gwenview
               kamoso
               kbackup
               kcalc
-              kcachegrind
               kcharselect
-              kcmutils
               kcolorchooser
-              kcron
               kdegraphics-thumbnailers
               kdenetwork-filesharing
               kdf
               kfind
               kget
-              kgpg
               kjournald
               kmix
-              koko
               kompare
-              konsole
               kontrast
               krdc
-              krdp
               ktorrent
               ksystemlog
-              kwallet
-              kwallet-pam
-              okular
-              plasma-workspace
-              plasma-desktop
-              plasma-integration
               partitionmanager
               polkit-qt-1
-              polkit-kde-agent-1
               qtmultimedia
               qtstyleplugin-kvantum
               sddm-kcm
               sweeper
-              yakuake
               inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
+              pkgs.application-title-bar
               pkgs.qt5.qtquickcontrols2
               pkgs.qt5.qtgraphicaleffects
               qtquick3d
               qtvirtualkeyboard
               pkgs.heaptrack
               pkgs.ffmpegthumbnailer
+              pkgs.kurve
               pkgs.graphviz
               pkgs.icoextract
               pkgs.icoutils
@@ -104,7 +86,6 @@
           with pkgs;
           with self'.packages;
           [
-            application-title-bar
             appimage-thumbnailer
             ffmpeg-audio-thumbnailer
             jar-thumbnailer
@@ -112,7 +93,6 @@
             kde-thumbnailer-apk
             kf6-servicemenus-rootactions
             kmenu
-            kurve
             kzones
             layan
             maxwell

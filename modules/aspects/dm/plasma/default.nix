@@ -6,7 +6,7 @@
     inputs.home-manager.follows = "home-manager";
   };
 
-  den.aspects.plasma.default =
+  den.aspects.plasma.default-config =
     { user, ... }:
     {
       nixos =

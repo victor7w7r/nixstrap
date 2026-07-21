@@ -73,6 +73,9 @@
         disk = {
           nvme = nvme {
             extraParts = {
+              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudlogcrypt cloudlogcrypt
+              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudcachecrypt cloudcachecrypt
+              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-persist persist
               swapcrypt = luks.call {
                 name = "swapcrypt";
                 device = "${disk.constants.partlabel}/disk-nvme-swapcrypt";

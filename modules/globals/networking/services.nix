@@ -9,12 +9,9 @@
     nixos =
       { isPersistent, lib, ... }:
       {
-        systemd.services = {
-          NetworkManager-wait-online.enable = false;
-          tailscaled = lib.optionalAttrs isPersistent {
-            after = [ "network-online.target" ];
-            wants = [ "network-online.target" ];
-          };
+        systemd.services.tailscaled = lib.optionalAttrs isPersistent {
+          after = [ "network-online.target" ];
+          wants = [ "network-online.target" ];
         };
 
         services = lib.optionalAttrs isPersistent {
@@ -33,6 +30,21 @@
               "--accept-routes"
             ];
           };
+
+          chrony = {
+            enable = true;
+            initstepslew = {
+              enabled = true;
+              threshold = 1.0;
+            };
+            servers = [
+              "1.1.1.1"
+              "8.8.8.8"
+              "time.cloudflare.com"
+              "pool.ntp.org"
+            ];
+          };
+
           ttyd = {
             enable = false;
             writeable = true;

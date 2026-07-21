@@ -42,7 +42,7 @@
             let
               partlabel = "/dev/disk/by-partlabel";
               idpart = "/dev/disk/by-id";
-              keydevice = "${idpart}/usb-Mass_Storage_Device_121220160204-0:0-part1";
+              keydevice = "${idpart}/usb-MXT-USB_Storage_Device_150101v01-0:0-part1";
             in
             {
               wantedBy = [ "initrd.target" ];
@@ -63,13 +63,13 @@
                 Type = "oneshot";
                 RemainAfterExit = true;
               };
-              path = [
-                pkgs.util-linux
-                pkgs.cryptsetup
-                pkgs.systemd
-                pkgs.e2fsprogs
-                pkgs.coreutils
-                pkgs.lvm2
+              path = with pkgs; [
+                util-linux
+                cryptsetup
+                systemd
+                e2fsprogs
+                coreutils
+                lvm2
               ];
               script = ''
                 set -e
