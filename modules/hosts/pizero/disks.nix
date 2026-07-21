@@ -28,7 +28,6 @@
             name = "system";
             size = "100%";
             mountpoint = "/nix";
-            priority = 2;
           };
         };
       };
