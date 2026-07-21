@@ -1,1 +1,1 @@
-{ pkgs }: pkgs.ubootRock5ModelB
+{ pkgs }: pkgs.pkgsCross.aarch64-multiplatform.ubootRock5ModelB
