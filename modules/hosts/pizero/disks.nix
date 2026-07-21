@@ -27,6 +27,7 @@
           system = xfs.call {
             name = "system";
             size = "100%";
+            mountpoint = "/nix";
             priority = 2;
           };
         };
