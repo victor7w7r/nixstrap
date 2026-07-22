@@ -26,6 +26,8 @@
         vendor.not-broadcom
         {
           FB_SUN5I_EINK = "n";
+          CLK_IMX8MP_AUDIOMIX = "n";
+          ARCH_MXC = "n";
         }
       ];
     })
