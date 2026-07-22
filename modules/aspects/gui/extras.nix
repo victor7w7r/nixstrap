@@ -52,7 +52,6 @@
               kid3-kde
               lan-mouse
               legcord
-              lightworks
               lunacy
               media-downloader
               meld
@@ -79,6 +78,7 @@
             ]
             ++ (lib.optionals isX86 [
               cpu-x
+              lightworks
               inputs'.custom-packages.packages.thorium-sse3
             ]);
         };
