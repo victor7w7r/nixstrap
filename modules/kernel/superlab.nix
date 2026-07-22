@@ -10,7 +10,7 @@
       config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-rockchip64-current.config";
       patches =
         with kernel.patches.injector pkgs;
-        cachyos.std ++ tachyon.std ++ bunker.srd ++ armbian.rockchip-patches;
+        cachyos.std ++ tachyon.std ++ bunker.std ++ armbian.rockchip-patches;
       extraConfig = with kernel.config.modules; [
         (cmdline { })
         default
