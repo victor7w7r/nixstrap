@@ -39,6 +39,7 @@
       REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
       SMSC_PHY = "n";
+      USB_CHIPIDEA = "n";
     }
     // not-phone;
 

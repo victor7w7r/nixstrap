@@ -237,7 +237,6 @@
       USB_CATC = "n";
       USB_CDNS_SUPPORT = "n";
       USB_CHAOSKEY = "n";
-      USB_CHIPIDEA = "n";
       USB_CONFIGFS_F_MIDI = "n";
       USB_CONFIGFS_F_MIDI2 = "n";
       USB_CYPRESS_CY7C63 = "n";
