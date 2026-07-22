@@ -28,6 +28,7 @@
           FB_SUN5I_EINK = "n";
           ARCH_MXC = "n";
           ARCH_RENESAS = "n";
+          ARCH_SOPHGO = "n";
         }
       ];
     })
