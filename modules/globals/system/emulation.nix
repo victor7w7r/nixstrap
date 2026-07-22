@@ -22,7 +22,6 @@
             });
 
             qemu-user = prev.pkgsStatic.qemu-user.override {
-              gnutlsSupport = false;
               nettleSupport = false;
               gcryptSupport = false;
             };
