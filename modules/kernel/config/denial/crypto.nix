@@ -25,7 +25,6 @@
     CRYPTO_CAST6_AVX_X86_64 = "n";
     CRYPTO_CAST_COMMON = "n";
     CRYPTO_CRC32 = "n";
-    CRYPTO_DES = "n";
     CRYPTO_DES3_EDE_X86_64 = "n";
     CRYPTO_DEV_AMLOGIC_GXL = "n";
     CRYPTO_DEV_AMLOGIC_GXL_DEBUG = "n";

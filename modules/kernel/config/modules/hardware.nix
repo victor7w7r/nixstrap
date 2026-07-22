@@ -30,6 +30,7 @@
 
     not-arm = {
       AX88796B_PHY = "n";
+      CRYPTO_DES = "n";
       MFD_WM8994 = "n";
       MHI_BUS = "n";
       QRTR = "n";
