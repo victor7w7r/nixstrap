@@ -1,6 +1,6 @@
 {
   kernel.config.modules.hardware = rec {
-    desktop = not-gpio // not-phone // x86;
+    desktop = not-gpio // not-arm // x86;
     desktop-wserial = desktop // not-serial;
 
     not-serial = {
@@ -28,6 +28,11 @@
       GPIOLIB = "n";
     };
 
+    not-arm = {
+      QRTR = "n";
+    }
+    // not-phone;
+
     not-phone = {
       ATH11K = "n";
       ATH11K_PCI = "n";
@@ -36,7 +41,6 @@
       GNSS = "n";
       NFC = "n";
       N_GSM = "n";
-      QRTR = "n";
       SCSI_UFSHCD = "n";
       SOUNDWIRE_QCOM = "n";
       USB_AUDIO = "n";
