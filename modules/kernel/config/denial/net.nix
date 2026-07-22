@@ -101,7 +101,6 @@
       FUJITSU_ES = "n";
       GTP = "n";
       HSR = "n";
-      IPGRE = "n";
       IP_PIMSM_V2 = "n";
       IP_SET = "n";
       IP_VS = "n";
