@@ -144,7 +144,6 @@
       RUNTIME_TESTING_MENU = "n";
       SCHED_DEBUG = "n";
       SLUB_DEBUG = "n";
-      STM = "n";
       STRICT_DEVMEM = "n";
       X86_DEBUG_FPU = "n";
     };

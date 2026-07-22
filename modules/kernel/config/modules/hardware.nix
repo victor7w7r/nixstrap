@@ -39,6 +39,7 @@
       REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
       SMSC_PHY = "n";
+      STM = "n";
       USB_CHIPIDEA = "n";
       USB_GADGET = "n";
       USB_GADGETFS = "n";
