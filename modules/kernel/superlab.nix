@@ -24,6 +24,9 @@
         storage.not-xfs
         vendor.not-vendor
         vendor.not-broadcom
+        {
+          USB_GADGET = "n";
+        }
       ];
     })
     |> (generated: {

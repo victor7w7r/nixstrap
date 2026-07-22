@@ -8,6 +8,8 @@
     inputs.pkgs-by-name-for-flake-parts.flakeModule
   ];
 
+  #koreader/settings/SSH/authorized_keys
+
   flake-file.inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     den.url = "github:denful/den";
