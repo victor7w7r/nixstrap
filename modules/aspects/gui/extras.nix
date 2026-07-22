@@ -36,7 +36,7 @@
           ...
         }:
         lib.optionalAttrs (isPersistent && !isServer) {
-          programs.onlyoffice.enable = true;
+          programs.onlyoffice.enable = isX86;
           home.packages =
             with pkgs;
             with self'.packages;
