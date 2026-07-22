@@ -1,7 +1,7 @@
 {
   kernel.config.modules.net = {
     BRIDGE = "y";
-    CFG80211 = "y";
+    CFG80211 = "m";
     DEFAULT_BBR = "y";
     DEFAULT_CUBIC = "n";
     DEFAULT_FQ_CODEL = "n";
