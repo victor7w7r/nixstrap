@@ -12,17 +12,21 @@
     {
       nixpkgs.overlays = [
         (final: prev: {
-          qemu-user-static =
-            (prev.pkgsStatic.qemu-user.override {
+          pkgsStatic = prev.pkgsStatic // {
+            nettle = prev.pkgsStatic.nettle.overrideAttrs (old: {
+              NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or [ ]) ++ [
+                "-fPIC"
+                "-DPIC"
+              ];
+              ASFLAGS = "-fPIC";
+            });
+
+            qemu-user = prev.pkgsStatic.qemu-user.override {
               gnutlsSupport = false;
               nettleSupport = false;
-            }).overrideAttrs
-              (old: {
-                NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or [ ]) ++ [
-                  "-fPIC"
-                  "-mcmodel=large"
-                ];
-              });
+              gcryptSupport = false;
+            };
+          };
         })
       ];
       boot.binfmt = lib.optionalAttrs isPersistent {

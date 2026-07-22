@@ -14,7 +14,7 @@
     INET_ESPINTCP = "y";
     INET_ESP_OFFLOAD = "y";
     INET_IPCOMP = "y";
-    INET_RAW_DIAG = "y";
+    INET_RAW_DIAG = "m";
     INET_DIAG = "m";
     INET_UDP_DIAG = "m";
     IPV6 = "y";
