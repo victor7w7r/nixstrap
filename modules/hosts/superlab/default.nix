@@ -84,11 +84,6 @@
               hardware = {
                 firmware = [ pkgs.armbian-firmware ];
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
-                serial = {
-                  enable = true;
-                  unit = 2;
-                  baudrate = 1500000;
-                };
               };
             };
         };
