@@ -29,6 +29,7 @@
     };
 
     not-arm = {
+      MHI_BUS = "n";
       QRTR = "n";
     }
     // not-phone;

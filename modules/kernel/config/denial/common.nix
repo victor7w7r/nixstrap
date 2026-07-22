@@ -28,7 +28,6 @@
       MEDIA_CEC_RC = "n";
       MEDIA_CEC_SUPPORT = "n";
       MEDIA_SUPPORT = "n";
-      MHI_BUS = "n";
       MOST = "n";
       MULTIPLEXER = "n";
       NLS_KOI8_R = "n";
