@@ -35,6 +35,8 @@
       AX88796B_PHY = "n";
       MICROCHIP_PHY = "n";
       MICROCHIP_PHY_RDS_PTP = "n";
+      REALTEK_PHY = "n";
+      REALTEK_PHY_HWMON = "n";
     }
     // not-phone;
 

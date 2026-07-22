@@ -85,8 +85,6 @@
       QCOM_NET_PHYLIB = "n";
       QSEMI_PHY = "n";
       R8169 = "n";
-      REALTEK_PHY = "n";
-      REALTEK_PHY_HWMON = "n";
       RENESAS_PHY = "n";
       RTASE = "n";
       SFP = "n";
