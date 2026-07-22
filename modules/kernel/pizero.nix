@@ -29,6 +29,9 @@
           ARCH_MXC = "n";
           ARCH_RENESAS = "n";
           ARCH_SOPHGO = "n";
+          DRM_SUN4I = "y";
+          DRM_SUN8I_MIXER = "y";
+          DRM_SUN8I_TCON_TOP = "y";
         }
       ];
     })
