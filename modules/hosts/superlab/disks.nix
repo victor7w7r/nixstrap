@@ -3,19 +3,9 @@
   den.aspects.superlab.disks.nixos.disko.devices.disk = with disko; {
     root = ephemeral.root { };
     main = disk.gpt {
-      device = "mmcblk0";
-      partitions = {
-        esp = esp.call { size = "256M"; };
-        persist = f2fs.call {
-          name = "persist";
-          size = "100%";
-          priority = 2;
-        };
-      };
-    };
-    nvme = disk.gpt {
       device = "nvme0n1";
       partitions = {
+        esp = esp.call { size = "256M"; };
         swapcrypt = luks.call {
           name = "swapcrypt";
           size = "32G";
@@ -28,7 +18,6 @@
           priority = 2;
           subvolumes = disko.btrfs.subvolumes {
             hasEtc = true;
-            hasPersist = false;
           };
         };
       };
