@@ -173,10 +173,12 @@
       IP6_NF_TARGET_NPT = "n";
       IP6_NF_TARGET_SYNPROXY = "n";
       IPV6_MIP6 = "n";
-      IPV6_NDISC_NODETYPE = "n";
       IPV6_SIT = "n";
       IPV6_SIT_6RD = "n";
       IPV6_VTI = "n";
+      NET_IPGRE = "n";
+      NET_IPGRE_DEMUX = "n";
+      IPV6_NDISC_NODETYPE = "n";
       NFT_DUP_IPV6 = "n";
       NFT_FIB_IPV6 = "n";
       NF_DUP_IPV6 = "n";
