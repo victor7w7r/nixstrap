@@ -10,26 +10,8 @@
       ...
     }:
     {
-      nixpkgs.overlays = [
-        (final: prev: {
-          pkgsStatic = prev.pkgsStatic // {
-            nettle = prev.pkgsStatic.nettle.overrideAttrs (old: {
-              NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or [ ]) ++ [
-                "-fPIC"
-                "-DPIC"
-              ];
-              ASFLAGS = "-fPIC";
-            });
-
-            qemu-user = prev.pkgsStatic.qemu-user.override {
-              nettleSupport = false;
-              gcryptSupport = false;
-            };
-          };
-        })
-      ];
       boot.binfmt = lib.optionalAttrs isPersistent {
-        preferStaticEmulators = true;
+        preferStaticEmulators = isX86;
         emulatedSystems = [
           "x86_64-windows"
           "wasm64-wasi"
