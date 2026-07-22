@@ -325,7 +325,6 @@
       MFD_WM8350 = "n";
       MFD_WM8350_I2C = "n";
       MFD_WM8400 = "n";
-      MFD_WM8994 = "n";
       MFD_WM8997 = "n";
       MFD_WM8998 = "n";
       RAVE_SP_CORE = "n";
