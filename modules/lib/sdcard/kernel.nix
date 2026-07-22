@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   sdcard.lib.kernel = pkgs: ubootSelector: postBuildCommands: onlyKernel: ''
+    echo "Copying uboot and compressing kernel image..."
     ${(lib.optionalString onlyKernel "mkdir -p $out")}
     ${
       if ubootSelector == "sunxi" then

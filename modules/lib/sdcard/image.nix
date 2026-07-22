@@ -1,11 +1,14 @@
-{
-  sdcard.lib.image = bootSize: nextPartSize: useGpt: nextPartName: populateFirmwareCommands: ''
-    echo "Creating boot partition..."
+{ lib, ... }: {
+  sdcard.lib.image = bootSize: nextPartSize: useGpt: nextPartName: isEntireDisk: ''
+    mkdir -p $out
+
+    echo "Creating sdcard partition map..."
     bootSizeMB=${toString bootSize}
     nextPartSizeMB=${toString nextPartSize}
+    swapSizeMB=${if isEntireDisk && useGpt then "32768" else "0"}
 
-    systemImgSize=$(( (gap + bootSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
-    truncate -s $systemImgSize boot.img
+    bootImgSize=$(( (gap + bootSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
+    truncate -s $bootImgSize boot.img
     gap=8
 
     sfdisk --no-reread --no-tell-kernel boot.img <<EOF
@@ -18,31 +21,13 @@
         else
           "type=b, bootable"
       }
-      start=$((gap + bootSizeMB))M, size=''${nextPartSizeMB}M, ${
+      ${lib.optionalString (isEntireDisk && useGpt) ''
+        start=$((gap + bootSizeMB))M, size=''${swapSizeMB}M, type=0657FA6D-A451-463C-B3A4-222264E33E17, name="SWAP"
+      ''}
+
+      start=$((gap + bootSizeMB + swapSizeMB))M, size=''${nextPartSizeMB}M, ${
         if useGpt then ''type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, name="${nextPartName}"'' else "type=83"
       }
     EOF
-
-    eval $(partx boot.img -o START,SECTORS --nr 1 --pairs)
-    truncate -s $((SECTORS * 512)) firmware_part.img
-    mkfs.vfat --invariant -i 0x2178694e -n BOOT firmware_part.img
-    mkdir firmware
-
-    echo "Populating firmware..."
-    ${populateFirmwareCommands}
-
-    find firmware -exec touch --date=2000-01-01 {} +
-    cd firmware
-    for d in $(find . -type d -mindepth 1 | sort); do
-      faketime "2000-01-01 00:00:00" mmd -i ../firmware_part.img "::/$d"
-    done
-    for f in $(find . -type f | sort); do
-      mcopy -pvm -i ../firmware_part.img "$f" "::/$f"
-    done
-    cd ..
-
-    fsck.vfat -vn firmware_part.img
-    dd conv=notrunc if=firmware_part.img of=boot.img seek=$START count=$SECTORS
-    eval $(partx boot.img -o START,SECTORS --nr 2 --pairs)
   '';
 }

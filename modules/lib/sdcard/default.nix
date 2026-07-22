@@ -49,10 +49,9 @@
               with sdcard.lib;
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
-                mkdir -p $out
-                ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
+                ${(image bootSize nextPartSize useGpt nextPartName isEntireDisk)}
                 ${
-                  (image bootSize nextPartSize useGpt nextPartName (
+                  (firmware (
                     lib.optionalString isExtlinux ''
                       mkdir -p firmware/boot
                       ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
@@ -60,13 +59,9 @@
                     ''
                   ))
                 }
-                ${lib.optionalString (
-                  !isEntireDisk
-                ) "dd conv=notrunc if=./persist.img of=boot.img seek=$START count=$SECTORS"}
-                echo "Copying uboot and compressing kernel image..."
-
+                ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
                 ${(kernel pkgs ubootSelector postBuildCommands false)}
-                ${(store closureInfo isHDD storeLabel)}
+                ${(store closureInfo isHDD storeLabel isEntireDisk)}
               '');
           };
         };
