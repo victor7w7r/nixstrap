@@ -1,7 +1,10 @@
 { disko, ... }:
 {
   den.aspects.superlab.disks.nixos = {
-    fileSystems."/etc".neededForBoot = true;
+    fileSystems = {
+      "/nix/persist".neededForBoot = true;
+      "/etc".neededForBoot = true;
+    };
     disko.devices.disk = with disko; {
       root = ephemeral.root { };
       main = disk.gpt {
