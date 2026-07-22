@@ -33,7 +33,6 @@
       CRYPTO_DES = "n";
       MFD_WM8994 = "n";
       MHI_BUS = "n";
-      FB_SUN5I_EINK = "n";
       QRTR = "n";
       RAID_ATTRS = "n";
       MICROCHIP_PHY = "n";

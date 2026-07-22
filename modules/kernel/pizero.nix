@@ -24,6 +24,9 @@
         storage.xfs
         vendor.not-vendor
         vendor.not-broadcom
+        {
+          FB_SUN5I_EINK = "n";
+        }
       ];
     })
     |> (generated: {
