@@ -9,6 +9,7 @@
     DEFAULT_NET_SCH = "fq";
     DEFAULT_TCP_CONG = "bbr";
     IP_NF_NAT = "y";
+    IPV6 = "y";
     INET_AH = "y";
     INET_ESP = "y";
     INET_ESPINTCP = "y";
@@ -28,8 +29,8 @@
     NETFILTER_XT_MATCH_STATE = "y";
     NET_FOU = "y";
     NET_SCH_FQ = "y";
-    NET_IPGRE = "m";
-    NET_IPGRE_DEMUX = "m";
+    NET_IPGRE = "y";
+    NET_IPGRE_DEMUX = "y";
     NF_NAT = "y";
     NF_CONNTRACK = "y";
     TCP_CONG_BBR = "y";
