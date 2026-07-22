@@ -44,7 +44,6 @@
               bleachbit
               clamtk
               cool-retro-term
-              cpu-x
               czkawka-full
               #davinci-resolve
               fclones-gui
@@ -79,6 +78,7 @@
               ytdl
             ]
             ++ (lib.optionals isX86 [
+              cpu-x
               inputs'.custom-packages.packages.thorium-sse3
             ]);
         };
