@@ -89,7 +89,6 @@
       RTASE = "n";
       SFP = "n";
       SKFP = "n";
-      SMSC_PHY = "n";
       STE10XP = "n";
       TERANETICS_PHY = "n";
       VITESSE_PHY = "n";

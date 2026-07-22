@@ -37,6 +37,7 @@
       MICROCHIP_PHY_RDS_PTP = "n";
       REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
+      SMSC_PHY = "n";
     }
     // not-phone;
 
