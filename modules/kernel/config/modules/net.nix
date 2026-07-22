@@ -28,8 +28,8 @@
     NETFILTER_XT_MATCH_STATE = "y";
     NET_FOU = "y";
     NET_SCH_FQ = "y";
-    NET_IPGRE = "y";
-    NET_IPGRE_DEMUX = "y";
+    NET_IPGRE = "m";
+    NET_IPGRE_DEMUX = "m";
     NF_NAT = "y";
     NF_CONNTRACK = "y";
     TCP_CONG_BBR = "y";
