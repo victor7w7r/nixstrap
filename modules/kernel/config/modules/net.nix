@@ -17,6 +17,7 @@
     INET_RAW_DIAG = "y";
     INET_DIAG = "y";
     INET_UDP_DIAG = "y";
+    IPV6 = "y";
     NETFILTER_XTABLES = "y";
     NETFILTER_XT_TARGET_LOG = "y";
     NETFILTER_XT_TARGET_MASQUERADE = "y";
@@ -28,8 +29,8 @@
     NETFILTER_XT_MATCH_STATE = "y";
     NET_FOU = "y";
     NET_SCH_FQ = "y";
-    NET_IPGRE = "n";
-    NET_IPGRE_DEMUX = "n";
+    NET_IPGRE = "y";
+    NET_IPGRE_DEMUX = "y";
     NF_NAT = "y";
     NF_CONNTRACK = "y";
     TCP_CONG_BBR = "y";

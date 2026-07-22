@@ -10,6 +10,24 @@
       ...
     }:
     {
+      nixpkgs.overlays = [
+        (final: prev: {
+          pkgsStatic = prev.pkgsStatic.overrideScope (
+            selfStatic: superStatic: {
+              qemu-user = superStatic.qemu-user.override {
+                gnutlsSupport = false;
+                nettleSupport = false;
+              };
+              nettle = superStatic.nettle.overrideAttrs (old: {
+                NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or [ ]) ++ [
+                  "-fPIC"
+                  "-mcmodel=large"
+                ];
+              });
+            }
+          );
+        })
+      ];
       boot.binfmt = lib.optionalAttrs isPersistent {
         preferStaticEmulators = true;
         emulatedSystems = [
@@ -39,13 +57,11 @@
               mask = ''\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\x00\xff\xfe\xff\xff\xff'';
             };
 
-            /*
-              windows = {
+            windows = {
               interpreter = "${pkgs.wine}/bin/wine";
               offset = 0;
               magicOrExtension = "MZ";
-              };
-            */
+            };
           })
 
           (lib.mkIf (isArm || isArmv7) {
