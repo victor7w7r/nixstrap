@@ -51,6 +51,7 @@
       {
         isPersistent,
         lib,
+        isX86,
         pkgs,
         self',
         ...
@@ -78,8 +79,9 @@
             cointop
             clock-rs
             ticker
-            inputs.ponysay.packages.x86_64-linux.default
-          ];
+
+          ]
+          ++ (lib.optionals isX86 [ inputs.ponysay.packages.x86_64-linux.default ]);
       };
   };
 }
