@@ -123,7 +123,6 @@
       MEGARAID_MM = "n";
       MEGARAID_NEWGEN = "n";
       MEGARAID_SAS = "n";
-      RAID_ATTRS = "n";
       SCSI_3W_9XXX = "n";
       SCSI_3W_SAS = "n";
       SCSI_AACRAID = "n";

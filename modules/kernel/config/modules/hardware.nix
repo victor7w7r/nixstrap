@@ -31,6 +31,7 @@
     not-arm = {
       MHI_BUS = "n";
       QRTR = "n";
+      RAID_ATTRS = "n";
     }
     // not-phone;
 
