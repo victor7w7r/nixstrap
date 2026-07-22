@@ -1,21 +1,26 @@
 {
-  sdcard.lib.boot = bootSize: persistSize: populateFirmwareCommands: ''
+  sdcard.lib.image = bootSize: nextPartSize: useGpt: nextPartName: populateFirmwareCommands: ''
     echo "Creating boot partition..."
-    gap=8
     bootSizeMB=${toString bootSize}
-    persistSizeMB=${toString persistSize}
+    nextPartSizeMB=${toString nextPartSize}
 
-    bootImgSize=$(( (gap + bootSizeMB + persistSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
-
-    truncate -s $bootImgSize boot.img
+    systemImgSize=$(( (gap + bootSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
+    truncate -s $systemImgSize boot.img
+    gap=8
 
     sfdisk --no-reread --no-tell-kernel boot.img <<EOF
-      label: dos
-      label-id: 0x2178694e
+      label: ${if useGpt then "gpt" else "dos"}
+      label-id: ${if useGpt then "2178694E-0000-4000-8000-000000000000" else "0x2178694e"}
 
-      start=''${gap}M, size=''${bootSizeMB}M, type=b, bootable
-
-      start=$((gap + bootSizeMB))M, size=''${persistSizeMB}M, type=83
+      start=''${gap}M, size=''${bootSizeMB}M, ${
+        if useGpt then
+          ''type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, name="BOOT", attrs="LegacyBIOSBootable"''
+        else
+          "type=b, bootable"
+      }
+      start=$((gap + bootSizeMB))M, size=''${nextPartSizeMB}M, ${
+        if useGpt then ''type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, name="${nextPartName}"'' else "type=83"
+      }
     EOF
 
     eval $(partx boot.img -o START,SECTORS --nr 1 --pairs)

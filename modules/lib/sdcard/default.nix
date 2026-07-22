@@ -6,9 +6,12 @@
     {
       bootSize ? 96,
       isHDD ? true,
-      persistSize ? 1024,
+      nextPartSize ? 1024,
       isExtlinux ? true,
+      useGpt ? false,
+      isEntireDisk ? false,
       ubootSelector ? "",
+      nextPartName ? "root",
       persistLabel ? "persist",
       postBuildCommands ? "",
       storeLabel ? "store",
@@ -47,16 +50,19 @@
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
                 mkdir -p $out
-
-                ${lib.optionalString isExtlinux ''
-                  mkdir -p firmware/boot
-                  ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
-                    -c ${config.system.build.toplevel} -d firmware/boot
-                ''}
-
-                ${(persist persistSize persistLabel)}
-                ${(boot bootSize persistSize)}
-                dd conv=notrunc if=./persist.img of=boot.img seek=$START count=$SECTORS
+                ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
+                ${
+                  (image bootSize nextPartSize useGpt nextPartName (
+                    lib.optionalString isExtlinux ''
+                      mkdir -p firmware/boot
+                      ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+                        -c ${config.system.build.toplevel} -d firmware/boot
+                    ''
+                  ))
+                }
+                ${lib.optionalString (
+                  !isEntireDisk
+                ) "dd conv=notrunc if=./persist.img of=boot.img seek=$START count=$SECTORS"}
                 echo "Copying uboot and compressing kernel image..."
 
                 ${(kernel pkgs ubootSelector postBuildCommands false)}

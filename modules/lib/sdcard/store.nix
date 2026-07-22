@@ -30,7 +30,7 @@
       if isHDD then
         ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1 -n size=64k"''
       else
-        ''export SYSTEMD_REPART_MKFS_OPTIONS_BTRFS=""''
+        ''export SYSTEMD_REPART_MKFS_OPTIONS_BTRFS="-f"''
     }
 
     echo "Creating and compressing store partition..."
