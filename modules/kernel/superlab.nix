@@ -26,6 +26,7 @@
         vendor.not-broadcom
         {
           USB_GADGET = "n";
+          USB_EHCI_TEGRA = "n";
         }
       ];
     })
