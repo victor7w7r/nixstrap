@@ -32,6 +32,7 @@
       MHI_BUS = "n";
       QRTR = "n";
       RAID_ATTRS = "n";
+      AX88796B_PHY = "n";
     }
     // not-phone;
 

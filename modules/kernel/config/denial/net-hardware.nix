@@ -33,7 +33,6 @@
       AQUANTIA_PHY = "n";
       AS21XXX_PHY = "n";
       AT803X_PHY = "n";
-      AX88796B_PHY = "n";
       BCM54140_PHY = "n";
       BCM7XXX_PHY = "n";
       BCM84881_PHY = "n";
