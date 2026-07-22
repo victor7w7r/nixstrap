@@ -1,8 +1,8 @@
 { disko, ... }:
 {
-  den.aspects.superlab.disks.nixos.disko = {
+  den.aspects.superlab.disks.nixos = {
     fileSystems."/etc".neededForBoot = true;
-    devices.disk = with disko; {
+    disko.devices.disk = with disko; {
       root = ephemeral.root { };
       main = disk.gpt {
         device = "nvme0n1";
