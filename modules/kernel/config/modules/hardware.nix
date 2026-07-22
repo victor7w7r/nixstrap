@@ -33,6 +33,8 @@
       QRTR = "n";
       RAID_ATTRS = "n";
       AX88796B_PHY = "n";
+      MICROCHIP_PHY = "n";
+      MICROCHIP_PHY_RDS_PTP = "n";
     }
     // not-phone;
 

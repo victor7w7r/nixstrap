@@ -65,8 +65,6 @@
       MCB = "n";
       MEDIATEK_GE_PHY = "n";
       MICREL_PHY = "n";
-      MICROCHIP_PHY = "n";
-      MICROCHIP_PHY_RDS_PTP = "n";
       MICROCHIP_T1S_PHY = "n";
       MICROCHIP_T1_PHY = "n";
       MICROSEMI_PHY = "n";
