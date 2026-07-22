@@ -40,6 +40,8 @@
       REALTEK_PHY_HWMON = "n";
       SMSC_PHY = "n";
       USB_CHIPIDEA = "n";
+      USB_GADGET = "n";
+      USB_GADGETFS = "n";
     }
     // not-phone;
 
@@ -62,8 +64,6 @@
       USB_DWC3 = "n";
       USB_ETH = "n";
       USB_FUNCTIONFS = "n";
-      USB_GADGET = "n";
-      USB_GADGETFS = "n";
       USB_MASS_STORAGE = "n";
       USB_MAX3420_UDC = "n";
       USB_RAW_GADGET = "n";
