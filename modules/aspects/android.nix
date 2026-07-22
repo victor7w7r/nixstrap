@@ -20,7 +20,12 @@
       };
 
     nixos =
-      { pkgs, self', ... }:
+      {
+        pkgs,
+        self',
+        isX86,
+        ...
+      }:
       {
         services.udev.extraRules =
           {
@@ -44,12 +49,14 @@
             apkinspector
             app-manager
             adebar
-            aya
             better-adb-sync
             logcat-color3
             zilch
             scrcpy-wrapper
-          ];
+          ]
+          ++ (lib.optionals isX86 [
+            aya
+          ]);
       };
   };
 }
