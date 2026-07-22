@@ -9,7 +9,6 @@
     DEFAULT_NET_SCH = "fq";
     DEFAULT_TCP_CONG = "bbr";
     IP_NF_NAT = "y";
-    IPV6 = "y";
     INET_AH = "y";
     INET_ESP = "y";
     INET_ESPINTCP = "y";

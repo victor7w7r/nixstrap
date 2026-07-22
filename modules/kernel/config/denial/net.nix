@@ -172,8 +172,6 @@
       IP6_NF_TARGET_MASQUERADE = "n";
       IP6_NF_TARGET_NPT = "n";
       IP6_NF_TARGET_SYNPROXY = "n";
-      IPV6_GRE = "n";
-      IPV6_ILA = "n";
       IPV6_MIP6 = "n";
       IPV6_NDISC_NODETYPE = "n";
       IPV6_SIT = "n";
