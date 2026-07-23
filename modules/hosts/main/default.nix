@@ -77,6 +77,7 @@
             tbtools
             thunderbolt
             rkdeveloptool
+            sunxi-tools
             kdePackages.plasma-thunderbolt
           ];
 
