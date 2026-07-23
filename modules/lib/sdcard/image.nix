@@ -5,7 +5,7 @@
     echo "Creating sdcard partition map..."
     gap=8
     bootSizeMB=${toString bootSize}
-    nextPartSizeMB=${toString nextPartSize}
+    nextPartSizeMB=${if isEntireDisk then (toString nextPartSize) else "2048"}
     swapSizeMB=${if isEntireDisk then "32768" else "0"}
 
     bootImgSize=$(( (gap + bootSizeMB + swapSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
