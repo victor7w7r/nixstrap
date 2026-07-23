@@ -42,6 +42,7 @@
               libfaketime
               mtools
               util-linux
+              systemdUkify
               xfsprogs
               zstd
             ];
