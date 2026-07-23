@@ -8,6 +8,10 @@
         (pkgs.buildUBoot {
           defconfig = "orangepi_zero2w_defconfig";
           extraMeta.platforms = [ "aarch64-linux" ];
+          nativeBuildInputs = [
+            pkgs.buildPackages.bison
+            pkgs.buildPackages.flex
+          ];
           BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
           filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
         })
