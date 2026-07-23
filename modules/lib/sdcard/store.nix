@@ -40,7 +40,6 @@
       if [ "$useSubvols" = "true" ]; then
         echo "CopyFiles=$path:/@nix/store$targetPath" >> repart.d/10-store.conf
       else
-       echo "CopyFiles=$path:$targetPath"
         echo "CopyFiles=$path:$targetPath" >> repart.d/10-store.conf
       fi
     done
@@ -53,6 +52,7 @@
     }
 
     echo "Creating and compressing store partition..."
+    cat repart.d/10-store.conf
     faketime -f "1970-01-01 00:00:01" fakeroot \
       systemd-repart --root=. --dry-run=no --empty=create --size=auto --definitions=./repart.d store.img
     ${
