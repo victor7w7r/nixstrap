@@ -14,7 +14,7 @@
     sfdisk --no-reread --no-tell-kernel boot.img <<EOF
       label: gpt
       label-id: 2178694E-0000-4000-8000-000000000000
-      start=''${gap}M, size=''${bootSizeMB}M, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, name="disk-main-esp", attrs="esp"
+      start=''${gap}M, size=''${bootSizeMB}M, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, name="disk-main-esp", attrs="LegacyBIOSBootable"
       ${lib.optionalString isEntireDisk ''
         start=$((gap + bootSizeMB))M, size=''${swapSizeMB}M, type=0657FA6D-A451-463C-B3A4-000000000000, name="disk-main-swapcrypt"
       ''}
