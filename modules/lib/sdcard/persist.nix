@@ -14,7 +14,5 @@
 
       eval $(partx boot.img -o START,SECTORS --nr 2 --pairs)
       dd bs=512 conv=notrunc,fsync if=./persist.img of=boot.img seek=$START count=$SECTORS
-
-      sgdisk -e boot.img || true
     '');
 }

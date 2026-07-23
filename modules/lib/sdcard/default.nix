@@ -51,8 +51,7 @@
               with sdcard.lib;
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
-                ${(image bootSize nextPartSize nextPartName isEntireDisk)}
-                ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
+                ${(image pkgs bootSize nextPartSize nextPartName isEntireDisk ubootSelector)}
                 ${
                   (firmware (
                     lib.optionalString isExtlinux ''
@@ -64,6 +63,9 @@
                 }
                 ${lib.optionalString (!isEntireDisk) (persist persistLabel)}
                 ${(store closureInfo isHDD storeLabel isEntireDisk)}
+                ${lib.optionalString (
+                  !isEntireDisk
+                ) "zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/"}
               '');
           };
         };
