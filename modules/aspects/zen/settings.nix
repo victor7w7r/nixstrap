@@ -302,7 +302,7 @@
       "extensions.webextensions.tabhide.enabled" = true;
       "findbar.highlightAll" = true;
       "fission.autostart" = true;
-      "font.name.monospace.x-western" = "UbuntuMono Nerd Font Mono";
+      "font.name.monospace.x-western" = "JetBrainsMono Nerd Font";
       "font.name.sans-serif.x-western" = "Ubuntu Nerd Font";
       "font.name.serif.x-western" = "Ubuntu Nerd Font";
       "font.size.variable.x-western" = 14;

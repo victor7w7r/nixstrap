@@ -86,7 +86,7 @@
                 theme = "sddm-astronaut-theme";
                 ThemeDir = "/run/current-system/sw/share/sddm/themes";
                 FacesDir = "/var/lib/AccountsService/icons";
-                Font = "Ubuntu";
+                Font = "Ubuntu Nerd Font";
                 EnableAvatars = true;
                 DisableAvatarsThreshold = 7;
               };

@@ -64,7 +64,7 @@
                 kernelParams = [
                   "earlycon"
                   "console=ttyS0,115200n8"
-                  "earlycon=uart,mmio32,0x05000000"
+                  "earlycon=uart8250,mmio32,0x05000000"
                   "clk_ignore_unused"
                   "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
                   "zram.num_devices=2"
@@ -75,6 +75,9 @@
                   "sdhci_pci"
                   "uas"
                   "sunxi_gmac"
+                  "sunxi_rsb"
+                  "gpio_sunxi"
+                  "8250_dw"
                   "libcomposite"
                 ];
                 kernelPackages = (kernel.hosts.pizero pkgs).pizero-kernelPackages;

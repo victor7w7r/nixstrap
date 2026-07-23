@@ -1,7 +1,7 @@
 {
   den.aspects.plasma.fonts.provides.to-users.homeManager.programs.plasma.fonts = {
     general = {
-      family = "Ubuntu";
+      family = "Ubuntu Nerd Font";
       pointSize = 10;
     };
 
@@ -11,22 +11,22 @@
     };
 
     small = {
-      family = "Ubuntu";
+      family = "Ubuntu Nerd Font";
       pointSize = 8;
     };
 
     toolbar = {
-      family = "Ubuntu";
+      family = "Ubuntu Nerd Font";
       pointSize = 10;
     };
 
     menu = {
-      family = "Ubuntu";
+      family = "Ubuntu Nerd Font";
       pointSize = 10;
     };
 
     windowTitle = {
-      family = "Ubuntu";
+      family = "Ubuntu Nerd Font";
       pointSize = 10;
     };
   };
