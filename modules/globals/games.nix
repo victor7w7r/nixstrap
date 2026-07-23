@@ -20,7 +20,6 @@
             cmatrix
             genact
             lavat
-            nbsdgames
             neo-cowsay
             pipes-rs
             sl
@@ -79,7 +78,6 @@
             cointop
             clock-rs
             ticker
-
           ]
           ++ (lib.optionals isX86 [ inputs.ponysay.packages.x86_64-linux.default ]);
       };

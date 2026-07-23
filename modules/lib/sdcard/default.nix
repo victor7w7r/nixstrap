@@ -32,7 +32,8 @@
           system.build.image = config.system.build.sdImage;
           system.build.bootFiles = (sdcard.lib.kernel pkgs ubootSelector postBuildCommands true);
           system.build.sdImage = pkgs.stdenv.mkDerivation {
-            name = "nixos-image-${config.system.nixos.label}-" + "${host}-${pkgs.stdenv.hostPlatform.system}";
+            name =
+              "nixos-image-${config.system.nixos.label}-" + "${host.name}-${pkgs.stdenv.hostPlatform.system}";
             nativeBuildInputs = with pkgs; [
               btrfs-progs
               dosfstools
