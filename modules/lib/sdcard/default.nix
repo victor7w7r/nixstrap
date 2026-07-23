@@ -4,7 +4,7 @@
 
   sdcard.lib.call =
     {
-      bootSize ? 96,
+      bootSize ? 128,
       isHDD ? true,
       nextPartSize ? 1024,
       isExtlinux ? true,
