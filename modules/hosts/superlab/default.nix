@@ -23,6 +23,7 @@
           (sdcard.lib.call {
             ubootSelector = "rockchip";
             useGpt = true;
+            isHDD = false;
             isEntireDisk = true;
           })
         ];
