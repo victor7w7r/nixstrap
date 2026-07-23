@@ -52,8 +52,8 @@
     }
 
     echo "Creating and compressing store partition..."
-    systemd-repart --root=/ --dry-run=no --empty=create --seed=00000000-0000-0000-0000-000000000000 \
-      --size=auto --definitions=./repart.d --copy-source=/ store.img
+    faketime -f "1970-01-01 00:00:01" fakeroot \
+      systemd-repart --root=/ --dry-run=no --empty=create --size=auto --definitions=./repart.d store.img
     ${
       if isEntireDisk then
         ''
