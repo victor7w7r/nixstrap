@@ -51,21 +51,24 @@
               with sdcard.lib;
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
-                ${(image bootSize nextPartSize useGpt nextPartName isEntireDisk)}
-                ${
-                  (firmware (
-                    lib.optionalString isExtlinux ''
-                      mkdir -p firmware/boot
-                      ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
-                        -c ${config.system.build.toplevel} -d firmware/boot
-                    ''
-                  ))
-                }
-                ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
-                ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
+
                 ${(store closureInfo isHDD storeLabel isEntireDisk)}
               '');
           };
         };
     };
 }
+/*
+  ${(image bootSize nextPartSize useGpt nextPartName isEntireDisk)}
+  ${
+    (firmware (
+      lib.optionalString isExtlinux ''
+        mkdir -p firmware/boot
+        ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+          -c ${config.system.build.toplevel} -d firmware/boot
+      ''
+    ))
+  }
+  ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
+  ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
+*/

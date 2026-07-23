@@ -40,7 +40,7 @@
       if [ "$useSubvols" = "true" ]; then
         echo "CopyFiles=$path:/@nix/store$targetPath" >> repart.d/10-store.conf
       else
-       echo "CopyFiles=$path:$targetPath
+       echo "CopyFiles=$path:$targetPath"
         echo "CopyFiles=$path:$targetPath" >> repart.d/10-store.conf
       fi
     done
