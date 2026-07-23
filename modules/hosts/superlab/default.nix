@@ -20,7 +20,11 @@
         #nix build -L ".#nixosConfigurations.superlab-sdimage.config.system.build.bootFiles"
         includes = with den.aspects; [
           superlab.common
-          (sdcard.lib.call { ubootSelector = "rockchip"; })
+          (sdcard.lib.call {
+            ubootSelector = "rockchip";
+            useGpt = true;
+            isEntireDisk = true;
+          })
         ];
       };
       superlab-tarball = {
@@ -65,7 +69,7 @@
               boot = {
                 kernelParams = [ "console=ttyS2,1500000n8" ];
                 loader = lib.mkForce {
-                  systemd-boot.enable = true;
+                  #systemd-boot.enable = true;
                   efi.canTouchEfiVariables = true;
                   grub.enable = false;
                 };

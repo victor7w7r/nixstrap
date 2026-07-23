@@ -9,7 +9,7 @@
     Type=root
     Label=${storeLabel}
     Format=${if isHDD then "xfs" else "btrfs"}
-    SizeMinBytes=12G
+    SizeMinBytes=16G
     Minimize=no
     Weight=1000
     EOF
