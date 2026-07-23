@@ -22,7 +22,7 @@
           superlab.common
           (sdcard.lib.call {
             ubootSelector = "rockchip";
-            useGpt = true;
+            nextPartSize = "65536";
             isHDD = false;
             isEntireDisk = true;
           })
