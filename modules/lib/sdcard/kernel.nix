@@ -15,20 +15,18 @@
             hash = "sha256-GKhT/jn6160DqQzC1Cda6u1tppc13vrDSSuAUIhD3Uo=";
           };
 
-          nativeBuildInputs = [
-            pkgs.dtc
-            pkgs.armTrustedFirmwareTools
-            pkgs.bison
-            pkgs.flex
-            pkgs.which
-            pkgs.swig
-            pkgs.openssl
-
-            (pkgs.python3.withPackages (p: [
-              p.setuptools
-              p.libfdt
-              p.pyelftools
-            ]))
+          nativeBuildInputs = with pkgs; [
+            bc
+            dtc
+            armTrustedFirmwareTools
+            bison
+            flex
+            which
+            swig
+            openssl
+            python3
+            python3Packages.setuptools
+            python3Packages.pyelftools
           ];
 
           BL31 = "${pkgs.armTrustedFirmwareAllwinner}/bl31.bin";
