@@ -11,7 +11,7 @@
           env.BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
           filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
         })
-        |> (uboot: "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc")
+        |> (uboot: "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=boot.img bs=1024 seek=8 conv=notrunc")
       else
         ""
     }
