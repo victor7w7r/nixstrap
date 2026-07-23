@@ -36,6 +36,7 @@
             nativeBuildInputs = with pkgs; [
               btrfs-progs
               dosfstools
+              gptfdisk
               fakeroot
               f2fs-tools
               libfaketime
@@ -51,6 +52,7 @@
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
                 ${(image bootSize nextPartSize nextPartName isEntireDisk)}
+                ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
                 ${
                   (firmware (
                     lib.optionalString isExtlinux ''
@@ -61,7 +63,6 @@
                   ))
                 }
                 ${lib.optionalString (!isEntireDisk) (persist persistLabel)}
-                ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
                 ${(store closureInfo isHDD storeLabel isEntireDisk)}
               '');
           };

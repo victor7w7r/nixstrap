@@ -3,7 +3,7 @@
     mkdir -p $out
 
     echo "Creating sdcard partition map..."
-    gap=8
+    gap=16
     bootSizeMB=${toString bootSize}
     nextPartSizeMB=${if isEntireDisk then (toString nextPartSize) else "2048"}
     swapSizeMB=${if isEntireDisk then "32768" else "0"}

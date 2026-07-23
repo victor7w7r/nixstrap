@@ -20,6 +20,6 @@
     cd ..
 
     fsck.vfat -vn firmware_part.img
-    dd conv=notrunc if=firmware_part.img of=boot.img seek=$START count=$SECTORS
+    dd bs=512 conv=notrunc,fsync if=firmware_part.img of=boot.img seek=$START count=$SECTORS
   '';
 }
