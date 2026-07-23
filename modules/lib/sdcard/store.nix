@@ -57,9 +57,9 @@
     ${
       if isEntireDisk then
         ''
-          STORE_START=$(partx boot.img -o START --nr 3 -g --pairs | cut -d'=' -f2)
-          STORE_SECTORS=$(partx boot.img -o SECTORS --nr 3 -g --pairs | cut -d'=' -f2)
-          TMP_START=$(partx store.img -o START --nr 1 -g --pairs | cut -d'=' -f2)
+          STORE_START=$(partx boot.img -o START --nr 3 -g --pairs | cut -d'=' -f2 | tr -d '"')
+          STORE_SECTORS=$(partx boot.img -o SECTORS --nr 3 -g --pairs | cut -d'=' -f2 | tr -d '"')
+          TMP_START=$(partx store.img -o START --nr 1 -g --pairs | cut -d'=' -f2 | tr -d '"')
           dd bs=512 conv=notrunc,fsync if=store.img of=boot.img skip=$TMP_START seek=$STORE_START count=$STORE_SECTORS
           zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/
         ''
