@@ -8,12 +8,30 @@
         (pkgs.buildUBoot {
           defconfig = "orangepi_zero2w_defconfig";
           extraMeta.platforms = [ "aarch64-linux" ];
-          nativeBuildInputs = [
-            pkgs.buildPackages.bison
-            pkgs.buildPackages.flex
-          ];
-          BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
           filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
+          version = "2024.04";
+          src = pkgs.fetchurl {
+            url = "https://ftp.denx.de/pub/u-boot/u-boot-2024.04.tar.bz2";
+            hash = "sha256-GKhT/jn6160DqQzC1Cda6u1tppc13vrDSSuAUIhD3Uo=";
+          };
+
+          nativeBuildInputs = [
+            pkgs.dtc
+            pkgs.armTrustedFirmwareTools
+            pkgs.bison
+            pkgs.flex
+            pkgs.which
+            pkgs.swig
+            pkgs.openssl
+
+            (pkgs.python3.withPackages (p: [
+              p.setuptools
+              p.libfdt
+              p.pyelftools
+            ]))
+          ];
+
+          BL31 = "${pkgs.armTrustedFirmwareAllwinner}/bl31.bin";
         })
         |> (uboot: "dd if=${uboot}/u-boot-sunxi-with-spl.bin of=$bootImg bs=1024 seek=8 conv=notrunc")
       else
