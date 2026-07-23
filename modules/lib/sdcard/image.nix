@@ -7,7 +7,7 @@
     nextPartSizeMB=${toString nextPartSize}
     swapSizeMB=${if isEntireDisk && useGpt then "32768" else "0"}
 
-    bootImgSize=$(( (gap + bootSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
+    bootImgSize=$(( (gap + bootSizeMB + swapSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
     truncate -s $bootImgSize boot.img
     gap=8
 
