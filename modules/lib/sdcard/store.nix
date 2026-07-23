@@ -2,7 +2,7 @@
   sdcard.lib.store = closureInfo: isHDD: storeLabel: isEntireDisk: ''
     mkdir -p repart.d
 
-    useSubvols=${if (isEntireDisk && !isHDD) then "true" else "false"}
+    useSubvols=${if isEntireDisk then "true" else "false"}
 
     cat <<EOF > repart.d/10-store.conf
     [Partition]
@@ -20,6 +20,7 @@
       echo "CopyFiles=empty_etc:/@etc" >> repart.d/10-store.conf
       echo "CopyFiles=empty_persist:/@persist" >> repart.d/10-store.conf
     else
+      cat "${closureInfo}/registration"
       echo "CopyFiles=${closureInfo}/registration:/nix-path-registration" >> repart.d/10-store.conf
     fi
 
