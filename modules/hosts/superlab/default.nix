@@ -71,6 +71,7 @@
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;
                   efi.canTouchEfiVariables = true;
+                  generic-extlinux-compatible.enable = true;
                   grub.enable = false;
                 };
                 kernelPackages = (kernel.hosts.superlab pkgs).superlab-kernelPackages;
