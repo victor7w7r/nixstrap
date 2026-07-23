@@ -61,7 +61,7 @@
                   ))
                 }
                 ${lib.optionalString (!isEntireDisk) (persist nextPartSize persistLabel)}
-                ${(kernel pkgs ubootSelector postBuildCommands false)}
+                ${(kernel pkgs ubootSelector postBuildCommands isEntireDisk false)}
                 ${(store closureInfo isHDD storeLabel isEntireDisk)}
               '');
           };

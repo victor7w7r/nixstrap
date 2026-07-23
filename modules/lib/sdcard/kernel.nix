@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  sdcard.lib.kernel = pkgs: ubootSelector: postBuildCommands: onlyKernel: ''
+  sdcard.lib.kernel = pkgs: ubootSelector: postBuildCommands: isEntireDisk: onlyKernel: ''
     echo "Copying uboot and compressing kernel image..."
     ${(lib.optionalString onlyKernel "mkdir -p $out")}
     ${
@@ -16,6 +16,8 @@
         ""
     }
     ${postBuildCommands}
-    zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/
+    ${lib.optionalString (
+      !isEntireDisk
+    ) "zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/"}
   '';
 }
