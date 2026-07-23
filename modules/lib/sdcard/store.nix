@@ -25,6 +25,7 @@
 
     echo "Filtering store packages with spaces ..."
     for path in $(cat ${closureInfo}/store-paths); do
+     if [ "$useSubvols" = "false" ]; then
       if find "$path" -name "* *" -print -quit | grep -q .; then
         echo "Skipping: $path"
         continue
@@ -34,7 +35,7 @@
         echo "Skipping: $path"
         continue
       fi
-
+    fi
       targetPath="''${path#/nix}"
 
       if [ "$useSubvols" = "true" ]; then
