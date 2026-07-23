@@ -20,7 +20,6 @@
       echo "CopyFiles=empty_etc:/@etc" >> repart.d/10-store.conf
       echo "CopyFiles=empty_persist:/@persist" >> repart.d/10-store.conf
     else
-      cat "${closureInfo}/registration"
       echo "CopyFiles=${closureInfo}/registration:/nix-path-registration" >> repart.d/10-store.conf
     fi
 
@@ -41,6 +40,7 @@
       if [ "$useSubvols" = "true" ]; then
         echo "CopyFiles=$path:/@nix/store$targetPath" >> repart.d/10-store.conf
       else
+       echo "CopyFiles=$path:$targetPath
         echo "CopyFiles=$path:$targetPath" >> repart.d/10-store.conf
       fi
     done
