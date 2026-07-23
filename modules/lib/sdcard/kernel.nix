@@ -27,7 +27,7 @@
             python3
             python3Packages.setuptools
             python3Packages.pyelftools
-            python3Packages.pylibftdi
+            python3Packages.libfdt
           ];
 
           BL31 = "${pkgs.armTrustedFirmwareAllwinner}/bl31.bin";
