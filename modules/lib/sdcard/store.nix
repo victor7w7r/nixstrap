@@ -1,27 +1,34 @@
-{
+{ lib, ... }: {
   sdcard.lib.store = closureInfo: isHDD: storeLabel: isEntireDisk: ''
     mkdir -p repart.d
 
     useSubvols=${if isEntireDisk then "true" else "false"}
 
+    ${lib.optionalString (!isEntireDisk) ''
+      echo "Creating swap partition layout..."
+      cat <<EOF > repart.d/05-swap.conf
+      [Partition]
+      Type=swap
+      Label=disk-sda-swapcrypt
+      SizeMinBytes=4G
+      SizeMaxBytes=4G
+      Weight=100
+      EOF
+    ''}
+
     cat <<EOF > repart.d/10-store.conf
     [Partition]
     Type=root
-    Label=${storeLabel}
+    Label=${if isEntireDisk then storeLabel else "disk-sda-system"}
     Format=${if isHDD then "xfs" else "btrfs"}
-    SizeMinBytes=16G
+    SizeMinBytes=${if isEntireDisk then "64G" else "16G"}
     Minimize=no
+    ${if isEntireDisk then "Subvolumes=@etc @persist @nix" else ""}
+    ${if isEntireDisk then "DefaultSubvolume=@nix" else ""}
+    ${if isEntireDisk then "MountPoint=/:subvol=@nix,compress=zstd:3" else ""}
     Weight=1000
     EOF
-
-    if [ "$useSubvols" = "true" ]; then
-      echo "CopyFiles=${closureInfo}/registration:/@nix/nix-path-registration" >> repart.d/10-store.conf
-      mkdir -p empty_etc empty_persist
-      echo "CopyFiles=empty_etc:/@etc" >> repart.d/10-store.conf
-      echo "CopyFiles=empty_persist:/@persist" >> repart.d/10-store.conf
-    else
-      echo "CopyFiles=${closureInfo}/registration:/nix-path-registration" >> repart.d/10-store.conf
-    fi
+    echo "CopyFiles=${closureInfo}/registration:/nix-path-registration" >> repart.d/10-store.conf
 
     echo "Filtering store packages with spaces ..."
     for path in $(cat ${closureInfo}/store-paths); do
@@ -37,19 +44,11 @@
       fi
     fi
       targetPath="''${path#/nix}"
-
-      if [ "$useSubvols" = "true" ]; then
-        echo "CopyFiles=$path:/@nix/store$targetPath" >> repart.d/10-store.conf
-      else
-        echo "CopyFiles=$path:$targetPath" >> repart.d/10-store.conf
-      fi
+      echo "CopyFiles=$path:$targetPath" >> repart.d/10-store.conf
     done
 
-    ${
-      if isHDD then
-        ''export SYSTEMD_REPART_MKFS_OPTIONS_XFS="-f -m crc=1 -n size=64k"''
-      else
-        ''export SYSTEMD_REPART_MKFS_OPTIONS_BTRFS="-f"''
+    export SYSTEMD_REPART_MKFS_OPTIONS_${
+      if isHDD then ''XFS="-f -m crc=1 -n size=64k"'' else ''BTRFS="-f"''
     }
 
     echo "Creating and compressing store partition..."
@@ -60,9 +59,8 @@
         ''
           STORE_START=$(partx boot.img -o START --nr 3 -g --pairs | cut -d'=' -f2)
           STORE_SECTORS=$(partx boot.img -o SECTORS --nr 3 -g --pairs | cut -d'=' -f2)
-
-          truncate -s $((STORE_SECTORS * 512)) store.img
-          dd conv=notrunc,fsync if=store.img of=boot.img seek=$STORE_START count=$STORE_SECTORS
+          TMP_START=$(partx store.img -o START --nr 1 -g --pairs | cut -d'=' -f2)
+          dd bs=512 conv=notrunc,fsync if=store.img of=boot.img skip=$TMP_START seek=$STORE_START count=$STORE_SECTORS
           zstd -T$NIX_BUILD_CORES --rm boot.img && cp -a ./boot.img.zst $out/
         ''
       else

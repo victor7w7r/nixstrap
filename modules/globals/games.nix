@@ -30,7 +30,7 @@
             astroterm
             cemetery-escape
             chess-tui
-            cli-of-life
+            #cli-of-life
             clidle
             cfonts
             go-life

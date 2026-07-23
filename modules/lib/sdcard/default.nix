@@ -6,15 +6,14 @@
     {
       bootSize ? 256,
       isHDD ? true,
-      nextPartSize ? 1024,
+      nextPartSize ? 16384,
       isExtlinux ? true,
-      useGpt ? false,
       isEntireDisk ? false,
       ubootSelector ? "",
-      nextPartName ? "root",
-      persistLabel ? "persist",
+      nextPartName ? "system",
+      persistLabel ? "system",
       postBuildCommands ? "",
-      storeLabel ? "store",
+      storeLabel ? "system",
     }:
     {
       includes = [ (sdcard.lib.postscript isHDD) ];
@@ -51,7 +50,7 @@
               with sdcard.lib;
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
-                ${(image bootSize nextPartSize useGpt nextPartName isEntireDisk)}
+                ${(image bootSize nextPartSize nextPartName isEntireDisk)}
                 ${
                   (firmware (
                     lib.optionalString isExtlinux ''

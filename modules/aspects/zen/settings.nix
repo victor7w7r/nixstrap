@@ -53,7 +53,7 @@
       "browser.ctrlTab.recentlyUsedOrder" = false;
       "browser.disableResetPrompt" = true;
       "browser.discovery.enabled" = lock-false;
-      "browser.display.document_color_use" = 1;
+      "browser.display.document_color_use" = 0;
       "browser.engagement.ctrlTab.has-used" = true;
       "browser.formfill.enable" = true;
       "browser.laterrun.enabled" = false;
@@ -425,7 +425,7 @@
       "privacy.query_stripping.enabled.pbmode" = lock-true;
       #"privacy.resistFingerprinting" = lock-true;
       "privacy.sanitize.sanitizeOnShutdown" = lock-true;
-      "privacy.spoof_english" = 1;
+      "privacy.spoof_english" = 0;
       "privacy.trackingprotection.enabled" = lock-true;
       "privacy.trackingprotection.fingerprinting.enabled" = lock-true;
       "privacy.trackingprotection.socialtracking.enabled" = lock-true;

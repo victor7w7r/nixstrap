@@ -41,9 +41,10 @@
             nerd-fonts.jetbrains-mono
             nerd-fonts.noto
             nerd-fonts.symbols-only
-            nerd-fonts.ubuntu
             openmoji-color
             open-sans
+            ubuntu-classic
+            ubuntu-ubuntu-sans
           ]
           ++ lib.optionals (!isPersistent) [
             hack-font

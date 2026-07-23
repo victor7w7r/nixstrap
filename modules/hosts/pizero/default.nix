@@ -64,6 +64,10 @@
                 kernelParams = [
                   "earlycon"
                   "console=ttyS0,115200n8"
+                  "earlycon=uart,mmio32,0x05000000"
+                  "clk_ignore_unused"
+                  "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
+                  "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
                   "g_ether"
