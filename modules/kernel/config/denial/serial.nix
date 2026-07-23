@@ -226,7 +226,6 @@
 
     usb = {
       APPLE_MFI_FASTCHARGE = "n";
-      NOP_USB_XCEIV = "n";
       SSB = "n";
       USB_ADUTUX = "n";
       USB_AMD5536UDC = "n";
@@ -274,7 +273,6 @@
       USB_MDC800 = "n";
       USB_MICROTEK = "n";
       USB_MIDI_GADGET = "n";
-      USB_MUSB_HDRC = "n";
       USB_NET2280 = "n";
       USB_OXU210HP_HCD = "n";
       USB_PEGASUS = "n";

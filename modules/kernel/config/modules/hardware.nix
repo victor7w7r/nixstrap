@@ -37,13 +37,17 @@
       RAID_ATTRS = "n";
       MICROCHIP_PHY = "n";
       MICROCHIP_PHY_RDS_PTP = "n";
+      NET_VENDOR_STMICRO = "n";
+      NOP_USB_XCEIV = "n";
       REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
       SMSC_PHY = "n";
       STM = "n";
+      USB_ETH = "n";
       USB_CHIPIDEA = "n";
       USB_GADGET = "n";
       USB_GADGETFS = "n";
+      USB_MUSB_HDRC = "n";
     }
     // not-phone;
 
@@ -64,7 +68,6 @@
       USB_CONFIGFS = "n";
       USB_DWC2 = "n";
       USB_DWC3 = "n";
-      USB_ETH = "n";
       USB_FUNCTIONFS = "n";
       USB_MASS_STORAGE = "n";
       USB_MAX3420_UDC = "n";

@@ -170,7 +170,6 @@
       NET_VENDOR_SMSC = "n";
       NET_VENDOR_SOCIONEXT = "n";
       NET_VENDOR_SOLARFLARE = "n";
-      NET_VENDOR_STMICRO = "n";
       NET_VENDOR_SUN = "n";
       NET_VENDOR_SYNOPSYS = "n";
       NET_VENDOR_TEHUTI = "n";
