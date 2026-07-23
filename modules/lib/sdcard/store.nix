@@ -52,9 +52,13 @@
     }
 
     echo "Creating and compressing store partition..."
-    cat repart.d/10-store.conf
-    faketime -f "1970-01-01 00:00:01" fakeroot \
-      systemd-repart --root=. --dry-run=no --empty=create --size=auto --definitions=./repart.d store.img
+    systemd-repart \
+      --root=/ \
+      --dry-run=no \
+      --empty=create \
+      --size=auto \
+      --definitions=./repart.d \
+      store.img
     ${
       if isEntireDisk then
         ''
