@@ -24,10 +24,13 @@
             which
             swig
             openssl
-            python3
-            python3Packages.setuptools
-            python3Packages.pyelftools
-            python3Packages.libfdt
+            (python3.withPackages (
+              p: with p; [
+                setuptools
+                pyelftools
+                libfdt
+              ]
+            ))
           ];
 
           BL31 = "${pkgs.armTrustedFirmwareAllwinner}/bl31.bin";
