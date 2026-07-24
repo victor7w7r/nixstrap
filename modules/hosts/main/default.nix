@@ -79,6 +79,8 @@
             rkdeveloptool
             sunxi-tools
             kdePackages.plasma-thunderbolt
+            wineWow64Packages.stable
+            winetricks
           ];
 
           services.thermald.enable = true;

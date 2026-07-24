@@ -67,6 +67,7 @@
               btrfs-progs
               btdu
               exfatprogs
+              gdown
               f2fs-tools
               fsarchiver
               killall

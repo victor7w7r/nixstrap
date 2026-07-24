@@ -9,8 +9,8 @@
           device = "mmcblk0";
           partitions = {
             esp = esp.call { size = "500M"; };
-            persist = f2fs.call {
-              name = "persist";
+            system = f2fs.call {
+              name = "system";
               size = "100%";
               mountpoint = "/nix/persist";
               priority = 2;
