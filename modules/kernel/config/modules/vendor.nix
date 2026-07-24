@@ -38,7 +38,6 @@
       I2C_HID = "y";
       I2C_HID_ACPI = "m";
       I2C_HID_CORE = "m";
-      IIO = "y";
       LEDS_CLASS_MULTICOLOR = "y";
       PERF_EVENTS_AMD_POWER = "y";
       PERF_EVENTS_AMD_UNCORE = "y";
@@ -110,7 +109,6 @@
       HSA_AMD_SVM = "n";
       HW_RANDOM_AMD = "n";
       I2C_HID = "n";
-      IIO = "n";
       KVM_AMD = "n";
       MT7921E = "n";
       MT7921S = "n";
