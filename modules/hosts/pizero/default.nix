@@ -7,8 +7,8 @@
   ...
 }:
 {
-  #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && umount /dev/sde1 && udisksctl power-off -b /dev/sde
-  #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
+  #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/boot --no-same-owner && umount /dev/sde1 && udisksctl power-off -b /dev/sde
+  #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
   den = {
     hosts.aarch64-linux = {
       pizero.users.victor7w7r = { };
@@ -19,7 +19,6 @@
     aspects = {
       pizero-sdimage = {
         #nix build -L ".#nixosConfigurations.pizero-sdimage.config.system.build.sdImage"
-        #nix build -L ".#nixosConfigurations.pizero-sdimage.config.system.build.bootFiles"
         includes = with den.aspects; [
           pizero.common
           (sdcard.lib.call { ubootSelector = "sunxi"; })
@@ -27,6 +26,7 @@
       };
       pizero-tarball = {
         #nix build -L ".#nixosConfigurations.pizero-tarball.config.system.build.tarball"
+        #nix build -L ".#nixosConfigurations.pizero-tarball.config.system.build.bootFiles"
         includes = with den.aspects; [
           pizero.common
           (tarball.lib.call { })
@@ -63,8 +63,9 @@
               boot = {
                 kernelParams = [
                   "earlycon"
-                  "console=ttyS0,115200n8"
                   "earlycon=uart8250,mmio32,0x05000000"
+                  "console=tty1"
+                  "console=ttyS0,115200n8"
                   "clk_ignore_unused"
                   "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
                   "zram.num_devices=2"
