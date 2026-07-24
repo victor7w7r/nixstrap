@@ -223,8 +223,6 @@
       MFD_AS3711 = "n";
       MFD_ATC260X = "n";
       MFD_ATC260X_I2C = "n";
-      MFD_AXP20X = "n";
-      MFD_AXP20X_I2C = "n";
       MFD_BCM590XX = "n";
       MFD_BD9571MWV = "n";
       MFD_BQ257XX = "n";

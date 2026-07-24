@@ -34,6 +34,7 @@
           DRM_SUN8I_MIXER = "y";
           DRM_SUN8I_TCON_TOP = "y";
           DMA_SUN6I = "y";
+          IIO = "y";
           MDIO_SUN4I = "y";
           MFD_SUN6I_PRCM = "y";
           PWM_SUN4I = "y";

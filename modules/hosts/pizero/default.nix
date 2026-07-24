@@ -63,16 +63,20 @@
               boot = {
                 kernelParams = [
                   "earlycon"
-                  "earlycon=uart8250,mmio32,0x05000000"
-                  "console=tty1"
-                  "console=ttyS0,115200n8"
-                  "keep_bootcon"
-                  "clk_ignore_unused"
-                  "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
+                  "earlycon=uart,mmio32,0x05000000"
+                  "console=ttyS0,115200"
+                  "loglevel=7"
+                  "ignore_loglevel"
+                  "systemd.bpf_restrict_fs=0"
+                  "rd.shell"
+                  "rd.retry=10"
+                  "systemd.debug_shell=1"
+                  #"clk_ignore_unused"
+                  #"systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
-                  "g_ether"
+                  #"g_ether"
                   "uas"
                   "sunxi_gmac"
                   "sunxi_rsb"
