@@ -25,7 +25,12 @@
           partitions = {
             swapcrypt = {
               size = "4G";
-              content = swap.call;
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true;
+                priority = 100;
+              };
             };
             system = xfs.call {
               name = "system";
