@@ -20,16 +20,25 @@
 
           if [ ! -d "src" ]; then
             echo "--> Desempacando fuentes..."
-            mkdir src
-            tar -xf ${((kernel.hosts.pizero pkgs).pizero-kernel).src} -C src --strip-components=1
-            chmod -R +w src
+            if [ -d "${(kernel.hosts.pizero pkgs).pizero-kernel.src}" ]; then
+              cp -r --no-preserve=mode,ownership "${(kernel.hosts.pizero pkgs).pizero-kernel.src}" src
+            else
+              mkdir src
+              tar -xf "${(kernel.hosts.pizero pkgs).pizero-kernel.src}" -C src --strip-components=1
+              chmod -R +w src
+            fi
+
+            chmod -R +rwx src
             cd src
 
             echo "--> Aplicando parches del kernel..."
-            ${lib.concatMapStringsSep "\n" (p: ''
-              echo "Aplicando: ${p.name or "parche"}"
-              patch -p1 < ${p.patch}
-            '') ((kernel.hosts.pizero pkgs).pizero-kernel).kernelPatches}
+            ${pkgs.writeShellScript "patch-kernel.sh" ''
+              set -e
+              ${lib.concatMapStringsSep "\n" (p: ''
+                echo "Aplicando: ${p.name or "parche"}"
+                patch -p1 < ${p.patch}
+              '') ((kernel.hosts.pizero pkgs).pizero-kernel).kernelPatches}
+            ''}
           else
             cd src
           fi
