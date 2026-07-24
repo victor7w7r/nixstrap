@@ -23,15 +23,17 @@
         sda = disk.gpt {
           device = "sda";
           partitions = {
-            swapcrypt = {
-              size = "4G";
-              content = {
-                type = "swap";
-                discardPolicy = "both";
-                resumeDevice = true;
-                priority = 100;
-              };
-            };
+            /*
+              swapcrypt = {
+               size = "4G";
+               content = {
+                 type = "swap";
+                 discardPolicy = "both";
+                 resumeDevice = true;
+                 priority = 100;
+               };
+               };
+            */
             system = xfs.call {
               name = "system";
               size = "100%";

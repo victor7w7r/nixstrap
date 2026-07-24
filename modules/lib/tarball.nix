@@ -26,6 +26,13 @@
               '';
             };
 
+            system.build.initrd = pkgs.stdenvNoCC.mkDerivation {
+              name = "genInitrd";
+              buildCommand = ''
+                cp "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" $out
+              '';
+            };
+
             system.build.tarball = pkgs.stdenvNoCC.mkDerivation {
               name = "tarball";
 
