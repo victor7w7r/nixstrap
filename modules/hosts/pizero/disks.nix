@@ -1,8 +1,8 @@
-{ disko, ... }:
+{ disko, lib, ... }:
 {
   den.aspects.pizero.disks.nixos = {
     fileSystems."/nix/persist".neededForBoot = true;
-    boot.initrd = {
+    boot.initrd = lib.mkForce {
       systemd.settings = {
         Manager = {
           DefaultTimeoutStartSec = "30s";
