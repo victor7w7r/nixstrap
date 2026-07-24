@@ -133,7 +133,6 @@
       OPENVSWITCH = "n";
       PCS_LYNX = "n";
       PCS_MTK_LYNXI = "n";
-      PCS_XPCS = "n";
       PFCP = "n";
       PSE_PD692X0 = "n";
       PSE_REGULATOR = "n";

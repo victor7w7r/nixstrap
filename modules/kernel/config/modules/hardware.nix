@@ -40,6 +40,7 @@
       MOTORCOMM_PHY = "n";
       NET_VENDOR_STMICRO = "n";
       NOP_USB_XCEIV = "n";
+      PCS_XPCS = "n";
       REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
       SMSC_PHY = "n";
