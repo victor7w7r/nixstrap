@@ -7,7 +7,7 @@
   ...
 }:
 {
-  #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/boot --no-same-owner && umount /dev/sde1 && udisksctl power-off -b /dev/sde
+  #mount /dev/sde1 /mnt && rm -rf /mnt/* && mkdir -p /mnt/boot && tar --zstd -xvf boot.tar.zst -C /mnt/boot --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
   #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
   den = {
     hosts.aarch64-linux = {
@@ -66,20 +66,18 @@
                   "earlycon=uart8250,mmio32,0x05000000"
                   "console=tty1"
                   "console=ttyS0,115200n8"
+                  "keep_bootcon"
                   "clk_ignore_unused"
                   "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
                   "g_ether"
-                  "sdhci"
-                  "sdhci_pci"
                   "uas"
                   "sunxi_gmac"
                   "sunxi_rsb"
                   "gpio_sunxi"
                   "8250_dw"
-                  "libcomposite"
                 ];
                 kernelPackages = (kernel.hosts.pizero pkgs).pizero-kernelPackages;
                 loader = {

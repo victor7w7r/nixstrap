@@ -37,6 +37,7 @@
       RAID_ATTRS = "n";
       MICROCHIP_PHY = "n";
       MICROCHIP_PHY_RDS_PTP = "n";
+      MOTORCOMM_PHY = "n";
       NET_VENDOR_STMICRO = "n";
       NOP_USB_XCEIV = "n";
       REALTEK_PHY = "n";

@@ -68,7 +68,6 @@
       MICROCHIP_T1S_PHY = "n";
       MICROCHIP_T1_PHY = "n";
       MICROSEMI_PHY = "n";
-      MOTORCOMM_PHY = "n";
       MTK_NET_PHYLIB = "n";
       NATIONAL_PHY = "n";
       NCN26000_PHY = "n";
