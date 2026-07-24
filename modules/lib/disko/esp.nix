@@ -1,11 +1,11 @@
 {
   disko.esp.call =
     {
+      name ? "EFI",
       size ? "300M",
     }:
     {
-      inherit size;
-      name = "EFI";
+      inherit size name;
       type = "EF00";
       priority = 1;
       content = {
@@ -20,6 +20,7 @@
         mountOptions = [
           "lazytime"
           "noatime"
+          "nofail"
           "umask=0077"
           "dmask=0077"
           "codepage=437"

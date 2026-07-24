@@ -8,7 +8,10 @@
         main = disk.gpt {
           device = "mmcblk0";
           partitions = {
-            esp = esp.call { size = "500M"; };
+            esp = esp.call {
+              size = "256M";
+              name = "esp";
+            };
             system = f2fs.call {
               name = "system";
               size = "100%";
@@ -20,11 +23,9 @@
         sda = disk.gpt {
           device = "sda";
           partitions = {
-            swapcrypt = luks.call {
-              name = "swapcrypt";
+            swapcrypt = {
               size = "4G";
-              content = swap.call { };
-              priority = 1;
+              content = swap.call;
             };
             system = xfs.call {
               name = "system";

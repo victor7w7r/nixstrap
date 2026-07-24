@@ -1,5 +1,5 @@
 { lib, ... }: {
-  sdcard.lib.image = pkgs: bootSize: nextPartSize: nextPartName: isEntireDisk: ubootSelector: ''
+  sdcard.lib.image = pkgs: bootSize: nextPartSize: nextPartName: isEntireDisk: ''
     mkdir -p $out
 
     echo "Creating sdcard partition map..."
@@ -10,22 +10,6 @@
 
     bootImgSize=$(( (gap + bootSizeMB + swapSizeMB + nextPartSizeMB) * 1024 * 1024 + 16 * 1024 * 1024 ))
     truncate -s $bootImgSize boot.img
-
-    ${
-      if ubootSelector == "sunxi" then
-        (pkgs.buildUBoot {
-          defconfig = "orangepi_zero2w_defconfig";
-          extraMeta.platforms = [ "aarch64-linux" ];
-          env.BL31 = "${pkgs.armTrustedFirmwareAllwinnerH616}/bl31.bin";
-          filesToInstall = [ "u-boot-sunxi-with-spl.bin" ];
-        })
-        |> (uboot: ''
-          echo "Copying uboot..."
-          dd if=${uboot}/u-boot-sunxi-with-spl.bin of=boot.img bs=1024 seek=8 conv=notrunc
-        '')
-      else
-        ""
-    }
 
     sfdisk --no-reread --no-tell-kernel boot.img <<EOF
       label: gpt

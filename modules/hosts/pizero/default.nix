@@ -21,7 +21,7 @@
         #nix build -L ".#nixosConfigurations.pizero-sdimage.config.system.build.sdImage"
         includes = with den.aspects; [
           pizero.common
-          (sdcard.lib.call { ubootSelector = "sunxi"; })
+          (sdcard.lib.call { })
         ];
       };
       pizero-tarball = {
@@ -65,14 +65,11 @@
                   "earlycon"
                   "earlycon=uart,mmio32,0x05000000"
                   "console=ttyS0,115200"
-                  "loglevel=7"
                   "ignore_loglevel"
                   "systemd.bpf_restrict_fs=0"
                   "rd.shell"
                   "rd.retry=10"
                   "systemd.debug_shell=1"
-                  #"clk_ignore_unused"
-                  #"systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [

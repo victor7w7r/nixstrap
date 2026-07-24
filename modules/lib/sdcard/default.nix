@@ -9,10 +9,8 @@
       nextPartSize ? 16384,
       isExtlinux ? true,
       isEntireDisk ? false,
-      ubootSelector ? "",
       nextPartName ? "system",
       persistLabel ? "system",
-      postBuildCommands ? "",
       storeLabel ? "system",
     }:
     {
@@ -29,7 +27,6 @@
         {
           system.nixos.tags = [ "sd-card" ];
           system.build.image = config.system.build.sdImage;
-          system.build.bootFiles = (sdcard.lib.kernel pkgs ubootSelector postBuildCommands true);
           system.build.sdImage = pkgs.stdenv.mkDerivation {
             name =
               "nixos-image-${config.system.nixos.label}-" + "${host.name}-${pkgs.stdenv.hostPlatform.system}";
@@ -51,7 +48,7 @@
               with sdcard.lib;
               (pkgs.buildPackages.closureInfo { rootPaths = [ config.system.build.toplevel ]; })
               |> (closureInfo: ''
-                ${(image pkgs bootSize nextPartSize nextPartName isEntireDisk ubootSelector)}
+                ${(image pkgs bootSize nextPartSize nextPartName isEntireDisk)}
                 ${
                   (firmware (
                     lib.optionalString isExtlinux ''
