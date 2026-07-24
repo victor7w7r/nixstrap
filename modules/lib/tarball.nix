@@ -14,6 +14,18 @@
         nixos =
           { config, pkgs, ... }:
           {
+            system.build.bootFiles = pkgs.stdenvNoCC.mkDerivation {
+              name = "bootFiles";
+              nativeBuildInputs = with pkgs; [ zstd ] ++ additionalBuildInputs;
+              buildCommand = ''
+                mkdir -p $out
+                ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+                  -c ${config.system.build.toplevel} -d firmware/boot
+                ls .
+                tar -cv -C boot . | zstd -T$NIX_BUILD_CORES > $out/boot.tar.zst
+              '';
+            };
+
             system.build.tarball = pkgs.stdenvNoCC.mkDerivation {
               name = "tarball";
 
