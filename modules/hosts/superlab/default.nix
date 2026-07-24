@@ -21,7 +21,6 @@
         includes = with den.aspects; [
           superlab.common
           (sdcard.lib.call {
-            ubootSelector = "rockchip";
             nextPartSize = "65536";
             isHDD = false;
             isEntireDisk = true;
