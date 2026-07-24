@@ -9,10 +9,12 @@
           DefaultTimeoutStopSec = "30s";
         };
       };
-      systemd.units."systemd-cryptsetup@*.service".text = ''
-        [Job]
-        JobTimeoutSec=30s
-      '';
+      /*
+        systemd.units."systemd-cryptsetup@*.service".text = ''
+          [Job]
+          JobTimeoutSec=30s
+        '';
+      */
     };
     disko.devices = with disko; {
       disk = {
