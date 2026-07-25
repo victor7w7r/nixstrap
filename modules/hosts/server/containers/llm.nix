@@ -9,8 +9,8 @@
         privateNetwork = true;
         enableTun = true;
         ephemeral = false;
-        hostAddress = "192.168.100.1";
-        localAddress = "192.168.100.5";
+        hostAddress = "192.168.1.1";
+        localAddress = "192.168.1.5";
         bindMounts = {
           "/etc/ssh" = {
             hostPath = "/home/victor7w7r/.ssh";

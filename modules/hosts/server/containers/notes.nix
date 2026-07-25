@@ -8,8 +8,8 @@
         privateNetwork = true;
         enableTun = true;
         ephemeral = false;
-        hostAddress = "192.168.100.1";
-        localAddress = "192.168.100.3";
+        hostAddress = "192.168.1.1";
+        localAddress = "192.168.1.3";
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         bindMounts = {
