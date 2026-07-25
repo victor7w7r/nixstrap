@@ -10,6 +10,15 @@
         ephemeral = false;
         hostAddress = "192.168.1.1";
         localAddress = "192.168.1.2";
+
+        forwardPorts = [
+          {
+            containerPort = 80;
+            hostPort = 8081;
+            protocol = "tcp";
+          }
+        ];
+
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         bindMounts = {
