@@ -47,6 +47,7 @@
         isPersistent,
         isTpm,
         lib,
+        inputs',
         pkgs,
         self',
         ...
@@ -71,6 +72,7 @@
               f2fs-tools
               fsarchiver
               killall
+              inputs'.agenix.packages.default
               ntfs2btrfs
               #procmux
               self'.packages.progressline

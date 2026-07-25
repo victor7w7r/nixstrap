@@ -122,13 +122,6 @@
                 volumes = [ "/opt/seafile-mysql/db:/var/lib/mysql" ];
                 extraOptions = [ "--network=seafile-net" ];
               };
-              seafile-admin = {
-                image = "phpmyadmin";
-                ports = [ "8080:80" ];
-                environment.PMA_HOST = "seafile-db";
-                extraOptions = [ "--network=seafile-net" ];
-                dependsOn = [ "seafile-db" ];
-              };
               seafile-cache = {
                 image = "redis";
                 extraOptions = [ "--network=seafile-net" ];
