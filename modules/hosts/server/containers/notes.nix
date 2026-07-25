@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  den.aspects.server.containers.nixos =
+  den.aspects.server.provides.containers.nixos =
     { lib, ... }:
     {
       containers.notes = {

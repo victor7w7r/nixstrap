@@ -45,7 +45,7 @@
           networking = {
             hostName = "v7w7r-macmini81";
             networkmanager = {
-              unmanaged = [ "enp2s0f1u1" ];
+              #unmanaged = [ "enp2s0f1u1" ];
               ensureProfiles.profiles."static-network" = {
                 connection = {
                   id = "static-network";
@@ -78,6 +78,7 @@
             bolt
             picocom
             tbtools
+            nbd
             thunderbolt
             rkdeveloptool
             sunxi-tools
