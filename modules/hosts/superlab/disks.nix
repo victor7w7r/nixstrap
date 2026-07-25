@@ -10,13 +10,18 @@
       main = disk.gpt {
         device = "nvme0n1";
         partitions = {
-          esp = esp.call { size = "256M"; };
-          swapcrypt = luks.call {
+          esp = esp.call {
+            size = "256M";
+            name = "esp";
+          };
+          /*
+            swapcrypt = luks.call {
             name = "swapcrypt";
             size = "32G";
             content = swap.call { };
             priority = 1;
-          };
+            };
+          */
           system = btrfs.call {
             name = "system";
             size = "100%";

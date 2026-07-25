@@ -45,7 +45,7 @@
               resumeDevice = "/dev/mapper/swapcrypt";
               blacklistedKernelModules = [ "snd_hda_intel" ];
               kernelPackages = (kernel.hosts.handheld pkgs).handheld-kernelPackages;
-              kernelParams = [ "resume=/dev/mapper/swapcrypt" ];
+              #kernelParams = [ "resume=/dev/mapper/swapcrypt" ];
             };
 
             environment = {

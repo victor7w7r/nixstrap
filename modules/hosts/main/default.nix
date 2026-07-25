@@ -79,7 +79,16 @@
             rkdeveloptool
             sunxi-tools
             kdePackages.plasma-thunderbolt
-            wineWow64Packages.stable
+            (wineWow64Packages.unstableFull.overrideAttrs (prev: {
+              src = fetchurl {
+                url = "https://dl.winehq.org/wine/source/9.x/wine-9.22.tar.xz";
+                hash = "sha256-4VDSl0KqVPdo7z6XbthhqqT59IVC5Am+qQLQ9Js1loM=";
+              };
+              preConfigure = ''
+                export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -std=gnu17"
+              '';
+              version = "9.22";
+            }))
             winetricks
           ];
 
