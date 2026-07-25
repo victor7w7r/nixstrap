@@ -12,6 +12,7 @@
       {
         includes = with den.aspects; [
           server._
+          server.containers
 
           cli._
           dev.mise

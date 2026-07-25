@@ -3890,6 +3890,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-wine": {
+      "locked": {
+        "lastModified": 1736010017,
+        "narHash": "sha256-pMttboU4LraZezi3tc7NiHODd4eKziFRb2a4s4WO8Ms=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a1945f760a8fe019a4d753808de424dcd4e5b3cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a1945f760a8fe019a4d753808de424dcd4e5b3cf",
+        "type": "github"
+      }
+    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1768564909,
@@ -4826,6 +4842,7 @@
         "nix-search-tv": "nix-search-tv",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_15",
+        "nixpkgs-wine": "nixpkgs-wine",
         "nixvim": "nixvim",
         "no-more-secrets": "no-more-secrets",
         "oneplus": "oneplus",

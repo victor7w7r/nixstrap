@@ -1,5 +1,7 @@
 { den, kernel, ... }:
 {
+  flake-file.inputs.nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
+
   den = {
     hosts.x86_64-linux = {
       main-chroot.users.victor7w7r = { };
@@ -35,6 +37,7 @@
         {
           lib,
           pkgs,
+          inputs',
           self',
           ...
         }:
@@ -79,11 +82,35 @@
             rkdeveloptool
             sunxi-tools
             kdePackages.plasma-thunderbolt
+            inputs'.nixpkgs-wine.legacyPackages.wineWow64Packages.staging
+            freetype
+            gnutls
+            libxcrypt
             winetricks
+
+            pkgsi686Linux.glibc
+            pkgsi686Linux.stdenv.cc.cc.lib
+            pkgsi686Linux.gnutls
+            pkgsi686Linux.freetype
+            pkgsi686Linux.libxcrypt
           ];
 
           services.thermald.enable = true;
+
           hardware = {
+            graphics = {
+              enable32Bit = true;
+              extraPackages = with pkgs; [
+                intel-media-driver
+                vulkan-loader
+                vulkan-validation-layers
+                vulkan-extension-layer
+              ];
+              extraPackages32 = with pkgs.pkgsi686Linux; [
+                intel-media-driver
+                vulkan-loader
+              ];
+            };
             cpu.intel.updateMicrocode = true;
             firmware = lib.mkAfter [ self'.packages.brcm-firmware ];
           };

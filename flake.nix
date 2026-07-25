@@ -2,6 +2,7 @@
 # Use `nix run .#write-flake` to regenerate it.
 {
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
   nixConfig = {
     accept-flake-config = true;
     allow-import-from-derivation = true;
@@ -9,6 +10,7 @@
     auto-optimise-store = true;
     experimental-features = [
       "nix-command"
+      "ca-derivations"
       "flakes"
       "fetch-closure"
       "parse-toml-timestamps"
@@ -647,6 +649,7 @@
       };
     };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
     nixvim.url = "github:nix-community/nixvim";
     no-more-secrets = {
       url = "github:bartobri/no-more-secrets";

@@ -11,6 +11,7 @@
       "text/javascript" = [ "dev.zed.Zed.desktop" ];
       "text/html" = [ "dev.zed.Zed.desktop" ];
       "text/plain" = [ "dev.zed.Zed.desktop" ];
+      "text/x-shellscript" = [ "dev.zed.Zed.desktop" ];
       "application/json" = [ "dev.zed.Zed.desktop" ];
       "application/xhtml+xml" = [ "dev.zed.Zed.desktop" ];
       "application/x-extension-htm" = [ "dev.zed.Zed.desktop" ];
