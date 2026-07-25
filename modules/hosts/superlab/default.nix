@@ -67,7 +67,10 @@
             {
               networking.hostName = "v7w7r-radxarock5b";
               boot = {
-                kernelParams = [ "console=ttyS2,1500000n8" ];
+                kernelParams = [
+                  "console=ttyS2,1500000n8"
+                  "zram.num_devices=2"
+                ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;
                   efi.canTouchEfiVariables = true;
