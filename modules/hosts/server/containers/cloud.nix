@@ -50,16 +50,18 @@
               journald.extraConfig = "SystemMaxUse=100M";
               resolved.enable = true;
 
-              tailscale = {
-                enable = true;
-                openFirewall = true;
-                useRoutingFeatures = "client";
-                authKeyFile = config.age.secrets.tailnet.path;
-                extraUpFlags = [
-                  "--accept-dns=true"
-                  "--accept-routes"
-                ];
-              };
+              /*
+                tailscale = {
+                  enable = true;
+                  openFirewall = true;
+                  useRoutingFeatures = "client";
+                  authKeyFile = config.age.secrets.tailnet.path;
+                  extraUpFlags = [
+                    "--accept-dns=true"
+                    "--accept-routes"
+                  ];
+                };
+              */
             };
             systemd = {
               tmpfiles.rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
