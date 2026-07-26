@@ -1,6 +1,7 @@
 {
   den,
   initrd-services,
+  inputs,
   kernel,
   tarball,
   sdcard,
@@ -65,6 +66,7 @@
           nixos =
             { lib, pkgs, ... }:
             {
+              imports = [ inputs.disko.nixosModules.disko ];
               networking.hostName = "v7w7r-radxarock5b";
               boot = {
                 kernelParams = [

@@ -38,12 +38,13 @@
           ];
         };
 
-        services.displayManager = {
+        services.displayManager = lib.mkForce {
           sddm = {
             enable = true;
             settings.General.DisplayServer = "wayland";
-            package = lib.mkForce pkgs.kdePackages.sddm;
+            #package = lib.mkForce pkgs.kdePackages.sddm;
           };
+          generic.execCmd = "exec /run/current-system/sw/bin/sddm";
           sessionPackages = with pkgs.kdePackages; [ plasma-mobile ];
           defaultSession = "plasma-mobile";
           autoLogin = {

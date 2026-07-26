@@ -48,9 +48,13 @@
       {
         imports = with inputs; [
           vanilla-mobile-nixos.nixosModules.vanilla-mobile
+          inputs.disko-mobile.nixosModules.disko
         ];
 
-        nixpkgs.config.allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
+        nixpkgs.config = {
+          allowUnfree = true;
+          allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
+        };
 
         environment = {
           systemPackages = [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
@@ -58,7 +62,7 @@
         };
 
         boot = {
-          kernelPackages = inputs'.vanilla-mobile.installer.crossPkgs.linuxPackagesFor inputs.vanilla-mobile.installer.vanillaMobileCrossPkgs.linuxKernels.linux_sdm845;
+          #  kernelPackages = inputs'.vanilla-mobile.installer.crossPkgs.linuxPackagesFor inputs.vanilla-mobile.installer.vanillaMobileCrossPkgs.linuxKernels.linux_sdm845;
           kernelParams = [
             "console=tty0"
             "firmware_class.path=/extra-firmware"
@@ -73,7 +77,12 @@
           };
         };
 
-        hardware.enableRedistributableFirmware = true;
+        hardware = {
+          #enableRedistributableFirmware = true;
+          firmware = lib.mkAfter [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
+          sensor.iio.enable = true;
+        };
+
         networking.modemmanager.enable = true;
         systemd.services.usb-moded-turn-off-rescue-mode.enable = false;
         systemd.sockets.sshd.socketConfig.FreeBind = lib.mkIf config.services.openssh.startWhenNeeded true;

@@ -2,7 +2,7 @@
   den.aspects.phone.audio.nixos = { inputs', ... }: {
     vanilla-mobile.alsa-ucm-conf = {
       enable = true;
-      package = inputs'.vanilla-mobile.packages.alsa-ucm-conf-sdm845;
+      package = inputs'.vanilla-mobile-nixos.packages.alsa-ucm-conf-sdm845;
     };
 
     services = {

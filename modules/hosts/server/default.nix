@@ -1,4 +1,9 @@
-{ den, kernel, ... }:
+{
+  den,
+  inputs,
+  kernel,
+  ...
+}:
 {
   den = {
     hosts.x86_64-linux = {
@@ -33,6 +38,7 @@
         nixos =
           { config, pkgs, ... }:
           {
+            imports = [ inputs.disko.nixosModules.disko ];
             networking.hostName = "v7w7r-youyeetoox1";
             hardware.cpu.intel.updateMicrocode = true;
 

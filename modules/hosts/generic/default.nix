@@ -1,4 +1,9 @@
-{ den, kernel, ... }:
+{
+  den,
+  inputs,
+  kernel,
+  ...
+}:
 {
   den = {
     hosts.x86_64-linux.generic.users.snowflake = { };
@@ -29,7 +34,10 @@
         {
           networking.hostName = "v7w7r-generic";
           virtualisation.vmVariant.virtualisation.useEFIBoot = true;
-          imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
+          imports = [
+            "${modulesPath}/profiles/qemu-guest.nix"
+            inputs.disko.nixosModules.disko
+          ];
 
           boot = {
             kernelParams = [

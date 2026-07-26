@@ -1,4 +1,9 @@
-{ den, kernel, ... }:
+{
+  den,
+  inputs,
+  kernel,
+  ...
+}:
 {
   flake-file.inputs.nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
 
@@ -42,6 +47,8 @@
           ...
         }:
         {
+          imports = [ inputs.disko.nixosModules.disko ];
+
           networking = {
             hostName = "v7w7r-macmini81";
             networkmanager = {

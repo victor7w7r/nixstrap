@@ -26,9 +26,11 @@
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org"
+      "https://vanilla-mobile-nixos.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "vanilla-mobile-nixos.cachix.org-1:nicMQxxTD4n6PM9dCvylqsCOCA6M2C6gybbCKrei8AQ="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
     trusted-substituters = [
@@ -221,6 +223,10 @@
     den.url = "github:denful/den";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     disko.url = "github:nix-community/disko";
+    disko-mobile = {
+      url = "github:JuneStepp/disko/mobile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     diskonaut = {
       url = "github:imsnif/diskonaut";
       flake = false;
@@ -583,10 +589,6 @@
       url = "github:xdearboy/mfetch";
       flake = false;
     };
-    mobile-nixos = {
-      url = "github:mobile-nixos/mobile-nixos";
-      flake = false;
-    };
     mynav = {
       url = "github:GianlucaP106/mynav";
       flake = false;
@@ -883,6 +885,7 @@
       url = "github:Ran-Thegoth/uwe5622";
       flake = false;
     };
+    vanilla-mobile-nixos.url = "github:vanilla-mobile-nixos/vanilla-mobile-nixos";
     virtual-desktops-only-on-primary = {
       url = "github:Ubiquitine/virtual-desktops-only-on-primary";
       flake = false;

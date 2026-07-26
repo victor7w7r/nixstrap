@@ -1,6 +1,7 @@
 {
   den,
   initrd-services,
+  inputs,
   kernel,
   tarball,
   sdcard,
@@ -58,6 +59,7 @@
           nixos =
             { pkgs, ... }:
             {
+              imports = [ inputs.disko.nixosModules.disko ];
               networking.hostName = "v7w7r-opizero2w";
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
               boot = {

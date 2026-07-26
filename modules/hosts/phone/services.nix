@@ -10,7 +10,6 @@
         settings.input.touchscreen = true;
       };
       getty.autologinUser = "victor7w7r";
-      hardware.sensor.iio.enable = true;
       hexagonrpcd.sdsp.enable = true;
       msm-modem-uim-selection.enable = true;
       rmtfs.enable = true;
