@@ -725,6 +725,11 @@
       flake = false;
     };
 
+    runlike = {
+      url = "github:lavie/runlike";
+      flake = false;
+    };
+
     sandscreen = {
       url = "github:frostyarchtide/sandscreen";
       flake = false;

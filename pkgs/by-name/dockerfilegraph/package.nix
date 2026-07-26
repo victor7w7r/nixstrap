@@ -3,5 +3,5 @@ buildGoModule {
   pname = "dockerfilegraph";
   version = "latest";
   src = inputs.dockerfilegraph;
-  vendorHash = "sha256-7nQZekXDzs5VMTKGCcvfMx8nxeyGaPM1dPXGAjyz7Ck=";
+  vendorHash = "sha256-mx6ymmo9+behRlLUfm3NiDY7utyM/ACV5XPaiph39w8=";
 }
