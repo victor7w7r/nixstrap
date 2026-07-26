@@ -75,6 +75,35 @@
   perSystem =
     { pkgs, ... }:
     {
+      devShells = {
+        main-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.main pkgs).main-kernel;
+        };
+        generic-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.generic pkgs).generic-kernel;
+        };
+        handheld-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.handheld pkgs).handheld-kernel;
+        };
+        server-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.server pkgs).server-kernel;
+        };
+        pizero-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.pizero pkgs).pizero-kernel;
+          isArm = true;
+        };
+        superlab-kconfig = kernel.lib.kconfig {
+          inherit pkgs;
+          kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
+          isArm = true;
+        };
+      };
+
       packages = lib.mkAfter {
         handheld-kernel = (kernel.hosts.handheld pkgs).handheld-kernel;
         handheld-config = (kernel.hosts.handheld pkgs).handheld-config;
@@ -86,7 +115,7 @@
         superlab-kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
         generic-config = (kernel.hosts.generic pkgs).generic-config;
         generic-kernel = (kernel.hosts.generic pkgs).generic-kernel;
-        main-kernel = (kernel.hostsm.ain pkgs).main-kernel;
+        main-kernel = (kernel.hosts.main pkgs).main-kernel;
         main-config = (kernel.hosts.main pkgs).main-config;
       };
     };

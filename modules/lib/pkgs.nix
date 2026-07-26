@@ -2,6 +2,7 @@
   den,
   inputs,
   withSystem,
+  tauchgang,
   kernel,
   ...
 }:
@@ -21,6 +22,7 @@
         overlays = [
           (final: _: {
             main-kernel = (kernel.hosts.main pkgs).main-kernel;
+            tauchgang = tauchgang.lib.call;
           })
         ];
       };
