@@ -29,6 +29,7 @@
               pods
               podman-tui
               self'.packages.dockadvisor
+              self'.packages.supdock
             ];
           };
           virtualisation.podman = {

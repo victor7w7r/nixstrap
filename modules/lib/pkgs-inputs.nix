@@ -780,6 +780,11 @@
       flake = false;
     };
 
+    supdock = {
+      url = "github:segersniels/supdock";
+      flake = false;
+    };
+
     sxtetris = {
       url = "github:shixinhuang99/sxtetris";
       flake = false;

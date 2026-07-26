@@ -231,7 +231,7 @@
       url = "github:imsnif/diskonaut";
       flake = false;
     };
-    dockerize = {
+    dockadvisor = {
       url = "github:deckrun/dockadvisor";
       flake = false;
     };
@@ -791,6 +791,10 @@
     };
     sunxi = {
       url = "github:armbian/firmware/4050e02da2dce2b74c97101f7964ecfb962f5aec";
+      flake = false;
+    };
+    supdock = {
+      url = "github:segersniels/supdock";
       flake = false;
     };
     swiftfetch = {
