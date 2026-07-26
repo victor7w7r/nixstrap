@@ -7,6 +7,7 @@
       localVer = "sdm845";
       isArm = true;
       isCachyos = false;
+      notDenial = true;
       patches =
         "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
         |> (

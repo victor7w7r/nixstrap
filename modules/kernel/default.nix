@@ -17,6 +17,7 @@
       isHardened ? false,
       isArm ? false,
       isCachyos ? true,
+      notDenial ? false,
     }:
     let
       src = if isCachyos then inputs.cachyos-linux else pkgs.linuxPackages_7_1.kernel.src;
@@ -28,10 +29,15 @@
       extraConfig = kernel.lib.concat-config {
         isString = true;
         config =
-          (kernel.config.denial.all {
-            inherit isArm;
-            config = kernel.lib.cachyos-config pkgs isHardened;
-          })
+          (
+            if (!notDenial) then
+              (kernel.config.denial.all {
+                inherit isArm;
+                config = kernel.lib.cachyos-config pkgs isHardened;
+              })
+            else
+              [ ]
+          )
           ++ extraConfig;
       };
 
