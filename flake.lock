@@ -972,19 +972,19 @@
         "type": "github"
       }
     },
-    "dockmate": {
+    "dockerize": {
       "flake": false,
       "locked": {
-        "lastModified": 1775459080,
-        "narHash": "sha256-WuR//XDhQtdcwfW6iThVTR6S85LpvMAFsRUJa07nsBA=",
-        "owner": "shubh-io",
-        "repo": "dockmate",
-        "rev": "ada3d0a63d0a4278ddd380e0de9efab39c2aa152",
+        "lastModified": 1768209962,
+        "narHash": "sha256-lS2TPtA1cMw1/ZCyy08aHHQRxbPkd2mzb6rnK1um0wc=",
+        "owner": "deckrun",
+        "repo": "dockadvisor",
+        "rev": "e8a898e7996c04fd6d3b0e6c34373b0b2f171f1b",
         "type": "github"
       },
       "original": {
-        "owner": "shubh-io",
-        "repo": "dockmate",
+        "owner": "deckrun",
+        "repo": "dockadvisor",
         "type": "github"
       }
     },
@@ -4783,7 +4783,7 @@
         "disko": "disko",
         "disko-mobile": "disko-mobile",
         "diskonaut": "diskonaut",
-        "dockmate": "dockmate",
+        "dockerize": "dockerize",
         "dunst-timer": "dunst-timer",
         "dvdbounce": "dvdbounce",
         "dvdts": "dvdts",

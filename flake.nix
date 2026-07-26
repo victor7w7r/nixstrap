@@ -231,8 +231,8 @@
       url = "github:imsnif/diskonaut";
       flake = false;
     };
-    dockmate = {
-      url = "github:shubh-io/dockmate";
+    dockerize = {
+      url = "github:deckrun/dockadvisor";
       flake = false;
     };
     dunst-timer = {

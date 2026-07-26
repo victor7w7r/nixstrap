@@ -195,6 +195,11 @@
       flake = false;
     };
 
+    dockadvisor = {
+      url = "github:deckrun/dockadvisor";
+      flake = false;
+    };
+
     dunst-timer = {
       url = "github:bitSheriff/dunst-timer";
       flake = false;

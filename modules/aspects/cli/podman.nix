@@ -28,7 +28,7 @@
               oxker
               pods
               podman-tui
-              self'.packages.dockerize
+              self'.packages.dockadvisor
             ];
           };
           virtualisation.podman = {
