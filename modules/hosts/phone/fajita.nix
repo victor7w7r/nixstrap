@@ -16,6 +16,7 @@
         { lib, pkgs, ... }:
         {
           networking.hostName = "v7w7r-fajita";
+          hardware.deviceTree.name = "qcom/sdm845-oneplus-fajita.dtb";
         };
     };
   };

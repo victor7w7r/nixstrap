@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  kernel.lib.kconfig =
+  kernel.lib.menu-config =
     {
       kernel,
       pkgs,

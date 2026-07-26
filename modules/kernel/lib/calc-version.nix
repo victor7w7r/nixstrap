@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  kernel.lib.calc-version = pkgs: src: rec {
+  kernel.lib.version = pkgs: src: localVer: rec {
     file = pkgs.stdenvNoCC.mkDerivation {
       name = "calc-version";
       inherit src;
@@ -22,5 +22,6 @@
       + toString (builtins.match ".+SUBLEVEL = ([0-9]+).+" (builtins.readFile file))
       + (lib.optionalString (extraversion != "") extraversion)
     }";
+    final = "${string}-v7w7r-${localVer}";
   };
 }

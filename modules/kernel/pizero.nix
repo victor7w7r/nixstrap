@@ -1,13 +1,12 @@
-{ inputs, kernel, ... }:
+{ kernel, ... }:
 {
   kernel.hosts.pizero =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
       localVer = "sunxi-hardened";
-      src = inputs.cachyos-linux;
-      config = "${(kernel.patches.injector pkgs).armbian.source}/config/kernel/linux-sunxi64-current.config";
-      version = (kernel.linux.injector pkgs).version.string;
+      isArm = true;
+      isHardened = true;
       patches =
         with kernel.patches.injector pkgs;
         cachyos.hardened ++ tachyon.std ++ bunker.hardened ++ armbian.sunxi-patches;
@@ -53,5 +52,20 @@
       pizero-kernelPackages = generated.packages;
       pizero-kernel = generated.kernel;
       pizero-config = generated.config;
+    });
+
+  perSystem =
+    { lib, pkgs, ... }:
+    (kernel.hosts.pizero pkgs)
+    |> (src: {
+      devShells.pizero-kconfig = kernel.lib.kconfig {
+        inherit pkgs;
+        kernel = src.pizero-kernel;
+      };
+
+      packages = lib.mkAfter {
+        pizero-config = src.pizero-config;
+        pizero-kernel = src.pizero-kernel;
+      };
     });
 }

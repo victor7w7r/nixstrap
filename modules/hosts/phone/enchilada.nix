@@ -13,6 +13,7 @@
         { lib, pkgs, ... }:
         {
           networking.hostName = "v7w7r-enchilada";
+          hardware.deviceTree.name = "qcom/sdm845-oneplus-enchilada.dtb";
         };
     };
   };

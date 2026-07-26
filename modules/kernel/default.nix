@@ -10,28 +10,35 @@
 
   kernel.lib.v7w7r =
     {
-      localVer,
-      config,
-      extraConfig,
-      patches,
       pkgs,
+      patches,
+      localVer,
+      extraConfig,
+      isHardened ? false,
       isArm ? false,
-      src,
-      version,
+      isCachyos ? true,
     }:
+    let
+      src = if isCachyos then inputs.cachyos-linux else pkgs.linuxKernel.kernels.linux_7_1;
+    in
     (pkgs.buildLinux {
       pname = "linux-v7w7r-${localVer}";
       inherit src;
-      extraConfig = kernel.lib.concat-config {
-        config =
-          extraConfig ++ kernel.config.denial.all ++ (kernel.config.denial.dynamic { inherit config isArm; });
-        isString = true;
-      };
-      version = "${version}-v7w7r-${localVer}";
-      modDirVersion = "${version}-v7w7r-${localVer}";
       stdenv = (pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM;
-      ignoreConfigErrors = true;
+      extraConfig = kernel.lib.concat-config {
+        isString = true;
+        config =
+          (kernel.config.denial.all {
+            inherit isArm;
+            config = kernel.lib.cachyos-config pkgs isHardened;
+          })
+          ++ extraConfig;
+      };
 
+      version = (kernel.lib.version pkgs src localVer).final;
+      modDirVersion = (kernel.lib.version pkgs src localVer).final;
+
+      ignoreConfigErrors = true;
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
@@ -54,71 +61,13 @@
     })
     |> (base: {
       kernel = base;
+      config = kernel.lib.filtered-config pkgs base.configfile;
       packages =
         base
         |> pkgs.linuxPackagesFor
         |> (pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { })
           .kernelModuleLLVMOverride;
-      config = pkgs.stdenvNoCC.mkDerivation {
-        name = "filtered-config";
-        src = base.configfile;
-        phases = [ "installPhase" ];
-        installPhase = ''
-          cp $src .config
-          sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
-          sed -i -E 's/[[:space:]]+"\s*$/"/' .config
-          mv .config $out
-        '';
-      };
     });
-
-  perSystem =
-    { pkgs, ... }:
-    {
-      devShells = {
-        main-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.main pkgs).main-kernel;
-        };
-        generic-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.generic pkgs).generic-kernel;
-        };
-        handheld-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.handheld pkgs).handheld-kernel;
-        };
-        server-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.server pkgs).server-kernel;
-        };
-        pizero-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.pizero pkgs).pizero-kernel;
-          isArm = true;
-        };
-        superlab-kconfig = kernel.lib.kconfig {
-          inherit pkgs;
-          kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
-          isArm = true;
-        };
-      };
-
-      packages = lib.mkAfter {
-        handheld-kernel = (kernel.hosts.handheld pkgs).handheld-kernel;
-        handheld-config = (kernel.hosts.handheld pkgs).handheld-config;
-        server-kernel = (kernel.hosts.server pkgs).server-kernel;
-        server-config = (kernel.hosts.server pkgs).server-config;
-        pizero-kernel = (kernel.hosts.pizero pkgs).pizero-kernel;
-        pizero-config = (kernel.hosts.pizero pkgs).pizero-config;
-        superlab-config = (kernel.hosts.superlab pkgs).superlab-config;
-        superlab-kernel = (kernel.hosts.superlab pkgs).superlab-kernel;
-        generic-config = (kernel.hosts.generic pkgs).generic-config;
-        generic-kernel = (kernel.hosts.generic pkgs).generic-kernel;
-        main-kernel = (kernel.hosts.main pkgs).main-kernel;
-        main-config = (kernel.hosts.main pkgs).main-config;
-      };
-    };
 }
 /*
   lib.optionalAttrs isClang {

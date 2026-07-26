@@ -1,13 +1,10 @@
-{ inputs, kernel, ... }:
+{ kernel, ... }:
 {
   kernel.hosts.handheld =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
       localVer = "handheld-native";
-      src = inputs.cachyos-linux;
-      config = (kernel.linux.injector pkgs).kConfig false;
-      version = (kernel.linux.injector pkgs).version.string;
       patches =
         with kernel.patches.injector pkgs;
         cachyos.handheld ++ tachyon.gaming ++ bunker.std ++ asus;
@@ -29,5 +26,20 @@
       handheld-kernelPackages = generated.packages;
       handheld-kernel = generated.kernel;
       handheld-config = generated.config;
+    });
+
+  perSystem =
+    { lib, pkgs, ... }:
+    (kernel.hosts.handheld pkgs)
+    |> (src: {
+      devShells.handheld-kconfig = kernel.lib.kconfig {
+        inherit pkgs;
+        kernel = src.handheld-kernel;
+      };
+
+      packages = lib.mkAfter {
+        handheld-config = src.handheld-config;
+        handheld-kernel = src.handheld-kernel;
+      };
     });
 }

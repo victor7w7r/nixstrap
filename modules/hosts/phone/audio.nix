@@ -13,22 +13,28 @@
           q6voice_device = 6;
         };
       };
-      pipewire.wireplumber.extraConfig."51-qcom"."monitor.alsa.rules" = [
-        {
-          matches = [
-            { "node.name" = "~alsa_input.*"; }
-            { "node.name" = "~alsa_output.*"; }
-          ];
+      pipewire.wireplumber.extraConfig = {
+        "50-mobile-bluetooth"."monitor.bluez.properties" = {
+          "bluez5.hfphsp-backend-native-modem" = "any";
+        };
 
-          actions.update-props = {
-            "audio.format" = "S16LE";
-            "audio.rate" = 48000;
-            "api.alsa.period-size" = 4096;
-            "api.alsa.period-num" = 6;
-            "api.alsa.headroom" = 512;
-          };
-        }
-      ];
+        "51-qcom"."monitor.alsa.rules" = [
+          {
+            matches = [
+              { "node.name" = "~alsa_input.*"; }
+              { "node.name" = "~alsa_output.*"; }
+            ];
+
+            actions.update-props = {
+              "audio.format" = "S16LE";
+              "audio.rate" = 48000;
+              "api.alsa.period-size" = 4096;
+              "api.alsa.period-num" = 6;
+              "api.alsa.headroom" = 512;
+            };
+          }
+        ];
+      };
     };
   };
 }

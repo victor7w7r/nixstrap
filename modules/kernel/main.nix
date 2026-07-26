@@ -1,13 +1,10 @@
-{ inputs, kernel, ... }:
+{ kernel, ... }:
 {
   kernel.hosts.main =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
       localVer = "native";
-      src = inputs.cachyos-linux;
-      config = (kernel.linux.injector pkgs).kConfig false;
-      version = (kernel.linux.injector pkgs).version.string;
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
       extraConfig = with kernel.config.modules; [
         (cmdline {
@@ -31,5 +28,20 @@
       main-kernelPackages = generated.packages;
       main-kernel = generated.kernel;
       main-config = generated.config;
+    });
+
+  perSystem =
+    { lib, pkgs, ... }:
+    (kernel.hosts.main pkgs)
+    |> (src: {
+      devShells.main-kconfig = kernel.lib.kconfig {
+        inherit pkgs;
+        kernel = src.main-kernel;
+      };
+
+      packages = lib.mkAfter {
+        main-config = src.main-config;
+        main-kernel = src.main-kernel;
+      };
     });
 }

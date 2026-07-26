@@ -42,6 +42,7 @@
       {
         config,
         inputs',
+        pkgs,
         lib,
         ...
       }:
@@ -50,6 +51,19 @@
           vanilla-mobile-nixos.nixosModules.vanilla-mobile
           inputs.disko-mobile.nixosModules.disko
         ];
+
+        vanilla-mobile = {
+          usb-gadget.enable = lib.mkDefault true;
+          powerManagement = {
+            enable = lib.mkDefault true;
+            sleepInhibitors.enableDefault = lib.mkDefault true;
+          };
+
+          plymouth = {
+            mobileTweaks.enable = lib.mkDefault false;
+            unl0krSupport.enable = lib.mkDefault false;
+          };
+        };
 
         nixpkgs.config = {
           allowUnfree = true;
@@ -81,11 +95,20 @@
           #enableRedistributableFirmware = true;
           firmware = lib.mkAfter [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
           sensor.iio.enable = true;
+          deviceTree.enable = true;
         };
 
         networking.modemmanager.enable = true;
-        systemd.services.usb-moded-turn-off-rescue-mode.enable = false;
-        systemd.sockets.sshd.socketConfig.FreeBind = lib.mkIf config.services.openssh.startWhenNeeded true;
+        systemd = {
+          sockets.sshd.socketConfig.FreeBind = lib.mkIf config.services.openssh.startWhenNeeded true;
+          services = {
+            ModemManager.serviceConfig.ExecStart = lib.mkIf config.networking.modemmanager.enable [
+              "${pkgs.modemmanager}/bin/ModemManager --test-quick-suspend-resume"
+            ];
+            iio-sensor-proxy.serviceConfig.TimeoutStopSec = 3;
+            usb-moded-turn-off-rescue-mode.enable = false;
+          };
+        };
         security.pam.services.sshd.allowNullPassword = lib.mkImageMediaOverride true;
 
         zramSwap = {

@@ -1,13 +1,11 @@
-{ inputs, kernel, ... }:
+{ kernel, ... }:
 {
   kernel.hosts.server =
     pkgs:
     (kernel.lib.v7w7r {
       inherit pkgs;
       localVer = "server-hardened-native";
-      src = inputs.cachyos-linux;
-      version = (kernel.linux.injector pkgs).version.string;
-      config = (kernel.linux.injector pkgs).kConfig false;
+      isHardened = true;
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
       extraConfig = with kernel.config.modules; [
         (cmdline {
@@ -33,5 +31,20 @@
       server-config = generated.config;
       server-kernelPackages = generated.packages;
       server-kernel = generated.kernel;
+    });
+
+  perSystem =
+    { lib, pkgs, ... }:
+    (kernel.hosts.server pkgs)
+    |> (src: {
+      devShells.server-kconfig = kernel.lib.kconfig {
+        inherit pkgs;
+        kernel = src.server-kernel;
+      };
+
+      packages = lib.mkAfter {
+        server-config = src.server-config;
+        server-kernel = src.server-kernel;
+      };
     });
 }
