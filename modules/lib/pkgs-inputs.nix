@@ -195,11 +195,6 @@
       flake = false;
     };
 
-    dockmate = {
-      url = "github:shubh-io/dockmate";
-      flake = false;
-    };
-
     dunst-timer = {
       url = "github:bitSheriff/dunst-timer";
       flake = false;

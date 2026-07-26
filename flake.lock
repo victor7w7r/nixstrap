@@ -972,6 +972,22 @@
         "type": "github"
       }
     },
+    "dockmate": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775459080,
+        "narHash": "sha256-WuR//XDhQtdcwfW6iThVTR6S85LpvMAFsRUJa07nsBA=",
+        "owner": "shubh-io",
+        "repo": "dockmate",
+        "rev": "ada3d0a63d0a4278ddd380e0de9efab39c2aa152",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shubh-io",
+        "repo": "dockmate",
+        "type": "github"
+      }
+    },
     "doomdir": {
       "flake": false,
       "locked": {
@@ -4767,6 +4783,7 @@
         "disko": "disko",
         "disko-mobile": "disko-mobile",
         "diskonaut": "diskonaut",
+        "dockmate": "dockmate",
         "dunst-timer": "dunst-timer",
         "dvdbounce": "dvdbounce",
         "dvdts": "dvdts",

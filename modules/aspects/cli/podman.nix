@@ -3,7 +3,12 @@
     { user, ... }:
     {
       nixos =
-        { lib, pkgs, ... }:
+        {
+          lib,
+          pkgs,
+          self',
+          ...
+        }:
         {
           environment = {
             persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
@@ -15,6 +20,7 @@
               container2wasm
               devbox
               distrobox
+              dockmate
               distrobox-tui
               dive
               #distrobuilder
@@ -22,6 +28,7 @@
               oxker
               pods
               podman-tui
+              self'.packages.dockerize
             ];
           };
           virtualisation.podman = {
