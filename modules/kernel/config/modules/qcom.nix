@@ -793,7 +793,7 @@
     BLK_DEV_RAM_SIZE = "8192";
 
     # EFI
-    EFI_SBAT_FILE = "";
+    # EFI_SBAT_FILE = "";
     EFI_ZBOOT = "y";
 
     FAT_DEFAULT_UTF8 = "y";
