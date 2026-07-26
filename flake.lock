@@ -988,6 +988,22 @@
         "type": "github"
       }
     },
+    "dockerfilegraph": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784165274,
+        "narHash": "sha256-L00ennMSAFDpv8zdII92awBBM0P94SFHXFZ9bySnDwY=",
+        "owner": "patrickhoefler",
+        "repo": "dockerfilegraph",
+        "rev": "ddce49d911ef29f4422bd5f383d1fde5cde8ebce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "patrickhoefler",
+        "repo": "dockerfilegraph",
+        "type": "github"
+      }
+    },
     "doomdir": {
       "flake": false,
       "locked": {
@@ -1034,6 +1050,22 @@
       "original": {
         "owner": "doomemacs",
         "repo": "modules",
+        "type": "github"
+      }
+    },
+    "dprs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772726349,
+        "narHash": "sha256-EWtNib5XojkTkv60c8lqVG55Ztpd+bHhy8Ip8xoJ3O8=",
+        "owner": "durableprogramming",
+        "repo": "dprs",
+        "rev": "27845f34075b82a422973c7b257aa535d1e32b91",
+        "type": "github"
+      },
+      "original": {
+        "owner": "durableprogramming",
+        "repo": "dprs",
         "type": "github"
       }
     },
@@ -4784,6 +4816,8 @@
         "disko-mobile": "disko-mobile",
         "diskonaut": "diskonaut",
         "dockadvisor": "dockadvisor",
+        "dockerfilegraph": "dockerfilegraph",
+        "dprs": "dprs",
         "dunst-timer": "dunst-timer",
         "dvdbounce": "dvdbounce",
         "dvdts": "dvdts",

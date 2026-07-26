@@ -235,6 +235,14 @@
       url = "github:deckrun/dockadvisor";
       flake = false;
     };
+    dockerfilegraph = {
+      url = "github:patrickhoefler/dockerfilegraph";
+      flake = false;
+    };
+    dprs = {
+      url = "github:durableprogramming/dprs";
+      flake = false;
+    };
     dunst-timer = {
       url = "github:bitSheriff/dunst-timer";
       flake = false;

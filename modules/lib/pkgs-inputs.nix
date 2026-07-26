@@ -200,6 +200,11 @@
       flake = false;
     };
 
+    dockerfilegraph = {
+      url = "github:patrickhoefler/dockerfilegraph";
+      flake = false;
+    };
+
     dprs = {
       url = "github:durableprogramming/dprs";
       flake = false;
