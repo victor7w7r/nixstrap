@@ -4958,6 +4958,7 @@
         "rofi-process-killer": "rofi-process-killer",
         "rofi-tmux": "rofi-tmux",
         "rofi-tools": "rofi-tools",
+        "runlike": "runlike",
         "sandscreen": "sandscreen",
         "scrcpy-wrapper": "scrcpy-wrapper",
         "screego": "screego",
@@ -5005,6 +5006,22 @@
         "zeitfetch": "zeitfetch",
         "zen-browser": "zen-browser",
         "zilch": "zilch"
+      }
+    },
+    "runlike": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740518424,
+        "narHash": "sha256-wgoQ99p01B0NhrZuR0rVzpo43y/5ECoV955WKA4h4Uw=",
+        "owner": "lavie",
+        "repo": "runlike",
+        "rev": "91e74d35890a2ba831f9d34c9dc8b8135bb95676",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lavie",
+        "repo": "runlike",
+        "type": "github"
       }
     },
     "rust-analyzer-src": {

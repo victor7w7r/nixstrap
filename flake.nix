@@ -749,6 +749,10 @@
       flake = false;
     };
     rofi-tools.url = "github:szaffarano/rofi-tools";
+    runlike = {
+      url = "github:lavie/runlike";
+      flake = false;
+    };
     sandscreen = {
       url = "github:frostyarchtide/sandscreen";
       flake = false;
