@@ -13,20 +13,6 @@
         { lib, pkgs, ... }:
         {
           networking.hostName = "v7w7r-enchilada";
-
-          mobile = {
-            system.android.device_name = "OnePlus6";
-            generatedFilesystems.rootfs = lib.mkDefault {
-              filesystem = lib.mkForce "btrfs";
-              extraPadding = lib.mkForce (pkgs.image-builder.helpers.size.MiB 128);
-            };
-            device = {
-              name = "oneplus-enchilada";
-              supportLevel = "supported";
-              identity.name = "OnePlus 6";
-            };
-            hardware.screen.height = 2280;
-          };
         };
     };
   };
