@@ -200,6 +200,11 @@
       flake = false;
     };
 
+    dprs = {
+      url = "github:durableprogramming/dprs";
+      flake = false;
+    };
+
     dunst-timer = {
       url = "github:bitSheriff/dunst-timer";
       flake = false;

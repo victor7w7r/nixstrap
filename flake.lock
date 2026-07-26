@@ -972,7 +972,7 @@
         "type": "github"
       }
     },
-    "dockerize": {
+    "dockadvisor": {
       "flake": false,
       "locked": {
         "lastModified": 1768209962,
@@ -4783,7 +4783,7 @@
         "disko": "disko",
         "disko-mobile": "disko-mobile",
         "diskonaut": "diskonaut",
-        "dockerize": "dockerize",
+        "dockadvisor": "dockadvisor",
         "dunst-timer": "dunst-timer",
         "dvdbounce": "dvdbounce",
         "dvdts": "dvdts",
@@ -4937,6 +4937,7 @@
         "ssh-list": "ssh-list",
         "sticky-window-snapping": "sticky-window-snapping",
         "sunxi": "sunxi",
+        "supdock": "supdock",
         "swiftfetch": "swiftfetch",
         "sxtetris": "sxtetris",
         "sysfex": "sysfex",
@@ -5210,6 +5211,22 @@
         "owner": "armbian",
         "repo": "firmware",
         "rev": "4050e02da2dce2b74c97101f7964ecfb962f5aec",
+        "type": "github"
+      }
+    },
+    "supdock": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768493175,
+        "narHash": "sha256-r95Gg/92a3HkN79oBKUl4hEVJ8qWgVytHfqin/TUoaM=",
+        "owner": "segersniels",
+        "repo": "supdock",
+        "rev": "33f316793701b8848a0cb04bde7132165682960f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "segersniels",
+        "repo": "supdock",
         "type": "github"
       }
     },
