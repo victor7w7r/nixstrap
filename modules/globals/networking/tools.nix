@@ -30,7 +30,7 @@
             sshs
             speedtest-cli
             self'.packages.aim
-            self'.packages.screego
+            #self'.packages.screego
           ]);
       };
 
