@@ -745,12 +745,12 @@
       url = "github:Bluemangoo/scrcpy-wrapper";
       flake = false;
     };
-    sdm845-alsa = {
-      url = "gitlab:sdm845-mainline/alsa-ucm-conf/aaa7889f7a6de640b4d78300e118457335ad16c0";
+    screego = {
+      url = "github:screego/server";
       flake = false;
     };
-    sdm845-linux = {
-      url = "https://codeberg.org/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz";
+    sdm845-alsa = {
+      url = "gitlab:sdm845-mainline/alsa-ucm-conf/aaa7889f7a6de640b4d78300e118457335ad16c0";
       flake = false;
     };
     sha256-animation = {

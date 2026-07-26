@@ -715,6 +715,11 @@
       flake = false;
     };
 
+    screego = {
+      url = "github:screego/server";
+      flake = false;
+    };
+
     scrcpy-wrapper = {
       url = "github:Bluemangoo/scrcpy-wrapper";
       flake = false;

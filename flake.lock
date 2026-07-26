@@ -4909,8 +4909,8 @@
         "rofi-tools": "rofi-tools",
         "sandscreen": "sandscreen",
         "scrcpy-wrapper": "scrcpy-wrapper",
+        "screego": "screego",
         "sdm845-alsa": "sdm845-alsa",
-        "sdm845-linux": "sdm845-linux",
         "sha256-animation": "sha256-animation",
         "shutter-encoder": "shutter-encoder",
         "socktop": "socktop",
@@ -5022,6 +5022,22 @@
         "type": "github"
       }
     },
+    "screego": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778703197,
+        "narHash": "sha256-iWetj/rTiPy7Q8K8/38MXqDQle9Atcwnq8Kn+giWdiY=",
+        "owner": "screego",
+        "repo": "server",
+        "rev": "f946cee83b61d9f47c2f1c2238fb31f4042b628a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "screego",
+        "repo": "server",
+        "type": "github"
+      }
+    },
     "sdm845-alsa": {
       "flake": false,
       "locked": {
@@ -5037,20 +5053,6 @@
         "repo": "alsa-ucm-conf",
         "rev": "aaa7889f7a6de640b4d78300e118457335ad16c0",
         "type": "gitlab"
-      }
-    },
-    "sdm845-linux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1778921098,
-        "narHash": "sha256-3sS11Aoal6JNU+uXvOtiQLM40dsCqc/vb4o2ZYB2JgQ=",
-        "rev": "25be2fc4eabe9666f78cc3ec80b938fe2d92efea",
-        "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://codeberg.org/sdm845/linux/archive/25be2fc4eabe9666f78cc3ec80b938fe2d92efea.tar.gz"
       }
     },
     "sha256-animation": {

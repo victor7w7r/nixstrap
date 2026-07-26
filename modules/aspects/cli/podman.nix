@@ -12,6 +12,7 @@
             systemPackages = with pkgs; [
               arion
               ctop
+              container2wasm
               devbox
               distrobox
               distrobox-tui
