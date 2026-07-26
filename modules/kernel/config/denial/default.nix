@@ -1,4 +1,4 @@
-{ kernel, ... }:
+{ kernel, lib, ... }:
 {
   kernel.config.denial.all =
     {

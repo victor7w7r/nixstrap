@@ -1,4 +1,4 @@
-{ kernel, ... }:
+{ kernel, inputs, ... }:
 {
   kernel.hosts.phone =
     pkgs:
@@ -8,11 +8,14 @@
       isArm = true;
       isCachyos = false;
       patches =
-        with kernel.patches.injector pkgs;
-        map (item: "./${item.name}.patch") (
-          import "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
+        "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
+        |> (
+          patches:
+          with kernel.patches.injector pkgs;
+          [ "${patches}/../config_fixes.patch" ]
+          ++ map (item: "${patches}/${item.name}.patch") (import patches)
         );
-      extraConfig = with kernel.config.modules; [ ];
+      extraConfig = with kernel.config.modules; [ qcom ];
     })
     |> (generated: {
       phone-config = generated.config;
