@@ -4,20 +4,18 @@
     ip = "2";
     name = "name";
     rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
+
     bindMounts = {
       "/opt/seafile-mysql/db" = {
         hostPath = "/nix/persist/cloud/seafile/mysql";
         isReadOnly = false;
-      };
-      "/etc/ssh" = {
-        hostPath = "/home/victor7w7r/.ssh";
-        isReadOnly = true;
       };
       "/opt/seafile-data" = {
         hostPath = "/nix/persist/cloud/seafile/shared";
         isReadOnly = false;
       };
     };
+
     forwardPorts = [
       {
         containerPort = 80;

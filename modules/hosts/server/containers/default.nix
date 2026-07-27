@@ -49,7 +49,14 @@
         localAddress = "192.168.1.${ip}";
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
-        inherit forwardPorts bindMounts;
+        inherit forwardPorts;
+        bindMounts = {
+          "/etc/ssh" = {
+            hostPath = "/home/victor7w7r/.ssh";
+            isReadOnly = true;
+          };
+        }
+        // bindMounts;
 
         config =
           { config, pkgs, ... }:
