@@ -1,5 +1,5 @@
 {
-  flake,
+  flakelib,
   inputs,
   lib,
   ...
@@ -62,7 +62,7 @@
         config =
           { config, pkgs, ... }:
           {
-            system.stateVersion = flake.lib.config.stateVersion;
+            system.stateVersion = flakelib.config.stateVersion;
             imports = [ inputs.agenix.nixosModules.default ];
             boot.isContainer = true;
             age = {

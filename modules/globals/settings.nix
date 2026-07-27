@@ -1,13 +1,13 @@
-{ flake, inputs, ... }:
+{ flakelib, inputs, ... }:
 {
   den.default.nixos = { lib, ... }: {
     nix = {
       #package = lib.mkDefault (pkgs.lix);
       settings =
-        (removeAttrs flake.lib.config.flake-config [ "__provider" ])
-        // (removeAttrs flake.lib.config.nix-config [ "__provider" ]);
+        (removeAttrs flakelib.config.flake-config [ "__provider" ])
+        // (removeAttrs flakelib.config.nix-config [ "__provider" ]);
 
-      system.stateVersion = flake.lib.config.stateVersion;
+      system.stateVersion = flakelib.config.stateVersion;
 
       documentation = {
         enable = false;

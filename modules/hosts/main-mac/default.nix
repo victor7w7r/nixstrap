@@ -1,6 +1,6 @@
 {
   den,
-  flake,
+  flakelib,
   inputs,
   ...
 }:
@@ -47,8 +47,8 @@
           flake-registry = "/etc/nix/flake-registry.json";
           sandbox = "relaxed";
         }
-        // (removeAttrs flake.lib.config.flake-config [ "__provider" ])
-        // (removeAttrs flake.lib.config.nix-config [ "__provider" ]);
+        // (removeAttrs flakelib.config.flake-config [ "__provider" ])
+        // (removeAttrs flakelib.config.nix-config [ "__provider" ]);
 
         documentation = {
           enable = false;

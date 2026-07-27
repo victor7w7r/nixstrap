@@ -1,4 +1,4 @@
-{ flake, lib, ... }:
+{ flakelib, lib, ... }:
 {
   den = {
     schema.user.classes = lib.mkDefault [ "homeManager" ];
@@ -35,7 +35,7 @@
                 { ... }:
                 {
                   systemd.user.startServices = "sd-switch";
-                  home.stateVersion = flake.lib.config.stateVersion;
+                  home.stateVersion = flakelib.config.stateVersion;
                 }
               )
             ];
