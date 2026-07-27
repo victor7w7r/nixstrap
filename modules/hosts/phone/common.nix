@@ -65,7 +65,7 @@
           };
 
           deviceInfo = {
-            #name = "OnePlus 6";
+            name = "OnePlus 6";
             #codename = "oneplus-enchilada";
             manufacturer = "OnePlus";
             # dtb = "qcom/sdm845-oneplus-enchilada.dtb";
