@@ -33,9 +33,10 @@
         ip,
         bindMounts,
         name,
+        extra ? pkgs: { },
         containers ? config: { },
         forwardPorts ? [ ],
-        services ? { },
+        services ? config: pkgs: { },
         secrets ? { },
         systemd ? pkgs: { },
         rules ? [ ],
@@ -87,7 +88,7 @@
                 ];
               };
             }
-            // services;
+            // (services config pkgs);
 
             systemd = {
               tmpfiles.rules = rules;
@@ -121,6 +122,7 @@
               };
             };
           };
-      };
+      }
+      // extra;
   };
 }

@@ -2,7 +2,7 @@
 {
   den.aspects.server.containers.nixos.containers.cloud = containers.call {
     ip = "2";
-    name = "name";
+    name = "cloud";
     rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
 
     bindMounts = {
