@@ -102,7 +102,7 @@
         };
 
         hardware = {
-          enableRedistributableFirmware = true;
+          #enableRedistributableFirmware = true;
           firmware = [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
           sensor.iio.enable = true;
           deviceTree.enable = true;
