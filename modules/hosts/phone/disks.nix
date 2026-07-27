@@ -11,6 +11,7 @@
 
       devices = with disko; {
         disk = {
+          ephemeral-root = disk.root { };
           boot = {
             type = "disk";
             device = "/dev/disk/by-label/nixos-boot";
