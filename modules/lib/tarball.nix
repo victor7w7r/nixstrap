@@ -26,10 +26,12 @@
               '';
             };
 
-            system.build.initrd = pkgs.stdenvNoCC.mkDerivation {
-              name = "genInitrd";
+            system.build.kernelFiles = pkgs.stdenvNoCC.mkDerivation {
+              name = "kernelFiles";
               buildCommand = ''
-                cp "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" $out
+                mkdir -p $out
+                cp "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" $out/initrd
+                cp "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" $out/vmlinuz
               '';
             };
 
@@ -51,14 +53,14 @@
 
                   ${if additionalContent != "" then additionalContent else ""}
 
-                  mkdir -p root/nix/store
+                  mkdir -p root/store
 
                   echo "Copying store files..."
-                  rsyncy -aHAxr --progress --files-from=${closureInfo}/store-paths / root/nix/
-
+                  rsyncy -aHAxr --progress --files-from=${closureInfo}/store-paths / root/store
                   cp ${closureInfo}/registration root/nix-path-registration
+                  mkdir -p root/var/nix/daemon-socket
+                  chown -R root:root root
 
-                  mkdir -p root/nix/var/nix/daemon-socket
                   echo "Compressing with $SIZE..."
                   tar -cv -C root . | zstd -T$NIX_BUILD_CORES > $out/store.tar.zst
                 '');
