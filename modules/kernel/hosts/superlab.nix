@@ -2,7 +2,7 @@
 {
   kernel.hosts.superlab =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "rockchip";
       isArm = true;
@@ -42,7 +42,6 @@
         inherit pkgs;
         kernel = src.superlab-kernel;
       };
-
       packages = lib.mkAfter {
         superlab-config = src.superlab-config;
         superlab-kernel = src.superlab-kernel;

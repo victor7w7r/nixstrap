@@ -2,7 +2,7 @@
 {
   kernel.hosts.pizero =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "sunxi-hardened";
       isArm = true;
@@ -62,7 +62,6 @@
         inherit pkgs;
         kernel = src.pizero-kernel;
       };
-
       packages = lib.mkAfter {
         pizero-config = src.pizero-config;
         pizero-kernel = src.pizero-kernel;

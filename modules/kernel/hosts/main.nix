@@ -2,7 +2,7 @@
 {
   kernel.hosts.main =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "native";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
@@ -38,7 +38,6 @@
         inherit pkgs;
         kernel = src.main-kernel;
       };
-
       packages = lib.mkAfter {
         main-config = src.main-config;
         main-kernel = src.main-kernel;

@@ -2,7 +2,7 @@
 {
   kernel.hosts.phone =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "sdm845";
       isArm = true;
@@ -46,7 +46,6 @@
         inherit pkgs;
         kernel = src.phone-kernel;
       };
-
       packages = lib.mkAfter {
         phone-config = src.phone-config;
         phone-kernel = src.phone-kernel;

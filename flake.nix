@@ -139,14 +139,7 @@
       url = "github:amaanq/bunker-patches";
       flake = false;
     };
-    cachyos-config = {
-      url = "github:CachyOS/linux-cachyos";
-      flake = false;
-    };
-    cachyos-linux = {
-      url = "github:CachyOS/linux/cachyos-6.18.38-1";
-      flake = false;
-    };
+    cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     cachyos-patches = {
       url = "github:CachyOS/kernel-patches";
       flake = false;
@@ -557,6 +550,14 @@
       url = "github:cxreiff/lifecycler";
       flake = false;
     };
+    linux = {
+      url = "github:CachyOS/linux/cachyos-6.18.38-1";
+      flake = false;
+    };
+    linux-config = {
+      url = "github:CachyOS/linux-cachyos";
+      flake = false;
+    };
     linuxthemestore = {
       url = "github:debasish-patra-1987/linuxthemestore";
       flake = false;
@@ -642,7 +643,6 @@
       flake = false;
     };
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "";

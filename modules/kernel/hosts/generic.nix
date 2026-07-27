@@ -2,7 +2,7 @@
 {
   kernel.hosts.generic =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "v2";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
@@ -34,7 +34,6 @@
         inherit pkgs;
         kernel = src.generic-kernel;
       };
-
       packages = lib.mkAfter {
         generic-config = src.generic-config;
         generic-kernel = src.generic-kernel;

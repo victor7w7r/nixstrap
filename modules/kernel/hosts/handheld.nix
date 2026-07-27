@@ -2,7 +2,7 @@
 {
   kernel.hosts.handheld =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "handheld-native";
       patches =
@@ -36,7 +36,6 @@
         inherit pkgs;
         kernel = src.handheld-kernel;
       };
-
       packages = lib.mkAfter {
         handheld-config = src.handheld-config;
         handheld-kernel = src.handheld-kernel;

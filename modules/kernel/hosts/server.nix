@@ -2,7 +2,7 @@
 {
   kernel.hosts.server =
     pkgs:
-    (kernel.lib.v7w7r {
+    (kernel.lib.linux {
       inherit pkgs;
       localVer = "server-hardened-native";
       isHardened = true;
@@ -41,7 +41,6 @@
         inherit pkgs;
         kernel = src.server-kernel;
       };
-
       packages = lib.mkAfter {
         server-config = src.server-config;
         server-kernel = src.server-kernel;
