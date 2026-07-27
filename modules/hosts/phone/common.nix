@@ -103,7 +103,14 @@
 
         hardware = {
           #enableRedistributableFirmware = true;
-          firmware = [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
+          firmware = [
+            (inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware.overrideAttrs (oldAttrs: {
+              postInstall = (oldAttrs.postInstall or "") + ''
+                rm -rf $out/lib/firmware/ath10k
+                mkdir -p $out/lib/firmware/ath10k
+              '';
+            }))
+          ];
           sensor.iio.enable = true;
           deviceTree.enable = true;
         };
