@@ -3,6 +3,7 @@
     os =
       { pkgs, self', ... }:
       {
+        nixpkgs.config.allowUnfree = true;
         environment.systemPackages = with pkgs; [
           atool
           brush
@@ -53,6 +54,7 @@
         ...
       }:
       {
+        programs.nix-ld.enable = true;
         environment = {
           persistence = lib.optionalAttrs isPersistent {
             "/nix/persist".directories = [

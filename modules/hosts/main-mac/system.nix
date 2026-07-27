@@ -8,6 +8,9 @@
       ...
     }:
     {
+      system.primaryUser = user;
+      time.timeZone = "America/Guayaquil";
+
       environment = {
         variables.RLIMIT_NOFILE = "65536";
         pathsToLink = [ "/Applications" ];
@@ -69,6 +72,5 @@
 
         ${user} ALL = PASSWD: /usr/local/bin/mas uninstall *
       '';
-
     };
 }

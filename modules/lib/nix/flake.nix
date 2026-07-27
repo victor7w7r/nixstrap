@@ -1,8 +1,8 @@
-{ conf, inputs, ... }:
+{ flake, inputs, ... }:
 {
-  imports = [ (inputs.den.namespace "conf" false) ];
+  imports = [ (inputs.den.namespace "flake" false) ];
 
-  conf.lib.config = {
+  flake.lib.config = {
     stateVersion = "26.11";
     flake-config = {
       always-allow-substitutes = true;
@@ -76,7 +76,7 @@
     };
   };
 
-  flake-file.nixConfig = (removeAttrs conf.lib.config.flake-config [ "__provider" ]) // {
+  flake-file.nixConfig = (removeAttrs flake.lib.config.flake-config [ "__provider" ]) // {
     lazy-trees = true;
     submodules = true;
   };

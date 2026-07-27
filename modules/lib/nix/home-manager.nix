@@ -1,10 +1,5 @@
-{ conf, lib, ... }:
+{ flake, lib, ... }:
 {
-  flake-file.inputs.home-manager = {
-    url = "github:nix-community/home-manager";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
   den = {
     schema.user.classes = lib.mkDefault [ "homeManager" ];
     default = {
@@ -40,7 +35,7 @@
                 { ... }:
                 {
                   systemd.user.startServices = "sd-switch";
-                  home.stateVersion = conf.lib.config.stateVersion;
+                  home.stateVersion = flake.lib.config.stateVersion;
                 }
               )
             ];

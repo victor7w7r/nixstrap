@@ -1,54 +1,19 @@
-{ den, ... }:
+{
+  den,
+  flake,
+  inputs,
+  ...
+}:
 {
   flake-file.inputs.darwin = {
     url = "github:nix-darwin/nix-darwin";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # sudo -H nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake .#macmini
   den = {
     #hosts.x86_64-darwin.main-mac.users.victor7w7r = { };
 
-    default.darwin =
-      { pkgs, user, ... }:
-      {
-        system.primaryUser = user;
-        time.timeZone = "America/Guayaquil";
-
-        #determinateNix = determinate.inputs.nix.packages."x86_64-darwin".default;
-
-        environment.defaultPackages = with pkgs; [
-          coreutils-full
-          findutils
-          gnugrep
-          gnused
-          hyperfine
-          moreutils
-          readline
-          watch
-          xxh
-          x-cmd
-          fd
-          fpp
-          fsql
-          rm-improved
-          mprocs
-          m-cli
-          cocoapods
-          colima
-          lima
-          tailscale
-        ];
-
-        documentation = {
-          enable = false;
-          doc.enable = false;
-          info.enable = false;
-          man.enable = false;
-        };
-
-      };
-
-    # sudo -H nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake .#macmini
     aspects.main-mac = {
       includes = with den.aspects; [
         main-mac._
@@ -61,5 +26,36 @@
         kitty
       ];
     };
+
+    default.darwin =
+      { lib, ... }:
+      {
+        #determinateNix = determinate.inputs.nix.packages."x86_64-darwin".default;
+        imports = [ inputs.determinate.darwinModules.default ];
+        system = {
+          checks.verifyBuildUsers = false;
+          stateVersion = 6;
+        };
+
+        nix = {
+          enable = lib.mkForce false;
+          nixPath = lib.mkDefault [ ];
+          optimise.automatic = lib.mkDefault false;
+        };
+
+        determinateNix.customSettings = {
+          flake-registry = "/etc/nix/flake-registry.json";
+          sandbox = "relaxed";
+        }
+        // (removeAttrs flake.lib.config.flake-config [ "__provider" ])
+        // (removeAttrs flake.lib.config.nix-config [ "__provider" ]);
+
+        documentation = {
+          enable = false;
+          doc.enable = false;
+          info.enable = false;
+          man.enable = false;
+        };
+      };
   };
 }
