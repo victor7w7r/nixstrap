@@ -26,7 +26,7 @@
             type = "disk";
             device = "/dev/disk/by-label/nixos-root";
             imageName = "nixos-root";
-            imageSize = "4G";
+            imageSize = "48G";
             content = f2fs.call {
               entireDisk = true;
               mountpoint = "/nix";
