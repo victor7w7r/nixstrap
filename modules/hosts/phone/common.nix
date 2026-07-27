@@ -1,5 +1,6 @@
 {
   den,
+  hosts,
   inputs,
   tarball,
   ...
@@ -16,6 +17,7 @@
   den.aspects.phone.common = {
     includes = with den.aspects; [
       (tarball.lib.call { })
+      (hosts.lib.zram { })
       audio._
       cli._
       dev.ccache
@@ -84,6 +86,7 @@
           #  kernelPackages = inputs'.vanilla-mobile.installer.crossPkgs.linuxPackagesFor inputs.vanilla-mobile.installer.vanillaMobileCrossPkgs.linuxKernels.linux_sdm845;
           kernelParams = [
             "console=tty0"
+            "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
           initrd.systemd.package = pkgs.systemd;
