@@ -66,14 +66,7 @@
 
           deviceInfo = {
             name = "OnePlus 6";
-            #codename = "oneplus-enchilada";
             manufacturer = "OnePlus";
-            # dtb = "qcom/sdm845-oneplus-enchilada.dtb";
-            # imageSectorSize = 4096;
-            # firmware =
-            #   inputs.vanilla-mobile-nixos.packages.${pkgs.stdenv.hostPlatform.system}.oneplus-sdm845-firmware;
-            # uboot =
-            #   inputs.vanilla-mobile-nixos.packages.${pkgs.stdenv.buildPlatform.system}."ubootPackages/oneplus-enchilada-boot-image";
           };
         };
 
