@@ -58,43 +58,38 @@
             services = {
               journald.extraConfig = "SystemMaxUse=100M";
               resolved.enable = true;
-
-              /*
-                tailscale = {
-                  enable = true;
-                  openFirewall = true;
-                  useRoutingFeatures = "client";
-                  authKeyFile = config.age.secrets.tailnet.path;
-                  extraUpFlags = [
-                    "--accept-dns=true"
-                    "--accept-routes"
-                  ];
-                };
-              */
+              tailscale = {
+                enable = true;
+                openFirewall = true;
+                useRoutingFeatures = "client";
+                authKeyFile = config.age.secrets.tailnet.path;
+                extraUpFlags = [
+                  "--accept-dns=true"
+                  "--accept-routes"
+                ];
+              };
             };
             systemd = {
               tmpfiles.rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
               services = {
-                /*
-                  tailscaled-autoconnect.serviceConfig = lib.mkIf config.boot.isContainer {
-                    Type = lib.mkForce "exec";
+                tailscaled-autoconnect.serviceConfig = lib.mkIf config.boot.isContainer {
+                  Type = lib.mkForce "exec";
+                };
+                tailscaled = {
+                  after = [ "systemd-resolved.service" ];
+                  wants = [ "systemd-resolved.service" ];
+                };
+                funnel = {
+                  wantedBy = [ "multi-user.target" ];
+                  after = [ "tailscaled.service" ];
+                  wants = [ "tailscaled.service" ];
+                  serviceConfig = {
+                    RestartSec = "5";
+                    Restart = "on-failure";
+                    User = "root";
+                    ExecStart = "${pkgs.tailscale}/bin/tailscale funnel 80";
                   };
-                  tailscaled = {
-                    after = [ "systemd-resolved.service" ];
-                    wants = [ "systemd-resolved.service" ];
-                  };
-                  funnel = {
-                    wantedBy = [ "multi-user.target" ];
-                    after = [ "tailscaled.service" ];
-                    wants = [ "tailscaled.service" ];
-                    serviceConfig = {
-                      RestartSec = "5";
-                      Restart = "on-failure";
-                      User = "root";
-                      ExecStart = "${pkgs.tailscale}/bin/tailscale funnel 80";
-                    };
-                    };
-                */
+                };
                 create-seafile-net = {
                   serviceConfig.Type = "oneshot";
                   wantedBy = [

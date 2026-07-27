@@ -19,7 +19,7 @@
       };
     in
     lib.mkMerge [
-      #(mkFunnel "1" 443 8006)
-      #(mkFunnel "2" 8443 9090)
+      (mkFunnel "1" 443 8006)
+      (mkFunnel "2" 8443 9090)
     ];
 }
