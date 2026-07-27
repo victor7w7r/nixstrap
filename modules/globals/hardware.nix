@@ -47,7 +47,7 @@
           }
         ];
         services = {
-          power-profiles-daemon.enable = true;
+          power-profiles-daemon.enable = lib.mkForce true;
           smartd.enable = false;
         };
         programs = {
