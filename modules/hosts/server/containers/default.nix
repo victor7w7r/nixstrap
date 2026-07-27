@@ -8,7 +8,6 @@
   imports = [ (inputs.den.namespace "containers" false) ];
 
   containers.lib = {
-
     funnel =
       {
         pkgs,
@@ -34,9 +33,11 @@
         ip,
         bindMounts,
         name,
-        containers,
+        containers ? config: { },
+        forwardPorts ? [ ],
         services ? { },
-        systemd ? { },
+        secrets ? { },
+        systemd ? pkgs: { },
         rules ? [ ],
       }:
       {
@@ -48,14 +49,18 @@
         localAddress = "192.168.1.${ip}";
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
-        inherit bindMounts;
+        inherit forwardPorts bindMounts;
 
         config =
-          { config, ... }:
+          { config, pkgs, ... }:
           {
             system.stateVersion = conf.lib.config.stateVersion;
             imports = [ inputs.agenix.nixosModules.default ];
             boot.isContainer = true;
+            age = {
+              identityPaths = [ "/etc/ssh/id_ed25519" ];
+              inherit secrets;
+            };
             networking = {
               hostName = "v7w7r-${name}";
               firewall.enable = false;
@@ -88,7 +93,7 @@
                   wants = [ "systemd-resolved.service" ];
                 };
               }
-              // systemd;
+              // (systemd pkgs);
             };
 
             virtualisation = {
@@ -104,7 +109,7 @@
                 };
               };
               oci-containers = {
-                inherit containers;
+                containers = (containers config);
                 backend = "docker";
               };
             };
