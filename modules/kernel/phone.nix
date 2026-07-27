@@ -6,7 +6,6 @@
       inherit pkgs;
       localVer = "sdm845";
       isArm = true;
-      isCachyos = false;
       notDenial = true;
       patches =
         "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
@@ -14,7 +13,21 @@
           patches:
           with kernel.patches.injector pkgs;
           [ "${patches}/../config_fixes.patch" ]
-          ++ map (item: "${patches}/${item.name}.patch") (import patches)
+          ++ (
+            (import patches)
+            |> builtins.filter (
+              item:
+              !builtins.elem item.name [
+                /*
+                  "0001-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-ath10k"
+                  "0017-arm64-dts-qcom-sdm845-xiaomi-beryllium-Add-haptics-s"
+                  "0024-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-fuel-g"
+                  "0042-hack-ASoC-dt-bindings-qcom-q6dsp-add-internal-mi2s-s"
+                */
+              ]
+            )
+            |> map (item: "${patches}/${item.name}.patch")
+          )
         );
       extraConfig = with kernel.config.modules; [ qcom ];
     })

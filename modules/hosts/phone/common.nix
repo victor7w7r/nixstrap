@@ -81,6 +81,7 @@
             "console=tty0"
             "firmware_class.path=/extra-firmware"
           ];
+          initrd.systemd.package = pkgs.systemd;
           blacklistedKernelModules = [ "ipa" ];
           loader = {
             efi.canTouchEfiVariables = false;
@@ -101,6 +102,33 @@
         networking.modemmanager.enable = true;
         systemd = {
           sockets.sshd.socketConfig.FreeBind = lib.mkIf config.services.openssh.startWhenNeeded true;
+          package =
+            let
+              pkg = pkgs.systemd;
+            in
+            pkgs.symlinkJoin {
+              inherit (pkg)
+                name
+                pname
+                version
+                meta
+                passthru
+                outputs
+                ;
+              paths = [ pkg ];
+              nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+              postBuild = ''
+                ln -s ${pkg.dev} $dev
+                ln -s ${pkg.debug} $debug
+                ln -s ${pkg.man} $man
+
+                wrapProgram $out/bin/bootctl --set SYSTEMD_RELAX_ESP_CHECKS 1
+
+                rm $out/example/sysctl.d/50-coredump.conf
+                substitute ${pkg}/example/sysctl.d/50-coredump.conf $out/example/sysctl.d/50-coredump.conf \
+                  --replace-fail "${pkg}" "$out"
+              '';
+            };
           services = {
             ModemManager.serviceConfig.ExecStart = lib.mkIf config.networking.modemmanager.enable [
               "${pkgs.modemmanager}/bin/ModemManager --test-quick-suspend-resume"
