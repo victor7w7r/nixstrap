@@ -35,7 +35,7 @@
                 { ... }:
                 {
                   systemd.user.startServices = "sd-switch";
-                  home.stateVersion = flakelib.config.stateVersion;
+                  home.stateVersion = flakelib.lib.config.stateVersion;
                 }
               )
             ];

@@ -1,20 +1,20 @@
 { flakelib, inputs, ... }:
 {
   den.default.nixos = { lib, ... }: {
+
+    documentation = {
+      enable = false;
+      doc.enable = false;
+      info.enable = false;
+      man.enable = false;
+    };
+
+    system.stateVersion = flakelib.lib.config.stateVersion;
     nix = {
       #package = lib.mkDefault (pkgs.lix);
       settings =
-        (removeAttrs flakelib.config.flake-config [ "__provider" ])
-        // (removeAttrs flakelib.config.nix-config [ "__provider" ]);
-
-      system.stateVersion = flakelib.config.stateVersion;
-
-      documentation = {
-        enable = false;
-        doc.enable = false;
-        info.enable = false;
-        man.enable = false;
-      };
+        (removeAttrs flakelib.lib.config.flake-config [ "__provider" ])
+        // (removeAttrs flakelib.lib.config.nix-config [ "__provider" ]);
 
       gc = {
         automatic = true;
