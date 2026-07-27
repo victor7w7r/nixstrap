@@ -4,7 +4,7 @@
     fileSystems."/nix/persist".neededForBoot = true;
     disko.devices = with disko; {
       disk = {
-        root = ephemeral.root { };
+        root = disk.root { };
         main = disk.gpt {
           device = "mmcblk0";
           partitions = {

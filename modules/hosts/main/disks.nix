@@ -63,7 +63,7 @@
             bcache0 = disk.bcache { };
             inherit main;
             ssd = ssd { };
-            root = ephemeral.root { };
+            root = disk.root { };
           };
         };
       };

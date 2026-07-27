@@ -1,27 +1,35 @@
-{ disko, ... }:
+{ disko, lib, ... }:
 {
   disko.f2fs = {
     call =
       {
-        name,
-        priority,
+        name ? "",
+        priority ? 0,
         mountpoint,
+        entireDisk ? false,
+        hasDefSectorSize ? false,
         size ? null,
       }:
-      (disko.f2fs.args name)
+      (disko.f2fs.args name hasDefSectorSize)
       |> (args: {
-        inherit name size priority;
-        type = "8300";
-        content = {
-          inherit mountpoint;
-          type = "filesystem";
-          format = "f2fs";
-          mountOptions = args.mountOptions;
-          extraArgs = args.extraArgs;
-        };
-      });
+        inherit mountpoint;
+        type = "filesystem";
+        format = "f2fs";
+        mountOptions = args.mountOptions;
+        extraArgs = args.extraArgs;
+      })
+      |> (
+        content:
+        if (!entireDisk) then
+          {
+            inherit name size priority;
+            type = "8300";
+          }
+        else
+          content
+      );
 
-    args = name: {
+    args = name: hasDefSectorSize: {
       mountOptions = [
         "lazytime"
         "noatime"
@@ -46,7 +54,11 @@
         "extra_attr,inode_checksum,compression,flexible_inline_xattr,lost_found,sb_checksum"
         "-l"
         name
-      ];
+      ]
+      ++ (lib.optionals hasDefSectorSize [
+        "-S"
+        "4096"
+      ]);
     };
   };
 }

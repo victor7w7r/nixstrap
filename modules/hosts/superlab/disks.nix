@@ -6,7 +6,7 @@
       "/etc".neededForBoot = true;
     };
     disko.devices.disk = with disko; {
-      root = ephemeral.root { };
+      root = disk.root { };
       main = disk.gpt {
         device = "nvme0n1";
         partitions = {

@@ -34,13 +34,20 @@
         };
       };
 
-    bcache =
+    root =
+      { }:
       {
-        num ? 0,
-      }:
-      disko.disk.lvm {
-        inherit num;
-        device = "/dev/bcache${toString num}";
+        type = "disk";
+        device = "/dev/zram1";
+        content = {
+          type = "filesystem";
+          format = "ext4";
+          mountpoint = "/";
+          mountOptions = [
+            "noatime"
+            "x-systemd.device-timeout=0"
+          ];
+        };
       };
 
     mdraid =

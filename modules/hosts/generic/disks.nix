@@ -1,7 +1,7 @@
 { disko, ... }:
 {
   den.aspects.generic.disks.nixos.disko.devices.disk = with disko; {
-    root = ephemeral.root { };
+    root = disk.root { };
     main = disk.gpt {
       device = "vda";
       partitions = {

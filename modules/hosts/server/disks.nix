@@ -63,7 +63,7 @@
           inherit lvm_vg mdadm;
           disk = {
             inherit emmc cloud;
-            root = ephemeral.root { };
+            root = disk.root { };
             nvme = nvme { };
           };
         };
