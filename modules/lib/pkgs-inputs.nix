@@ -863,7 +863,7 @@
     tui-slides = {
       url = "github:Chleba/tui-slides";
       flake = false;
-    };w
+    };
 
     tuifimanager = {
       url = "github:GiorgosXou/TUIFIManager";
