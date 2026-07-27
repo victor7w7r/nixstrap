@@ -48,6 +48,7 @@
         ];
         services = {
           power-profiles-daemon.enable = lib.mkForce true;
+          tlp.enable = lib.mkForce false;
           smartd.enable = false;
         };
         programs = {
