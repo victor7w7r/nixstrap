@@ -87,6 +87,10 @@
             "firmware_class.path=/extra-firmware"
           ];
           initrd.systemd.package = pkgs.systemd;
+          initrd.blacklistedKernelModules = [
+            "ath10k_pci"
+            "ath10k_core"
+          ];
           blacklistedKernelModules = [ "ipa" ];
           loader = {
             efi.canTouchEfiVariables = false;

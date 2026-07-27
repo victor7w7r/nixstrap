@@ -23,7 +23,7 @@
       {
         environment.systemPackages = with self'.packages; [
           fman
-          tuifimanager
+          #tuifimanager
         ];
       };
 

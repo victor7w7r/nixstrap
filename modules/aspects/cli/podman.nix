@@ -32,7 +32,7 @@
               pods
               podman-tui
               self'.packages.dockadvisor
-              self'.packages.dockerfilegraph
+              #self'.packages.dockerfilegraph
               self'.packages.dprs
               self'.packages.supdock
             ];
