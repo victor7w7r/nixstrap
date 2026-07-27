@@ -1,7 +1,7 @@
 {
   den,
-  initrd-services,
   inputs,
+  hosts,
   kernel,
   tarball,
   sdcard,
@@ -38,7 +38,7 @@
         includes = with den.aspects; [ pizero.common ];
         common = {
           includes = with den.aspects; [
-            (initrd-services.lib.zram { })
+            (hosts.lib.zram { })
             pizero._
 
             cli._

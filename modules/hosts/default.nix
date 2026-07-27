@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
-  initrd-services.lib.zram =
+  imports = [ (inputs.den.namespace "hosts" false) ];
+
+  hosts.lib.zram =
     {
       mappers ? [ ],
       isPercent ? false,
@@ -15,10 +17,6 @@
             wantedBy = [ "initrd.target" ];
             requiredBy = [ "sysroot.mount" ];
             before = [
-              /*
-                "dev-mapper-persist.device
-                "dev-mapper-storage.device"
-              */
               "initrd-fs.target"
               "sysroot.mount"
             ]
@@ -46,5 +44,4 @@
           };
         };
     };
-
 }

@@ -1,8 +1,8 @@
 {
   den,
-  initrd-services,
   inputs,
   kernel,
+  hosts,
   tarball,
   sdcard,
   ...
@@ -39,7 +39,7 @@
         includes = with den.aspects; [ superlab.common ];
         common = {
           includes = with den.aspects; [
-            (initrd-services.lib.zram { })
+            (hosts.lib.zram { })
             superlab.disks
 
             audio._

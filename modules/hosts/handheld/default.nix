@@ -1,6 +1,6 @@
 {
   den,
-  initrd-services,
+  hosts,
   inputs,
   kernel,
   ...
@@ -12,7 +12,7 @@
       { user, ... }:
       {
         includes = with den.aspects; [
-          (initrd-services.lib.zram { })
+          (hosts.lib.zram { })
           handheld._
 
           audio._
