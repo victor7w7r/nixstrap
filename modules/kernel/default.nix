@@ -20,7 +20,7 @@
       notDenial ? false,
     }:
     let
-      src = if isCachyos then inputs.cachyos-linux else pkgs.linuxPackages_7_1.kernel.src;
+      src = if isCachyos then inputs.cachyos-linux else pkgs.linuxPackages_6_18.kernel.src;
     in
     (pkgs.buildLinux {
       pname = "linux-v7w7r-${localVer}";
