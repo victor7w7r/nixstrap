@@ -39,8 +39,7 @@
         common = {
           includes = with den.aspects; [
             (initrd-services.lib.zram { })
-            pizero.disks
-            pizero.passbolt
+            pizero._
 
             cli._
             dev.mise

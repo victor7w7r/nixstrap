@@ -1,21 +1,7 @@
-{ disko, lib, ... }:
+{ disko, ... }:
 {
   den.aspects.pizero.disks.nixos = {
     fileSystems."/nix/persist".neededForBoot = true;
-    boot.initrd = lib.mkForce {
-      systemd.settings = {
-        Manager = {
-          DefaultTimeoutStartSec = "30s";
-          DefaultTimeoutStopSec = "30s";
-        };
-      };
-      /*
-        systemd.units."systemd-cryptsetup@*.service".text = ''
-          [Job]
-          JobTimeoutSec=30s
-        '';
-      */
-    };
     disko.devices = with disko; {
       disk = {
         root = ephemeral.root { };

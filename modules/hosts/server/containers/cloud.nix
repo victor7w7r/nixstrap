@@ -118,6 +118,7 @@
                 setSocketVariable = true;
               };
             };
+
             virtualisation.oci-containers.backend = "docker";
             virtualisation.oci-containers.containers = {
               seafile-db = {
