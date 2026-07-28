@@ -1,5 +1,6 @@
 {
   den,
+  hosts,
   inputs,
   kernel,
   ...
