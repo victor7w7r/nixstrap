@@ -4,6 +4,7 @@
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
+        "fido2"
         "amdgpu"
         "snd_usb_audio"
         "snd_hda_intel"

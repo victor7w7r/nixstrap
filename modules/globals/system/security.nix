@@ -17,6 +17,7 @@
       */
       services = {
         fail2ban.enable = true;
+        udev.packages = [ pkgs.yubikey-personalization ];
         #opensnitch.enable = true;
         #clamav = {
         #  daemon.enable = true;
@@ -30,6 +31,14 @@
         apparmor = {
           enable = true;
           enableCache = true;
+        };
+        pam = {
+          login.u2fAuth = true;
+          sudo.u2fAuth = true;
+          yubico = {
+            enable = true;
+            mode = "challenge-response";
+          };
         };
         polkit.enable = true;
         rtkit.enable = true;

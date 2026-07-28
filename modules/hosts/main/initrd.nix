@@ -12,6 +12,7 @@
           "cryptd"
           "dm_crypt"
           "uas"
+          "fido2"
           "usb_storage"
           "ahci"
           "usbhid"

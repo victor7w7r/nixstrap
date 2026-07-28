@@ -7,9 +7,12 @@
       ...
     }:
     {
-      security.pam.services.ly.kwallet = {
-        enable = true;
-        package = pkgs.kdePackages.kwallet-pam;
+      security.pam.services.ly = {
+        u2fAuth = true;
+        kwallet = {
+          enable = true;
+          package = pkgs.kdePackages.kwallet-pam;
+        };
       };
 
       services.displayManager.ly = {

@@ -14,6 +14,7 @@
           "nf_nat"
           "md_mod"
           "raid456"
+          "fido2"
           "ahci"
           "usb_storage"
           "iptable_nat"

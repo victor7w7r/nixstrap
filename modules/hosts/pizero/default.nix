@@ -82,6 +82,7 @@
                 ];
                 initrd.kernelModules = [
                   #"g_ether"
+                  "fido2"
                   "uas"
                   "sunxi_gmac"
                   "sunxi_rsb"
