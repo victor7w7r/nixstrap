@@ -45,22 +45,22 @@
             audio._
             cli._
             dev._
-            gui._
+            #gui._
             misc.comm
             misc.fetch
             pentest._
-            zen._
+            #zen._
 
-            android
+            #android
             bluetooth
             cockpit
-            kitty
+            #kitty
             virt
-            libvirt
-            plasma._
+            #libvirt
+            #plasma._
             secrets
             victor7w7r
-            waydroid
+            #waydroid
             xr
           ];
 
