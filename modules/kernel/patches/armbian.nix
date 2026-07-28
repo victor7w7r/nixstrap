@@ -20,7 +20,7 @@
           find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
           sed -i -E '/.*(rk3399|helios64|nanopi|rgds|rt5651|net-usb|rk3308).*/d' series.conf
           sed -i -E '/.*(media-0007-add-verisilicon-AV1-iommu-driver.patch).*/d' series.conf
-
+          sed -i -E '/.*(rk35xx-panthor-1GHz).*/d' series.conf
         '';
         installPhase = "cp series.conf $out";
       };
