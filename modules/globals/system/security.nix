@@ -33,8 +33,8 @@
           enableCache = true;
         };
         pam = {
-          login.u2fAuth = true;
-          sudo.u2fAuth = true;
+          #login.u2fAuth = true;
+          #sudo.u2fAuth = true;
           yubico = {
             enable = true;
             mode = "challenge-response";
