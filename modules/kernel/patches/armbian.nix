@@ -17,7 +17,7 @@
           "installPhase"
         ];
         buildPhase = ''
-          find $src/patch/kernel/archive/rockchip64-6.18 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
+          find $src/patch/kernel/archive/rockchip64-7.2 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
           sed -i '/^rk3399-/d' series.conf
         '';
         installPhase = "cp series.conf $out";
@@ -25,7 +25,7 @@
       patcher =
         with lib;
         isRockchip:
-        (if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/series.conf")
+        (if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-7.0/series.conf")
         |> builtins.readFile
         |> splitString "\n"
         |> map strings.trim
@@ -33,8 +33,8 @@
         |> map (
           path:
           "${inputs.armbian}/patch/kernel/archive/${
-            if isRockchip then "rockchip64" else "sunxi"
-          }-6.18/${path}"
+            if isRockchip then "rockchip64-7.2" else "sunxi-7.0"
+          }/${path}"
         );
     in
     {

@@ -17,7 +17,20 @@
       notDenial ? false,
     }:
     let
-      src = if isCachyos then inputs.linux else pkgs.linuxPackages_7_1.kernel.src;
+      src =
+        if isCachyos then
+          inputs.linux
+        else
+          (pkgs.linuxKernel.kernels.linuxPackages_7_1.override {
+            argsOverride = {
+              src = pkgs.fetchurl {
+                url = "mirror://kernel/linux/kernel/v7.x/linux-7.1.4.tar.xz";
+                sha256 = "0ibayrvAAw2lw7si78vdqnr20mm1d3z0g6a0ykndvgn5vdax5x9a";
+              };
+              version = "7.1.4";
+              modDirVersion = "7.1.4";
+            };
+          }).src;
     in
     (pkgs.buildLinux {
       pname = "linux-v7w7r-${localVer}";
