@@ -21,7 +21,7 @@
         if isCachyos then
           inputs.linux
         else
-          (pkgs.linuxKernel.kernels.linuxPackages_7_1.override {
+          (pkgs.linuxKernel.kernels.linux_7_1.override {
             argsOverride = {
               src = pkgs.fetchurl {
                 url = "mirror://kernel/linux/kernel/v7.x/linux-7.1.4.tar.xz";
