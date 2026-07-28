@@ -58,7 +58,7 @@
             networkmanager.unmanaged = [ "enp2s0f1u1" ];
           };
           boot = {
-            kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
+            kernelPackages = pkgs.cachyosKernels.linux-cachyos-latest-lto; # (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [ "kvmfr.static_size_mb=128" ];
             resumeDevice = "/dev/mapper/swapcrypt";
             extraModulePackages = [ self'.packages.apple-bce ];
