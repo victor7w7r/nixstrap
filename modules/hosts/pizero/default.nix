@@ -56,8 +56,10 @@
           ];
 
           nixos =
-            { pkgs, ... }:
+            { lib, pkgs, ... }:
             {
+              services.fail2ban.enable = lib.mkForce false;
+              system.autoUpgrade = lib.mkForce false;
               imports = [ inputs.disko.nixosModules.disko ];
               networking.hostName = "v7w7r-opizero2w";
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
@@ -81,6 +83,7 @@
                   "gpio_sunxi"
                   "8250_dw"
                 ];
+                initrd.systemd.tpm2.enable = false;
                 kernelPackages = (kernel.hosts.pizero pkgs).pizero-kernelPackages;
                 loader = {
                   grub.enable = false;

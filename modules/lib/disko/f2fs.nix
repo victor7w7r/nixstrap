@@ -22,7 +22,12 @@
         content:
         if (!entireDisk) then
           {
-            inherit name size priority;
+            inherit
+              name
+              size
+              priority
+              content
+              ;
             type = "8300";
           }
         else
