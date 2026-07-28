@@ -8,36 +8,6 @@
   kernel.patches.armbian =
     pkgs:
     let
-      rockchip = pkgs.stdenvNoCC.mkDerivation {
-        name = "rockchip-patches";
-        src = inputs.armbian;
-        phases = [
-          "unpackPhase"
-          "buildPhase"
-          "installPhase"
-        ];
-        buildPhase = ''
-          find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
-          sed -i -E '/.*(rk3399|helios64|nanopi|rgds|rt5651|net-usb|rk3308).*/d' series.conf
-          sed -i -E '/.*(media-0007-add-verisilicon-AV1-iommu-driver.patch).*/d' series.conf
-          sed -i -E '/.*(rk35xx-panthor-1GHz).*/d' series.conf
-        '';
-        installPhase = "cp series.conf $out";
-      };
-
-      sunxi = pkgs.stdenvNoCC.mkDerivation {
-        name = "sunxi-patches";
-        src = inputs.armbian;
-        phases = [
-          "unpackPhase"
-          "buildPhase"
-          "installPhase"
-        ];
-        buildPhase = ''
-
-        '';
-        installPhase = "cp series.conf $out";
-      };
       patcher =
         with lib;
         isRockchip:
@@ -61,8 +31,8 @@
               ''
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
                 sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|DE33|arm64-dts-sun50i-h6-).*/d' series.conf
+                sed -i -E '/.*(drv-iommu-sunxi-add-iommu-driver.patch).*/d' series.conf
               '';
-
           installPhase = "cp series.conf $out";
         })
         |> builtins.readFile
