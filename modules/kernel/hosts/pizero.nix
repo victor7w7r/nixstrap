@@ -8,6 +8,7 @@
       isArm = true;
       isHardened = true;
       notDenial = true;
+      isCachyos = false;
       patches =
         with kernel.patches.injector pkgs;
         #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++

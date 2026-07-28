@@ -7,6 +7,7 @@
       localVer = "rockchip";
       isArm = true;
       notDenial = true;
+      isCachyos = false;
 
       patches =
         with kernel.patches.injector pkgs;
