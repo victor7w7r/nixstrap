@@ -26,7 +26,6 @@
 
       nixos =
         {
-          lib,
           pkgs,
           modulesPath,
           ...

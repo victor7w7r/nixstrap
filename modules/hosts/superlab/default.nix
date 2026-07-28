@@ -55,6 +55,7 @@
             bluetooth
             cockpit
             kitty
+            virt
             libvirt
             plasma._
             secrets

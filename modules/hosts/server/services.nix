@@ -1,24 +1,37 @@
-{ inputs, ... }:
 {
-  flake-file.inputs.proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
-
   den.aspects.server.services.nixos =
     { pkgs, ... }:
     {
-      imports = [ inputs.proxmox-nixos.nixosModules.proxmox-ve ];
-
       services = {
-        /*
-          proxmox-ve = {
-          enable = true;
-          ipAddress = "192.168.1.100";
-          bridges = [ "br0" ];
-          };
-        */
         xrdp = {
           enable = true;
           defaultWindowManager = "${pkgs.xfce4-session}/bin/startxfce4";
           openFirewall = true;
+        };
+
+        harmonia.cache = {
+          enable = false;
+          signKeyPaths = [ "/var/lib/secrets/harmonia.secret" ];
+        };
+        # nix-store --generate-binary-cache-key cache.v7w7r.local \
+        #   /nix/persist/var/lib/secrets/harmonia.secret \
+        #   /nix/persist/var/lib/secrets/harmonia.pub
+        nginx = {
+          enable = false;
+          recommendedTlsSettings = true;
+          virtualHosts."cache.v7w7r.local" = {
+            enableACME = false;
+            forceSSL = false;
+            locations."/".extraConfig = ''
+              proxy_pass http://127.0.0.1:5000;
+              proxy_set_header Host $host;
+              proxy_redirect http:// https://;
+              proxy_http_version 1.1;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection $connection_upgrade;
+            '';
+          };
         };
       };
 
@@ -32,13 +45,7 @@
             Unit = "auto-sleep-check.service";
           };
         };
-
         services = {
-          "dhcpcd".enable = false;
-          "corosync".enable = false;
-          "pvescheduler".enable = false;
-          "pvebanner".enable = false;
-
           auto-sleep-check = {
             enable = false;
             serviceConfig = {
@@ -98,17 +105,15 @@
                 "${idleScript}/bin/auto-sleep-check";
             };
           };
-        };
-
-        tmpfiles.rules = [ "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough" ];
-        services.lvm-snapshot-weekly = {
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = ''
-              /run/current-system/sw/bin/lvcreate \
-                --snapshot --name "snapshot-cloud-$(date +%Y-%m-%d)" \
-                vg0/cloud
-            '';
+          lvm-snapshot-weekly = {
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = ''
+                /run/current-system/sw/bin/lvcreate \
+                  --snapshot --name "snapshot-cloud-$(date +%Y-%m-%d)" \
+                  vg0/cloud
+              '';
+            };
           };
         };
         timers.lvm-snapshot-weekly = {

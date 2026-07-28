@@ -28,6 +28,7 @@
           android
           bluetooth
           kitty
+          virt
           libvirt
           plasma._
           secrets

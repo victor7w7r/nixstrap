@@ -7,6 +7,7 @@
           cheat
           cmd-wrapped
           emptty
+          freerdp
           modprobed-db
           glow
           inotify-tools

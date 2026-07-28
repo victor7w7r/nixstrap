@@ -32,6 +32,7 @@
           "gamemode"
           "input"
           "kvm"
+          "incus-admin"
           "libvirt-qemu"
           "libvirtd"
           "plugdev"

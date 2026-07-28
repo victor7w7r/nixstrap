@@ -39,6 +39,7 @@
         common = {
           includes = with den.aspects; [
             (hosts.lib.zram { })
+            #(hosts.lib.static-network "enp4s0" "6")
             pizero._
 
             cli._
@@ -50,7 +51,7 @@
             pentest._
 
             cockpit
-            libvirt
+            virt
             secrets
             victor7w7r
           ];

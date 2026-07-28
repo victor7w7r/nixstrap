@@ -2,13 +2,13 @@
   den.default.nixos =
     {
       isPersistent,
-      isPhone,
       isServer,
+      isPhone,
       lib,
       ...
     }:
     {
-      environment = lib.optionalAttrs (isPersistent || !isServer) {
+      environment = lib.optionalAttrs isPersistent {
         persistence."/nix/persist".directories = lib.mkAfter [
           "/etc/NetworkManager/"
           "/var/lib/NetworkManager"
@@ -27,13 +27,9 @@
             wait = "background";
           };
           networkmanager = {
-            enable = !isServer;
+            enable = true;
             insertNameservers = nameservers;
             dhcp = "dhcpcd";
-            unmanaged = lib.optionals isPhone [
-              "rndis0"
-              "usb0"
-            ];
           };
           modemmanager.enable = lib.mkForce isPhone;
           firewall = {

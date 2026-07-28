@@ -16,6 +16,7 @@
       { user, ... }:
       {
         includes = with den.aspects; [
+          (hosts.lib.static-network "enp1s0" "10")
           server._
           server.containers
 
@@ -30,7 +31,7 @@
 
           cockpit
           kitty
-          libvirt
+          virt
           secrets
           victor7w7r
         ];
@@ -39,8 +40,19 @@
           { config, pkgs, ... }:
           {
             imports = [ inputs.disko.nixosModules.disko ];
-            networking.hostName = "v7w7r-youyeetoox1";
             hardware.cpu.intel.updateMicrocode = true;
+
+            # wol -i 192.168.1.255 00:11:22:33:44:55
+            # wol aa:bb:cc:dd:ee:ff
+            networking = {
+              hostName = "v7w7r-youyeetoox1";
+              interfaces."enp1s0".wakeOnLan.enable = true;
+            };
+
+            virtualisation.incus = {
+              ui.enable = true;
+              agent.enable = true;
+            };
 
             boot = {
               initrd.services.lvm.enable = true;
@@ -90,6 +102,7 @@
               thermald.enable = true;
               lvm.boot.thin.enable = true;
               rustdesk-server.enable = false;
+              tmpfiles.rules = [ "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough" ];
             };
 
             swapDevices = [

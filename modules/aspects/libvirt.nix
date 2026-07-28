@@ -3,16 +3,9 @@
     { lib, pkgs, ... }:
     {
       environment = {
-        sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
-        persistence."/nix/persist".directories = lib.mkAfter [
-          "/var/lib/libvirt"
-          "/var/lib/lxc"
-          "/var/lib/qemu"
-        ];
+        persistence."/nix/persist".directories = lib.mkAfter [ "/var/lib/libvirt" ];
         systemPackages = with pkgs; [
           bridge-utils
-          dialog
-          freerdp
           #nemu # needs QEMU
           netcat-openbsd
           qemu-utils
@@ -22,7 +15,7 @@
           virtio-win
           virtnbdbackup
           win-spice
-          yad
+          winboat
           x11_ssh_askpass
         ];
       };
