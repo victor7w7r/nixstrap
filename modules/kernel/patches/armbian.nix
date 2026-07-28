@@ -24,7 +24,7 @@
               ''
                 find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
                 sed -i -E '/.*(rk3399|helios64|nanopi|rgds|rt5651|net-usb|rk3308).*/d' series.conf
-                sed -i -E '/.*(media-0007-add-verisilicon-AV1-iommu-driver.patch).*/d' series.conf
+                sed -i -E '/.*(media-0007-add-verisilicon-AV1-iommu-driver).*/d' series.conf
                 sed -i -E '/.*(rk35xx-panthor-1GHz).*/d' series.conf
               ''
             else
@@ -32,8 +32,9 @@
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
                 sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|a83t-suspend-7.0|DE33|arm64-dts-sun50i-h6-|drv-spidev-).*/d' series.conf
                 sed -i -E '/.*(arm64-xor-Select-32regs-without-benchmark-to-speed-u).*/d' series.conf
-                sed -i -E '/.*(drv-iommu-sunxi-add-iommu-driver.patch).*/d' series.conf
-                #sed -i -E '/.*(drv-net-stmmac-dwmac-sun8i-add-h616-internal-phy.patch).*/d' series.conf
+                sed -i -E '/.*(drm-prime-limit-scatter-list-size-with-dedicated-dma-device).*/d' series.conf
+                sed -i -E '/.*(drv-iommu-sunxi-add-iommu-driver).*/d' series.conf
+                #sed -i -E '/.*(drv-net-stmmac-dwmac-sun8i-add-h616-internal-phy).*/d' series.conf
               '';
           installPhase = "cp series.conf $out";
         })
