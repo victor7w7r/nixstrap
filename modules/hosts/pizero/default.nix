@@ -62,7 +62,7 @@
 
               services = {
                 chrony.enable = lib.mkForce false;
-                services.displayManager.ly.enable = lib.mkForce false;
+                displayManager.ly.enable = lib.mkForce false;
                 fail2ban.enable = lib.mkForce false;
               };
               system.autoUpgrade.enable = lib.mkForce false;
