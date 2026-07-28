@@ -30,9 +30,9 @@
             else
               ''
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
-                sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|DE33|arm64-dts-sun50i-h6-|drv-spidev-).*/d' series.conf
+                sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|a83t-suspend-7.0|DE33|arm64-dts-sun50i-h6-|drv-spidev-).*/d' series.conf
                 sed -i -E '/.*(drv-iommu-sunxi-add-iommu-driver.patch).*/d' series.conf
-                sed -i -E '/.*(drv-net-stmmac-dwmac-sun8i-add-h616-internal-phy.patch).*/d' series.conf
+                #sed -i -E '/.*(drv-net-stmmac-dwmac-sun8i-add-h616-internal-phy.patch).*/d' series.conf
               '';
           installPhase = "cp series.conf $out";
         })
