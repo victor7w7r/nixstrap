@@ -13,7 +13,7 @@
 
       experimental-features = [
         "nix-command"
-        "ca-derivations"
+        #"ca-derivations"
         "flakes"
         "fetch-closure"
         "parse-toml-timestamps"
