@@ -58,9 +58,14 @@
           nixos =
             { lib, pkgs, ... }:
             {
-              services.fail2ban.enable = lib.mkForce false;
-              system.autoUpgrade.enable = lib.mkForce false;
               imports = [ inputs.disko.nixosModules.disko ];
+
+              services = {
+                chrony.enable = lib.mkForce false;
+                services.displayManager.ly.enable = lib.mkForce false;
+                fail2ban.enable = lib.mkForce false;
+              };
+              system.autoUpgrade.enable = lib.mkForce false;
               networking.hostName = "v7w7r-opizero2w";
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
               boot = {
