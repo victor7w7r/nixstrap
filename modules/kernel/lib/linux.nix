@@ -25,7 +25,7 @@
             argsOverride = {
               src = pkgs.fetchurl {
                 url = "mirror://kernel/linux/kernel/v7.x/linux-7.1.4.tar.xz";
-                sha256 = "0ibayrvAAw2lw7si78vdqnr20mm1d3z0g6a0ykndvgn5vdax5x9a";
+                sha256 = "sha256-UTBBiwF3RsgwDz6WIXQ+AAIMvMbeFdU9aOUcj7C8wEY=";
               };
               version = "7.1.4";
               modDirVersion = "7.1.4";
