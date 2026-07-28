@@ -1,7 +1,7 @@
 { inputs, lib, ... }:
 {
   flake-file.inputs.armbian = {
-    url = "github:MichaIng/build/299d8026da8ce06312c2d7d32220c2b01f4a2101";
+    url = "github:armbian/build";
     flake = false;
   };
 

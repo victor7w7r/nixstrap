@@ -76,7 +76,7 @@
     };
   };
 
-  flake-file.nixConfig = (removeAttrs flakelib.config.flake-config [ "__provider" ]) // {
+  flake-file.nixConfig = (removeAttrs flakelib.lib.config.flake-config [ "__provider" ]) // {
     lazy-trees = true;
     submodules = true;
   };

@@ -75,7 +75,7 @@
       flake = false;
     };
     armbian = {
-      url = "github:MichaIng/build/299d8026da8ce06312c2d7d32220c2b01f4a2101";
+      url = "github:armbian/build";
       flake = false;
     };
     asus = {
@@ -717,7 +717,6 @@
       url = "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-aarch64-unknown-linux-gnu.zip";
       flake = false;
     };
-    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     pyprland.url = "github:hyprland-community/pyprland";
     q6voiced = {
       url = "gitlab:postmarketOS/q6voiced/736138bfc9f7b455a96679e2d67fd922a8f16464";
