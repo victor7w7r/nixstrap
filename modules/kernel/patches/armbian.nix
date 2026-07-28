@@ -18,8 +18,7 @@
         ];
         buildPhase = ''
           find $src/patch/kernel/archive/rockchip64-7.2 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
-          sed -i '/^rk3399-/d' series.conf
-          sed -i '/add-board-helios64.patch/d' series.conf
+          sed -i -E '/.*(rk3399|helios64).*/d' series.conf
         '';
         installPhase = "cp series.conf $out";
       };
