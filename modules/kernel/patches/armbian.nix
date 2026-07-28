@@ -34,6 +34,7 @@
                 sed -i -E '/.*(arm64-xor-Select-32regs-without-benchmark-to-speed-u).*/d' series.conf
                 sed -i -E '/.*(drm-prime-limit-scatter-list-size-with-dedicated-dma-device).*/d' series.conf
                 sed -i -E '/.*(drv-iommu-sunxi-add-iommu-driver).*/d' series.conf
+                sed -i -E '/.*(drm-gem-dma-support-dedicated-dma-device-for-allocation-and-mapping).*/d' series.conf
                 #sed -i -E '/.*(drv-net-stmmac-dwmac-sun8i-add-h616-internal-phy).*/d' series.conf
               '';
           installPhase = "cp series.conf $out";
