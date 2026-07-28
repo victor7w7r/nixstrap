@@ -4,8 +4,8 @@
     age = {
       identityPaths = [ "/etc/ssh/id_ed25519" ];
       secrets = {
-        passbolt.file = ../secrets/passbolt.age;
-        tailnet.file = ../secrets/tailnet.age;
+        passbolt.file = ../server/secrets/cloudflare-token.age;
+        tailnet.file = ../server/secrets/tailnet.age;
       };
     };
 
