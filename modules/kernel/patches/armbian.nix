@@ -17,7 +17,7 @@
           "installPhase"
         ];
         buildPhase = ''
-          find $src/patch/kernel/archive/rockchip64-7.2 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
+          find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
           sed -i -E '/.*(rk3399|helios64|nanopi).*/d' series.conf
         '';
         installPhase = "cp series.conf $out";
@@ -33,7 +33,7 @@
         |> map (
           path:
           "${inputs.armbian}/patch/kernel/archive/${
-            if isRockchip then "rockchip64-7.2" else "sunxi-7.0"
+            if isRockchip then "rockchip64-7.1" else "sunxi-7.0"
           }/${path}"
         );
     in
