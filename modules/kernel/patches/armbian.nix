@@ -24,10 +24,25 @@
         '';
         installPhase = "cp series.conf $out";
       };
+
+      sunxi = pkgs.stdenvNoCC.mkDerivation {
+        name = "sunxi-patches";
+        src = inputs.armbian;
+        phases = [
+          "unpackPhase"
+          "buildPhase"
+          "installPhase"
+        ];
+        buildPhase = ''
+          cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
+          sed -i -E '/.*(cw1200-7.0).*/d' series.conf
+        '';
+        installPhase = "cp series.conf $out";
+      };
       patcher =
         with lib;
         isRockchip:
-        (if isRockchip then rockchip else "${inputs.armbian}/patch/kernel/archive/sunxi-7.0/series.conf")
+        (if isRockchip then rockchip else sunxi)
         |> builtins.readFile
         |> splitString "\n"
         |> map strings.trim
