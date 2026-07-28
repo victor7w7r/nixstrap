@@ -60,7 +60,7 @@
             else
               ''
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
-                sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|DE33).*/d' series.conf
+                sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|DE33|arm64-dts-sun50i-h6-).*/d' series.conf
               '';
 
           installPhase = "cp series.conf $out";
