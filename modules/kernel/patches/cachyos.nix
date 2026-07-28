@@ -8,7 +8,7 @@
   kernel.patches.cachyos =
     pkgs:
     let
-      majorMinor = (kernel.linux.injector pkgs).version.majorMinor;
+      majorMinor = (kernel.lib.version pkgs inputs.linux "").majorMinor;
       patches = pkgs.stdenvNoCC.mkDerivation {
         name = "cachyos-patches";
         src = inputs.cachyos-patches;
