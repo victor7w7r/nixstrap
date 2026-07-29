@@ -41,23 +41,30 @@
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
         enableParallelBuilding = true;
-        kernelPatches = map (file: {
-          name = baseNameOf (toString file);
-          patch = file;
-        }) patches;
-
-        postPatch = ''
-          ${lib.optionalString (class != "") ''
-            find "./arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
-            cat <<EOF > "./arch/arm64/boot/dts/Makefile"
-                subdir-y += ${class}
-            EOF
-            cat <<EOF > "./arch/arm64/boot/dts/${class}/Makefile"
-                ${dtbMake}
-            EOF
-          ''}
-          ${extra}
-        '';
+        kernelPatches =
+          (map (file: {
+            name = baseNameOf (toString file);
+            patch = file;
+          }) patches)
+          ++ [
+            {
+              name = "custom-dts-cleanup";
+              patch = null;
+              extraStructuredConfig = { };
+              postPatch = ''
+                ${lib.optionalString (class != "") ''
+                  find "./arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
+                  cat <<EOF > "./arch/arm64/boot/dts/Makefile"
+                      subdir-y += ${class}
+                  EOF
+                  cat <<EOF > "./arch/arm64/boot/dts/${class}/Makefile"
+                      ${dtbMake}
+                  EOF
+                ''}
+                ${extra}
+              '';
+            }
+          ];
 
         extraConfig =
           with lib;
