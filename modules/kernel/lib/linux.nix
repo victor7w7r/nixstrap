@@ -31,9 +31,9 @@
       pkgs.buildLinux {
         pname = "linux-v7w7r-${localVer}";
         inherit src;
-        stdenv = pkgs.ccacheStdenv.override {
-          stdenv = (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM;
-        };
+        # stdenv = pkgs.ccacheStdenv.override {
+        stdenv = (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM;
+        # };
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
