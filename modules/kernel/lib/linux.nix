@@ -13,6 +13,7 @@
       extraConfig,
       isHardened ? false,
       isArm ? false,
+      hasCache ? true,
       notDenial ? false,
       class ? "",
       dtbMake ? "",
@@ -32,8 +33,11 @@
         pname = "linux-v7w7r-${localVer}";
         inherit src;
         stdenv =
-          (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-          |> (llvmStdenv: llvmStdenv.override { cc = pkgs.ccacheWrapper.override { cc = llvmStdenv.cc; }; });
+          if hasCache then
+            (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
+            |> (llvmStdenv: llvmStdenv.override { cc = pkgs.ccacheWrapper.override { cc = llvmStdenv.cc; }; })
+          else
+            (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM;
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
