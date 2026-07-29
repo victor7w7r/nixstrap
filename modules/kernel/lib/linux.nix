@@ -33,14 +33,7 @@
         inherit src;
         stdenv =
           (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-          |> (
-            llvmStdenv:
-            llvmStdenv.override {
-              cc = pkgs.ccacheWrapper.override {
-                cc = llvmStdenv.cc;
-              };
-            }
-          );
+          |> (llvmStdenv: llvmStdenv.override { cc = pkgs.ccacheWrapper.override { cc = llvmStdenv.cc; }; });
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
