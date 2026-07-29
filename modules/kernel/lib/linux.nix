@@ -89,9 +89,8 @@
           "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
           "NIX_ENFORCE_NO_NATIVE=0"
           "DTC_FLAGS=-Wno-unique_unit_address"
-          #"KCFLAGS=-w"
+          "KCFLAGS=-w"
           "-j8"
-          "--output-sync=recurse"
         ];
       }
     )
