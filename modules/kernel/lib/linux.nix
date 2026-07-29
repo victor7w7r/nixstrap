@@ -40,7 +40,7 @@
       version = (kernel.lib.version pkgs src localVer).final;
       modDirVersion = (kernel.lib.version pkgs src localVer).final;
       ignoreConfigErrors = true;
-
+      DTB = dts != "";
       extraConfig =
         with lib;
         (
@@ -73,17 +73,14 @@
         efiBootStub = true;
       };
 
-      extraMakeFlags = [
-        "LOCALVERSION=-v7w7r-${localVer}"
-        "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
-        "NIX_ENFORCE_NO_NATIVE=0"
-        #"CC=ccache cc"
-        #"HOSTCC=ccache cc"
-      ]
-      ++ (lib.optionals (dts != "") [
-        "ARCH=arm64"
-        "arch/arm64/boot/dts/${dts}"
-      ]);
+      preBuild = ''
+        makeFlagsArray=(
+          "LOCALVERSION=-v7w7r-${localVer}"
+          "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
+          "NIX_ENFORCE_NO_NATIVE=0"
+          ${lib.optionalString (dts != "") "arch/arm64/boot/dts/${dts}"}
+        )
+      '';
     })
     |> (base: {
       kernel = base;
