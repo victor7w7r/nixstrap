@@ -13,6 +13,7 @@
       nixpkgs.overlays = [
         (_: prev: {
           ccacheWrapper = prev.ccacheWrapper.override {
+            isClang = true;
             extraConfig = ''
               CCACHE_DIR="/nix/var/cache/ccache"
               export CCACHE_CONFIGPATH="''${CCACHE_CONFIGPATH:-${conf}}"
