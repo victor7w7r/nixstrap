@@ -36,9 +36,8 @@
           |> (
             llvmStdenv:
             llvmStdenv.override {
-              cc = pkgs.wrapCCWith {
+              cc = pkgs.ccacheWrapper.override {
                 cc = llvmStdenv.cc;
-                wrapper = pkgs.ccacheWrapper;
               };
             }
           );
