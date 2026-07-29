@@ -8,6 +8,7 @@
       isArm = true;
       isHardened = true;
       notDenial = true;
+      dts = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
       isCachyos = false;
       patches =
         with kernel.patches.injector pkgs;

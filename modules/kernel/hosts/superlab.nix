@@ -8,7 +8,7 @@
       isArm = true;
       notDenial = true;
       isCachyos = false;
-
+      dts = "rockchip/rk3588-rock-5b.dtb";
       patches =
         with kernel.patches.injector pkgs;
         #cachyos.std ++ tachyon.std ++ bunker.std ++

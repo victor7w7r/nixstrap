@@ -13,6 +13,7 @@
       extraConfig,
       isHardened ? false,
       isArm ? false,
+      dts ? "",
       isCachyos ? true,
       notDenial ? false,
     }:
@@ -78,7 +79,11 @@
         "NIX_ENFORCE_NO_NATIVE=0"
         #"CC=ccache cc"
         #"HOSTCC=ccache cc"
-      ];
+      ]
+      ++ (lib.optionals (dts != "") [
+        "ARCH=arm64"
+        "arch/arm64/boot/dts/${dts}"
+      ]);
     })
     |> (base: {
       kernel = base;
