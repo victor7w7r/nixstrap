@@ -1,5 +1,10 @@
 { kernel, ... }:
 {
+  flake-file.inputs.uwe5622 = {
+    url = "github:Ran-Thegoth/uwe5622";
+    flake = false;
+  };
+
   kernel.hosts.pizero =
     pkgs:
     (kernel.lib.linux {
@@ -8,8 +13,8 @@
       isArm = true;
       isHardened = true;
       notDenial = true;
-      dts = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
-      isCachyos = false;
+      class = "allwinner";
+      dtbMake = "dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb";
       patches =
         with kernel.patches.injector pkgs;
         #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++
