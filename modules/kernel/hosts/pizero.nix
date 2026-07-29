@@ -14,7 +14,7 @@
       isHardened = true;
       notDenial = true;
       class = "allwinner";
-      dtbMake = "dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb";
+      dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       patches =
         with kernel.patches.injector pkgs;
         #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++
