@@ -7,7 +7,7 @@
       dtbMake ? "",
       extra ? "",
     }:
-    pkgs.stdenv.mkDerivation {
+    pkgs.stdenvNoCC.mkDerivation {
       name = "linux-mod";
       src =
         (pkgs.linuxKernel.kernels.linux_7_1.override {
