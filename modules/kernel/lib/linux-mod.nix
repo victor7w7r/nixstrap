@@ -21,9 +21,16 @@
           };
         }).src;
 
+      dontBuild = true;
+      dontConfigure = true;
+      installPhase = ''
+        mkdir -p $out
+        cp -r . $out/
+      '';
+
       postPatch = ''
         ${lib.optionalString (class != "") ''
-          find "arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
+          find "./arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
           cat <<EOF > "$arch/arm64/boot/dts/${class}/Makefile"
               ${dtbMake}
           EOF
