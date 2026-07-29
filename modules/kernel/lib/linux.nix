@@ -37,7 +37,7 @@
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
-
+        enableParallelBuilding = true;
         kernelPatches = map (file: {
           name = baseNameOf (toString file);
           patch = file;
@@ -73,6 +73,8 @@
           "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
           "NIX_ENFORCE_NO_NATIVE=0"
           "DTC_FLAGS=-Wno-unique_unit_address"
+          "-j$NIX_BUILD_CORES"
+          "--output-sync=recurse"
         ];
       }
     )

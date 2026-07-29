@@ -46,6 +46,10 @@
 
       programs.ccache = {
         enable = true;
+        packageNames = [
+          "linux-7w7r-rockchip"
+          "linux-7w7r-sunxi-hardened"
+        ];
         cacheDir = "/nix/var/cache/ccache";
       };
     });
