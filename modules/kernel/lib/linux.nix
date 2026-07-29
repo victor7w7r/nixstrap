@@ -40,7 +40,7 @@
       version = (kernel.lib.version pkgs src localVer).final;
       modDirVersion = (kernel.lib.version pkgs src localVer).final;
       ignoreConfigErrors = true;
-      DTB = dts != "";
+      DTB = false;
       extraConfig =
         with lib;
         (
@@ -73,14 +73,18 @@
         efiBootStub = true;
       };
 
-      preBuild = ''
+      preConfigure = ''
         makeFlagsArray=(
           "LOCALVERSION=-v7w7r-${localVer}"
           "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
           "NIX_ENFORCE_NO_NATIVE=0"
-          ${lib.optionalString (dts != "") "arch/arm64/boot/dts/${dts}"}
         )
       '';
+
+      buildFlags = lib.optional (dts != "") "arch/arm64/boot/dts/${dts}" ++ [
+        "vmlinuz"
+        "modules"
+      ];
     })
     |> (base: {
       kernel = base;
