@@ -30,7 +30,7 @@
             else
               ''
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
-                sed -i -E '/.*(cw1200-7.0|opi3-eth-7.0|tcpm-7.0|a83t-suspend-7.0|net-usb|arm64-dts-sun50i-h6-|drv-spidev-).*/d' series.conf
+                sed -i -E '/.*(rk3399|cw1200-7.0|opi3-eth-7.0|tcpm-7.0|a83t-suspend-7.0|net-usb|arm64-dts-sun50i-h6-|drv-spidev-).*/d' series.conf
                 sed -i -E '/.*(arm64-xor-Select-32regs-without-benchmark-to-speed-u).*/d' series.conf
                 sed -i -E '/.*(drm-gem-dma-support-dedicated-dma-device-for-allocation-and-mapping).*/d' series.conf
                 sed -i -E '/.*(drm-prime-limit-scatter-list-size-with-dedicated-dma-device).*/d' series.conf
