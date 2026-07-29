@@ -74,7 +74,7 @@
           "NIX_ENFORCE_NO_NATIVE=0"
           "DTC_FLAGS=-Wno-unique_unit_address"
           "KCFLAGS=-w"
-          "-j$NIX_BUILD_CORES"
+          "-j8"
           "--output-sync=recurse"
         ];
       }
