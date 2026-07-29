@@ -11,8 +11,8 @@
     '')
     |> (conf: {
       nixpkgs.overlays = [
-        (final: _: {
-          ccacheWrapper = final.ccacheWrapper.override {
+        (_: prev: {
+          ccacheWrapper = prev.ccacheWrapper.override {
             extraConfig = ''
               CCACHE_DIR="/nix/var/cache/ccache"
               export CCACHE_CONFIGPATH="''${CCACHE_CONFIGPATH:-${conf}}"
