@@ -50,7 +50,6 @@
             {
               name = "custom-dts-cleanup";
               patch = null;
-              extraStructuredConfig = { };
               postPatch = ''
                 ${lib.optionalString (class != "") ''
                   find "./arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
