@@ -23,10 +23,11 @@
       extraConfig = with kernel.config.modules; [
         {
           AXP20X_POWER = "y";
-          REGULATOR_AXP20X = "y";
           MFD_AXP20X = "y";
           MFD_AXP20X_I2C = "y";
           MFD_AXP20X_RSB = "y";
+          IIO = "y";
+          REGULATOR_AXP20X = "y";
         }
         /*
           default
