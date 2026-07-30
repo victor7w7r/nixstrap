@@ -196,17 +196,17 @@
     "asus": {
       "flake": false,
       "locked": {
-        "lastModified": 1769960290,
-        "narHash": "sha256-29C82Hj87of4WZMwcJAkOy5/x59HrCJ92y3c1F+muRI=",
+        "lastModified": 1784477707,
+        "narHash": "sha256-I7w4QI/7P+ZlA7G8kR5evgZPItZWelKlzkt4fwjjI+Y=",
         "owner": "asus-linux",
         "repo": "linux-g14",
-        "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
+        "rev": "c95c77b20d794c1c962fcccc9735348bdb7d4e76",
         "type": "gitlab"
       },
       "original": {
         "owner": "asus-linux",
         "repo": "linux-g14",
-        "rev": "0e4aca508d46305a4d3fdf814c5d2bded30a2cdb",
+        "rev": "c95c77b20d794c1c962fcccc9735348bdb7d4e76",
         "type": "gitlab"
       }
     },
@@ -5544,15 +5544,15 @@
     "tachyon-patches": {
       "flake": false,
       "locked": {
-        "lastModified": 1767402416,
-        "narHash": "sha256-hQIk07TaYnCLA8vouZH7NmeDeA0RgFbHe70q3uroY0g=",
-        "rev": "465087d9f514ffebcfda87ae9ec184e843616313",
+        "lastModified": 1783978581,
+        "narHash": "sha256-AaFjNVzaJgNlOBWNsTBS8w7RRCMo2NHMaS/MFZo6YOQ=",
+        "rev": "25bfa5ba12783e5e1b0a15cfac570b532f711329",
         "type": "tarball",
-        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz"
+        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz"
+        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz"
       }
     },
     "tahoma2d": {

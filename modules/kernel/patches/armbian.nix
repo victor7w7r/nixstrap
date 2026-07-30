@@ -33,10 +33,12 @@
                 sed -i -E '/.*(arm64-dts-rockchip-rk356x-Fix-PCIe-register-map-and-).*/d' series.conf
                 sed -i -E '/.*(arm64-dts-rockchip-rk3399-s-Add-DMC-table).*/d' series.conf
                 sed -i -E '/.*(drm-prime-limit-scatter-list-size-with-dedicated-dma-device).*/d' series.conf
+                sed -i -E '/.*(drv-char-add-dump-reg-sysinfo-drivers).*/d' series.conf
                 sed -i -E '/.*(drm-gem-dma-support-dedicated-dma-device-for-allocation-and-mapping).*/d' series.conf
                 sed -i -E '/.*(drm-sun4i-use-backend-mixer-as-dedicated-dma-device).*/d' series.conf
                 sed -i -E '/.*(drv-media-dvb-frontends-si2168-fix-cmd-timeout).*/d' series.conf
                 sed -i -E '/.*(drv-net-usb-r8152-add-led-configuration-from-of).*/d' series.conf
+                sed -i -E '/.*(video-fbdev-eInk-display-driver-for-A13-based-Pocket).*/d' series.conf
               '';
           installPhase = "cp series.conf $out";
         })
