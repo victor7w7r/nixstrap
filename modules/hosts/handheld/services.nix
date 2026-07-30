@@ -17,9 +17,9 @@
             btrfs.autoScrub.fileSystems = [ "/run/media/games" ];
 
             handheld-daemon = {
-              enable = true;
+              enable = false;
               user = user.name;
-              ui.enable = true;
+              ui.enable = false;
               adjustor.enable = true;
               adjustor.loadAcpiCallModule = true;
             };
