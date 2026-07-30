@@ -69,7 +69,7 @@
                 options kvm-intel nested=1
                 options kvm_intel emulate_invalid_guest_state=0
               '';
-              kernelPackages = pkgs.cachyosKernels.linux-cachyos-latest-lto; # (kernel.hosts.server pkgs).server-kernelPackages;
+              kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto; # (kernel.hosts.server pkgs).server-kernelPackages;
               swraid = {
                 enable = true;
                 mdadmConf = ''
