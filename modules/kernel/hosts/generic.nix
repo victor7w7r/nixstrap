@@ -27,16 +27,10 @@
     });
 
   perSystem =
-    { lib, pkgs, ... }:
-    (kernel.hosts.generic pkgs)
-    |> (src: {
-      devShells.generic-kconfig = kernel.lib.kconfig {
-        inherit pkgs;
-        kernel = src.generic-kernel;
-      };
-      packages = lib.mkAfter {
-        generic-config = src.generic-config;
-        generic-kernel = src.generic-kernel;
-      };
-    });
+    { pkgs, ... }:
+    kernel.lib.package-gen {
+      inherit pkgs;
+      host = "generic";
+      cross = "x86_64-unknown-linux-gnu";
+    };
 }

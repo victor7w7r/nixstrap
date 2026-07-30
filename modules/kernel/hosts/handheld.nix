@@ -29,16 +29,10 @@
     });
 
   perSystem =
-    { lib, pkgs, ... }:
-    (kernel.hosts.handheld pkgs)
-    |> (src: {
-      devShells.handheld-kconfig = kernel.lib.kconfig {
-        inherit pkgs;
-        kernel = src.handheld-kernel;
-      };
-      packages = lib.mkAfter {
-        handheld-config = src.handheld-config;
-        handheld-kernel = src.handheld-kernel;
-      };
-    });
+    { pkgs, ... }:
+    kernel.lib.package-gen {
+      inherit pkgs;
+      host = "handheld";
+      cross = "x86_64-unknown-linux-gnu";
+    };
 }

@@ -22,6 +22,7 @@
       ];
 
       systemd.tmpfiles.rules = [
+        "d /nix/var/cache/sccache 2770 root nixbld - -"
         "d /nix/var/cache/ccache 2770 root nixbld - -"
         "L+ /nix/var/cache/ccache/ccache.conf - - - - ${conf}"
       ];

@@ -34,16 +34,10 @@
     });
 
   perSystem =
-    { lib, pkgs, ... }:
-    (kernel.hosts.server pkgs)
-    |> (src: {
-      devShells.server-kconfig = kernel.lib.kconfig {
-        inherit pkgs;
-        kernel = src.server-kernel;
-      };
-      packages = lib.mkAfter {
-        server-config = src.server-config;
-        server-kernel = src.server-kernel;
-      };
-    });
+    { pkgs, ... }:
+    kernel.lib.package-gen {
+      inherit pkgs;
+      host = "server";
+      cross = "x86_64-unknown-linux-gnu";
+    };
 }

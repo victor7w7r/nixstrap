@@ -66,33 +66,9 @@
     });
 
   perSystem =
-    { lib, pkgs, ... }:
-    lib.mkMerge [
-      (
-        (kernel.hosts.pizero pkgs)
-        |> (src: {
-          devShells.pizero-kconfig = kernel.lib.kconfig {
-            inherit pkgs;
-            kernel = src.pizero-kernel;
-          };
-          packages = lib.mkAfter {
-            pizero-config = src.pizero-config;
-            pizero-kernel = src.pizero-kernel;
-          };
-        })
-      )
-      (
-        (kernel.hosts.pizero pkgs.pkgsCross.aarch64-multiplatform)
-        |> (src: {
-          devShells.pizero-cross-kconfig = kernel.lib.kconfig {
-            pkgs = pkgs.pkgsCross.aarch64-multiplatform;
-            kernel = src.pizero-kernel;
-          };
-          packages = lib.mkAfter {
-            pizero-cross-config = src.pizero-config;
-            pizero-cross-kernel = src.pizero-kernel;
-          };
-        })
-      )
-    ];
+    { pkgs, ... }:
+    kernel.lib.package-gen {
+      inherit pkgs;
+      host = "pizero";
+    };
 }
