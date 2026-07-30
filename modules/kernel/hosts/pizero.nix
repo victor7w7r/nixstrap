@@ -13,6 +13,7 @@
       isArm = true;
       isHardened = true;
       notDenial = true;
+      hasCache = false;
       class = "allwinner";
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       patches =
