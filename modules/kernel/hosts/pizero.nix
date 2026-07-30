@@ -21,6 +21,13 @@
         #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++
         armbian.sunxi-patches;
       extraConfig = with kernel.config.modules; [
+        {
+          AXP20X_POWER = "y";
+          REGULATOR_AXP20X = "y";
+          MFD_AXP20X = "y";
+          MFD_AXP20X_I2C = "y";
+          MFD_AXP20X_RSB = "y";
+        }
         /*
           default
           freq.low
@@ -37,7 +44,6 @@
             ARCH_MXC = "n";
             ARCH_RENESAS = "n";
             ARCH_SOPHGO = "n";
-            AXP20X_POWER = "y";
             FB_SUN5I_EINK = "n";
             AHCI_SUNXI = "y";
             DRM_SUN4I = "y";
@@ -49,7 +55,6 @@
             PWM_SUN4I = "y";
             PHY_SUN9I_USB = "y";
             PHY_SUN50I_USB3 = "y";
-            REGULATOR_AXP20X = "y";
             SPI_SUN4I = "y";
             SERIO_SUN4I_PS2 = "y";
             STMMAC_ETH = "y";
