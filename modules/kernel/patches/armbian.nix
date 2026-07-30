@@ -39,6 +39,7 @@
                 sed -i -E '/.*(drm-gem-dma-support-dedicated-dma-device-for-allocation-and-mapping).*/d' series.conf
                 sed -i -E '/.*(drm-sun4i-use-backend-mixer-as-dedicated-dma-device).*/d' series.conf
                 sed -i -E '/.*(drv-media-dvb-frontends-si2168-fix-cmd-timeout).*/d' series.conf
+                sed -i -E '/.*(drv-clk-gate-add-regmap-gate-support).*/d' series.conf
                 sed -i -E '/.*(drv-leds-ws2812-add-h616-driver).*/d' series.conf
                 sed -i -E '/.*(video-fbdev-eInk-display-driver-for-A13-based-Pocket).*/d' series.conf
               '';
