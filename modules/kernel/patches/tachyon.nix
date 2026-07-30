@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake-file.inputs.tachyon-patches = {
-    url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz";
+    url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
     flake = false;
   };
 

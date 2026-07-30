@@ -53,15 +53,32 @@
 
   perSystem =
     { lib, pkgs, ... }:
-    (kernel.hosts.superlab pkgs)
-    |> (src: {
-      devShells.superlab-kconfig = kernel.lib.kconfig {
-        inherit pkgs;
-        kernel = src.superlab-kernel;
-      };
-      packages = lib.mkAfter {
-        superlab-config = src.superlab-config;
-        superlab-kernel = src.superlab-kernel;
-      };
-    });
+    lib.mkMerge [
+      (
+        (kernel.hosts.superlab pkgs)
+        |> (src: {
+          devShells.superlab-kconfig = kernel.lib.kconfig {
+            inherit pkgs;
+            kernel = src.superlab-kernel;
+          };
+          packages = lib.mkAfter {
+            superlab-config = src.superlab-config;
+            superlab-kernel = src.superlab-kernel;
+          };
+        })
+      )
+      (
+        (kernel.hosts.superlab pkgs.pkgsCross.aarch64-multiplatform)
+        |> (src: {
+          devShells.superlab-cross-kconfig = kernel.lib.kconfig {
+            pkgs = pkgs.pkgsCross.aarch64-multiplatform;
+            kernel = src.superlab-kernel;
+          };
+          packages = lib.mkAfter {
+            superlab-cross-config = src.superlab-config;
+            superlab-cross-kernel = src.superlab-kernel;
+          };
+        })
+      )
+    ];
 }

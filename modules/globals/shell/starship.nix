@@ -10,7 +10,7 @@
           add_newline = true;
           command_timeout = 500;
           format = ''
-            [╭╴](#7088ff)$os$username[@](#7088ff)$hostname$jobs$directory$sudo$cmd_duration$fill$shell$status$localip$time
+            [╭╴](#7088ff)$os$username[@](#7088ff)$hostname$jobs$directory$cmd_duration$fill$shell$status$sudo$localip
             [╰╴](#7088ff)$character
           '';
 
@@ -68,14 +68,13 @@
             home_symbol = "~";
             read_only = "  ";
             style = "italic #83e6ff";
-            truncation_length = 3;
+            truncation_length = 1;
             truncation_symbol = "…/";
 
             substitutions = {
-              "Documents" = "󰈙 ";
-              "Downloads" = " ";
-              "Music" = " ";
-              "Pictures" = " ";
+              "Documentos" = "󰈙 ";
+              "Descargas" = " ";
+              "Imagenes" = " ";
             };
           };
 
@@ -108,14 +107,7 @@
             ssh_only = false;
           };
 
-          time = {
-            disabled = false;
-            format = "[$time]($style)";
-            style = "italic #83e6ff";
-            time_format = "%I:%M:%S";
-            use_12hr = true;
-            utc_time_offset = "local";
-          };
+          time.disabled = true;
         };
       };
     };

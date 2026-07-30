@@ -49,6 +49,8 @@
         packageNames = [
           "linux-7w7r-rockchip"
           "linux-7w7r-sunxi-hardened"
+          "linux-v7w7r-rockchip-7.1.4-v7w7r-rockchip"
+          "linux-v7w7r-sunxi-hardened-7.1.4-v7w7r-sunxi-hardened"
         ];
         cacheDir = "/nix/var/cache/ccache";
       };

@@ -40,15 +40,32 @@
 
   perSystem =
     { lib, pkgs, ... }:
-    (kernel.hosts.phone pkgs)
-    |> (src: {
-      devShells.phone-kconfig = kernel.lib.kconfig {
-        inherit pkgs;
-        kernel = src.phone-kernel;
-      };
-      packages = lib.mkAfter {
-        phone-config = src.phone-config;
-        phone-kernel = src.phone-kernel;
-      };
-    });
+    lib.mkMerge [
+      (
+        (kernel.hosts.phone pkgs)
+        |> (src: {
+          devShells.phone-kconfig = kernel.lib.kconfig {
+            inherit pkgs;
+            kernel = src.phone-kernel;
+          };
+          packages = lib.mkAfter {
+            phone-config = src.phone-config;
+            phone-kernel = src.phone-kernel;
+          };
+        })
+      )
+      (
+        (kernel.hosts.phone pkgs.pkgsCross.aarch64-multiplatform)
+        |> (src: {
+          devShells.phone-cross-kconfig = kernel.lib.kconfig {
+            pkgs = pkgs.pkgsCross.aarch64-multiplatform;
+            kernel = src.phone-kernel;
+          };
+          packages = lib.mkAfter {
+            phone-cross-config = src.phone-config;
+            phone-cross-kernel = src.phone-kernel;
+          };
+        })
+      )
+    ];
 }
