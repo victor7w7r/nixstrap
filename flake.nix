@@ -26,11 +26,13 @@
       "https://nix-community.cachix.org"
       "https://cache.nixos.org"
       "https://vanilla-mobile-nixos.cachix.org"
+      "https://cache.xinux.uz"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "vanilla-mobile-nixos.cachix.org-1:nicMQxxTD4n6PM9dCvylqsCOCA6M2C6gybbCKrei8AQ="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
     ];
     trusted-substituters = [
       "https://cache.nixos.org"
@@ -79,7 +81,7 @@
       flake = false;
     };
     asus = {
-      url = "gitlab:asus-linux/linux-g14/0e4aca508d46305a4d3fdf814c5d2bded30a2cdb";
+      url = "gitlab:asus-linux/linux-g14/c95c77b20d794c1c962fcccc9735348bdb7d4e76";
       flake = false;
     };
     audio-share = {
@@ -832,7 +834,7 @@
       flake = false;
     };
     tachyon-patches = {
-      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/465087d9f514ffebcfda87ae9ec184e843616313.tar.gz";
+      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
       flake = false;
     };
     tahoma2d = {
