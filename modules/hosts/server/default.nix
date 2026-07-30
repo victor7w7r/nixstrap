@@ -64,6 +64,17 @@
               kernelParams = [
                 "pcie_aspm=off"
                 "kvmfr.static_size_mb=128"
+                "iommu=pt"
+                "i915.enable_guc=2"
+                "kvm_intel.nested=1"
+                "intel_pstate=passive"
+                "intel_iommu=on"
+                "pcie_ports=compat"
+                "libahci.ignore_sss=1"
+                "ahci.mobile_lpm_policy=2"
+                "page_poison=1"
+                "oops=panic"
+                "randomize_kstack_offset=on"
               ];
               extraModprobeConfig = ''
                 options kvm-intel nested=1

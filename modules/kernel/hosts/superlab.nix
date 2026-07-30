@@ -26,7 +26,6 @@
         #cachyos.std ++ tachyon.std bunker.std ++
         armbian.rockchip-patches;
       extraConfig = with kernel.config.modules; [
-        (cmdline { })
         /*
           default
           freq.high

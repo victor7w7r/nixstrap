@@ -59,7 +59,18 @@
           };
           boot = {
             kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto; # (kernel.hosts.main pkgs).main-kernelPackages;
-            kernelParams = [ "kvmfr.static_size_mb=128" ];
+            kernelParams = [
+              "video=DP-3:1600x900@60"
+              "kvmfr.static_size_mb=128"
+              "iommu=pt"
+              "i915.enable_guc=2"
+              "kvm_intel.nested=1"
+              "intel_pstate=passive"
+              "intel_iommu=on"
+              "pcie_ports=compat"
+              "libahci.ignore_sss=1"
+              "ahci.mobile_lpm_policy=2"
+            ];
             resumeDevice = "/dev/mapper/swapcrypt";
             extraModulePackages = [ self'.packages.apple-bce ];
             extraModprobeConfig = ''

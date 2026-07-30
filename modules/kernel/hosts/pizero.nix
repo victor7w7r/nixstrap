@@ -21,7 +21,6 @@
         #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++
         armbian.sunxi-patches;
       extraConfig = with kernel.config.modules; [
-        (cmdline { })
         /*
           default
           freq.low

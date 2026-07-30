@@ -8,11 +8,6 @@
       isHardened = true;
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
       extraConfig = with kernel.config.modules; [
-        (cmdline {
-          isIntel = true;
-          isSata = true;
-          isSec = true;
-        })
         default
         freq.low
         hardware.desktop

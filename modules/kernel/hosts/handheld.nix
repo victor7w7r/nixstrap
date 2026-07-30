@@ -9,7 +9,6 @@
         with kernel.patches.injector pkgs;
         cachyos.handheld ++ tachyon.gaming ++ bunker.std ++ asus;
       extraConfig = with kernel.config.modules; [
-        (cmdline { isAmd = true; })
         default
         freq.high
         hardware.desktop-wserial

@@ -80,6 +80,9 @@
                   "rd.retry=10"
                   "systemd.debug_shell=1"
                   "zram.num_devices=2"
+                  "page_poison=1"
+                  "oops=panic"
+                  "randomize_kstack_offset=on"
                 ];
                 initrd.kernelModules = [
                   #"g_ether"

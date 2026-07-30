@@ -7,7 +7,6 @@
       localVer = "v2";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
       extraConfig = with kernel.config.modules; [
-        (cmdline { })
         default
         freq.high
         hardware.desktop

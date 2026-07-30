@@ -49,7 +49,17 @@
               resumeDevice = "/dev/mapper/swapcrypt";
               blacklistedKernelModules = [ "snd_hda_intel" ];
               kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify; # (kernel.hosts.handheld pkgs).handheld-kernelPackages;
-              #kernelParams = [ "resume=/dev/mapper/swapcrypt" ];
+              kernelParams = [
+                "mitigations=off"
+                "nospectre_v1"
+                "nospectre_v2"
+                "spec_store_bypass_disable=off"
+                "amdgpu.sg_display=0"
+                "amdgpu.gttsize=8192"
+                "amd_iommu=on"
+                "amd_pstate=passive"
+                #"resume=/dev/mapper/swapcrypt"
+              ];
             };
 
             environment = {
