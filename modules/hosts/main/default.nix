@@ -51,7 +51,7 @@
         }:
         {
           imports = [ inputs.disko.nixosModules.disko ];
-          #nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+          nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
 
           networking = {
             hostName = "v7w7r-macmini81";

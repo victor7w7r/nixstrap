@@ -21,9 +21,7 @@
           ];
           buildPhase =
             if isRockchip then
-              ''
-                find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf
-              ''
+              "find $src/patch/kernel/archive/rockchip64-7.1 -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf"
             else
               ''
                 cp $src/patch/kernel/archive/sunxi-7.0/series.conf ./series.conf
