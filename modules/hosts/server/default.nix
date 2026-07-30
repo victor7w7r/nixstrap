@@ -41,7 +41,7 @@
           { config, pkgs, ... }:
           {
             imports = [ inputs.disko.nixosModules.disko ];
-            nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+            nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
             hardware.cpu.intel.updateMicrocode = true;
 
             # wol -i 192.168.1.255 00:11:22:33:44:55

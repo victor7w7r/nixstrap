@@ -42,7 +42,7 @@
           {
             networking.hostName = "v7w7r-rc71l";
             imports = [ inputs.disko.nixosModules.disko ];
-            nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+            nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
 
             boot = {
               extraModprobeConfig = "options kvm-amd nested=1";
