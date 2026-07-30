@@ -30,6 +30,15 @@
                 sed -i -E '/.*(a83t-suspend-7.0).*/d' series.conf
                 sed -i -E '/.*(arm64-xor-Select-32regs-without-benchmark-to-speed-u).*/d' series.conf
                 sed -i -E '/.*(arm64-dts-rk3399-rockpro64-Add-DMC-nodes).*/d' series.conf
+                sed -i -E '/.*(arm64-dts-rk3399-rockpro64-Add-Type-C-OTG-Alt-DP-sup).*/d' series.conf
+                sed -i -E '/.*(arm64-dts-rk3399-Add-dmc_opp_table).*/d' series.conf
+                sed -i -E '/.*(arm64-dts-rockchip-rk356x-Fix-PCIe-register-map-and-).*/d' series.conf
+                sed -i -E '/.*(arm64-dts-rockchip-rk3399-s-Add-DMC-table).*/d' series.conf
+                sed -i -E '/.*(drm-prime-limit-scatter-list-size-with-dedicated-dma-device).*/d' series.conf
+                sed -i -E '/.*(drm-gem-dma-support-dedicated-dma-device-for-allocation-and-mapping).*/d' series.conf
+                sed -i -E '/.*(drm-sun4i-use-backend-mixer-as-dedicated-dma-device).*/d' series.conf
+                sed -i -E '/.*(drv-media-dvb-frontends-si2168-fix-cmd-timeout).*/d' series.conf
+                sed -i -E '/.*(drv-net-usb-r8152-add-led-configuration-from-of).*/d' series.conf
               '';
           installPhase = "cp series.conf $out";
         })
