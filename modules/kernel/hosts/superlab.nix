@@ -7,6 +7,7 @@
       localVer = "rockchip";
       isArm = true;
       notDenial = true;
+      hasCache = false;
       class = "rockchip";
       dtbMake = ''
         dtb-\$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
