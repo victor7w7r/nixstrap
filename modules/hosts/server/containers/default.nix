@@ -42,15 +42,6 @@
         rules ? [ ],
       }:
       {
-        autoStart = true;
-        privateNetwork = true;
-        enableTun = true;
-        ephemeral = false;
-        hostAddress = "192.168.1.1";
-        localAddress = "192.168.1.${ip}";
-        extraFlags = [ "--private-users-ownership=chown" ];
-        additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
-        inherit forwardPorts;
         bindMounts = {
           "/etc/ssh" = {
             hostPath = "/home/victor7w7r/.ssh";
