@@ -60,7 +60,7 @@
           boot = {
             kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3; # (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [
-              "video=DP-3:1600x900@60"
+              "video=DP-3:1600x900@60e"
               "kvmfr.static_size_mb=128"
               "iommu=pt"
               "i915.enable_guc=2"
@@ -70,6 +70,8 @@
               "pcie_ports=compat"
               "libahci.ignore_sss=1"
               "ahci.mobile_lpm_policy=2"
+              "drm.polled=14"
+              "i915.fastboot=0"
             ];
             resumeDevice = "/dev/mapper/swapcrypt";
             extraModulePackages = [ self'.packages.apple-bce ];
