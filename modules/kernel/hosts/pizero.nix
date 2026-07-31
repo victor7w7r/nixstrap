@@ -6,14 +6,13 @@
   };
 
   kernel.hosts.pizero =
-    pkgs:
+    pkgs: armCross:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs armCross;
       localVer = "sunxi-hardened";
       isArm = true;
       isHardened = true;
       notDenial = true;
-      hasCache = false;
       class = "allwinner";
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       patches =
@@ -28,6 +27,7 @@
           MFD_AXP20X_RSB = "y";
           IIO = "y";
           REGULATOR_AXP20X = "y";
+          SUNXI_RSB = "y";
         }
         /*
           default

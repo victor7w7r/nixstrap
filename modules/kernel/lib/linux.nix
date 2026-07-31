@@ -11,9 +11,9 @@
       patches,
       localVer,
       extraConfig,
+      armCross ? false,
       isHardened ? false,
       isArm ? false,
-      hasCache ? true,
       notDenial ? false,
       class ? "",
       dtbMake ? "",
@@ -33,11 +33,21 @@
         pname = "linux-v7w7r-${localVer}";
         inherit src;
         stdenv =
-          if hasCache then
-            (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-            |> (llvmStdenv: llvmStdenv.override { cc = pkgs.ccacheWrapper.override { cc = llvmStdenv.cc; }; })
-          else
-            (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM;
+          (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
+          |> (
+            llvmStdenv:
+            llvmStdenv.override {
+              cc = pkgs.ccacheWrapper.override {
+                cc = llvmStdenv.cc;
+                extraConfig = ''
+                  export CCACHE_COMPRESS=1
+                  export CCACHE_DIR="/var/cache/ccache"
+                  export CCACHE_UMASK="007"
+                  export CCACHE_SLOPPINESS=random_seed
+                '';
+              };
+            }
+          );
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
@@ -83,7 +93,11 @@
           "KCFLAGS=-w"
           "CCACHE_COMPILERCHECK=content"
           "-j8"
-        ];
+        ]
+        ++ (lib.optionals armCross [
+          "ARCH=arm64"
+          "CROSS_COMPILE=aarch64-unknown-linux-gnu-"
+        ]);
       }
     )
 

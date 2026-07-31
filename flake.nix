@@ -201,6 +201,7 @@
       url = "github:r00tman/corrupter";
       flake = false;
     };
+    crane.url = "github:ipetkov/crane";
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
     customfetch = {
       url = "github:Toni500github/customfetch";

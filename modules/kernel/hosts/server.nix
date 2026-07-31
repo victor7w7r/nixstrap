@@ -1,7 +1,7 @@
 { kernel, ... }:
 {
   kernel.hosts.server =
-    pkgs:
+    pkgs: armCross:
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "server-hardened-native";

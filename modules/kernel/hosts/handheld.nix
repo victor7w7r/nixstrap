@@ -1,7 +1,7 @@
 { kernel, ... }:
 {
   kernel.hosts.handheld =
-    pkgs:
+    pkgs: armCross:
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "handheld-native";

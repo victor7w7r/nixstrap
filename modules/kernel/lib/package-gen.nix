@@ -7,7 +7,7 @@
     }:
     lib.mkMerge [
       (
-        (kernel.hosts."${host}" pkgs)
+        (kernel.hosts."${host}" pkgs false)
         |> (src: {
           devShells."${host}-kconfig" = kernel.lib.kconfig {
             inherit pkgs;
@@ -20,7 +20,7 @@
         })
       )
       (
-        (kernel.hosts."${host}" pkgs.pkgsCross."${cross}")
+        (kernel.hosts."${host}" (pkgs.pkgsCross."${cross}") (cross == "aarch64-multiplatform"))
         |> (src: {
           devShells."${host}-cross-kconfig" = kernel.lib.kconfig {
             pkgs = pkgs.pkgsCross."${cross}";

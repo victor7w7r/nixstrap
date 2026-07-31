@@ -1,9 +1,9 @@
 { kernel, inputs, ... }:
 {
   kernel.hosts.phone =
-    pkgs:
+    pkgs: armCross:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs armCross;
       localVer = "sdm845";
       isArm = true;
       notDenial = true;

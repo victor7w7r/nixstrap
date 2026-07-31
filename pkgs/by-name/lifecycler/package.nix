@@ -1,13 +1,15 @@
-{ inputs, pkgs }:
-pkgs.rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane.lib.call {
+  inherit pkgs;
   pname = "lifecycler";
-  version = "latest";
-  src = inputs.lifecycler;
+  source = inputs.lifecycler;
   nativeBuildInputs = with pkgs; [ pkg-config ];
   buildInputs = with pkgs; [
     alsa-lib
     udev
   ];
-
-  cargoHash = "sha256-jUcYyp+hMcdgWkdSf3DywSscGff9DpQ1Dt0pgEiP930=";
-}
+})

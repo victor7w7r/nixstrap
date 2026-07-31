@@ -7,6 +7,4 @@ pkgs.rustPlatform.buildRustPackage {
   doCheck = false;
   nativeBuildInputs = with pkgs; [ perl ];
   buildInputs = with pkgs; [ openssl ];
-  #RUSTC_WRAPPER = "sccache";
-  #SCCACHE_DIR = "/nix/var/cache/sccache";
 }

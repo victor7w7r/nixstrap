@@ -10,7 +10,7 @@
           add_newline = true;
           command_timeout = 500;
           format = ''
-            [╭╴](#7088ff)$os$username[@](#7088ff)$hostname$jobs$directory$cmd_duration$fill$shell$status$sudo$localip
+            [╭╴](#7088ff)$os$username[@](#7088ff)$hostname$jobs$directory$cmd_duration$fill$shell$status$localip$sudo
             [╰╴](#7088ff)$character
           '';
 
@@ -68,7 +68,7 @@
             home_symbol = "~";
             read_only = "  ";
             style = "italic #83e6ff";
-            truncation_length = 1;
+            truncation_length = 4;
             truncation_symbol = "…/";
 
             substitutions = {
