@@ -1,4 +1,4 @@
-{ disko, ... }:
+{ inputs, disko, ... }:
 {
   den.aspects =
     with disko;
@@ -53,6 +53,7 @@
     in
     {
       main.disks.nixos = {
+        imports = [ inputs.disko.nixosModules.disko ];
         fileSystems = {
           "/nix/persist".neededForBoot = true;
           "/etc".neededForBoot = true;
@@ -68,41 +69,44 @@
         };
       };
 
-      main-chroot.nixos.disko.devices = {
-        inherit lvm_vg;
-        disk = {
-          inherit main;
-          bcache0 = disk.bcache { };
-          ssd = ssd {
-            extraParts = {
-              swapcrypt = luks.call {
-                name = "swapcrypt";
-                device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
-                size = "64G";
-                content = swap.call { };
-                priority = 5;
-              };
-              persistcachecrypt = luks.call {
-                name = "persistcachecrypt";
-                device = "${disk.constants.partlabel}/disk-ssd-persistcachecrypt";
-                size = "120G";
-                priority = 6;
-                postCreate = "make-bcache -C /dev/mapper/persistcachecrypt";
+      main-chroot.nixos = {
+        imports = [ inputs.disko.nixosModules.disko ];
+        disko.devices = {
+          inherit lvm_vg;
+          disk = {
+            inherit main;
+            bcache0 = disk.bcache { };
+            ssd = ssd {
+              extraParts = {
+                swapcrypt = luks.call {
+                  name = "swapcrypt";
+                  device = "${disk.constants.partlabel}/disk-ssd-swapcrypt";
+                  size = "64G";
+                  content = swap.call { };
+                  priority = 5;
+                };
+                persistcachecrypt = luks.call {
+                  name = "persistcachecrypt";
+                  device = "${disk.constants.partlabel}/disk-ssd-persistcachecrypt";
+                  size = "120G";
+                  priority = 6;
+                  postCreate = "make-bcache -C /dev/mapper/persistcachecrypt";
+                };
               };
             };
-          };
-          storage = luks.entire {
-            name = "storage";
-            device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
-          };
-          persist = luks.entire {
-            name = "persist";
-            device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
-            postMount = ''
-              CACHE_SET_UUID=$(sudo bcache-super-show /dev/mapper/persistcachecrypt | grep 'cset.uuid' | awk '{print $2}')
-              echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
-            '';
-            postCreate = "make-bcache -B /dev/mapper/persist";
+            storage = luks.entire {
+              name = "storage";
+              device = "/dev/${disk.constants.id}/ata-ST500LT012-1DG142_S3PMCMHT";
+            };
+            persist = luks.entire {
+              name = "persist";
+              device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
+              postMount = ''
+                CACHE_SET_UUID=$(sudo bcache-super-show /dev/mapper/persistcachecrypt | grep 'cset.uuid' | awk '{print $2}')
+                echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
+              '';
+              postCreate = "make-bcache -B /dev/mapper/persist";
+            };
           };
         };
       };

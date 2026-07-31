@@ -41,7 +41,6 @@
           { lib, pkgs, ... }:
           {
             networking.hostName = "v7w7r-rc71l";
-            imports = [ inputs.disko.nixosModules.disko ];
             nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
 
             boot = {

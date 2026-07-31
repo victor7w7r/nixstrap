@@ -1,7 +1,8 @@
-{ disko, ... }:
+{ disko, inputs, ... }:
 {
   den.aspects.phone.disks.nixos = { pkgs, ... }: {
     fileSystems."/".autoResize = true;
+    imports = [ inputs.disko-mobile.nixosModules.disko ];
     disko = {
       imageBuilder = {
         imageFormat = "raw";

@@ -1,4 +1,4 @@
-{ disko, ... }:
+{ disko, inputs, ... }:
 {
   den.aspects =
     with disko;
@@ -59,6 +59,7 @@
     in
     {
       server.disks.nixos = {
+        imports = [ inputs.disko.nixosModules.disko ];
         disko.devices = {
           inherit lvm_vg mdadm;
           disk = {
@@ -68,72 +69,76 @@
           };
         };
       };
-      server-physical-chroot.nixos.disko.devices = {
-        inherit mdadm;
-        disk = {
-          nvme = nvme {
-            extraParts = {
-              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudlogcrypt cloudlogcrypt
-              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudcachecrypt cloudcachecrypt
-              # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-persist persist
-              swapcrypt = luks.call {
-                name = "swapcrypt";
-                device = "${disk.constants.partlabel}/disk-nvme-swapcrypt";
-                size = "16G";
-                content = swap.call { };
-                priority = 2;
-              };
-              cloudlogcrypt = luks.call {
-                name = "cloudlogcrypt";
-                size = "1G";
-                device = "${disk.constants.partlabel}/disk-nvme-cloudlogcrypt";
-                priority = 3;
-              };
-              cloudcachecrypt = luks.call {
-                name = "cloudcachecrypt";
-                size = "180G";
-                device = "${disk.constants.partlabel}/disk-nvme-cloudcachecrypt";
-                priority = 4;
-                postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
-              };
-              persist = luks.call {
-                name = "persist";
-                size = "100%";
-                device = "${disk.constants.partlabel}/disk-nvme-persist";
-                allowDiscards = true;
-                content = disko.xfs.call {
+      server-physical-chroot.nixos = {
+        imports = [ inputs.disko.nixosModules.disko ];
+        disko.devices = {
+          inherit mdadm;
+          disk = {
+            nvme = nvme {
+              extraParts = {
+                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudlogcrypt cloudlogcrypt
+                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudcachecrypt cloudcachecrypt
+                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-persist persist
+                swapcrypt = luks.call {
+                  name = "swapcrypt";
+                  device = "${disk.constants.partlabel}/disk-nvme-swapcrypt";
+                  size = "16G";
+                  content = swap.call { };
+                  priority = 2;
+                };
+                cloudlogcrypt = luks.call {
+                  name = "cloudlogcrypt";
+                  size = "1G";
+                  device = "${disk.constants.partlabel}/disk-nvme-cloudlogcrypt";
+                  priority = 3;
+                };
+                cloudcachecrypt = luks.call {
+                  name = "cloudcachecrypt";
+                  size = "180G";
+                  device = "${disk.constants.partlabel}/disk-nvme-cloudcachecrypt";
+                  priority = 4;
+                  postCreate = "sudo make-bcache -B /dev/md/raid0 -C /dev/mapper/cloudcachecrypt";
+                };
+                persist = luks.call {
                   name = "persist";
-                  mountpoint = "/nix/persist";
-                  entireDisk = true;
-                  isSolid = true;
-                  isVmStorage = true;
-                  extraOptions = [
-                    "x-systemd.device-timeout=300"
-                    "x-systemd.mount-timeout=300"
-                  ];
+                  size = "100%";
+                  device = "${disk.constants.partlabel}/disk-nvme-persist";
+                  allowDiscards = true;
+                  content = disko.xfs.call {
+                    name = "persist";
+                    mountpoint = "/nix/persist";
+                    entireDisk = true;
+                    isSolid = true;
+                    isVmStorage = true;
+                    extraOptions = [
+                      "x-systemd.device-timeout=300"
+                      "x-systemd.mount-timeout=300"
+                    ];
+                  };
                 };
               };
             };
+            inherit emmc;
+            cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
+            cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
+            cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };
+            cloud4 = disk.mdraid { device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"; };
+            cloud5 = disk.mdraid { device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS"; };
           };
-          inherit emmc;
-          cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
-          cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
-          cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };
-          cloud4 = disk.mdraid { device = "ata-WDC_WD10SPZX-75Z10T1_WXB1A281J35X"; };
-          cloud5 = disk.mdraid { device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS"; };
         };
-      };
-      server-logical-chroot.nixos.disko.devices = {
-        inherit lvm_vg;
-        disk = {
-          inherit cloud;
-          bcache = luks.entire {
-            name = "cloud";
-            device = "/dev/bcache0";
-            postMount = ''
-              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
-              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
-            '';
+        server-logical-chroot.nixos.disko.devices = {
+          imports = [ inputs.disko.nixosModules.disko ];
+          inherit lvm_vg;
+          disk = {
+            inherit cloud;
+            bcache = luks.entire {
+              name = "cloud";
+              device = "/dev/bcache0";
+              postMount = ''
+                #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
+                #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
+              '';
+            };
           };
         };
       };

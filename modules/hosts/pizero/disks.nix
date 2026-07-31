@@ -1,6 +1,7 @@
-{ disko, ... }:
+{ disko, inputs, ... }:
 {
   den.aspects.pizero.disks.nixos = {
+    imports = [ inputs.disko.nixosModules.disko ];
     fileSystems."/nix/persist".neededForBoot = true;
     disko.devices = with disko; {
       disk = {

@@ -50,10 +50,7 @@
         ...
       }:
       {
-        imports = with inputs; [
-          vanilla-mobile-nixos.nixosModules.vanilla-mobile
-          inputs.disko-mobile.nixosModules.disko
-        ];
+        imports = [ inputs.vanilla-mobile-nixos.nixosModules.vanilla-mobile ];
 
         vanilla-mobile = {
           usb-gadget.enable = lib.mkDefault true;

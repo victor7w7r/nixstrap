@@ -1,6 +1,7 @@
-{ disko, ... }:
+{ disko, inputs, ... }:
 {
   den.aspects.handheld.disks.nixos = {
+    imports = [ inputs.disko.nixosModules.disko ];
     fileSystems = {
       "/nix/persist".neededForBoot = true;
       "/etc".neededForBoot = true;

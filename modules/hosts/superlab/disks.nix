@@ -1,6 +1,8 @@
-{ disko, ... }:
+{ disko, inputs, ... }:
 {
   den.aspects.superlab.disks.nixos = {
+    imports = [ inputs.disko.nixosModules.disko ];
+
     fileSystems = {
       "/nix/persist".neededForBoot = true;
       "/etc".neededForBoot = true;

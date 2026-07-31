@@ -59,8 +59,6 @@
           nixos =
             { lib, pkgs, ... }:
             {
-              imports = [ inputs.disko.nixosModules.disko ];
-
               services = {
                 chrony.enable = lib.mkForce false;
                 displayManager.ly.enable = lib.mkForce false;
@@ -92,6 +90,7 @@
                   "sunxi_rsb"
                   "gpio_sunxi"
                   "8250_dw"
+                  "zram"
                 ];
                 initrd.systemd.tpm2.enable = false;
                 kernelPackages = (kernel.hosts.pizero pkgs).pizero-kernelPackages;

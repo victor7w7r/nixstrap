@@ -50,13 +50,13 @@
           ...
         }:
         {
-          imports = [ inputs.disko.nixosModules.disko ];
           nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
 
           networking = {
             hostName = "v7w7r-macmini81";
             networkmanager.unmanaged = [ "enp2s0f1u1" ];
           };
+
           boot = {
             kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3; # (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [

@@ -40,7 +40,6 @@
         nixos =
           { config, pkgs, ... }:
           {
-            imports = [ inputs.disko.nixosModules.disko ];
             nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
             hardware.cpu.intel.updateMicrocode = true;
 
