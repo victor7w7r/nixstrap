@@ -61,7 +61,7 @@
             secrets
             victor7w7r
             #waydroid
-            xr
+            #xr
           ];
 
           nixos =
@@ -74,10 +74,13 @@
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
-                  "rockchip_rga"
-                  "rockchip_saradc"
-                  "rockchip_thermal"
-                  "rockchipdrm"
+                  "dw_mmc"
+                  "dw_mmc_rockchip"
+                  "sdhci_of_dwcmshc"
+                  "nvme"
+                  "phy_rockchip_naneng_combphy"
+                  "fan53555"
+                  "rockchip_io_domain"
                   "zram"
                 ];
                 loader = lib.mkForce {

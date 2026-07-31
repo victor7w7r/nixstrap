@@ -1,9 +1,15 @@
-{ inputs, pkgs }:
-pkgs.rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "cargofetch";
-  version = "latest";
-  src = inputs.cargofetch;
-  cargoHash = "sha256-y+QcZHQf1tOq72MFJhLRf0ft5EyZZ+OXcG4g1TFkWfE=";
-  nativeBuildInputs = with pkgs; [ pkg-config ];
+  nativeBuildInputs = with pkgs; [
+    perl
+    pkg-config
+  ];
   buildInputs = with pkgs; [ openssl ];
-}
+  src = inputs.cargofetch;
+})

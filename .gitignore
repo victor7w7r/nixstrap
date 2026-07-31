@@ -4,3 +4,5 @@ result-*
 *.qcow2
 *.fd
 *.raw
+*.squashfs
+*.tar.xz

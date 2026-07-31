@@ -1,9 +1,14 @@
-{ inputs, rustPlatform }:
-rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "autoricer";
-  version = "latest";
-  src = inputs.autoricer;
-  cargoLock.lockFile = ./Cargo.lock;
-  prePatch = "cp ${./Cargo.lock} Cargo.lock";
-  cargoHash = "sha256-ywqXUp3X9JfAAAOdWyyrUPaAJx+I3cvPQU+7nP2okpM=";
-}
+  src = pkgs.runCommand "autoricer-src-with-lock" { } ''
+    mkdir -p $out
+    cp -r ${inputs.autoricer}/* $out/
+    cp ${./Cargo.lock} $out/Cargo.lock
+  '';
+})

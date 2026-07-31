@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation (attrs: {
   pname = "buffyboard";
   version = "3.3.0-unstable-2025-06-12";
 

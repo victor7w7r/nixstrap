@@ -1,10 +1,14 @@
-{ inputs, rustPlatform }:
-rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "diskonaut";
-  version = "latest";
-  src = inputs.diskonaut;
-  doCheck = false;
-  cargoLock.lockFile = "${inputs.diskonaut}/Cargo.lock";
-  #  RUSTC_WRAPPER = "sccache";
-  # SCCACHE_DIR = "/nix/var/cache/sccache";
-}
+  src = pkgs.runCommand "diskonaut-src-with-lock" { } ''
+    mkdir -p $out
+    cp -r ${inputs.diskonaut}/* $out/
+    cp ${./Cargo.lock} $out/Cargo.lock
+  '';
+})

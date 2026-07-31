@@ -6,15 +6,14 @@
     {
       pkgs,
       pname,
-      source,
+      src,
       nativeBuildInputs ? [ ],
       buildInputs ? [ ],
     }:
     let
       craneLib = inputs.crane.mkLib pkgs;
       commonArgs = {
-        src = craneLib.cleanCargoSource source;
-        inherit nativeBuildInputs buildInputs;
+        inherit nativeBuildInputs buildInputs src;
         strictEnv = true;
       };
     in

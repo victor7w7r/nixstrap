@@ -4,6 +4,7 @@
     {
       environment = {
         sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
+        systemPackages = with pkgs; [ lxcfs ];
         persistence."/nix/persist".directories = lib.mkAfter [
           "/var/lib/lxc"
           "/var/lib/incus"

@@ -3,10 +3,10 @@
   inputs,
   pkgs,
 }:
-(crane.lib.call {
+(crane {
   inherit pkgs;
   pname = "lifecycler";
-  source = inputs.lifecycler;
+  src = inputs.lifecycler;
   nativeBuildInputs = with pkgs; [ pkg-config ];
   buildInputs = with pkgs; [
     alsa-lib
