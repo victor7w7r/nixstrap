@@ -25,7 +25,7 @@
           allowUnsupportedSystem = false;
         };
         overlays = [
-          inputs.cachyos-kernel.overlays.pinned
+          #inputs.cachyos-kernel.overlays.pinned
           (final: _: {
             inherit self;
             cache-stdenv = pkgs.overrideCC pkgs.stdenv (
