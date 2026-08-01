@@ -39,7 +39,8 @@
                 '';
               }
             );
-            main-kernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3; # (kernel.hosts.main pkgs).main-kernel;
+            main-kernel = # pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
+              (kernel.hosts.main pkgs).main-kernel;
             tauchgang = tauchgang.lib.call;
             crane = crane.lib.call;
           })
