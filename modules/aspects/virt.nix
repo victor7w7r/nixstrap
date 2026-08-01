@@ -12,7 +12,7 @@
         systemPackages = with pkgs; [
           distrobuilder
           lxcfs
-          self'.packahes.lxtui
+          self'.packages.lxtui
         ];
         persistence."/nix/persist".directories = lib.mkAfter [
           "/var/lib/incus"
@@ -24,6 +24,10 @@
       virtualisation.incus = {
         enable = true;
         preseed = {
+          config = {
+            "core.https_address" = ":8443";
+            "core.metrics_address" = ":8444";
+          };
           networks = [
             {
               config = {
