@@ -1,7 +1,11 @@
-{ inputs, pkgs }:
-pkgs.rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "linuxthemestore";
-  version = "latest";
   src = inputs.linuxthemestore;
   nativeBuildInputs = with pkgs; [ pkg-config ];
   buildInputs = with pkgs; [
@@ -12,5 +16,4 @@ pkgs.rustPlatform.buildRustPackage {
     openssl
     pango
   ];
-  cargoHash = "sha256-nmgxSe+Qs8hXjMd8ENItGkCFuPGzF/Opa33H/kyHcb0=";
-}
+})

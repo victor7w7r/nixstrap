@@ -5,6 +5,6 @@
 }:
 (crane {
   inherit pkgs;
-  pname = "gof-rs";
-  src = inputs.gof-rs;
+  pname = "loop";
+  src = inputs.loop;
 })

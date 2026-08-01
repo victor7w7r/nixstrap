@@ -1,5 +1,9 @@
-{ inputs, pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{
+  cache-stdenv,
+  inputs,
+  pkgs,
+}:
+cache-stdenv.mkDerivation (attrs: {
   pname = "dvdbounce";
   version = "latest";
 

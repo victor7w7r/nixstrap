@@ -9,6 +9,7 @@
   src = pkgs.runCommand "diskonaut-src-with-lock" { } ''
     mkdir -p $out
     cp -r ${inputs.diskonaut}/* $out/
+    chmod -R +w $out
     cp ${./Cargo.lock} $out/Cargo.lock
   '';
 })

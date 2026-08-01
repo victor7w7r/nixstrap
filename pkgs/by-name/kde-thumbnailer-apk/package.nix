@@ -1,5 +1,9 @@
-{ inputs, pkgs }:
-pkgs.stdenv.mkDerivation {
+{
+  cache-stdenv,
+  inputs,
+  pkgs,
+}:
+cache-stdenv.mkDerivation {
   pname = "kde-thumbnailer-apk";
   version = "latest";
   src = inputs.kde-thumbnailer-apk;

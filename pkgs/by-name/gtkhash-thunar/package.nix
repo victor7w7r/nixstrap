@@ -1,5 +1,9 @@
-{ inputs, pkgs }:
-pkgs.stdenv.mkDerivation {
+{
+  cache-stdenv,
+  inputs,
+  pkgs,
+}:
+cache-stdenv.mkDerivation {
   pname = "gtkhash-thunar";
   version = "latest";
   src = inputs.gtkhash-thunar;

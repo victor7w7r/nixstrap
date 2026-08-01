@@ -1,5 +1,9 @@
-{ inputs, pkgs }:
-pkgs.stdenv.mkDerivation {
+{
+  cache-stdenv,
+  inputs,
+  pkgs,
+}:
+cache-stdenv.mkDerivation {
   pname = "kf6-servicemenus-rootactions";
   version = "latest";
   src = inputs.kf6-servicemenus-rootactions;

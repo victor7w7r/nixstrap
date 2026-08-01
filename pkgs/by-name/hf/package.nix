@@ -1,7 +1,10 @@
-{ inputs, rustPlatform }:
-rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "hf";
-  version = "latest";
   src = inputs.hf;
-  cargoHash = "sha256-8rKEQVlxeGkvF61dbFmugfPdee7HlWQMFY9IWwBH6xQ=";
-}
+})
