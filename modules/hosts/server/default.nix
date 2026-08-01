@@ -91,6 +91,7 @@
 
             systemd.tmpfiles.rules = [
               "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
+              "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough"
             ];
 
             environment = {
@@ -114,7 +115,6 @@
               thermald.enable = true;
               lvm.boot.thin.enable = true;
               rustdesk-server.enable = false;
-              tmpfiles.rules = [ "w /sys/block/bcache0/bcache/cache_mode - - - - writethrough" ];
             };
 
             swapDevices = [
