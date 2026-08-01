@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation (attrs: {
   pname = "plasma-gamemode";
   version = "1.0.0";
 

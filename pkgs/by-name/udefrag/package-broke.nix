@@ -1,5 +1,5 @@
-{ inputs, stdenv }:
-stdenv.mkDerivation {
+{ cache-stdenv, inputs }:
+cache-stdenv.mkDerivation {
   pname = "udefrag";
   version = "latest";
   src = inputs.udefrag;

@@ -1,9 +1,15 @@
-{ inputs, rustPlatform }:
-rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "mfetch";
-  version = "latest";
-  src = inputs.mfetch;
-  cargoLock.lockFile = ./Cargo.lock;
-  prePatch = "cp ${./Cargo.lock} Cargo.lock";
-  cargoHash = "sha256-ywqXUp3X9Jf6O7OdWyyrUPaAJx+IAAvPQU+7nP2okpM=";
-}
+  src = pkgs.runCommand "mfetch-src-with-lock" { } ''
+    mkdir -p $out
+    cp -r ${inputs.mfetch}/* $out/
+    chmod -R +w $out
+    cp ${./Cargo.lock} $out/Cargo.lock
+  '';
+})

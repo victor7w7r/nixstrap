@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation (attrs: {
   pname = "xfce4-mount-plugin";
   version = "1.2.0";
   src = pkgs.fetchFromGitLab {

@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation {
   pname = "uresourced";
   version = "0.5.4-907d9198";
 

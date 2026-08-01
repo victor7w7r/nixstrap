@@ -1,10 +1,10 @@
 {
   lib,
   pkgs,
-  stdenv,
+  cache-stdenv,
   inputs,
 }:
-stdenv.mkDerivation {
+cache-stdenv.mkDerivation {
   pname = "r-linux";
   version = "6.5.191754";
   src = inputs.r-linux;

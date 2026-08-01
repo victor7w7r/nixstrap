@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation (attrs: {
   pname = "xr-linux-driver";
   version = "2.9.4";
 

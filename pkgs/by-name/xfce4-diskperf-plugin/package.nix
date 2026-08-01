@@ -1,13 +1,14 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation {
   pname = "xfce4-diskperf-plugin";
   version = "2.8.0-r124-g6d2e0ee";
+
   src = pkgs.fetchFromGitLab {
     domain = "gitlab.xfce.org";
     owner = "panel-plugins";
     repo = "xfce4-diskperf-plugin";
     rev = "master";
-    sha256 = "sha256-V1JATQgfWvsNH0CAA6zHe0bjSiIJuqGVJ+7/UGvYVgM=";
+    sha256 = "sha256-bhLlI8Dj8ExwW+AvLUxIKaU+NtlHAF1svoYHe/K3umk=";
   };
 
   nativeBuildInputs = with pkgs; [

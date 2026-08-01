@@ -73,7 +73,7 @@
             rbonsai
             termsaver
             tuime
-            tui-slides
+            #tui-slides
             scope-tui
             cointop
             clock-rs

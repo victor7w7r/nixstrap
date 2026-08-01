@@ -1,9 +1,12 @@
-{ inputs, pkgs }:
-pkgs.rustPlatform.buildRustPackage {
+{
+  crane,
+  inputs,
+  pkgs,
+}:
+(crane {
+  inherit pkgs;
   pname = "zilch";
-  version = "latest";
   src = inputs.zilch;
-  cargoHash = "sha256-M3+66AsLgkfpg8sHvx4vWFLKSS9a8soSxjFMDe8ip1o=";
 
   nativeBuildInputs = with pkgs; [
     pkg-config
@@ -37,4 +40,4 @@ pkgs.rustPlatform.buildRustPackage {
         )
       }"
   '';
-}
+})

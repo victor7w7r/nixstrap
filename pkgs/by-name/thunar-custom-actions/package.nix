@@ -2,8 +2,9 @@
   lib,
   inputs,
   pkgs,
+  cache-stdenv,
 }:
-pkgs.stdenv.mkDerivation {
+cache-stdenv.mkDerivation {
   pname = "thunar-custom-actions";
   version = "latest";
   src = inputs.thunar-custom-actions;

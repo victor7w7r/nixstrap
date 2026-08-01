@@ -2,9 +2,9 @@
   lib,
   pkgs,
   inputs,
-  stdenv,
+  cache-stdenv,
 }:
-stdenv.mkDerivation (attrs: {
+cache-stdenv.mkDerivation (attrs: {
   pname = "repair-usb-disc";
   version = "latest";
   src = inputs.repair-usb-disc;

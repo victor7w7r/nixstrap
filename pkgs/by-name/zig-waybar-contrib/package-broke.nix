@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.stdenv.mkDerivation (attrs: {
+{ cache-stdenv, pkgs }:
+cache-stdenv.mkDerivation (attrs: {
   pname = "zig-waybar-contrib";
   version = "0.17.x";
   src = pkgs.fetchFromGitea {

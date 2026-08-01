@@ -3,9 +3,9 @@
   pkgs,
   repair-usb-disc,
   inputs,
-  stdenv,
+  cache-stdenv,
 }:
-stdenv.mkDerivation {
+cache-stdenv.mkDerivation {
   pname = "repair-usb-disc-gtk4";
   version = "latest";
   src = inputs.repair-usb-disc-gtk4;
