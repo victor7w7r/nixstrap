@@ -20,7 +20,7 @@
         })
       )
       (
-        (kernel.hosts."${host}" (pkgs.pkgsCross."${cross}") (cross == "aarch64-multiplatform"))
+        (kernel.hosts."${host}" pkgs.pkgsCross."${cross}" true)
         |> (src: {
           devShells."${host}-cross-kconfig" = kernel.lib.kconfig {
             pkgs = pkgs.pkgsCross."${cross}";
