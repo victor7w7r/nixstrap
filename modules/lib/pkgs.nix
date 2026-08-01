@@ -28,22 +28,18 @@
           inputs.cachyos-kernel.overlays.pinned
           (final: _: {
             inherit self;
-            cache-stdenv =
-              /*
-                pkgs.overrideCC pkgs.stdenv (
-                pkgs.ccacheWrapper.override {
-                  cc = pkgs.stdenv.cc;
-                  extraConfig = ''
-                    export CCACHE_COMPRESS=1
-                    export CCACHE_DIR="/var/cache/ccache"
-                    export CCACHE_UMASK="007"
-                    export CCACHE_SLOPPINESS=random_seed
-                    export CCACHE_READ_ONLY_FALLBACK=true
-                  '';
-                }
-                )
-              */
-              pkgs.stdenv;
+            cache-stdenv = pkgs.overrideCC pkgs.stdenv (
+              pkgs.ccacheWrapper.override {
+                cc = pkgs.stdenv.cc;
+                extraConfig = ''
+                  export CCACHE_COMPRESS=1
+                  export CCACHE_DIR="/var/cache/ccache"
+                  export CCACHE_UMASK="007"
+                  export CCACHE_SLOPPINESS=random_seed
+                  export CCACHE_READ_ONLY_FALLBACK=true
+                '';
+              }
+            );
             main-kernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
             # (kernel.hosts.main pkgs false).main-kernel;
             tauchgang = tauchgang.lib.call;
