@@ -1,6 +1,6 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos.containers.notes = containers.call {
+  den.aspects.server.containers.nixos.containers.notes = containers.lib.call {
     ip = "3";
     name = "notes";
     rules = [

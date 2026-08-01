@@ -8,14 +8,16 @@
     #incus launch nixos/cloud/container -c security.nesting=true
     #incus shell square-heron
     hosts.x86_64-linux.cloud.users.victor7w7r = { };
-    aspects.cloud = {
+    /*
+      aspects.cloud = {
       nixos = { pkgs, ... }: {
         imports = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxc-container.nix" ];
       };
-    };
+      };
+    */
   };
 
-  den.aspects.server.containers.nixos.containers.cloud = containers.call {
+  den.aspects.server.containers.nixos.containers.cloud = containers.lib.call {
     ip = "2";
     name = "cloud";
     rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
