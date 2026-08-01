@@ -7,8 +7,8 @@
       ...
     }:
     {
+      #  boot.kernelModules = [ "vhost_vsock" ];
       environment = {
-        sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
         systemPackages = with pkgs; [
           distrobuilder
           lxcfs
@@ -17,7 +17,6 @@
         persistence."/nix/persist".directories = lib.mkAfter [
           "/var/lib/incus"
           "/var/lib/lxc"
-          "/var/lib/qemu"
         ];
       };
 
@@ -59,7 +58,7 @@
           storage_pools = [
             {
               config.source = "/var/lib/incus/storage-pools/default";
-              driver = "dir";
+              driver = "btrfs";
               name = "default";
             }
           ];

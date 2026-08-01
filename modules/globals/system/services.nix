@@ -20,7 +20,7 @@
           fatrace
           lazysys
           journalview
-          socktop
+          #socktop
           kmon
           lazyjournal
           lnav

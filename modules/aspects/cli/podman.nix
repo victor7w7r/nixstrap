@@ -50,7 +50,6 @@
               podman-tui
               slirp4netns
               skopeo
-              zfs
             ];
           };
         };

@@ -74,6 +74,7 @@
               f2fs-tools
               fsarchiver
               killall
+              modprobed-db
               inputs'.agenix.packages.default
               ntfs2btrfs
               #procmux

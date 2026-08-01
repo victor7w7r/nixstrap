@@ -11,6 +11,7 @@
       buildInputs ? [ ],
       postInstall ? "",
       installPhase ? "",
+      version ? "latest",
     }:
     let
       craneLib = inputs.crane.mkLib pkgs;
@@ -22,8 +23,7 @@
     craneLib.buildPackage (
       commonArgs
       // {
-        inherit pname postInstall;
-        version = "latest";
+        inherit pname postInstall version;
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
         doCheck = false;
         env.NIX_CFLAGS_COMPILE = "-std=gnu89 -Wno-error=incompatible-pointer-types";

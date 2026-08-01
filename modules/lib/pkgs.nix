@@ -25,7 +25,7 @@
           allowUnsupportedSystem = false;
         };
         overlays = [
-          #inputs.cachyos-kernel.overlays.pinned
+          inputs.cachyos-kernel.overlays.pinned
           (final: _: {
             inherit self;
             cache-stdenv = pkgs.overrideCC pkgs.stdenv (
@@ -40,8 +40,8 @@
                 '';
               }
             );
-            main-kernel = # pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
-              (kernel.hosts.main pkgs false).main-kernel;
+            main-kernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
+            # (kernel.hosts.main pkgs false).main-kernel;
             tauchgang = tauchgang.lib.call;
             crane = crane.lib.call;
           })

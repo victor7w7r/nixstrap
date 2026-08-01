@@ -81,7 +81,14 @@
             '';
           };
 
-          virtualisation.kvmgt.enable = true;
+          virtualisation = {
+            kvmgt.enable = true;
+            incus = {
+              ui.enable = true;
+              agent.enable = true;
+            };
+          };
+
           environment.systemPackages = with pkgs; [
             bolt
             picocom
