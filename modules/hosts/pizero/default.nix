@@ -95,7 +95,7 @@
                   "zram"
                 ];
                 initrd.systemd.tpm2.enable = false;
-                kernelPackages = (kernel.hosts.pizero pkgs).pizero-kernelPackages;
+                kernelPackages = (kernel.hosts.pizero pkgs false).pizero-kernelPackages;
                 loader = {
                   grub.enable = false;
                   generic-extlinux-compatible.enable = true;

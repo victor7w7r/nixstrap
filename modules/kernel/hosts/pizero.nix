@@ -73,8 +73,8 @@
 
   perSystem =
     { pkgs, ... }:
-    (kernel.lib.package-gen {
+    kernel.lib.package-gen {
       inherit pkgs;
       host = "pizero";
-    });
+    };
 }
