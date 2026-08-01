@@ -1,6 +1,6 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos.containers.minecraft = containers.lib.call {
+  den.aspects.server.provides.containers.nixos.containers.minecraft = containers.lib.call {
     ip = "6";
     name = "mc";
     bindMounts = {

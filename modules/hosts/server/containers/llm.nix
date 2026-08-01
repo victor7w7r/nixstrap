@@ -1,6 +1,6 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos = { pkgs, lib, ... }: {
+  den.aspects.server.provides.containers.nixos = { pkgs, lib, ... }: {
     containers.llm = containers.lib.call {
       ip = "5";
       name = "llm";

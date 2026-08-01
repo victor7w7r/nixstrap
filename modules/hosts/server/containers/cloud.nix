@@ -17,7 +17,7 @@
     */
   };
 
-  den.aspects.server.containers.nixos.containers.cloud = containers.lib.call {
+  den.aspects.server.provides.containers.nixos.containers.cloud = containers.lib.call {
     ip = "2";
     name = "cloud";
     rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];

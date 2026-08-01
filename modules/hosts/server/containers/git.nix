@@ -1,6 +1,6 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos.containers.git = containers.lib.call {
+  den.aspects.server.provides.containers.nixos.containers.git = containers.lib.call {
     ip = "4";
     name = "git";
     bindMounts."/opt/onedev" = {
