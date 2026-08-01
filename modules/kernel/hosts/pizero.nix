@@ -17,8 +17,7 @@
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       patches =
         with kernel.patches.injector pkgs;
-        #cachyos.hardened ++ tachyon.std ++ bunker.hardened ++
-        armbian.sunxi-patches;
+        cachyos.hardened ++ tachyon.std ++ bunker.hardened ++ armbian.sunxi-patches;
       extraConfig = with kernel.config.modules; [
         {
           AXP20X_POWER = "y";
