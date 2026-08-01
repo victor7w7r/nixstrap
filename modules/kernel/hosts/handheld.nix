@@ -5,9 +5,7 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "handheld-native";
-      patches =
-        with kernel.patches.injector pkgs;
-        cachyos.handheld ++ tachyon.gaming ++ bunker.std ++ asus;
+      patches = with kernel.patches.injector pkgs; cachyos.handheld ++ asus; # ++ tachyon.gaming ++ bunker.std ;
       extraConfig = with kernel.config.modules; [
         default
         freq.high

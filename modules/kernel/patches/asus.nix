@@ -17,13 +17,10 @@
     |> (
       asus:
       map (patch: "${asus}/${patch}.patch") [
-        "0002-platform-x86-asus-armoury-add-keyboard-control-firmw"
-        "0040-workaround_hardware_decoding_amdgpu"
+        "0001-acpi-proc-idle-skip-dummy-wait"
         "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A"
-        "0081-amdgpu-adjust_plane_init_off_by_one"
-        "asus-patch-series"
-        "PATCH-v5-00-11-Improvements-to-S5-power-consumption"
-        "v2-0002-hid-asus-change-the-report_id-used-for-HID-LED-co"
+        "asus-ally-patch-series"
+        "v11-0011-HID-asus-add-support-for-the-asus-wmi-brightness"
       ]
     );
 }
