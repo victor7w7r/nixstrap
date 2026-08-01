@@ -83,10 +83,7 @@
 
           virtualisation = {
             kvmgt.enable = true;
-            incus = {
-              ui.enable = true;
-              agent.enable = true;
-            };
+            incus.ui.enable = true;
           };
 
           environment.systemPackages = with pkgs; [
