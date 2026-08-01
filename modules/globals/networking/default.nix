@@ -26,6 +26,7 @@
             enable = true;
             wait = "background";
           };
+          nftables.enable = true;
           networkmanager = {
             enable = true;
             insertNameservers = nameservers;
@@ -39,10 +40,17 @@
             logRefusedPackets = true;
             logRefusedConnections = false;
             logReversePathDrops = true;
+            trustedInterfaces = [ "incusbr0" ];
             allowedTCPPorts = [
               22
+              53
+              67
               9090
               (lib.mkIf isServer 8006)
+            ];
+            allowedUDPPorts = [
+              53
+              67
             ];
           };
         });

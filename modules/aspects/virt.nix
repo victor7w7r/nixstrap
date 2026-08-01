@@ -1,44 +1,33 @@
 {
   den.aspects.virt.nixos =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      self',
+      ...
+    }:
     {
       environment = {
         sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
-        systemPackages = with pkgs; [ lxcfs ];
+        systemPackages = with pkgs; [
+          distrobuilder
+          lxcfs
+          self'.packahes.lxtui
+        ];
         persistence."/nix/persist".directories = lib.mkAfter [
-          "/var/lib/lxc"
           "/var/lib/incus"
+          "/var/lib/lxc"
           "/var/lib/qemu"
         ];
       };
 
-      networking = {
-        nftables.enable = true;
-        firewall = {
-          trustedInterfaces = [ "incusbr0" ];
-          interfaces.incusbr0 = {
-            allowedTCPPorts = [
-              53
-              67
-            ];
-            allowedUDPPorts = [
-              53
-              67
-            ];
-          };
-        };
-      };
-
       virtualisation.incus = {
         enable = true;
-        startTimeout = 300;
-        package = pkgs.incus;
         preseed = {
           networks = [
             {
-              description = "Default Incus network";
               config = {
-                "ipv4.address" = "10.10.10.1/24";
+                "ipv4.address" = "10.0.100.1/24";
                 "ipv4.nat" = "true";
               };
               name = "incusbr0";
@@ -47,34 +36,27 @@
           ];
           profiles = [
             {
-              description = "Default Incus profile";
               devices = {
                 eth0 = {
                   "name" = "eth0";
-                  "nictype" = "bridged";
                   "parent" = "incusbr0";
                   "type" = "nic";
                 };
-                /*
-                  root = {
-                    "path" = "/";
-                    "pool" = "default";
-                    "type" = "disk";
-                    };
-                */
+                root = {
+                  "path" = "/";
+                  "pool" = "default";
+                  size = "35GiB";
+                  "type" = "disk";
+                };
               };
               name = "default";
             }
           ];
           storage_pools = [
             {
-              config = {
-                size = "4GiB";
-                source = "/var/lib/incus/disks/default.img";
-              };
-              description = "Default Incus storage";
+              config.source = "/var/lib/incus/storage-pools/default";
+              driver = "dir";
               name = "default";
-              driver = "btrfs";
             }
           ];
         };
