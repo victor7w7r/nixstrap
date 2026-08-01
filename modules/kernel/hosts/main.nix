@@ -27,9 +27,9 @@
 
   perSystem =
     { pkgs, ... }:
-    kernel.lib.package-gen {
+    (kernel.lib.package-gen {
       inherit pkgs;
       host = "main";
       cross = "x86_64-unknown-linux-gnu";
-    };
+    });
 }
