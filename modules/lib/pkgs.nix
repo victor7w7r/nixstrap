@@ -36,6 +36,7 @@
                   export CCACHE_DIR="/var/cache/ccache"
                   export CCACHE_UMASK="007"
                   export CCACHE_SLOPPINESS=random_seed
+                  export CCACHE_READ_ONLY_FALLBACK=true
                 '';
               }
             );
