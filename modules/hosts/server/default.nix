@@ -56,8 +56,6 @@
 
             boot = {
               initrd.services.lvm.enable = true;
-              extraModulePackages = [ config.boot.kernelPackages.r8168 ];
-              blacklistedKernelModules = [ "r8169" ];
               resumeDevice = "/dev/mapper/swapcrypt";
               kernelParams = [
                 "pcie_aspm=off"
