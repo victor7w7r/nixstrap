@@ -26,6 +26,7 @@
           "uhci_hcd"
           "ehci_hcd"
           "xhci_pci"
+          "r8168"
           "sdhci_acpi"
           "sdhci"
           "sdhci_pci"
