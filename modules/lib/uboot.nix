@@ -35,8 +35,6 @@
           CONFIG_PHY_SUN4I_USB=y
           CONFIG_USB_EHCI_HCD=y
           CONFIG_USB_OHCI_HCD=y
-          CONFIG_USB_EHCI_SUNXI=y
-          CONFIG_USB_OHCI_SUNXI=y
           CONFIG_USB_KEYBOARD=y
           CONFIG_USB_MUSB_HOST=y
           CONFIG_USB_STAT_MIN=y
@@ -51,7 +49,7 @@
         extraConfig = ''
           CONFIG_AUTOBOOT=y
           CONFIG_AUTOBOOT_KEYED=n
-          CONFIG_BOOTCOMMAND="usb stop; usb start; run distro_bootcmd"
+          CONFIG_BOOTCOMMAND="usb stop; usb start; bootflow scan -lb"
           CONFIG_BOOT_TARGETS="usb0 nvme0 mmc1 mmc0"
           CONFIG_BOOTP_SUBNETMASK=n
           CONFIG_BOOTSTD_FULL=y
@@ -75,10 +73,12 @@
       pkgs.mkShell {
         nativeBuildInputs =
           with pkgs;
-          kernel.nativeBuildInputs
+          uboot.nativeBuildInputs
           ++ [
-            ncurses
-            pkg-config
+            buildPackages.stdenv.cc
+            buildPackages.pkg-config
+            buildPackages.ncurses
+            buildPackages.ncurses.dev
             bison
             flex
           ];
@@ -104,8 +104,15 @@
             cd src
           fi
 
-          make "ARCH=arm64" defconfig
-          make "ARCH=arm64" menuconfig
+          export ARCH=arm64
+          export CROSS_COMPILE=aarch64-unknown-linux-gnu-
+
+          export PKG_CONFIG_PATH="${pkgs.buildPackages.ncurses.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
+          export HOSTCFLAGS="-I${pkgs.buildPackages.ncurses.dev}/include"
+          export HOSTLDFLAGS="-L${pkgs.buildPackages.ncurses}/lib -lncurses"
+
+          make defconfig
+          make menuconfig
         '';
       };
   };
@@ -127,10 +134,10 @@
     };
 
     packages = {
-      uboot-opizero2w-menu-config = uboot.lib.opizero2w pkgs;
-      rock5b-menu-config = uboot.lib.rock5b pkgs;
-      fajita-menu-config = uboot.lib.fajita pkgs;
-      enchilada-menu-config = uboot.lib.enchilada pkgs;
+      uboot-opizero2w = uboot.lib.opizero2w pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-rock5b = uboot.lib.rock5b pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-fajita = uboot.lib.fajita pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-enchilada = uboot.lib.enchilada pkgs.pkgsCross.aarch64-multiplatform;
     };
   };
 }
