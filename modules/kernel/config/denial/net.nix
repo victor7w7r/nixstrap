@@ -119,13 +119,13 @@
       IP_PIMSM_V2 = "n";
       IP_SET = "n";
       IP_VS = "n";
+      INET_ESPINTCP = "n";
       LAPB = "n";
       MACSEC = "n";
       MDIO_BCM_UNIMAC = "n";
       MDIO_BITBANG = "n";
       MDIO_MSCC_MIIM = "n";
       MDIO_MVUSB = "n";
-      MDIO_REGMAP = "n";
       MDIO_THUNDER = "n";
       MOXA_INTELLIO = "n";
       MOXA_SMARTIO = "n";
@@ -138,12 +138,10 @@
       NET_NSH = "n";
       NET_SWITCHDEV = "n";
       NET_TEAM = "n";
-      NF_DEFRAG_IPV4 = "n";
       NOZOMI = "n";
       NULL_TTY = "n";
       N_HDLC = "n";
       OPENVSWITCH = "n";
-      PCS_LYNX = "n";
       PFCP = "n";
       RAPIDIO = "n";
       VLAN_8021Q = "n";

@@ -31,16 +31,13 @@
       MFD_AXP20X_I2C = "n";
       MFD_WM8994 = "n";
       MHI_BUS = "n";
-      MICROCHIP_PHY = "n";
       MOTORCOMM_PHY = "n";
       NET_VENDOR_STMICRO = "n";
       NOP_USB_XCEIV = "n";
       PCS_XPCS = "n";
       QRTR = "n";
       RAID_ATTRS = "n";
-      REALTEK_PHY = "n";
       REALTEK_PHY_HWMON = "n";
-      SMSC_PHY = "n";
       STM = "n";
       USB_CHIPIDEA = "n";
       USB_GADGET = "n";

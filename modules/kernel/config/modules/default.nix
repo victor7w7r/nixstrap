@@ -56,7 +56,6 @@
     SPI_MEM = "y";
     SPI_SLAVE = "y";
     SQUASHFS = "y";
-    THUNDERBOLT = "y";
     TLS = "y";
     TLS_DEVICE = "y";
     TRANSPARENT_HUGEPAGE_ALWAYS = "n";

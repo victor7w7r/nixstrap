@@ -1,19 +1,11 @@
 linux-config> warning: unused option: 8139TOO_8129
 linux-config> warning: unused option: 8139TOO_PIO
 linux-config> warning: unused option: ACPI_HMAT
-linux-config> warning: option not set correctly: ACPI_HOTPLUG_CPU (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: ACPI_HOTPLUG_IOAPIC (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: AD5446 (wanted 'n', got 'm')
 linux-config> warning: unused option: AIC79XX_DEBUG_ENABLE
 linux-config> warning: unused option: AIC7XXX_DEBUG_ENABLE
 linux-config> warning: unused option: AIC94XX_DEBUG
-linux-config> warning: option not set correctly: AMD_NB (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: AMD_NODE (wanted 'n', got 'y')
 linux-config> warning: unused option: ATA_BMDMA
 linux-config> warning: unused option: ATH10K_DFS_CERTIFIED
-linux-config> warning: unused option: ATH11K
-linux-config> warning: unused option: ATH11K_PCI
-linux-config> warning: unused option: ATH12K
 linux-config> warning: unused option: ATH9K_AHB
 linux-config> warning: unused option: ATH9K_DFS_CERTIFIED
 linux-config> warning: unused option: ATH9K_PCI
@@ -59,13 +51,7 @@ linux-config> warning: unused option: CROS_EC_ISHTP
 linux-config> warning: unused option: CROS_EC_LPC
 linux-config> warning: unused option: CROS_EC_SPI
 linux-config> warning: unused option: CROS_KBD_LED_BACKLIGHT
-linux-config> warning: option not set correctly: CRYPTO_ECHAINIV (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: CRYPTO_GCM (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: CRYPTO_GENIV (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: CRYPTO_SEQIV (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: CRYPTO_SM4 (wanted 'n', got 'm')
 linux-config> warning: unused option: CRYPTO_TEST
-linux-config> warning: option not set correctly: DEBUG_INFO (wanted 'n', got 'y')
 linux-config> warning: unused option: DEFAULT_NET_SCH
 linux-config> warning: unused option: DEVFREQ_THERMAL
 linux-config> warning: unused option: DRAGONRISE_FF
@@ -83,7 +69,6 @@ linux-config> warning: unused option: DRM_PANIC_SCREEN_QR_CODE
 linux-config> warning: unused option: DVB_DYNAMIC_MINORS
 linux-config> warning: unused option: EROFS_FS_ZIP_DEFLATE
 linux-config> warning: unused option: EROFS_FS_ZIP_ZSTD
-linux-config> warning: option not set correctly: EVENT_TRACING (wanted 'n', got 'y')
 linux-config> warning: unused option: EXT2_FS_POSIX_ACL
 linux-config> warning: unused option: EXT2_FS_SECURITY
 linux-config> warning: unused option: EXT2_FS_XATTR
@@ -106,13 +91,11 @@ linux-config> warning: unused option: FUNCTION_PROFILER
 linux-config> warning: unused option: FW_LOADER_USER_HELPER_FALLBACK
 linux-config> warning: unused option: GENERIC_CPU
 linux-config> warning: unused option: GLOB_SELFTEST
-linux-config> warning: option not set correctly: GPIO_REGMAP (wanted 'n', got 'm')
 linux-config> warning: unused option: GREENASIA_FF
 linux-config> warning: unused option: HID_ACRUX_FF
 linux-config> warning: unused option: HID_BPF
 linux-config> warning: unused option: HMM_MIRROR
 linux-config> warning: unused option: HOLTEK_FF
-linux-config> warning: option not set correctly: HOTPLUG_CPU (wanted 'n', got 'y')
 linux-config> warning: unused option: HOTPLUG_PCI_ACPI
 linux-config> warning: unused option: HOTPLUG_PCI_PCIE
 linux-config> warning: unused option: HSA_AMD
@@ -120,7 +103,6 @@ linux-config> warning: unused option: HSA_AMD_P2P
 linux-config> warning: unused option: HVC_XEN
 linux-config> warning: unused option: HVC_XEN_FRONTEND
 linux-config> warning: unused option: HYPERV
-linux-config> warning: option not set correctly: IIO_INV_SENSORS_TIMESTAMP (wanted 'n', got 'm')
 linux-config> warning: unused option: IKCONFIG_PROC
 linux-config> warning: unused option: INET6_ESPINTCP
 linux-config> warning: unused option: INFINIBAND_IPOIB
@@ -136,7 +118,6 @@ linux-config> warning: unused option: IP_VS_PROTO_AH
 linux-config> warning: unused option: IP_VS_PROTO_ESP
 linux-config> warning: unused option: IP_VS_PROTO_TCP
 linux-config> warning: unused option: IP_VS_PROTO_UDP
-linux-config> warning: option not set correctly: JBD2 (wanted 'n', got 'm')
 linux-config> warning: unused option: JFS_POSIX_ACL
 linux-config> warning: unused option: JFS_SECURITY
 linux-config> warning: unused option: JOYSTICK_PSXPAD_SPI_FF
@@ -150,7 +131,6 @@ linux-config> warning: unused option: LOGIRUMBLEPAD2_FF
 linux-config> warning: unused option: LOGITECH_FF
 linux-config> warning: unused option: LOGIWHEELS_FF
 linux-config> warning: option not set correctly: MDIO_BCM_UNIMAC (wanted 'n', got 'm')
-linux-config> warning: option not set correctly: MDIO_REGMAP (wanted 'n', got 'm')
 linux-config> warning: unused option: MEDIA_ANALOG_TV_SUPPORT
 linux-config> warning: unused option: MEDIA_ATTACH
 linux-config> warning: unused option: MEDIA_CAMERA_SUPPORT
@@ -159,11 +139,8 @@ linux-config> warning: unused option: MEDIA_DIGITAL_TV_SUPPORT
 linux-config> warning: unused option: MEDIA_PCI_SUPPORT
 linux-config> warning: unused option: MEDIA_USB_SUPPORT
 linux-config> warning: unused option: MFD_AXP20X
-linux-config> warning: option not set correctly: MFD_CORE (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: MFD_SIMPLE_MFD_I2C (wanted 'n', got 'm')
 linux-config> warning: option not set correctly: MFD_STMFX (wanted 'n', got 'm')
 linux-config> warning: option not set correctly: MFD_SYSCON (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: MICROCHIP_PHY (wanted 'n', got 'm')
 linux-config> warning: unused option: MLX5_CORE_EN
 linux-config> warning: unused option: MODULE_ALLOW_BTF_MISMATCH
 linux-config> warning: option not set correctly: MODULE_SIG (wanted 'n', got 'y')
@@ -173,7 +150,6 @@ linux-config> warning: unused option: MOUSE_PS2_VMMOUSE
 linux-config> warning: unused option: MTD_COMPLEX_MAPPINGS
 linux-config> warning: unused option: MTD_TESTS
 linux-config> warning: unused option: NETCONSOLE_DYNAMIC
-linux-config> warning: option not set correctly: NETFS_SUPPORT (wanted 'n', got 'm')
 linux-config> warning: unused option: NET_SCH_BPF
 linux-config> warning: unused option: NFSD_V3_ACL
 linux-config> warning: unused option: NFSD_V4
@@ -184,10 +160,7 @@ linux-config> warning: unused option: NFS_SWAP
 linux-config> warning: unused option: NFS_V3_ACL
 linux-config> warning: unused option: NFS_V4_2
 linux-config> warning: unused option: NFS_V4_SECURITY_LABEL
-linux-config> warning: option not set correctly: NF_DEFRAG_IPV4 (wanted 'n', got 'y')
 linux-config> warning: unused option: NINTENDO_FF
-linux-config> warning: option not set correctly: NLS_UCS2_UTILS (wanted 'n', got 'm')
-linux-config> warning: option not set correctly: NOP_TRACER (wanted 'n', got 'y')
 linux-config> warning: unused option: NOVA_CORE
 linux-config> warning: unused option: NO_HZ_FULL_NODEF
 linux-config> warning: unused option: NTFS_FS_POSIX_ACL
@@ -209,7 +182,6 @@ linux-config> warning: unused option: PARAVIRT_TIME_ACCOUNTING
 linux-config> warning: unused option: PCI_ECAM
 linux-config> warning: unused option: PCI_NPEM
 linux-config> warning: unused option: PCI_XEN
-linux-config> warning: option not set correctly: PCS_LYNX (wanted 'n', got 'm')
 linux-config> warning: unused option: PERSISTENT_KEYS
 linux-config> warning: unused option: PLAYSTATION_FF
 linux-config> warning: unused option: PM_ADVANCED_DEBUG
@@ -223,16 +195,12 @@ linux-config> warning: unused option: PREEMPT_VOLUNTARY
 linux-config> warning: unused option: PSTORE_COMPRESS_DEFAULT
 linux-config> warning: unused option: PSTORE_DEFLATE_COMPRESS
 linux-config> warning: unused option: PSTORE_ZSTD_COMPRESS
-linux-config> warning: option not set correctly: PWM_LPSS (wanted 'n', got 'm')
 linux-config> warning: unused option: RANDOM_TRUST_BOOTLOADER
 linux-config> warning: unused option: RANDOM_TRUST_CPU
 linux-config> warning: unused option: RCU_BOOST
 linux-config> warning: unused option: RCU_BOOST_DELAY
 linux-config> warning: unused option: RCU_FANOUT
 linux-config> warning: unused option: RCU_FANOUT_LEAF
-linux-config> warning: option not set correctly: REALTEK_PHY (wanted 'n', got 'm')
-linux-config> warning: option not set correctly: REED_SOLOMON (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: RPMSG (wanted 'n', got 'm')
 linux-config> warning: unused option: RT2800USB_RT53XX
 linux-config> warning: unused option: RT2800USB_RT55XX
 linux-config> warning: unused option: RTL8XXXU_UNTESTED
@@ -246,49 +214,27 @@ linux-config> warning: unused option: SCSI_LOWLEVEL_PCMCIA
 linux-config> warning: unused option: SCSI_SAS_ATA
 linux-config> warning: unused option: SECURITY_PERF_EVENTS_RESTRICT
 linux-config> warning: unused option: SECURITY_TIOCSTI_RESTIRCT
-linux-config> warning: option not set correctly: SERIO_I8042 (wanted 'n', got 'm')
 linux-config> warning: unused option: SEV_GUEST
 linux-config> warning: unused option: SMARTJOYPLUS_FF
-linux-config> warning: option not set correctly: SMSC_PHY (wanted 'n', got 'm')
 linux-config> warning: unused option: SND_AC97_POWER_SAVE
 linux-config> warning: unused option: SND_AC97_POWER_SAVE_DEFAULT
 linux-config> warning: unused option: SND_HDA_CODEC_CS8409
-linux-config> warning: option not set correctly: SND_OXYGEN_LIB (wanted 'n', got 'm')
 linux-config> warning: unused option: SND_SOC_AMD_MACH
-linux-config> warning: unused option: SND_SOC_AMD_SOUNDWIRE
-linux-config> warning: unused option: SND_SOC_AMD_SOUNDWIRE_LINK_BASELINE
-linux-config> warning: option not set correctly: SND_SOC_CS35L41 (wanted 'n', got 'm')
 linux-config> warning: option not set correctly: SND_SOC_CS530X (wanted 'n', got 'm')
-linux-config> warning: option not set correctly: SND_SOC_FSL_UTILS (wanted 'n', got 'm')
-linux-config> warning: option not set correctly: SND_SOC_GENERIC_DMAENGINE_PCM (wanted 'n', got 'y')
 linux-config> warning: unused option: SND_SOC_HDMI_CODEC
 linux-config> warning: unused option: SND_SOC_INTEL_SOUNDWIRE_SOF_MACH
-linux-config> warning: option not set correctly: SND_SOC_SOF_INTEL_PTL (wanted 'n', got 'm')
+linux-config> warning: unused option: SND_SOC_SOF_INTEL_PTL
 linux-config> warning: unused option: SND_USB_CAIAQ_INPUT
 linux-config> warning: unused option: SONY_FF
-linux-config> warning: option not set correctly: STACKTRACE (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: STACKTRACE_SUPPORT (wanted 'n', got 'y')
 linux-config> warning: unused option: STAGING_MEDIA
 linux-config> warning: unused option: SUNRPC_DEBUG
 linux-config> warning: unused option: SWIOTLB_XEN
-linux-config> warning: option not set correctly: SYSCTL_EXCEPTION_TRACE (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: TAP (wanted 'y', got 'm')
-linux-config> warning: option not set correctly: TASKS_TRACE_RCU (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: TCG_TIS_ST33ZP24 (wanted 'n', got 'm')
 linux-config> warning: unused option: TDX_GUEST_DRIVER
 linux-config> warning: unused option: THRUSTMASTER_FF
 linux-config> warning: unused option: THUNDERBOLT
-linux-config> warning: option not set correctly: TRACE_CLOCK (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: TRACE_IRQFLAGS_NMI_SUPPORT (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: TRACE_IRQFLAGS_SUPPORT (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: TRACING (wanted 'n', got 'y')
 linux-config> warning: unused option: UBIFS_FS_ADVANCED_COMPR
-linux-config> warning: unused option: USB_CONFIGFS_F_MIDI
-linux-config> warning: unused option: USB_CONFIGFS_F_MIDI2
 linux-config> warning: unused option: USB_DWC2_DUAL_ROLE
 linux-config> warning: unused option: USB_DWC3_DUAL_ROLE
-linux-config> warning: option not set correctly: USB_PHY (wanted 'n', got 'y')
-linux-config> warning: option not set correctly: USER_STACKTRACE_SUPPORT (wanted 'n', got 'y')
 linux-config> warning: unused option: U_SERIAL_CONSOLE
 linux-config> warning: unused option: WATCHDOG_SYSFS
 linux-config> warning: option not set correctly: X86_AMD_PSTATE (wanted 'n', got 'y')

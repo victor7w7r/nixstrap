@@ -7,15 +7,12 @@
 
   kernel.patches.bunker = rec {
     std = map (patch: "${inputs.bunker-patches}/patches/7.1/${patch}") [
-      "bunker/0001-init-add-CONFIG_BUNKER-base-config-item.patch"
       "bunker/0002-x86-cpu-disable-bus-lock-mitigation-by-default.patch"
       "bunker/0003-rust-allow-clang-native-randstruct-configs.patch"
-      "bunker/0004-enable-randstruct_full-by-default.patch"
       "bunker/0005-mm-increase-VM_READAHEAD_PAGES-to-2MB.patch"
       "bunker/0006-enable-kstack_erase-by-default.patch"
       "bunker/0007-enable-page_table_check_enforced-by-default.patch"
       "bunker/0008-disable-proc_kcore-by-default.patch"
-      "bunker/0009-i2c-add-nct6775-smbus-driver-for-openrgb.patch"
       "bunker/0010-rust-add-backlight-device-abstraction.patch"
       "clear/0001-net-dst-reduce-false-sharing-in-dst_entry.patch"
       "clear/0006-init-reduce-default-timer-slack-to-50ns.patch"
@@ -26,7 +23,6 @@
       "cachyos/0005-x86-cpu-amd-Zen-errata-workaround.patch"
       "cachyos/0006-block-add-ADIOS-Adaptive-Deadline-I-O-Scheduler.patch"
       "cachyos/0008-media-add-v4l2loopback-virtual-video-device.patch"
-      "cachyos/0009-mm-add-Kconfig-defaults-for-compaction-and-dirty-pag.patch"
       "cachyos/0010-block-reduce-BFQ-and-mq-deadline-lock-contention.patch"
       "cachyos/0012-sched-add-Piece-Of-Cake-fast-idle-CPU-selector.patch"
       "cachyos/0013-mm-add-missing-extern-declarations-for-le9-workingse.patch"
@@ -34,8 +30,6 @@
       "cachyos/0015-drm-VESA-DSC-BPP-pass-through-timings.patch"
       "cachyos/0018-drivers-net-add-Realtek-R8125-R8126-5GbE-driver.patch"
       "grapheneos/0001-disable-ldisc_autoload-by-default.patch"
-      "grapheneos/0002-disable-binfmt_misc-by-default.patch"
-      "grapheneos/0003-disable-hibernation-by-default.patch"
       "grapheneos/0004-disable-memory_hotplug-by-default.patch"
       "grapheneos/0005-usb-extend-deny_new_usb-to-gadget-interfaces.patch"
       "xanmod/0001-sched-fair-set-tunable-latencies-to-unscaled.patch"
@@ -59,13 +53,7 @@
       "zen/0008-drm-amdgpu-pm-allow-override-of-min_power_limit-with.patch"
       "zen/0009-mm-set-default-max-map-count-to-INT_MAX-5.patch"
       "zen/0012-kernel-Kconfig.preempt-remove-EXPERT-conditional-on-.patch"
-      "zen/0013-block-use-BFQ-as-the-elevator-for-SQ-devices.patch"
       "zen/0014-block-Clean-up-elevator_set_default.patch"
-      "zen/0015-mm-enable-background-reclaim-of-hugepages.patch"
-      "zen/0016-sched-eevdf-tune-for-interactivity.patch"
-      "zen/0017-mm-disable-unevictable-compaction.patch"
-      "zen/0020-block-use-Kyber-as-the-elevator-for-MQ-devices.patch"
-
     ];
     hardened =
       std

@@ -37,6 +37,7 @@
       ALTERA_STAPL = "n";
       C2PORT = "n";
       CB710_CORE = "n";
+      GPIB = "n";
       GAMEPORT = "n";
       NSM = "n";
       LMK04832 = "n";
@@ -379,7 +380,6 @@
       MFD_BD9571MWV = "n";
       MFD_BQ257XX = "n";
       MFD_CGBC = "n";
-      MFD_CORE = "n";
       MFD_CS40L50_I2C = "n";
       MFD_CS40L50_SPI = "n";
       MFD_DA9052_I2C = "n";
@@ -427,7 +427,6 @@
       MFD_RT5033 = "n";
       MFD_RT5120 = "n";
       MFD_SI476X_CORE = "n";
-      MFD_SIMPLE_MFD_I2C = "n";
       MFD_SKY81452 = "n";
       MFD_SM501 = "n";
       MFD_SMPRO = "n";

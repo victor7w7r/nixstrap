@@ -71,8 +71,6 @@
       AMD_IOMMU = "n";
       AMD_ISP_PLATFORM = "n";
       AMD_MEM_ENCRYPT = "n";
-      AMD_NB = "n";
-      AMD_NODE = "n";
       AMD_PMC = "n";
       AMD_SFH_HID = "n";
       AMD_WBRF = "n";

@@ -19,7 +19,6 @@
       BCM84881_PHY = "n";
       BCM87XX_PHY = "n";
       BCM7XXX_PHY = "n";
-      BCM_NET_PHYLIB = "n";
       BROADCOM_PHY = "n";
       CICADA_PHY = "n";
       CORTINA_PHY = "n";

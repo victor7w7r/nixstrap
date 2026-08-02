@@ -93,7 +93,6 @@
       SND_MTPAV = "n";
       SND_NM256 = "n";
       SND_OXYGEN = "n";
-      SND_OXYGEN_LIB = "n";
       SND_PCMTEST = "n";
       SND_PCXHR = "n";
       SND_RIPTIDE = "n";
@@ -199,7 +198,6 @@
       SND_SOC_CS4341 = "n";
       SND_SOC_CS4349 = "n";
       SND_SOC_CS48L32 = "n";
-      SND_SOC_CS530X = "n";
       SND_SOC_CS530X_I2C = "n";
       SND_SOC_CS53L30 = "n";
       SND_SOC_CX2072X = "n";
@@ -215,9 +213,7 @@
       SND_SOC_ES8375 = "n";
       SND_SOC_ES8389 = "n";
       SND_SOC_FS210X = "n";
-      SND_SOC_FSL_UTILS = "n";
       SND_SOC_FSL_XCVR = "n";
-      SND_SOC_GENERIC_DMAENGINE_PCM = "n";
       SND_SOC_GTM601 = "n";
       SND_SOC_HDMI_CODEC = "n";
       SND_SOC_ICS43432 = "n";
@@ -347,6 +343,7 @@
       SND_SOC_SOF_JASPERLAKE = "n";
       SND_SOC_SOF_MERRIFIELD = "n";
       SND_SOC_SOF_METEORLAKE = "n";
+      SND_SOC_SOF_NOVALAKE = "n";
       SND_SOC_SOF_PANTHERLAKE = "n";
       SND_SOC_SOF_TIGERLAKE = "n";
       SND_SOC_SPDIF = "n";

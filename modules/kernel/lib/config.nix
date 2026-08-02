@@ -11,9 +11,7 @@
           "installPhase"
         ];
         src = inputs.linux-config;
-        buildPhase = ''cp "$src/linux-cachyos-${
-          if isHardened then "hardened" else "lts"
-        }/config" ./config'';
+        buildPhase = ''cp "$src/linux-cachyos${if isHardened then "-hardened" else ""}/config" ./config'';
         installPhase = "cp config $out";
       };
 
@@ -49,7 +47,7 @@
           ];
 
         shellHook = ''
-          TMP_DIR="/tmp/kconfig-${kernel}"
+          TMP_DIR="/tmp/kconfig-${kernel.name}"
           mkdir -p "$TMP_DIR"
           cd "$TMP_DIR"
 

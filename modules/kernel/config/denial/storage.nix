@@ -18,7 +18,6 @@
       HFSPLUS_FS = "n";
       HFS_FS = "n";
       HPFS_FS = "n";
-      JBD2 = "n";
       JFS_FS = "n";
       MINIX_FS = "n";
       NILFS2_FS = "n";
@@ -61,7 +60,6 @@
       CIFS = "n";
       EDD = "n";
       MEMSTICK = "n";
-      NETFS_SUPPORT = "n";
       NFSD = "n";
       NFS_FS = "n";
       NVME_FC = "n";

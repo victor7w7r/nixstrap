@@ -22,7 +22,8 @@
     AD5360 = "n";
     AD5380 = "n";
     AD5421 = "n";
-    AD5446 = "n";
+    AD5446_SPI = "n";
+    AD5446_I2C = "n";
     AD5449 = "n";
     AD5504 = "n";
     AD5592R = "n";
@@ -205,7 +206,6 @@
     ICS932S401 = "n";
     IIO_HRTIMER_TRIGGER = "n";
     IIO_INTERRUPT_TRIGGER = "n";
-    IIO_INV_SENSORS_TIMESTAMP = "n";
     IIO_KX022A_I2C = "n";
     IIO_KX022A_SPI = "n";
     IIO_MUX = "n";
@@ -334,7 +334,6 @@
     PHANTOM = "n";
     PING = "n";
     PMS7003 = "n";
-    REED_SOLOMON = "n";
     RFD77402 = "n";
     RICHTEK_RTQ6056 = "n";
     ROHM_BD79112 = "n";

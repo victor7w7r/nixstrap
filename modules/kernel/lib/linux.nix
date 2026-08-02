@@ -32,25 +32,24 @@
       pkgs.buildLinux {
         pname = "linux-v7w7r-${localVer}";
         inherit src;
-        stdenv = (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-        /*
+        configfile = kernel.lib.linux-config pkgs isHardened;
+        stdenv =
+          (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
           |> (
-          llvmStdenv:
-          llvmStdenv.override {
-            cc = pkgs.ccacheWrapper.override {
-              cc = llvmStdenv.cc;
-              extraConfig = ''
-                export CCACHE_COMPRESS=1
-                export CCACHE_DIR="/var/cache/ccache"
-                export CCACHE_UMASK="007"
-                export CCACHE_SLOPPINESS=random_seed
-                export CCACHE_READ_ONLY_FALLBACK=true
-              '';
-            };
-          }
-          )
-        */
-        ;
+            llvmStdenv:
+            llvmStdenv.override {
+              cc = pkgs.ccacheWrapper.override {
+                cc = llvmStdenv.cc;
+                extraConfig = ''
+                  export CCACHE_COMPRESS=1
+                  export CCACHE_DIR="/var/cache/ccache"
+                  export CCACHE_UMASK="007"
+                  export CCACHE_SLOPPINESS=random_seed
+                  export CCACHE_READ_ONLY_FALLBACK=true
+                '';
+              };
+            }
+          );
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;

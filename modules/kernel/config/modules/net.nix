@@ -10,7 +10,6 @@
     IP_NF_NAT = "y";
     INET_AH = "y";
     INET_ESP = "y";
-    INET_ESPINTCP = "y";
     INET_ESP_OFFLOAD = "y";
     INET_IPCOMP = "y";
     INET_RAW_DIAG = "m";
@@ -32,7 +31,6 @@
     NF_CONNTRACK = "y";
     TCP_CONG_BBR = "y";
     TUN = "y";
-    TAP = "y";
     UNIX_DIAG = "y";
   };
 }

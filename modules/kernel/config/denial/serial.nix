@@ -71,7 +71,6 @@
       SERIO_GPIO_PS2 = "n";
       SERIO_SERPORT = "n";
       SERIO_PCIPS2 = "n";
-      SERIO_I8042 = "n";
       SERIAL_8250_FINTEK = "n";
       SERIAL_8250_LPSS = "n";
       SERIAL_8250_MANY_PORTS = "n";
@@ -109,7 +108,6 @@
       GPIO_DWAPB = "n";
       GPIO_ELKHARTLAKE = "n";
       GPIO_EXAR = "n";
-      GPIO_REGMAP = "n";
       GPIO_F7188X = "n";
       GPIO_FXL6408 = "n";
       GPIO_GENERIC_PLATFORM = "n";
@@ -234,7 +232,6 @@
       USB_MICROTEK = "n";
       USB_OXU210HP_HCD = "n";
       USB_PEGASUS = "n";
-      USB_PHY = "n";
       USB_PRINTER = "n";
       USB_R8A66597_HCD = "n";
       USB_RTL8150 = "n";
