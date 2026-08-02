@@ -1,16 +1,14 @@
 {
   kernel.config.denial.common = rec {
-    all = acpi // debug // general // virt // trace // x86;
+    all = acpi // codification // crypto // debug // general // virt // x86;
 
     general = {
       ACCESSIBILITY = "n";
       BCM_VK = "n";
-      CPUMASK_OFFSTACK = "n";
       CXL_BUS = "n";
       COMEDI = "n";
       DLM = "n";
       EDAC = "n";
-      FSI = "n";
       GENWQE = "n";
       GP_PCI1XXXX = "n";
       GREYBUS = "n";
@@ -29,14 +27,12 @@
       MEDIA_CEC_SUPPORT = "n";
       MEDIA_SUPPORT = "n";
       MOST = "n";
-      MULTIPLEXER = "n";
       NLS_KOI8_R = "n";
       NLS_KOI8_U = "n";
       NLS_UCS2_UTILS = "n";
       NUMA = "n";
       PCCARD = "n";
       PCI_MESON = "n";
-      PCMCIA = "n";
       PROFILING = "n";
       PTP_1588_CLOCK = "n";
       PWM_CLK = "n";
@@ -51,9 +47,7 @@
       SECURITY_SELINUX = "n";
       SECURITY_TOMOYO = "n";
       SYSFB_SIMPLEFB = "n";
-      SYSTEM_BLACKLIST_AUTH_UPDATE = "n";
       SYSTEM_BLACKLIST_KEYRING = "n";
-      SYSTEM_REVOCATION_LIST = "n";
       TARGET_CORE = "n";
       TCG_ATMEL = "n";
       TCG_INFINEON = "n";
@@ -92,20 +86,93 @@
     };
 
     virt = {
-      ALIBABA_ENI_VDPA = "n";
       HYPERVISOR_GUEST = "n";
-      IFCVF = "n";
-      KEBA_ = "n";
       KVM_XEN = "n";
-      OCTEONEP_VDPA = "n";
       PVPANIC = "n";
-      SNET_VDPA = "n";
       UACCE = "n";
       VBOXGUEST = "n";
       VDPA = "n";
       VMWARE_PVSCSI = "n";
       VMWARE_VMCI = "n";
-      VP_VDPA = "n";
+    };
+
+    crypto = {
+      CRYPTO_842 = "n";
+      CRYPTO_ADIANTUM = "n";
+      CRYPTO_AEGIS128 = "n";
+      CRYPTO_AEGIS128_AESNI_SSE2 = "n";
+      CRYPTO_ARIA = "n";
+      CRYPTO_ARIA_AESNI_AVX2_X86_64 = "n";
+      CRYPTO_ARIA_AESNI_AVX_X86_64 = "n";
+      CRYPTO_ARIA_GFNI_AVX512_X86_64 = "n";
+      CRYPTO_BLOWFISH = "n";
+      CRYPTO_BLOWFISH_X86_64 = "n";
+      CRYPTO_CAST5 = "n";
+      CRYPTO_CAST5_AVX_X86_64 = "n";
+      CRYPTO_CAST6 = "n";
+      CRYPTO_CAST6_AVX_X86_64 = "n";
+      CRYPTO_CRC32 = "n";
+      CRYPTO_DEV_AMLOGIC_GXL = "n";
+      CRYPTO_DEV_ATMEL_ECC = "n";
+      CRYPTO_DEV_ATMEL_SHA204A = "n";
+      CRYPTO_DEV_CCP_DD = "n";
+      CRYPTO_DEV_NITROX_CNN55XX = "n";
+      CRYPTO_DEV_PADLOCK = "n";
+      CRYPTO_DEV_QAT_420XX = "n";
+      CRYPTO_DEV_QAT_4XXX = "n";
+      CRYPTO_DEV_QAT_6XXX = "n";
+      CRYPTO_DEV_QAT_C3XXX = "n";
+      CRYPTO_DEV_QAT_C3XXXVF = "n";
+      CRYPTO_DEV_QAT_C62X = "n";
+      CRYPTO_DEV_QAT_C62XVF = "n";
+      CRYPTO_DEV_QAT_DH895xCC = "n";
+      CRYPTO_DEV_QAT_DH895xCCVF = "n";
+      CRYPTO_DEV_SAFEXCEL = "n";
+      CRYPTO_DEV_VIRTIO = "n";
+      CRYPTO_ECHAINIV = "n";
+      CRYPTO_ECRDSA = "n";
+      CRYPTO_FCRYPT = "n";
+      CRYPTO_GCM = "n";
+      CRYPTO_GENIV = "n";
+      CRYPTO_HCTR2 = "n";
+      CRYPTO_LRW = "n";
+      CRYPTO_MD4 = "n";
+      CRYPTO_NULL = "n";
+      CRYPTO_PCBC = "n";
+      CRYPTO_PCRYPT = "n";
+      CRYPTO_RMD160 = "n";
+      CRYPTO_SEQIV = "n";
+      CRYPTO_SERPENT = "n";
+      CRYPTO_SERPENT_AVX2_X86_64 = "n";
+      CRYPTO_SERPENT_AVX_X86_64 = "n";
+      CRYPTO_SERPENT_SSE2_X86_64 = "n";
+      CRYPTO_SM4 = "n";
+      CRYPTO_SM4_AESNI_AVX2_X86_64 = "n";
+      CRYPTO_SM4_AESNI_AVX_X86_64 = "n";
+      CRYPTO_STREEBOG = "n";
+      CRYPTO_TWOFISH = "n";
+      CRYPTO_TWOFISH_AVX_X86_64 = "n";
+      CRYPTO_TWOFISH_X86_64 = "n";
+      CRYPTO_TWOFISH_X86_64_3WAY = "n";
+      CRYPTO_USER_API_AEAD = "n";
+      CRYPTO_USER_API_RNG = "n";
+      CRYPTO_WP512 = "n";
+      CRYPTO_XCBC = "n";
+      PKCS8_PRIVATE_KEY_PARSER = "n";
+    };
+
+    codification = {
+      NLS_ISO8859_2 = "n";
+      NLS_ISO8859_3 = "n";
+      NLS_ISO8859_4 = "n";
+      NLS_ISO8859_5 = "n";
+      NLS_ISO8859_6 = "n";
+      NLS_ISO8859_8 = "n";
+      NLS_ISO8859_7 = "n";
+      NLS_ISO8859_9 = "n";
+      NLS_ISO8859_13 = "n";
+      NLS_ISO8859_14 = "n";
+      NLS_ISO8859_15 = "n";
     };
 
     x86 = {
@@ -119,7 +186,6 @@
       X86_POWERNOW_K8 = "n";
       X86_REROUTE_FOR_BROKEN_BOOT_IRQS = "n";
       X86_SGX = "n";
-      X86_SPEEDSTEP_LIB = "n";
       X86_SPEEDSTEP_CENTRINO = "n";
       X86_VSYSCALL_EMULATION = "n";
       X86_VERBOSE_BOOTUP = "n";
@@ -127,66 +193,48 @@
 
     debug = {
       ACPI_DEBUG = "n";
+      AGP = "n";
+      BLK_DEV_IO_TRACE = "n";
+      BOOTTIME_TRACING = "n";
       DEBUG_ENTRY = "n";
-      DEBUG_FS = "n";
       DEBUG_INFO = "n";
       DEBUG_INFO_BTF = "n";
       DEBUG_MISC = "n";
       DEBUG_PREEMPT = "n";
-      FUNCTION_ERROR_INJECTION = "n";
-      IO_STRICT_DEVMEM = "n";
-      KASAN = "n";
-      LATENCYTOP = "n";
-      PM_ADVANCED_DEBUG = "n";
-      PM_DEBUG = "n";
-      PM_SLEEP_DEBUG = "n";
-      PUNIT_ATOM_DEBUG = "n";
-      RUNTIME_TESTING_MENU = "n";
-      SCHED_DEBUG = "n";
-      SLUB_DEBUG = "n";
-      STRICT_DEVMEM = "n";
-      X86_DEBUG_FPU = "n";
-    };
-
-    trace = {
-      AGP = "n";
-      BLK_DEV_IO_TRACE = "n";
-      BOOTTIME_TRACING = "n";
-      DYNAMIC_FTRACE = "n";
-      DYNAMIC_FTRACE_WITH_ARGS = "n";
-      DYNAMIC_FTRACE_WITH_DIRECT_CALLS = "n";
-      DYNAMIC_FTRACE_WITH_REGS = "n";
       EVENT_TRACING = "n";
       FPGA = "n";
-      FTRACE_MCOUNT_USE_OBJTOOL = "n";
       FTRACE_SYSCALLS = "n";
+      FUNCTION_ERROR_INJECTION = "n";
       FUNCTION_GRAPH_TRACER = "n";
       FUNCTION_TRACER = "n";
-      GENERIC_TRACER = "n";
-      HAMRADIO = "n";
       HIST_TRIGGERS = "n";
       HWLAT_TRACER = "n";
       IKCONFIG = "n";
-      IKCONFIG_PROC = "n";
       INTERCONNECT = "n";
-      KPROBES_ON_FTRACE = "n";
+      KASAN = "n";
       KPROBE_EVENTS = "n";
+      LATENCYTOP = "n";
       MCTP = "n";
       MMIOTRACE = "n";
       MPLS = "n";
       MTD = "n";
       NOP_TRACER = "n";
+      PM_DEBUG = "n";
       PRINTK_TIME = "n";
+      PUNIT_ATOM_DEBUG = "n";
       RCU_TRACE = "n";
+      RUNTIME_TESTING_MENU = "n";
+      SCHED_DEBUG = "n";
       SCHED_TRACER = "n";
+      SLUB_DEBUG = "n";
       STACKTRACE = "n";
       STACKTRACE_BUILD_ID = "n";
       STACKTRACE_SUPPORT = "n";
       STACK_TRACER = "n";
+      STRICT_DEVMEM = "n";
       SYSCTL_EXCEPTION_TRACE = "n";
       TASKS_TRACE_RCU = "n";
       TRACEFS_AUTOMOUNT_DEPRECATED = "n";
-      TRACER_MAX_TRACE = "n";
       TRACER_SNAPSHOT = "n";
       TRACE_CLOCK = "n";
       TRACE_GPU_MEM = "n";
@@ -194,6 +242,7 @@
       TRACE_IRQFLAGS_SUPPORT = "n";
       TRACING = "n";
       USER_STACKTRACE_SUPPORT = "n";
+      X86_DEBUG_FPU = "n";
     };
   };
 }

@@ -1,3 +1,7 @@
+#modinfo asus_nb_wmi | grep filename
+#grep -rn "asus-nb-wmi" drivers/platform/x86/
+#cat drivers/platform/x86/Makefile | grep asus-nb-wmi
+
 8250_dw
 842_compress
 842_decompress

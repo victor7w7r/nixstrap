@@ -1,6 +1,6 @@
 {
   kernel.config.denial.net = rec {
-    all = act // cls // drivers // ipv6 // netfilter;
+    all = act // cls // drivers // ipv6 // netfilter // sch;
 
     act = {
       NET_ACT_BPF = "n";
@@ -35,13 +35,38 @@
       NET_CLS_ROUTE4 = "n";
     };
 
+    sch = {
+      NET_SCH_CAKE = "n";
+      NET_SCH_CBS = "n";
+      NET_SCH_CHOKE = "n";
+      NET_SCH_CODEL = "n";
+      NET_SCH_DRR = "n";
+      NET_SCH_DUALPI2 = "n";
+      NET_SCH_ETF = "n";
+      NET_SCH_ETS = "n";
+      NET_SCH_GRED = "n";
+      NET_SCH_HFSC = "n";
+      NET_SCH_HHF = "n";
+      NET_SCH_MQPRIO = "n";
+      NET_SCH_MULTIQ = "n";
+      NET_SCH_NETEM = "n";
+      NET_SCH_PIE = "n";
+      NET_SCH_PLUG = "n";
+      NET_SCH_PRIO = "n";
+      NET_SCH_RED = "n";
+      NET_SCH_SFB = "n";
+      NET_SCH_SKBPRIO = "n";
+      NET_SCH_TAPRIO = "n";
+      NET_SCH_TBF = "n";
+      NET_SCH_TEQL = "n";
+    };
+
     netfilter = {
       BRIDGE_CFM = "n";
       BRIDGE_EBT_802_3 = "n";
       BRIDGE_EBT_AMONG = "n";
       BRIDGE_EBT_ARP = "n";
       BRIDGE_EBT_ARPREPLY = "n";
-      BRIDGE_EBT_BROUTE = "n";
       BRIDGE_EBT_DNAT = "n";
       BRIDGE_EBT_IP = "n";
       BRIDGE_EBT_IP6 = "n";
@@ -54,8 +79,6 @@
       BRIDGE_EBT_REDIRECT = "n";
       BRIDGE_EBT_SNAT = "n";
       BRIDGE_EBT_STP = "n";
-      BRIDGE_EBT_T_FILTER = "n";
-      BRIDGE_EBT_T_NAT = "n";
       BRIDGE_EBT_VLAN = "n";
       BRIDGE_MRP = "n";
       NETFILTER_XT_MATCH_CLUSTER = "n";
@@ -73,7 +96,6 @@
       NETFILTER_XT_TARGET_SECMARK = "n";
       NETFILTER_XT_TARGET_TEE = "n";
       NF_CONNTRACK_AMANDA = "n";
-      NF_CONNTRACK_BROADCAST = "n";
       NF_CONNTRACK_FTP = "n";
       NF_CONNTRACK_H323 = "n";
       NF_CONNTRACK_IRC = "n";
@@ -83,19 +105,12 @@
       NF_CONNTRACK_SIP = "n";
       NF_CONNTRACK_SNMP = "n";
       NF_CONNTRACK_TFTP = "n";
-      NF_NAT_AMANDA = "n";
-      NF_NAT_FTP = "n";
-      NF_NAT_IRC = "n";
-      NF_NAT_SIP = "n";
-      NF_NAT_TFTP = "n";
     };
 
     drivers = {
       ARCNET = "n";
       ATM = "n";
       BATMAN_ADV = "n";
-      BONDIN = "n";
-      CAIF = "n";
       DIBS = "n";
       EQUALIZER = "n";
       FUJITSU_ES = "n";
@@ -108,8 +123,6 @@
       MACSEC = "n";
       MDIO_BCM_UNIMAC = "n";
       MDIO_BITBANG = "n";
-      MDIO_CAVIUM = "n";
-      MDIO_GPIO = "n";
       MDIO_MSCC_MIIM = "n";
       MDIO_MVUSB = "n";
       MDIO_REGMAP = "n";
@@ -119,7 +132,6 @@
       NETCONSOLE = "n";
       NETDEVSIM = "n";
       NETLINK_DIAG = "n";
-      NETPOLL = "n";
       NET_DSA = "n";
       NET_EMATCH = "n";
       NET_KEY = "n";
@@ -132,18 +144,8 @@
       N_HDLC = "n";
       OPENVSWITCH = "n";
       PCS_LYNX = "n";
-      PCS_MTK_LYNXI = "n";
       PFCP = "n";
-      PSE_PD692X0 = "n";
-      PSE_REGULATOR = "n";
-      PSE_SI3474 = "n";
-      PSE_TPS23881 = "n";
       RAPIDIO = "n";
-      SLHCI = "n";
-      SLIPI = "n";
-      SLIP_COMPRESSEDI = "n";
-      SLIP_MODE_SLIP6I = "n";
-      SLIP_SMARTI = "n";
       VLAN_8021Q = "n";
       VMXNET3 = "n";
       WAN = "n";
@@ -154,8 +156,6 @@
     ipv6 = {
       INET6_AH = "n";
       INET6_ESP = "n";
-      INET6_ESPINTCP = "n";
-      INET6_ESP_OFFLOAD = "n";
       IP6_NF_MATCH_AH = "n";
       IP6_NF_MATCH_EUI64 = "n";
       IP6_NF_MATCH_FRAG = "n";
@@ -165,19 +165,12 @@
       IP6_NF_MATCH_OPTS = "n";
       IP6_NF_MATCH_RT = "n";
       IP6_NF_MATCH_SRH = "n";
-      IP6_NF_NAT = "n";
-      IP6_NF_SECURITY = "n";
-      IP6_NF_TARGET_HL = "n";
-      IP6_NF_TARGET_MASQUERADE = "n";
       IP6_NF_TARGET_NPT = "n";
       IP6_NF_TARGET_SYNPROXY = "n";
       IPV6_MIP6 = "n";
       IPV6_SIT = "n";
-      IPV6_SIT_6RD = "n";
       IPV6_VTI = "n";
-      NET_IPGRE = "n";
       NET_IPGRE_DEMUX = "n";
-      IPV6_NDISC_NODETYPE = "n";
       NFT_DUP_IPV6 = "n";
       NFT_FIB_IPV6 = "n";
       NF_DUP_IPV6 = "n";

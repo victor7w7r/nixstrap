@@ -1,6 +1,6 @@
 {
   kernel.config.denial.storage = rec {
-    all = fs // label // general // mmc // raid // scsi // sata // sharing;
+    all = fs // label // general // mmc // raid // scsi // sata;
 
     fs = {
       ADFS_FS = "n";
@@ -54,22 +54,22 @@
       BLK_DEV_FD = "n";
       BLK_DEV_NBD = "n";
       BLK_DEV_PCIESSD_MTIP32XX = "n";
-      BLK_DEV_PMEM = "n";
       BLK_DEV_RAM = "n";
       BLK_DEV_RBD = "n";
       BLK_DEV_UBLK = "n";
+      CEPH_FS = "n";
+      CIFS = "n";
       EDD = "n";
       MEMSTICK = "n";
-      NVME_FABRICS = "n";
+      NETFS_SUPPORT = "n";
+      NFSD = "n";
+      NFS_FS = "n";
       NVME_FC = "n";
       NVME_TARGET = "n";
       NVME_TCP = "n";
-      RXGK = "n";
-      RXKAD = "n";
     };
 
     mmc = {
-      MMC_ALCOR = "n";
       MMC_CB710 = "n";
       MMC_SDHCI_F_SDH30 = "n";
       MMC_SDHCI_XENON = "n";
@@ -86,7 +86,6 @@
 
     raid = {
       DM_CACHE = "n";
-      DM_CACHE_SMQ = "n";
       DM_CLONE = "n";
       DM_DELAY = "n";
       DM_DUST = "n";
@@ -96,10 +95,6 @@
       DM_LOG_USERSPACE = "n";
       DM_LOG_WRITES = "n";
       DM_MULTIPATH = "n";
-      DM_MULTIPATH_HST = "n";
-      DM_MULTIPATH_IOA = "n";
-      DM_MULTIPATH_QL = "n";
-      DM_MULTIPATH_ST = "n";
       DM_SWITCH = "n";
       DM_WRITECACHE = "n";
       DM_ZONED = "n";
@@ -110,17 +105,9 @@
       BLK_DEV_3W_XXXX_RAID = "n";
       CHR_DEV_SG = "n";
       CHR_DEV_ST = "n";
-      FCOE = "n";
-      FCOE_FNIC = "n";
       FW_CFG_SYSFS = "n";
-      HYPERV_STORAGE = "n";
       ISCSI_IBFT = "n";
-      ISCSI_IBFT_FIND = "n";
-      LIBFC = "n";
-      LIBFCOE = "n";
       MEGARAID_LEGACY = "n";
-      MEGARAID_MAILBOX = "n";
-      MEGARAID_MM = "n";
       MEGARAID_NEWGEN = "n";
       MEGARAID_SAS = "n";
       SCSI_3W_9XXX = "n";
@@ -133,11 +120,8 @@
       SCSI_AIC94XX = "n";
       SCSI_AM53C974 = "n";
       SCSI_ARCMSR = "n";
-      SCSI_BFA_FC = "n";
-      SCSI_BNX2X_FCOE = "n";
       SCSI_BNX2_ISCSI = "n";
       SCSI_BUSLOGIC = "n";
-      SCSI_CHELSIO_FCOE = "n";
       SCSI_CXGB3_ISCSI = "n";
       SCSI_CXGB4_ISCSI = "n";
       SCSI_DC395x = "n";
@@ -146,18 +130,14 @@
       SCSI_DMX3191D = "n";
       SCSI_ESAS2R = "n";
       SCSI_FC_ATTRS = "n";
-      SCSI_FDOMAIN = "n";
       SCSI_FDOMAIN_PCI = "n";
-      SCSI_FLASHPOINT = "n";
       SCSI_HPSA = "n";
       SCSI_HPTIOP = "n";
-      SCSI_IMM = "n";
       SCSI_INIA100 = "n";
       SCSI_INITIO = "n";
       SCSI_IPR = "n";
       SCSI_IPS = "n";
       SCSI_ISCI = "n";
-      SCSI_LPFC = "n";
       SCSI_MPI3MR = "n";
       SCSI_MPT2SAS = "n";
       SCSI_MPT3SAS = "n";
@@ -165,16 +145,11 @@
       SCSI_MVUMI = "n";
       SCSI_MYRB = "n";
       SCSI_MYRS = "n";
-      SCSI_NETLINK = "n";
       SCSI_PM8001 = "n";
       SCSI_PMCRAID = "n";
-      SCSI_PPA = "n";
-      SCSI_QLA_FC = "n";
       SCSI_QLA_ISCSI = "n";
       SCSI_QLOGIC_1280 = "n";
-      SCSI_SAS_ATA = "n";
       SCSI_SAS_ATTRS = "n";
-      SCSI_SAS_HOST_SMP = "n";
       SCSI_SAS_LIBSAS = "n";
       SCSI_SMARTPQI = "n";
       SCSI_SNIC = "n";
@@ -182,44 +157,17 @@
       SCSI_SRP_ATTRS = "n";
       SCSI_STEX = "n";
       SCSI_SYM53C8XX_2 = "n";
-      SCSI_SYM53C8XX_MMIO = "n";
       SCSI_WD719X = "n";
     };
 
     sata = {
       AHCI_DWC = "n";
-      ATA_GENERIC = "n";
       ATA_OVER_ETH = "n";
-      ATA_PIIX = "n";
-      SATA_ACARD_AHCI = "n";
-      SATA_DWC = "n";
-      SATA_INIC162X = "n";
-      SATA_MV = "n";
-      SATA_NV = "n";
-      SATA_PROMISE = "n";
-      SATA_QSTOR = "n";
-      SATA_SIL = "n";
-      SATA_SIL24 = "n";
-      SATA_SIS = "n";
-      SATA_SVW = "n";
-      SATA_SX4 = "n";
-      SATA_ULI = "n";
-      SATA_VIA = "n";
-      SATA_VITESSE = "n";
-    };
 
-    sharing = {
-      CEPH_FS = "n";
-      CIFS = "n";
-      GRACE_PERIOD = "n";
-      LOCKD = "n";
-      LOCKD_V4 = "n";
-      NETFS_SUPPORT = "n";
-      NFSD = "n";
-      NFS_ACL_SUPPORT = "n";
-      NFS_COMMON = "n";
-      NFS_FS = "n";
-      SUNRPC = "n";
+      ATA_SFF = "n";
+      SATA_ACARD_AHCI = "n";
+      SATA_INIC162X = "n";
+      SATA_SIL24 = "n";
     };
   };
 }

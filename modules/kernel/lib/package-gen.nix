@@ -9,7 +9,7 @@
       (
         (kernel.hosts."${host}" pkgs false)
         |> (src: {
-          devShells."${host}-kconfig" = kernel.lib.kconfig {
+          devShells."${host}-menu-config" = kernel.lib.menu-config {
             inherit pkgs;
             kernel = src."${host}-kernel";
           };
@@ -22,7 +22,7 @@
       (
         (kernel.hosts."${host}" pkgs.pkgsCross."${cross}" true)
         |> (src: {
-          devShells."${host}-cross-kconfig" = kernel.lib.kconfig {
+          devShells."${host}-cross-menu-config" = kernel.lib.menu-config {
             pkgs = pkgs.pkgsCross."${cross}";
             kernel = src."${host}-kernel";
           };

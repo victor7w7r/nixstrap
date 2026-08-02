@@ -96,7 +96,6 @@
     HIBERNATION = "n";
 
     FW_LOADER_USER_HELPER = "n";
-    FW_LOADER_USER_HELPER_FALLBACK = "n";
     LEDS_LP55XX_COMMON = "n";
     LEDS_LP5521 = "n";
     LEDS_LP5523 = "n";

@@ -18,8 +18,6 @@
       CPU_SUP_CENTAUR = "n";
       CPU_SUP_ZHAOXIN = "n";
       DASHARO_ACPI = "n";
-      EEEPC_LAPTOP = "n";
-      EEEPC_WMI = "n";
       EZX_PCAP = "n";
       FIREWIRE = "n";
       FIREWIRE_NOSY = "n";
@@ -29,9 +27,6 @@
       GIGABYTE_WMI = "n";
       GOOGLE_FIRMWARE = "n";
       GPD_POCKET_FAN = "n";
-      HP_ACCEL = "n";
-      HP_BIOSCFG = "n";
-      HP_WMI = "n";
       HUAWEI_WMI = "n";
       IBM_RTL = "n";
       IDEAPAD_LAPTOP = "n";
@@ -41,21 +36,15 @@
       INTEL_CHTDC_TI_PWRBTN = "n";
       INTEL_HID_EVENT = "n";
       INTEL_INT0002_VGPIO = "n";
-      INTEL_MRFLD_PWRBTN = "n";
       INTEL_OAKTRAIL = "n";
-      INTEL_PLR_TPMI = "n";
       INTEL_PUNIT_IPC = "n";
       INTEL_RST = "n";
-      INTEL_SCU_IPC_UTIL = "n";
       INTEL_SCU_PLATFORM = "n";
       INTEL_SDSI = "n";
       INTEL_SMARTCONNECT = "n";
       INTEL_SPEED_SELECT_INTERFACE = "n";
-      INTEL_SPEED_SELECT_TPMI = "n";
       INTEL_TPMI = "n";
-      INTEL_TPMI_POWER_DOMAINS = "n";
       INTEL_UNCORE_FREQ_CONTROL = "n";
-      INTEL_UNCORE_FREQ_CONTROL_TPMI = "n";
       INTEL_VBTN = "n";
       INTEL_WMI = "n";
       INTEL_WMI_SBL_FW_UPDATE = "n";
@@ -63,7 +52,6 @@
       LENOVO_WMI_GAMEZONE = "n";
       LENOVO_WMI_HOTKEY_UTILITIES = "n";
       LENOVO_WMI_TUNING = "n";
-      LENOVO_YMC = "n";
       LG_LAPTOP = "n";
       MACINTOSH_DRIVERS = "n";
       MEEGOPAD_ANX7428 = "n";
@@ -79,7 +67,6 @@
       PCENGINES_APU2 = "n";
       PMIC_ADP5520 = "n";
       PMIC_DA903X = "n";
-      PMIC_DA9052 = "n";
       REDMI_WMI = "n";
       RPMB = "n";
       SAMSUNG_GALAXYBOOK = "n";
@@ -88,8 +75,6 @@
       SENSORS_HDAPS = "n";
       SERIAL_MULTI_INSTANTIATE = "n";
       SIEMENS_SIMATIC_IPC = "n";
-      SIEMENS_SIMATIC_IPC_BATT = "n";
-      SONYPI_COMPAT = "n";
       SONY_LAPTOP = "n";
       SURFACE_PLATFORMS = "n";
       SYSTEM76_ACPI = "n";
@@ -113,12 +98,10 @@
     };
     net = {
       NET_VENDOR_3COM = "n";
-      NET_VENDOR_8390 = "n";
       NET_VENDOR_ADAPTEC = "n";
       NET_VENDOR_ADI = "n";
       NET_VENDOR_AGERE = "n";
       NET_VENDOR_ALACRITECH = "n";
-      NET_VENDOR_ALTEON = "n";
       NET_VENDOR_AMAZON = "n";
       NET_VENDOR_AQUANTIA = "n";
       NET_VENDOR_ARC = "n";
@@ -140,7 +123,6 @@
       NET_VENDOR_GOOGLE = "n";
       NET_VENDOR_HISILICON = "n";
       NET_VENDOR_HUAWEI = "n";
-      NET_VENDOR_I825XX = "n";
       NET_VENDOR_LITEX = "n";
       NET_VENDOR_MARVELL = "n";
       NET_VENDOR_MELLANOX = "n";
@@ -151,12 +133,10 @@
       NET_VENDOR_MICROSOFT = "n";
       NET_VENDOR_MYRI = "n";
       NET_VENDOR_NATSEMI = "n";
-      NET_VENDOR_NETERION = "n";
       NET_VENDOR_NETRONOME = "n";
       NET_VENDOR_NI = "n";
       NET_VENDOR_NVIDIA = "n";
       NET_VENDOR_OKI = "n";
-      NET_VENDOR_PACKET_ENGINES = "n";
       NET_VENDOR_PENSANDO = "n";
       NET_VENDOR_QLOGIC = "n";
       NET_VENDOR_QUALCOMM = "n";
