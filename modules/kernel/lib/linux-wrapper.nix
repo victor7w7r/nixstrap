@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ inputs, lib, ... }: {
 
   kernel.lib.linux-wrapper =
     {
@@ -9,18 +9,7 @@
     }:
     pkgs.stdenvNoCC.mkDerivation {
       name = "linux-wrapper";
-      src =
-        (pkgs.linuxKernel.kernels.linux_7_1.override {
-          argsOverride = {
-            src = pkgs.fetchurl {
-              url = "mirror://kernel/linux/kernel/v7.x/linux-7.1.4.tar.xz";
-              sha256 = "sha256-HGOSKhGWddOOOuD49u4H8VxBp4arntZlY3SbuMmgji4=";
-            };
-            version = "7.1.4";
-            modDirVersion = "7.1.4";
-          };
-        }).src;
-
+      src = inputs.linux;
       dontBuild = true;
       dontConfigure = true;
       installPhase = "mkdir -p $out && cp -r . $out/";

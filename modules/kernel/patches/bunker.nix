@@ -7,9 +7,7 @@
 
   kernel.patches.bunker = rec {
     std = map (patch: "${inputs.bunker-patches}/patches/7.1/${patch}") [
-      "bunker/0002-x86-cpu-disable-bus-lock-mitigation-by-default.patch"
       "bunker/0003-rust-allow-clang-native-randstruct-configs.patch"
-      "bunker/0005-mm-increase-VM_READAHEAD_PAGES-to-2MB.patch"
       "bunker/0006-enable-kstack_erase-by-default.patch"
       "bunker/0007-enable-page_table_check_enforced-by-default.patch"
       "bunker/0008-disable-proc_kcore-by-default.patch"
@@ -17,17 +15,10 @@
       "clear/0001-net-dst-reduce-false-sharing-in-dst_entry.patch"
       "clear/0006-init-reduce-default-timer-slack-to-50ns.patch"
       "clear/0009-mm-compaction-increase-proactive-compaction-check-in.patch"
-      "clear/0010-sched-core-add-branch-hints-based-on-gcov-analysis.patch"
-      "cachyos/0002-fixes-inline-sched-mm-tick-vtime-rcu-quirks.patch"
       "cachyos/0004-sched-ext.patch"
-      "cachyos/0005-x86-cpu-amd-Zen-errata-workaround.patch"
-      "cachyos/0006-block-add-ADIOS-Adaptive-Deadline-I-O-Scheduler.patch"
-      "cachyos/0008-media-add-v4l2loopback-virtual-video-device.patch"
       "cachyos/0010-block-reduce-BFQ-and-mq-deadline-lock-contention.patch"
-      "cachyos/0012-sched-add-Piece-Of-Cake-fast-idle-CPU-selector.patch"
       "cachyos/0013-mm-add-missing-extern-declarations-for-le9-workingse.patch"
       "cachyos/0014-x86-cpu-bugs-VMSCAPE-BHB-clear-mitigation.patch"
-      "cachyos/0015-drm-VESA-DSC-BPP-pass-through-timings.patch"
       "cachyos/0018-drivers-net-add-Realtek-R8125-R8126-5GbE-driver.patch"
       "grapheneos/0001-disable-ldisc_autoload-by-default.patch"
       "grapheneos/0004-disable-memory_hotplug-by-default.patch"
@@ -44,16 +35,8 @@
       "xanmod/0011-binder-turn-into-loadable-module.patch"
       "xanmod/0012-tcp-add-sysctl-to-skip-collapse-when-receive-buffer-.patch"
       "xanmod/0014-dm-crypt-Disable-workqueues-for-crypto-ops.patch"
-      "zen/0001-PCI-add-ACS-override-support.patch"
-      "zen/0002-PCI-add-Intel-remapped-NVMe-device-support.patch"
-      "zen/0004-drivers-initialize-ata-before-graphics.patch"
-      "zen/0005-input-evdev-use-call_rcu-when-detaching-client.patch"
       "zen/0006-cpufreq-remove-schedutil-dependency-on-Intel-AMD-P-S.patch"
-      "zen/0007-x86-cpufreq-intel-pstate-implement-enable-parameter.patch"
-      "zen/0008-drm-amdgpu-pm-allow-override-of-min_power_limit-with.patch"
       "zen/0009-mm-set-default-max-map-count-to-INT_MAX-5.patch"
-      "zen/0012-kernel-Kconfig.preempt-remove-EXPERT-conditional-on-.patch"
-      "zen/0014-block-Clean-up-elevator_set_default.patch"
     ];
     hardened =
       std
