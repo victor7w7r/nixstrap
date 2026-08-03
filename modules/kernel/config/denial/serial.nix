@@ -17,10 +17,11 @@
     };
 
     i2c = {
-      I3C = "n";
       I2C_ALI1535 = "n";
       I2C_ALI1563 = "n";
       I2C_ALI15X3 = "n";
+      I2C_AMD756 = "n";
+      I2C_AMD8111 = "n";
       I2C_CBUS_GPIO = "n";
       I2C_CHT_WC = "n";
       I2C_CP2615 = "n";
@@ -29,7 +30,6 @@
       I2C_GPIO = "n";
       I2C_ISCH = "n";
       I2C_ISMT = "n";
-      I2C_KEBA = "n";
       I2C_MLXCPLD = "n";
       I2C_MUX_GPIO = "n";
       I2C_MUX_LTC4306 = "n";
@@ -57,6 +57,7 @@
       I2C_VIAPRO = "n";
       I2C_XILINX = "n";
       I2C_ZHAOXIN = "n";
+      I3C = "n";
       MUX_GPIO = "n";
     };
 
@@ -64,6 +65,7 @@
       APPLICOM = "n";
       DEVPORT = "n";
       PARPORT = "n";
+      GENERIC_ADC_THERMAL = "n";
       SERIO_RAW = "n";
       SERIO_ALTERA_PS2 = "n";
       SERIO_PS2MULT = "n";
@@ -87,6 +89,7 @@
       SERIAL_FSL_LINFLEXUART = "n";
       SERIAL_FSL_LPUART = "n";
       SERIAL_JSM = "n";
+      SERIAL_LANTIQ = "n";
       SERIAL_MAX3100 = "n";
       SERIAL_MAX310X = "n";
       SERIAL_RP2 = "n";
@@ -106,6 +109,10 @@
       GPIO_CDEV_V1 = "n";
       GPIO_DS4520 = "n";
       GPIO_DWAPB = "n";
+      GPIO_SLOPPY_LOGIC_ANALYZER = "n";
+      GPIO_QIXIS_FPGA = "n";
+      GPIO_BT8XX = "n";
+      GPIO_VIRTUSER = "n";
       GPIO_ELKHARTLAKE = "n";
       GPIO_EXAR = "n";
       GPIO_F7188X = "n";
@@ -163,6 +170,8 @@
       PINCTRL_METEORPOINT = "n";
       PINCTRL_SUNRISEPOINT = "n";
       PINCTRL_TIGERLAKE = "n";
+      PINCTRL_STMFX = "n";
+      PINCTRL_SX150X = "n";
     };
 
     spi = {
@@ -172,35 +181,39 @@
       SPI_CADENCE = "n";
       SPI_CH341 = "n";
       SPI_DW_DMA = "n";
-      SPI_DW_PCI = "n";
       SPI_DW_MMIO = "n";
-      SPI_KSPI2 = "n";
+      SPI_DW_PCI = "n";
+      SPI_LANTIQ_SSC = "n";
+      SPI_LOOPBACK_TEST = "n";
       SPI_MICROCHIP_CORE_QSPI = "n";
+      SPI_MICROCHIP_CORE_SPI = "n";
+      SPI_MUX = "n";
+      SPI_MXIC = "n";
       SPI_OC_TINY = "n";
       SPI_PCI1XXXX = "n";
       SPI_PXA2XX = "n";
       SPI_SC18IS602 = "n";
       SPI_SIFIVE = "n";
-      SPI_MXIC = "n";
+      SPI_SLAVE_SYSTEM_CONTROL = "n";
+      SPI_SLAVE_TIME = "n";
+      SPI_SPIDEV = "n";
+      SPI_TLE62X0 = "n";
       SPI_XCOMM = "n";
       SPI_XILINX = "n";
       SPI_ZYNQMP_GQSPI = "n";
-      SPI_MUX = "n";
-      SPI_SPIDEV = "n";
-      SPI_LOOPBACK_TEST = "n";
-      SPI_TLE62X0 = "n";
-      SPI_SLAVE_TIME = "n";
-      SPI_SLAVE_SYSTEM_CONTROL = "n";
-
     };
 
     usb = {
       APPLE_MFI_FASTCHARGE = "n";
       SSB = "n";
-      USB_ADUTUX = "n";
       UCSI_CCG = "n";
       UCSI_STM32G0 = "n";
+      USB_ADUTUX = "n";
+      USB_ALI_M5632 = "n";
+      USB_AN2720 = "n";
       USB_APPLEDISPLAY = "n";
+      USB_ARMLINUX = "n";
+      USB_BELKIN = "n";
       USB_C67X00_HCD = "n";
       USB_CATC = "n";
       USB_CDNS_SUPPORT = "n";
@@ -211,17 +224,23 @@
       USB_EHSET_TEST_FIXTURE = "n";
       USB_EMI26 = "n";
       USB_EMI62 = "n";
+      USB_EPSON2888 = "n";
       USB_GPIO_VBUS = "n";
+      USB_HCD_BCMA = "n";
       USB_HSIC_USB3503 = "n";
       USB_HSIC_USB4604 = "n";
+      USB_HSO = "n";
       USB_HUB_USB251XB = "n";
       USB_IDMOUSE = "n";
       USB_IOWARRIOR = "n";
+      USB_IPHETH = "n";
       USB_ISIGHTFW = "n";
       USB_ISP116X_HCD = "n";
       USB_ISP1301 = "n";
       USB_ISP1760 = "n";
       USB_KAWETH = "n";
+      USB_KBD = "n";
+      USB_KC2190 = "n";
       USB_LCD = "n";
       USB_LD = "n";
       USB_LEGOTOWER = "n";
@@ -230,41 +249,23 @@
       USB_MAX3421_HCD = "n";
       USB_MDC800 = "n";
       USB_MICROTEK = "n";
+      USB_MOUSE = "n";
       USB_OXU210HP_HCD = "n";
       USB_PEGASUS = "n";
       USB_PRINTER = "n";
       USB_R8A66597_HCD = "n";
       USB_RTL8150 = "n";
-      USB_SEVSEG = "n";
-      USB_SISUSBVGA = "n";
-      USB_SL811_HCD = "n";
-      USB_TEST = "n";
-      USB_TMC = "n";
-      USB_TRANCEVIBRATOR = "n";
-      USB_ULPI_BUS = "n";
-      USB_USBIO = "n";
-      USB_XHCI_PCI_RENESAS = "n";
-      USB_YUREX = "n";
-      USB_ALI_M5632 = "n";
-      USB_AN2720 = "n";
-      USB_ARMLINUX = "n";
-      USB_BELKIN = "n";
-      USB_CDC_PHONET = "n";
-      USB_EPSON2888 = "n";
-      USB_HSO = "n";
-      USB_IPHETH = "n";
-      USB_KC2190 = "n";
-      USB_SIERRA_NET = "n";
-      USB_VL600 = "n";
       USB_SERIAL_AIRCABLE = "n";
       USB_SERIAL_ARK3116 = "n";
       USB_SERIAL_BELKIN = "n";
       USB_SERIAL_CH341 = "n";
       USB_SERIAL_CYBERJACK = "n";
+      USB_SERIAL_CYPRESS_M8 = "n";
       USB_SERIAL_DEBUG = "n";
       USB_SERIAL_DIGI_ACCELEPORT = "n";
       USB_SERIAL_EDGEPORT = "n";
       USB_SERIAL_EDGEPORT_TI = "n";
+      USB_SERIAL_EMPEG = "n";
       USB_SERIAL_F81232 = "n";
       USB_SERIAL_F8153X = "n";
       USB_SERIAL_GARMIN = "n";
@@ -303,6 +304,19 @@
       USB_SERIAL_WISHBONE = "n";
       USB_SERIAL_XR = "n";
       USB_SERIAL_XSENS_MT = "n";
+      USB_SEVSEG = "n";
+      USB_SIERRA_NET = "n";
+      USB_SISUSBVGA = "n";
+      USB_SL811_HCD = "n";
+      USB_TEST = "n";
+      USB_TMC = "n";
+      USB_TRANCEVIBRATOR = "n";
+      USB_UHCI_HCD = "n";
+      USB_ULPI_BUS = "n";
+      USB_USBIO = "n";
+      USB_VL600 = "n";
+      USB_XHCI_PCI_RENESAS = "n";
+      USB_YUREX = "n";
     };
 
     typec = {

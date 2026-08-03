@@ -49,6 +49,8 @@
     general = {
       AF_KCM = "n";
       AF_RXRPC = "n";
+      ALTERA_TSE = "n";
+      AMT = "n";
       BLK_DEV_DRBD = "n";
       BLK_DEV_FD = "n";
       BLK_DEV_NBD = "n";
@@ -56,15 +58,20 @@
       BLK_DEV_RAM = "n";
       BLK_DEV_RBD = "n";
       BLK_DEV_UBLK = "n";
+      BLK_DEV_ZONED_LOOP = "n";
       CEPH_FS = "n";
       CIFS = "n";
+      CX_ECAT = "n";
       EDD = "n";
+      KEBA_CP500 = "n";
       MEMSTICK = "n";
+      NET_FC = "n";
       NFSD = "n";
       NFS_FS = "n";
       NVME_FC = "n";
       NVME_TARGET = "n";
       NVME_TCP = "n";
+      PNP_DEBUG_MESSAGES = "n";
     };
 
     mmc = {
@@ -104,7 +111,9 @@
       CHR_DEV_SG = "n";
       CHR_DEV_ST = "n";
       FW_CFG_SYSFS = "n";
+      ISCSI_BOOT_SYSFS = "n";
       ISCSI_IBFT = "n";
+      ISCSI_TCP = "n";
       MEGARAID_LEGACY = "n";
       MEGARAID_NEWGEN = "n";
       MEGARAID_SAS = "n";
@@ -136,6 +145,8 @@
       SCSI_IPR = "n";
       SCSI_IPS = "n";
       SCSI_ISCI = "n";
+      SCSI_ISCSI_ATTRS = "n";
+      SCSI_LOGGING = "n";
       SCSI_MPI3MR = "n";
       SCSI_MPT2SAS = "n";
       SCSI_MPT3SAS = "n";
@@ -161,7 +172,6 @@
     sata = {
       AHCI_DWC = "n";
       ATA_OVER_ETH = "n";
-
       ATA_SFF = "n";
       SATA_ACARD_AHCI = "n";
       SATA_INIC162X = "n";

@@ -1,6 +1,6 @@
 {
   kernel.config.denial.net-hardware = rec {
-    all = cable // general // wifi;
+    all = cable // general // usb // wifi;
 
     cable = {
       BNGE = "n";
@@ -18,7 +18,6 @@
       BCM54140_PHY = "n";
       BCM84881_PHY = "n";
       BCM87XX_PHY = "n";
-      BCM7XXX_PHY = "n";
       BROADCOM_PHY = "n";
       CICADA_PHY = "n";
       CORTINA_PHY = "n";
@@ -74,9 +73,22 @@
       B43LEGACY = "n";
       B44 = "n";
       CAN = "n";
+      ETHOC = "n";
+      FEALNX = "n";
       IEEE802154 = "n";
       PPP = "n";
+      SLIP = "n";
       WWAN = "n";
+    };
+
+    usb = {
+      USB_NET_ZAURUS = "n";
+      USB_NET_INT51X1 = "n";
+      USB_NET_GL620A = "n";
+      USB_NET_NET1080 = "n";
+      USB_NET_PLUSB = "n";
+      USB_NET_CX82310_ETH = "n";
+      USB_NET_KALMIA = "n";
     };
 
     wifi = {

@@ -25,9 +25,7 @@
     };
 
     not-arm = {
-      AX88796B_PHY = "n";
       CRYPTO_DES = "n";
-      MFD_AXP20X = "n";
       MFD_AXP20X_I2C = "n";
       MFD_WM8994 = "n";
       MHI_BUS = "n";
@@ -64,9 +62,7 @@
       PCIE_PTM = "y";
       PCIE_EDR = "y";
       PCI_DOE = "y";
-      PCI_ECAM = "y";
       PCI_IOV = "y";
-      PCI_NPEM = "y";
       MMC_MTK = "n";
       OF = "n";
       SPI = "n";

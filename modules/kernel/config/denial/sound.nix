@@ -32,9 +32,7 @@
 
     general = {
       SND_AD1889 = "n";
-      SND_ALI5451 = "n";
       SND_ALOOP = "n";
-      SND_ALS300 = "n";
       SND_ALS4000 = "n";
       SND_AMD_ASOC_ACP70 = "n";
       SND_AMD_ASOC_REMBRANDT = "n";
@@ -46,8 +44,8 @@
       SND_AU8820 = "n";
       SND_AU8830 = "n";
       SND_AW2 = "n";
-      SND_AZT3328 = "n";
       SND_BCD2000 = "n";
+      SND_BCM63XX_I2S_WHISTLER = "n";
       SND_BT87X = "n";
       SND_CA0106 = "n";
       SND_CMIPCI = "n";
@@ -59,19 +57,14 @@
       SND_DESIGNWARE_I2S = "n";
       SND_DUMMY = "n";
       SND_ECHO3G = "n";
-      SND_EMU10K1 = "n";
-      SND_EMU10K1X = "n";
       SND_ENS1370 = "n";
       SND_ENS1371 = "n";
-      SND_ES1938 = "n";
-      SND_ES1968 = "n";
       SND_FM801 = "n";
       SND_GINA20 = "n";
       SND_GINA24 = "n";
       SND_HDSP = "n";
       SND_HDSPM = "n";
       SND_I2S_HI6210_I2S = "n";
-      SND_ICE1712 = "n";
       SND_ICE1724 = "n";
       SND_INDIGO = "n";
       SND_INDIGODJ = "n";
@@ -85,15 +78,16 @@
       SND_LAYLA24 = "n";
       SND_LOLA = "n";
       SND_LX6464ES = "n";
-      SND_MAESTRO3 = "n";
       SND_MIA = "n";
       SND_MIXART = "n";
       SND_MONA = "n";
       SND_MPU401 = "n";
       SND_MTPAV = "n";
       SND_NM256 = "n";
+      SND_OSSEMUL = "n";
       SND_OXYGEN = "n";
       SND_PCMTEST = "n";
+      SND_PCSP = "n";
       SND_PCXHR = "n";
       SND_RIPTIDE = "n";
       SND_RME32 = "n";
@@ -102,9 +96,7 @@
       SND_SEQ_DUMMY = "n";
       SND_SERIAL_U16550 = "n";
       SND_SIMPLE_CARD = "n";
-      SND_SONICVIBES = "n";
       SND_SST_ATOM_HIFI2_PLATFORM_PCI = "n";
-      SND_TRIDENT = "n";
       SND_USB_6FIRE = "n";
       SND_USB_CAIAQ = "n";
       SND_USB_HIFACE = "n";
@@ -213,11 +205,19 @@
       SND_SOC_ES8375 = "n";
       SND_SOC_ES8389 = "n";
       SND_SOC_FS210X = "n";
+      SND_SOC_FSL_ASRC = "n";
+      SND_SOC_FSL_AUDMIX = "n";
+      SND_SOC_FSL_ESAI = "n";
+      SND_SOC_FSL_MICFIL = "n";
+      SND_SOC_FSL_SAI = "n";
+      SND_SOC_FSL_SPDIF = "n";
+      SND_SOC_FSL_SSI = "n";
       SND_SOC_FSL_XCVR = "n";
       SND_SOC_GTM601 = "n";
       SND_SOC_HDMI_CODEC = "n";
       SND_SOC_ICS43432 = "n";
       SND_SOC_IDT821034 = "n";
+      SND_SOC_IMX_AUDMUX = "n";
       SND_SOC_INTEL_AVS_MACH_DA7219 = "n";
       SND_SOC_INTEL_AVS_MACH_DMIC = "n";
       SND_SOC_INTEL_AVS_MACH_ES8336 = "n";
@@ -272,6 +272,7 @@
       SND_SOC_MAX9860 = "n";
       SND_SOC_MAX9867 = "n";
       SND_SOC_MAX98927 = "n";
+      SND_SOC_MSM8916_WCD_ANALOG = "n";
       SND_SOC_MSM8916_WCD_DIGITAL = "n";
       SND_SOC_MT6351 = "n";
       SND_SOC_MT6357 = "n";
@@ -327,6 +328,7 @@
       SND_SOC_SIMPLE_MUX = "n";
       SND_SOC_SMA1303 = "n";
       SND_SOC_SMA1307 = "n";
+      SND_SOC_UDA1380 = "n";
     };
 
     snd-soc = {
@@ -338,7 +340,6 @@
       SND_SOC_SOF_ELKHARTLAKE = "n";
       SND_SOC_SOF_GEMINILAKE = "n";
       SND_SOC_SOF_ICELAKE = "n";
-      SND_SOC_SOF_INTEL_PTL = "n";
       SND_SOC_SOF_INTEL_SOUNDWIRE = "n";
       SND_SOC_SOF_JASPERLAKE = "n";
       SND_SOC_SOF_MERRIFIELD = "n";
@@ -386,7 +387,6 @@
       SND_SOC_TSCS454 = "n";
       SND_SOC_UDA1334 = "n";
       SND_SOC_UDA1342 = "n";
-      SND_SOC_WCD9335 = "n";
       SND_SOC_WCD937X_SDW = "n";
       SND_SOC_WCD938X_SDW = "n";
       SND_SOC_WCD939X_SDW = "n";

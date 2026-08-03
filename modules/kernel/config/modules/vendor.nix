@@ -116,6 +116,7 @@
     };
 
     not-intel = {
+      ACPI_DPTF = "n";
       CPU_SUP_INTEL = "n";
       DRM_I915 = "n";
       HAVE_INTEL_TXT = "n";
