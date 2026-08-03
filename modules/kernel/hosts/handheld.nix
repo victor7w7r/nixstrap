@@ -19,6 +19,10 @@
         storage.not-xfs
         vendor.amd
         vendor.not-broadcom
+        {
+          SND_USB_AUDIO = "y";
+          UINPUT = "y";
+        }
       ];
     })
     |> (generated: {

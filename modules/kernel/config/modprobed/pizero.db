@@ -3,10 +3,8 @@
 ac200_phy
 binfmt_misc
 blake2b_generic
-bluetooth
 bnep
 btbcm
-btintel
 btqca
 btrfs
 btrtl
@@ -19,7 +17,6 @@ dw_hdmi_cec
 dw_hdmi_i2s_audio
 ecc
 ecdh_generic
-fuse
 governor_simpleondemand
 gpu_sched
 hci_uart
@@ -42,4 +39,3 @@ sunxi_addr
 uas
 xor
 x_tables
-zram

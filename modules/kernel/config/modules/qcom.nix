@@ -140,7 +140,6 @@
     STMMAC_ETH = "n";
     ATL1C = "n";
     BRCMFMAC = "n";
-
     WL18XX = "n";
     WLCORE = "n";
     WLCORE_SPI = "n";
@@ -764,7 +763,6 @@
     SND_SOC_RT5682 = "n";
     SND_SOC_RT5682_SDW = "n";
     SND_SOC_ALL_CODECS = "n";
-
     BT_BNEP = "m";
     BT_BNEP_MC_FILTER = "y";
     BT_BNEP_PROTO_FILTER = "y";

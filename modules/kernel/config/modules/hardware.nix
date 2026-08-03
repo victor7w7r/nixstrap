@@ -8,6 +8,16 @@
       USB_SERIAL = "n";
     };
 
+    realtek = {
+      REALTEK_PHY = "y";
+      R8169 = "y";
+    };
+
+    not-realtek = {
+      REALTEK_PHY = "n";
+      R8169 = "n";
+    };
+
     serial = {
       USB_ACM = "y";
     };
@@ -22,6 +32,15 @@
     native = {
       GENERIC_CPU = "n";
       X86_NATIVE_CPU = "y";
+    };
+
+    arm = {
+      SPI = "y";
+      SPI_BITBANG = "y";
+      SPI_DYNAMIC = "y";
+      SPI_MASTER = "y";
+      SPI_MEM = "y";
+      SPI_SLAVE = "y";
     };
 
     not-arm = {
@@ -55,23 +74,27 @@
     };
 
     x86 = {
+      ACPI_BUTTON = "y";
       ACPI_TAD = "y";
       ACPI_WMI = "y";
       INPUT_TOUCHSCREEN = "n";
-      PCIE_DPC = "y";
-      PCIE_PTM = "y";
-      PCIE_EDR = "y";
-      PCI_DOE = "y";
-      PCI_IOV = "y";
       MMC_MTK = "n";
       OF = "n";
-      SPI = "n";
+      PCIE_DPC = "y";
+      PCIE_EDR = "y";
+      PCIE_PTM = "y";
+      PCI_DOE = "y";
+      PCI_IOV = "y";
+      PERF_EVENTS_INTEL_RAPL = "y";
+      #SPI = "n"; # CHECK
+      RTC_DRV_CMOS = "y";
       STAGING = "n";
-      XZ_DEC_ARM = "n";
-      XZ_DEC_ARMTHUMB = "n";
-      XZ_DEC_ARM64 = "n";
+      VFIO = "y";
       X86_ACPI_CPUFREQ = "y";
-      X86_X32 = "y";
+      X86_PKG_TEMP_THERMAL = "y";
+      XZ_DEC_ARM = "n";
+      XZ_DEC_ARM64 = "n";
+      XZ_DEC_ARMTHUMB = "n";
     };
   };
 }

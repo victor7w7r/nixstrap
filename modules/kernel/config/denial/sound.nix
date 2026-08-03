@@ -141,14 +141,10 @@
       SND_SOC_AK5558 = "n";
       SND_SOC_ALC5623 = "n";
       SND_SOC_AMD_ACP = "n";
-      SND_SOC_AMD_ACP3x = "n";
-      SND_SOC_AMD_ACP5x = "n";
       SND_SOC_AMD_ACP63_TOPLEVEL = "n";
       SND_SOC_AMD_ACP6x = "n";
-      SND_SOC_AMD_ACP_PCI = "n";
       SND_SOC_AMD_LEGACY_MACH = "n";
       SND_SOC_AMD_LEGACY_SDW_MACH = "n";
-      SND_SOC_AMD_RENOIR = "n";
       SND_SOC_AMD_SOF_MACH = "n";
       SND_SOC_AUDIO_IIO_AUX = "n";
       SND_SOC_AW8738 = "n";
@@ -157,7 +153,6 @@
       SND_SOC_AW88166 = "n";
       SND_SOC_AW88261 = "n";
       SND_SOC_AW88395 = "n";
-      SND_SOC_AW88399 = "n";
       SND_SOC_BD28623 = "n";
       SND_SOC_CHV3_CODEC = "n";
       SND_SOC_CHV3_I2S = "n";
@@ -214,7 +209,6 @@
       SND_SOC_FSL_SSI = "n";
       SND_SOC_FSL_XCVR = "n";
       SND_SOC_GTM601 = "n";
-      SND_SOC_HDMI_CODEC = "n";
       SND_SOC_ICS43432 = "n";
       SND_SOC_IDT821034 = "n";
       SND_SOC_IMX_AUDMUX = "n";
@@ -264,8 +258,6 @@
       SND_SOC_MAX98090 = "n";
       SND_SOC_MAX98357A = "n";
       SND_SOC_MAX98363 = "n";
-      SND_SOC_MAX98388 = "n";
-      SND_SOC_MAX98390 = "n";
       SND_SOC_MAX98396 = "n";
       SND_SOC_MAX98504 = "n";
       SND_SOC_MAX98520 = "n";
@@ -283,7 +275,6 @@
       SND_SOC_NAU8325 = "n";
       SND_SOC_NAU8540 = "n";
       SND_SOC_NAU8810 = "n";
-      SND_SOC_NAU8821 = "n";
       SND_SOC_NAU8822 = "n";
       SND_SOC_NAU8824 = "n";
       SND_SOC_NTP8835 = "n";

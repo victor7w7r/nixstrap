@@ -149,7 +149,6 @@
     BH1780 = "n";
     BMA220 = "n";
     BMA400 = "n";
-    BMC150_ACCEL = "n";
     BMC150_MAGN_I2C = "n";
     BMC150_MAGN_SPI = "n";
     BME680 = "n";
@@ -376,7 +375,6 @@
     SI7210 = "n";
     SIOX = "n";
     SMI240 = "n";
-    SMI330 = "n";
     SPS30_I2C = "n";
     SPS30_SERIAL = "n";
     SRF04 = "n";

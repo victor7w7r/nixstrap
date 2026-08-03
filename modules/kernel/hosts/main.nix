@@ -17,6 +17,15 @@
         storage.raid
         storage.xfs
         vendor.intel
+        {
+          BRCMFMAC = "y";
+          EEPROM_EE1004 = "y";
+          SND_HDA_CODEC_HDMI_INTEL = "m";
+          SND_HDA_INTEL = "y";
+          SND_SOC_INTEL_AVS = "y";
+          SND_USB_AUDIO = "y";
+          UINPUT = "y";
+        }
       ];
     })
     |> (generated: {

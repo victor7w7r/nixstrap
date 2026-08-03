@@ -107,14 +107,11 @@
       NETFILTER_XT_MATCH_TIME = "n";
       NETFILTER_XT_MATCH_U32 = "n";
       NETFILTER_XT_TARGET_AUDIT = "n";
-      NETFILTER_XT_TARGET_DSCP = "n";
-      NETFILTER_XT_TARGET_HL = "n";
       NETFILTER_XT_TARGET_HMARK = "n";
       NETFILTER_XT_TARGET_IDLETIMER = "n";
       NETFILTER_XT_TARGET_LED = "n";
       NETFILTER_XT_TARGET_NETMAP = "n";
       NETFILTER_XT_TARGET_RATEEST = "n";
-      NETFILTER_XT_TARGET_TCPOPTSTRIP = "n";
       NETFILTER_XT_TARGET_TEE = "n";
       NF_CT_PROTO_SCTP = "n";
       NF_CONNTRACK_AMANDA = "n";
@@ -191,7 +188,6 @@
       WAN = "n";
       X25 = "n";
       XFRM_IPTFS = "n";
-      XFRM_OFFLOAD = "n";
       XFRM_USER_COMPAT = "n";
     };
 

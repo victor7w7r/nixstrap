@@ -20,6 +20,10 @@
         storage.xfs
         vendor.intel
         vendor.not-broadcom
+        {
+          DW_DMAC = "y";
+          RPMB = "y";
+        }
       ];
     })
     |> (generated: {

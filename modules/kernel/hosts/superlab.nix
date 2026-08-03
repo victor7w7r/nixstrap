@@ -41,6 +41,9 @@
             USB_EHCI_TEGRA = "n";
             }
         */
+        {
+          UINPUT = "y";
+        }
       ];
     })
     |> (generated: {

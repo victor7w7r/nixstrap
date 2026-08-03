@@ -54,7 +54,6 @@
       QCA808X_PHY = "n";
       QCA83XX_PHY = "n";
       QSEMI_PHY = "n";
-      R8169 = "n";
       RENESAS_PHY = "n";
       RTASE = "n";
       SFP = "n";

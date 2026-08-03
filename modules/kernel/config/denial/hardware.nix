@@ -72,7 +72,6 @@
       CHARGER_BQ25890 = "n";
       CHARGER_BQ25980 = "n";
       CHARGER_GPIO = "n";
-      CHARGER_ISP1704 = "n";
       CHARGER_LP8727 = "n";
       CHARGER_LT3651 = "n";
       CHARGER_LTC4162L = "n";
@@ -89,7 +88,6 @@
       FUEL_GAUGE_MM8013 = "n";
       FUEL_GAUGE_STC3117 = "n";
       GENERIC_ADC_BATTERY = "n";
-      INT340X_THERMAL = "n";
       INTEL_SOC_DTS_THERMAL = "n";
       IP5XXX_POWER = "n";
       LCD_CLASS_DEVICE = "n";
@@ -444,7 +442,6 @@
       MFD_SKY81452 = "n";
       MFD_SM501 = "n";
       MFD_SMPRO = "n";
-      MFD_STMFX = "n";
       MFD_SYSCON = "n";
       MFD_SY7636A = "n";
       MFD_TI_LMU = "n";
@@ -461,7 +458,6 @@
       MFD_UPBOARD_FPGA = "n";
       MFD_VIPERBOARD = "n";
       MFD_VX855 = "n";
-      MFD_WCD934X = "n";
       MFD_WM5102 = "n";
       MFD_WM5110 = "n";
       MFD_WM831X_I2C = "n";

@@ -18,9 +18,16 @@
       MMC_BLOCK = "n";
     };
 
+    sd = {
+      MMC_SDHCI = "y";
+      MMC_SDHCI_PCI = "y";
+      MMC_SDHCI_UHS2 = "y";
+    };
+
     mmc = {
       MMC = "y";
       MMC_BLOCK = "y";
+      MMC_CQHCI = "y";
     };
 
     ntfs = {
@@ -35,6 +42,12 @@
 
     raid = {
       BLK_DEV_DM = "y";
+      BLK_DEV_MD = "y";
+      DM_SNAPSHOT = "y";
+      DM_THIN_PROVISIONING = "y";
+      DM_CRYPT = "y";
+      DM_RAID = "y";
+      MD_RAID456 = "y";
     };
 
     not-raid = {

@@ -66,7 +66,6 @@
       DEVPORT = "n";
       PARPORT = "n";
       GENERIC_ADC_THERMAL = "n";
-      SERIO_RAW = "n";
       SERIO_ALTERA_PS2 = "n";
       SERIO_PS2MULT = "n";
       SERIO_ARC_PS2 = "n";
@@ -170,12 +169,10 @@
       PINCTRL_METEORPOINT = "n";
       PINCTRL_SUNRISEPOINT = "n";
       PINCTRL_TIGERLAKE = "n";
-      PINCTRL_STMFX = "n";
       PINCTRL_SX150X = "n";
     };
 
     spi = {
-      PPS = "n";
       SPI_ALTERA = "n";
       SPI_AXI_SPI_ENGINE = "n";
       SPI_CADENCE = "n";
@@ -194,13 +191,10 @@
       SPI_PXA2XX = "n";
       SPI_SC18IS602 = "n";
       SPI_SIFIVE = "n";
-      SPI_SLAVE_SYSTEM_CONTROL = "n";
-      SPI_SLAVE_TIME = "n";
       SPI_SPIDEV = "n";
       SPI_TLE62X0 = "n";
       SPI_XCOMM = "n";
       SPI_XILINX = "n";
-      SPI_ZYNQMP_GQSPI = "n";
     };
 
     usb = {

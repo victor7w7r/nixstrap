@@ -15,8 +15,6 @@
       BARCO_P50_GPIO = "n";
       CHROME_PLATFORMS = "n";
       COMPAL_LAPTOP = "n";
-      CPU_SUP_CENTAUR = "n";
-      CPU_SUP_ZHAOXIN = "n";
       DASHARO_ACPI = "n";
       EZX_PCAP = "n";
       FIREWIRE = "n";
@@ -32,7 +30,6 @@
       IDEAPAD_LAPTOP = "n";
       INFINIBAND = "n";
       INSPUR_PLATFORM_PROFILE = "n";
-      INTEL_BYTCRC_PWRSRC = "n";
       INTEL_CHTDC_TI_PWRBTN = "n";
       INTEL_HID_EVENT = "n";
       INTEL_INT0002_VGPIO = "n";
@@ -40,13 +37,10 @@
       INTEL_PUNIT_IPC = "n";
       INTEL_RST = "n";
       INTEL_SCU_PLATFORM = "n";
-      INTEL_SDSI = "n";
       INTEL_SMARTCONNECT = "n";
       INTEL_SPEED_SELECT_INTERFACE = "n";
-      INTEL_TPMI = "n";
       INTEL_UNCORE_FREQ_CONTROL = "n";
       INTEL_VBTN = "n";
-      INTEL_WMI = "n";
       INTEL_WMI_SBL_FW_UPDATE = "n";
       LENOVO_WMI_CAMERA = "n";
       LENOVO_WMI_GAMEZONE = "n";
@@ -89,7 +83,6 @@
       TWL6040_CORE = "n";
       WINMATE_FM07_KEYS = "n";
       WIRELESS_HOTKEY = "n";
-      WMI_BMOF = "n";
       X86_ANDROID_TABLETS = "n";
       X86_PLATFORM_DRIVERS_HP = "n";
       XIAOMI_WMI = "n";

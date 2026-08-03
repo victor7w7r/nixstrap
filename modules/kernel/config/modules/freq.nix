@@ -5,9 +5,7 @@
       HZ = "250";
       HZ_1000 = "n";
       HZ_250 = "y";
-      INPUT_JOYSTICK = "n";
       INPUT_TABLET = "n";
-      INPUT_TOUCHSCREEN = "n";
       INPUT_UINPUT = "n";
       NO_HZ_FULL = "n";
       NO_HZ_IDLE = "y";
@@ -35,7 +33,6 @@
       HZ_1000 = "y";
       INPUT_UINPUT = "y";
       NO_HZ_FULL = "y";
-      NO_HZ_FULL_NODEF = "y";
       NO_HZ_IDLE = "n";
       NR_CPUS = "32";
       NTSYNC = "y";
@@ -46,13 +43,17 @@
       PREEMPT_DYNAMIC = "y";
       PREEMPT_NONE = "n";
       PREEMPT_VOLUNTARY = "n";
-      RCU_FANOUT = "64";
-      RCU_FANOUT_LEAF = "16";
       RCU_BOOST = "y";
       RCU_BOOST_DELAY = "500";
+      RCU_FANOUT = "64";
+      RCU_FANOUT_LEAF = "16";
       SCHED_BORE = "y";
-      # SND_HDA_CODEC_REALTEK = "y";
-      # SND_HDA_CODEC_REALTEK_LIB = "y";
+      SND = "y";
+      SND_HRTIMER = "y";
+      SND_SEQUENCER = "y";
+      SND_SOC = "y";
+      SND_SOC_HDA = "y";
+      SOUND = "y";
     };
   };
 }

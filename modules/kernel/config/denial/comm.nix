@@ -8,7 +8,6 @@
       BT_HCIBCM4377 = "n";
       BT_HCIBFUSB = "n";
       BT_HCIBTSDIO = "n";
-      BT_HCIBTUSB = "n";
       BT_HCIUART = "n";
       BT_HCIVHCI = "n";
       BT_HIDP = "n";

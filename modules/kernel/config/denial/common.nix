@@ -8,7 +8,6 @@
       COMEDI = "n";
       CXL_BUS = "n";
       DLM = "n";
-      EDAC = "n";
       FWCTL = "n";
       FW_LOADER_DEBUG = "n";
       GENWQE = "n";
@@ -20,7 +19,6 @@
       HW_RANDOM_XIPHERA = "n";
       INTEL_IDXD = "n";
       INTEL_IOATDMA = "n";
-      INTEL_MEI_GSC_PROXY = "n";
       INTEL_TH = "n";
       IPMI_HANDLER = "n";
       KALLSYMS_ALL = "n";
@@ -41,7 +39,6 @@
       PCI_PWRCTRL_TC9563 = "n";
       PCI_SW_SWITCHTEC = "n";
       PROFILING = "n";
-      PTP_1588_CLOCK = "n";
       PWM_CLK = "n";
       PWM_CRC = "n";
       PWM_DWC = "n";
@@ -64,7 +61,6 @@
       TCG_TIS_I2C_INFINEON = "n";
       TCG_TIS_I2C_NUVOTON = "n";
       TELCLOCK = "n";
-      VGA_ARB = "n";
       VMD = "n";
       W1 = "n";
       WATCHDOG = "n";
@@ -84,9 +80,7 @@
       ACPI_DOCK = "n";
       ACPI_EC_DEBUGFS = "n";
       ACPI_HOTPLUG_MEMORY = "n";
-      ACPI_IPMI = "n";
       ACPI_NFIT = "n";
-      ACPI_PROCESSOR_AGGREGATOR = "n";
       ACPI_SBS = "n";
       BYTCRC_PMIC_OPREGION = "n";
       CHTCRC_PMIC_OPREGION = "n";
@@ -126,7 +120,6 @@
       CRYPTO_DEV_AMLOGIC_GXL = "n";
       CRYPTO_DEV_ATMEL_ECC = "n";
       CRYPTO_DEV_ATMEL_SHA204A = "n";
-      CRYPTO_DEV_CCP_DD = "n";
       CRYPTO_DEV_NITROX_CNN55XX = "n";
       CRYPTO_DEV_PADLOCK = "n";
       CRYPTO_DEV_QAT_420XX = "n";
@@ -243,7 +236,6 @@
       RCU_TRACE = "n";
       RUNTIME_TESTING_MENU = "n";
       SCF_TORTURE_TEST = "n";
-      SCHED_DEBUG = "n";
       SCHED_TRACER = "n";
       SLUB_DEBUG = "n";
       STACKTRACE_BUILD_ID = "n";
