@@ -2,7 +2,7 @@
 {
   kernel.lib.version = pkgs: src: localVer: rec {
     file = pkgs.stdenvNoCC.mkDerivation {
-      name = "calc-version";
+      name = "linux-version";
       inherit src;
       phases = [
         "unpackPhase"

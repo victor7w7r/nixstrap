@@ -11,8 +11,6 @@
       inherit pkgs armCross;
       localVer = "sunxi-hardened";
       isArm = true;
-      isHardened = true;
-      notDenial = true;
       class = "allwinner";
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       patches =

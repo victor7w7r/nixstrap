@@ -5,7 +5,6 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "server-hardened-native";
-      isHardened = true;
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
       extraConfig = with kernel.config.modules; [
         default

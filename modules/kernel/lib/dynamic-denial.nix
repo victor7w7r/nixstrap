@@ -6,10 +6,9 @@
       attr,
       excludes ? [ ],
     }:
-    with lib;
     config
     |> builtins.readFile
-    |> strings.splitString "\n"
+    |> lib.strings.splitString "\n"
     |> builtins.filter (
       line: (lib.hasPrefix "CONFIG_${attr}_" line) || (lib.hasInfix "CONFIG_${attr}_" line)
     )
@@ -21,15 +20,10 @@
         isExcluded =
           if name != null then builtins.any (ex: lib.strings.hasInfix ex name) excludes else false;
       in
-      if match != null && !isExcluded then
-        [
-          {
-            inherit name;
-            value = "n";
-          }
-        ]
-      else
-        [ ]
+      lib.optional (match != null && !isExcluded) {
+        inherit name;
+        value = "n";
+      }
     )
     |> builtins.listToAttrs;
 }

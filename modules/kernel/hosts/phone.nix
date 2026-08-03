@@ -6,8 +6,6 @@
       inherit pkgs armCross;
       localVer = "sdm845";
       isArm = true;
-      notDenial = true;
-      isCachyos = false;
       patches =
         "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
         |> (

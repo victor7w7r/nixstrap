@@ -1,19 +1,13 @@
 { inputs, lib, ... }: {
 
-  kernel.lib.linux-wrapper =
-    {
-      pkgs,
-      class ? "",
-      dtbMake ? "",
-      extra ? "",
-    }:
+  kernel.lib.arm-wrapper =
+    pkgs: class: dtbMake:
     pkgs.stdenvNoCC.mkDerivation {
-      name = "linux-wrapper";
+      name = "arm-wrapper";
       src = inputs.linux;
       dontBuild = true;
       dontConfigure = true;
       installPhase = "mkdir -p $out && cp -r . $out/";
-
       postPatch = ''
         ${lib.optionalString (class != "") ''
           find "./arch/arm64/boot/dts" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
@@ -24,7 +18,6 @@
               ${dtbMake}
           EOF
         ''}
-        ${extra}
       '';
     };
 }

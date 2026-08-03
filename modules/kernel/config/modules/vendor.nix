@@ -97,6 +97,7 @@
       USB_HID = "y";
     }
     // not-intel;
+
     not-amd = {
       AMD_3D_VCACHE = "n";
       AMD_HFI = "n";

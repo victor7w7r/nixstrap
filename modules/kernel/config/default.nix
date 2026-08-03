@@ -1,5 +1,5 @@
 {
-  kernel.config.modules.default = {
+  kernel.config.default = {
     BCACHE = "y";
     BLK_DEV_NVME = "y";
     BLK_DEV_SD = "y";
@@ -44,6 +44,8 @@
     TRANSPARENT_HUGEPAGE_ALWAYS = "n";
     TRANSPARENT_HUGEPAGE_MADVISE = "y";
     TRUSTED_KEYS = "y";
+  }
+  // {
     TYPEC = "y";
     USB4 = "y";
     USB_ROLE_SWITCH = "y";
