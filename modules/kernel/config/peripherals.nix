@@ -1,0 +1,539 @@
+{ lib, ... }: {
+  kernel.config.peripherals = with lib.kernel; {
+
+    include = {
+      BT_HCIUART = lib.mkForce yes;
+      BT_RFCOMM = yes;
+      I2C_ALGOBIT = yes;
+      I2C_CHARDEV = yes;
+      I2C_SMBUS = yes;
+      IOMMUFD = yes;
+      KVM = yes;
+      PCI_REALLOC_ENABLE_AUTO = yes;
+      RFKILL = yes;
+      SERIO = yes;
+    };
+
+    not-serial = {
+      USB_ACM = no;
+      USB_SERIAL = no;
+    };
+
+    serial = {
+      USB_ACM = yes;
+    };
+
+    /*
+      (dynamic-denial {
+        inherit config;
+        attr = "USB_STORAGE";
+      })
+      (dynamic-denial {
+          inherit config;
+          attr = "EEPROM";
+          excludes = [ "93CX6" ];
+      ++ (lib.optionals isArm [
+        (dynamic-denial {
+          inherit config;
+          attr = "RMI4";
+          })
+    */
+    denied = lib.mkMerge [
+      #DRIVERS
+      {
+        ALTERA_STAPL = no;
+        C2PORT = no;
+        CB710_CORE = no;
+        CXL_BUS = no;
+        GAMEPORT = no;
+        GENWQE = no;
+        GPIB = no;
+        GP_PCI1XXXX = no;
+        GREYBUS = no;
+        HSI = no;
+        LIBNVDIMM = no;
+        LMK04832 = no;
+        MOST = no;
+        NSM = no;
+        PCCARD = no;
+        PCI_MESON = no;
+        PCI_PWRCTRL_TC9563 = no;
+        PCI_SW_SWITCHTEC = no;
+        PWM_CLK = no;
+        PWM_CRC = no;
+        PWM_DWC = no;
+        XILLYBUS = no;
+        XILLYUSB = no;
+        PWM_PCA9685 = no;
+        XILINX_VCU = no;
+      }
+      #BACKLIGHT
+      {
+        BACKLIGHT_AW99706 = no;
+        BACKLIGHT_KTD253 = no;
+        BACKLIGHT_KTD2801 = no;
+        BACKLIGHT_KTZ8866 = no;
+        BACKLIGHT_PWM = no;
+        BACKLIGHT_APPLE = no;
+        BACKLIGHT_SAHARA = no;
+        BACKLIGHT_ADP8860 = no;
+        BACKLIGHT_ADP8870 = no;
+        BACKLIGHT_LM3509 = no;
+        BACKLIGHT_LM3630A = no;
+        BACKLIGHT_LM3639 = no;
+        BACKLIGHT_LP855X = no;
+        BACKLIGHT_MP3309C = no;
+        BACKLIGHT_GPIO = no;
+        BACKLIGHT_LV5207LP = no;
+        BACKLIGHT_BD6107 = no;
+        BACKLIGHT_ARCXCNN = no;
+      }
+      #BT
+      {
+        BT_DEBUGFS = no;
+        BT_HCIBCM203X = no;
+        BT_HCIBCM4377 = no;
+        BT_HCIBFUSB = no;
+        BT_HCIBTSDIO = no;
+        BT_HCIUART = no;
+        BT_HCIVHCI = no;
+        BT_HIDP = no;
+        BT_MRVL = no;
+        BT_VIRTIO = no;
+      }
+      #CLK
+      {
+        COMMON_CLK_CDCE706 = no;
+        COMMON_CLK_CS2000_CP = no;
+        COMMON_CLK_MAX9485 = no;
+        COMMON_CLK_PWM = no;
+        COMMON_CLK_SI5341 = no;
+        COMMON_CLK_SI5351 = no;
+        COMMON_CLK_SI544 = no;
+        COMMON_CLK_TPS68470 = no;
+        TELCLOCK = no;
+      }
+      #EXTCON
+      {
+        EXTCON_ADC_JACK = no;
+        EXTCON_FSA9480 = no;
+        EXTCON_INTEL_INT3496 = no;
+        EXTCON_INTEL_CHT_WC = no;
+        EXTCON_LC824206XA = no;
+        EXTCON_MAX3355 = no;
+        EXTCON_MAX14526 = no;
+        EXTCON_PTN5150 = no;
+        EXTCON_RT8973A = no;
+        EXTCON_SM5502 = no;
+        EXTCON_USBC_TUSB320 = no;
+      }
+      #I2C
+      {
+        I2C_ALI1535 = no;
+        I2C_ALI1563 = no;
+        I2C_ALI15X3 = no;
+        I2C_AMD756 = no;
+        I2C_AMD8111 = no;
+        I2C_CBUS_GPIO = no;
+        I2C_CHT_WC = no;
+        I2C_CP2615 = no;
+        I2C_DIOLAN_U2C = no;
+        I2C_EMEV2 = no;
+        I2C_GPIO = no;
+        I2C_ISCH = no;
+        I2C_ISMT = no;
+        I2C_MLXCPLD = no;
+        I2C_MUX_GPIO = no;
+        I2C_MUX_LTC4306 = no;
+        I2C_MUX_MLXCPLD = no;
+        I2C_MUX_PCA9541 = no;
+        I2C_MUX_PCA954x = no;
+        I2C_MUX_REG = no;
+        I2C_NFORCE2 = no;
+        I2C_NVIDIA_GPU = no;
+        I2C_OCORES = no;
+        I2C_PCA_PLATFORM = no;
+        I2C_PCI1XXXX = no;
+        I2C_ROBOTFUZZ_OSIF = no;
+        I2C_SCMI = no;
+        I2C_SIMTEC = no;
+        I2C_SIS5595 = no;
+        I2C_SIS630 = no;
+        I2C_SIS96X = no;
+        I2C_SLAVE_EEPROM = no;
+        I2C_SLAVE_TESTUNIT = no;
+        I2C_STUB = no;
+        I2C_TAOS_EVM = no;
+        I2C_TINY_USB = no;
+        I2C_VIA = no;
+        I2C_VIAPRO = no;
+        I2C_XILINX = no;
+        I2C_ZHAOXIN = no;
+        I3C = no;
+        MUX_GPIO = no;
+      }
+      #SERIAL
+      {
+        APPLICOM = no;
+        DEVPORT = no;
+        PARPORT = no;
+        GENERIC_ADC_THERMAL = no;
+        SERIO_ALTERA_PS2 = no;
+        SERIO_PS2MULT = no;
+        SERIO_ARC_PS2 = no;
+        SERIO_GPIO_PS2 = no;
+        SERIO_SERPORT = no;
+        SERIO_PCIPS2 = no;
+        SERIAL_8250_FINTEK = no;
+        SERIAL_8250_LPSS = no;
+        SERIAL_8250_MANY_PORTS = no;
+        SERIAL_8250_MID = no;
+        SERIAL_8250_NI = no;
+        SERIAL_8250_NR_UARTS = freeform "8";
+        SERIAL_8250_PCI1XXXX = no;
+        SERIAL_8250_PERICOM = no;
+        SERIAL_8250_RT288X = no;
+        SERIAL_8250_RUNTIME_UARTS = freeform "4";
+        SERIAL_ALTERA_JTAGUART = no;
+        SERIAL_ALTERA_UART = no;
+        SERIAL_ARC = no;
+        SERIAL_FSL_LINFLEXUART = no;
+        SERIAL_FSL_LPUART = no;
+        SERIAL_JSM = no;
+        SERIAL_LANTIQ = no;
+        SERIAL_MAX3100 = no;
+        SERIAL_MAX310X = no;
+        SERIAL_RP2 = no;
+        SERIAL_SC16IS7XX = no;
+        SERIAL_SCCNXP = no;
+        SERIAL_SPRD = no;
+        SERIAL_UARTLITE = no;
+      }
+      #GPIO
+      {
+        GPIO_74X164 = no;
+        GPIO_AGGREGATOR = no;
+        GPIO_ALTERA = no;
+        GPIO_AMD8111 = no;
+        GPIO_AMDPT = no;
+        GPIO_AMD_FCH = no;
+        GPIO_CDEV_V1 = no;
+        GPIO_DS4520 = no;
+        GPIO_DWAPB = no;
+        GPIO_SLOPPY_LOGIC_ANALYZER = no;
+        GPIO_QIXIS_FPGA = no;
+        GPIO_BT8XX = no;
+        GPIO_VIRTUSER = no;
+        GPIO_ELKHARTLAKE = no;
+        GPIO_EXAR = no;
+        GPIO_F7188X = no;
+        GPIO_FXL6408 = no;
+        GPIO_GENERIC_PLATFORM = no;
+        GPIO_GRANITERAPIDS = no;
+        GPIO_IT87 = no;
+        GPIO_LATCH = no;
+        GPIO_MAX3191X = no;
+        GPIO_MAX7300 = no;
+        GPIO_MAX7301 = no;
+        GPIO_MAX732X = no;
+        GPIO_MB86S7X = no;
+        GPIO_MC33880 = no;
+        GPIO_ML_IOH = no;
+        GPIO_MOCKUP = no;
+        GPIO_MPSSE = no;
+        GPIO_PCA953X = no;
+        GPIO_PCA9570 = no;
+        GPIO_PCF857X = no;
+        GPIO_PCIE_IDIO_24 = no;
+        GPIO_PCI_IDIO_16 = no;
+        GPIO_PISOSR = no;
+        GPIO_RDC321X = no;
+        GPIO_SCH311X = no;
+        GPIO_SIM = no;
+        GPIO_TPIC2810 = no;
+        GPIO_TPS68470 = no;
+        GPIO_VIRTIO = no;
+        GPIO_VX855 = no;
+        GPIO_WINBOND = no;
+        GPIO_WS16C48 = no;
+        GPIO_XILINX = no;
+        GPIO_XRA1403 = no;
+      }
+      #MFD
+      {
+        LPC_ICH = no;
+        LPC_SCH = no;
+        MFD_88PM800 = no;
+        MFD_88PM805 = no;
+        MFD_88PM860X = no;
+        MFD_AAT2870_CORE = no;
+        MFD_AS3711 = no;
+        MFD_ATC260X_I2C = no;
+        MFD_BCM590XX = no;
+        MFD_BD9571MWV = no;
+        MFD_BQ257XX = no;
+        MFD_CGBC = no;
+        MFD_CS40L50_I2C = no;
+        MFD_CS40L50_SPI = no;
+        MFD_DA9052_I2C = no;
+        MFD_DA9052_SPI = no;
+        MFD_DA9055 = no;
+        MFD_DA9062 = no;
+        MFD_DA9063 = no;
+        MFD_DA9150 = no;
+        MFD_DLN2 = no;
+        MFD_INTEL_M10_BMC_SPI = no;
+        MFD_INTEL_PMC_BXT = no;
+        MFD_INTEL_QUARK_I2C_GPIO = no;
+        MFD_IQS62X = no;
+        MFD_JANZ_CMODIO = no;
+        MFD_KEMPLD = no;
+        MFD_LM3533 = no;
+        MFD_LP3943 = no;
+        MFD_LP8788 = no;
+        MFD_MADERA = no;
+        MFD_MAX14577 = no;
+        MFD_MAX7360 = no;
+        MFD_MAX77541 = no;
+        MFD_MAX77693 = no;
+        MFD_MAX77705 = no;
+        MFD_MAX77843 = no;
+        MFD_MAX8907 = no;
+        MFD_MAX8925 = no;
+        MFD_MAX8997 = no;
+        MFD_MAX8998 = no;
+        MFD_MC13XXX_I2C = no;
+        MFD_MC13XXX_SPI = no;
+        MFD_MENF21BMC = no;
+        MFD_MP2629 = no;
+        MFD_MT6360 = no;
+        MFD_MT6370 = no;
+        MFD_MT6397 = no;
+        MFD_NCT6694 = no;
+        MFD_OCELOT = no;
+        MFD_PALMAS = no;
+        MFD_QNAP_MCU = no;
+        MFD_RC5T583 = no;
+        MFD_RDC321X = no;
+        MFD_RETU = no;
+        MFD_RT4831 = no;
+        MFD_RT5033 = no;
+        MFD_RT5120 = no;
+        MFD_SI476X_CORE = no;
+        MFD_SKY81452 = no;
+        MFD_SM501 = no;
+        MFD_SMPRO = no;
+        MFD_SYSCON = no;
+        MFD_SY7636A = no;
+        MFD_TI_LMU = no;
+        MFD_TI_LP873X = no;
+        MFD_TPS65086 = no;
+        MFD_TPS65090 = no;
+        MFD_TPS6586X = no;
+        MFD_TPS65910 = no;
+        MFD_TPS65912_I2C = no;
+        MFD_TPS65912_SPI = no;
+        MFD_TPS6594_I2C = no;
+        MFD_TPS6594_SPI = no;
+        MFD_TQMX86 = no;
+        MFD_UPBOARD_FPGA = no;
+        MFD_VIPERBOARD = no;
+        MFD_VX855 = no;
+        MFD_WM5102 = no;
+        MFD_WM5110 = no;
+        MFD_WM831X_I2C = no;
+        MFD_WM831X_SPI = no;
+        MFD_WM8350_I2C = no;
+        MFD_WM8400 = no;
+        MFD_WM8997 = no;
+        MFD_WM8998 = no;
+        RAVE_SP_CORE = no;
+        TPS6105X = no;
+        TPS65010 = no;
+        TPS6507X = no;
+      }
+      #PINS
+      {
+        PINCTRL_ALDERLAKE = no;
+        PINCTRL_BROXTON = no;
+        PINCTRL_CANNONLAKE = no;
+        PINCTRL_CEDARFORK = no;
+        PINCTRL_CY8C95X0 = no;
+        PINCTRL_DENVERTON = no;
+        PINCTRL_ELKHARTLAKE = no;
+        PINCTRL_EMMITSBURG = no;
+        PINCTRL_GEMINILAKE = no;
+        PINCTRL_ICELAKE = no;
+        PINCTRL_INTEL_PLATFORM = no;
+        PINCTRL_JASPERLAKE = no;
+        PINCTRL_LAKEFIELD = no;
+        PINCTRL_LEWISBURG = no;
+        PINCTRL_LYNXPOINT = no;
+        PINCTRL_MCP23S08 = no;
+        PINCTRL_METEORLAKE = no;
+        PINCTRL_METEORPOINT = no;
+        PINCTRL_SUNRISEPOINT = no;
+        PINCTRL_TIGERLAKE = no;
+        PINCTRL_SX150X = no;
+      }
+      #SPI
+      {
+        SPI_ALTERA = no;
+        SPI_AXI_SPI_ENGINE = no;
+        SPI_CADENCE = no;
+        SPI_CH341 = no;
+        SPI_DW_DMA = no;
+        SPI_DW_MMIO = no;
+        SPI_DW_PCI = no;
+        SPI_LANTIQ_SSC = no;
+        SPI_LOOPBACK_TEST = no;
+        SPI_MICROCHIP_CORE_QSPI = no;
+        SPI_MICROCHIP_CORE_SPI = no;
+        SPI_MUX = no;
+        SPI_MXIC = no;
+        SPI_OC_TINY = no;
+        SPI_PCI1XXXX = no;
+        SPI_PXA2XX = no;
+        SPI_SC18IS602 = no;
+        SPI_SIFIVE = no;
+        SPI_SPIDEV = no;
+        SPI_TLE62X0 = no;
+        SPI_XCOMM = no;
+        SPI_XILINX = no;
+      }
+      #USB
+      {
+        APPLE_MFI_FASTCHARGE = no;
+        SSB = no;
+        UCSI_CCG = no;
+        UCSI_STM32G0 = no;
+        USB_ADUTUX = no;
+        USB_ALI_M5632 = no;
+        USB_AN2720 = no;
+        USB_APPLEDISPLAY = no;
+        USB_ARMLINUX = no;
+        USB_BELKIN = no;
+        USB_C67X00_HCD = no;
+        USB_CATC = no;
+        USB_CDNS_SUPPORT = no;
+        USB_CHAOSKEY = no;
+        USB_CYPRESS_CY7C63 = no;
+        USB_CYTHERM = no;
+        USB_EHCI_FSL = no;
+        USB_EHSET_TEST_FIXTURE = no;
+        USB_EMI26 = no;
+        USB_EMI62 = no;
+        USB_EPSON2888 = no;
+        USB_GPIO_VBUS = no;
+        USB_HCD_BCMA = no;
+        USB_HSIC_USB3503 = no;
+        USB_HSIC_USB4604 = no;
+        USB_HSO = no;
+        USB_HUB_USB251XB = no;
+        USB_IDMOUSE = no;
+        USB_IOWARRIOR = no;
+        USB_IPHETH = no;
+        USB_ISIGHTFW = no;
+        USB_ISP116X_HCD = no;
+        USB_ISP1301 = no;
+        USB_ISP1760 = no;
+        USB_KAWETH = no;
+        USB_KBD = no;
+        USB_KC2190 = no;
+        USB_LCD = no;
+        USB_LD = no;
+        USB_LEGOTOWER = no;
+        USB_LINK_LAYER_TEST = no;
+        USB_LJCA = no;
+        USB_MAX3421_HCD = no;
+        USB_MDC800 = no;
+        USB_MICROTEK = no;
+        USB_MOUSE = no;
+        USB_OXU210HP_HCD = no;
+        USB_PEGASUS = no;
+        USB_PRINTER = no;
+        USB_R8A66597_HCD = no;
+        USB_RTL8150 = no;
+        USB_SERIAL_AIRCABLE = no;
+        USB_SERIAL_ARK3116 = no;
+        USB_SERIAL_BELKIN = no;
+        USB_SERIAL_CH341 = no;
+        USB_SERIAL_CYBERJACK = no;
+        USB_SERIAL_CYPRESS_M8 = no;
+        USB_SERIAL_DEBUG = no;
+        USB_SERIAL_DIGI_ACCELEPORT = no;
+        USB_SERIAL_EDGEPORT = no;
+        USB_SERIAL_EDGEPORT_TI = no;
+        USB_SERIAL_EMPEG = no;
+        USB_SERIAL_F81232 = no;
+        USB_SERIAL_F8153X = no;
+        USB_SERIAL_GARMIN = no;
+        USB_SERIAL_IPAQ = no;
+        USB_SERIAL_IPW = no;
+        USB_SERIAL_IR = no;
+        USB_SERIAL_IUU = no;
+        USB_SERIAL_KEYSPAN = no;
+        USB_SERIAL_KEYSPAN_PDA = no;
+        USB_SERIAL_KLSI = no;
+        USB_SERIAL_KOBIL_SCT = no;
+        USB_SERIAL_MCT_U232 = no;
+        USB_SERIAL_METRO = no;
+        USB_SERIAL_MOS7720 = no;
+        USB_SERIAL_MOS7840 = no;
+        USB_SERIAL_MXUPORT = no;
+        USB_SERIAL_NAVMAN = no;
+        USB_SERIAL_OMNINET = no;
+        USB_SERIAL_OPTICON = no;
+        USB_SERIAL_OPTION = no;
+        USB_SERIAL_OTI6858 = no;
+        USB_SERIAL_PL2303 = no;
+        USB_SERIAL_QCAUX = no;
+        USB_SERIAL_QT2 = no;
+        USB_SERIAL_QUALCOMM = no;
+        USB_SERIAL_SAFE = no;
+        USB_SERIAL_SIERRAWIRELESS = no;
+        USB_SERIAL_SIMPLE = no;
+        USB_SERIAL_SPCP8X5 = no;
+        USB_SERIAL_SSU100 = no;
+        USB_SERIAL_SYMBOL = no;
+        USB_SERIAL_TI = no;
+        USB_SERIAL_UPD78F0730 = no;
+        USB_SERIAL_VISOR = no;
+        USB_SERIAL_WHITEHEAT = no;
+        USB_SERIAL_WISHBONE = no;
+        USB_SERIAL_XR = no;
+        USB_SERIAL_XSENS_MT = no;
+        USB_SEVSEG = no;
+        USB_SIERRA_NET = no;
+        USB_SISUSBVGA = no;
+        USB_SL811_HCD = no;
+        USB_TEST = no;
+        USB_TMC = no;
+        USB_TRANCEVIBRATOR = no;
+        USB_UHCI_HCD = no;
+        USB_ULPI_BUS = no;
+        USB_USBIO = no;
+        USB_VL600 = no;
+        USB_XHCI_PCI_RENESAS = no;
+        USB_YUREX = no;
+        TYPEC_ANX7411 = no;
+        TYPEC_HD3SS3220 = no;
+        TYPEC_MUX_FSA4480 = no;
+        TYPEC_MUX_GPIO_SBU = no;
+        TYPEC_MUX_IT5205 = no;
+        TYPEC_MUX_NB7VPQ904M = no;
+        TYPEC_MUX_PI3USB30532 = no;
+        TYPEC_MUX_PS883X = no;
+        TYPEC_MUX_PTN36502 = no;
+        TYPEC_MUX_TUSB1046 = no;
+        TYPEC_MUX_WCD939X_USBSS = no;
+        TYPEC_NVIDIA_ALTMODE = no;
+        TYPEC_RT1719 = no;
+        TYPEC_STUSB160X = no;
+        TYPEC_TCPM = no;
+        TYPEC_TPS6598X = no;
+        TYPEC_WUSB3801 = no;
+      }
+    ];
+  };
+}

@@ -61,20 +61,20 @@
               }
             );
 
-          extraConfig =
-            /*
-              with lib;
-              (kernel.config.denial.all {
-                inherit isArm;
-                config = kernel.lib.linux-config pkgs false;
-              })
-              ++ extraConfig
-              |> map (structConfig: removeAttrs structConfig [ "__provider" ])
-              |> zipAttrsWith (_: builtins.head)
-              |> mapAttrsToList (option: value: "${option} ${value}")
-              |> concatStringsSep "\n";
-            */
-            [ ];
+          /*
+            extraConfig =
+                with lib;
+                (kernel.config.denial.all {
+                  inherit isArm;
+                  config = kernel.lib.linux-config pkgs false;
+                })
+                ++ extraConfig
+                |> map (structConfig: removeAttrs structConfig [ "__provider" ])
+                |> zipAttrsWith (_: builtins.head)
+                |> mapAttrsToList (option: value: "${option} ${value}")
+                |> concatStringsSep "\n";
+              "";
+          */
 
           extraMakeFlags = [
             "LOCALVERSION=-v7w7r-${localVer}"

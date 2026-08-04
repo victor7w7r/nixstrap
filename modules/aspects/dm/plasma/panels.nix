@@ -96,7 +96,7 @@
                 name = "org.kde.plasma.panelspacer";
                 config.General = {
                   expanding = false;
-                  length = 5;
+                  length = 4;
                 };
               }
               {
@@ -276,6 +276,13 @@
                 };
               }
               {
+                name = "org.kde.plasma.panelspacer";
+                config.General = {
+                  expanding = false;
+                  length = 4;
+                };
+              }
+              {
                 name = "KdeControlStation";
                 config.Appearance = {
                   brightness_widget_flat = true;
@@ -376,7 +383,7 @@
                 name = "org.kde.plasma.panelspacer";
                 config.General = {
                   expanding = false;
-                  length = 5;
+                  length = 4;
                 };
               }
             ];
