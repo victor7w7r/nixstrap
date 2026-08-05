@@ -345,7 +345,6 @@
         PMIC_ADP5520 = no;
         PMIC_DA903X = no;
         REDMI_WMI = no;
-        RPMB = no;
         SAMSUNG_GALAXYBOOK = no;
         SAMSUNG_LAPTOP = no;
         SAMSUNG_Q10 = no;

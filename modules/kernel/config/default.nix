@@ -49,19 +49,19 @@
       handheld = lib.mkMerge [
         default.common
         arch.apply-x86
-        arch.not-broadcom
+        (arch.not-broadcom { })
         (arch.intel { isDenied = true; })
         (arch.rogally { })
         (flavour.desktop { })
-        disks.mmc
+        (disks.mmc { })
         (net.realtek { isDenied = true; })
         sound.denied
         (sound.rogally { })
         {
           CDROM = no;
-          MD = no;
+          MD = lib.mkForce no;
           SND_USB_AUDIO = yes;
-          UDF_FS = no;
+          UDF_FS = lib.mkForce no;
           XFS_FS = no;
         }
       ];
@@ -69,10 +69,10 @@
       server = lib.mkMerge [
         default.common
         arch.apply-x86
-        arch.not-broadcom
+        (arch.not-broadcom { })
         (arch.intel { })
         (arch.rogally { isDenied = true; })
-        disks.mmc
+        (disks.mmc { })
         (disks.raid { })
         (flavour.server { })
         (net.realtek { })
@@ -80,48 +80,48 @@
           CDROM = no;
           DW_DMAC = yes;
           RPMB = yes;
-          UDF_FS = no;
+          UDF_FS = lib.mkForce no;
           XFS_FS = yes;
         }
       ];
 
       pizero = lib.mkMerge [
-        arch.not-broadcom
+        (arch.not-broadcom { })
         default.common
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
-        disks.mmc
+        (disks.mmc { })
         flavour.server
         (net.realtek { isDenied = true; })
         {
           AXP20X_POWER = yes;
           CDROM = no;
           IIO = yes;
-          MD = no;
+          MD = lib.mkForce no;
           MFD_AXP20X = yes;
           MFD_AXP20X_I2C = yes;
           MFD_AXP20X_RSB = yes;
           REGULATOR_AXP20X = yes;
           SUNXI_RSB = yes;
-          UDF_FS = no;
+          UDF_FS = lib.mkForce no;
           XFS_FS = yes;
         }
       ];
 
       superlab-phone = lib.mkMerge [
-        arch.not-broadcom
+        (arch.not-broadcom { })
         default.common
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
-        disks.mmc
+        (disks.mmc { })
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
         (sound.rogally { isDenied = true; })
         {
           CDROM = no;
-          MD = no;
-          UDF_FS = no;
+          MD = lib.mkForce no;
+          UDF_FS = lib.mkForce no;
           USB_EHCI_TEGRA = no;
           XFS_FS = no;
         }

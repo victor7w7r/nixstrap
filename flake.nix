@@ -553,7 +553,7 @@
       flake = false;
     };
     linux = {
-      url = "github:CachyOS/linux/cachyos-7.1.5-1";
+      url = "github:CachyOS/linux/cachyos-7.1.6-1";
       flake = false;
     };
     linux-config = {

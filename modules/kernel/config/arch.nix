@@ -82,7 +82,7 @@
         AMD_SECURE_AVIC = setupDenial isDenied yes;
         AMD_WBRF = setupDenial isDenied yes;
         AMDTEE = setupDenial isDenied module;
-        AMD_SFH_HID = setupDenial isDenied yes;
+        AMD_SFH_HID = setupDenial isDenied module;
         ASUS_ARMOURY = setupDenial isDenied module;
         ASUS_LAPTOP = setupDenial isDenied module;
         ASUS_NB_WMI = setupDenial isDenied module;
@@ -100,7 +100,7 @@
         HOTPLUG_PCI = setupDenial isDenied yes;
         HW_RANDOM_AMD = setupDenial isDenied yes;
         KVM_AMD = setupDenial isDenied yes;
-        I2C_HID = setupDenial isDenied yes;
+        I2C_HID = setupDenial isDenied module;
         I2C_HID_ACPI = setupDenial isDenied module;
         I2C_HID_CORE = setupDenial isDenied module;
         INPUT_FF_MEMLESS = setupDenial isDenied yes;
@@ -110,7 +110,7 @@
         PERF_EVENTS_AMD_POWER = setupDenial isDenied yes;
         PERF_EVENTS_AMD_UNCORE = setupDenial isDenied yes;
         SENSORS_ASUS_EC = setupDenial isDenied yes;
-        SENSORS_ASUS_ROG_RYUJIN = setupDenial isDenied yes;
+        SENSORS_ASUS_ROG_RYUJIN = setupDenial isDenied module;
         SENSORS_ASUS_WMI = setupDenial isDenied yes;
         SENSORS_K10TEMP = setupDenial isDenied yes;
         SERIAL_MULTI_INSTANTIATE = setupDenial isDenied yes;
@@ -126,9 +126,9 @@
         AMD_ISP_PLATFORM = setupDenial isDenied yes;
         AMD_MEM_ENCRYPT = setupDenial isDenied yes;
         BT_MTK = setupDenial isDenied yes;
-        BT_MTKSDIO = setupDenial isDenied yes;
+        BT_MTKSDIO = setupDenial isDenied module;
         DRM_RADEON = setupDenial isDenied yes;
-        HID_ASUS = setupDenial isDenied yes;
+        HID_ASUS = setupDenial isDenied module;
         HID_HAPTIC = setupDenial isDenied yes;
         MT7921S = setupDenial isDenied yes;
         MT7921U = setupDenial isDenied yes;
@@ -189,7 +189,7 @@
         X86_MCE_INTEL = setupDenial isDenied yes;
       };
 
-    not-broadcom = {
+    not-broadcom = { }: {
       BCMA = no;
       CORDIC = no;
       UIO = no;

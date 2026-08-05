@@ -3219,16 +3219,16 @@
     "linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1785000533,
-        "narHash": "sha256-eI/HERK0GVbP5xWOVJZFkbNr67Os8gVDOf5i8Wszfuc=",
+        "lastModified": 1785768722,
+        "narHash": "sha256-B4kRsMeUxQuz5prPDPjAccMcFYaSTAbzCYs3kHGF5BI=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "6250c724e9a2dbf15ddb3ea5f17524aca628b940",
+        "rev": "5641494883f546e11abaf40d9d30bcd8f5ae3dab",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
-        "ref": "cachyos-7.1.5-1",
+        "ref": "cachyos-7.1.6-1",
         "repo": "linux",
         "type": "github"
       }

@@ -6,7 +6,7 @@
       HZ_250 = yes;
       INPUT_TABLET = no;
       INPUT_UINPUT = no;
-      NO_HZ_FULL = no;
+      NO_HZ_FULL = lib.mkForce no;
       NO_HZ_IDLE = yes;
       NR_CPUS = lib.mkForce (freeform "8");
       NTSYNC = no;

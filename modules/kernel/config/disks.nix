@@ -19,7 +19,7 @@
       MMC_BLOCK = no;
     };
 
-    mmc = {
+    mmc = { }: {
       MMC = yes;
       MMC_BLOCK = yes;
       MMC_CQHCI = yes;
