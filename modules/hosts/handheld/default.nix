@@ -47,7 +47,7 @@
               extraModprobeConfig = "options kvm-amd nested=1";
               resumeDevice = "/dev/mapper/swapcrypt";
               blacklistedKernelModules = [ "snd_hda_intel" ];
-              kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # (kernel.hosts.handheld pkgs).handheld-kernelPackages;
+              kernelPackages = (kernel.hosts.handheld pkgs).handheld-kernelPackages;
               kernelParams = [
                 "mitigations=off"
                 "nospectre_v1"

@@ -79,7 +79,6 @@
         {
           CDROM = no;
           DW_DMAC = yes;
-          RPMB = yes;
           UDF_FS = lib.mkForce no;
           XFS_FS = yes;
         }

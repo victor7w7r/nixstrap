@@ -58,7 +58,7 @@
           };
 
           boot = {
-            kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3; # (kernel.hosts.main pkgs).main-kernelPackages;
+            kernelPackages = (kernel.hosts.main pkgs).main-kernelPackages;
             kernelParams = [
               "video=DP-3:1600x900@60e"
               "kvmfr.static_size_mb=128"

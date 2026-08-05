@@ -26,6 +26,7 @@
       MMC_SDHCI = yes;
       MMC_SDHCI_PCI = yes;
       MMC_SDHCI_UHS2 = yes;
+      RPMB = yes;
     };
 
     raid = { }: {
