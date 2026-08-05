@@ -49,7 +49,7 @@
         AIX_PARTITION = no;
         BEFS_FS = no;
         BFS_FS = no;
-        BSD_DISKLABEL = no;
+        BSD_DISKLABEL = lib.mkForce no;
         CODA_FS = no;
         CRAMFS = no;
         CUSE = no;
@@ -62,7 +62,7 @@
         HPFS_FS = no;
         JFS_FS = no;
         KARMA_PARTITION = no;
-        LDM_PARTITION = no;
+        LDM_PARTITION = lib.mkForce no;
         MAC_PARTITION = no;
         MINIX_FS = no;
         MINIX_SUBPARTITION = no;
@@ -79,12 +79,12 @@
         TMPFS_QUOTA = no;
         UFS_FS = no;
         VXFS_FS = no;
-        XFS_QUOTA = no;
+        XFS_QUOTA = lib.mkForce no;
         XZ_DEC_POWERPC = no;
         XZ_DEC_RISCV = no;
         XZ_DEC_SPARC = no;
         ZONEFS_FS = no;
-        ZRAM_BACKEND_842 = no;
+        ZRAM_BACKEND_842 = lib.mkForce no;
       }
     ];
   };

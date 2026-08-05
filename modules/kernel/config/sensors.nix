@@ -110,7 +110,7 @@
       }
       #RTC
       {
-        RC_CORE = no;
+        RC_CORE = lib.mkForce no;
         RTC_DRV_ABB5ZES3 = no;
         RTC_DRV_ABEOZ9 = no;
         RTC_DRV_ABX80X = no;
@@ -586,7 +586,7 @@
         AS73211 = no;
         ATLAS_EZO_SENSOR = no;
         ATLAS_PH_SENSOR = no;
-        AUXDISPLAY = no;
+        AUXDISPLAY = lib.mkForce no;
         AW96103 = no;
         AYANEO_EC = no;
         BCM_KONA_USB2_PHY = no;

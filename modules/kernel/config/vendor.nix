@@ -4,7 +4,7 @@
     lib.mkMerge [
       #GRAPHICS
       {
-        AGP = no;
+        AGP = lib.mkForce no;
         DRM_ACCEL_HABANALABS = no;
         DRM_ACCEL_IVPU = no;
         DRM_ANALOGIX_ANX78XX = no;
@@ -14,7 +14,7 @@
         DRM_CIRRUS_QEMU = no;
         DRM_ETNAVIV = no;
         DRM_GM12U320 = no;
-        DRM_GMA500 = no;
+        DRM_GMA500 = lib.mkForce no;
         DRM_GUD = no;
         DRM_HISI_HIBMC = no;
         DRM_I2C_NXP_TDA998X = no;
@@ -70,13 +70,13 @@
         FB_SSD1307 = no;
         FB_TRIDENT = no;
         FB_UVESA = no;
-        FB_VESA = no;
+        FB_VESA = lib.mkForce no;
         FB_VGA16 = no;
         FB_VIA = no;
         FB_VIRTUAL = no;
         FB_VOODOO1 = no;
         LIBNVDIMM = no;
-        SYSFB_SIMPLEFB = no;
+        SYSFB_SIMPLEFB = lib.mkForce no;
         TINYDRM_HX8357D = no;
         TINYDRM_ILI9163 = no;
         TINYDRM_ILI9225 = no;
@@ -291,7 +291,7 @@
         ASUS_TF103C_DOCK = no;
         BARCO_P50_GPIO = no;
         BCM_VK = no;
-        CHROME_PLATFORMS = no;
+        CHROME_PLATFORMS = lib.mkForce no;
         COMPAL_LAPTOP = no;
         DASHARO_ACPI = no;
         EZX_PCAP = no;
@@ -299,9 +299,9 @@
         FIREWIRE_NOSY = no;
         FUJITSU_LAPTOP = no;
         FUJITSU_TABLET = no;
-        FUSION = no;
+        FUSION = lib.mkForce no;
         GIGABYTE_WMI = no;
-        GOOGLE_FIRMWARE = no;
+        GOOGLE_FIRMWARE = lib.mkForce no;
         GPD_POCKET_FAN = no;
         HUAWEI_WMI = no;
         HW_RANDOM_BA431 = no;
@@ -309,7 +309,7 @@
         HW_RANDOM_XIPHERA = no;
         IBM_RTL = no;
         IDEAPAD_LAPTOP = no;
-        INFINIBAND = no;
+        INFINIBAND = lib.mkForce no;
         INSPUR_PLATFORM_PROFILE = no;
         INTEL_CHTDC_TI_PWRBTN = no;
         INTEL_HID_EVENT = no;
@@ -368,7 +368,7 @@
         WINMATE_FM07_KEYS = no;
         WIRELESS_HOTKEY = no;
         X86_ANDROID_TABLETS = no;
-        X86_PLATFORM_DRIVERS_HP = no;
+        X86_PLATFORM_DRIVERS_HP = lib.mkForce no;
         XIAOMI_WMI = no;
         YOGABOOK = no;
         YT2_1380 = no;

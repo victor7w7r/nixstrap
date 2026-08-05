@@ -519,7 +519,6 @@
         USB_TEST = no;
         USB_TMC = no;
         USB_TRANCEVIBRATOR = no;
-        USB_UHCI_HCD = no;
         USB_ULPI_BUS = no;
         USB_USBIO = no;
         USB_VL600 = no;

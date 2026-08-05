@@ -70,7 +70,7 @@
         INPUT_IQS269A = no;
         INPUT_IQS626A = no;
         INPUT_IQS7222 = no;
-        INPUT_JOYSTICK = no;
+        INPUT_JOYSTICK = lib.mkForce no;
         INPUT_KEYSPAN_REMOTE = no;
         INPUT_KXTJ9 = no;
         INPUT_MMA8450 = no;
@@ -86,7 +86,7 @@
       {
         KEYBOARD_ADC = no;
         KEYBOARD_ADP5588 = no;
-        KEYBOARD_APPLESPI = no;
+        KEYBOARD_APPLESPI = lib.mkForce no;
         KEYBOARD_CHARLIEPLEX = no;
         KEYBOARD_QT1050 = no;
         KEYBOARD_QT1070 = no;

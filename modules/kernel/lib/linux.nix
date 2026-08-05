@@ -10,7 +10,6 @@
       pkgs,
       patches,
       localVer,
-      extraConfig,
       structuredExtraConfig ? { },
       armCross ? false,
       isArm ? false,

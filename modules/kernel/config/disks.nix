@@ -68,9 +68,9 @@
         KEBA_CP500 = no;
         MEMSTICK = no;
         MTD = no;
-        NET_FC = no;
+        NET_FC = lib.mkForce no;
         NVME_FC = no;
-        NVME_TARGET = no;
+        NVME_TARGET = lib.mkForce no;
         NVME_TCP = no;
         PNP_DEBUG_MESSAGES = no;
       }
@@ -115,7 +115,7 @@
         ISCSI_IBFT = no;
         ISCSI_TCP = no;
         MEGARAID_LEGACY = no;
-        MEGARAID_NEWGEN = no;
+        MEGARAID_NEWGEN = lib.mkForce no;
         MEGARAID_SAS = no;
         SCSI_3W_9XXX = no;
         SCSI_3W_SAS = no;
@@ -146,7 +146,7 @@
         SCSI_IPS = no;
         SCSI_ISCI = no;
         SCSI_ISCSI_ATTRS = no;
-        SCSI_LOGGING = no;
+        SCSI_LOGGING = lib.mkForce no;
         SCSI_MPI3MR = no;
         SCSI_MPT2SAS = no;
         SCSI_MPT3SAS = no;
@@ -172,7 +172,7 @@
       {
         AHCI_DWC = no;
         ATA_OVER_ETH = no;
-        ATA_SFF = no;
+        ATA_SFF = lib.mkForce no;
         SATA_ACARD_AHCI = no;
         SATA_INIC162X = no;
         SATA_SIL24 = no;
