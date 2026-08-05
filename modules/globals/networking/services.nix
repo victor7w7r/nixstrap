@@ -18,7 +18,19 @@
           #aria2.enable = true; NEEDS KEY
           #openvpn.package = true;
           croc.enable = true;
-          dnsmasq.enable = true;
+          dnsmasq = {
+            enable = true;
+            settings = {
+              interface = [
+                "lo"
+                "wlp6s0"
+                "enp1s0"
+                "enp4s0"
+              ];
+              bind-interfaces = true;
+              except-interface = [ "virbr0" ];
+            };
+          };
           tailscale = {
             enable = true;
             openFirewall = true;

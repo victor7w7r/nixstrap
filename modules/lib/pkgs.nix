@@ -10,7 +10,13 @@
 }:
 {
 
-  flake-file.inputs.crane.url = "github:ipetkov/crane";
+  flake-file.inputs = {
+    crane.url = "github:ipetkov/crane";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   perSystem =
     { pkgs, system, ... }:
@@ -40,8 +46,7 @@
                 '';
               }
             );
-            main-kernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
-            # (kernel.hosts.main pkgs false).main-kernel;
+            main-kernel = (kernel.hosts.main pkgs false).main-kernel;
             tauchgang = tauchgang.lib.call;
             crane = crane.lib.call;
           })

@@ -754,6 +754,10 @@
       url = "github:lavie/runlike";
       flake = false;
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sandscreen = {
       url = "github:frostyarchtide/sandscreen";
       flake = false;

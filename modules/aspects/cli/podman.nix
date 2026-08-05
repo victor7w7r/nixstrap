@@ -31,7 +31,7 @@
               podman-tui
               self'.packages.dockadvisor
               #self'.packages.dockerfilegraph
-              self'.packages.dprs
+              #self'.packages.dprs
               self'.packages.supdock
             ];
           };
