@@ -2,13 +2,6 @@
   kernel.config.input = with lib.kernel; {
     apply = with kernel.config.input; include // denied;
 
-    include = {
-      INPUT_EVDEV = yes;
-      KEYBOARD_ATKBD = yes;
-      NLS_CODEPAGE_437 = lib.mkForce yes;
-      NLS_ISO8859_1 = lib.mkForce yes;
-    };
-
     /*
       })
       (dynamic-denial {
@@ -21,6 +14,13 @@
         excludes = [ "437" ];
         })
     */
+
+    include = {
+      INPUT_EVDEV = yes;
+      KEYBOARD_ATKBD = yes;
+      NLS_CODEPAGE_437 = lib.mkForce yes;
+      NLS_ISO8859_1 = lib.mkForce yes;
+    };
 
     denied = lib.mkMerge [
       #CODIFICATION

@@ -1,6 +1,7 @@
 { lib, ... }: {
-  kernel.config.sensors = with lib.kernel; {
-    denied = lib.mkMerge [
+  kernel.config.sensors.denied =
+    with lib.kernel;
+    lib.mkMerge [
       #ENERGY
       {
         BATTERY_BQ27XXX = no;
@@ -933,5 +934,4 @@
         ZPA2326 = no;
       }
     ];
-  };
 }

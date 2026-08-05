@@ -1,6 +1,7 @@
 { lib, ... }: {
-  kernel.config.vendor = with lib.kernel; {
-    denied = lib.mkMerge [
+  kernel.config.vendor.denied =
+    with lib.kernel;
+    lib.mkMerge [
       #GRAPHICS
       {
         AGP = no;
@@ -373,5 +374,4 @@
         YT2_1380 = no;
       }
     ];
-  };
 }

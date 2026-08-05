@@ -7,10 +7,19 @@
       localVer = "native";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
       structuredExtraConfig =
-        with kernel.config.modules;
+        with kernel.config;
         with lib.kernel;
         lib.mkMerge [
-          { }
+          default.common
+          {
+            BRCMFMAC = yes;
+            EEPROM_EE1004 = yes;
+            SND_HDA_CODEC_HDMI_INTEL = module;
+            SND_HDA_INTEL = yes;
+            SND_SOC_INTEL_AVS = yes;
+            SND_USB_AUDIO = yes;
+            UINPUT = yes;
+          }
         ];
 
       /*
@@ -25,15 +34,7 @@
         storage.raid
         storage.xfs
         vendor.intel
-        {
-          BRCMFMAC = "y";
-          EEPROM_EE1004 = "y";
-          SND_HDA_CODEC_HDMI_INTEL = "m";
-          SND_HDA_INTEL = "y";
-          SND_SOC_INTEL_AVS = "y";
-          SND_USB_AUDIO = "y";
-          UINPUT = "y";
-        }
+
         ];
       */
     })

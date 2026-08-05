@@ -1,6 +1,17 @@
 { kernel, lib, ... }: {
   kernel.config.net = with lib.kernel; {
-    all = with kernel.config.net; include // denied;
+    apply = with kernel.config.net; include // denied;
+    /*
+      (dynamic-denial {
+        inherit config;
+        attr = "TCP_CONG";
+        excludes = [
+          "ADVANCED"
+          "CUBIC"
+          "BBR"
+        ];
+      })
+    */
 
     realtek =
       with kernel.config.utils;
@@ -53,17 +64,7 @@
       VHOST_VSOCK = yes;
       VSOCKETS = yes;
     };
-    /*
-      (dynamic-denial {
-        inherit config;
-        attr = "TCP_CONG";
-        excludes = [
-          "ADVANCED"
-          "CUBIC"
-          "BBR"
-        ];
-      })
-    */
+
     denied = lib.mkMerge [
       #ACT / CLS
       {

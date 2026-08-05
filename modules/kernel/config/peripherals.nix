@@ -1,5 +1,6 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.peripherals = with lib.kernel; {
+    apply = with kernel.config.peripherals; include // denied;
 
     include = {
       BT_HCIUART = lib.mkForce yes;

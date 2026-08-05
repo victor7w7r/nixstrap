@@ -1,5 +1,5 @@
 { lib, ... }: {
-  kernel.config.modules.flavour = with lib.kernel; {
+  kernel.config.flavour = with lib.kernel; {
     server = {
       HZ = freeform "250";
       HZ_1000 = no;
