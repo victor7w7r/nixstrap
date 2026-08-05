@@ -4848,6 +4848,7 @@
         "rofi-tmux": "rofi-tmux",
         "rofi-tools": "rofi-tools",
         "runlike": "runlike",
+        "rust-overlay": "rust-overlay",
         "sandscreen": "sandscreen",
         "scrcpy-wrapper": "scrcpy-wrapper",
         "screego": "screego",
@@ -4931,6 +4932,26 @@
       }
     },
     "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785907205,
+        "narHash": "sha256-Ds1vTi53af4wDMAveSR/K0JnywDslLwmgwhVIiwnNmY=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "c5cb13481d718fac906aa9cfd85f9b60e1a546cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
       "inputs": {
         "nixpkgs": "nixpkgs_20"
       },
@@ -5176,7 +5197,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": "rust-overlay_2"
       },
       "locked": {
         "lastModified": 1763642358,

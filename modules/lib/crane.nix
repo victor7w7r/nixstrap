@@ -16,7 +16,7 @@
     let
       craneLib = (inputs.crane.mkLib pkgs).overrideToolchain (
         _:
-        pkgs.rust-bin.stable.latest.default.override {
+        (pkgs.extend (import inputs.rust-overlay)).rust-bin.stable.latest.default.override {
           extensions = [
             "rust-src"
             "rust-analyzer"
@@ -26,8 +26,20 @@
         }
       );
       commonArgs = {
-        inherit nativeBuildInputs buildInputs src;
-        strictEnv = true;
+        nativeBuildInputs =
+          with pkgs;
+          [
+            sccache
+            clang
+            mold
+          ]
+          ++ nativeBuildInputs;
+        inherit buildInputs src;
+        SCCACHE_DIR = "/var/cache/sccache";
+        RUSTFLAGS = "-C linker=clang -C link-arg=-fuse-ld=mold -C target-cpu=native";
+        RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
+        doCheck = false;
+        strictDeps = true;
       };
     in
     craneLib.buildPackage (
@@ -35,8 +47,6 @@
       // {
         inherit pname postInstall version;
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
-        doCheck = false;
-        env.NIX_CFLAGS_COMPILE = "-std=gnu89 -Wno-error=incompatible-pointer-types";
       }
       // (lib.optionalAttrs (installPhase != "") {
         inherit installPhase;

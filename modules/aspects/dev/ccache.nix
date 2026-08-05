@@ -17,10 +17,12 @@
     systemd.tmpfiles.rules = [
       "d ${config.programs.ccache.cacheDir}                        770 root    nixbld  - -"
       "d /var/cache/sccache                        770 root    nixbld  - -"
+      "d /var/cache/gocache                        770 root    nixbld  - -"
     ];
     nix.settings.extra-sandbox-paths = [
       config.programs.ccache.cacheDir
       "/var/cache/sccache"
+      "/var/cache/gocache"
     ];
     programs.ccache.enable = true;
   };

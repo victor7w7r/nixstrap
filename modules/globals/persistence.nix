@@ -18,6 +18,7 @@
           "/etc/nixos"
           "/var/log"
           "/var/cache/ccache"
+          "/var/cache/sccache"
           "/var/lib/chrony"
           "/var/lib/fail2ban"
           "/var/lib/lastlog"
