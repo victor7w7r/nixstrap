@@ -3,6 +3,7 @@
     denied = lib.mkMerge [
       #GRAPHICS
       {
+        AGP = no;
         DRM_ACCEL_HABANALABS = no;
         DRM_ACCEL_IVPU = no;
         DRM_ANALOGIX_ANX78XX = no;
@@ -86,10 +87,6 @@
       }
       #LAN
       {
-        BNGE = no;
-        BNX2X = no;
-        BNXT = no;
-        VMD = no;
         "8139CP" = no;
         "8139TOO" = no;
         ADIN1100_PHY = no;
@@ -99,9 +96,13 @@
         AQUANTIA_PHY = no;
         AS21XXX_PHY = no;
         AT803X_PHY = no;
+        B44 = no;
         BCM54140_PHY = no;
         BCM84881_PHY = no;
         BCM87XX_PHY = no;
+        BNGE = no;
+        BNX2X = no;
+        BNXT = no;
         BROADCOM_PHY = no;
         CICADA_PHY = no;
         CORTINA_PHY = no;
@@ -113,9 +114,13 @@
         DP83TC811_PHY = no;
         DP83TD510_PHY = no;
         DP83TG720_PHY = no;
+        ETHOC = no;
+        FEALNX = no;
         FDDI = no;
+        FUJITSU_ES = no;
         ICPLUS_PHY = no;
         INTEL_XWAY_PHY = no;
+        JME = no;
         LSI_ET1011C_PHY = no;
         LXT_PHY = no;
         MARVELL_10G_PHY = no;
@@ -125,6 +130,10 @@
         MAXLINEAR_86110_PHY = no;
         MAXLINEAR_GPHY = no;
         MCB = no;
+        MDIO_BITBANG = no;
+        MDIO_MSCC_MIIM = no;
+        MDIO_MVUSB = no;
+        MDIO_THUNDER = no;
         MEDIATEK_GE_PHY = no;
         MICREL_PHY = no;
         MICROCHIP_T1S_PHY = no;
@@ -132,23 +141,23 @@
         MICROSEMI_PHY = no;
         NATIONAL_PHY = no;
         NCN26000_PHY = no;
+        NET_VENDOR_INTEL = no;
         NXP_C45_TJA11XX_PHY = no;
         NXP_CBTX_PHY = no;
         NXP_TJA11XX_PHY = no;
-        REALTEK_PHY_HWMON = no;
         QCA808X_PHY = no;
         QCA83XX_PHY = no;
         QSEMI_PHY = no;
+        REALTEK_PHY_HWMON = no;
         RENESAS_PHY = no;
         RTASE = no;
         SFP = no;
         STE10XP = no;
+        SYSTEMPORT = no;
         TERANETICS_PHY = no;
         VITESSE_PHY = no;
+        VMD = no;
         XILINX_GMII2RGMII = no;
-        JME = no;
-        NET_VENDOR_INTEL = no;
-        SYSTEMPORT = no;
       }
       #USB
       {
@@ -160,8 +169,11 @@
         USB_NET_CX82310_ETH = no;
         USB_NET_KALMIA = no;
       }
-      #WIFI
+      #WIFI / WIRELESS
       {
+        B43 = no;
+        B43LEGACY = no;
+        IEEE802154 = no;
         MAC80211_HWSIM = no;
         MT7601U = no;
         MT7603E = no;
@@ -176,6 +188,7 @@
         MT7925E = no;
         MT7925U = no;
         MT7996E = no;
+        NOZOMI = no;
         VIRT_WIFI = no;
         W1 = no;
       }

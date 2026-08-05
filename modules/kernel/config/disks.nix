@@ -63,9 +63,11 @@
         BLK_DEV_ZONED_LOOP = no;
         CEPH_FS = no;
         CX_ECAT = no;
+        DLM = no;
         EDD = no;
         KEBA_CP500 = no;
         MEMSTICK = no;
+        MTD = no;
         NET_FC = no;
         NVME_FC = no;
         NVME_TARGET = no;

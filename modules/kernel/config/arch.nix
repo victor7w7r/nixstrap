@@ -57,7 +57,141 @@
       SOUNDWIRE_QCOM = no;
       USB_DWC2 = no;
       USB_DWC3 = no;
+      WWAN = no;
     };
+
+    rogally =
+      with kernel.config.utils;
+      {
+        isDenied ? false,
+      }:
+      {
+        #SI
+        ACPI_PROCESSOR_AGGREGATOR = no;
+        AMD_ATL = setupDenial isDenied yes;
+        AMD_PMC = setupDenial isDenied yes;
+        AMD_PMF = setupDenial isDenied module;
+        AMD_PRIVATE_COLOR = setupDenial isDenied yes;
+        AMD_SECURE_AVIC = setupDenial isDenied yes;
+        AMD_WBRF = setupDenial isDenied yes;
+        AMDTEE = setupDenial isDenied module;
+        AMD_SFH_HID = setupDenial isDenied yes;
+        ASUS_ARMOURY = setupDenial isDenied module;
+        ASUS_LAPTOP = setupDenial isDenied module;
+        ASUS_NB_WMI = setupDenial isDenied module;
+        ASUS_WIRELESS = setupDenial isDenied yes;
+        ASUS_WMI = setupDenial isDenied module;
+        BMI323 = setupDenial isDenied yes;
+        BMI323_I2C = setupDenial isDenied module;
+        BMI323_SPI = setupDenial isDenied module;
+        BMC150_ACCEL = setupDenial isDenied module;
+        CRYPTO_DEV_SP_PSP = setupDenial isDenied yes;
+        CRYPTO_DEV_CCP_DD = setupDenial isDenied yes;
+        DRM_AMDGPU = setupDenial isDenied yes;
+        EDAC = setupDenial isDenied yes;
+        HID_ASUS_ALLY = setupDenial isDenied module;
+        HOTPLUG_PCI = setupDenial isDenied yes;
+        HW_RANDOM_AMD = setupDenial isDenied yes;
+        KVM_AMD = setupDenial isDenied yes;
+        I2C_HID = setupDenial isDenied yes;
+        I2C_HID_ACPI = setupDenial isDenied module;
+        I2C_HID_CORE = setupDenial isDenied module;
+        INPUT_FF_MEMLESS = setupDenial isDenied yes;
+        INPUT_LEDS = setupDenial isDenied yes;
+        MT7921E = setupDenial isDenied yes;
+        LEDS_CLASS_MULTICOLOR = setupDenial isDenied yes;
+        PERF_EVENTS_AMD_POWER = setupDenial isDenied yes;
+        PERF_EVENTS_AMD_UNCORE = setupDenial isDenied yes;
+        SENSORS_ASUS_EC = setupDenial isDenied yes;
+        SENSORS_ASUS_ROG_RYUJIN = setupDenial isDenied yes;
+        SENSORS_ASUS_WMI = setupDenial isDenied yes;
+        SENSORS_K10TEMP = setupDenial isDenied yes;
+        SERIAL_MULTI_INSTANTIATE = setupDenial isDenied yes;
+        SERIO_I8042 = setupDenial isDenied yes;
+        SP5100_TCO = setupDenial isDenied yes;
+        USB_HID = setupDenial isDenied yes;
+
+        #NO
+        AMD_3D_VCACHE = setupDenial isDenied yes;
+        AMD_HFI = setupDenial isDenied yes;
+        AMD_HSMP_ACPI = setupDenial isDenied yes;
+        AMD_HSMP_PLAT = setupDenial isDenied yes;
+        AMD_IOMMU = setupDenial isDenied yes;
+        AMD_ISP_PLATFORM = setupDenial isDenied yes;
+        AMD_MEM_ENCRYPT = setupDenial isDenied yes;
+        BT_MTK = setupDenial isDenied yes;
+        BT_MTKSDIO = setupDenial isDenied yes;
+        DRM_RADEON = setupDenial isDenied yes;
+        HID_ASUS = setupDenial isDenied yes;
+        HID_HAPTIC = setupDenial isDenied yes;
+        MT7921S = setupDenial isDenied yes;
+        MT7921U = setupDenial isDenied yes;
+        NET_VENDOR_AMD = setupDenial isDenied yes;
+        PERF_EVENTS_AMD_BRS = setupDenial isDenied yes;
+        PINCTRL_AMD = setupDenial isDenied yes;
+        USB_PCI_AMD = setupDenial isDenied yes;
+        X86_AMD_PLATFORM_DEVICE = setupDenial isDenied yes;
+        X86_MCE_AMD = setupDenial isDenied yes;
+      };
+
+    intel =
+      with kernel.config.utils;
+      {
+        isDenied ? false,
+      }:
+      {
+        ACPI_PROCESSOR_AGGREGATOR = yes;
+        CRYPTO_AES_NI_INTEL = setupDenial isDenied yes;
+        DRM_I915 = setupDenial isDenied yes;
+        DRM_I915_GVT_KVMGT = setupDenial isDenied yes;
+        HW_RANDOM_INTEL = setupDenial isDenied yes;
+        MFD_INTEL_LPSS_ACPI = setupDenial isDenied yes;
+        I2C_MUX = setupDenial isDenied yes;
+        I2C_I801 = setupDenial isDenied yes;
+        INTEL_IDMA64 = setupDenial isDenied yes;
+        INTEL_PCH_THERMAL = setupDenial isDenied yes;
+        INTEL_PMC_CORE = setupDenial isDenied yes;
+        INTEL_PMT_DISCOVERY = setupDenial isDenied yes;
+        INTEL_PMT_TELEMETRY = setupDenial isDenied yes;
+        INTEL_POWERCLAMP = setupDenial isDenied yes;
+        INTEL_RAPL = setupDenial isDenied yes;
+        INTEL_TCC_COOLING = setupDenial isDenied yes;
+        INTEL_VSEC = setupDenial isDenied yes;
+        INTEL_WMI_THUNDERBOLT = setupDenial isDenied yes;
+        KVM_INTEL = setupDenial isDenied yes;
+        PERF_EVENTS_INTEL_CSTATE = setupDenial isDenied yes;
+        PERF_EVENTS_INTEL_UNCORE = setupDenial isDenied yes;
+        INT340X_THERMAL = setupDenial isDenied yes;
+        MTD_SPI_NOR = setupDenial isDenied yes;
+        MDIO_BUS = setupDenial isDenied yes;
+        SENSORS_CORETEMP = setupDenial isDenied yes;
+
+        #NO
+        CPU_SUP_INTEL = setupDenial isDenied yes;
+        HAVE_INTEL_TXT = setupDenial isDenied yes;
+        INTEL_HFI_THERMAL = setupDenial isDenied yes;
+        INTEL_IDLE = setupDenial isDenied yes;
+        INTEL_IOMMU = setupDenial isDenied yes;
+        INTEL_LDMA = setupDenial isDenied yes;
+        INTEL_MEI = setupDenial isDenied yes;
+        INTEL_SOC_PMIC = setupDenial isDenied yes;
+        INTEL_SOC_PMIC_CHTWC = setupDenial isDenied yes;
+        INTEL_TDX_HOST = setupDenial isDenied yes;
+        INTEL_TURBO_MAX_3 = setupDenial isDenied yes;
+        MFD_INTEL_LPSS = setupDenial isDenied yes;
+        X86_INTEL_LPSS = setupDenial isDenied yes;
+        X86_INTEL_MEMORY_PROTECTION_KEYS = setupDenial isDenied yes;
+        X86_MCE_INTEL = setupDenial isDenied yes;
+      };
+
+    not-broadcom = {
+      BCMA = no;
+      CORDIC = no;
+      UIO = no;
+      WLAN_VENDOR_BROADCOM = no;
+      NET_VENDOR_BROADCOM = no;
+    };
+
     denied = {
       apply = with kernel.config.arch.denied; acpi // x86 // virt;
 
@@ -102,6 +236,7 @@
         VDPA = no;
         VMWARE_PVSCSI = no;
         VMWARE_VMCI = no;
+        VMXNET3 = no;
       };
     };
   };

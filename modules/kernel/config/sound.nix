@@ -1,15 +1,14 @@
 { kernel, lib, ... }: {
   kernel.config.sound = with lib.kernel; {
-
-    intel = with kernel.config.utils; { };
-
     rogally =
       with kernel.config.utils;
       {
         isDenied ? false,
       }:
       {
+        SOUNDWIRE_AMD = setupDenial isDenied yes;
         SND_AMD_ACP_CONFIG = setupDenial isDenied yes;
+        SND_AMD_ASOC_ACP63 = setupDenial isDenied yes;
         SND_HDA_SCODEC_CS35L41_I2C = setupDenial isDenied yes;
         SND_HDA_SCODEC_CS35L41_SPI = setupDenial isDenied yes;
         SND_SOC_AMD_ACP3x = setupDenial isDenied yes;
@@ -23,12 +22,16 @@
         SND_SOC_AMD_RENOIR = setupDenial isDenied yes;
         SND_SOC_AMD_SOUNDWIRE = setupDenial isDenied module;
         SND_SOC_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
+        SND_SOC_AMD_VANGOGH_MACH = setupDenial isDenied yes;
         SND_SOC_CS35L41_I2C = setupDenial isDenied yes;
         SND_SOC_CS35L41_SPI = setupDenial isDenied yes;
+        SND_SOC_MAX98388 = setupDenial isDenied yes;
+        SND_SOC_NAU8821 = setupDenial isDenied yes;
         SND_SOC_SOF_AMD_ACP63 = setupDenial isDenied module;
         SND_SOC_SOF_AMD_ACP70 = setupDenial isDenied module;
         SND_SOC_SOF_AMD_REMBRANDT = setupDenial isDenied module;
         SND_SOC_SOF_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
+        SND_SOC_SOF_AMD_TOPLEVEL = setupDenial isDenied yes;
         SND_SOC_SOF_AMD_VANGOGH = setupDenial isDenied module;
       };
 

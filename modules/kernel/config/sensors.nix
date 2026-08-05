@@ -307,6 +307,8 @@
         SENSORS_GL520SM = no;
         SENSORS_GPD = no;
         SENSORS_HIH6130 = no;
+        SENSORS_HMC5843_I2C = no;
+        SENSORS_HMC5843_SPI = no;
         SENSORS_HP_WMI = no;
         SENSORS_HS3001 = no;
         SENSORS_HTU31 = no;
@@ -318,6 +320,8 @@
         SENSORS_INA2XX = no;
         SENSORS_INA3221 = no;
         SENSORS_ISL28022 = no;
+        SENSORS_ISL29018 = no;
+        SENSORS_ISL29028 = no;
         SENSORS_IT87 = no;
         SENSORS_JC42 = no;
         SENSORS_K10TEMP = no;
@@ -391,6 +395,8 @@
         SENSORS_POWR1220 = no;
         SENSORS_PT5161L = no;
         SENSORS_PWM_FAN = no;
+        SENSORS_RM3100_I2C = no;
+        SENSORS_RM3100_SPI = no;
         SENSORS_SBTSI = no;
         SENSORS_SHT15 = no;
         SENSORS_SHT21 = no;
@@ -415,6 +421,7 @@
         SENSORS_TMP513 = no;
         SENSORS_TPS23861 = no;
         SENSORS_TSL2550 = no;
+        SENSORS_TSL2563 = no;
         SENSORS_VIA686A = no;
         SENSORS_VIA_CPUTEMP = no;
         SENSORS_VT1211 = no;
@@ -543,10 +550,6 @@
         ADRF6780 = no;
         ADUX1020 = no;
         ADXL313_I2C = no;
-        IPMI_HANDLER = no;
-        SSIF_IPMI_BMC = no;
-        COMEDI = no;
-
         ADXL313_SPI = no;
         ADXL345_I2C = no;
         ADXL345_SPI = no;
@@ -613,6 +616,7 @@
         CM3323 = no;
         CM3605 = no;
         CM36651 = no;
+        COMEDI = no;
         COUNTER = no;
         D3323AA = no;
         DA280 = no;
@@ -687,6 +691,7 @@
         INV_MPU6050_SPI = no;
         IOMMU_PT_RISCV64 = no;
         IPACK_BUS = no;
+        IPMI_HANDLER = no;
         IRSD200 = no;
         ISL29003 = no;
         ISL29020 = no;
@@ -829,13 +834,6 @@
         SENSEAIR_SUNRISE_CO2 = no;
         SENSIRION_SGP30 = no;
         SENSIRION_SGP40 = no;
-        SENSORS_HMC5843_I2C = no;
-        SENSORS_HMC5843_SPI = no;
-        SENSORS_ISL29018 = no;
-        SENSORS_ISL29028 = no;
-        SENSORS_RM3100_I2C = no;
-        SENSORS_RM3100_SPI = no;
-        SENSORS_TSL2563 = no;
         SF_PDMA = no;
         SI1133 = no;
         SI1145 = no;
@@ -849,6 +847,7 @@
         SPS30_SERIAL = no;
         SRF04 = no;
         SRF08 = no;
+        SSIF_IPMI_BMC = no;
         STK3310 = no;
         STK8312 = no;
         STK8BA50 = no;

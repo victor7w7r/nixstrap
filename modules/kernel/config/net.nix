@@ -65,7 +65,7 @@
       })
     */
     denied = lib.mkMerge [
-      #ACT
+      #ACT / CLS
       {
         NET_ACT_CONNMARK = no;
         NET_ACT_CSUM = no;
@@ -84,9 +84,6 @@
         NET_ACT_SKBMOD = no;
         NET_ACT_TUNNEL_KEY = no;
         NET_ACT_VLAN = no;
-      }
-      #CLS
-      {
         NET_CLS_BASIC = no;
         NET_CLS_FLOW = no;
         NET_CLS_FLOWER = no;
@@ -143,6 +140,8 @@
         BRIDGE_EBT_STP = no;
         BRIDGE_EBT_VLAN = no;
         BRIDGE_MRP = no;
+        IP_NF_MATCH_ECN = no;
+        IP_NF_MATCH_TTL = no;
         NETFILTER_NETLINK_OSF = no;
         NETFILTER_XT_MATCH_CLUSTER = no;
         NETFILTER_XT_MATCH_CPU = no;
@@ -184,44 +183,27 @@
         NF_CONNTRACK_SNMP = no;
         NF_CONNTRACK_TFTP = no;
       }
-      #DRIVERS
+      #PROTOCOLS
       {
-        "6LOWPAN" = no;
         ARCNET = no;
         ATALK = no;
         ATM = no;
-        B43 = no;
-        B43LEGACY = no;
-        B44 = no;
         BATMAN_ADV = no;
-        CAN = no;
         CFG80211_CRDA_SUPPORT = no;
         CFG80211_DEBUGFS = no;
         CFG80211_WEXT = no;
         DIBS = no;
         EQUALIZER = no;
-        ETHOC = no;
-        FEALNX = no;
-        FUJITSU_ES = no;
         GTP = no;
         HSR = no;
-        IEEE802154 = no;
         INET_ESPINTCP = no;
-        IP_NF_MATCH_ECN = no;
-        IP_NF_MATCH_TTL = no;
         IP_PIMSM_V2 = no;
         IP_SCTP = no;
         IP_VS = no;
-        L2TP = no;
         LAPB = no;
         LLC2 = no;
         MACSEC = no;
-        MDIO_BITBANG = no;
-        MDIO_MSCC_MIIM = no;
-        MDIO_MVUSB = no;
-        MDIO_THUNDER = no;
-        MOXA_INTELLIO = no;
-        MOXA_SMARTIO = no;
+        MPLS = no;
         MPTCP = no;
         NETCONSOLE = no;
         NETDEVSIM = no;
@@ -236,28 +218,24 @@
         NET_PKTGEN = no;
         NET_SWITCHDEV = no;
         NET_TEAM = no;
-        NOZOMI = no;
-        NULL_TTY = no;
-        N_HDLC = no;
         OPENVSWITCH = no;
         PFCP = no;
         PHONET = no;
         PPP = no;
-        RAPIDIO = no;
         RDS = no;
         SLIP = no;
-        TIPC = no;
+        TARGET_CORE = no;
         TLS_DEVICE = no;
         VLAN_8021Q = no;
-        VMXNET3 = no;
         WAN = no;
-        WWAN = no;
         X25 = no;
         XFRM_IPTFS = no;
         XFRM_USER_COMPAT = no;
       }
       #IPV6
       {
+        "6LOWPAN" = no;
+        L2TP = no;
         IP6_NF_MATCH_AH = no;
         IP6_NF_MATCH_EUI64 = no;
         IP6_NF_MATCH_FRAG = no;
@@ -273,6 +251,7 @@
         IPV6_SIT = no;
         IPV6_VTI = no;
         NET_IPGRE_DEMUX = no;
+        TIPC = no;
       }
     ];
   };

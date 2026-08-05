@@ -42,30 +42,41 @@
       #DRIVERS
       {
         ALTERA_STAPL = no;
+        APPLICOM = no;
         C2PORT = no;
+        CAN = no;
         CB710_CORE = no;
         CXL_BUS = no;
+        DEVPORT = no;
+        FPGA = no;
+        FWCTL = no;
         GAMEPORT = no;
+        GENERIC_ADC_THERMAL = no;
         GENWQE = no;
         GPIB = no;
         GP_PCI1XXXX = no;
         GREYBUS = no;
         HSI = no;
         LIBNVDIMM = no;
-        LMK04832 = no;
+        MCTP = no;
         MOST = no;
+        MOXA_INTELLIO = no;
+        MOXA_SMARTIO = no;
         NSM = no;
+        PARPORT = no;
         PCCARD = no;
         PCI_MESON = no;
         PCI_PWRCTRL_TC9563 = no;
         PCI_SW_SWITCHTEC = no;
+        PROVIDE_OHCI1394_DMA_INIT = no;
         PWM_CLK = no;
         PWM_CRC = no;
         PWM_DWC = no;
+        PWM_PCA9685 = no;
+        RAPIDIO = no;
+        XILINX_VCU = no;
         XILLYBUS = no;
         XILLYUSB = no;
-        PWM_PCA9685 = no;
-        XILINX_VCU = no;
       }
       #BACKLIGHT
       {
@@ -111,6 +122,7 @@
         COMMON_CLK_SI5351 = no;
         COMMON_CLK_SI544 = no;
         COMMON_CLK_TPS68470 = no;
+        LMK04832 = no;
         TELCLOCK = no;
       }
       #EXTCON
@@ -174,10 +186,6 @@
       }
       #SERIAL
       {
-        APPLICOM = no;
-        DEVPORT = no;
-        PARPORT = no;
-        GENERIC_ADC_THERMAL = no;
         SERIO_ALTERA_PS2 = no;
         SERIO_PS2MULT = no;
         SERIO_ARC_PS2 = no;
