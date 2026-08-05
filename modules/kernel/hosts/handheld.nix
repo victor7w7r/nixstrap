@@ -8,22 +8,7 @@
       patches =
         with kernel.patches.injector pkgs;
         cachyos.handheld ++ asus ++ tachyon.gaming ++ bunker.std;
-      extraConfig = with kernel.config.modules; [
-        default
-        freq.high
-        hardware.desktop-wserial
-        hardware.native
-        net
-        storage.ntfs
-        storage.not-raid
-        storage.not-xfs
-        vendor.amd
-        vendor.not-broadcom
-        {
-          SND_USB_AUDIO = "y";
-          UINPUT = "y";
-        }
-      ];
+      structuredExtraConfig = kernel.config.handheld;
     })
     |> (generated: {
       handheld-kernelPackages = generated.packages;

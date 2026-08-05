@@ -21,28 +21,7 @@
       patches =
         with kernel.patches.injector pkgs;
         cachyos.std ++ tachyon.std bunker.std ++ armbian.rockchip-patches;
-      extraConfig = with kernel.config.modules; [
-        /*
-          default
-          freq.high
-          hardware.not-phone
-          net
-          storage.not-cdrom
-          storage.f2fs
-          storage.ntfs
-          storage.not-raid
-          storage.not-xfs
-          vendor.not-vendor
-          vendor.not-broadcom
-          {
-            USB_GADGET = "n";
-            USB_EHCI_TEGRA = "n";
-            }
-        */
-        {
-          UINPUT = "y";
-        }
-      ];
+      structuredExtraConfig = kernel.config.superlab-phone;
     })
     |> (generated: {
       superlab-config = generated.config;

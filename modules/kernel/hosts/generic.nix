@@ -6,18 +6,7 @@
       inherit pkgs;
       localVer = "v2";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
-      extraConfig = with kernel.config.modules; [
-        default
-        freq.high
-        hardware.desktop
-        hardware.generic
-        hardware.serial
-        net
-        storage.not-raid
-        storage.xfs
-        vendor.not-vendor
-        vendor.not-broadcom
-      ];
+      structuredExtraConfig = kernel.config.main-generic;
     })
     |> (generated: {
       generic-kernelPackages = generated.packages;

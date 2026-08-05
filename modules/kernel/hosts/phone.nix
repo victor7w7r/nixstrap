@@ -28,7 +28,7 @@
             |> map (item: "${patches}/${item.name}.patch")
           )
         );
-      extraConfig = with kernel.config.modules; [ qcom ];
+      structuredExtraConfig = kernel.config.superlab-phone;
     })
     |> (generated: {
       phone-config = generated.config;

@@ -6,39 +6,11 @@
       ECRYPT_FS = yes;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;
-      SQUASHFS = yes;
-      ZRAM = lib.mkForce yes;
-    };
-
-    xfs = {
-      XFS_FS = yes;
-    };
-
-    not-xfs = {
-      XFS_FS = no;
-    };
-
-    ntfs = {
       NTFS3_FS = module;
       NTFS3_LZX_XPRESS = yes;
       NTFS3_FS_POSIX_ACL = yes;
-    };
-
-    not-ntfs = {
-      NTFS3_FS = no;
-    };
-
-    not-cdrom = {
-      CDROM = no;
-      UDF_FS = no;
-    };
-
-    f2fs = {
-      F2FS_FS = yes;
-    };
-
-    not-f2fs = {
-      F2FS_FS = no;
+      SQUASHFS = yes;
+      ZRAM = lib.mkForce yes;
     };
 
     denied = lib.mkMerge [

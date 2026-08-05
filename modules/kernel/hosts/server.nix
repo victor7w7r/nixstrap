@@ -6,24 +6,7 @@
       inherit pkgs;
       localVer = "server-hardened-native";
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
-      extraConfig = with kernel.config.modules; [
-        default
-        freq.low
-        hardware.desktop
-        hardware.serial
-        hardware.native
-        net
-        storage.f2fs
-        storage.ntfs
-        storage.not-cdrom
-        storage.xfs
-        vendor.intel
-        vendor.not-broadcom
-        {
-          DW_DMAC = "y";
-          RPMB = "y";
-        }
-      ];
+      structuredExtraConfig = kernel.config.server;
     })
     |> (generated: {
       server-config = generated.config;

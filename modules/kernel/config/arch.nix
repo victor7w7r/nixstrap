@@ -1,5 +1,15 @@
 { kernel, lib, ... }: {
   kernel.config.arch = with lib.kernel; {
+    apply-x86 =
+      with kernel.config.arch;
+      lib.mkMerge [
+        native
+        generic
+        x86
+        not-phone
+        denied.apply
+      ];
+
     native = {
       GENERIC_CPU = no;
       X86_NATIVE_CPU = yes;

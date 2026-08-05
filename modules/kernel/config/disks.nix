@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.disks = with lib.kernel; {
     apply = with kernel.config.disks; include // denied;
 
@@ -21,16 +21,13 @@
       MMC_BLOCK = no;
     };
 
-    sd = {
-      MMC_SDHCI = yes;
-      MMC_SDHCI_PCI = yes;
-      MMC_SDHCI_UHS2 = yes;
-    };
-
     mmc = {
       MMC = yes;
       MMC_BLOCK = yes;
       MMC_CQHCI = yes;
+      MMC_SDHCI = yes;
+      MMC_SDHCI_PCI = yes;
+      MMC_SDHCI_UHS2 = yes;
     };
 
     raid = {
@@ -41,10 +38,6 @@
       DM_CRYPT = yes;
       DM_RAID = yes;
       MD_RAID456 = yes;
-    };
-
-    not-raid = {
-      MD = no;
     };
 
     denied = lib.mkMerge [

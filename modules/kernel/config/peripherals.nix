@@ -13,15 +13,8 @@
       PCI_REALLOC_ENABLE_AUTO = yes;
       RFKILL = yes;
       SERIO = yes;
-    };
-
-    not-serial = {
-      USB_ACM = no;
-      USB_SERIAL = no;
-    };
-
-    serial = {
       USB_ACM = yes;
+
     };
 
     /*
@@ -107,7 +100,6 @@
         BT_HCIBCM4377 = no;
         BT_HCIBFUSB = no;
         BT_HCIBTSDIO = no;
-        BT_HCIUART = no;
         BT_HCIVHCI = no;
         BT_HIDP = no;
         BT_MRVL = no;
