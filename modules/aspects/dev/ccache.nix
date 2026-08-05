@@ -16,8 +16,12 @@
 
     systemd.tmpfiles.rules = [
       "d ${config.programs.ccache.cacheDir}                        770 root    nixbld  - -"
+      "d /var/cache/sccache                        770 root    nixbld  - -"
     ];
-    nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
+    nix.settings.extra-sandbox-paths = [
+      config.programs.ccache.cacheDir
+      "/var/cache/sccache"
+    ];
     programs.ccache.enable = true;
   };
 }
