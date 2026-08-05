@@ -9,7 +9,6 @@
   ...
 }:
 {
-
   flake-file.inputs = {
     crane.url = "github:ipetkov/crane";
     rust-overlay = {

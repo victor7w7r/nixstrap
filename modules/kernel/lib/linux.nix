@@ -81,16 +81,18 @@
           base
           |> pkgs.linuxPackagesFor
           |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
-        config = pkgs.stdenvNoCC.mkDerivation {
-          name = "filtered-config";
-          src = base.configfile;
-          phases = [ "installPhase" ];
-          installPhase = ''
-            cp $src .config
-            sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
-            sed -i -E 's/[[:space:]]+"\s*$/"/' .config
-            mv .config $out
-          '';
-        };
+        config = (
+          pkgs.stdenvNoCC.mkDerivation {
+            name = "filtered-config";
+            src = base.configfile;
+            phases = [ "installPhase" ];
+            installPhase = ''
+              cp $src .config
+              sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
+              sed -i -E 's/[[:space:]]+"\s*$/"/' .config
+              mv .config $out
+            '';
+          }
+        );
       });
 }

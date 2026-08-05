@@ -14,7 +14,17 @@
       version ? "latest",
     }:
     let
-      craneLib = inputs.crane.mkLib pkgs;
+      craneLib = (inputs.crane.mkLib pkgs).overrideToolchain (
+        _:
+        pkgs.rust-bin.stable.latest.default.override {
+          extensions = [
+            "rust-src"
+            "rust-analyzer"
+            "clippy"
+            "rustfmt"
+          ];
+        }
+      );
       commonArgs = {
         inherit nativeBuildInputs buildInputs src;
         strictEnv = true;
