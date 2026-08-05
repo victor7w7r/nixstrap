@@ -1,8 +1,6 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.disks = with lib.kernel; {
-    apply = with kernel.config.disks; include // denied;
-
-    include = {
+    include = { }: {
       BLK_DEV_NVME = yes;
       BLK_DEV_SD = yes;
       SCSI = yes;
@@ -16,7 +14,7 @@
       USB_XHCI_HCD = yes;
     };
 
-    not-mmc = {
+    not-mmc = { }: {
       MMC = no;
       MMC_BLOCK = no;
     };
@@ -30,12 +28,11 @@
       MMC_SDHCI_UHS2 = yes;
     };
 
-    raid = {
+    raid = { }: {
       BLK_DEV_DM = yes;
       BLK_DEV_MD = yes;
       DM_SNAPSHOT = yes;
       DM_THIN_PROVISIONING = yes;
-      DM_CRYPT = yes;
       DM_RAID = yes;
       MD_RAID456 = yes;
     };
@@ -55,6 +52,7 @@
         BLK_DEV_UBLK = no;
         BLK_DEV_ZONED_LOOP = no;
         CEPH_FS = no;
+        CIFS_DEBUG = no;
         CX_ECAT = no;
         DLM = no;
         EDD = no;

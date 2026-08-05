@@ -179,7 +179,6 @@
         MT7601U = no;
         MT7603E = no;
         MT7615E = no;
-        MT7663S = no;
         MT7663U = no;
         MT76x0E = no;
         MT76x0U = no;

@@ -60,21 +60,6 @@
               }
             );
 
-          /*
-            extraConfig =
-                with lib;
-                (kernel.config.denial.all {
-                  inherit isArm;
-                  config = kernel.lib.linux-config pkgs false;
-                })
-                ++ extraConfig
-                |> map (structConfig: removeAttrs structConfig [ "__provider" ])
-                |> zipAttrsWith (_: builtins.head)
-                |> mapAttrsToList (option: value: "${option} ${value}")
-                |> concatStringsSep "\n";
-              "";
-          */
-
           extraMakeFlags = [
             "LOCALVERSION=-v7w7r-${localVer}"
             "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
@@ -92,10 +77,20 @@
       )
       |> (base: {
         kernel = base;
-        config = kernel.lib.filtered-config pkgs base.configfile;
         packages =
           base
           |> pkgs.linuxPackagesFor
           |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
+        config = pkgs.stdenvNoCC.mkDerivation {
+          name = "filtered-config";
+          src = base.configfile;
+          phases = [ "installPhase" ];
+          installPhase = ''
+            cp $src .config
+            sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
+            sed -i -E 's/[[:space:]]+"\s*$/"/' .config
+            mv .config $out
+          '';
+        };
       });
 }

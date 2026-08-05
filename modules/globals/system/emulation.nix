@@ -14,8 +14,8 @@
         preferStaticEmulators = isX86;
         emulatedSystems = [
           "x86_64-windows"
-          "wasm64-wasi"
-          "wasm32-wasi"
+          "wasm64-wasip1"
+          "wasm32-wasip1"
         ]
         ++ (lib.optionals isX86 [
           "i686-windows"

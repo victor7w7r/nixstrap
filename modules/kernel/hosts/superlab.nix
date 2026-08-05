@@ -21,7 +21,7 @@
       patches =
         with kernel.patches.injector pkgs;
         cachyos.std ++ tachyon.std bunker.std ++ armbian.rockchip-patches;
-      structuredExtraConfig = kernel.config.superlab-phone;
+      structuredExtraConfig = kernel.config.default.superlab-phone;
     })
     |> (generated: {
       superlab-config = generated.config;

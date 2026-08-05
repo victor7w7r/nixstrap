@@ -1,8 +1,7 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.filesystems = with lib.kernel; {
-    apply = with kernel.config.filesystems; include // denied;
 
-    include = {
+    include = { }: {
       ECRYPT_FS = yes;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;

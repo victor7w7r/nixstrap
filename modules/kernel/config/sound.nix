@@ -14,6 +14,8 @@
         SND_SOC_AMD_ACP3x = setupDenial isDenied yes;
         SND_SOC_AMD_ACP5x = setupDenial isDenied yes;
         SND_SOC_AMD_ACP63_TOPLEVEL = setupDenial isDenied yes;
+        SND_SOC_AMD_SOUNDCARD = setupDenial isDenied yes;
+        SND_SOC_AMD_ACP_COMMON = setupDenial isDenied yes;
         SND_SOC_AMD_ACP6x = setupDenial isDenied yes;
         SND_SOC_AMD_ACP_PCI = setupDenial isDenied module;
         SND_SOC_AMD_MACH = setupDenial isDenied yes;
@@ -121,7 +123,7 @@
           SND_MPU401 = no;
           SND_MTPAV = no;
           SND_NM256 = no;
-          SND_OSSEMUL = no;
+          SND_OSSEMUL = lib.mkForce no;
           SND_OXYGEN = no;
           SND_PCMTEST = no;
           SND_PCSP = no;
@@ -360,21 +362,21 @@
         }
         #SND SOC
         {
-          SND_SOC_SOF_ACPI = no;
+          SND_SOC_SOF_ACPI = lib.mkForce no;
           SND_SOC_SOF_ALDERLAKE = no;
-          SND_SOC_SOF_APOLLOLAKE = no;
-          SND_SOC_SOF_COFFEELAKE = no;
-          SND_SOC_SOF_COMETLAKE = no;
-          SND_SOC_SOF_ELKHARTLAKE = no;
-          SND_SOC_SOF_GEMINILAKE = no;
-          SND_SOC_SOF_ICELAKE = no;
+          SND_SOC_SOF_APOLLOLAKE = lib.mkForce no;
+          SND_SOC_SOF_COFFEELAKE = lib.mkForce no;
+          SND_SOC_SOF_COMETLAKE = lib.mkForce no;
+          SND_SOC_SOF_ELKHARTLAKE = lib.mkForce no;
+          SND_SOC_SOF_GEMINILAKE = lib.mkForce no;
+          SND_SOC_SOF_ICELAKE = lib.mkForce no;
           SND_SOC_SOF_INTEL_SOUNDWIRE = no;
-          SND_SOC_SOF_JASPERLAKE = no;
-          SND_SOC_SOF_MERRIFIELD = no;
+          SND_SOC_SOF_JASPERLAKE = lib.mkForce no;
+          SND_SOC_SOF_MERRIFIELD = lib.mkForce no;
           SND_SOC_SOF_METEORLAKE = no;
           SND_SOC_SOF_NOVALAKE = no;
           SND_SOC_SOF_PANTHERLAKE = no;
-          SND_SOC_SOF_TIGERLAKE = no;
+          SND_SOC_SOF_TIGERLAKE = lib.mkForce no;
           SND_SOC_SPDIF = no;
           SND_SOC_SRC4XXX_I2C = no;
           SND_SOC_SSM2305 = no;

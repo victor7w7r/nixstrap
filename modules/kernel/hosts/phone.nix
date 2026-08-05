@@ -28,7 +28,7 @@
             |> map (item: "${patches}/${item.name}.patch")
           )
         );
-      structuredExtraConfig = kernel.config.superlab-phone;
+      structuredExtraConfig = kernel.config.default.superlab-phone;
     })
     |> (generated: {
       phone-config = generated.config;

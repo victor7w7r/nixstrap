@@ -6,7 +6,7 @@
       inherit pkgs;
       localVer = "native";
       patches = with kernel.patches.injector pkgs; cachyos.std ++ tachyon.std ++ bunker.std;
-      structuredExtraConfig = kernel.config.main-generic;
+      structuredExtraConfig = kernel.config.default.main-generic;
     })
     |> (generated: {
       main-kernelPackages = generated.packages;

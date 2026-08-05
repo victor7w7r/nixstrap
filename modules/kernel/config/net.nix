@@ -1,18 +1,5 @@
 { kernel, lib, ... }: {
   kernel.config.net = with lib.kernel; {
-    apply = with kernel.config.net; include // denied;
-    /*
-      (dynamic-denial {
-        inherit config;
-        attr = "TCP_CONG";
-        excludes = [
-          "ADVANCED"
-          "CUBIC"
-          "BBR"
-        ];
-      })
-    */
-
     realtek =
       with kernel.config.utils;
       {
@@ -23,7 +10,7 @@
         R8169 = setupDenial isDenied yes;
       };
 
-    include = {
+    include = { }: {
       BRIDGE = yes;
       BRIDGE_NETFILTER = yes;
       CFG80211 = yes;
@@ -48,7 +35,6 @@
       NET_FOU = yes;
       NET_SCH_FQ = yes;
       NFT_COMPAT = no;
-      NFT_FIB_INET = yes;
       NFT_FIB_IPV4 = yes;
       NFT_MASQ = yes;
       NFT_NAT = yes;
@@ -183,6 +169,23 @@
         NF_CONNTRACK_SIP = no;
         NF_CONNTRACK_SNMP = no;
         NF_CONNTRACK_TFTP = no;
+      }
+      #TCP
+      {
+        TCP_CONG_BIC = no;
+        TCP_CONG_CDG = no;
+        TCP_CONG_DCTCP = no;
+        TCP_CONG_HSTCP = no;
+        TCP_CONG_HTCP = no;
+        TCP_CONG_HYBLA = no;
+        TCP_CONG_ILLINOIS = no;
+        TCP_CONG_LP = no;
+        TCP_CONG_NV = no;
+        TCP_CONG_SCALABLE = no;
+        TCP_CONG_VEGAS = no;
+        TCP_CONG_VENO = no;
+        TCP_CONG_WESTWOOD = no;
+        TCP_CONG_YEAH = no;
       }
       #PROTOCOLS
       {

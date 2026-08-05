@@ -1,8 +1,6 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.security = with lib.kernel; {
-    apply = with kernel.config.security; include // denied;
-
-    include = {
+    include = { }: {
       ENCRYPTED_KEYS = yes;
       LEGACY_VSYSCALL_NONE = yes;
       MAGIC_SYSRQ_DEFAULT_ENABLE = freeform "0x84";

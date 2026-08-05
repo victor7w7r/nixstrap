@@ -6,7 +6,7 @@
       inherit pkgs;
       localVer = "server-hardened-native";
       patches = with kernel.patches.injector pkgs; cachyos.hardened ++ tachyon.std ++ bunker.hardened;
-      structuredExtraConfig = kernel.config.server;
+      structuredExtraConfig = kernel.config.default.server;
     })
     |> (generated: {
       server-config = generated.config;

@@ -1,18 +1,17 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.performance = with lib.kernel; {
-    apply = with kernel.config.performance; include // denied;
-
-    include = {
+    include = { }: {
       BCACHE = yes;
       CC_OPTIMIZE_FOR_PERFORMANCE = no;
       CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
       EXPERT = yes;
       HZ_PERIODIC = no;
+      KVM = yes;
+      LOCALVERSION_AUTO = no;
       LTO_CLANG_FULL = no;
       LTO_CLANG_THIN = yes;
       LTO_NONE = no;
       NO_HZ = yes;
-      LOCALVERSION_AUTO = no;
       NO_HZ_COMMON = yes;
       PCIE_BUS_PERFORMANCE = yes;
       PREEMPT_LAZY = lib.mkForce no;
@@ -20,7 +19,7 @@
       TRANSPARENT_HUGEPAGE_MADVISE = yes;
     };
 
-    denied = {
+    denied = { }: {
       ACCESSIBILITY = lib.mkForce no;
       ACPI_DEBUG = lib.mkForce no;
       BLK_DEV_IO_TRACE = no;

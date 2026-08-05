@@ -16,7 +16,7 @@
       patches =
         with kernel.patches.injector pkgs;
         cachyos.hardened ++ tachyon.std ++ bunker.hardened ++ armbian.sunxi-patches;
-      structuredExtraConfig = kernel.config.pizero;
+      structuredExtraConfig = kernel.config.default.pizero;
     })
     |> (generated: {
       pizero-kernelPackages = generated.packages;

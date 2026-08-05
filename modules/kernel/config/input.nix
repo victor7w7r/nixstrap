@@ -1,22 +1,9 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.input = with lib.kernel; {
-    apply = with kernel.config.input; include // denied;
 
-    /*
-      })
-      (dynamic-denial {
-        inherit config;
-        attr = "NLS_MAC";
-      })
-      (dynamic-denial {
-        inherit config;
-        attr = "NLS_CODEPAGE";
-        excludes = [ "437" ];
-        })
-    */
-
-    include = {
+    include = { }: {
       INPUT_EVDEV = yes;
+      INPUT_MISC = yes;
       KEYBOARD_ATKBD = yes;
       NLS_CODEPAGE_437 = lib.mkForce yes;
       NLS_ISO8859_1 = lib.mkForce yes;
@@ -25,19 +12,51 @@
     denied = lib.mkMerge [
       #CODIFICATION
       {
+        NLS_CODEPAGE_1250 = no;
+        NLS_CODEPAGE_1251 = no;
+        NLS_CODEPAGE_737 = no;
+        NLS_CODEPAGE_775 = no;
+        NLS_CODEPAGE_850 = no;
+        NLS_CODEPAGE_852 = no;
+        NLS_CODEPAGE_855 = no;
+        NLS_CODEPAGE_857 = no;
+        NLS_CODEPAGE_860 = no;
+        NLS_CODEPAGE_861 = no;
+        NLS_CODEPAGE_862 = no;
+        NLS_CODEPAGE_863 = no;
+        NLS_CODEPAGE_864 = no;
+        NLS_CODEPAGE_865 = no;
+        NLS_CODEPAGE_866 = no;
+        NLS_CODEPAGE_869 = no;
+        NLS_CODEPAGE_874 = no;
+        NLS_CODEPAGE_932 = no;
+        NLS_CODEPAGE_936 = no;
+        NLS_CODEPAGE_949 = no;
+        NLS_CODEPAGE_950 = no;
+        NLS_ISO8859_13 = no;
+        NLS_ISO8859_14 = no;
+        NLS_ISO8859_15 = no;
         NLS_ISO8859_2 = no;
         NLS_ISO8859_3 = no;
         NLS_ISO8859_4 = no;
         NLS_ISO8859_5 = no;
         NLS_ISO8859_6 = no;
-        NLS_ISO8859_8 = no;
         NLS_ISO8859_7 = no;
+        NLS_ISO8859_8 = no;
         NLS_ISO8859_9 = no;
-        NLS_ISO8859_13 = no;
-        NLS_ISO8859_14 = no;
-        NLS_ISO8859_15 = no;
         NLS_KOI8_R = no;
         NLS_KOI8_U = no;
+        NLS_MAC_ROMAN = no;
+        NLS_MAC_CELTIC = no;
+        NLS_MAC_CENTEURO = no;
+        NLS_MAC_CROATIAN = no;
+        NLS_MAC_CYRILLIC = no;
+        NLS_MAC_GAELIC = no;
+        NLS_MAC_GREEK = no;
+        NLS_MAC_ICELAND = no;
+        NLS_MAC_INUIT = no;
+        NLS_MAC_ROMANIAN = no;
+        NLS_MAC_TURKISH = no;
       }
       #INPUT
       {
@@ -180,10 +199,7 @@
         HID_LCPOWER = no;
         HID_LED = no;
         HID_LENOVO = no;
-        HID_LENOVO_GO = no;
-        HID_LENOVO_GO_S = no;
         HID_LETSKETCH = no;
-        HID_LOGITECH = no;
         HID_MACALLY = no;
         HID_MAGICMOUSE = no;
         HID_MALTRON = no;
@@ -202,7 +218,6 @@
         HID_PETALYNX = no;
         HID_PICOLCD = no;
         HID_PLANTRONICS = no;
-        HID_PLAYSTATION = no;
         HID_PRIMAX = no;
         HID_PRODIKEYS = no;
         HID_PXRC = no;

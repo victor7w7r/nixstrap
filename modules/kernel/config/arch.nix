@@ -3,14 +3,13 @@
     apply-x86 =
       with kernel.config.arch;
       lib.mkMerge [
-        native
-        generic
-        x86
-        not-phone
+        (x86 { })
+        (native { })
+        (not-phone { })
         denied.apply
       ];
 
-    native = {
+    native = { }: {
       GENERIC_CPU = no;
       X86_NATIVE_CPU = yes;
     };
@@ -22,7 +21,7 @@
       X86_64_VERSION = freeform "2";
     };
 
-    x86 = {
+    x86 = { }: {
       ACPI_BUTTON = yes;
       ACPI_TAD = yes;
       ACPI_WMI = yes;
@@ -35,7 +34,7 @@
       MOTORCOMM_PHY = no;
       NET_VENDOR_STMICRO = no;
       NOP_USB_XCEIV = no;
-      OF = no;
+      OF = lib.mkForce no;
       PCIE_DPC = yes;
       PCIE_EDR = yes;
       PCIE_PTM = yes;
@@ -45,19 +44,19 @@
       QRTR = no;
       RAID_ATTRS = no;
       RTC_DRV_CMOS = yes;
-      STAGING = no;
+      STAGING = lib.mkForce no;
       STM = no;
       USB_CHIPIDEA = no;
       USB_GADGET = no;
       USB_MUSB_HDRC = no;
-      VFIO = yes;
+      VFIO = lib.mkForce yes;
       X86_PKG_TEMP_THERMAL = yes;
       XZ_DEC_ARM = no;
       XZ_DEC_ARM64 = no;
       XZ_DEC_ARMTHUMB = no;
     };
 
-    not-phone = {
+    not-phone = { }: {
       INTERCONNECT = no; # ARM
       BACKLIGHT_QCOM_WLED = no;
       GNSS = no;
@@ -76,8 +75,6 @@
         isDenied ? false,
       }:
       {
-        #SI
-        ACPI_PROCESSOR_AGGREGATOR = no;
         AMD_ATL = setupDenial isDenied yes;
         AMD_PMC = setupDenial isDenied yes;
         AMD_PMF = setupDenial isDenied module;
@@ -119,7 +116,6 @@
         SERIAL_MULTI_INSTANTIATE = setupDenial isDenied yes;
         SERIO_I8042 = setupDenial isDenied yes;
         SP5100_TCO = setupDenial isDenied yes;
-        USB_HID = setupDenial isDenied yes;
 
         #NO
         AMD_3D_VCACHE = setupDenial isDenied yes;
@@ -150,10 +146,9 @@
         isDenied ? false,
       }:
       {
-        ACPI_PROCESSOR_AGGREGATOR = yes;
+        ACPI_PROCESSOR_AGGREGATOR = setupDenial isDenied yes;
         CRYPTO_AES_NI_INTEL = setupDenial isDenied yes;
         DRM_I915 = setupDenial isDenied yes;
-        DRM_I915_GVT_KVMGT = setupDenial isDenied yes;
         HW_RANDOM_INTEL = setupDenial isDenied yes;
         MFD_INTEL_LPSS_ACPI = setupDenial isDenied yes;
         I2C_MUX = setupDenial isDenied yes;
@@ -211,14 +206,14 @@
         ACPI_APEI_GHES_NVIDIA = no;
         ACPI_DOCK = no;
         ACPI_EC_DEBUGFS = no;
-        ACPI_HOTPLUG_MEMORY = no;
+        ACPI_HOTPLUG_MEMORY = lib.mkForce no;
         ACPI_NFIT = no;
         ACPI_SBS = no;
-        BYTCRC_PMIC_OPREGION = no;
-        CHTCRC_PMIC_OPREGION = no;
-        CHT_DC_TI_PMIC_OPREGION = no;
-        CHT_WC_PMIC_OPREGION = no;
-        TPS68470_PMIC_OPREGION = no;
+        BYTCRC_PMIC_OPREGION = lib.mkForce no;
+        CHTCRC_PMIC_OPREGION = lib.mkForce no;
+        CHT_DC_TI_PMIC_OPREGION = lib.mkForce no;
+        CHT_WC_PMIC_OPREGION = lib.mkForce no;
+        TPS68470_PMIC_OPREGION = lib.mkForce no;
         PCI_IOV = no;
       };
 
@@ -228,17 +223,17 @@
         X86_EXTENDED_PLATFORM = no;
         X86_PMEM_LEGACY = no;
         X86_MPPARSE = no;
-        X86_PLATFORM_DRIVERS_DELL = no;
+        X86_PLATFORM_DRIVERS_DELL = lib.mkForce no;
         X86_P4_CLOCKMOD = no;
         X86_POWERNOW_K8 = no;
         X86_REROUTE_FOR_BROKEN_BOOT_IRQS = no;
-        X86_SGX = no;
+        X86_SGX = lib.mkForce no;
         X86_SPEEDSTEP_CENTRINO = no;
         X86_VERBOSE_BOOTUP = no;
       };
 
       virt = {
-        HYPERVISOR_GUEST = no;
+        HYPERVISOR_GUEST = lib.mkForce no;
         KVM_XEN = no;
         PVPANIC = no;
         UACCE = no;

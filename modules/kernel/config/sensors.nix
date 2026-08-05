@@ -66,7 +66,6 @@
         LEDS_GPIO = no;
         LEDS_INTEL_SS4200 = no;
         LEDS_IS31FL319X = no;
-        LEDS_KTD202X = no;
         LEDS_LM3530 = no;
         LEDS_LM3532 = no;
         LEDS_LM355x = no;
@@ -74,8 +73,6 @@
         LEDS_LM3642 = no;
         LEDS_LP3944 = no;
         LEDS_LP3952 = no;
-        LEDS_LP50XX = no;
-        LEDS_LP5812 = no;
         LEDS_LT3593 = no;
         LEDS_MAX5970 = no;
         LEDS_MLXCPLD = no;
@@ -87,7 +84,6 @@
         LEDS_PCA963X = no;
         LEDS_PCA995X = no;
         LEDS_PWM = no;
-        LEDS_PWM_MULTICOLOR = no;
         LEDS_REGULATOR = no;
         LEDS_RT8515 = no;
         LEDS_SGM3140 = no;
@@ -275,8 +271,8 @@
         SENSORS_ADT7475 = no;
         SENSORS_AHT10 = no;
         SENSORS_AMC6821 = no;
-        SENSORS_APDS990X = no;
         SENSORS_AQUACOMPUTER_D5NEXT = no;
+        SENSORS_APDS990X = no;
         SENSORS_AS370 = no;
         SENSORS_ASB100 = no;
         SENSORS_ASC7621 = no;
@@ -303,10 +299,10 @@
         SENSORS_FSCHMD = no;
         SENSORS_G760A = no;
         SENSORS_G762 = no;
-        SENSORS_GIGABYTE_WATERFORCE = no;
         SENSORS_GL518SM = no;
         SENSORS_GL520SM = no;
         SENSORS_GPD = no;
+        SENSORS_GIGABYTE_WATERFORCE = no;
         SENSORS_HIH6130 = no;
         SENSORS_HMC5843_I2C = no;
         SENSORS_HMC5843_SPI = no;
@@ -764,7 +760,6 @@
         MCP4821 = no;
         MCP4922 = no;
         MCP9600 = no;
-        MFD_STMFX = no;
         MHZ19B = no;
         MISC_ALCOR_PCI = no;
         MISC_RTSX_PCI = no;

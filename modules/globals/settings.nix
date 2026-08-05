@@ -12,9 +12,7 @@
     system.stateVersion = flakelib.lib.config.stateVersion;
     nix = {
       #package = lib.mkDefault (pkgs.lix);
-      settings =
-        (removeAttrs flakelib.lib.config.flake-config [ "__provider" ])
-        // (removeAttrs flakelib.lib.config.nix-config [ "__provider" ]);
+      settings = (flakelib.lib.config.flakeconfig { }) // (flakelib.lib.config.nixconfig { });
 
       gc = {
         automatic = true;

@@ -1,37 +1,17 @@
-{ kernel, lib, ... }: {
+{ lib, ... }: {
   kernel.config.peripherals = with lib.kernel; {
-    apply = with kernel.config.peripherals; include // denied;
-
-    include = {
-      BT_HCIUART = lib.mkForce yes;
+    include = { }: {
       BT_RFCOMM = yes;
       I2C_ALGOBIT = yes;
       I2C_CHARDEV = yes;
       I2C_SMBUS = yes;
       IOMMUFD = yes;
-      KVM = yes;
       PCI_REALLOC_ENABLE_AUTO = yes;
       RFKILL = yes;
       SERIO = yes;
       USB_ACM = yes;
-
     };
 
-    /*
-      (dynamic-denial {
-        inherit config;
-        attr = "USB_STORAGE";
-      })
-      (dynamic-denial {
-          inherit config;
-          attr = "EEPROM";
-          excludes = [ "93CX6" ];
-      ++ (lib.optionals isArm [
-        (dynamic-denial {
-          inherit config;
-          attr = "RMI4";
-          })
-    */
     denied = lib.mkMerge [
       #DRIVERS
       {
@@ -42,6 +22,7 @@
         CB710_CORE = no;
         CXL_BUS = no;
         DEVPORT = no;
+        DVB_CORE = no;
         FPGA = no;
         FWCTL = no;
         GAMEPORT = no;
@@ -53,6 +34,7 @@
         HSI = no;
         LIBNVDIMM = no;
         MCTP = no;
+        MEDIA_PCI_SUPPORT = lib.mkForce no;
         MOST = no;
         MOXA_INTELLIO = no;
         MOXA_SMARTIO = no;
@@ -99,7 +81,6 @@
         BT_HCIBCM203X = no;
         BT_HCIBCM4377 = no;
         BT_HCIBFUSB = no;
-        BT_HCIBTSDIO = no;
         BT_HCIVHCI = no;
         BT_HIDP = no;
         BT_MRVL = no;
@@ -131,6 +112,15 @@
         EXTCON_RT8973A = no;
         EXTCON_SM5502 = no;
         EXTCON_USBC_TUSB320 = no;
+      }
+      #EEPROM
+      {
+        EEPROM_93XX46 = no;
+        EEPROM_AT24 = no;
+        EEPROM_AT25 = no;
+        EEPROM_IDT_89HPESX = no;
+        EEPROM_M24LR = no;
+        EEPROM_MAX6875 = no;
       }
       #I2C
       {
@@ -259,6 +249,204 @@
         GPIO_WS16C48 = no;
         GPIO_XILINX = no;
         GPIO_XRA1403 = no;
+      }
+      #MEDIA
+      {
+        MEDIA_TUNER_E4000 = no;
+        MEDIA_TUNER_FC0011 = no;
+        MEDIA_TUNER_FC0012 = no;
+        MEDIA_TUNER_FC0013 = no;
+        MEDIA_TUNER_FC2580 = no;
+        MEDIA_TUNER_IT913X = no;
+        MEDIA_TUNER_M88RS6000T = no;
+        MEDIA_TUNER_MAX2165 = no;
+        MEDIA_TUNER_MC44S803 = no;
+        MEDIA_TUNER_MSI001 = no;
+        MEDIA_TUNER_MT2060 = no;
+        MEDIA_TUNER_MT2063 = no;
+        MEDIA_TUNER_MT20XX = no;
+        MEDIA_TUNER_MT2131 = no;
+        MEDIA_TUNER_MT2266 = no;
+        MEDIA_TUNER_MXL301RF = no;
+        MEDIA_TUNER_MXL5005S = no;
+        MEDIA_TUNER_MXL5007T = no;
+        MEDIA_TUNER_QM1D1B0004 = no;
+        MEDIA_TUNER_QM1D1C0042 = no;
+        MEDIA_TUNER_QT1010 = no;
+        MEDIA_TUNER_R820T = no;
+        MEDIA_TUNER_SI2157 = no;
+        MEDIA_TUNER_SIMPLE = no;
+        MEDIA_TUNER_TDA18212 = no;
+        MEDIA_TUNER_TDA18218 = no;
+        MEDIA_TUNER_TDA18250 = no;
+        MEDIA_TUNER_TDA18271 = no;
+        MEDIA_TUNER_TDA827X = no;
+        MEDIA_TUNER_TDA8290 = no;
+        MEDIA_TUNER_TDA9887 = no;
+        MEDIA_TUNER_TEA5761 = no;
+        MEDIA_TUNER_TEA5767 = no;
+        MEDIA_TUNER_TUA9001 = no;
+        MEDIA_TUNER_XC2028 = no;
+        MEDIA_TUNER_XC4000 = no;
+        MEDIA_TUNER_XC5000 = no;
+        RADIO_ADAPTERS = no;
+        SDR_MAX2175 = no;
+        USB_AIRSPY = no;
+        USB_HACKRF = no;
+        USB_MSI2500 = no;
+        USB_PWC = no;
+        USB_S2255 = no;
+        VIDEO_ADP1653 = no;
+        VIDEO_ADV7170 = no;
+        VIDEO_ADV7175 = no;
+        VIDEO_ADV7180 = no;
+        VIDEO_ADV7183 = no;
+        VIDEO_ADV7343 = no;
+        VIDEO_ADV7393 = no;
+        VIDEO_ADV7511 = no;
+        VIDEO_ADV7604 = no;
+        VIDEO_ADV7842 = no;
+        VIDEO_ALVIUM_CSI2 = no;
+        VIDEO_AK881X = no;
+        VIDEO_AR0521 = no;
+        VIDEO_BT819 = no;
+        VIDEO_BT856 = no;
+        VIDEO_BT866 = no;
+        VIDEO_CADENCE_CSI2RX = no;
+        VIDEO_CADENCE_CSI2TX = no;
+        VIDEO_CAMERA_LENS = no;
+        VIDEO_CCS = no;
+        VIDEO_CS3308 = no;
+        VIDEO_CS5345 = no;
+        VIDEO_CS53L32A = no;
+        VIDEO_CX231XX = no;
+        VIDEO_CX25840 = no;
+        VIDEO_EM28XX = no;
+        VIDEO_ET8EK8 = no;
+        VIDEO_GC0308 = no;
+        VIDEO_GC0310 = no;
+        VIDEO_GC05A2 = no;
+        VIDEO_GC08A3 = no;
+        VIDEO_GC2145 = no;
+        VIDEO_GO7007 = no;
+        VIDEO_GS1662 = no;
+        VIDEO_HDPVR = no;
+        VIDEO_HI556 = no;
+        VIDEO_HI846 = no;
+        VIDEO_HI847 = no;
+        VIDEO_IMX111 = no;
+        VIDEO_IMX208 = no;
+        VIDEO_IMX214 = no;
+        VIDEO_IMX219 = no;
+        VIDEO_IMX258 = no;
+        VIDEO_IMX274 = no;
+        VIDEO_IMX283 = no;
+        VIDEO_IMX290 = no;
+        VIDEO_IMX296 = no;
+        VIDEO_IMX319 = no;
+        VIDEO_IMX355 = no;
+        VIDEO_KS0127 = no;
+        VIDEO_LM3560 = no;
+        VIDEO_LM3646 = no;
+        VIDEO_LT6911UXE = no;
+        VIDEO_M52790 = no;
+        VIDEO_MAX96717 = no;
+        VIDEO_ML86V7667 = no;
+        VIDEO_MSP3400 = no;
+        VIDEO_MT9M001 = no;
+        VIDEO_MT9M111 = no;
+        VIDEO_MT9M114 = no;
+        VIDEO_MT9P031 = no;
+        VIDEO_MT9T112 = no;
+        VIDEO_MT9V011 = no;
+        VIDEO_MT9V111 = no;
+        VIDEO_OG01A1B = no;
+        VIDEO_OG0VE1B = no;
+        VIDEO_OS05B10 = no;
+        VIDEO_OV01A10 = no;
+        VIDEO_OV02A10 = no;
+        VIDEO_OV02C10 = no;
+        VIDEO_OV02E10 = no;
+        VIDEO_OV08D10 = no;
+        VIDEO_OV08X40 = no;
+        VIDEO_OV13858 = no;
+        VIDEO_OV13B10 = no;
+        VIDEO_OV2640 = no;
+        VIDEO_OV2659 = no;
+        VIDEO_OV2680 = no;
+        VIDEO_OV2685 = no;
+        VIDEO_OV2735 = no;
+        VIDEO_OV2740 = no;
+        VIDEO_OV4689 = no;
+        VIDEO_OV5647 = no;
+        VIDEO_OV5648 = no;
+        VIDEO_OV5670 = no;
+        VIDEO_OV5675 = no;
+        VIDEO_OV5693 = no;
+        VIDEO_OV5695 = no;
+        VIDEO_OV6211 = no;
+        VIDEO_OV64A40 = no;
+        VIDEO_OV7251 = no;
+        VIDEO_OV7640 = no;
+        VIDEO_OV7670 = no;
+        VIDEO_OV772X = no;
+        VIDEO_OV7740 = no;
+        VIDEO_OV8856 = no;
+        VIDEO_OV8858 = no;
+        VIDEO_OV8865 = no;
+        VIDEO_OV9640 = no;
+        VIDEO_OV9650 = no;
+        VIDEO_OV9734 = no;
+        VIDEO_RDACM20 = no;
+        VIDEO_RDACM21 = no;
+        VIDEO_RJ54N1 = no;
+        VIDEO_RP1_CFE = no;
+        VIDEO_S5C73M3 = no;
+        VIDEO_S5K3M5 = no;
+        VIDEO_S5K5BAF = no;
+        VIDEO_S5K6A3 = no;
+        VIDEO_S5KJN1 = no;
+        VIDEO_SAA6588 = no;
+        VIDEO_SAA6752HS = no;
+        VIDEO_SAA7110 = no;
+        VIDEO_SAA711X = no;
+        VIDEO_SAA7127 = no;
+        VIDEO_SAA717X = no;
+        VIDEO_SAA7185 = no;
+        VIDEO_SONY_BTF_MPX = no;
+        VIDEO_STK1160 = no;
+        VIDEO_ST_MIPID02 = no;
+        VIDEO_T4KA3 = no;
+        VIDEO_TC358743 = no;
+        VIDEO_TC358746 = no;
+        VIDEO_TDA1997X = no;
+        VIDEO_TDA7432 = no;
+        VIDEO_TDA9840 = no;
+        VIDEO_TEA6415C = no;
+        VIDEO_TEA6420 = no;
+        VIDEO_THP7312 = no;
+        VIDEO_THS7303 = no;
+        VIDEO_THS8200 = no;
+        VIDEO_TLV320AIC23B = no;
+        VIDEO_TVAUDIO = no;
+        VIDEO_TVP514X = no;
+        VIDEO_TVP5150 = no;
+        VIDEO_TVP7002 = no;
+        VIDEO_TW2804 = no;
+        VIDEO_TW9900 = no;
+        VIDEO_TW9903 = no;
+        VIDEO_TW9906 = no;
+        VIDEO_TW9910 = no;
+        VIDEO_UDA1342 = no;
+        VIDEO_UPD64031A = no;
+        VIDEO_UPD64083 = no;
+        VIDEO_USBTV = no;
+        VIDEO_VD55G1 = no;
+        VIDEO_VD56G3 = no;
+        VIDEO_VP27SMPX = no;
+        VIDEO_VPX3220 = no;
+        VIDEO_WM8739 = no;
+        VIDEO_WM8775 = no;
       }
       #MFD
       {
@@ -406,6 +594,23 @@
       {
         APPLE_MFI_FASTCHARGE = no;
         SSB = no;
+        TYPEC_ANX7411 = no;
+        TYPEC_HD3SS3220 = no;
+        TYPEC_MUX_FSA4480 = no;
+        TYPEC_MUX_GPIO_SBU = no;
+        TYPEC_MUX_IT5205 = no;
+        TYPEC_MUX_NB7VPQ904M = no;
+        TYPEC_MUX_PI3USB30532 = no;
+        TYPEC_MUX_PS883X = no;
+        TYPEC_MUX_PTN36502 = no;
+        TYPEC_MUX_TUSB1046 = no;
+        TYPEC_MUX_WCD939X_USBSS = no;
+        TYPEC_NVIDIA_ALTMODE = no;
+        TYPEC_RT1719 = no;
+        TYPEC_STUSB160X = no;
+        TYPEC_TCPM = no;
+        TYPEC_TPS6598X = no;
+        TYPEC_WUSB3801 = no;
         UCSI_CCG = no;
         UCSI_STM32G0 = no;
         USB_ADUTUX = no;
@@ -426,6 +631,7 @@
         USB_EMI62 = no;
         USB_EPSON2888 = no;
         USB_GPIO_VBUS = no;
+        USB_GSPCA = no;
         USB_HCD_BCMA = no;
         USB_HSIC_USB3503 = no;
         USB_HSIC_USB4604 = no;
@@ -508,6 +714,19 @@
         USB_SIERRA_NET = no;
         USB_SISUSBVGA = no;
         USB_SL811_HCD = no;
+        USB_STORAGE_ALAUDA = no;
+        USB_STORAGE_CYPRESS_ATACB = no;
+        USB_STORAGE_DATAFAB = no;
+        USB_STORAGE_ENE_UB6250 = no;
+        USB_STORAGE_FREECOM = no;
+        USB_STORAGE_ISD200 = no;
+        USB_STORAGE_JUMPSHOT = no;
+        USB_STORAGE_KARMA = no;
+        USB_STORAGE_ONETOUCH = no;
+        USB_STORAGE_REALTEK = no;
+        USB_STORAGE_SDDR09 = no;
+        USB_STORAGE_SDDR55 = no;
+        USB_STORAGE_USBAT = no;
         USB_TEST = no;
         USB_TMC = no;
         USB_TRANCEVIBRATOR = no;
@@ -516,23 +735,6 @@
         USB_VL600 = no;
         USB_XHCI_PCI_RENESAS = no;
         USB_YUREX = no;
-        TYPEC_ANX7411 = no;
-        TYPEC_HD3SS3220 = no;
-        TYPEC_MUX_FSA4480 = no;
-        TYPEC_MUX_GPIO_SBU = no;
-        TYPEC_MUX_IT5205 = no;
-        TYPEC_MUX_NB7VPQ904M = no;
-        TYPEC_MUX_PI3USB30532 = no;
-        TYPEC_MUX_PS883X = no;
-        TYPEC_MUX_PTN36502 = no;
-        TYPEC_MUX_TUSB1046 = no;
-        TYPEC_MUX_WCD939X_USBSS = no;
-        TYPEC_NVIDIA_ALTMODE = no;
-        TYPEC_RT1719 = no;
-        TYPEC_STUSB160X = no;
-        TYPEC_TCPM = no;
-        TYPEC_TPS6598X = no;
-        TYPEC_WUSB3801 = no;
       }
     ];
   };

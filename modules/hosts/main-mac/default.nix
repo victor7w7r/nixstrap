@@ -47,8 +47,8 @@
           flake-registry = "/etc/nix/flake-registry.json";
           sandbox = "relaxed";
         }
-        // (removeAttrs flakelib.config.flake-config [ "__provider" ])
-        // (removeAttrs flakelib.config.nix-config [ "__provider" ]);
+        // (flakelib.config.flake-config { })
+        // (flakelib.config.nix-config { });
 
         documentation = {
           enable = false;

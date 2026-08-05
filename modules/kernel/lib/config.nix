@@ -15,20 +15,6 @@
         installPhase = "cp config $out";
       };
 
-    filtered-config =
-      pkgs: configfile:
-      pkgs.stdenvNoCC.mkDerivation {
-        name = "filtered-config";
-        src = configfile;
-        phases = [ "installPhase" ];
-        installPhase = ''
-          cp $src .config
-          sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
-          sed -i -E 's/[[:space:]]+"\s*$/"/' .config
-          mv .config $out
-        '';
-      };
-
     menu-config =
       {
         kernel,

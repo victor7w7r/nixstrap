@@ -1,6 +1,6 @@
 { lib, ... }: {
   kernel.config.flavour = with lib.kernel; {
-    server = {
+    server = { }: {
       HZ = freeform "250";
       HZ_1000 = no;
       HZ_250 = yes;
@@ -8,9 +8,9 @@
       INPUT_UINPUT = no;
       NO_HZ_FULL = no;
       NO_HZ_IDLE = yes;
-      NR_CPUS = freeform "8";
+      NR_CPUS = lib.mkForce (freeform "8");
       NTSYNC = no;
-      PREEMPT = no;
+      PREEMPT = lib.mkForce no;
       PREEMPTION = no;
       PREEMPT_DYNAMIC = no;
       PREEMPT_NONE = yes;
@@ -20,11 +20,10 @@
       SND_HDA_CODEC_REALTEK = no;
       SND_HDA_CODEC_REALTEK_LIB = no;
       SND_JACK = no;
-      SND_OSSEMUL = no;
       SOUND = no;
     };
 
-    desktop = {
+    desktop = { }: {
       ANDROID_BINDERFS = yes;
       ANDROID_BINDER_IPC = yes;
       CACHY = yes;
@@ -33,9 +32,9 @@
       INPUT_UINPUT = yes;
       NO_HZ_FULL = yes;
       NO_HZ_IDLE = no;
-      NR_CPUS = freeform "32";
+      NR_CPUS = lib.mkForce (freeform "32");
       NTSYNC = yes;
-      PREEMPT = yes;
+      PREEMPT = lib.mkForce yes;
       PREEMPTION = yes;
       PREEMPT_BUILD = yes;
       PREEMPT_COUNT = yes;

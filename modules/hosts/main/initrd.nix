@@ -6,7 +6,7 @@
         supportedFilesystems = lib.mkAfter [ "xfs" ];
         kernelModules = [
           "apple-bce"
-          "brcmfmac_wcc"
+          "_wcc"
           "brcmfmac"
           "btrfs"
           "cryptd"
@@ -25,7 +25,7 @@
           "ehci_hcd"
           "zram"
           "xhci_pci"
-          # "vfio_virqfd"
+          # " _virqfd"
           # "vfio_pci"
           # "vfio_iommu_type1"
           # "vfi"

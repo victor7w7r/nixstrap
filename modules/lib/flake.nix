@@ -4,7 +4,8 @@
 
   flakelib.lib.config = {
     stateVersion = "26.11";
-    flake-config = {
+
+    flake-config = { }: {
       always-allow-substitutes = true;
       allow-import-from-derivation = true;
       accept-flake-config = true;
@@ -54,7 +55,7 @@
       extra-trusted-public-keys = [ ];
     };
 
-    nix-config = {
+    nix-config = { }: {
       connect-timeout = 5;
       builders-use-substitutes = true;
       download-buffer-size = 524288000;
@@ -78,7 +79,7 @@
     };
   };
 
-  flake-file.nixConfig = (removeAttrs flakelib.lib.config.flake-config [ "__provider" ]) // {
+  flake-file.nixConfig = (flakelib.lib.config.flake-config { }) // {
     lazy-trees = true;
     submodules = true;
   };

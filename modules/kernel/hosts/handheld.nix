@@ -8,7 +8,7 @@
       patches =
         with kernel.patches.injector pkgs;
         cachyos.handheld ++ asus ++ tachyon.gaming ++ bunker.std;
-      structuredExtraConfig = kernel.config.handheld;
+      structuredExtraConfig = kernel.config.default.handheld;
     })
     |> (generated: {
       handheld-kernelPackages = generated.packages;
