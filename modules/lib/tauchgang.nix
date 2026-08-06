@@ -1,8 +1,6 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 {
-  imports = [ (inputs.den.namespace "tauchgang" false) ];
-
-  tauchgang.lib.call =
+  uboot.lib.tauchgang =
     pkgs: isFajita:
     (pkgs.buildUBoot {
       pname = "uboot-tauchgang-${if isFajita then "fajita" else "enchilada"}";

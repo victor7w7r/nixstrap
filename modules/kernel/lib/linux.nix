@@ -31,6 +31,7 @@
             netfilterRPFilter = true;
             efiBootStub = true;
           };
+          configfile = (kernel.lib.config pkgs false);
           version = (kernel.lib.version pkgs src localVer).final;
           modDirVersion = (kernel.lib.version pkgs src localVer).final;
           ignoreConfigErrors = true;

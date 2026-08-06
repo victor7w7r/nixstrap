@@ -1,15 +1,10 @@
-{
-  inputs,
-  uboot,
-  tauchgang,
-  ...
-}:
+{ inputs, uboot, ... }:
 {
   imports = [ (inputs.den.namespace "uboot" false) ];
 
   uboot.lib = {
-    enchilada = pkgs: (tauchgang pkgs false);
-    fajita = pkgs: (tauchgang pkgs true);
+    enchilada = pkgs: (uboot.lib.tauchgang pkgs false);
+    fajita = pkgs: (uboot.lib.tauchgang pkgs true);
     opizero2w =
       pkgs:
       pkgs.buildUBoot {

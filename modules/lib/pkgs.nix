@@ -3,7 +3,6 @@
   den,
   inputs,
   withSystem,
-  tauchgang,
   kernel,
   self,
   ...
@@ -46,7 +45,6 @@
               }
             );
             main-kernel = (kernel.hosts.main pkgs false).main-kernel;
-            tauchgang = tauchgang.lib.call;
             crane = crane.lib.call;
           })
         ];
