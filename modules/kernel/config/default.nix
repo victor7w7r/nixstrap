@@ -96,7 +96,7 @@
         (arch.rogally { isDenied = true; })
         (disks.mmc { })
         (flavour.server { })
-        (net.realtek { isDenied = true; })
+        (net.realtek { })
         {
           AXP20X_POWER = yes;
           CDROM = no;
