@@ -1,32 +1,10 @@
-{
-  main-kernel,
-  pkgs,
-  inputs,
-}:
+{ main-kernel, inputs }:
 main-kernel.stdenv.mkDerivation {
   name = "apple-bce";
   version = "latest";
-  LLVM = "1";
   src = inputs.apple-bce;
 
-  hardeningDisable = [
-    "pic"
-    "format"
-  ];
-
-  NIX_CFLAGS_COMPILE = [
-    "-Wno-error=unused-command-line-argument"
-    "-Wno-unused-command-line-argument"
-  ];
-
-  nativeBuildInputs =
-    with pkgs;
-    main-kernel.moduleBuildDependencies
-    ++ [
-      clang
-      llvm
-      lld
-    ];
+  nativeBuildInputs = main-kernel.moduleBuildDependencies;
 
   makeFlags = [
     "CC=clang"

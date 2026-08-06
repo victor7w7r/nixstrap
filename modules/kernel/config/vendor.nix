@@ -185,8 +185,6 @@
         MT76x2E = no;
         MT76x2U = no;
         MT7915E = no;
-        MT7925E = no;
-        MT7925U = no;
         MT7996E = no;
         NOZOMI = no;
         VIRT_WIFI = no;
