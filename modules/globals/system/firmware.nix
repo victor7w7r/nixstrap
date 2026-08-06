@@ -1,6 +1,7 @@
 {
   den.default.nixos =
     {
+      isPhone,
       isX86,
       lib,
       pkgs,
@@ -13,7 +14,7 @@
             prev.linux-firmware.overrideAttrs (o: {
               postInstall = ''
                 rm -rf "$out"/lib/firmware/intel/iwlwifi
-                rm -rf "$out"/lib/firmware/{qcom,ath11k,ath10k,ath12k,libertas,nvidia,cxgb4,ti-connectivity,cypress,xe}
+                rm -rf "$out"/lib/firmware/{ath11k,ath10k,ath12k,libertas,nvidia,cxgb4,ti-connectivity,cypress,xe}
                 rm -rf "$out"/lib/firmware/{mellanox,mrvl,netronome,dpaa2,qed,bnx2x,liquidio,rtw89,dpaa2,dell,LENOVO}
                 find "$out/lib/firmware" -xtype l -print -delete
               '';
@@ -27,7 +28,7 @@
       hardware = {
         enableRedistributableFirmware = lib.mkForce false;
         wirelessRegulatoryDatabase = true;
-        firmware = with pkgs; lib.optional isX86 linux-firmware;
+        firmware = with pkgs; lib.optional (isX86 || isPhone) linux-firmware;
       };
     };
 }

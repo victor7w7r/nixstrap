@@ -347,7 +347,6 @@
         SAMSUNG_LAPTOP = no;
         SAMSUNG_Q10 = no;
         SENSORS_HDAPS = no;
-        SERIAL_MULTI_INSTANTIATE = no;
         SIEMENS_SIMATIC_IPC = no;
         SONY_LAPTOP = no;
         SURFACE_PLATFORMS = no;

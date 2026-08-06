@@ -1,15 +1,15 @@
 { lib, ... }: {
   kernel.config.security = with lib.kernel; {
     include = { }: {
-      ENCRYPTED_KEYS = yes;
+      ENCRYPTED_KEYS = module;
       LEGACY_VSYSCALL_NONE = yes;
       MAGIC_SYSRQ_DEFAULT_ENABLE = freeform "0x84";
       PSTORE_RAM = yes;
       RESET_ATTACK_MITIGATION = yes;
       SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
-      TEE = yes;
-      TLS = lib.mkForce yes;
-      TRUSTED_KEYS = yes;
+      TEE = module;
+      TLS = module;
+      TRUSTED_KEYS = module;
     };
 
     denied = lib.mkMerge [

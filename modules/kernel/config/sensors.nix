@@ -321,7 +321,6 @@
         SENSORS_ISL29028 = no;
         SENSORS_IT87 = no;
         SENSORS_JC42 = no;
-        SENSORS_K10TEMP = no;
         SENSORS_K8TEMP = no;
         SENSORS_LATTEPANDA_SIGMA_EC = no;
         SENSORS_LENOVO_EC = no;

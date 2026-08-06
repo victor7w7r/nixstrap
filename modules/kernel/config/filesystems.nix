@@ -2,7 +2,7 @@
   kernel.config.filesystems = with lib.kernel; {
 
     include = { }: {
-      ECRYPT_FS = yes;
+      ECRYPT_FS = module;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;
       NTFS3_FS = module;

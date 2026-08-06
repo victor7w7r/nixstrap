@@ -4,9 +4,9 @@
       BLK_DEV_NVME = yes;
       BLK_DEV_SD = yes;
       SCSI = yes;
-      TYPEC = yes;
-      USB4 = yes;
-      USB_ROLE_SWITCH = yes;
+      TYPEC = module;
+      USB4 = module;
+      USB_ROLE_SWITCH = module;
       USB_STORAGE = yes;
       USB_UAS = yes;
       USB_EHCI_HCD = yes;

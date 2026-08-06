@@ -46,12 +46,12 @@
       RCU_FANOUT = freeform "64";
       RCU_FANOUT_LEAF = freeform "16";
       SCHED_BORE = yes;
-      SND = yes;
-      SND_HRTIMER = yes;
-      SND_SEQUENCER = yes;
-      SND_SOC = yes;
-      SND_SOC_HDA = yes;
-      SOUND = yes;
+      SND = module;
+      SND_HRTIMER = module;
+      SND_SEQUENCER = module;
+      SND_SOC = module;
+      SND_SOC_HDA = module;
+      SOUND = module;
     };
   };
 }

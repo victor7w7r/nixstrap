@@ -38,9 +38,9 @@
           EEPROM_EE1004 = yes;
           HID_WACOM = module;
           SND_HDA_CODEC_HDMI_INTEL = module;
-          SND_HDA_INTEL = yes;
-          SND_SOC_INTEL_AVS = yes;
-          SND_USB_AUDIO = yes;
+          SND_HDA_INTEL = module;
+          SND_SOC_INTEL_AVS = module;
+          SND_USB_AUDIO = module;
           UINPUT = yes;
           XFS_FS = yes;
         }
@@ -60,7 +60,7 @@
         {
           CDROM = no;
           MD = lib.mkForce no;
-          SND_USB_AUDIO = yes;
+          SND_USB_AUDIO = module;
           UDF_FS = lib.mkForce no;
           XFS_FS = no;
         }

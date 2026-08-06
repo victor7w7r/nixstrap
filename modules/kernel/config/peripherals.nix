@@ -1,13 +1,13 @@
 { lib, ... }: {
   kernel.config.peripherals = with lib.kernel; {
     include = { }: {
-      BT_RFCOMM = yes;
-      I2C_ALGOBIT = yes;
-      I2C_CHARDEV = yes;
+      BT_RFCOMM = module;
+      I2C_ALGOBIT = module;
+      I2C_CHARDEV = module;
       I2C_SMBUS = module;
-      IOMMUFD = yes;
+      IOMMUFD = module;
       PCI_REALLOC_ENABLE_AUTO = yes;
-      RFKILL = yes;
+      RFKILL = module;
       SERIO = module;
       USB_ACM = yes;
     };

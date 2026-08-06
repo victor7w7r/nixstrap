@@ -180,7 +180,6 @@
           SND_SOC_AK5558 = no;
           SND_SOC_ALC5623 = no;
           SND_SOC_AMD_ACP = no;
-          SND_SOC_AMD_ACP6x = no;
           SND_SOC_AMD_LEGACY_MACH = no;
           SND_SOC_AMD_LEGACY_SDW_MACH = no;
           SND_SOC_AMD_SOF_MACH = no;
