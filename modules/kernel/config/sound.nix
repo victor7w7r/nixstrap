@@ -7,26 +7,26 @@
       }:
       {
         SOUNDWIRE_AMD = setupDenial isDenied module;
-        SND_AMD_ACP_CONFIG = setupDenial isDenied yes;
-        SND_AMD_ASOC_ACP63 = setupDenial isDenied yes;
-        SND_HDA_SCODEC_CS35L41_I2C = setupDenial isDenied yes;
-        SND_HDA_SCODEC_CS35L41_SPI = setupDenial isDenied yes;
+        SND_AMD_ACP_CONFIG = setupDenial isDenied module;
+        SND_AMD_ASOC_ACP63 = setupDenial isDenied module;
+        SND_HDA_SCODEC_CS35L41_I2C = setupDenial isDenied module;
+        SND_HDA_SCODEC_CS35L41_SPI = setupDenial isDenied module;
         SND_SOC_AMD_ACP3x = setupDenial isDenied yes;
         SND_SOC_AMD_ACP5x = setupDenial isDenied yes;
         SND_SOC_AMD_ACP63_TOPLEVEL = setupDenial isDenied module;
         SND_SOC_AMD_SOUNDCARD = setupDenial isDenied yes;
-        SND_SOC_AMD_ACP_COMMON = setupDenial isDenied yes;
-        SND_SOC_AMD_ACP6x = setupDenial isDenied yes;
+        SND_SOC_AMD_ACP_COMMON = setupDenial isDenied module;
+        SND_SOC_AMD_ACP6x = setupDenial isDenied module;
         SND_SOC_AMD_ACP_PCI = setupDenial isDenied module;
-        SND_SOC_AMD_MACH = setupDenial isDenied yes;
+        SND_SOC_AMD_MACH = setupDenial isDenied module;
         SND_SOC_AMD_PS = setupDenial isDenied module;
         SND_SOC_AMD_PS_MACH = setupDenial isDenied module;
-        SND_SOC_AMD_RENOIR = setupDenial isDenied yes;
+        SND_SOC_AMD_RENOIR = setupDenial isDenied module;
         SND_SOC_AMD_SOUNDWIRE = setupDenial isDenied module;
         SND_SOC_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
         SND_SOC_AMD_VANGOGH_MACH = setupDenial isDenied yes;
-        SND_SOC_CS35L41_I2C = setupDenial isDenied yes;
-        SND_SOC_CS35L41_SPI = setupDenial isDenied yes;
+        SND_SOC_CS35L41_I2C = setupDenial isDenied module;
+        SND_SOC_CS35L41_SPI = setupDenial isDenied module;
         SND_SOC_MAX98388 = setupDenial isDenied yes;
         SND_SOC_NAU8821 = setupDenial isDenied yes;
         SND_SOC_SOF_AMD_ACP63 = setupDenial isDenied module;
