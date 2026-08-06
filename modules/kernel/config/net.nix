@@ -12,7 +12,7 @@
 
     include = { }: {
       BRIDGE = yes;
-      BRIDGE_NETFILTER = yes;
+      BRIDGE_NETFILTER = module;
       CFG80211 = module;
       DEFAULT_BBR = yes;
       DEFAULT_CUBIC = no;
