@@ -9,6 +9,11 @@
       man.enable = false;
     };
 
+    nixpkgs.flake = {
+      setNixPath = false;
+      setFlakeRegistry = false;
+    };
+
     system.stateVersion = flakelib.lib.config.stateVersion;
     nix = {
       #package = lib.mkDefault (pkgs.lix);

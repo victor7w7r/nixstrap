@@ -40,7 +40,6 @@
           inotify-info
           #nyrna
           #xorg-xwininfo
-          #xone-dongle-firmware
           prismlauncher
           protonup-qt
           vkd3d-proton

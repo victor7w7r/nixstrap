@@ -41,6 +41,7 @@
           { lib, pkgs, ... }:
           {
             networking.hostName = "v7w7r-rc71l";
+            hardware.firmware = with pkgs; lib.mkAfter [ xone-dongle-firmware ];
             nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
 
             boot = {

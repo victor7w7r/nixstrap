@@ -3,6 +3,12 @@
     nixos =
       { pkgs, self', ... }:
       {
+
+        hardware.firmware = with pkgs; [
+          alsa-firmware
+          sof-firmware
+        ];
+
         environment.systemPackages =
           with pkgs;
           with self'.packages;
@@ -10,7 +16,6 @@
             asak
             alsa-plugins
             alsa-utils
-            alsa-firmware
             alsa-ucm-conf
             audio-share
             cliwrap
@@ -21,7 +26,6 @@
             pavucontrol
             pwvucontrol
             psst
-            sof-firmware
             spotdl
             sptlrx
             youtube-tui
