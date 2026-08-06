@@ -22,16 +22,17 @@
         })
       ];
 
-      hardware = lib.optionalAttrs isX86 {
-        enableAllFirmware = lib.mkForce false;
-        enableRedistributableFirmware = lib.mkForce false;
-        firmware = with pkgs; [
-          linux-firmware
-          /*
-            rtl8192su-firmware
-            rtl8761b-firmware
-          */
-        ];
+      hardware = {
+        enableRedistributableFirmware = true;
+        firmware =
+          with pkgs;
+          lib.optionals [
+            linux-firmware
+            /*
+              rtl8192su-firmware
+              rtl8761b-firmware
+            */
+          ];
       };
     };
 }

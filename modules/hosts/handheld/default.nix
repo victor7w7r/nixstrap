@@ -54,7 +54,6 @@
                 "nospectre_v2"
                 "spec_store_bypass_disable=off"
                 "amdgpu.sg_display=0"
-                "amdgpu.gttsize=8192"
                 "amd_iommu=on"
                 "amd_pstate=passive"
                 #"resume=/dev/mapper/swapcrypt"

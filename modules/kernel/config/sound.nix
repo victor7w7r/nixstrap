@@ -364,12 +364,10 @@
           SND_SOC_SOF_ACPI = lib.mkForce no;
           SND_SOC_SOF_ALDERLAKE = no;
           SND_SOC_SOF_APOLLOLAKE = lib.mkForce no;
-          SND_SOC_SOF_COFFEELAKE = lib.mkForce no;
           SND_SOC_SOF_COMETLAKE = lib.mkForce no;
           SND_SOC_SOF_ELKHARTLAKE = lib.mkForce no;
           SND_SOC_SOF_GEMINILAKE = lib.mkForce no;
           SND_SOC_SOF_ICELAKE = lib.mkForce no;
-          SND_SOC_SOF_INTEL_SOUNDWIRE = no;
           SND_SOC_SOF_JASPERLAKE = lib.mkForce no;
           SND_SOC_SOF_MERRIFIELD = lib.mkForce no;
           SND_SOC_SOF_METEORLAKE = no;

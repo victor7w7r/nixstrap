@@ -103,7 +103,6 @@
         };
 
         hardware = {
-          #enableRedistributableFirmware = true;
           firmware = [
             (inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware.overrideAttrs (oldAttrs: {
               postInstall = (oldAttrs.postInstall or "") + ''
