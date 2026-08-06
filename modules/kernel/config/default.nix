@@ -95,7 +95,7 @@
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
         (disks.mmc { })
-        flavour.server
+        (flavour.server { })
         (net.realtek { isDenied = true; })
         {
           AXP20X_POWER = yes;
