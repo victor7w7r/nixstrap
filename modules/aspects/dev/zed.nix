@@ -50,17 +50,6 @@
             ];
 
             userSettings = {
-              assistant = {
-                enabled = true;
-                version = "2";
-                default_open_ai_model = null;
-
-                default_model = {
-                  provider = "zed.dev";
-                  model = "claude-3-5-sonnet-latest";
-                };
-              };
-
               context_servers = {
                 mcp-server-github = {
                   enabled = true;
@@ -90,6 +79,7 @@
               git_panel.dock = "left";
 
               agent = {
+                button = false;
                 dock = "right";
                 sidebar_side = "right";
                 favorite_models = [ ];
@@ -115,7 +105,6 @@
               buffer_font_size = 12;
               show_whitespaces = "all";
 
-              features.edit_prediction_provider = "copilot";
               autosave = "on_focus_change";
               cursor_blink = true;
 
@@ -136,14 +125,9 @@
               };
 
               title_bar.show_sign_in = false;
+              search.button = false;
 
               lsp = {
-                rust-analyzer = {
-                  binary = {
-                    path_lookup = true;
-                  };
-                };
-
                 nixd = {
                   binary = {
                     path = "nixd";

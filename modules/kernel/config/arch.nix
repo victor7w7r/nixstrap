@@ -114,7 +114,7 @@
         I2C_HID = setupDenial isDenied module;
         I2C_HID_ACPI = setupDenial isDenied module;
         I2C_HID_CORE = setupDenial isDenied module;
-        INPUT_FF_MEMLESS = setupDenial isDenied yes;
+        INPUT_FF_MEMLESS = setupDenial isDenied module;
         INPUT_LEDS = setupDenial isDenied module;
         KVM_AMD = setupDenial isDenied module;
         LEDS_CLASS_MULTICOLOR = setupDenial isDenied module;

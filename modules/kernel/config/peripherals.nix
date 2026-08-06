@@ -4,11 +4,11 @@
       BT_RFCOMM = yes;
       I2C_ALGOBIT = yes;
       I2C_CHARDEV = yes;
-      I2C_SMBUS = yes;
+      I2C_SMBUS = module;
       IOMMUFD = yes;
       PCI_REALLOC_ENABLE_AUTO = yes;
       RFKILL = yes;
-      SERIO = yes;
+      SERIO = module;
       USB_ACM = yes;
     };
 

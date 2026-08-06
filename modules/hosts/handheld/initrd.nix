@@ -1,6 +1,10 @@
 {
   den.aspects.handheld.initrd.nixos = {
     boot.initrd = {
+      availableKernelModules = [
+        "snd_hda_scodec_cs35l41_i2c"
+        "snd_soc_cs35l41_i2c"
+      ];
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"

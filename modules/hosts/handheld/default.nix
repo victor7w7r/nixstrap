@@ -47,7 +47,6 @@
             boot = {
               extraModprobeConfig = "options kvm-amd nested=1";
               resumeDevice = "/dev/mapper/swapcrypt";
-              blacklistedKernelModules = [ "snd_hda_intel" ];
               kernelPackages = (kernel.hosts.handheld pkgs false).handheld-kernelPackages;
               kernelParams = [
                 "mitigations=off"
