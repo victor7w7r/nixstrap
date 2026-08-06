@@ -43,6 +43,11 @@
           SND_SOC_INTEL_AVS = module;
           SND_USB_AUDIO = module;
           XFS_FS = yes;
+          DRM_APPLETBDRM = module;
+          T2BCE_CORE = module;
+          T2BCE_VHCI = module;
+          T2BCE_AUDIO = module;
+          APFS_FS = module;
         }
       ];
 

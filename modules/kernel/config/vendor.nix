@@ -8,7 +8,6 @@
         DRM_ACCEL_HABANALABS = no;
         DRM_ACCEL_IVPU = no;
         DRM_ANALOGIX_ANX78XX = no;
-        DRM_APPLETBDRM = no;
         DRM_AST = no;
         DRM_BOCHS = no;
         DRM_CIRRUS_QEMU = no;

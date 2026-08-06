@@ -21,7 +21,7 @@
     |> (generated: {
       pizero-kernelPackages = generated.packages;
       pizero-kernel = generated.kernel;
-      pizero-config = generated.config;
+      pizero-config = builtins.trace generated generated.config;
     });
 
   perSystem =

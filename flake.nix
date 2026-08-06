@@ -549,7 +549,7 @@
       flake = false;
     };
     linux = {
-      url = "github:CachyOS/linux/cachyos-7.1.6-1";
+      url = "github:CachyOS/linux/e698e0fc23e30c56f4b72611c25d56fb5b7d0b8d";
       flake = false;
     };
     linux-config = {
@@ -824,6 +824,10 @@
     };
     t2-audio = {
       url = "github:kekrby/t2-better-audio/e46839a28963e2f7d364020518b9dac98236bcae";
+      flake = false;
+    };
+    t2-patches = {
+      url = "github:t2linux/linux-t2-patches";
       flake = false;
     };
     t2fanrd = {
