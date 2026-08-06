@@ -19,7 +19,7 @@
           #openvpn.package = true;
           croc.enable = true;
           dnsmasq = {
-            enable = true;
+            enable = false;
             settings = {
               interface = [
                 "lo"

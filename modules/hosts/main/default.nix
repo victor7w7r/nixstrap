@@ -68,6 +68,7 @@
               "intel_pstate=passive"
               "intel_iommu=on"
               "pcie_ports=compat"
+              "iommu.passthrough=1"
               "libahci.ignore_sss=1"
               "ahci.mobile_lpm_policy=2"
               "drm.polled=14"
