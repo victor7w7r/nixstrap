@@ -12,8 +12,11 @@
           linux-firmware = lib.optionalAttrs isX86 (
             prev.linux-firmware.overrideAttrs (o: {
               postInstall = ''
-                rm -rf "$out"/lib/firmware/{netronome,qcom,mellanox,mrvl,ath11k,ath10k,libertas,nvidia,liquidio,cxgb4,ti-connectivity,qed}
-                find -L "$out" -type l -delete
+                rm -rf "$out"/lib/firmware/intel/iwlwifi
+                rm -rf "$out"/lib/firmware/{qcom,ath11k,ath10k,ath12k,libertas,nvidia,cxgb4,ti-connectivity}
+                rm -rf "$out"/lib/firmware/{mellanox,mrvl,netronome,dpaa2,qed,bnx2x,liquidio,rtw89,dpaa2,dell,LENOVO}
+                rm -rf "$out"/lib/firmware/{cypress,xe,i}
+                find "$out/lib/firmware" -xtype l -print -delete
               '';
             })
           );
