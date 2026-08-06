@@ -9,4 +9,11 @@ buildGoModule {
     "cmd/monitor"
     "cmd/root"
   ];
+  preBuild = ''export GOCACHE="/var/cache/gocache"'';
+  doCheck = false;
+  ldflags = [
+    "-s"
+    "-w"
+  ];
+  flags = [ "-trimpath" ];
 }
