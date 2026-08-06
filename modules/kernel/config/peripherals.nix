@@ -33,7 +33,6 @@
         GP_PCI1XXXX = no;
         GREYBUS = no;
         HSI = no;
-        LIBNVDIMM = no;
         MCTP = no;
         MEDIA_PCI_SUPPORT = lib.mkForce no;
         MOST = no;

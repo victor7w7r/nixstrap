@@ -74,7 +74,6 @@
         FB_VIA = no;
         FB_VIRTUAL = no;
         FB_VOODOO1 = no;
-        LIBNVDIMM = no;
         SYSFB_SIMPLEFB = lib.mkForce no;
         TINYDRM_HX8357D = no;
         TINYDRM_ILI9163 = no;

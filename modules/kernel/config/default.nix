@@ -27,6 +27,7 @@
         default.common
         arch.apply-x86
         (arch.intel { })
+        (arch.arm { isDenied = true; })
         (arch.rogally { isDenied = true; })
         (disks.not-mmc { })
         (disks.raid { })
@@ -55,6 +56,7 @@
         default.common
         arch.apply-x86
         (arch.not-broadcom { })
+        (arch.arm { isDenied = true; })
         (arch.intel { isDenied = true; })
         (arch.rogally { })
         (flavour.desktop { })
@@ -75,6 +77,7 @@
         default.common
         arch.apply-x86
         (arch.not-broadcom { })
+        (arch.arm { isDenied = true; })
         (arch.intel { })
         (arch.rogally { isDenied = true; })
         (disks.mmc { })
@@ -94,6 +97,7 @@
         default.common
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
+        (arch.arm { })
         (disks.mmc { })
         (flavour.server { })
         (net.realtek { })
@@ -117,6 +121,7 @@
         default.common
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
+        (arch.arm { })
         (disks.mmc { })
         (flavour.desktop { })
         (net.realtek { })

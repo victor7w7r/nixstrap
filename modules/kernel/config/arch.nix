@@ -21,6 +21,15 @@
       X86_64_VERSION = freeform "2";
     };
 
+    arm =
+      with kernel.config.utils;
+      {
+        isDenied ? false,
+      }:
+      {
+        LIBNVDIMM = setupDenial isDenied module;
+      };
+
     x86 = { }: {
       ACPI_BUTTON = yes;
       ACPI_TAD = yes;
