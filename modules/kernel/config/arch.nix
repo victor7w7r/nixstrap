@@ -96,15 +96,15 @@
         ASUS_WIRELESS = setupDenial isDenied yes;
         ASUS_WMI = setupDenial isDenied module;
         BMC150_ACCEL = setupDenial isDenied module;
-        BMI323 = setupDenial isDenied yes;
+        BMI323 = setupDenial isDenied module;
         BMI323_I2C = setupDenial isDenied module;
         BMI323_SPI = setupDenial isDenied module;
         BT_MTK = setupDenial isDenied module;
         BT_MTKSDIO = setupDenial isDenied module;
         CRYPTO_DEV_CCP_DD = setupDenial isDenied yes;
         CRYPTO_DEV_SP_PSP = setupDenial isDenied yes;
-        DRM_AMDGPU = setupDenial isDenied yes;
-        DRM_RADEON = setupDenial isDenied yes;
+        DRM_AMDGPU = setupDenial isDenied module;
+        DRM_RADEON = setupDenial isDenied module;
         EDAC = setupDenial isDenied yes;
         HID_ASUS = setupDenial isDenied module;
         HID_ASUS_ALLY = setupDenial isDenied module;
@@ -115,7 +115,7 @@
         I2C_HID_ACPI = setupDenial isDenied module;
         I2C_HID_CORE = setupDenial isDenied module;
         INPUT_FF_MEMLESS = setupDenial isDenied yes;
-        INPUT_LEDS = setupDenial isDenied yes;
+        INPUT_LEDS = setupDenial isDenied module;
         KVM_AMD = setupDenial isDenied yes;
         LEDS_CLASS_MULTICOLOR = setupDenial isDenied yes;
         MT7921E = setupDenial isDenied module;
@@ -130,7 +130,7 @@
         PINCTRL_AMD = setupDenial isDenied yes;
         SENSORS_ASUS_EC = setupDenial isDenied yes;
         SENSORS_ASUS_ROG_RYUJIN = setupDenial isDenied module;
-        SENSORS_ASUS_WMI = setupDenial isDenied yes;
+        SENSORS_ASUS_WMI = setupDenial isDenied module;
         SENSORS_K10TEMP = setupDenial isDenied module;
         SERIAL_MULTI_INSTANTIATE = setupDenial isDenied yes;
         SERIO_I8042 = setupDenial isDenied yes;
