@@ -151,7 +151,6 @@
         HAVE_INTEL_TXT = setupDenial isDenied yes;
         HW_RANDOM_INTEL = setupDenial isDenied module;
         I2C_I801 = setupDenial isDenied module;
-        I2C_MUX = setupDenial isDenied yes;
         INT340X_THERMAL = setupDenial isDenied module;
         INTEL_HFI_THERMAL = lib.mkForce (setupDenial isDenied yes);
         INTEL_IDLE = lib.mkForce (setupDenial isDenied yes);
