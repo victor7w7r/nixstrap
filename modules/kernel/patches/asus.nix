@@ -20,7 +20,7 @@
         "0001-acpi-proc-idle-skip-dummy-wait"
         "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A"
         "asus-ally-patch-series"
-        "v11-0011-HID-asus-add-support-for-the-asus-wmi-brightness"
       ]
     );
+  #drivers/hid/hid-asus.c
 }
