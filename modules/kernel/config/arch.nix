@@ -155,7 +155,7 @@
         I2C_I801 = setupDenial isDenied module;
         I2C_MUX = setupDenial isDenied yes;
         INT340X_THERMAL = setupDenial isDenied module;
-        INTEL_HFI_THERMAL = setupDenial isDenied module;
+        INTEL_HFI_THERMAL = setupDenial isDenied yes;
         INTEL_IDLE = setupDenial isDenied yes;
         INTEL_IDMA64 = setupDenial isDenied yes;
         INTEL_IOMMU = setupDenial isDenied yes;
