@@ -70,12 +70,11 @@
               "pcie_ports=compat"
               "iommu.passthrough=1"
               "libahci.ignore_sss=1"
+              "swiotlb=noforce"
               "ahci.mobile_lpm_policy=2"
               "drm.polled=14"
-              "i915.fastboot=0"
             ];
             resumeDevice = "/dev/mapper/swapcrypt";
-            extraModulePackages = [ self'.packages.apple-bce ];
             extraModprobeConfig = ''
               options kvm-intel nested=1
               options kvm_intel emulate_invalid_guest_state=0

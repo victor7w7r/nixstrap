@@ -72,10 +72,6 @@
       url = "github:realmazharhussain/appimage-thumbnailer";
       flake = false;
     };
-    apple-bce = {
-      url = "github:deqrocks/apple-bce/7de7b38e610be043b50b8f8253199f583d35a65f";
-      flake = false;
-    };
     armbian = {
       url = "github:armbian/build";
       flake = false;

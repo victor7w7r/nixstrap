@@ -3,7 +3,6 @@
   den,
   inputs,
   withSystem,
-  kernel,
   self,
   ...
 }:
@@ -44,7 +43,6 @@
                 '';
               }
             );
-            main-kernel = (kernel.hosts.main pkgs false).main-kernel;
             crane = crane.lib.call;
           })
         ];

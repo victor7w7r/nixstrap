@@ -6,5 +6,6 @@
     cachyos = kernel.patches.cachyos pkgs;
     armbian = kernel.patches.armbian pkgs;
     tachyon = kernel.patches.tachyon pkgs;
+    t2 = kernel.patches.t2;
   };
 }

@@ -50,6 +50,7 @@
         PWM_DWC = no;
         PWM_PCA9685 = no;
         RAPIDIO = no;
+        STAGING_MEDIA = lib.mkForce no;
         XILINX_VCU = no;
         XILLYBUS = no;
         XILLYUSB = no;
@@ -199,6 +200,19 @@
         SERIAL_SCCNXP = no;
         SERIAL_SPRD = no;
         SERIAL_UARTLITE = no;
+      }
+      #STAGING
+      {
+        ADIS16203 = no;
+        AD7816 = no;
+        ADT7316 = no;
+        ADT7316_SPI = no;
+        ADT7316_I2C = no;
+        AD9832 = no;
+        AD9834 = no;
+        AD5933 = no;
+        FB_SM750 = no;
+        FB_TFT = no;
       }
       #GPIO
       {

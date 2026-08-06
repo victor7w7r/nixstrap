@@ -6,29 +6,16 @@
         supportedFilesystems = lib.mkAfter [ "xfs" ];
         kernelModules = [
           "apple-bce"
-          "_wcc"
+          "brcmfmac_wcc"
           "brcmfmac"
           "btrfs"
           "cryptd"
-          "bcache"
           "encrypted_keys"
           "aesni_intel"
           "dm_crypt"
-          "dm_mod"
-          "uas"
-          "fido2"
-          "usb_storage"
           "ahci"
           "usbhid"
-          "sd_mod"
           "uhci_hcd"
-          "ehci_hcd"
-          "zram"
-          "xhci_pci"
-          # " _virqfd"
-          # "vfio_pci"
-          # "vfio_iommu_type1"
-          # "vfi"
         ];
         systemd.services.setup-storage =
           let

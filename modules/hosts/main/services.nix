@@ -50,11 +50,11 @@
             ExecStart = [
               "${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
               "${pkgs.kmod}/bin/modprobe -r brcmfmac"
-              "${pkgs.kmod}/bin/rmmod -f apple_bce"
+              "${pkgs.kmod}/bin/rmmod -f apple-bce"
             ];
 
             ExecStop = [
-              "${pkgs.kmod}/bin/modprobe apple_bce"
+              "${pkgs.kmod}/bin/modprobe apple-bce"
               "${pkgs.kmod}/bin/modprobe brcmfmac"
               "${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
             ];

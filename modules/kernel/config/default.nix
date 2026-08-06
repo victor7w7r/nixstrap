@@ -35,13 +35,13 @@
         sound.denied
         (sound.rogally { isDenied = true; })
         {
+          APPLE_BCE = module;
           EEPROM_EE1004 = yes;
           HID_WACOM = module;
           SND_HDA_CODEC_HDMI_INTEL = module;
           SND_HDA_INTEL = module;
           SND_SOC_INTEL_AVS = module;
           SND_USB_AUDIO = module;
-          UINPUT = yes;
           XFS_FS = yes;
         }
       ];

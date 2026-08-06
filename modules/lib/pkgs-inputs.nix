@@ -35,11 +35,6 @@
       flake = false;
     };
 
-    apple-bce = {
-      url = "github:deqrocks/apple-bce/7de7b38e610be043b50b8f8253199f583d35a65f";
-      flake = false;
-    };
-
     audio-share = {
       url = "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz";
       flake = false;
