@@ -419,7 +419,6 @@
         SM_DISPCC_MILOS = no;
         SM_GCC_4450 = no;
         SM_GCC_6125 = no;
-        SM_GCC_6350 = no;
         SM_GCC_6375 = no;
         SM_GCC_7150 = no;
         SM_GCC_8150 = no;
