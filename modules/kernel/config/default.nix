@@ -122,12 +122,12 @@
           MFD_AXP20X_I2C = yes;
           MFD_AXP20X_RSB = yes;
           REGULATOR_AXP20X = yes;
+          SPARD_WLAN_SUPPORT = yes;
           SUNXI_RSB = yes;
           UDF_FS = lib.mkForce no;
-          XFS_FS = yes;
-          SPARD_WLAN_SUPPORT = yes;
-          WLAN_UWE5622 = module;
           UNISOC_WIFI_PS = yes;
+          WLAN_UWE5622 = module;
+          XFS_FS = yes;
         }
       ];
 
