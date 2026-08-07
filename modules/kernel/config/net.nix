@@ -6,7 +6,6 @@
         isDenied ? false,
       }:
       {
-        REALTEK_PHY = setupDenial isDenied yes;
         R8169 = setupDenial isDenied yes;
       };
 
