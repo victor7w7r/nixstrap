@@ -6,28 +6,24 @@
       inherit pkgs armCross;
       localVer = "sdm845";
       isArm = true;
+      class = "qcom";
+      dtbMake = ''
+        dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-enchilada.dtb
+        dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-fajita.dtb
+        dtb-\$(CONFIG_ARCH_QCOM) += sdm845-mtp.dtb
+      '';
       patches =
+        with kernel.patches.injector pkgs;
         "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
-        |> (
-          patches:
-          with kernel.patches.injector pkgs;
-          [ "${patches}/../config_fixes.patch" ]
-          ++ (
-            (import patches)
-            |> builtins.filter (
-              item:
-              !builtins.elem item.name [
-                /*
-                  "0001-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-ath10k"
-                  "0017-arm64-dts-qcom-sdm845-xiaomi-beryllium-Add-haptics-s"
-                  "0024-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-fuel-g"
-                  "0042-hack-ASoC-dt-bindings-qcom-q6dsp-add-internal-mi2s-s"
-                */
-              ]
-            )
-            |> map (item: "${patches}/${item.name}.patch")
+        |>
+          (
+            patches:
+            [ "${patches}/../config_fixes.patch" ]
+            ++ ((import patches) |> map (item: "${patches}/${item.name}.patch"))
           )
-        );
+          ++ cachyos.std
+          ++ tachyon.std
+          ++ bunker.std;
       structuredExtraConfig = kernel.config.default.phone;
     })
     |> (generated: {

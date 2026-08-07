@@ -14,7 +14,7 @@
             prev.linux-firmware.overrideAttrs (o: {
               postInstall = ''
                 rm -rf "$out"/lib/firmware/intel/iwlwifi
-                rm -rf "$out"/lib/firmware/{ath11k,ath10k,ath12k,libertas,nvidia,cxgb4,ti-connectivity,cypress,xe}
+                rm -rf "$out"/lib/firmware/{ath11k,ath12k,libertas,nvidia,cxgb4,ti-connectivity,cypress,xe}
                 rm -rf "$out"/lib/firmware/{mellanox,mrvl,netronome,dpaa2,qed,bnx2x,liquidio,rtw89,dpaa2,dell,LENOVO}
                 find "$out/lib/firmware" -xtype l -print -delete
               '';
