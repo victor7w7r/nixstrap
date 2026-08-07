@@ -60,7 +60,6 @@
         CRYPTO_SERPENT_AVX2_X86_64 = no;
         CRYPTO_SERPENT_AVX_X86_64 = no;
         CRYPTO_SERPENT_SSE2_X86_64 = no;
-        CRYPTO_SM3 = no;
         CRYPTO_SM4_AESNI_AVX2_X86_64 = no;
         CRYPTO_SM4_AESNI_AVX_X86_64 = no;
         CRYPTO_STREEBOG = no;
