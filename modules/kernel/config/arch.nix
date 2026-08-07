@@ -159,7 +159,7 @@
         INTEL_IOMMU = setupDenial isDenied yes;
         INTEL_LDMA = setupDenial isDenied yes;
         INTEL_MEI = setupDenial isDenied module;
-        INTEL_PCH_THERMAL = lib.mkForce (setupDenial isDenied yes);
+        INTEL_PCH_THERMAL = setupDenial isDenied module;
         INTEL_PMC_CORE = setupDenial isDenied module;
         INTEL_PMT_DISCOVERY = setupDenial isDenied module;
         INTEL_PMT_TELEMETRY = setupDenial isDenied module;
