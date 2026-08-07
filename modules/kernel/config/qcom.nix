@@ -428,7 +428,6 @@
         SM_GCC_8550 = no;
         SM_GCC_8650 = no;
         SM_GCC_8750 = no;
-        SM_GCC_MILOS = no;
         SM_GPUCC_4450 = no;
         SM_GPUCC_6115 = no;
         SM_GPUCC_6125 = no;
