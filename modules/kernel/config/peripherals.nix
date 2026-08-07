@@ -149,7 +149,7 @@
         DVB_DRXD = no;
         DVB_DRXK = no;
         DVB_DS3000 = no;
-        DVB_DYNAMIC_MINORS = no;
+        DVB_DYNAMIC_MINORS = lib.mkForce no;
         DVB_EC100 = no;
         DVB_HELENE = no;
         DVB_HORUS3A = no;
