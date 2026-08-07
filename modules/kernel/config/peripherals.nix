@@ -44,7 +44,6 @@
         PCI_XGENE = no;
         PCI_XGENE_MSI = no;
         PPKB_POWER_MANAGER = no;
-        RAID_ATTRS = no;
         SENSORS_LIS3_SPI = no;
         UACCE = no;
         VCPU_STALL_DETECTOR = no;
