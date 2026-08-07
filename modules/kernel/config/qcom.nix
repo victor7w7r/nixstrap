@@ -477,7 +477,7 @@
         SND_SOC_ADAU7002 = no;
         SND_SOC_APQ8016_SBC = no;
         SND_SOC_ES8316 = no;
-        SND_SOC_HDA = no;
+        SND_SOC_HDA = lib.mkForce no;
         SND_SOC_LPASS_APQ8016 = no;
         SND_SOC_LPASS_IPQ806X = no;
         SND_SOC_LPASS_SC7180 = no;
