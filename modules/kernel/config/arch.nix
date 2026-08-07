@@ -370,7 +370,7 @@
         VMWARE_VMCI_VSOCKETS = no;
         HYPERV_VSOCKETS = no;
         XEN = lib.mkForce no;
-        XEN_DOM0 = no;
+        XEN_DOM0 = lib.mkForce no;
       };
 
       x86 = {
