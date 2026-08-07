@@ -48,7 +48,7 @@
         MODULE_COMPRESS_ZSTD = yes;
         MODULE_DECOMPRESS = yes;
         NLS_ASCII = yes;
-        NR_CPUS = (lib.mkForce (freeform "8"));
+        NR_CPUS = lib.mkForce (freeform "8");
         PACKET_DIAG = yes;
         REGULATOR_QCOM_REFGEN = yes;
         REMOTEPROC_CDEV = yes;

@@ -9,7 +9,7 @@
       INPUT_UINPUT = no;
       NO_HZ_FULL = lib.mkForce no;
       NO_HZ_IDLE = yes;
-      NR_CPUS = lib.mkForce (freeform "8");
+      NR_CPUS = lib.mkDefault (freeform "8");
       NTSYNC = no;
       PREEMPT = lib.mkForce no;
       PREEMPTION = no;
