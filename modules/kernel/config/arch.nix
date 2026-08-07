@@ -383,7 +383,6 @@
         X86_PLATFORM_DRIVERS_DELL = lib.mkForce no;
         X86_P4_CLOCKMOD = no;
         X86_POWERNOW_K8 = no;
-        X86_REROUTE_FOR_BROKEN_BOOT_IRQS = no;
         X86_SGX = lib.mkForce no;
         X86_SPEEDSTEP_CENTRINO = no;
         X86_VERBOSE_BOOTUP = no;
