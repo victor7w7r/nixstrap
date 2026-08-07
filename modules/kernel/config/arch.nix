@@ -30,7 +30,7 @@
         LIBNVDIMM = setupDenial isDenied module;
         CRYPTO_SM4_GENERIC = setupDenial isDenied module;
         CRYPTO_SM3 = setupDenial isDenied module;
-
+        SERIO_SERPORT = setupDenial isDenied module;
       };
 
     x86 = { }: {

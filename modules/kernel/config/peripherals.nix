@@ -174,7 +174,6 @@
         SERIO_PS2MULT = no;
         SERIO_ARC_PS2 = no;
         SERIO_GPIO_PS2 = no;
-        SERIO_SERPORT = no;
         SERIO_PCIPS2 = no;
         SERIAL_8250_FINTEK = no;
         SERIAL_8250_LPSS = no;
