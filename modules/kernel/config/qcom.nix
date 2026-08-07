@@ -371,7 +371,6 @@
         SAR_GPUCC_2130P = no;
         SA_CAMCC_8775P = no;
         SA_DISPCC_8775P = no;
-        SA_GCC_8775P = no;
         SA_GPUCC_8775P = no;
         SA_VIDEOCC_8775P = no;
         SC_CAMCC_7180 = no;
