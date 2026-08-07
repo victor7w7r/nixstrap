@@ -15,20 +15,29 @@
 
     denied-arm = lib.mkMerge [
       {
+        ARM_MHU_V2 = no;
+        ARM_MHU_V3 = no;
+        ARM_TIMER_SP804 = no;
+        FSL_ERRATUM_A008585 = no;
+        HISILICON_ERRATUM_161010101 = no;
+        MAILBOX_TEST = no;
+        PLATFORM_MHU = no;
+        SUN55I_A523_MCU_CCU = no;
+        SUN55I_A523_R_CCU = no;
         AMD_SBRMI_I2C = no;
         HI6421V600_IRQ = no;
         HISI_HIKEY_USB = no;
         IMX_SCMI_BBM_EXT = no;
         MCHP_LAN966X_PCI = no;
-        MISC_RP1 = no;
-        MOXTET = no;
-        OPEN_DICE = no;
         MDIO_BCM_UNIMAC = no;
         MDIO_CAVIUM = no;
         MDIO_HISI_FEMAC = no;
-        MDIO_OCTEON = no;
         MDIO_IPQ4019 = no;
         MDIO_IPQ8064 = no;
+        MDIO_OCTEON = no;
+        MISC_RP1 = no;
+        MOXTET = no;
+        OPEN_DICE = no;
         PCIE_CADENCE = no;
         PCIE_CADENCE_EP = no;
         PCIE_CADENCE_HOST = no;
@@ -54,6 +63,7 @@
         UACCE = no;
         VCPU_STALL_DETECTOR = no;
         VEXPRESS_CONFIG = no;
+        SUN55I_A523_CCU = no;
       }
       {
         HW_RANDOM_CCTRNG = no;
@@ -66,7 +76,16 @@
         SERIAL_LITEUART = no;
       }
       {
-
+        COMMON_CLK_SI570 = no;
+        COMMON_CLK_CDCE925 = no;
+        COMMON_CLK_AXI_CLKGEN = no;
+        COMMON_CLK_XGENE = no;
+        COMMON_CLK_RS9_PCIE = no;
+        COMMON_CLK_SI521XX = no;
+        COMMON_CLK_VC3 = no;
+        COMMON_CLK_VC5 = no;
+        COMMON_CLK_VC7 = no;
+        COMMON_CLK_XLNX_CLKWZRD = no;
       }
       {
         GPIO_ADNP = no;
@@ -114,6 +133,28 @@
         SPI_SUN4I = no;
         SPI_THUNDERX = no;
         SPI_ZYNQMP_GQSPI = no;
+      }
+      {
+        ARM_GIC_V5 = no;
+        PHY_CADENCE_DPHY = no;
+        PHY_CADENCE_DPHY_RX = no;
+        PHY_CADENCE_SALVO = no;
+        PHY_CADENCE_SIERRA = no;
+        PHY_CADENCE_TORRENT = no;
+        PHY_MAPPHONE_MDM6600 = no;
+        PHY_NXP_PTN3222 = no;
+        PHY_OCELOT_SERDES = no;
+        PHY_QCOM_USB_HSIC = no;
+        PHY_SAMSUNG_USB2 = no;
+        PHY_TUSB1210 = no;
+        PWM_ARGON_FAN_HAT = no;
+        PWM_ATMEL_TCB = no;
+        PWM_FSL_FTM = no;
+        PWM_XILINX = no;
+        RESET_GPIO = no;
+        RESET_TI_SYSCON = no;
+        RESET_TI_TPS380X = no;
+        XILINX_INTC = no;
       }
       {
         CXD2880_SPI_DRV = no;
