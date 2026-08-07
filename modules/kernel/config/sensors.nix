@@ -1,7 +1,115 @@
 { lib, ... }: {
-  kernel.config.sensors.denied =
-    with lib.kernel;
-    lib.mkMerge [
+  kernel.config.sensors = with lib.kernel; {
+
+    denied-arm = lib.mkMerge [
+      {
+        BATTERY_ACT8945A = no;
+        BATTERY_CPCAP = no;
+        BATTERY_QCOM_BATTMGR = no;
+        CHARGER_PF1550 = no;
+        CHARGER_ISP1704 = no;
+        CHARGER_DETECTOR_MAX14656 = no;
+        CHARGER_MAX77650 = no;
+        CHARGER_MAX77759 = no;
+        CHARGER_RK817 = no;
+        CHARGER_TPS65217 = no;
+        CHARGER_UCS1002 = no;
+        CHARGER_BD71828 = no;
+        RN5T618_POWER = no;
+        SENSORS_OCC_P9_SBE = no;
+        SENSORS_OCC = no;
+      }
+      {
+        MFD_ACT8945A = no;
+        MFD_ADP5585 = no;
+        MFD_AS3722 = no;
+        MFD_ATMEL_FLEXCOM = no;
+        MFD_ATMEL_HLCDC = no;
+        MFD_CPCAP = no;
+        MFD_MAX77620 = no;
+        MFD_MAX77650 = no;
+        MFD_MAX77686 = no;
+        MFD_MAX77714 = no;
+        MFD_MAX77759 = no;
+        MFD_NTXEC = no;
+        MFD_RN5T618 = no;
+        MFD_ROHM_BD71828 = no;
+        MFD_ROHM_BD718XX = no;
+        MFD_ROHM_BD957XMUF = no;
+        MFD_ROHM_BD96801 = no;
+        MFD_RSMU_I2C = no;
+        MFD_RSMU_SPI = no;
+        MFD_SEC_CORE = no;
+        MFD_SEC_I2C = no;
+        MFD_STMFX = no;
+        MFD_STMPE = no;
+        MFD_STPMIC1 = no;
+        MFD_SUN4I_GPADC = no;
+        MFD_TI_LP87565 = no;
+        MFD_TPS65217 = no;
+        MFD_TPS65218 = no;
+        MFD_TPS65219 = no;
+        MFD_WM8994 = no;
+        STMPE_I2C = no;
+        STMPE_SPI = no;
+      }
+      {
+        REGULATOR_USERSPACE_CONSUMER_OF = no;
+        REGULATOR_ACT8945A = no;
+        REGULATOR_AS3722 = no;
+        REGULATOR_BD71815 = no;
+        REGULATOR_BD71828 = no;
+        REGULATOR_BD718XX = no;
+        REGULATOR_BD957XMUF = no;
+        REGULATOR_BD96801 = no;
+        REGULATOR_CPCAP = no;
+        REGULATOR_DA9121 = no;
+        REGULATOR_FAN53880 = no;
+        REGULATOR_HI6421 = no;
+        REGULATOR_HI6421V530 = no;
+        REGULATOR_HI6421V600 = no;
+        REGULATOR_LP87565 = no;
+        REGULATOR_MAX5970 = no;
+        REGULATOR_MAX77620 = no;
+        REGULATOR_MAX77650 = no;
+        REGULATOR_MAX77675 = no;
+        REGULATOR_MAX8973 = no;
+        REGULATOR_MAX77686 = no;
+        REGULATOR_MAX77802 = no;
+        REGULATOR_MCP16502 = no;
+        REGULATOR_MP5416 = no;
+        REGULATOR_MP886X = no;
+        REGULATOR_MPQ7920 = no;
+        REGULATOR_PF530X = no;
+        REGULATOR_PF8X00 = no;
+        REGULATOR_PFUZE100 = no;
+        REGULATOR_PF1550 = no;
+        REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY = no;
+        REGULATOR_RASPBERRYPI_TOUCHSCREEN_V2 = no;
+        REGULATOR_RN5T618 = no;
+        REGULATOR_ROHM = no;
+        REGULATOR_RT5133 = no;
+        REGULATOR_S2DOS05 = no;
+        REGULATOR_S2MPA01 = no;
+        REGULATOR_S2MPS11 = no;
+        REGULATOR_S5M8767 = no;
+        REGULATOR_STPMIC1 = no;
+        REGULATOR_TPS6286X = no;
+        REGULATOR_TPS6287X = no;
+        REGULATOR_TPS65217 = no;
+        REGULATOR_TPS65218 = no;
+        REGULATOR_TPS65219 = no;
+        REGULATOR_VCTRL = no;
+        REGULATOR_WM8994 = no;
+        REGULATOR_TP65185X = no;
+        CEC_CH7322 = no;
+        CEC_NXP_TDA9950 = no;
+        USB_EXTRON_DA_HD_4K_PLUS_CEC = no;
+        USB_RAINSHADOW_CEC = no;
+      }
+    ];
+
+    denied = lib.mkMerge [
       #ENERGY
       {
         BATTERY_BQ27XXX = no;
@@ -926,4 +1034,5 @@
         ZPA2326 = no;
       }
     ];
+  };
 }
