@@ -1,10 +1,5 @@
 { kernel, ... }:
 {
-  flake-file.inputs.uwe5622 = {
-    url = "github:Ran-Thegoth/uwe5622";
-    flake = false;
-  };
-
   kernel.hosts.pizero =
     pkgs: armCross:
     (kernel.lib.linux {

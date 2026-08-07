@@ -826,10 +826,6 @@
       url = "github:kekrby/t2-better-audio/e46839a28963e2f7d364020518b9dac98236bcae";
       flake = false;
     };
-    t2-patches = {
-      url = "github:t2linux/linux-t2-patches";
-      flake = false;
-    };
     t2fanrd = {
       url = "github:GnomedDev/T2FanRD/85027878e4d7fa0170fea1213d6f8dd972d60e83";
       flake = false;
@@ -907,7 +903,7 @@
       flake = false;
     };
     uwe5622 = {
-      url = "github:Ran-Thegoth/uwe5622";
+      url = "github:armbian/uwe5622";
       flake = false;
     };
     vanilla-mobile-nixos.url = "github:vanilla-mobile-nixos/vanilla-mobile-nixos";

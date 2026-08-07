@@ -91,7 +91,6 @@
       }
       {
         RTC_DRV_AC100 = no;
-        RTC_DRV_HYM8563 = no;
         RTC_DRV_NCT3018Y = no;
         RTC_DRV_RK808 = no;
         RTC_DRV_ISL12026 = no;
@@ -490,7 +489,6 @@
         SENSORS_POWERZ = no;
         SENSORS_POWR1220 = no;
         SENSORS_PT5161L = no;
-        SENSORS_PWM_FAN = no;
         SENSORS_RM3100_I2C = no;
         SENSORS_RM3100_SPI = no;
         SENSORS_SBTSI = no;

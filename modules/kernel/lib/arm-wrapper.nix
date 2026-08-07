@@ -1,5 +1,10 @@
 { inputs, lib, ... }: {
 
+  flake-file.inputs.uwe5622 = {
+    url = "github:armbian/uwe5622";
+    flake = false;
+  };
+
   kernel.lib.arm-wrapper =
     pkgs: class: dtbMake:
     pkgs.stdenvNoCC.mkDerivation {
@@ -17,6 +22,14 @@
           cat <<EOF > "./arch/arm64/boot/dts/${class}/Makefile"
               ${dtbMake}
           EOF
+        ''}
+
+        ${lib.optionalString (class == "allwinner") ''
+          mkdir -p "./drivers/net/wireless/uwe5622"
+          cp -R "${inputs.uwe5622}/cache/sources/uwe5622/''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} ./drivers/net/wireless/uwe5622"
+          echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> "./drivers/net/wireless/Makefile"
+          sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' \
+            "./drivers/net/wireless/Kconfig"
         ''}
       '';
     };

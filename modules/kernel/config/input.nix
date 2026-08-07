@@ -14,7 +14,6 @@
       {
         INPUT_AXP20X_PEK = no;
         INPUT_PF1550_ONKEY = no;
-        INPUT_RK805_PWRKEY = no;
         KEYBOARD_BCM = no;
         KEYBOARD_CAP11XX = no;
         KEYBOARD_OMAP4 = no;

@@ -211,18 +211,30 @@
       ARCH_SUNXI = yes;
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = no;
+      INPUT_RK805_PWRKEY = no;
+      RTC_DRV_HYM8563 = no;
+      SND_SOC_ES8316 = no;
+      SENSORS_PWM_FAN = no;
     };
 
     qcom = { }: {
       ARCH_SUNXI = no;
       ARCH_QCOM = yes;
       ARCH_ROCKCHIP = no;
+      INPUT_RK805_PWRKEY = no;
+      RTC_DRV_HYM8563 = no;
+      SND_SOC_ES8316 = no;
+      SENSORS_PWM_FAN = no;
     };
 
     rockchip = { }: {
       ARCH_SUNXI = no;
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = yes;
+      INPUT_RK805_PWRKEY = yes;
+      RTC_DRV_HYM8563 = yes;
+      SND_SOC_ES8316 = yes;
+      SENSORS_PWM_FAN = yes;
     };
 
     denied = {

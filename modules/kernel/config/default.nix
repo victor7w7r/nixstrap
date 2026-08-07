@@ -166,6 +166,7 @@
         (sound.rogally { isDenied = true; })
         {
           CDROM = no;
+          HIBERNATION = no;
           MD = lib.mkForce no;
           UDF_FS = lib.mkForce no;
           USB_EHCI_TEGRA = no;
