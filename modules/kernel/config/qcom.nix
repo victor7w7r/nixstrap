@@ -33,7 +33,7 @@
         RPMSG_QCOM_GLINK_SMEM = setupDenial isDenied yes;
         SCHED_CLUSTER = setupDenial isDenied yes;
         SLIMBUS = setupDenial isDenied yes;
-        TCP_CONG_BIC = setupDenial isDenied module;
+        TCP_CONG_BIC = lib.mkForce (setupDenial isDenied module);
         TCP_CONG_HTCP = setupDenial isDenied module;
         TCP_CONG_WESTWOOD = setupDenial isDenied yes;
       }
