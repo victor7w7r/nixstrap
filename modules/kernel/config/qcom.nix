@@ -360,7 +360,6 @@
         QCS_VIDEOCC_615 = no;
         QDU_ECPRICC_1000 = no;
         QDU_GCC_1000 = no;
-        R8169 = no;
         REALTEK_PHY = no;
         ROCKCHIP_ANALOGIX_DP = no;
         ROCKCHIP_CDN_DP = no;
