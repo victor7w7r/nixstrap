@@ -364,7 +364,7 @@
         ROCKCHIP_ANALOGIX_DP = no;
         ROCKCHIP_CDN_DP = no;
         ROCKCHIP_DW_DP = no;
-        ROCKCHIP_DW_HDMI = no;
+        ROCKCHIP_DW_HDMI = lib.mkForce no;
         ROCKCHIP_DW_HDMI_QP = no;
         ROCKCHIP_DW_MIPI_DSI = no;
         ROCKCHIP_DW_MIPI_DSI2 = no;
