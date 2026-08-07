@@ -156,7 +156,6 @@
         CLK_RV1126B = no;
         CLK_X1E80100_CAMCC = no;
         CLK_X1E80100_DISPCC = no;
-        CLK_X1E80100_GCC = no;
         CLK_X1E80100_GPUCC = no;
         CLK_X1E80100_TCSRCC = no;
         CLK_X1P42100_GPUCC = no;
