@@ -103,6 +103,7 @@
         (net.realtek { })
         peripherals.denied-arm
         sensors.denied-arm
+        vendor.denied-arm
         {
           AXP20X_POWER = yes;
           CDROM = no;
@@ -134,6 +135,7 @@
         (sound.rogally { isDenied = true; })
         peripherals.denied-arm
         sensors.denied-arm
+        vendor.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;
@@ -159,6 +161,7 @@
         (sound.rogally { isDenied = true; })
         peripherals.denied-arm
         sensors.denied-arm
+        vendor.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;
