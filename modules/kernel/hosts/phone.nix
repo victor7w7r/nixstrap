@@ -15,7 +15,8 @@
         with kernel.patches.injector pkgs;
         cachyos.std
         ++ tachyon.std
-        ++ bunker.std (
+        ++ bunker.std
+        ++ (
           "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
           |> (
             patches:
