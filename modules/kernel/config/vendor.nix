@@ -1,7 +1,11 @@
 { lib, ... }: {
-  kernel.config.vendor.denied =
-    with lib.kernel;
-    lib.mkMerge [
+  kernel.config.vendor = with lib.kernel; {
+    arm-denied = lib.mkMerge [
+      {
+
+      }
+    ];
+    denied = lib.mkMerge [
       #GRAPHICS
       {
         AGP = lib.mkForce no;
@@ -367,4 +371,5 @@
         YT2_1380 = no;
       }
     ];
+  };
 }

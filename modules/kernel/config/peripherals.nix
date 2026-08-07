@@ -170,7 +170,6 @@
         DVB_LNBP22 = no;
         DVB_M88DS3103 = no;
         DVB_M88RS2000 = no;
-        DVB_MAX_ADAPTERS = no;
         DVB_MB86A16 = no;
         DVB_MB86A20S = no;
         DVB_MN88443X = no;
