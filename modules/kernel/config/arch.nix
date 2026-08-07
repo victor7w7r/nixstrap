@@ -61,6 +61,7 @@
       USB_MUSB_HDRC = no;
       VFIO = module;
       X86_PKG_TEMP_THERMAL = yes;
+      X86_REROUTE_FOR_BROKEN_BOOT_IRQS = yes;
       XZ_DEC_ARM = no;
       XZ_DEC_ARM64 = no;
       XZ_DEC_ARMTHUMB = no;
@@ -173,8 +174,8 @@
         INTEL_WMI_THUNDERBOLT = setupDenial isDenied module;
         KVM_INTEL = setupDenial isDenied module;
         MDIO_BUS = setupDenial isDenied yes;
-        MFD_INTEL_LPSS = setupDenial isDenied yes;
-        MFD_INTEL_LPSS_ACPI = setupDenial isDenied yes;
+        MFD_INTEL_LPSS = setupDenial isDenied module;
+        MFD_INTEL_LPSS_ACPI = setupDenial isDenied module;
         MFD_INTEL_LPSS_PCI = setupDenial isDenied module;
         MTD_SPI_NOR = setupDenial isDenied module;
         PERF_EVENTS_INTEL_CSTATE = setupDenial isDenied module;
