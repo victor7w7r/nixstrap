@@ -101,7 +101,7 @@
         QFMT_V2 = yes;
         SCSI_SCAN_ASYNC = yes;
         SCSI_UFS_QCOM = yes;
-        TYPEC = yes;
+        TYPEC = lib.mkForce yes;
         USB_DWC3_ULPI = yes;
       })
       #MEDIA
