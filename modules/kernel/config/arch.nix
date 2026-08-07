@@ -367,7 +367,7 @@
         FUJITSU_ERRATUM_010001 = no;
         HISILICON_ERRATUM_161600802 = no;
         HISILICON_ERRATUM_162100801 = no;
-        HYPERV = no;
+        HYPERV = lib.mkForce no;
         HYPERV_VMBUS = no;
         HYPERV_VSOCKETS = no;
         NVIDIA_CARMEL_CNP_ERRATUM = no;
