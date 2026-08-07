@@ -23,6 +23,12 @@
         MISC_RP1 = no;
         MOXTET = no;
         OPEN_DICE = no;
+        MDIO_BCM_UNIMAC = no;
+        MDIO_CAVIUM = no;
+        MDIO_HISI_FEMAC = no;
+        MDIO_OCTEON = no;
+        MDIO_IPQ4019 = no;
+        MDIO_IPQ8064 = no;
         PCIE_CADENCE = no;
         PCIE_CADENCE_EP = no;
         PCIE_CADENCE_HOST = no;

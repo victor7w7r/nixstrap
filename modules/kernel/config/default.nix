@@ -99,6 +99,7 @@
         arch.denied.arm
         (disks.mmc { })
         (flavour.server { })
+        input.denied-arm
         (net.realtek { })
         peripherals.denied-arm
         {
@@ -126,6 +127,7 @@
         (arch.rockchip { })
         arch.denied.arm
         (flavour.desktop { })
+        input.denied-arm
         (net.realtek { })
         sound.denied
         (sound.rogally { isDenied = true; })
@@ -148,6 +150,7 @@
         (disks.mmc { })
         (arch.qcom { })
         arch.denied.arm
+        input.denied-arm
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
