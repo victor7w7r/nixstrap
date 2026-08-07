@@ -348,7 +348,6 @@
         QCS_CAMCC_615 = no;
         QCS_DISPCC_615 = no;
         QCS_GCC_404 = no;
-        QCS_GCC_615 = no;
         QCS_GCC_8300 = no;
         QCS_GPUCC_615 = no;
         QCS_Q6SSTOP_404 = no;
