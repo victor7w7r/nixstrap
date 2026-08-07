@@ -13,17 +13,26 @@
       '';
       patches =
         with kernel.patches.injector pkgs;
-        (
+        cachyos.std
+        ++ tachyon.std
+        ++ bunker.std (
           "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
           |> (
             patches:
             [ "${patches}/../config_fixes.patch" ]
-            ++ ((import patches) |> map (item: "${patches}/${item.name}.patch"))
+            ++ (
+              (import patches)
+              |> builtins.filter (
+                item:
+                !builtins.elem item.name [
+                  "0107-arm64-dts-qcom-Introduce-support-for-Xiaomi-Mi-Mix-3"
+                ]
+              )
+              |> map (item: "${patches}/${item.name}.patch")
+            )
           )
-        )
-        ++ cachyos.std
-        ++ tachyon.std
-        ++ bunker.std;
+        );
+
       structuredExtraConfig = kernel.config.default.phone;
     })
     |> (generated: {
