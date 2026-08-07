@@ -28,6 +28,7 @@
       }:
       {
         LIBNVDIMM = setupDenial isDenied module;
+        CRYPTO_SM4_GENERIC = setupDenial isDenied module;
       };
 
     x86 = { }: {

@@ -63,7 +63,6 @@
         CRYPTO_SM3 = no;
         CRYPTO_SM4_AESNI_AVX2_X86_64 = no;
         CRYPTO_SM4_AESNI_AVX_X86_64 = no;
-        CRYPTO_SM4_GENERIC = no;
         CRYPTO_STREEBOG = no;
         CRYPTO_TWOFISH = no;
         CRYPTO_TWOFISH_AVX_X86_64 = no;
