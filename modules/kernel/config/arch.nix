@@ -342,7 +342,7 @@
         ARM64_HAFT = no;
         ARM64_LSUI = no;
         ARM64_MTE = no;
-        ARM64_PMEM = no;
+        ARM64_PMEM = lib.mkForce no;
         ARM64_POE = no;
         ARM64_SME = no;
         ARM64_WORKAROUND_REPEAT_TLBI = no;
