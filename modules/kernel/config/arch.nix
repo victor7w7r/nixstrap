@@ -253,6 +253,7 @@
           ARM64_WORKAROUND_SPECULATIVE_AT = yes;
           ROCKCHIP_ERRATUM_3588001 = yes;
         */
+        ACPI = no;
         AMPERE_ERRATUM_AC03_CPU_38 = no;
         AMPERE_ERRATUM_AC04_CPU_23 = no;
         ARCH_ACTIONS = no;
@@ -303,6 +304,8 @@
         ARCH_VISCONTI = no;
         ARCH_XGENE = no;
         ARCH_ZYNQMP = no;
+        ARM64_AS_HAS_MTE = no;
+        ARM64_EPAN = no;
         ARM64_ERRATUM_1024718 = no;
         ARM64_ERRATUM_1165522 = no;
         ARM64_ERRATUM_1319367 = no;
@@ -335,11 +338,20 @@
         ARM64_ERRATUM_827319 = no;
         ARM64_ERRATUM_832075 = no;
         ARM64_ERRATUM_845719 = no;
+        ARM64_GCS = no;
+        ARM64_HAFT = no;
+        ARM64_LSUI = no;
+        ARM64_MTE = no;
+        ARM64_PMEM = no;
+        ARM64_POE = no;
+        ARM64_SME = no;
         ARM64_WORKAROUND_REPEAT_TLBI = no;
         ARM64_WORKAROUND_SPECULATIVE_UNPRIV_LOAD = no;
         ARM64_WORKAROUND_TRBE_OVERWRITE_FILL_MODE = no;
         ARM64_WORKAROUND_TRBE_WRITE_OUT_OF_RANGE = no;
         ARM64_WORKAROUND_TSB_FLUSH_FAILURE = no;
+        AS_HAS_LSUI = no;
+        AS_HAS_MOPS = no;
         CAVIUM_ERRATUM_22375 = no;
         CAVIUM_ERRATUM_23154 = no;
         CAVIUM_ERRATUM_27456 = no;
@@ -355,6 +367,10 @@
         QCOM_QDF2400_ERRATUM_0065 = no;
         ROCKCHIP_ERRATUM_3568002 = no;
         SOCIONEXT_SYNQUACER_PREITS = no;
+        VMWARE_VMCI_VSOCKETS = no;
+        HYPERV_VSOCKETS = no;
+        XEN = no;
+        XEN_DOM0 = no;
       };
 
       x86 = {
