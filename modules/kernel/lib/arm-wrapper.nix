@@ -29,8 +29,8 @@
           cp -R "${inputs.uwe5622}''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} "./drivers/net/wireless/uwe5622"
           echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> ./drivers/net/wireless/Makefile
           sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' "./drivers/net/wireless/Kconfig"
-          ls drivers/net/wireless/Makefile
-          ls drivers/net/wireless/uwe5622/Makefile
+          cat drivers/net/wireless/Makefile
+          cat drivers/net/wireless/uwe5622/Makefile
         ''}
       '';
     };
