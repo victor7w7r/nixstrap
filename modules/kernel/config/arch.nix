@@ -396,13 +396,13 @@
         ROCKCHIP_ERRATUM_3568002 = no;
         SNET_VDPA = no;
         SOCIONEXT_SYNQUACER_PREITS = no;
-        STM = no;
+      /*  STM = no;
         STM_DUMMY = no;
         STM_PROTO_BASIC = no;
         STM_PROTO_SYS_T = no;
         STM_SOURCE_CONSOLE = no;
         STM_SOURCE_FTRACE = no;
-        STM_SOURCE_HEARTBEAT = no;
+        STM_SOURCE_HEARTBEAT = no;*/
         VBOXSF_FS = no;
         VDPA = no;
         VDPA_USER = no;
