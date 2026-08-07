@@ -12,20 +12,13 @@
 
     denied-arm = lib.mkMerge [
       {
-        KEYBOARD_ADP5585 = no;
-        KEYBOARD_STMPE = no;
         KEYBOARD_SUN4I_LRADC = no;
         KEYBOARD_OMAP4 = no;
         KEYBOARD_CAP11XX = no;
         KEYBOARD_BCM = no;
-        INPUT_PF1550_ONKEY = no;
-        INPUT_MAX77650_ONKEY = no;
-        INPUT_CPCAP_PWRBUTTON = no;
-        INPUT_TPS65218_PWRBUTTON = no;
-        INPUT_TPS65219_PWRBUTTON = no;
         INPUT_AXP20X_PEK = no;
+        INPUT_PF1550_ONKEY = no;
         INPUT_RK805_PWRKEY = no;
-        INPUT_STPMIC1_ONKEY = no;
         TOUCHSCREEN_ADS7846 = no;
         TOUCHSCREEN_AD7877 = no;
         TOUCHSCREEN_AD7879 = no;

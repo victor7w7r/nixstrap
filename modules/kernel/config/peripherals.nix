@@ -38,26 +38,13 @@
         MISC_RP1 = no;
         MOXTET = no;
         OPEN_DICE = no;
-        PCIE_CADENCE = no;
-        PCIE_CADENCE_EP = no;
-        PCIE_CADENCE_HOST = no;
-        PCIE_CADENCE_PLAT = no;
-        PCIE_CADENCE_PLAT_EP = no;
         PCIE_CADENCE_PLAT_HOST = no;
         PCIE_KIRIN = no;
         PCIE_MICROCHIP_HOST = no;
-        PCIE_PLDA_HOST = no;
-        PCIE_SUN55I_NONE = no;
         PCIE_XILINX = no;
         PCI_ENDPOINT = no;
-        PCI_ENDPOINT_CONFIGFS = no;
-        PCI_EPF_MHI = no;
-        PCI_EPF_NTB = no;
-        PCI_EPF_TEST = no;
         PCI_HISI = no;
-        PCI_HYPERV_INTERFACE = no;
         PCI_XGENE = no;
-        PCI_XGENE_MSI = no;
         PPKB_POWER_MANAGER = no;
         SENSORS_LIS3_SPI = no;
         UACCE = no;
@@ -89,34 +76,21 @@
       }
       {
         GPIO_ADNP = no;
-        GPIO_ADP5585 = no;
-        GPIO_BD71828 = no;
-        GPIO_BD72720 = no;
         GPIO_CADENCE = no;
         GPIO_GRGPIO = no;
         GPIO_GW_PLD = no;
         GPIO_HISI = no;
         GPIO_HLWD = no;
         GPIO_LOGICVC = no;
-        GPIO_LP87565 = no;
-        GPIO_MAX77620 = no;
-        GPIO_MAX77650 = no;
-        GPIO_MAX77759 = no;
         GPIO_SIFIVE = no;
-        GPIO_STMPE = no;
-        GPIO_TPS65218 = no;
-        GPIO_TPS65219 = no;
-        GPIO_WM8994 = no;
         GPIO_XGENE = no;
         I2C_ARB_GPIO_CHALLENGE = no;
         I2C_CADENCE = no;
-        I2C_FSI = no;
         I2C_HISI = no;
         I2C_MV64XXX = no;
         I2C_NOMADIK = no;
         I2C_THUNDERX = no;
         PINCTRL_AW9523 = no;
-        PINCTRL_MAX77620 = no;
         PINCTRL_MICROCHIP_SGPIO = no;
         PINCTRL_OCELOT = no;
         PINCTRL_STMFX = no;
@@ -135,7 +109,6 @@
         SPI_ZYNQMP_GQSPI = no;
       }
       {
-        ARM_GIC_V5 = no;
         PHY_CADENCE_DPHY = no;
         PHY_CADENCE_DPHY_RX = no;
         PHY_CADENCE_SALVO = no;
@@ -158,18 +131,14 @@
       }
       {
         CXD2880_SPI_DRV = no;
-        CYPRESS_FIRMWARE = no;
         DVB_A8293 = no;
         DVB_AF9013 = no;
         DVB_AF9033 = no;
         DVB_AS102 = no;
-        DVB_AS102_FE = no;
         DVB_ASCOT2E = no;
         DVB_ATBM8830 = no;
-        DVB_AU8522 = no;
         DVB_AU8522_DTV = no;
         DVB_AU8522_V4L = no;
-        DVB_B2C2_FLEXCOP = no;
         DVB_B2C2_FLEXCOP_USB = no;
         DVB_BCM3510 = no;
         DVB_CX22700 = no;
@@ -274,19 +243,7 @@
         DVB_TUNER_DIB0070 = no;
         DVB_TUNER_DIB0090 = no;
         DVB_TUNER_ITD1000 = no;
-        DVB_USB_AF9015 = no;
-        DVB_USB_AF9035 = no;
-        DVB_USB_ANYSEE = no;
-        DVB_USB_AU6610 = no;
-        DVB_USB_AZ6007 = no;
-        DVB_USB_CE6230 = no;
-        DVB_USB_DVBSKY = no;
-        DVB_USB_EC168 = no;
-        DVB_USB_GL861 = no;
-        DVB_USB_MXL111SF = no;
-        DVB_USB_RTL28XXU = no;
         DVB_USB_V2 = no;
-        DVB_USB_ZD1301 = no;
         DVB_VES1820 = no;
         DVB_VES1X93 = no;
         DVB_ZD1301_DEMOD = no;
@@ -489,7 +446,6 @@
         COMMON_CLK_SI5341 = no;
         COMMON_CLK_SI5351 = no;
         COMMON_CLK_SI544 = no;
-        COMMON_CLK_TPS68470 = no;
         LMK04832 = no;
         TELCLOCK = no;
       }
@@ -621,13 +577,9 @@
         GPIO_QIXIS_FPGA = no;
         GPIO_BT8XX = no;
         GPIO_VIRTUSER = no;
-        GPIO_ELKHARTLAKE = no;
         GPIO_EXAR = no;
-        GPIO_F7188X = no;
         GPIO_FXL6408 = no;
         GPIO_GENERIC_PLATFORM = no;
-        GPIO_GRANITERAPIDS = no;
-        GPIO_IT87 = no;
         GPIO_LATCH = no;
         GPIO_MAX3191X = no;
         GPIO_MAX7300 = no;

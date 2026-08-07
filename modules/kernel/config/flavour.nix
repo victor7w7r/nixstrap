@@ -1,6 +1,7 @@
 { lib, ... }: {
   kernel.config.flavour = with lib.kernel; {
     server = { }: {
+      APPLE_BCE = no;
       HZ = freeform "250";
       HZ_1000 = no;
       HZ_250 = yes;

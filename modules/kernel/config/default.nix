@@ -84,6 +84,7 @@
         {
           CDROM = no;
           DW_DMAC = yes;
+          STAGING = lib.mkForce no;
           UDF_FS = lib.mkForce no;
           XFS_FS = yes;
         }

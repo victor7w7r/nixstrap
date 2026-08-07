@@ -4,16 +4,12 @@
       {
         DRM_ANALOGIX_ANX6345 = no;
         DRM_ANALOGIX_ANX7625 = no;
-        DRM_ANALOGIX_DP = no;
-        DRM_AUX_HPD_BRIDGE = no;
         DRM_CDNS_DSI = no;
-        DRM_CDNS_DSI_J721E = no;
         DRM_CDNS_MHDP8546 = no;
         DRM_CHIPONE_ICN6211 = no;
         DRM_CHRONTEL_CH7033 = no;
         DRM_HISI_KIRIN = no;
         DRM_I2C_ADV7511 = no;
-        DRM_I2C_ADV7511_CEC = no;
         DRM_ITE_IT6263 = no;
         DRM_ITE_IT6505 = no;
         DRM_ITE_IT66121 = no;
@@ -49,7 +45,6 @@
         DRM_PANEL_HYDIS_HV101HD1 = no;
         DRM_PANEL_ILITEK_IL9322 = no;
         DRM_PANEL_ILITEK_ILI9805 = no;
-        DRM_PANEL_ILITEK_ILI9806E_CORE = no;
         DRM_PANEL_ILITEK_ILI9806E_DSI = no;
         DRM_PANEL_ILITEK_ILI9806E_SPI = no;
         DRM_PANEL_ILITEK_ILI9881C = no;
@@ -113,8 +108,6 @@
         DRM_PANEL_SAMSUNG_S6E3HA8 = no;
         DRM_PANEL_SAMSUNG_S6E63J0X03 = no;
         DRM_PANEL_SAMSUNG_S6E63M0 = no;
-        DRM_PANEL_SAMSUNG_S6E63M0_DSI = no;
-        DRM_PANEL_SAMSUNG_S6E63M0_SPI = no;
         DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24 = no;
         DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01 = no;
         DRM_PANEL_SAMSUNG_S6E8AA0 = no;
@@ -181,8 +174,6 @@
       #GRAPHICS
       {
         AGP = lib.mkForce no;
-        DRM_ACCEL_HABANALABS = no;
-        DRM_ACCEL_IVPU = no;
         DRM_ANALOGIX_ANX78XX = no;
         DRM_AST = no;
         DRM_BOCHS = no;
@@ -209,8 +200,6 @@
         DRM_ST7735R = no;
         DRM_ST7920 = no;
         DRM_UDL = no;
-        DRM_VBOXVIDEO = no;
-        DRM_VESADRM = no;
         DRM_VGEM = no;
         DRM_VIRTIO_GPU = no;
         DRM_VKMS = no;
