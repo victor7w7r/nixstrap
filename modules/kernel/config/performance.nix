@@ -63,7 +63,6 @@
       RCU_TRACE = no;
       RUNTIME_TESTING_MENU = no;
       SCF_TORTURE_TEST = no;
-      SCHED_CLUSTER = no;
       SCHED_TRACER = lib.mkForce no;
       SLUB_DEBUG = no;
       STACKTRACE_BUILD_ID = no;

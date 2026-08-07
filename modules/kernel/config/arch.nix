@@ -67,19 +67,6 @@
       XZ_DEC_ARMTHUMB = no;
     };
 
-    not-phone = { }: {
-      INTERCONNECT = no; # ARM
-      BACKLIGHT_QCOM_WLED = no;
-      GNSS = no;
-      NFC = no;
-      N_GSM = no;
-      SCSI_UFSHCD = no;
-      SOUNDWIRE_QCOM = no;
-      USB_DWC2 = no;
-      USB_DWC3 = no;
-      WWAN = no;
-    };
-
     rogally =
       with kernel.config.utils;
       {
@@ -210,16 +197,6 @@
     sunxi = { }: {
       ARCH_SUNXI = yes;
       ARCH_QCOM = no;
-      ARCH_ROCKCHIP = no;
-      INPUT_RK805_PWRKEY = no;
-      RTC_DRV_HYM8563 = no;
-      SND_SOC_ES8316 = no;
-      SENSORS_PWM_FAN = no;
-    };
-
-    qcom = { }: {
-      ARCH_SUNXI = no;
-      ARCH_QCOM = yes;
       ARCH_ROCKCHIP = no;
       INPUT_RK805_PWRKEY = no;
       RTC_DRV_HYM8563 = no;

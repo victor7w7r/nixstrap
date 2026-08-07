@@ -103,7 +103,6 @@
         DRM_PANEL_SAMSUNG_S6D27A1 = no;
         DRM_PANEL_SAMSUNG_S6D7AA0 = no;
         DRM_PANEL_SAMSUNG_S6E3FA7 = no;
-        DRM_PANEL_SAMSUNG_S6E3FC2X01 = no;
         DRM_PANEL_SAMSUNG_S6E3HA2 = no;
         DRM_PANEL_SAMSUNG_S6E3HA8 = no;
         DRM_PANEL_SAMSUNG_S6E63J0X03 = no;
@@ -113,7 +112,6 @@
         DRM_PANEL_SAMSUNG_S6E8AA0 = no;
         DRM_PANEL_SAMSUNG_S6E8AA5X01_AMS561RA01 = no;
         DRM_PANEL_SAMSUNG_S6E8FC0 = no;
-        DRM_PANEL_SAMSUNG_SOFEF00 = no;
         DRM_PANEL_SEIKO_43WVF1G = no;
         DRM_PANEL_SHARP_LQ079L1SX01 = no;
         DRM_PANEL_SHARP_LQ101R1SX01 = no;
@@ -181,7 +179,6 @@
         DRM_ETNAVIV = no;
         DRM_GM12U320 = no;
         DRM_GMA500 = lib.mkForce no;
-        DRM_GUD = no;
         DRM_HISI_HIBMC = no;
         DRM_I2C_NXP_TDA998X = no;
         DRM_MGAG200 = no;

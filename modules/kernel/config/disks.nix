@@ -67,7 +67,6 @@
         BLK_DEV_DRBD = no;
         BLK_DEV_FD = no;
         BLK_DEV_PCIESSD_MTIP32XX = no;
-        BLK_DEV_RAM = no;
         BLK_DEV_RBD = no;
         BLK_DEV_UBLK = no;
         BLK_DEV_ZONED_LOOP = no;

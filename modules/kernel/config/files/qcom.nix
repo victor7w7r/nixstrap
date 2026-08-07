@@ -1,203 +1,13 @@
 { lib, ... }: {
   kernel.config.modules.qcom = with lib.kernel; {
-    # NixOS Unl0kr module wants these. They aren't actually needed for this device.
-    I2C_DESIGNWARE_PLATFORM = module;
-    TOUCHSCREEN_USB_COMPOSITE = module;
-
-    # NixOS LUKS module expects these by default.
-    # DM_CRYPT is definitely necessary.
-    DM_CRYPT = module;
-    CRYPTO_CRYPTD = module;
-    CRYPTO_USER_API_SKCIPHER = module;
-    CRYPTO_LRW = module;
-    CRYPTO_BLOWFISH = module;
-    CRYPTO_TWOFISH = module;
-    CRYPTO_SERPENT = module;
-
-    # fix build
-    # I've confirmed the glink issue. Just went ahead and added the Lenovo, too.
-    LENOVO_YOGA_C630_EC = no;
-    RPMSG_QCOM_GLINK_SMEM = yes;
-
-    # --- Start of sdm845.config ---
-
-    # Needed everywhere
-    GPIO_SHARED_PROXY = yes;
-
-    # This introduces some weird race conditions. Stick to the
-    # userspace one for now (6.13). still seem to happen in 7.1rc1.
-    # makes mic not working in poco f1. no idea why.
-    # See <https://gitlab.postmarketos.org/postmarketOS/pmaports/-/work_items/3481>.
-    # I don't use the mic right now, so I'd rather not have to set
-    # up the userspace pd_mmapper.
-    # QCOM_PD_MAPPER = no;
-
-    # OnePlus 6
-    DRM_PANEL_SAMSUNG_SOFEF00 = yes;
-    BATTERY_BQ27XXX = module;
-    HID_RMI = module;
-    RMI4_CORE = module;
-    RMI4_I2C = module;
-    RMI4_F55 = yes;
-    VIDEO_IMX371 = module;
-    VIDEO_IMX376 = module;
-    VIDEO_IMX519 = module;
-    VIDEO_LC898217XC = module;
-
-    # OnePlus 6T
-    DRM_PANEL_SAMSUNG_S6E3FC2X01 = yes;
-    SND_SOC_TFA98XX = module;
-
-    # Pocophone F1
-    DRM_PANEL_NOVATEK_NT36672A = yes;
-    DRM_PANEL_EBBG_FT8719 = yes;
-    TOUCHSCREEN_NOVATEK_NVT_TS = module;
-    SND_SOC_TAS2559 = module;
-    VIDEO_IMX363 = module;
-    VIDEO_BU64748 = module;
-
-    # Samsung S9 SM-G9600(starqltechn)
-    SND_SOC_MAX98512 = module;
-    DRM_PANEL_SAMSUNG_S6E3HA8 = yes;
-    TOUCHSCREEN_S6SY761 = module;
-    MFD_SEC_CORE = yes;
-    REGULATOR_S2DOS05 = module;
-    MFD_MAX77705 = module;
-    LEDS_MAX77705 = module;
-    CHARGER_MAX77705 = module;
-    INPUT_MAX77693_HAPTIC = module;
-    PWM_CLK = module;
-
-    # SHIFT6mq
-    DRM_PANEL_VISIONOX_RM69299 = module;
-    SND_SOC_TFA989X = module;
-    VIDEO_DW9714 = module;
-
-    # Pixel 3
-    DRM_PANEL_LG_SW43408 = yes;
-    TOUCHSCREEN_STMFTS = module;
-    SND_SOC_CS35L36 = module;
-    VIDEO_IMX355 = module;
-
-    # Mi Mix 2S
-    DRM_PANEL_NOVATEK_NT35596S = yes;
-
-    # Mi Mix 3
-    DRM_PANEL_SAMSUNG_EA8076 = yes;
-    SND_SOC_TAS2557 = module;
-
-    # C630
-    DRM_TI_SN65DSI86 = yes;
-    DRM_PANEL_EDP = yes;
-    PHY_QCOM_EDP = yes;
-    BACKLIGHT_PWM = yes;
-    BATTERY_LENOVO_YOGA_C630 = module;
-
-    # LG G7 ThinQ
-    DRM_PANEL_LG_SW49410_LH609QH1 = yes;
-    TOUCHSCREEN_SW49410 = yes;
-    QCOM_WDT = yes;
-    SPI_QCOM_GENI = yes;
-
-    # SOC
-    FORCE_NR_CPUS = yes;
-    NR_CPUS = lib.mkForce (freeform "8");
-
-    SCSI_UFS_QCOM = yes;
-    RPMB = yes;
-
-    QCOM_GSBI = yes;
-    QCOM_LLCC = yes;
-    QCOM_OCMEM = yes;
-    QCOM_RMTFS_MEM = yes;
-    QCOM_SOCINFO = yes;
-    QCOM_WCNSS_CTRL = yes;
-    QCOM_APR = yes;
-    POWER_RESET_QCOM_PON = yes;
-    QCOM_SPMI_TEMP_ALARM = yes;
-    QCOM_LMH = yes;
-    SCHED_CLUSTER = yes;
-    SND_SOC_QDSP6_Q6VOICE = module;
-    PHY_QCOM_QMP_PCIE = yes;
-    BACKLIGHT_CLASS_DEVICE = yes;
-    INTERCONNECT_QCOM_OSM_L3 = yes;
-    I2C_QCOM_GENI = yes;
-
-    # Remoteproc
-    SLIMBUS = yes;
-    REMOTEPROC_CDEV = yes;
-
-    # Battery
-    BATTERY_PMI8998_FG = module;
-    CHARGER_QCOM_SMB2 = module;
-    QCOM_SPMI_RRADC = module;
-
-    # Graphics
-    DRM = yes;
-    FB_SIMPLE = yes;
-    DRM_SIMPLEDRM = lib.mkForce no; # We're using `FB_SIMPLE`
-    SYSFB_SIMPLEFB = lib.mkForce no; # We're using `FB_SIMPLE`
-    DRM_MSM = yes;
-    REGULATOR_QCOM_REFGEN = yes;
-
-    # Brightness Control
-    REGULATOR_QCOM_LABIBB = yes;
-    BACKLIGHT_QCOM_WLED = yes;
-
-    # Haptics
-    INPUT_QCOM_SPMI_HAPTICS = module;
-
-    # Needed for mounting userdata on android
-    QFMT_V2 = yes;
-
-    # USB
-    PHY_QCOM_QMP_USB = yes;
-
-    # Qcom stuff
-    RPMSG_CHAR = yes;
-    QCOM_SPMI_VADC = yes;
-    QCOM_SPMI_ADC5 = yes;
-    PHY_QCOM_QMP = yes;
-    PHY_QCOM_QUSB2 = yes;
-    PHY_QCOM_QMP_UFS = yes;
-    PHY_QCOM_QMP_COMBO = yes;
-    MFD_QCOM_RPM = yes;
-    USB_DWC3_ULPI = yes;
-    PHY_QCOM_USB_HS = yes;
-    PHY_QCOM_USB_SNPS_FEMTO_V2 = yes;
-    CRYPTO_DEV_QCE = yes;
-
-    # BLK_DEV_MD = no;
-    # I2C_DESIGNWARE_PLATFORM = no;
-    # NET_CLS_ACT = no;
-    # See reference later in file.
-    AHCI_CEVA = no;
-    AHCI_MVEBU = no;
-    AHCI_QORIQ = no;
-    AHCI_XGENE = no;
-    ALTERA_FREEZE_BRIDGE = no;
-    AQUANTIA_PHY = no;
-    ARCH_ACTIONS = no;
     ARCH_AGILEX = no;
-    ARCH_ALPINE = no;
-    ARCH_APPLE = no;
-    ARCH_BCM = no;
     ARCH_BCM2835 = no;
     ARCH_BCM4908 = no;
     ARCH_BCMBCA = no;
     ARCH_BCM_IPROC = no;
     ARCH_BERLIN = no;
     ARCH_BRCMSTB = no;
-    ARCH_EXYNOS = no;
-    ARCH_HISI = no;
-    ARCH_INTEL_SOCFPGA = no;
-    ARCH_K3 = no;
-    ARCH_KEEMBAY = no;
     ARCH_LAYERSCAPE = no;
-    ARCH_LG1K = no;
-    ARCH_MEDIATEK = no;
-    ARCH_MESON = no;
-    ARCH_MVEBU = no;
     ARCH_MXC = no;
     ARCH_N5X = no;
     ARCH_NPCM = no;
@@ -239,6 +49,7 @@
     ARCH_ZX = no;
     ARCH_ZYNQMP = no;
     ARMADA_THERMAL = no;
+
     ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM = no;
     ARM_ARMADA_37XX_CPUFREQ = no;
     ARM_IMX8M_DDRC_DEVFREQ = no;
@@ -250,7 +61,6 @@
     ARM_SP805_WATCHDOG = no;
     ARM_TEGRA186_CPUFREQ = no;
     ATA = no;
-    ATH10K_PCI = no;
     ATL1C = no;
     BACKLIGHT_LP855X = no;
     BATTERY_SBS = no;
@@ -584,6 +394,7 @@
     RCAR_DMAC = no;
     RCAR_GEN3_THERMAL = no;
     RCAR_THERMAL = no;
+
     REGULATOR_AXP20X = no;
     REGULATOR_BD718XX = no;
     REGULATOR_BD9571MWV = no;
@@ -607,6 +418,7 @@
     RENESAS_WDT = no;
     RESET_IMX7 = no;
     RESET_TI_SCI = no;
+
     ROCKCHIP_ANALOGIX_DP = no;
     ROCKCHIP_CDN_DP = no;
     ROCKCHIP_DW_HDMI = no;
@@ -619,11 +431,9 @@
     ROCKCHIP_PM_DOMAINS = no;
     ROCKCHIP_SARADC = no;
     ROCKCHIP_THERMAL = no;
+
     RTC_DRV_ARMADA38X = no;
-    RTC_DRV_DS1307 = no;
-    RTC_DRV_DS3232 = no;
     RTC_DRV_FSL_FTM_ALARM = no;
-    RTC_DRV_HYM8563 = no;
     RTC_DRV_IMX_SC = no;
     RTC_DRV_M41T80 = no;
     RTC_DRV_MAX77686 = no;
@@ -640,6 +450,7 @@
     RTC_DRV_SUN6I = no;
     RTC_DRV_TEGRA = no;
     RTC_DRV_XGENE = no;
+
     S3C2410_WATCHDOG = no;
     SATA_RCAR = no;
     SATA_SIL24 = no;
@@ -650,6 +461,7 @@
     SCSI_UFS_EXYNOS = no;
     SCSI_UFS_HISI = no;
     SDR_PLATFORM_DRIVERS = no;
+
     SENSORS_ARM_SCPI = no;
     SENSORS_GPIO_FAN = no;
     SENSORS_INA2XX = no;
@@ -659,6 +471,7 @@
     SENSORS_PWM_FAN = no;
     SENSORS_RASPBERRYPI_HWMON = no;
     SENSORS_SL28CPLD = no;
+
     SERIAL_BCM63XX = no;
     SERIAL_FSL_LINFLEXUART = no;
     SERIAL_FSL_LINFLEXUART_CONSOLE = no;
@@ -676,6 +489,7 @@
     SERIAL_TEGRA_TCU = no;
     SERIAL_XILINX_PS_UART = no;
     SERIAL_XILINX_PS_UART_CONSOLE = no;
+
     SL28CPLD_INTC = no;
     SL28CPLD_WATCHDOG = no;
     SMC91X = no;
@@ -689,6 +503,7 @@
     SND_MESON_GX_SOUND_CARD = no;
     SND_SIMPLE_CARD = no;
     SND_SIMPLE_CARD_UTILS = no;
+
     SND_SOC_ADAU7002 = no;
     SND_SOC_AK4613 = no;
     SND_SOC_ALL_CODECS = no;
@@ -747,6 +562,7 @@
     SND_SUN4I_I2S = no;
     SND_SUN4I_SPDIF = no;
     SOCIONEXT_SYNQUACER_PREITS = no;
+
     SPI_ARMADA_3700 = no;
     SPI_BCM2835 = no;
     SPI_BCM2835AUX = no;
@@ -809,8 +625,7 @@
     USB_TEGRA_XUDC = no;
     USB_XHCI_PCI_RENESAS = no;
     USB_XHCI_TEGRA = lib.mkForce no;
-    VIDEO_IMX219 = no;
-    VIDEO_OV5645 = no;
+
     VIDEO_RCAR_CSI2 = no;
     VIDEO_RCAR_DRIF = no;
     VIDEO_RCAR_VIN = no;
@@ -827,133 +642,5 @@
     WLCORE = no;
     WLCORE_SDIO = no;
     WLCORE_SPI = no;
-
-    # --- Start of misc.config ---
-
-    # Bluetooth
-    BT_BNEP = module;
-    BT_BNEP_MC_FILTER = yes;
-    BT_BNEP_PROTO_FILTER = yes;
-    BT_LE = yes;
-    BT_LE_L2CAP_ECRED = yes;
-    BT_RFCOMM = module;
-    BT_RFCOMM_TTY = yes;
-
-    # Crypto
-    CRYPTO_LZ4 = module;
-    FS_ENCRYPTION = yes;
-    FS_ENCRYPTION_INLINE_CRYPT = yes;
-    CRYPTO_USER_API_AEAD = yes;
-
-    # Networking
-    # westwood is more efficient for wireless connections
-    # than cubic
-    DEFAULT_WESTWOOD = yes;
-    NETLINK_DIAG = module;
-    NET_SCH_HTB = module;
-    NET_SCH_MULTIQ = module;
-    NET_SCH_PRIO = module;
-    PACKET_DIAG = yes;
-
-    # DRM
-    DRM_GUD = module;
-
-    # Ramdisk
-    BLK_DEV_RAM = module;
-    BLK_DEV_RAM_COUNT = freeform "16";
-    BLK_DEV_RAM_SIZE = freeform "8192";
-
-    # EFI
-    EFI_SBAT_FILE = freeform "";
-    EFI_ZBOOT = yes;
-
-    # UTF8
-    FAT_DEFAULT_UTF8 = yes;
-
-    # Inputs
-    INPUT_JOYDEV = module;
-
-    # Compression
-    MODULE_COMPRESS = yes;
-    MODULE_COMPRESS_ALL = yes;
-    # NixOS sets it to XZ even though it uses ZSTD by default on modern kernels.
-    MODULE_COMPRESS_XZ = lib.mkForce no;
-    MODULE_COMPRESS_ZSTD = yes;
-    MODULE_DECOMPRESS = yes;
-
-    # Multi-Gen LRU
-    LRU_GEN = yes;
-    LRU_GEN_ENABLED = yes;
-    LRU_GEN_WALKS_MMU = yes;
-
-    # Native Language Support
-    NLS_ASCII = yes;
-    NLS_DEFAULT = freeform "utf8";
-    NLS_UTF8 = module;
-
-    # SCSI
-    SCSI_SCAN_ASYNC = yes;
-
-    # Sound
-    SND_HWDEP = module;
-    SND_USB_AUDIO_USE_MEDIA_CONTROLLER = yes;
-
-    # TCP
-    TCP_CONG_ADVANCED = yes;
-    TCP_CONG_BIC = module;
-    TCP_CONG_HTCP = module;
-    TCP_CONG_WESTWOOD = yes;
-    TYPEC = yes;
-
-    # UNIX Sockets
-    UNIX_DIAG = yes;
-
-    # USB
-    USB_CONFIGFS_F_HID = yes;
-    USB_F_HID = module;
-
-    # Serial
-    U_SERIAL_CONSOLE = yes;
-
-    # Pstore
-    PSTORE = yes;
-    PSTORE_CONSOLE = yes;
-    PSTORE_PMSG = yes;
-    PSTORE_RAM = yes;
-
-    # Debugging
-    ATH10K_DEBUG = yes;
-    ATH10K_DEBUGFS = yes;
-    ATH10K_SPECTRAL = yes;
-
-    # ZRAM
-    ZRAM_DEF_COMP = freeform "zstd";
-    ZRAM_DEF_COMP_ZSTD = yes;
-
-    # Misc useful things
-    HZ_1000 = yes;
-
-    # libcamera
-    DMABUF_HEAPS_SYSTEM = yes;
-    DMABUF_HEAPS_CMA = yes;
-    DMABUF_HEAPS = yes;
-    DMA_CMA = yes;
-    CMA = yes;
-    CMA_SIZE_MBYTES = lib.mkForce (freeform "256");
-
-    # Power management
-    PM_AUTOSLEEP = yes;
-    PM_WAKELOCKS = yes;
-
-    # --- Enf of misc.config ---
-
-    # These may have caused a comipation crash.
-    TOUCHSCREEN_FTM4 = no;
-    TOUCHSCREEN_STM_FTS_DOWNSTREAM = no;
-
-    REALTEK_PHY = no;
-    NET_DSA_REALTEK = no;
-    HIBMCGE = no;
-    R8169 = no;
   };
 }

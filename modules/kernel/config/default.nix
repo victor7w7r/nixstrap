@@ -45,6 +45,7 @@
         (disks.not-mmc { })
         (disks.raid { })
         (flavour.desktop { })
+        (qcom { isDenied = true; })
         (net.realtek { isDenied = true; })
         sound.denied
         (sound.rogally { isDenied = true; })
@@ -71,6 +72,7 @@
         (arch.rogally { })
         (flavour.desktop { })
         (disks.mmc { })
+        (qcom { isDenied = true; })
         (net.realtek { isDenied = true; })
         sound.denied
         (sound.rogally { })
@@ -94,6 +96,7 @@
         (disks.raid { })
         (flavour.server { })
         (net.realtek { })
+        (qcom { isDenied = true; })
         {
           CDROM = no;
           DW_DMAC = yes;
@@ -113,6 +116,7 @@
         (disks.mmc { })
         (flavour.server { })
         (net.realtek { })
+        (qcom { isDenied = true; })
         {
           AXP20X_POWER = yes;
           CDROM = no;
@@ -144,6 +148,7 @@
         sound.denied
         (sound.denied-arm { })
         (sound.rogally { isDenied = true; })
+        (qcom { isDenied = true; })
         {
           CDROM = no;
           MD = lib.mkForce no;
@@ -167,6 +172,7 @@
         sound.denied
         (sound.denied-arm { })
         (sound.rogally { isDenied = true; })
+        (qcom { })
         {
           CDROM = no;
           HIBERNATION = no;

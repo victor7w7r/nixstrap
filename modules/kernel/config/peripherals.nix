@@ -117,7 +117,6 @@
         PHY_MAPPHONE_MDM6600 = no;
         PHY_NXP_PTN3222 = no;
         PHY_OCELOT_SERDES = no;
-        PHY_QCOM_USB_HSIC = no;
         PHY_SAMSUNG_USB2 = no;
         PHY_TUSB1210 = no;
         PWM_ARGON_FAN_HAT = no;

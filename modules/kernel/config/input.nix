@@ -87,7 +87,6 @@
         TOUCHSCREEN_TSC2005 = no;
         TOUCHSCREEN_TSC2007 = no;
         TOUCHSCREEN_TSC_SERIO = no;
-        TOUCHSCREEN_USB_COMPOSITE = no;
         TOUCHSCREEN_USB_ETURBO = no;
         TOUCHSCREEN_WACOM_I2C = no;
         TOUCHSCREEN_WACOM_W8001 = no;
@@ -149,7 +148,6 @@
       }
       #INPUT
       {
-        INPUT_JOYDEV = no;
         INPUT_MOUSEDEV = no;
         INTEL_ISH_HID = no;
         INTEL_THC_HID = no;
@@ -314,7 +312,6 @@
         HID_RAZER = no;
         HID_REDRAGON = no;
         HID_RETRODE = no;
-        HID_RMI = no;
         HID_ROCCAT = no;
         HID_SAITEK = no;
         HID_SAMSUNG = no;

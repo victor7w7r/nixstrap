@@ -106,7 +106,6 @@
     denied = lib.mkMerge [
       #ENERGY
       {
-        BATTERY_BQ27XXX = no;
         BATTERY_CHAGALL = no;
         BATTERY_CW2015 = no;
         BATTERY_DS2780 = no;
@@ -906,10 +905,8 @@
         PHY_PXA_28NM_USB2 = no;
         PING = no;
         PMS7003 = no;
-        QCOM_SPMI_ADC5 = no;
         QCOM_SPMI_ADC5_GEN3 = no;
         QCOM_SPMI_IADC = no;
-        QCOM_SPMI_VADC = no;
         RFD77402 = no;
         RICHTEK_RTQ6056 = no;
         ROHM_BD79112 = no;
@@ -934,7 +931,6 @@
         SI7020 = no;
         SI7210 = no;
         SIOX = no;
-        SLIMBUS = no;
         SMI240 = no;
         SPS30_I2C = no;
         SPS30_SERIAL = no;

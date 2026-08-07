@@ -92,11 +92,9 @@
         NET_SCH_HFSC = no;
         NET_SCH_HHF = no;
         NET_SCH_MQPRIO = no;
-        NET_SCH_MULTIQ = no;
         NET_SCH_NETEM = no;
         NET_SCH_PIE = no;
         NET_SCH_PLUG = no;
-        NET_SCH_PRIO = no;
         NET_SCH_RED = no;
         NET_SCH_SFB = no;
         NET_SCH_SKBPRIO = no;
@@ -212,7 +210,6 @@
         NETCONSOLE = lib.mkForce no;
         NETDEVSIM = no;
         NETLABEL = no;
-        NETLINK_DIAG = no;
         NETWORK_SECMARK = no;
         NET_DSA = no;
         NET_EMATCH = no;
