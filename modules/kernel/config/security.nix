@@ -24,7 +24,6 @@
         CRYPTO_ARIA_AESNI_AVX_X86_64 = no;
         CRYPTO_ARIA_GFNI_AVX512_X86_64 = no;
         CRYPTO_BENCHMARK = no;
-        CRYPTO_BLOWFISH = no;
         CRYPTO_BLOWFISH_X86_64 = no;
         CRYPTO_CAST5 = no;
         CRYPTO_CAST5_AVX_X86_64 = no;
