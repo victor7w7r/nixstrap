@@ -99,8 +99,6 @@
         SPI_AMD = no;
         SPI_CADENCE_QUADSPI = no;
         SPI_CADENCE_XSPI = no;
-        SPI_FSI = no;
-        SPI_FSL_LIB = no;
         SPI_FSL_SPI = no;
         SPI_PL022 = no;
         SPI_SN_F_OSPI = no;
@@ -283,10 +281,8 @@
         SMS_USB_DRV = no;
         VIDEO_ADV748X = no;
         VIDEO_AU0828 = no;
-        VIDEO_AU0828_V4L2 = no;
         VIDEO_CAFE_CCIC = no;
         VIDEO_CS53L32A = no;
-        VIDEO_CX2341X = no;
         VIDEO_CX25840 = no;
         VIDEO_DS90UB913 = no;
         VIDEO_DS90UB953 = no;
@@ -310,18 +306,11 @@
         VIDEO_OV7670 = no;
         VIDEO_OV9282 = no;
         VIDEO_PVRUSB2 = no;
-        VIDEO_PVRUSB2_DVB = no;
-        VIDEO_PVRUSB2_SYSFS = no;
         VIDEO_SAA711X = no;
         VIDEO_SUN4I_CSI = no;
         VIDEO_SUN8I_A83T_MIPI_CSI2 = no;
-        VIDEO_TVEEPROM = no;
         VIDEO_VGXY61 = no;
-        VIDEO_WM8994 = no;
         VIDEO_XILINX = no;
-        VIDEO_XILINX_CSI2RXSS = no;
-        VIDEO_XILINX_TPG = no;
-        VIDEO_XILINX_VTC = no;
       }
       {
         USBIP_VUDC = no;

@@ -52,7 +52,6 @@
         MMC_MTK = no;
         MMC_LITEX = no;
         SCSI_UFSHCD_PCI = no;
-        SCSI_UFS_DWC_TC_PCI = no;
         SCSI_UFS_CDNS_PLATFORM = no;
         SCSI_UFS_DWC_TC_PLATFORM = no;
       }
