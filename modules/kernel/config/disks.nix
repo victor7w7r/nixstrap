@@ -38,6 +38,26 @@
       MD_RAID456 = yes;
     };
 
+    denied-arm = lib.mkMerge [
+      {
+        MMC_SDHCI_OF_AT91 = no;
+        MMC_SDHCI_CADENCE = no;
+        MMC_SDHCI_MILBEAUT = no;
+        MMC_DW_BLUEFIELD = no;
+        MMC_DW_EXYNOS = no;
+        MMC_DW_HI3798CV200 = no;
+        MMC_DW_HI3798MV200 = no;
+        MMC_DW_K3 = no;
+        MMC_DW_PCI = no;
+        MMC_MTK = no;
+        MMC_LITEX = no;
+        SCSI_UFSHCD_PCI = no;
+        SCSI_UFS_DWC_TC_PCI = no;
+        SCSI_UFS_CDNS_PLATFORM = no;
+        SCSI_UFS_DWC_TC_PLATFORM = no;
+      }
+    ];
+
     denied = lib.mkMerge [
       #DRIVERS
       {

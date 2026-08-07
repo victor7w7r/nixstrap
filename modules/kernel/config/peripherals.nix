@@ -66,6 +66,9 @@
         SERIAL_LITEUART = no;
       }
       {
+
+      }
+      {
         GPIO_ADNP = no;
         GPIO_ADP5585 = no;
         GPIO_BD71828 = no;
@@ -321,6 +324,44 @@
         VIDEO_XILINX_CSI2RXSS = no;
         VIDEO_XILINX_TPG = no;
         VIDEO_XILINX_VTC = no;
+      }
+      {
+        USBIP_VUDC = no;
+        USB_AMD5536UDC = no;
+        USB_BDC_UDC = no;
+        USB_CDC_COMPOSITE = no;
+        USB_CHIPIDEA_IMX = no;
+        USB_CHIPIDEA_NPCM = no;
+        USB_CHIPIDEA_PCI = no;
+        USB_CHIPIDEA_TEGRA = no;
+        USB_DWC2_PCI = no;
+        USB_DWC3_GENERIC_PLAT = no;
+        USB_DWC3_GOOGLE = no;
+        USB_DWC3_HAPS = no;
+        USB_EG20T = no;
+        USB_ETH = no;
+        USB_GADGETFS = no;
+        USB_GADGET_XILINX = no;
+        USB_GOKU = no;
+        USB_GR_UDC = no;
+        USB_G_ACM_MS = no;
+        USB_G_DBGP = no;
+        USB_G_HID = no;
+        USB_G_MULTI = no;
+        USB_G_NCM = no;
+        USB_G_PRINTER = no;
+        USB_G_SERIAL = no;
+        USB_G_WEBCAM = no;
+        USB_M66592 = no;
+        USB_MASS_STORAGE = no;
+        USB_MAX3420_UDC = no;
+        USB_NET2280 = no;
+        USB_ONBOARD_DEV_USB5744 = no;
+        USB_PXA27X = no;
+        USB_R8A66597 = no;
+        USB_SNP_CORE = no;
+        USB_SNP_UDC_PLAT = no;
+        USB_ZERO = no;
       }
     ];
 

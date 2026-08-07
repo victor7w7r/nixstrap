@@ -19,6 +19,22 @@
         SENSORS_OCC = no;
       }
       {
+        LEDS_EL15203000 = no;
+        LEDS_LM3692X = no;
+        LEDS_LP8860 = no;
+        LEDS_LP8864 = no;
+        LEDS_IS31FL32XX = no;
+        LEDS_TI_LMU_COMMON = no;
+        LEDS_LM3697 = no;
+        LEDS_ST1202 = no;
+        LEDS_AAT1290 = no;
+        LEDS_KTD2692 = no;
+        LEDS_RT4505 = no;
+        LEDS_SY7802 = no;
+        LEDS_TPS6131X = no;
+        LEDS_WS2812 = no;
+      }
+      {
         MFD_ACT8945A = no;
         MFD_ADP5585 = no;
         MFD_AS3722 = no;
@@ -105,6 +121,19 @@
         CEC_NXP_TDA9950 = no;
         USB_EXTRON_DA_HD_4K_PLUS_CEC = no;
         USB_RAINSHADOW_CEC = no;
+      }
+      {
+        RTC_DRV_AC100 = no;
+        RTC_DRV_HYM8563 = no;
+        RTC_DRV_NCT3018Y = no;
+        RTC_DRV_RK808 = no;
+        RTC_DRV_ISL12026 = no;
+        RTC_DRV_OPTEE = no;
+        RTC_DRV_ZYNQMP = no;
+        RTC_DRV_PL030 = no;
+        RTC_DRV_PL031 = no;
+        RTC_DRV_CADENCE = no;
+        RTC_DRV_R7301 = no;
       }
     ];
 
