@@ -509,7 +509,6 @@
         SND_SOC_STORM = no;
         SND_SOC_TAS2557 = no;
         SND_SOC_TAS2559 = no;
-        SND_SOC_TFA98XX = no;
         SND_SOC_X1E80100 = no;
         SND_SUN4I_CODEC = no;
         SND_SUN4I_I2S = no;
