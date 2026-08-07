@@ -166,7 +166,6 @@
         (arch.rogally { isDenied = true; })
         (arch.arm { })
         (disks.mmc { })
-        (arch.qcom { })
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
