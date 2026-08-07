@@ -55,6 +55,63 @@
         VCPU_STALL_DETECTOR = no;
         VEXPRESS_CONFIG = no;
       }
+      {
+        HW_RANDOM_CCTRNG = no;
+        HW_RANDOM_CN10K = no;
+        SERIAL_AMBA_PL010 = no;
+        SERIAL_SIFIVE = no;
+        SERIAL_XILINX_PS_UART = no;
+        SERIAL_XILINX_PS_UART_CONSOLE = no;
+        SERIAL_CONEXANT_DIGICOLOR = no;
+        SERIAL_LITEUART = no;
+      }
+      {
+        GPIO_ADNP = no;
+        GPIO_ADP5585 = no;
+        GPIO_BD71828 = no;
+        GPIO_BD72720 = no;
+        GPIO_CADENCE = no;
+        GPIO_GRGPIO = no;
+        GPIO_GW_PLD = no;
+        GPIO_HISI = no;
+        GPIO_HLWD = no;
+        GPIO_LOGICVC = no;
+        GPIO_LP87565 = no;
+        GPIO_MAX77620 = no;
+        GPIO_MAX77650 = no;
+        GPIO_MAX77759 = no;
+        GPIO_SIFIVE = no;
+        GPIO_STMPE = no;
+        GPIO_TPS65218 = no;
+        GPIO_TPS65219 = no;
+        GPIO_WM8994 = no;
+        GPIO_XGENE = no;
+        I2C_ARB_GPIO_CHALLENGE = no;
+        I2C_CADENCE = no;
+        I2C_FSI = no;
+        I2C_HISI = no;
+        I2C_MV64XXX = no;
+        I2C_NOMADIK = no;
+        I2C_THUNDERX = no;
+        PINCTRL_AW9523 = no;
+        PINCTRL_MAX77620 = no;
+        PINCTRL_MICROCHIP_SGPIO = no;
+        PINCTRL_OCELOT = no;
+        PINCTRL_STMFX = no;
+        POWER_RESET_QEMU_VIRT_CTRL = no;
+        POWER_RESET_XGENE = no;
+        SPI_AMD = no;
+        SPI_CADENCE_QUADSPI = no;
+        SPI_CADENCE_XSPI = no;
+        SPI_FSI = no;
+        SPI_FSL_LIB = no;
+        SPI_FSL_SPI = no;
+        SPI_PL022 = no;
+        SPI_SN_F_OSPI = no;
+        SPI_SUN4I = no;
+        SPI_THUNDERX = no;
+        SPI_ZYNQMP_GQSPI = no;
+      }
     ];
 
     denied = lib.mkMerge [
