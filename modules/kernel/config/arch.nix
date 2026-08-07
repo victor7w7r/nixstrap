@@ -5,7 +5,6 @@
       lib.mkMerge [
         (x86 { })
         (native { })
-        (not-phone { })
         denied.apply
       ];
 

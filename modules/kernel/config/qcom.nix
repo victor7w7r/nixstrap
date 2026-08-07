@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.qcom =
     with lib.kernel;
     with kernel.config.utils;
@@ -37,7 +37,7 @@
         TCP_CONG_HTCP = setupDenial isDenied module;
         TCP_CONG_WESTWOOD = setupDenial isDenied yes;
       }
-      (lib.optionals (!isDenied) {
+      (lib.optionalAttrs (!isDenied) {
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
         BT_LE = yes;
@@ -66,7 +66,7 @@
         USB_F_HID = module;
         U_SERIAL_CONSOLE = yes;
       })
-      (lib.optionals (!isDenied) {
+      (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;
         ARCH_ROCKCHIP = no;
         ARCH_SUNXI = no;
@@ -80,7 +80,7 @@
         SENSORS_PWM_FAN = no;
         SND_SOC_ES8316 = no;
       })
-      (lib.optionals (!isDenied) {
+      (lib.optionalAttrs (!isDenied) {
         BATTERY_PMI8998_FG = module;
         FAT_DEFAULT_UTF8 = yes;
         BT_BNEP_MC_FILTER = yes;
@@ -125,7 +125,7 @@
         USB_DWC3_ULPI = yes;
         TYPEC = yes;
       })
-      (lib.optionals (!isDenied) {
+      (lib.optionalAttrs (!isDenied) {
         HIBMCGE = no;
         NET_DSA_REALTEK = no;
         R8169 = no;

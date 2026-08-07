@@ -4849,7 +4849,6 @@
         "sxtetris": "sxtetris",
         "sysfex": "sysfex",
         "t2-audio": "t2-audio",
-        "t2-patches": "t2-patches",
         "t2fanrd": "t2fanrd",
         "tablet-map": "tablet-map",
         "tachyon-patches": "tachyon-patches",
@@ -5471,22 +5470,6 @@
         "type": "github"
       }
     },
-    "t2-patches": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785766550,
-        "narHash": "sha256-SkJV+pzZDcaZaBoUdxC0lAn4dwt/thfMj9qvKRzmEnU=",
-        "owner": "t2linux",
-        "repo": "linux-t2-patches",
-        "rev": "818ebb051197ed19813b0c49e3313af0ee3cfd0b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "t2linux",
-        "repo": "linux-t2-patches",
-        "type": "github"
-      }
-    },
     "t2fanrd": {
       "flake": false,
       "locked": {
@@ -5853,15 +5836,15 @@
     "uwe5622": {
       "flake": false,
       "locked": {
-        "lastModified": 1690708939,
-        "narHash": "sha256-HjS+2lRbnytolOS3eQ6nz/yTgkCQ3nMmJtwvKGtv+dw=",
-        "owner": "Ran-Thegoth",
+        "lastModified": 1786004352,
+        "narHash": "sha256-QruvPN21BoYxSj6KQWkguytZjv08fsubrTFDE/W4XGw=",
+        "owner": "armbian",
         "repo": "uwe5622",
-        "rev": "ca207454402d215d676dc0eeba54c2b99245bff9",
+        "rev": "02e52520ce31df96dbefeabfce03726f533b77db",
         "type": "github"
       },
       "original": {
-        "owner": "Ran-Thegoth",
+        "owner": "armbian",
         "repo": "uwe5622",
         "type": "github"
       }
