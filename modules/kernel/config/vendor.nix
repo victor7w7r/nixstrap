@@ -1,6 +1,6 @@
 { lib, ... }: {
   kernel.config.vendor = with lib.kernel; {
-    arm-denied = lib.mkMerge [
+    denied-arm = lib.mkMerge [
       {
         DRM_ANALOGIX_ANX6345 = no;
         DRM_ANALOGIX_ANX7625 = no;
@@ -171,6 +171,10 @@
         DRM_TOSHIBA_TC358768 = no;
         DRM_TOSHIBA_TC358775 = no;
         DRM_WAVESHARE_BRIDGE = no;
+        DRM_TIDSS = no;
+        DRM_ARCPGU = no;
+        DRM_TYR = no;
+        DRM_VMWGFX = no;
       }
     ];
     denied = lib.mkMerge [

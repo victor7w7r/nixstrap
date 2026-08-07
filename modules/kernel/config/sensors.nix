@@ -1,6 +1,5 @@
 { lib, ... }: {
   kernel.config.sensors = with lib.kernel; {
-
     denied-arm = lib.mkMerge [
       {
         BATTERY_ACT8945A = no;
