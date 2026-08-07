@@ -6,6 +6,7 @@
       inherit pkgs armCross;
       localVer = "rockchip";
       class = "rockchip";
+      isArm = true;
       dtbMake = ''
         dtb-\$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
         dtb-\$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
@@ -20,7 +21,7 @@
       '';
       patches =
         with kernel.patches.injector pkgs;
-        cachyos.std ++ tachyon.std bunker.std ++ armbian.rockchip-patches;
+        cachyos.std ++ tachyon.std ++ bunker.std ++ armbian.rockchip-patches;
       structuredExtraConfig = kernel.config.default.superlab;
     })
     |> (generated: {

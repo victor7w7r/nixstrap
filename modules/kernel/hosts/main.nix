@@ -5,7 +5,7 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "native";
-      patches = with kernel.patches.injector pkgs; cachyos.std; # ++ bunker.std;  ++ tachyon.std
+      patches = with kernel.patches.injector pkgs; cachyos.std ++ bunker.std ++ tachyon.std;
       structuredExtraConfig = kernel.config.default.main-generic;
     })
     |> (generated: {
