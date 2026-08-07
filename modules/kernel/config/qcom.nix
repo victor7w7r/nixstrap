@@ -123,6 +123,7 @@
         AHCI_QORIQ = no;
         AHCI_XGENE = no;
         ALTERA_FREEZE_BRIDGE = no;
+        DEFAULT_BBR = lib.mkForce no;
         ARCH_ROCKCHIP = no;
         ARCH_SUNXI = no;
         CLK_ELIZA_DISPCC = no;
