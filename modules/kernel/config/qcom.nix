@@ -3,7 +3,7 @@
     with lib.kernel;
     with kernel.config.utils;
     {
-      isDenied ? true,
+      isDenied ? false,
     }:
     lib.mkMerge [
       {
@@ -37,63 +37,45 @@
         TCP_CONG_HTCP = setupDenial isDenied module;
         TCP_CONG_WESTWOOD = setupDenial isDenied yes;
       }
+      #COMMON
       (lib.optionalAttrs (!isDenied) {
+        ARCH_QCOM = yes;
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
-        BT_LE = yes;
-        BT_LE_L2CAP_ECRED = yes;
-        DRM_SIMPLEDRM = lib.mkForce no;
         EFI_ZBOOT = yes;
         FS_ENCRYPTION_INLINE_CRYPT = yes;
-        GPIO_SHARED_PROXY = yes;
         INPUT_QCOM_SPMI_HAPTICS = module;
-        LENOVO_YOGA_C630_EC = no;
-        MODULE_COMPRESS_XZ = lib.mkForce no;
         MODULE_COMPRESS_ZSTD = yes;
         MODULE_DECOMPRESS = yes;
+        NLS_ASCII = yes;
+        NR_CPUS = (lib.mkForce (freeform "8"));
+        PACKET_DIAG = yes;
         REGULATOR_QCOM_REFGEN = yes;
         REMOTEPROC_CDEV = yes;
-        NLS_ASCII = yes;
-        SND_SOC_TFA98XX = module;
-        SND_HWDEP = module;
-        SYSFB_SIMPLEFB = lib.mkForce no;
-        TOUCHSCREEN_USB_COMPOSITE = lib.mkForce no;
-        USB_CONFIGFS_F_HID = yes;
-        VIDEO_IMX371 = module;
-        VIDEO_IMX376 = module;
-        VIDEO_IMX519 = module;
-        VIDEO_LC898217XC = module;
         USB_F_HID = module;
         U_SERIAL_CONSOLE = yes;
       })
+      #SOC
       (lib.optionalAttrs (!isDenied) {
-        ARCH_QCOM = yes;
-        ARCH_ROCKCHIP = no;
-        ARCH_SUNXI = no;
+        BATTERY_PMI8998_FG = module;
+        BT_BNEP_MC_FILTER = yes;
+        BT_BNEP_PROTO_FILTER = yes;
+        BT_LE = yes;
+        BT_LE_L2CAP_ECRED = yes;
+        CHARGER_QCOM_SMB2 = module;
         CMA = yes;
+        CRYPTO_DEV_QCE = yes;
         DMABUF_HEAPS = yes;
         DMABUF_HEAPS_CMA = yes;
         DMABUF_HEAPS_SYSTEM = yes;
-        INPUT_RK805_PWRKEY = no;
-        PACKET_DIAG = yes;
-        RTC_DRV_HYM8563 = no;
-        SENSORS_PWM_FAN = no;
-        SND_SOC_ES8316 = no;
-      })
-      (lib.optionalAttrs (!isDenied) {
-        BATTERY_PMI8998_FG = module;
-        FAT_DEFAULT_UTF8 = yes;
-        BT_BNEP_MC_FILTER = yes;
-        BT_BNEP_PROTO_FILTER = yes;
-        CHARGER_QCOM_SMB2 = module;
-        CRYPTO_DEV_QCE = yes;
         DRM_MSM = yes;
+        FAT_DEFAULT_UTF8 = yes;
         FB_SIMPLE = yes;
         FORCE_NR_CPUS = yes;
+        GPIO_SHARED_PROXY = yes;
         I2C_QCOM_GENI = yes;
         INTERCONNECT_QCOM_OSM_L3 = yes;
         MFD_QCOM_RPM = yes;
-        NR_CPUS = (lib.mkForce (freeform "8"));
         PHY_QCOM_QMP = yes;
         PHY_QCOM_QMP_COMBO = yes;
         PHY_QCOM_QMP_PCIE = yes;
@@ -102,12 +84,11 @@
         PHY_QCOM_QUSB2 = yes;
         PHY_QCOM_USB_HS = yes;
         PHY_QCOM_USB_SNPS_FEMTO_V2 = yes;
+        PM_AUTOSLEEP = yes;
+        POWER_RESET_QCOM_PON = yes;
         PSTORE_CONSOLE = yes;
         PSTORE_PMSG = yes;
         PSTORE_RAM = yes;
-        PM_AUTOSLEEP = yes;
-        SND_USB_AUDIO_USE_MEDIA_CONTROLLER = yes;
-        POWER_RESET_QCOM_PON = yes;
         QCOM_APR = yes;
         QCOM_GSBI = yes;
         QCOM_LLCC = yes;
@@ -119,27 +100,32 @@
         QCOM_SPMI_TEMP_ALARM = yes;
         QCOM_WCNSS_CTRL = yes;
         QFMT_V2 = yes;
-        SCSI_UFS_QCOM = yes;
         SCSI_SCAN_ASYNC = yes;
-        SND_SOC_QDSP6_Q6VOICE = module;
-        USB_DWC3_ULPI = yes;
+        SCSI_UFS_QCOM = yes;
         TYPEC = yes;
+        USB_DWC3_ULPI = yes;
       })
+      #MEDIA
       (lib.optionalAttrs (!isDenied) {
-        HIBMCGE = no;
-        NET_DSA_REALTEK = no;
-        R8169 = no;
-        REALTEK_PHY = no;
-        TOUCHSCREEN_FTM4 = no;
-        TOUCHSCREEN_STM_FTS_DOWNSTREAM = no;
+        SND_HWDEP = module;
+        SND_SOC_QDSP6_Q6VOICE = module;
+        SND_SOC_TFA98XX = module;
+        SND_USB_AUDIO_USE_MEDIA_CONTROLLER = yes;
+        USB_CONFIGFS_F_HID = yes;
+        VIDEO_IMX371 = module;
+        VIDEO_IMX376 = module;
+        VIDEO_IMX519 = module;
+        VIDEO_LC898217XC = module;
+      })
+      #CLEANUP
+      (lib.optionalAttrs (!isDenied) {
         AHCI_CEVA = no;
         AHCI_MVEBU = no;
         AHCI_QORIQ = no;
         AHCI_XGENE = no;
         ALTERA_FREEZE_BRIDGE = no;
-      })
-      #CLEANUP
-      (lib.optionalAttrs (!isDenied) {
+        ARCH_ROCKCHIP = no;
+        ARCH_SUNXI = no;
         CLK_ELIZA_DISPCC = no;
         CLK_ELIZA_GCC = no;
         CLK_ELIZA_TCSRCC = no;
@@ -193,6 +179,7 @@
         DRM_MSM_MDP4 = no;
         DRM_MSM_MDP5 = no;
         DRM_ROCKCHIP = no;
+        DRM_SIMPLEDRM = lib.mkForce no;
         DWMAC_ROCKCHIP = no;
         DWMAC_SUN55I = no;
         DWMAC_SUN8I = no;
@@ -201,6 +188,8 @@
         EC_HUAWEI_GAOKUN = no;
         EC_LENOVO_THINKPAD_T14S = no;
         EC_LENOVO_YOGA_C630 = no;
+        HIBMCGE = no;
+        INPUT_RK805_PWRKEY = no;
         INTERCONNECT_QCOM_ELIZA = no;
         INTERCONNECT_QCOM_GLYMUR = no;
         INTERCONNECT_QCOM_KAANAPALI = no;
@@ -257,6 +246,8 @@
         IPQ_NSSCC_9574 = no;
         IPQ_NSSCC_QCA8K = no;
         KPSS_XCC = no;
+        LENOVO_YOGA_C630_EC = no;
+        MODULE_COMPRESS_XZ = lib.mkForce no;
         MSM_GCC_8916 = no;
         MSM_GCC_8917 = no;
         MSM_GCC_8939 = no;
@@ -269,6 +260,7 @@
         MSM_MMCC_8994 = no;
         MSM_MMCC_8996 = no;
         MSM_MMCC_8998 = no;
+        NET_DSA_REALTEK = no;
         PCIE_ROCKCHIP = no;
         PCIE_ROCKCHIP_DW = no;
         PCIE_ROCKCHIP_DW_HOST = no;
@@ -369,6 +361,8 @@
         QCS_VIDEOCC_615 = no;
         QDU_ECPRICC_1000 = no;
         QDU_GCC_1000 = no;
+        R8169 = no;
+        REALTEK_PHY = no;
         ROCKCHIP_ANALOGIX_DP = no;
         ROCKCHIP_CDN_DP = no;
         ROCKCHIP_DW_DP = no;
@@ -380,6 +374,7 @@
         ROCKCHIP_LVDS = no;
         ROCKCHIP_VOP = no;
         ROCKCHIP_VOP2 = no;
+        RTC_DRV_HYM8563 = no;
         SAR_GCC_2130P = no;
         SAR_GPUCC_2130P = no;
         SA_CAMCC_8775P = no;
@@ -411,6 +406,7 @@
         SDM_GPUCC_660 = no;
         SDM_MMCC_660 = no;
         SDX_GCC_75 = no;
+        SENSORS_PWM_FAN = no;
         SM_CAMCC_4450 = no;
         SM_CAMCC_6350 = no;
         SM_CAMCC_7150 = no;
@@ -525,9 +521,12 @@
         SND_SUN8I_ADDA_PR_REGMAP = no;
         SND_SUN8I_CODEC = no;
         SND_SUN8I_CODEC_ANALOG = no;
+        SYSFB_SIMPLEFB = lib.mkForce no;
+        TOUCHSCREEN_FTM4 = no;
+        TOUCHSCREEN_STM_FTS_DOWNSTREAM = no;
         TOUCHSCREEN_SW49410 = no;
         TOUCHSCREEN_USB_3M = no;
-        TOUCHSCREEN_USB_COMPOSITE = no;
+        TOUCHSCREEN_USB_COMPOSITE = lib.mkForce no;
         TOUCHSCREEN_USB_DMC_TSC10 = no;
         TOUCHSCREEN_USB_E2I = no;
         TOUCHSCREEN_USB_EASYTOUCH = no;
