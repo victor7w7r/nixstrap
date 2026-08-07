@@ -96,7 +96,7 @@
         (arch.rogally { isDenied = true; })
         (arch.arm { })
         (arch.sunxi { })
-        arch.arm.denied
+        arch.denied.arm
         (disks.mmc { })
         (flavour.server { })
         (net.realtek { })
@@ -123,7 +123,7 @@
         (arch.arm { })
         (disks.mmc { })
         (arch.rockchip { })
-        arch.arm.denied
+        arch.denied.arm
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
@@ -145,7 +145,7 @@
         (arch.arm { })
         (disks.mmc { })
         (arch.qcom { })
-        arch.arm.denied
+        arch.denied.arm
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
