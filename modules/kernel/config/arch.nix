@@ -369,7 +369,7 @@
         SOCIONEXT_SYNQUACER_PREITS = no;
         VMWARE_VMCI_VSOCKETS = no;
         HYPERV_VSOCKETS = no;
-        XEN = no;
+        XEN = lib.mkForce no;
         XEN_DOM0 = no;
       };
 
