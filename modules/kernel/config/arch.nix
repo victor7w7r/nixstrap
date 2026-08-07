@@ -34,14 +34,14 @@
 
     x86 = { }: {
       ACPI_BUTTON = yes;
-      ACPI_TAD = yes;
-      ACPI_WMI = yes;
-      CRYPTO_DES = no;
+      ACPI_TAD = module;
+      ACPI_WMI = module;
+      CRYPTO_DES = module;
       INPUT_TOUCHSCREEN = no;
-      MFD_AXP20X_I2C = no;
-      MFD_WM8994 = no;
-      MHI_BUS = no;
-      MMC_MTK = no;
+      MFD_AXP20X_I2C = module;
+      MFD_WM8994 = module;
+      MHI_BUS = module;
+      MMC_MTK = module;
       MOTORCOMM_PHY = no;
       NET_VENDOR_STMICRO = no;
       NOP_USB_XCEIV = no;
