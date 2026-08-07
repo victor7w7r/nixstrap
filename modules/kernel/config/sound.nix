@@ -37,6 +37,56 @@
         SND_SOC_SOF_AMD_VANGOGH = setupDenial isDenied module;
       };
 
+    denied-arm = { }: {
+      SND_OXYGEN_LIB = no;
+      SND_SE6X = no;
+      SND_SOC_MIKROE_PROTO = no;
+      SND_SOC_FSL_RPMSG = no;
+      SND_TEST_COMPONENT = no;
+      SND_VIRTIO = no;
+      SND_SOC_SDCA_OPTIONAL = no;
+      SND_SOC_SOF_MTK_TOPLEVEL = no;
+      SND_SOC_AW88395_LIB = no;
+      SND_SOC_AW87391 = no;
+      SND_SOC_AW88399 = no;
+      SND_SOC_BT_SCO = no;
+      SND_SOC_CS530X = no;
+      SND_SOC_CS530X_SPI = no;
+      SND_SOC_DA7219 = no;
+      SND_SOC_ES8328 = no;
+      SND_SOC_ES8328_I2C = no;
+      SND_SOC_ES8328_SPI = no;
+      SND_SOC_INNO_RK3036 = no;
+      SND_SOC_ROCKCHIP_MAX98090 = no;
+      SND_SOC_ROCKCHIP_RT5645 = no;
+      SND_SOC_RK3288_HDMI_ANALOG = no;
+      SND_SOC_RK3399_GRU_SOUND = no;
+      SND_SOC_MAX98090 = no;
+      SND_SOC_MAX98357A = no;
+      SND_SOC_MAX98373 = no;
+      SND_SOC_MAX98373_I2C = no;
+      SND_SOC_MAX98373_SDW = no;
+      SND_SOC_MAX98390 = no;
+      SND_SOC_RL6231 = no;
+      SND_SOC_RT1316_SDW = no;
+      SND_SOC_RT5514 = no;
+      SND_SOC_RT5514_SPI = no;
+      SND_SOC_RT5575 = no;
+      SND_SOC_RT5645 = no;
+      SND_SOC_RT5651 = no;
+      SND_SOC_RT711 = no;
+      SND_SOC_RT711_SDW = no;
+      SND_SOC_RT711_SDCA_SDW = no;
+      SND_SOC_RT722_SDCA_SDW = no;
+      SND_SOC_RT715 = no;
+      SND_SOC_RT715_SDW = no;
+      SND_SOC_RT715_SDCA_SDW = no;
+      SND_SOC_SDW_MOCKUP = no;
+      SND_SOC_SSM3515 = no;
+      SND_SOC_TS3A227E = no;
+      SND_SOC_WM8731 = no;
+    };
+
     denied =
       with lib.kernel;
       lib.mkMerge [

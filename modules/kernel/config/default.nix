@@ -15,12 +15,25 @@
         disks.denied
         filesystems.denied
         input.denied
+        (media.denied { })
         net.denied
         (performance.denied { })
         peripherals.denied
         security.denied
         sensors.denied
         vendor.denied
+      ];
+
+      common-arm = lib.mkMerge [
+        (arch.arm { })
+
+        arch.denied.arm
+        disks.denied-arm
+        input.denied-arm
+        (media.denied-arm { })
+        peripherals.denied-arm
+        sensors.denied-arm
+        vendor.denied-arm
       ];
 
       main-generic = lib.mkMerge [
@@ -93,19 +106,13 @@
       pizero = lib.mkMerge [
         (arch.not-broadcom { })
         default.common
+        default.common-arm
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
-        (arch.arm { })
         (arch.sunxi { })
-        arch.denied.arm
-        disks.denied-arm
         (disks.mmc { })
         (flavour.server { })
-        input.denied-arm
         (net.realtek { })
-        peripherals.denied-arm
-        sensors.denied-arm
-        vendor.denied-arm
         {
           AXP20X_POWER = yes;
           CDROM = no;
@@ -124,21 +131,16 @@
       superlab = lib.mkMerge [
         (arch.not-broadcom { })
         default.common
+        default.common-arm
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
-        (arch.arm { })
         (disks.mmc { })
-        disks.denied-arm
         (arch.rockchip { })
-        arch.denied.arm
         (flavour.desktop { })
-        input.denied-arm
         (net.realtek { })
         sound.denied
+        (sound.denied-arm { })
         (sound.rogally { isDenied = true; })
-        peripherals.denied-arm
-        sensors.denied-arm
-        vendor.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;
@@ -151,21 +153,17 @@
       phone = lib.mkMerge [
         (arch.not-broadcom { })
         default.common
+        default.common-arm
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
         (arch.arm { })
         (disks.mmc { })
         (arch.qcom { })
-        arch.denied.arm
-        disks.denied-arm
-        input.denied-arm
         (flavour.desktop { })
         (net.realtek { })
         sound.denied
+        (sound.denied-arm { })
         (sound.rogally { isDenied = true; })
-        peripherals.denied-arm
-        sensors.denied-arm
-        vendor.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;
