@@ -295,7 +295,6 @@
         SENSORS_F71805F = no;
         SENSORS_F71882FG = no;
         SENSORS_F75375S = no;
-        SENSORS_FAM15H_POWER = no;
         SENSORS_FSCHMD = no;
         SENSORS_G760A = no;
         SENSORS_G762 = no;
@@ -311,7 +310,6 @@
         SENSORS_HTU31 = no;
         SENSORS_I5500 = no;
         SENSORS_I5K_AMB = no;
-        SENSORS_IIO_HWMON = no;
         SENSORS_INA209 = no;
         SENSORS_INA238 = no;
         SENSORS_INA2XX = no;

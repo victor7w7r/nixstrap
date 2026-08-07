@@ -67,11 +67,9 @@
               "kvm_intel.nested=1"
               "intel_pstate=passive"
               "intel_iommu=on"
-              "pcie_ports=compat"
-              "iommu.passthrough=1"
-              "libahci.ignore_sss=1"
-              "swiotlb=noforce"
-              "ahci.mobile_lpm_policy=2"
+              "pcie_ports=native"
+              #"libahci.ignore_sss=1"
+              #"ahci.mobile_lpm_policy=2"
               "drm.polled=14"
             ];
             resumeDevice = "/dev/mapper/swapcrypt";

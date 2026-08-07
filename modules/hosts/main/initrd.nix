@@ -5,9 +5,7 @@
       boot.initrd = {
         supportedFilesystems = lib.mkAfter [ "xfs" ];
         kernelModules = [
-          "t2bce_dma"
-          "t2bce_core"
-          "t2bce_vhci"
+          "apple-bce"
           "brcmfmac_wcc"
           "brcmfmac"
           "btrfs"

@@ -549,7 +549,7 @@
       flake = false;
     };
     linux = {
-      url = "github:CachyOS/linux/e698e0fc23e30c56f4b72611c25d56fb5b7d0b8d";
+      url = "github:CachyOS/linux/cachyos-7.1.6-1";
       flake = false;
     };
     linux-config = {

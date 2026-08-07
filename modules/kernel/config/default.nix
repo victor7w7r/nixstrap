@@ -37,18 +37,15 @@
         (sound.rogally { isDenied = true; })
         {
           APPLE_BCE = module;
+          DRM_APPLETBDRM = module;
           EEPROM_EE1004 = yes;
           HID_WACOM = module;
+          SENSORS_APPLESMC_T2 = module;
           SND_HDA_CODEC_HDMI_INTEL = module;
           SND_HDA_INTEL = module;
           SND_SOC_INTEL_AVS = module;
           SND_USB_AUDIO = module;
           XFS_FS = yes;
-          DRM_APPLETBDRM = module;
-          T2BCE_CORE = module;
-          T2BCE_VHCI = module;
-          T2BCE_AUDIO = module;
-          APFS_FS = module;
         }
       ];
 
@@ -78,8 +75,8 @@
         arch.apply-x86
         (arch.not-broadcom { })
         (arch.arm { isDenied = true; })
-        (arch.intel { })
         (arch.rogally { isDenied = true; })
+        (arch.intel { })
         (disks.mmc { })
         (disks.raid { })
         (flavour.server { })
@@ -98,6 +95,8 @@
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
         (arch.arm { })
+        (arch.sunxi { })
+        arch.arm.denied
         (disks.mmc { })
         (flavour.server { })
         (net.realtek { })
@@ -116,13 +115,37 @@
         }
       ];
 
-      superlab-phone = lib.mkMerge [
+      superlab = lib.mkMerge [
         (arch.not-broadcom { })
         default.common
         (arch.intel { isDenied = true; })
         (arch.rogally { isDenied = true; })
         (arch.arm { })
         (disks.mmc { })
+        (arch.rockchip { })
+        arch.arm.denied
+        (flavour.desktop { })
+        (net.realtek { })
+        sound.denied
+        (sound.rogally { isDenied = true; })
+        {
+          CDROM = no;
+          MD = lib.mkForce no;
+          UDF_FS = lib.mkForce no;
+          USB_EHCI_TEGRA = no;
+          XFS_FS = no;
+        }
+      ];
+
+      phone = lib.mkMerge [
+        (arch.not-broadcom { })
+        default.common
+        (arch.intel { isDenied = true; })
+        (arch.rogally { isDenied = true; })
+        (arch.arm { })
+        (disks.mmc { })
+        (arch.qcom { })
+        arch.arm.denied
         (flavour.desktop { })
         (net.realtek { })
         sound.denied

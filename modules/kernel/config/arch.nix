@@ -142,6 +142,8 @@
         SENSORS_ASUS_ROG_RYUJIN = setupDenial isDenied module;
         SENSORS_ASUS_WMI = setupDenial isDenied module;
         SENSORS_K10TEMP = setupDenial isDenied module;
+        SENSORS_FAM15H_POWER = setupDenial isDenied module;
+        SENSORS_IIO_HWMON = setupDenial isDenied module;
         SERIAL_MULTI_INSTANTIATE = setupDenial isDenied module;
         SERIO_I8042 = setupDenial isDenied yes;
         SP5100_TCO = setupDenial isDenied module;
@@ -163,14 +165,14 @@
         HAVE_INTEL_TXT = setupDenial isDenied yes;
         HW_RANDOM_INTEL = setupDenial isDenied module;
         I2C_I801 = setupDenial isDenied module;
-        INT340X_THERMAL = setupDenial isDenied module;
+        INT340X_THERMAL = setupDenial isDenied yes;
         INTEL_HFI_THERMAL = lib.mkForce (setupDenial isDenied yes);
         INTEL_IDLE = lib.mkForce (setupDenial isDenied yes);
         INTEL_IDMA64 = setupDenial isDenied module;
         INTEL_IOMMU = setupDenial isDenied yes;
         INTEL_LDMA = setupDenial isDenied yes;
         INTEL_MEI = setupDenial isDenied module;
-        INTEL_PCH_THERMAL = lib.mkForce (setupDenial isDenied module);
+        INTEL_PCH_THERMAL = lib.mkForce (setupDenial isDenied yes);
         INTEL_PMC_CORE = setupDenial isDenied module;
         INTEL_PMT_DISCOVERY = setupDenial isDenied module;
         INTEL_PMT_TELEMETRY = setupDenial isDenied module;
@@ -185,8 +187,9 @@
         INTEL_WMI_THUNDERBOLT = setupDenial isDenied module;
         KVM_INTEL = setupDenial isDenied module;
         MDIO_BUS = setupDenial isDenied yes;
-        MFD_INTEL_LPSS = setupDenial isDenied module;
-        MFD_INTEL_LPSS_ACPI = setupDenial isDenied module;
+        MFD_INTEL_LPSS = setupDenial isDenied yes;
+        MFD_INTEL_LPSS_ACPI = setupDenial isDenied yes;
+        MFD_INTEL_LPSS_PCI = setupDenial isDenied module;
         MTD_SPI_NOR = setupDenial isDenied module;
         PERF_EVENTS_INTEL_CSTATE = setupDenial isDenied module;
         PERF_EVENTS_INTEL_UNCORE = setupDenial isDenied module;
@@ -202,6 +205,24 @@
       UIO = no;
       WLAN_VENDOR_BROADCOM = no;
       NET_VENDOR_BROADCOM = no;
+    };
+
+    sunxi = { }: {
+      ARCH_SUNXI = yes;
+      ARCH_QCOM = no;
+      ARCH_ROCKCHIP = no;
+    };
+
+    qcom = { }: {
+      ARCH_SUNXI = no;
+      ARCH_QCOM = yes;
+      ARCH_ROCKCHIP = no;
+    };
+
+    rockchip = { }: {
+      ARCH_SUNXI = no;
+      ARCH_QCOM = no;
+      ARCH_ROCKCHIP = yes;
     };
 
     denied = {
@@ -222,6 +243,118 @@
         CHT_WC_PMIC_OPREGION = lib.mkForce no;
         TPS68470_PMIC_OPREGION = lib.mkForce no;
         PCI_IOV = no;
+      };
+
+      arm = {
+        /*
+          ARM64_ERRATUM_843419 = yes;
+          ARM64_ERRATUM_1418040 = yes;
+          ARM64_ERRATUM_1530923 = yes;
+          ARM64_WORKAROUND_SPECULATIVE_AT = yes;
+          ROCKCHIP_ERRATUM_3588001 = yes;
+        */
+        AMPERE_ERRATUM_AC03_CPU_38 = no;
+        AMPERE_ERRATUM_AC04_CPU_23 = no;
+        ARCH_ACTIONS = no;
+        ARCH_AIROHA = no;
+        ARCH_ALPINE = no;
+        ARCH_APPLE = no;
+        ARCH_ARTPEC = no;
+        ARCH_AXIADO = no;
+        ARCH_BCM = no;
+        ARCH_BCM2835 = no;
+        ARCH_BCMBCA = no;
+        ARCH_BCM_IPROC = no;
+        ARCH_BERLIN = no;
+        ARCH_BLAIZE = no;
+        ARCH_BRCMSTB = no;
+        ARCH_BST = no;
+        ARCH_CIX = no;
+        ARCH_EXYNOS = no;
+        ARCH_HISI = no;
+        ARCH_INTEL_SOCFPGA = no;
+        ARCH_K3 = no;
+        ARCH_KEEMBAY = no;
+        ARCH_LAYERSCAPE = no;
+        ARCH_LG1K = no;
+        ARCH_MA35 = no;
+        ARCH_MEDIATEK = no;
+        ARCH_MESON = no;
+        ARCH_MICROCHIP = no;
+        ARCH_MVEBU = no;
+        ARCH_MXC = no;
+        ARCH_NPCM = no;
+        ARCH_NXP = no;
+        ARCH_REALTEK = no;
+        ARCH_RENESAS = no;
+        ARCH_S32 = no;
+        ARCH_SEATTLE = no;
+        ARCH_SOPHGO = no;
+        ARCH_SPARX5 = no;
+        ARCH_SPRD = no;
+        ARCH_STM32 = no;
+        ARCH_SYNQUACER = no;
+        ARCH_TEGRA = no;
+        ARCH_TESLA_FSD = no;
+        ARCH_THUNDER = no;
+        ARCH_THUNDER2 = no;
+        ARCH_UNIPHIER = no;
+        ARCH_VEXPRESS = no;
+        ARCH_VISCONTI = no;
+        ARCH_XGENE = no;
+        ARCH_ZYNQMP = no;
+        ARM64_ERRATUM_1024718 = no;
+        ARM64_ERRATUM_1165522 = no;
+        ARM64_ERRATUM_1319367 = no;
+        ARM64_ERRATUM_1463225 = no;
+        ARM64_ERRATUM_1508412 = no;
+        ARM64_ERRATUM_1742098 = no;
+        ARM64_ERRATUM_1902691 = no;
+        ARM64_ERRATUM_2038923 = no;
+        ARM64_ERRATUM_2051678 = no;
+        ARM64_ERRATUM_2054223 = no;
+        ARM64_ERRATUM_2064142 = no;
+        ARM64_ERRATUM_2067961 = no;
+        ARM64_ERRATUM_2077057 = no;
+        ARM64_ERRATUM_2119858 = no;
+        ARM64_ERRATUM_2139208 = no;
+        ARM64_ERRATUM_2224489 = no;
+        ARM64_ERRATUM_2253138 = no;
+        ARM64_ERRATUM_2457168 = no;
+        ARM64_ERRATUM_2645198 = no;
+        ARM64_ERRATUM_2658417 = no;
+        ARM64_ERRATUM_2966298 = no;
+        ARM64_ERRATUM_3117295 = no;
+        ARM64_ERRATUM_3194386 = no;
+        ARM64_ERRATUM_4118414 = no;
+        ARM64_ERRATUM_4193714 = no;
+        ARM64_ERRATUM_4311569 = no;
+        ARM64_ERRATUM_819472 = no;
+        ARM64_ERRATUM_824069 = no;
+        ARM64_ERRATUM_826319 = no;
+        ARM64_ERRATUM_827319 = no;
+        ARM64_ERRATUM_832075 = no;
+        ARM64_ERRATUM_845719 = no;
+        ARM64_WORKAROUND_REPEAT_TLBI = no;
+        ARM64_WORKAROUND_SPECULATIVE_UNPRIV_LOAD = no;
+        ARM64_WORKAROUND_TRBE_OVERWRITE_FILL_MODE = no;
+        ARM64_WORKAROUND_TRBE_WRITE_OUT_OF_RANGE = no;
+        ARM64_WORKAROUND_TSB_FLUSH_FAILURE = no;
+        CAVIUM_ERRATUM_22375 = no;
+        CAVIUM_ERRATUM_23154 = no;
+        CAVIUM_ERRATUM_27456 = no;
+        CAVIUM_ERRATUM_30115 = no;
+        CAVIUM_TX2_ERRATUM_219 = no;
+        FUJITSU_ERRATUM_010001 = no;
+        HISILICON_ERRATUM_161600802 = no;
+        HISILICON_ERRATUM_162100801 = no;
+        NVIDIA_CARMEL_CNP_ERRATUM = no;
+        QCOM_FALKOR_ERRATUM_1003 = no;
+        QCOM_FALKOR_ERRATUM_1009 = no;
+        QCOM_FALKOR_ERRATUM_E1041 = no;
+        QCOM_QDF2400_ERRATUM_0065 = no;
+        ROCKCHIP_ERRATUM_3568002 = no;
+        SOCIONEXT_SYNQUACER_PREITS = no;
       };
 
       x86 = {

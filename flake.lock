@@ -3202,17 +3202,17 @@
     "linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1785768532,
-        "narHash": "sha256-jlwsOxJlCvU35fWYgjezYHfE7yGDeOtD86QnihdM4F0=",
+        "lastModified": 1785768722,
+        "narHash": "sha256-B4kRsMeUxQuz5prPDPjAccMcFYaSTAbzCYs3kHGF5BI=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "e698e0fc23e30c56f4b72611c25d56fb5b7d0b8d",
+        "rev": "5641494883f546e11abaf40d9d30bcd8f5ae3dab",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
+        "ref": "cachyos-7.1.6-1",
         "repo": "linux",
-        "rev": "e698e0fc23e30c56f4b72611c25d56fb5b7d0b8d",
         "type": "github"
       }
     },
