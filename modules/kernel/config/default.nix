@@ -100,6 +100,7 @@
         (disks.mmc { })
         (flavour.server { })
         (net.realtek { })
+        peripherals.denied-arm
         {
           AXP20X_POWER = yes;
           CDROM = no;
@@ -128,6 +129,7 @@
         (net.realtek { })
         sound.denied
         (sound.rogally { isDenied = true; })
+        peripherals.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;
@@ -150,6 +152,7 @@
         (net.realtek { })
         sound.denied
         (sound.rogally { isDenied = true; })
+        peripherals.denied-arm
         {
           CDROM = no;
           MD = lib.mkForce no;

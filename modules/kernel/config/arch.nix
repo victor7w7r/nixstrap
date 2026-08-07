@@ -345,6 +345,13 @@
         ARM64_PMEM = lib.mkForce no;
         ARM64_POE = no;
         ARM64_SME = no;
+        ARM_CCI = no;
+        ARM_CCI400_COMMON = no;
+        ARM_SCPI_PROTOCOL = no;
+        ARM_SCMI_TRANSPORT_OPTEE = no;
+        ARM_SCMI_TRANSPORT_VIRTIO = no;
+        ARM_SCMI_TRANSPORT_VIRTIO_VERSION1_COMPLIANCE = no;
+        ARM_SCMI_POWER_CONTROL = no;
         ARM64_WORKAROUND_REPEAT_TLBI = no;
         ARM64_WORKAROUND_SPECULATIVE_UNPRIV_LOAD = no;
         ARM64_WORKAROUND_TRBE_OVERWRITE_FILL_MODE = no;
@@ -368,9 +375,11 @@
         ROCKCHIP_ERRATUM_3568002 = no;
         SOCIONEXT_SYNQUACER_PREITS = no;
         VMWARE_VMCI_VSOCKETS = no;
+        VMWARE_VMCI = no;
         HYPERV_VSOCKETS = no;
         XEN = lib.mkForce no;
         XEN_DOM0 = lib.mkForce no;
+        VBOXSF_FS = no;
       };
 
       x86 = {

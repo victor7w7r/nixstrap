@@ -5,7 +5,6 @@
   flake-file.inputs = {
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     linux = {
-      #Without T2
       url = "github:CachyOS/linux/cachyos-7.1.6-1";
       flake = false;
     };

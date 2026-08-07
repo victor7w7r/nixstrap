@@ -13,6 +13,45 @@
       USB_ACM = yes;
     };
 
+    denied-arm = lib.mkMerge [
+      {
+        AMD_SBRMI_I2C = no;
+        HI6421V600_IRQ = no;
+        HISI_HIKEY_USB = no;
+        IMX_SCMI_BBM_EXT = no;
+        MCHP_LAN966X_PCI = no;
+        MISC_RP1 = no;
+        MOXTET = no;
+        OPEN_DICE = no;
+        PCIE_CADENCE = no;
+        PCIE_CADENCE_EP = no;
+        PCIE_CADENCE_HOST = no;
+        PCIE_CADENCE_PLAT = no;
+        PCIE_CADENCE_PLAT_EP = no;
+        PCIE_CADENCE_PLAT_HOST = no;
+        PCIE_KIRIN = no;
+        PCIE_MICROCHIP_HOST = no;
+        PCIE_PLDA_HOST = no;
+        PCIE_SUN55I_NONE = no;
+        PCIE_XILINX = no;
+        PCI_ENDPOINT = no;
+        PCI_ENDPOINT_CONFIGFS = no;
+        PCI_EPF_MHI = no;
+        PCI_EPF_NTB = no;
+        PCI_EPF_TEST = no;
+        PCI_HISI = no;
+        PCI_HYPERV_INTERFACE = no;
+        PCI_XGENE = no;
+        PCI_XGENE_MSI = no;
+        PPKB_POWER_MANAGER = no;
+        RAID_ATTRS = no;
+        SENSORS_LIS3_SPI = no;
+        UACCE = no;
+        VCPU_STALL_DETECTOR = no;
+        VEXPRESS_CONFIG = no;
+      }
+    ];
+
     denied = lib.mkMerge [
       #DRIVERS
       {
