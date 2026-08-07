@@ -423,7 +423,6 @@
         SM_GCC_7150 = no;
         SM_GCC_8150 = no;
         SM_GCC_8250 = no;
-        SM_GCC_8450 = no;
         SM_GCC_8550 = no;
         SM_GCC_8650 = no;
         SM_GCC_8750 = no;

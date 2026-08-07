@@ -51,7 +51,7 @@
       PCIE_PTM = yes;
       PCI_DOE = yes;
       PCS_XPCS = no;
-      PERF_EVENTS_INTEL_RAPL = yes;
+      PERF_EVENTS_INTEL_RAPL = module;
       QRTR = no;
       RAID_ATTRS = no;
       RTC_DRV_CMOS = yes;
@@ -60,7 +60,7 @@
       USB_GADGET = no;
       USB_MUSB_HDRC = no;
       VFIO = module;
-      X86_PKG_TEMP_THERMAL = yes;
+      X86_PKG_TEMP_THERMAL = module;
       X86_REROUTE_FOR_BROKEN_BOOT_IRQS = yes;
       XZ_DEC_ARM = no;
       XZ_DEC_ARM64 = no;
