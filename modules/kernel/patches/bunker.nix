@@ -140,8 +140,8 @@
         "0097-io_uring-set-io_uring_disabled-sysctl-to-1-by-defaul.patch"
         "0098-sysctl-Add-proc_dointvec_minmax_sysadmin-sanity-chec.patch"
         "0099-kconfig-enable-MSEAL_SYSTEM_MAPPINGS-by-default.patch"
-        "0100-slub-add-multi-purpose-random-canaries.patch"
-        "0101-slub-Add-canary_debug-kernel-parameter.patch"
+        #"0100-slub-add-multi-purpose-random-canaries.patch"
+        #"0101-slub-Add-canary_debug-kernel-parameter.patch"
       ];
   };
 }
