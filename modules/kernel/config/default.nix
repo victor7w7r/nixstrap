@@ -125,6 +125,9 @@
           SUNXI_RSB = yes;
           UDF_FS = lib.mkForce no;
           XFS_FS = yes;
+          SPARD_WLAN_SUPPORT = yes;
+          WLAN_UWE5622 = module;
+          UNISOC_WIFI_PS = yes;
         }
       ];
 
