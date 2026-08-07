@@ -338,7 +338,6 @@
         PINCTRL_SM8750 = no;
         PINCTRL_X1E80100 = no;
         QCM_DISPCC_2290 = no;
-        QCM_GCC_2290 = no;
         QCOM_A53PLL = no;
         QCOM_A7PLL = no;
         QCOM_CLK_APCC_MSM8996 = no;
