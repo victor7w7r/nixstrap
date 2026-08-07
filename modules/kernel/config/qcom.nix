@@ -252,7 +252,6 @@
         MSM_GCC_8953 = no;
         MSM_GCC_8976 = no;
         MSM_GCC_8994 = no;
-        MSM_GCC_8998 = no;
         MSM_GPUCC_8998 = no;
         MSM_MMCC_8994 = no;
         MSM_MMCC_8996 = no;
