@@ -137,7 +137,6 @@
         CLK_GLYMUR_VIDEOCC = no;
         CLK_KAANAPALI_CAMCC = no;
         CLK_KAANAPALI_DISPCC = no;
-        CLK_KAANAPALI_GCC = no;
         CLK_KAANAPALI_GPUCC = no;
         CLK_KAANAPALI_TCSRCC = no;
         CLK_KAANAPALI_VIDEOCC = no;
