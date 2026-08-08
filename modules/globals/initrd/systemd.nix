@@ -8,7 +8,7 @@
         users.root.shell = "${pkgs.bashInteractive}/bin/bash";
         contents = {
           "/etc/ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-          #"/etc/terminfo".source = "${pkgs.ncurses}/share/terminfo";
+          "/etc/terminfo".source = "${pkgs.ncurses}/share/terminfo";
         };
         settings.Manager = {
           DefaultTimeoutStartSec = "15s";
@@ -19,7 +19,6 @@
         initrdBin = with pkgs; [ coreutils ];
         storePaths = with pkgs; [
           "${bashInteractive}/bin/bash"
-          mtdutils
           util-linux
           "${util-linux}/bin/mount"
           "${util-linux}/bin/umount"

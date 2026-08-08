@@ -1,7 +1,12 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
-  #nix build -L ".#nixosConfigurations.phone-enchilada.config.system.build.toplevel"
-  #nix build -L ".#nixosConfigurations.phone-enchilada.config.system.build.diskoImagesScript"
+  perSystem.packages = {
+    phone-enchilada-toplevel =
+      inputs.self.nixosConfigurations.phone-enchilada.config.system.build.toplevel;
+
+    phone-enchilada-script =
+      inputs.self.nixosConfigurations.phone-enchilada.config.system.build.diskoImagesScript;
+  };
 
   den = {
     hosts.aarch64-linux.phone-enchilada.users.victor7w7r = { };

@@ -6,6 +6,9 @@
   ...
 }:
 {
+  perSystem.packages.handheld-toplevel =
+    inputs.self.nixosConfigurations.handheld.config.system.build.toplevel;
+
   den = {
     hosts.x86_64-linux.handheld.users.victor7w7r = { };
     aspects.handheld =
@@ -41,13 +44,10 @@
           { lib, pkgs, ... }:
           {
             networking.hostName = "v7w7r-rc71l";
-            hardware.firmware = with pkgs; lib.mkAfter [ xone-dongle-firmware ];
-            nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
-
             boot = {
-              extraModprobeConfig = "options kvm-amd nested=1";
               resumeDevice = "/dev/mapper/swapcrypt";
               kernelPackages = (kernel.hosts.handheld pkgs false).handheld-kernelPackages;
+              extraModprobeConfig = "options kvm-amd nested=1";
               kernelParams = [
                 "mitigations=off"
                 "nospectre_v1"

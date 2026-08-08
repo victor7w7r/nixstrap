@@ -121,6 +121,8 @@
           AXP20X_POWER = yes;
           CDROM = no;
           IIO = yes;
+          DRM_SUN4I = yes;
+          DRM_SUN8I_MIXER = yes;
           MD = lib.mkForce no;
           MFD_AXP20X = yes;
           MFD_AXP20X_I2C = yes;

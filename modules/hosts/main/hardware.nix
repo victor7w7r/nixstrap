@@ -1,7 +1,30 @@
 {
-  den.aspects.main.audio.nixos =
-    { self', ... }:
+  den.aspects.main.hardware.nixos =
     {
+      lib,
+      pkgs,
+      self',
+      ...
+    }:
+    {
+      hardware = {
+        cpu.intel.updateMicrocode = true;
+        firmware = lib.mkAfter [ self'.packages.brcm-firmware ];
+        graphics = {
+          enable32Bit = true;
+          extraPackages = with pkgs; [
+            intel-media-driver
+            vulkan-loader
+            vulkan-validation-layers
+            vulkan-extension-layer
+          ];
+          extraPackages32 = with pkgs.pkgsi686Linux; [
+            intel-media-driver
+            vulkan-loader
+          ];
+        };
+      };
+
       environment.etc = {
         "alsa-card-profile/mixer/paths".source =
           "${self'.packages.t2-audio}/share/apple-t2-better-audio/files/paths";

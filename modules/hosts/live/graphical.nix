@@ -1,5 +1,11 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
+  perSystem.packages = {
+    graphical-live-toplevel =
+      inputs.self.nixosConfigurations.graphical-live.config.system.build.toplevel;
+    graphical-live-image = inputs.self.nixosConfigurations.graphical-live.config.system.build.isoImage;
+  };
+
   den = {
     hosts.x86_64-linux.graphical-live.users.snowflake = { };
     aspects.graphical-live = {

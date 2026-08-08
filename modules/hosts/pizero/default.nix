@@ -10,6 +10,21 @@
 {
   #mount /dev/sde1 /mnt && rm -rf /mnt/* && mkdir -p /mnt/boot && tar --zstd -xvf boot.tar.zst -C /mnt/boot --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
   #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
+
+  perSystem.packages = {
+    pizero-toplevel =
+      inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
+
+    pizero-image =
+      inputs.self.nixosConfigurations.pizero.config.system.build.sdImage;
+
+    pizero-tarball =
+      inputs.self.nixosConfigurations.pizero.config.system.build.tarball;
+
+    pizero-boot =
+      inputs.self.nixosConfigurations.pizero.config.system.build.bootFiles;
+  };
+
   den = {
     hosts.aarch64-linux = {
       pizero.users.victor7w7r = { };
@@ -19,22 +34,18 @@
 
     aspects = {
       pizero-sdimage = {
-        #nix build -L ".#nixosConfigurations.pizero-sdimage.config.system.build.sdImage"
         includes = with den.aspects; [
           pizero.common
           (sdcard.lib.call { })
         ];
       };
       pizero-tarball = {
-        #nix build -L ".#nixosConfigurations.pizero-tarball.config.system.build.tarball"
-        #nix build -L ".#nixosConfigurations.pizero-tarball.config.system.build.bootFiles"
         includes = with den.aspects; [
           pizero.common
           (tarball.lib.call { })
         ];
       };
       pizero = {
-        #nix build -L ".#nixosConfigurations.pizero.config.system.build.toplevel"
         includes = with den.aspects; [ pizero.common ];
         common = {
           includes = with den.aspects; [

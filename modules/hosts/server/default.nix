@@ -6,6 +6,9 @@
   ...
 }:
 {
+  perSystem.packages.server-toplevel =
+    inputs.self.nixosConfigurations.server.config.system.build.toplevel;
+
   den = {
     hosts.x86_64-linux = {
       server-physical-chroot.users.victor7w7r = { };

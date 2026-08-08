@@ -8,6 +8,9 @@
 {
   flake-file.inputs.nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
 
+  perSystem.packages.main-toplevel =
+    inputs.self.nixosConfigurations.main.config.system.build.toplevel;
+
   den = {
     hosts.x86_64-linux = {
       main-chroot.users.victor7w7r = { };
@@ -42,20 +45,23 @@
         xr
       ];
       nixos =
+        { pkgs, inputs', ... }:
         {
-          lib,
-          pkgs,
-          inputs',
-          self',
-          ...
-        }:
-        {
-          nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
-
           networking = {
             hostName = "v7w7r-macmini81";
             networkmanager.unmanaged = [ "enp2s0f1u1" ];
           };
+
+          virtualisation = {
+            kvmgt.enable = true;
+            incus.ui.enable = true;
+          };
+
+          systemd.tmpfiles.rules = [
+            "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
+            "w /sys/devices/system/cpu/intel_pstate/max_perf_pct - - - - 80"
+            "w /sys/block/bcache0/bcache/cache_mode - - - - writeback"
+          ];
 
           boot = {
             kernelPackages = (kernel.hosts.main pkgs false).main-kernelPackages;
@@ -72,16 +78,11 @@
               #"ahci.mobile_lpm_policy=2"
               "drm.polled=14"
             ];
-            resumeDevice = "/dev/mapper/swapcrypt";
             extraModprobeConfig = ''
               options kvm-intel nested=1
               options kvm_intel emulate_invalid_guest_state=0
             '';
-          };
-
-          virtualisation = {
-            kvmgt.enable = true;
-            incus.ui.enable = true;
+            resumeDevice = "/dev/mapper/swapcrypt";
           };
 
           environment.systemPackages = with pkgs; [
@@ -106,31 +107,6 @@
             pkgsi686Linux.libxcrypt
           ];
 
-          services.thermald.enable = true;
-
-          hardware = {
-            graphics = {
-              enable32Bit = true;
-              extraPackages = with pkgs; [
-                intel-media-driver
-                vulkan-loader
-                vulkan-validation-layers
-                vulkan-extension-layer
-              ];
-              extraPackages32 = with pkgs.pkgsi686Linux; [
-                intel-media-driver
-                vulkan-loader
-              ];
-            };
-            cpu.intel.updateMicrocode = true;
-            firmware = lib.mkAfter [ self'.packages.brcm-firmware ];
-          };
-
-          systemd.tmpfiles.rules = [
-            "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
-            "w /sys/devices/system/cpu/intel_pstate/max_perf_pct - - - - 80"
-            "w /sys/block/bcache0/bcache/cache_mode - - - - writeback"
-          ];
         };
 
       provides.to-users.homeManager =

@@ -1,20 +1,6 @@
 { inputs, lib, ... }:
 {
   kernel.lib = {
-    linux-config =
-      pkgs: isHardened:
-      pkgs.stdenvNoCC.mkDerivation {
-        name = "linux-kconfig";
-        phases = [
-          "unpackPhase"
-          "buildPhase"
-          "installPhase"
-        ];
-        src = inputs.linux-config;
-        buildPhase = ''cp "$src/linux-cachyos${if isHardened then "-hardened" else ""}/config" ./config'';
-        installPhase = "cp config $out";
-      };
-
     menu-config =
       {
         kernel,

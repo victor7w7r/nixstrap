@@ -1,10 +1,12 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
   flake-file.inputs.nixos-wsl = {
     url = "github:nix-community/nixos-wsl";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-compat.follows = "";
   };
+
+  perSystem.packages.wsl-toplevel = inputs.self.nixosConfigurations.wsl.config.system.build.toplevel;
 
   den = {
     hosts.x86_64-linux.wsl = {

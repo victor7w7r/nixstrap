@@ -1,5 +1,10 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
+  perSystem.packages = {
+    minimal-live-toplevel = inputs.self.nixosConfigurations.minimal-live.config.system.build.toplevel;
+    minimal-live-image = inputs.self.nixosConfigurations.minimal-live.config.system.build.isoImage;
+  };
+
   den = {
     hosts.x86_64-linux.minimal-live.users.snowflake = { };
     aspects.minimal-live = {

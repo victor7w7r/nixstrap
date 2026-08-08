@@ -10,6 +10,7 @@
       ];
 
       hardware = {
+        firmware = with pkgs; lib.mkAfter [ xone-dongle-firmware ];
         xone.enable = true;
         amdgpu = {
           opencl.enable = true;

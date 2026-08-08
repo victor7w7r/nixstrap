@@ -8,6 +8,13 @@
   ...
 }:
 {
+  perSystem.packages = {
+    superlab-toplevel = inputs.self.nixosConfigurations.superlab.config.system.build.toplevel;
+    superlab-image = inputs.self.nixosConfigurations.superlab.config.system.build.sdImage;
+    superlab-tarball = inputs.self.nixosConfigurations.superlab.config.system.build.tarball;
+    superlab-boot = inputs.self.nixosConfigurations.superlab.config.system.build.bootFiles;
+  };
+
   den = {
     hosts.aarch64-linux = {
       superlab.users.victor7w7r = { };

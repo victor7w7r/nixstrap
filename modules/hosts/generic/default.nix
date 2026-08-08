@@ -1,13 +1,15 @@
 {
   den,
+  disko,
   inputs,
-  kernel,
   ...
 }:
 {
+  perSystem.packages.generic-toplevel =
+    inputs.self.nixosConfigurations.generic.config.system.build.toplevel;
+
   den = {
     hosts.x86_64-linux.generic.users.snowflake = { };
-    #nix build -L ".#nixosConfigurations.generic.config.system.build.toplevel"
     aspects.generic = {
       includes = with den.aspects; [
         generic._
@@ -25,32 +27,33 @@
       ];
 
       nixos =
+        { pkgs, modulesPath, ... }:
         {
-          pkgs,
-          modulesPath,
-          ...
-        }:
-        {
+          nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
+
           networking.hostName = "v7w7r-generic";
+
           virtualisation.vmVariant.virtualisation.useEFIBoot = true;
           imports = [
             "${modulesPath}/profiles/qemu-guest.nix"
             inputs.disko.nixosModules.disko
           ];
 
-          boot = {
-            kernelParams = [
-              "intel_pstate=disable"
-              "i915.enable_guc=2"
-              "i915.enable_psr=0"
-            ];
-            kernelPackages = (kernel.hosts.generic pkgs).generic-kernelPackages;
-            initrd = {
-              availableKernelModules = [
-                "ahci"
-                "xhci_pci"
-                "sr_mod"
-              ];
+          boot.kernelPackages = pkgs.cachyosKernels.linuxPackages.linux-cachyos-latest-lto;
+
+          disko.devices.disk = with disko; {
+            root = disk.root { };
+            main = disk.gpt {
+              device = "vda";
+              partitions = {
+                esp = esp.call { };
+                system = btrfs.call {
+                  name = "system";
+                  size = "100%";
+                  priority = 2;
+                  subvolumes = disko.btrfs.subvolumes { hasEtc = true; };
+                };
+              };
             };
           };
         };

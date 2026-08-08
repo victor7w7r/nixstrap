@@ -8,18 +8,15 @@
       kernelModules = [
         "dm-snapshot"
         "kvm-amd"
-        "fido2"
         "amdgpu"
         "snd_usb_audio"
         "snd_hda_intel"
         "xhci_pci"
         "nvme"
-        "thunderbolt"
         "usb_storage"
         "usbhid"
         "sd_mod"
         "sdhci_pci"
-        "zram"
       ];
 
       luks.devices.swapcrypt = {
