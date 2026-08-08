@@ -56,13 +56,14 @@
                   mkdir -p root/store
 
                   echo "Copying store files..."
-                  rsyncy -aHAxr --progress --files-from=${closureInfo}/store-paths / root/store
+                  rsyncy -aHAxr --no-o --no-g --files-from=${closureInfo}/store-paths / root/store
                   cp ${closureInfo}/registration root/nix-path-registration
                   mkdir -p root/var/nix/daemon-socket
-                  chown -R root:root root
+
+                  chmod -R +w root
 
                   echo "Compressing with $SIZE..."
-                  tar -cv -C root . | zstd -T$NIX_BUILD_CORES > $out/store.tar.zst
+                  tar --owner=0 --group=0 --numeric-owner -cv -C root . | zstd -T$NIX_BUILD_CORES > $out/store.tar.zst
                 '');
             };
           };
