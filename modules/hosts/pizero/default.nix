@@ -12,17 +12,13 @@
   #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
   perSystem.packages = {
-    pizero-toplevel =
-      inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
+    pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
 
-    pizero-image =
-      inputs.self.nixosConfigurations.pizero.config.system.build.sdImage;
+    pizero-image = inputs.self.nixosConfigurations.pizero.config.system.build.sdImage;
 
-    pizero-tarball =
-      inputs.self.nixosConfigurations.pizero.config.system.build.tarball;
+    pizero-tarball = inputs.self.nixosConfigurations.pizero.config.system.build.tarball;
 
-    pizero-boot =
-      inputs.self.nixosConfigurations.pizero.config.system.build.bootFiles;
+    pizero-boot = inputs.self.nixosConfigurations.pizero.config.system.build.bootFiles;
   };
 
   den = {
@@ -94,16 +90,22 @@
                   "randomize_kstack_offset=on"
                 ];
                 initrd.kernelModules = [
-                  #"g_ether"
-                  "uas"
+                  "ahci"
+                  "ehci_hcd"
+                  "dm_crypt"
+                  "encrypted_keys"
+                  "sprdbt_tty"
+                  "sprdwl_ng"
+                  "sunxi_addr"
                   "sunxi_gmac"
                   "sunxi_rsb"
-                  "sprdwl_ng"
-                  "sprdbt_tty"
-                  "sunxi_addr"
-                  "gpio_sunxi"
-                  "8250_dw"
-                  "zram"
+                  "uas"
+                  "uhci_hcd"
+                  "usb_storage"
+                  "usbcore"
+                  "usbhid"
+                  "xhci_hcd"
+                  "xhci_pci"
                 ];
                 initrd.systemd.tpm2.enable = false;
                 kernelPackages = (kernel.hosts.pizero pkgs false).pizero-kernelPackages;

@@ -11,8 +11,6 @@
 
     include = { }: {
       BRIDGE = yes;
-      BRIDGE_NETFILTER = module;
-      CFG80211 = module;
       DEFAULT_BBR = yes;
       DEFAULT_CUBIC = no;
       DEFAULT_HOSTNAME = freeform "v7w7r";
@@ -21,7 +19,6 @@
       INET_ESP = yes;
       INET_IPCOMP = yes;
       IP6_NF_MANGLE = no;
-      MAC80211 = module;
       NETFILTER_XTABLES = yes;
       NETFILTER_XT_MATCH_ADDRTYPE = yes;
       NETFILTER_XT_MATCH_COMMENT = yes;

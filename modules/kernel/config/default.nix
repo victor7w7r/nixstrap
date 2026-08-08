@@ -122,7 +122,6 @@
           IIO = yes;
           DRM_SUN4I = yes;
           DRM_SUN8I_MIXER = yes;
-          MD = lib.mkForce no;
           MFD_AXP20X = yes;
           MFD_AXP20X_I2C = yes;
           MFD_AXP20X_RSB = yes;
@@ -132,7 +131,6 @@
           UDF_FS = lib.mkForce no;
           UNISOC_WIFI_PS = yes;
           WLAN_UWE5622 = module;
-          XFS_FS = yes;
         }
       ];
 

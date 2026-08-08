@@ -1,17 +1,12 @@
 { lib, ... }: {
   kernel.config.disks = with lib.kernel; {
     include = { }: {
+      BLK_DEV_DM = yes;
       BLK_DEV_NVME = yes;
       BLK_DEV_SD = yes;
+      DM_SNAPSHOT = yes;
+      DM_THIN_PROVISIONING = yes;
       SCSI = yes;
-      TYPEC = module;
-      USB4 = module;
-      USB_ROLE_SWITCH = module;
-      USB_STORAGE = module;
-      USB_UAS = module;
-      USB_EHCI_HCD = module;
-      USB_UHCI_HCD = module;
-      USB_XHCI_HCD = module;
     };
 
     not-mmc = { }: {
@@ -30,10 +25,7 @@
     };
 
     raid = { }: {
-      BLK_DEV_DM = yes;
       BLK_DEV_MD = yes;
-      DM_SNAPSHOT = yes;
-      DM_THIN_PROVISIONING = yes;
       DM_RAID = yes;
       MD_RAID456 = yes;
     };

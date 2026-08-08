@@ -49,7 +49,7 @@
             # wol aa:bb:cc:dd:ee:ff
             networking = {
               hostName = "v7w7r-youyeetoox1";
-              interfaces."enp1s0".wakeOnLan.enable = true;
+              #interfaces."enp1s0".wakeOnLan.enable = true;
             };
 
             virtualisation.incus = {

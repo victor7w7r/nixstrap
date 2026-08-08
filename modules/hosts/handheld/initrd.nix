@@ -6,17 +6,12 @@
         "snd_soc_cs35l41_i2c"
       ];
       kernelModules = [
-        "dm-snapshot"
-        "kvm-amd"
         "amdgpu"
-        "snd_usb_audio"
+        "cryptd"
+        "dm_crypt"
+        "encrypted_keys"
         "snd_hda_intel"
-        "xhci_pci"
-        "nvme"
-        "usb_storage"
         "usbhid"
-        "sd_mod"
-        "sdhci_pci"
       ];
 
       luks.devices.swapcrypt = {

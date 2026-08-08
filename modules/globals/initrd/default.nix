@@ -1,14 +1,6 @@
 {
   den.default.nixos = { lib, ... }: {
     boot = {
-      kernelModules = lib.mkBefore [
-        "uas"
-        "ehci-hcd"
-        "uhci-hcd"
-        "xhci-hcd"
-        "usb_storage"
-      ];
-
       supportedFilesystems = [
         "btrfs"
         "ext4"

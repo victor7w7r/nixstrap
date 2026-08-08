@@ -1,10 +1,8 @@
 { lib, ... }: {
   kernel.config.input = with lib.kernel; {
-
     include = { }: {
       INPUT_EVDEV = yes;
       INPUT_MISC = yes;
-      INPUT_FF_MEMLESS = module;
       KEYBOARD_ATKBD = yes;
       NLS_CODEPAGE_437 = lib.mkForce yes;
       NLS_ISO8859_1 = lib.mkForce yes;

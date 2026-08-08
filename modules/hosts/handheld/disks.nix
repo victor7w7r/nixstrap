@@ -16,12 +16,6 @@
           emergency = btrfs.emergency { priority = 3; };
           recovery = win.recovery { };
           win = win.call { };
-          swapcrypt = luks.call {
-            name = "swapcrypt";
-            size = "14G";
-            content = swap.call { };
-            priority = 6;
-          };
           system = btrfs.call {
             name = "system";
             size = "110G";

@@ -82,13 +82,7 @@
                 ];
                 initrd.kernelModules = [
                   "dw_mmc"
-                  "dw_mmc_rockchip"
-                  "sdhci_of_dwcmshc"
-                  "nvme"
-                  "phy_rockchip_naneng_combphy"
-                  "fan53555"
-                  "rockchip_io_domain"
-                  "zram"
+                  "dm_crypt"
                 ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;

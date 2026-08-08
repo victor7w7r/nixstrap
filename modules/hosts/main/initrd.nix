@@ -5,17 +5,20 @@
       boot.initrd = {
         supportedFilesystems = lib.mkAfter [ "xfs" ];
         kernelModules = [
-          "apple-bce"
-          "brcmfmac_wcc"
-          "brcmfmac"
-          "btrfs"
-          "cryptd"
-          "encrypted_keys"
           "aesni_intel"
-          "dm_crypt"
           "ahci"
-          "usbhid"
+          "apple-bce"
+          "brcmfmac"
+          "brcmfmac_wcc"
+          "cryptd"
+          "dm_crypt"
+          "ehci-hcd"
+          "encrypted_keys"
+          "uas"
           "uhci_hcd"
+          "usb_storage"
+          "usbhid"
+          "xhci_hcd"
         ];
         systemd.services.setup-storage =
           let

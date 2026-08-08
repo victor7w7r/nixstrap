@@ -2,12 +2,11 @@
   kernel.config.filesystems = with lib.kernel; {
 
     include = { }: {
-      ECRYPT_FS = module;
+      BTRFS_FS = yes;
+      EXT4_FS = yes;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;
-      NTFS3_FS = module;
-      NTFS3_LZX_XPRESS = yes;
-      NTFS3_FS_POSIX_ACL = yes;
+      F2FS_FS = yes;
       SQUASHFS = yes;
       ZRAM = lib.mkForce yes;
     };
@@ -56,8 +55,8 @@
         XZ_DEC_SPARC = no;
         ZONEFS_FS = no;
         ZRAM_BACKEND_842 = lib.mkForce no;
-       NETFS_DEBUG = no;
-       NETFS_STATS = no;
+        NETFS_DEBUG = no;
+        NETFS_STATS = no;
       }
     ];
   };
