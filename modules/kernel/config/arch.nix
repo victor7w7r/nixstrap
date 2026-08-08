@@ -44,7 +44,6 @@
       MMC_MTK = module;
       MOTORCOMM_PHY = no;
       NET_VENDOR_STMICRO = no;
-      NOP_USB_XCEIV = no;
       OF = lib.mkForce no;
       PCIE_DPC = yes;
       PCIE_EDR = yes;
@@ -210,7 +209,7 @@
       ARCH_ROCKCHIP = yes;
       INPUT_RK805_PWRKEY = yes;
       RTC_DRV_HYM8563 = yes;
-      SND_SOC_ES8316 = yes;
+      SND_SOC_ES8316 = module;
       SENSORS_PWM_FAN = yes;
     };
 

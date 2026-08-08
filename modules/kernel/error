@@ -1,0 +1,7 @@
+#sdm 845
+
+../drivers/usb/gadget/udc/core.c:728:6: error: use of undeclared identifier 'deny_new_usb'
+linux-v7w7r-sdm845>   728 |         if (deny_new_usb) {
+linux-v7w7r-sdm845>       |             ^~~~~~~~~~~~
+linux-v7w7r-sdm845> 1 error generated.
+linux-v7w7r-sdm845> make[6]: *** [../scripts/Makefile.build:289: drivers/usb/gadget/udc/core.o] Error 1
