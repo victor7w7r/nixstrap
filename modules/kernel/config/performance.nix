@@ -15,7 +15,7 @@
       NO_HZ_COMMON = yes;
       PCIE_BUS_PERFORMANCE = yes;
       PREEMPT_LAZY = lib.mkForce no;
-      RUST = yes;
+      RUST = no;
       STAGING = yes;
       TRANSPARENT_HUGEPAGE_ALWAYS = no;
       TRANSPARENT_HUGEPAGE_MADVISE = yes;

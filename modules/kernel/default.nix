@@ -27,7 +27,7 @@
       class ? "",
       dtbMake ? "",
     }:
-    (kernel.lib.kernel-wrapper pkgs class dtbMake)
+    kernel.lib.kernel-wrapper pkgs class dtbMake)
     |> (
       src:
       (pkgs.buildLinux {
@@ -80,11 +80,6 @@
           "-j8"
         ];
       }
-
-      ).overrideAttrs
-        (attrs: {
-          nativeBuildInputs = with pkgs; attrs.nativeBuildInputs ++ [ rustfmt ];
-        })
     )
     |> (base: {
       "${host}-kernel" = base;
