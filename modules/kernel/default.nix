@@ -30,7 +30,7 @@
     (kernel.lib.kernel-wrapper pkgs class dtbMake)
     |> (
       src:
-      (pkgs.buildLinux {
+      pkgs.buildLinux {
         inherit src structuredExtraConfig;
         pname = "linux-v7w7r-${localVer}";
         version = (kernel.lib.version pkgs src localVer).final;
