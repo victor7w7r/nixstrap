@@ -18,16 +18,16 @@
   kernel.lib.linux =
     {
       pkgs,
-      patches,
-      localVer,
+      host,
+      patches ? [ ],
+      localVer ? "native",
       structuredExtraConfig ? { },
       armCross ? false,
       isArm ? false,
       class ? "",
       dtbMake ? "",
     }:
-
-    (if class != "" then (kernel.lib.arm-wrapper pkgs class dtbMake) else inputs.linux)
+    (kernel.lib.kernel-wrapper pkgs class dtbMake)
     |> (
       src:
       pkgs.buildLinux {
@@ -36,13 +36,17 @@
         version = (kernel.lib.version pkgs src localVer).final;
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
-        enableParallelBuilding = true;
-        nativeBuildInputs = with pkgs; [ rustfmt ];
+        enableCommonConfig = false;
+        defconfig = if (!isArm) then "cachyos_defconfig" else "defconfig";
+        buildPackages = with pkgs; [ rustfmt ];
 
-        kernelPatches = map (file: {
-          name = baseNameOf (toString file);
-          patch = file;
-        }) patches;
+        kernelArch = if armCross then "arm64" else null;
+        kernelPatches =
+          with kernel.patches.injector pkgs;
+          map (file: {
+            name = baseNameOf (toString file);
+            patch = file;
+          }) (cachyos.std ++ bunker.std ++ tachyon ++ patches);
 
         features = lib.optionalAttrs (!isArm) {
           ia32Emulation = true;
@@ -76,20 +80,16 @@
           "KCFLAGS=-w"
           "CCACHE_COMPILERCHECK=content"
           "-j8"
-        ]
-        ++ (lib.optionals armCross [
-          "ARCH=arm64"
-          "CROSS_COMPILE=aarch64-unknown-linux-gnu-"
-        ]);
+        ];
       }
     )
     |> (base: {
-      kernel = base;
-      packages =
+      "${host}-kernel" = base;
+      "${host}-kernelPackages" =
         base
         |> pkgs.linuxPackagesFor
         |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
-      config = (
+      "${host}-config" = (
         pkgs.stdenvNoCC.mkDerivation {
           name = "filtered-config";
           src = base.configfile;

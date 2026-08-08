@@ -7,56 +7,54 @@
 
   kernel.patches.cachyos =
     pkgs:
-    let
-      majorMinor = (kernel.lib.version pkgs inputs.linux "").majorMinor;
-      patches = pkgs.stdenvNoCC.mkDerivation {
-        name = "cachyos-patches";
-        src = inputs.cachyos-patches;
-        phases = [
-          "unpackPhase"
-          "buildPhase"
-          "installPhase"
-        ];
-
-        nativeBuildInputs = with pkgs; [
-          findutils
-          patchutils
-        ];
-
-        configurePhase = "cp -r $src/* ./";
-        buildPhase =
-          let
-            differ = route: routePatch: patch: ''
-              filterdiff -x "*/${route}" "./${majorMinor}/${routePatch}/${patch}.patch" > ${patch}-filter.patch || true
-              cat ${patch}-filter.patch > "./${majorMinor}/${routePatch}/${patch}.patch" || true
-            '';
-          in
-          ''
-            chmod -R +w . && find . -type d -empty -delete
-            #${differ "drivers/input/joystick/xpad.c" "misc" "0001-handheld"}
-            #${differ "security/selinux/selinuxfs.c" "misc" "0001-hardened"}
-          '';
-        installPhase = "mkdir -p $out && cp -r . $out/";
-      };
-      bore = [
-        # "${patches}/${majorMinor}/sched-dev/0001-bore-cachy.patch"
+    "${inputs.cachyos-patches}/${(kernel.lib.version pkgs inputs.linux "").majorMinor}"
+    |> (route: {
+      bore = map (patch: "${route}/sched-dev/${patch}.patch") [
+        #"0001-bore-cachy"
       ];
-      opt = map (patch: "${patches}/${majorMinor}/misc/${patch}.patch") [
+      std = map (patch: "${route}/misc/${patch}.patch") [
         "0001-aufs-7.1-merge-v20260713"
         "0001-clang-polly"
         "dkms-clang"
       ];
-    in
-    {
-      inherit bore opt;
-      std = opt ++ bore;
-      hardened = opt; # ++ map (path: "${patches}/${majorMinor}/misc/${path}") [ "0001-hardened.patch" ];
-      handheld =
-        bore
-        ++ opt
-        ++ map (patch: "${patches}/${majorMinor}/misc/${patch}.patch") [
-          "0001-acpi-call"
-          "0001-handheld"
-        ];
-    };
+      hardened = map (patch: "${route}/misc/${patch}.patch") [
+        #"0001-hardened"
+      ];
+      handheld = map (patch: "${route}/misc/${patch}.patch") [
+        "0001-acpi-call"
+        "0001-handheld"
+      ];
+    });
 }
+
+/*
+  patches = pkgs.stdenvNoCC.mkDerivation {
+    name = "cachyos-patches";
+    src = ;
+    phases = [
+      "unpackPhase"
+      "buildPhase"
+      "installPhase"
+    ];
+
+    nativeBuildInputs = with pkgs; [
+      findutils
+      patchutils
+    ];
+
+    configurePhase = "cp -r $src/* ./";
+    buildPhase =
+      let
+        differ = route: routePatch: patch: ''
+          filterdiff -x "${route}" "./${majorMinor}/${routePatch}/${patch}.patch" > ${patch}-filter.patch || true
+          cat ${patch}-filter.patch > "./${majorMinor}/${routePatch}/${patch}.patch" || true
+        '';
+      in
+      ''
+        chmod -R +w . && find . -type d -empty -delete
+        #${differ "drivers/input/joystick/xpad.c" "misc" "0001-handheld"}
+        #${differ "security/selinux/selinuxfs.c" "misc" "0001-hardened"}
+      '';
+    installPhase = "mkdir -p $out && cp -r . $out/";
+  };
+*/

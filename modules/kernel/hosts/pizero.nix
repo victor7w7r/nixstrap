@@ -6,17 +6,13 @@
       inherit pkgs armCross;
       localVer = "sunxi-hardened";
       isArm = true;
+      host = "pizero";
       class = "allwinner";
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
+      structuredExtraConfig = kernel.config.default.pizero;
       patches =
         with kernel.patches.injector pkgs;
-        cachyos.hardened ++ tachyon.std ++ bunker.hardened ++ armbian.sunxi-patches;
-      structuredExtraConfig = kernel.config.default.pizero;
-    })
-    |> (generated: {
-      pizero-kernelPackages = generated.packages;
-      pizero-kernel = generated.kernel;
-      pizero-config = generated.config;
+        cachyos.hardened ++ bunker.hardened ++ armbian.sunxi-patches;
     });
 
   perSystem =

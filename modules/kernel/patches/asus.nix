@@ -22,5 +22,4 @@
         "asus-ally-patch-series"
       ]
     );
-  #drivers/hid/hid-asus.c
 }

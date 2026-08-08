@@ -5,13 +5,8 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "native";
-      patches = with kernel.patches.injector pkgs; cachyos.std ++ bunker.std ++ tachyon.std;
+      host = "main";
       structuredExtraConfig = kernel.config.default.main-generic;
-    })
-    |> (generated: {
-      main-kernelPackages = generated.packages;
-      main-kernel = generated.kernel;
-      main-config = generated.config;
     });
 
   perSystem =

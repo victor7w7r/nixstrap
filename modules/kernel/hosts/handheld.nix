@@ -5,15 +5,11 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "handheld-native";
+      host = "handheld";
+      structuredExtraConfig = kernel.config.default.handheld;
       patches =
         with kernel.patches.injector pkgs;
-        cachyos.handheld ++ asus ++ tachyon.gaming ++ bunker.std;
-      structuredExtraConfig = kernel.config.default.handheld;
-    })
-    |> (generated: {
-      handheld-kernelPackages = generated.packages;
-      handheld-kernel = generated.kernel;
-      handheld-config = generated.config;
+        cachyos.handheld ++ asus;
     });
 
   perSystem =
