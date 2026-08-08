@@ -13,7 +13,6 @@
         BLK_DEV_RAM = setupDenial isDenied module;
         CRYPTO_BLOWFISH = setupDenial isDenied module;
         CRYPTO_LRW = setupDenial isDenied module;
-        CRYPTO_SERPENT = setupDenial isDenied module;
         CRYPTO_TWOFISH = setupDenial isDenied module;
         CRYPTO_USER_API_AEAD = setupDenial isDenied yes;
         DEFAULT_WESTWOOD = setupDenial isDenied yes;

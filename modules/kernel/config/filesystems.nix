@@ -56,6 +56,8 @@
         XZ_DEC_SPARC = no;
         ZONEFS_FS = no;
         ZRAM_BACKEND_842 = lib.mkForce no;
+       NETFS_DEBUG = no;
+       NETFS_STATS = no;
       }
     ];
   };

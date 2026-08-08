@@ -200,7 +200,7 @@
         KEYBOARD_DLINK_DIR685 = no;
         KEYBOARD_LKKBD = no;
         KEYBOARD_GPIO = no;
-        KEYBOARD_GPIO_POLLED = no;
+        #KEYBOARD_GPIO_POLLED = no;
         KEYBOARD_TCA8418 = no;
         KEYBOARD_MATRIX = no;
         KEYBOARD_LM8323 = no;

@@ -348,7 +348,32 @@
         MT7996E = no;
         NOZOMI = no;
         VIRT_WIFI = no;
-        W1 = no;
+        #W1 = no;
+        W1_CON = no;
+        W1_MASTER_AMD_AXI = no;
+        W1_MASTER_MATROX = no;
+        W1_MASTER_DS2490 = no;
+        W1_MASTER_DS2482 = no;
+        W1_MASTER_GPIO = no;
+        W1_MASTER_SGI = no;
+        W1_MASTER_UART = no;
+        W1_SLAVE_THERM = no;
+        W1_SLAVE_SMEM = no;
+        W1_SLAVE_DS2405 = no;
+        W1_SLAVE_DS2408 = no;
+        W1_SLAVE_DS2413 = no;
+        W1_SLAVE_DS2406 = no;
+        W1_SLAVE_DS2423 = no;
+        W1_SLAVE_DS2805 = no;
+        W1_SLAVE_DS2430 = no;
+        W1_SLAVE_DS2431 = no;
+        W1_SLAVE_DS2433 = no;
+        W1_SLAVE_DS2438 = no;
+        W1_SLAVE_DS250X = no;
+        W1_SLAVE_DS2780 = no;
+        W1_SLAVE_DS2781 = no;
+        W1_SLAVE_DS28E04 = no;
+        W1_SLAVE_DS28E17 = no;
       }
       #NET_VENDOR
       {
@@ -417,6 +442,9 @@
       }
       #WLAN
       {
+        ATH11K = no;
+        ATH11K_PCI = no;
+        ATH12K = no;
         WLAN_VENDOR_ADMTEK = no;
         WLAN_VENDOR_ATH = no;
         WLAN_VENDOR_ATMEL = no;

@@ -948,7 +948,6 @@
         T5403 = no;
         TCS3414 = no;
         TCS3472 = no;
-        TIFM_CORE = no;
         TI_ADC081C = no;
         TI_ADC0832 = no;
         TI_ADC084S021 = no;

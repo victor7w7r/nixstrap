@@ -21,7 +21,6 @@
       SND_HDA_CODEC_REALTEK = no;
       SND_HDA_CODEC_REALTEK_LIB = no;
       SND_JACK = no;
-      SOUND = no;
     };
 
     desktop = { }: {

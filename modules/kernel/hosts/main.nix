@@ -5,7 +5,9 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "native";
+      class = "x86";
       host = "main";
+      patches = with kernel.patches.injector pkgs; cachyos.bore;
       structuredExtraConfig = kernel.config.default.main-generic;
     });
 

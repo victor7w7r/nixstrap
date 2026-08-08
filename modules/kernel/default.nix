@@ -30,7 +30,7 @@
     (kernel.lib.kernel-wrapper pkgs class dtbMake)
     |> (
       src:
-      pkgs.buildLinux {
+      (pkgs.buildLinux {
         inherit src structuredExtraConfig;
         pname = "linux-v7w7r-${localVer}";
         version = (kernel.lib.version pkgs src localVer).final;
@@ -38,8 +38,6 @@
         ignoreConfigErrors = true;
         enableCommonConfig = false;
         defconfig = if (!isArm) then "cachyos_defconfig" else "defconfig";
-        buildPackages = with pkgs; [ rustfmt ];
-
         kernelArch = if armCross then "arm64" else null;
         kernelPatches =
           with kernel.patches.injector pkgs;
@@ -82,6 +80,11 @@
           "-j8"
         ];
       }
+
+      ).overrideAttrs
+        (attrs: {
+          nativeBuildInputs = with pkgs; attrs.nativeBuildInputs ++ [ rustfmt ];
+        })
     )
     |> (base: {
       "${host}-kernel" = base;

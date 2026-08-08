@@ -9,7 +9,7 @@
     pkgs:
     "${inputs.cachyos-patches}/${(kernel.lib.version pkgs inputs.linux "").majorMinor}"
     |> (route: {
-      bore = map (patch: "${route}/sched-dev/${patch}.patch") [
+      bore = map (patch: "${route}/sched/${patch}.patch") [
         #"0001-bore-cachy"
       ];
       std = map (patch: "${route}/misc/${patch}.patch") [

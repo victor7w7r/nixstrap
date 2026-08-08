@@ -7,11 +7,11 @@
       TYPEC = module;
       USB4 = module;
       USB_ROLE_SWITCH = module;
-      USB_STORAGE = yes;
-      USB_UAS = yes;
-      USB_EHCI_HCD = yes;
-      USB_UHCI_HCD = yes;
-      USB_XHCI_HCD = yes;
+      USB_STORAGE = module;
+      USB_UAS = module;
+      USB_EHCI_HCD = module;
+      USB_UHCI_HCD = module;
+      USB_XHCI_HCD = module;
     };
 
     not-mmc = { }: {
@@ -61,7 +61,6 @@
       #DRIVERS
       {
         AF_KCM = no;
-        AF_RXRPC = no;
         ALTERA_TSE = no;
         AMT = no;
         BLK_DEV_DRBD = no;
@@ -86,7 +85,7 @@
       }
       #MMC
       {
-        MMC_CB710 = no;
+        #MMC_CB710 = no;
         MMC_SDHCI_F_SDH30 = no;
         MMC_SDHCI_XENON = no;
         MMC_SPI = no;
@@ -121,7 +120,7 @@
         BLK_DEV_3W_XXXX_RAID = no;
         CHR_DEV_ST = no;
         FW_CFG_SYSFS = no;
-        ISCSI_BOOT_SYSFS = no;
+        #ISCSI_BOOT_SYSFS = no;
         ISCSI_IBFT = no;
         ISCSI_TCP = no;
         MEGARAID_LEGACY = no;
@@ -155,11 +154,11 @@
         SCSI_IPR = no;
         SCSI_IPS = no;
         SCSI_ISCI = no;
-        SCSI_ISCSI_ATTRS = no;
+        #SCSI_ISCSI_ATTRS = no;
         SCSI_LOGGING = lib.mkForce no;
         SCSI_MPI3MR = no;
         SCSI_MPT2SAS = no;
-        SCSI_MPT3SAS = no;
+       # SCSI_MPT3SAS = no;
         SCSI_MVSAS = no;
         SCSI_MVUMI = no;
         SCSI_MYRB = no;
@@ -168,12 +167,12 @@
         SCSI_PMCRAID = no;
         SCSI_QLA_ISCSI = no;
         SCSI_QLOGIC_1280 = no;
-        SCSI_SAS_ATTRS = no;
-        SCSI_SAS_LIBSAS = no;
+        #SCSI_SAS_ATTRS = no;
+        #SCSI_SAS_LIBSAS = no;
         SCSI_SMARTPQI = no;
         SCSI_SNIC = no;
-        SCSI_SPI_ATTRS = no;
-        SCSI_SRP_ATTRS = no;
+        #SCSI_SPI_ATTRS = no;
+        #SCSI_SRP_ATTRS = no;
         SCSI_STEX = no;
         SCSI_SYM53C8XX_2 = no;
         SCSI_WD719X = no;

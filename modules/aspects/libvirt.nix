@@ -1,6 +1,11 @@
 {
   den.aspects.libvirt.nixos =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      isX86,
+      ...
+    }:
     {
       systemd.services.libvirtd.environment.QEMU_TCG_THREAD = "multi";
 
@@ -25,9 +30,8 @@
           virtnbdbackup
           virglrenderer
           win-spice
-          winboat
           x11_ssh_askpass
-        ];
+        ] ++ lib.optional isX86 winboat;
       };
 
       programs = {

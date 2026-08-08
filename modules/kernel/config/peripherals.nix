@@ -172,11 +172,10 @@
     denied = lib.mkMerge [
       #DRIVERS
       {
-        ALTERA_STAPL = no;
+        # ALTERA_STAPL = no;
         APPLICOM = no;
         C2PORT = no;
         CAN = no;
-        CB710_CORE = no;
         CXL_BUS = no;
         DEVPORT = no;
         DVB_CORE = no;
@@ -199,13 +198,22 @@
         PCCARD = no;
         PCI_MESON = no;
         PCI_PWRCTRL_TC9563 = no;
-        PCI_SW_SWITCHTEC = no;
         PROVIDE_OHCI1394_DMA_INIT = no;
         PWM_CLK = no;
         PWM_CRC = no;
         PWM_DWC = no;
         PWM_PCA9685 = no;
         RAPIDIO = no;
+        RMI4_F03 = no;
+        RMI4_F03_SERIO = no;
+        RMI4_2D_SENSOR = no;
+        RMI4_F11 = no;
+        RMI4_F12 = no;
+        RMI4_F1A = no;
+        RMI4_F21 = no;
+        RMI4_F30 = no;
+        RMI4_F34 = no;
+        RMI4_F3A = no;
         STAGING_MEDIA = lib.mkForce no;
         XILINX_VCU = no;
         XILLYBUS = no;
@@ -371,11 +379,11 @@
       #GPIO
       {
         GPIO_74X164 = no;
-        GPIO_AGGREGATOR = no;
+        #GPIO_AGGREGATOR = no;
         GPIO_ALTERA = no;
         GPIO_AMD8111 = no;
         GPIO_AMDPT = no;
-        GPIO_AMD_FCH = no;
+        #GPIO_AMD_FCH = no;
         GPIO_CDEV_V1 = no;
         GPIO_DS4520 = no;
         GPIO_DWAPB = no;
@@ -445,7 +453,6 @@
         MFD_KEMPLD = no;
         MFD_LM3533 = no;
         MFD_LP3943 = no;
-        MFD_LP8788 = no;
         MFD_MADERA = no;
         MFD_MAX14577 = no;
         MFD_MAX7360 = no;
@@ -548,7 +555,7 @@
         SPI_MXIC = no;
         SPI_OC_TINY = no;
         SPI_PCI1XXXX = no;
-        SPI_PXA2XX = no;
+        #SPI_PXA2XX = no;
         SPI_SC18IS602 = no;
         SPI_SIFIVE = no;
         SPI_SPIDEV = no;
@@ -696,7 +703,7 @@
         USB_TEST = no;
         USB_TMC = no;
         USB_TRANCEVIBRATOR = no;
-        USB_ULPI_BUS = no;
+        #USB_ULPI_BUS = no;
         USB_USBIO = no;
         USB_VL600 = no;
         USB_XHCI_PCI_RENESAS = no;

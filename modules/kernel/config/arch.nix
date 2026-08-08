@@ -29,7 +29,6 @@
         LIBNVDIMM = setupDenial isDenied module;
         CRYPTO_SM4_GENERIC = setupDenial isDenied module;
         CRYPTO_SM3 = setupDenial isDenied module;
-        SERIO_SERPORT = setupDenial isDenied module;
       };
 
     x86 = { }: {
@@ -38,12 +37,14 @@
       ACPI_WMI = module;
       CRYPTO_DES = module;
       INPUT_TOUCHSCREEN = no;
+      GNSS = no;
       MFD_AXP20X_I2C = module;
       MFD_WM8994 = module;
       MHI_BUS = module;
       MMC_MTK = module;
       MOTORCOMM_PHY = no;
       NET_VENDOR_STMICRO = no;
+      NFC = no;
       OF = lib.mkForce no;
       PCIE_DPC = yes;
       PCIE_EDR = yes;
@@ -51,8 +52,7 @@
       PCI_DOE = yes;
       PCS_XPCS = no;
       PERF_EVENTS_INTEL_RAPL = module;
-      QRTR = no;
-      RAID_ATTRS = no;
+      #RAID_ATTRS = no;
       RTC_DRV_CMOS = yes;
       STM = no;
       USB_CHIPIDEA = no;

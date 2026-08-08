@@ -5,6 +5,7 @@
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "v2";
+      class = "x86";
       host = "generic";
       structuredExtraConfig = kernel.config.default.main-generic;
     });

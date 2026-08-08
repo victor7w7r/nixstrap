@@ -30,7 +30,6 @@
         arch.denied.arm
         disks.denied-arm
         input.denied-arm
-        (media.denied-arm { })
         peripherals.denied-arm
         sensors.denied-arm
         vendor.denied-arm

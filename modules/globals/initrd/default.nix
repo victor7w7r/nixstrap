@@ -1,6 +1,14 @@
 {
   den.default.nixos = { lib, ... }: {
     boot = {
+      kernelModules = lib.mkBefore [
+        "uas"
+        "ehci-hcd"
+        "uhci-hcd"
+        "xhci-hcd"
+        "usb_storage"
+      ];
+
       supportedFilesystems = [
         "btrfs"
         "ext4"
@@ -9,7 +17,6 @@
         "ntfs"
         "vfat"
       ];
-
       modprobeConfig.enable = true;
       kernelParams = lib.mkBefore [
         "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"

@@ -126,15 +126,12 @@
         BRIDGE_MRP = no;
         IP_NF_MATCH_ECN = no;
         IP_NF_MATCH_TTL = no;
-        NETFILTER_NETLINK_OSF = no;
         NETFILTER_XT_MATCH_CLUSTER = no;
         NETFILTER_XT_MATCH_CPU = no;
         NETFILTER_XT_MATCH_DCCP = no;
         NETFILTER_XT_MATCH_DEVGROUP = no;
         NETFILTER_XT_MATCH_DSCP = no;
-        NETFILTER_XT_MATCH_ECN = no;
         NETFILTER_XT_MATCH_ESP = no;
-        NETFILTER_XT_MATCH_HL = no;
         NETFILTER_XT_MATCH_IPCOMP = no;
         NETFILTER_XT_MATCH_L2TP = no;
         NETFILTER_XT_MATCH_LENGTH = no;
@@ -152,8 +149,6 @@
         NETFILTER_XT_TARGET_HMARK = no;
         NETFILTER_XT_TARGET_IDLETIMER = no;
         NETFILTER_XT_TARGET_LED = no;
-        NETFILTER_XT_TARGET_NETMAP = no;
-        NETFILTER_XT_TARGET_RATEEST = no;
         NETFILTER_XT_TARGET_TEE = no;
         NF_CT_PROTO_SCTP = no;
         NF_CONNTRACK_AMANDA = no;
@@ -179,7 +174,6 @@
         TCP_CONG_LP = no;
         TCP_CONG_NV = no;
         TCP_CONG_SCALABLE = no;
-        TCP_CONG_VEGAS = no;
         TCP_CONG_VENO = no;
         TCP_CONG_WESTWOOD = no;
         TCP_CONG_YEAH = no;
@@ -222,12 +216,14 @@
         PFCP = no;
         PHONET = no;
         PPP = no;
+        PSE_CONTROLLER = no;
         RDS = no;
         SLIP = no;
         TARGET_CORE = no;
         TLS_DEVICE = lib.mkForce no;
         VLAN_8021Q = no;
         WAN = lib.mkForce no;
+        WWAN = no;
         X25 = no;
         XFRM_IPTFS = no;
         XFRM_USER_COMPAT = no;

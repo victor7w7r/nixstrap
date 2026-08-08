@@ -251,8 +251,6 @@
           SND_SOC_CS35L45_I2C = no;
           SND_SOC_CS35L45_SPI = no;
           SND_SOC_CS35L56_I2C = no;
-          SND_SOC_CS35L56_SDW = no;
-          SND_SOC_CS35L56_SPI = no;
           SND_SOC_CS4234 = no;
           SND_SOC_CS4265 = no;
           SND_SOC_CS4270 = no;
