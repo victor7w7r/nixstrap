@@ -22,7 +22,6 @@
       "cachyos/0018-drivers-net-add-Realtek-R8125-R8126-5GbE-driver.patch"
       "grapheneos/0001-disable-ldisc_autoload-by-default.patch"
       "grapheneos/0004-disable-memory_hotplug-by-default.patch"
-      "grapheneos/0005-usb-extend-deny_new_usb-to-gadget-interfaces.patch"
       "xanmod/0001-sched-fair-set-tunable-latencies-to-unscaled.patch"
       "xanmod/0003-block-set-rq_affinity-to-force-complete-I-O-on-same-.patch"
       "xanmod/0004-block-mq-deadline-disable-front_merges-by-default.patch"
