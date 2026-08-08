@@ -26,8 +26,7 @@
 
       common-arm = lib.mkMerge [
         (arch.arm { })
-
-        arch.denied.arm
+        (arch.denied { }).arm
         disks.denied-arm
         input.denied-arm
         peripherals.denied-arm
