@@ -27,7 +27,7 @@
       class ? "",
       dtbMake ? "",
     }:
-    kernel.lib.kernel-wrapper pkgs class dtbMake)
+    (kernel.lib.kernel-wrapper pkgs class dtbMake)
     |> (
       src:
       (pkgs.buildLinux {
