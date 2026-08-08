@@ -13,7 +13,7 @@
       X86_NATIVE_CPU = yes;
     };
 
-    generic = {
+    generic = { }: {
       GENERIC_CPU = yes;
       MZEN4 = no;
       X86_NATIVE_CPU = no;
@@ -214,9 +214,13 @@
     };
 
     denied = {
-      apply = with kernel.config.arch.denied; acpi // x86 // virt;
+      apply = with kernel.config.arch.denied; lib.mkMerge [
+        (acpi { })
+        (x86 { })
+        (virt { })
+      ];
 
-      acpi = {
+      acpi = { }: {
         ACPI_APEI_EINJ = no;
         ACPI_APEI_ERST_DEBUG = no;
         ACPI_APEI_GHES_NVIDIA = no;
@@ -233,7 +237,7 @@
         PCI_IOV = no;
       };
 
-      arm = {
+      arm = { }: {
         /*
           ARM64_ERRATUM_843419 = yes;
           ARM64_ERRATUM_1418040 = yes;
@@ -373,7 +377,7 @@
         CORESIGHT = no;
       };
 
-      x86 = {
+      x86 = { }: {
         X86_ACPI_CPUFREQ = no;
         X86_AMD_FREQ_SENSITIVITY = no;
         X86_EXTENDED_PLATFORM = no;
@@ -387,7 +391,7 @@
         X86_VERBOSE_BOOTUP = no;
       };
 
-      virt = {
+      virt = { }: {
         HYPERVISOR_GUEST = lib.mkForce no;
         KVM_XEN = no;
         PVPANIC = no;
