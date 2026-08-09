@@ -18,7 +18,7 @@
         DEFAULT_WESTWOOD = setupDenial isDenied yes;
         DRM_GUD = setupDenial isDenied module;
         DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied module; # as module
-        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied yes;
+        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied module; # as module
         HID_RMI = setupDenial isDenied module;
         INPUT_JOYDEV = setupDenial isDenied module;
         NETLINK_DIAG = setupDenial isDenied module;
