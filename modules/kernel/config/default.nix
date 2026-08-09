@@ -119,8 +119,7 @@
           AXP20X_POWER = yes;
           CDROM = no;
           IIO = yes;
-          DRM = lib.mkForce module;
-          DRM_SUN4I = yes;
+          #DRM_SUN4I = yes;
           DRM_SUN8I_MIXER = yes;
           DRM_GEM_DMA_HELPER = yes;
           MFD_AXP20X = yes;
