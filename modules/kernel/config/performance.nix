@@ -2,6 +2,8 @@
   kernel.config.performance = with lib.kernel; {
     include = { }: {
       BCACHE = yes;
+      BINFMT_MISC = yes;
+      BINFMT_SCRIPT = yes;
       CC_OPTIMIZE_FOR_PERFORMANCE = no;
       CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
       EXPERT = yes;
