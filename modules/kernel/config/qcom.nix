@@ -66,7 +66,7 @@
         DMABUF_HEAPS = yes;
         DMABUF_HEAPS_CMA = yes;
         DMABUF_HEAPS_SYSTEM = yes;
-        DRM_MSM = yes;
+        DRM_MSM = module;
         FAT_DEFAULT_UTF8 = yes;
         FB_SIMPLE = yes;
         FORCE_NR_CPUS = yes;
