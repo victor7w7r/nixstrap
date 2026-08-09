@@ -23,7 +23,7 @@
 
     raid = { }: {
       BLK_DEV_MD = yes;
-      DM_RAID = yes;
+      DM_RAID = module;
       MD_RAID456 = yes;
     };
 

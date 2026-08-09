@@ -13,6 +13,7 @@
           "cryptd"
           "dm_mod"
           "dm_crypt"
+          "dm_raid"
           "ehci-hcd"
           "encrypted_keys"
           "uas"

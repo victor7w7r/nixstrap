@@ -10,6 +10,7 @@
           "cryptd"
           "dm_crypt"
           "dm_mod"
+          "dm_raid"
           "ehci_hcd"
           "encrypted_keys"
           "overlay"

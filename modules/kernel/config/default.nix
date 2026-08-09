@@ -121,6 +121,7 @@
           IIO = yes;
           DRM_SUN4I = yes;
           DRM_SUN8I_MIXER = yes;
+          DRM_GEM_DMA_HELPER = yes;
           MFD_AXP20X = yes;
           MFD_AXP20X_I2C = yes;
           MFD_AXP20X_RSB = yes;
