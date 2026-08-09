@@ -75,7 +75,7 @@
         INTERCONNECT_QCOM_OSM_L3 = yes;
         MFD_QCOM_RPM = yes;
         PHY_QCOM_QMP = yes;
-        PHY_QCOM_QMP_COMBO = yes;
+        PHY_QCOM_QMP_COMBO = module;
         PHY_QCOM_QMP_PCIE = yes;
         PHY_QCOM_QMP_UFS = yes;
         PHY_QCOM_QMP_USB = yes;
