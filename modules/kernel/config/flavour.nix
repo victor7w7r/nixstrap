@@ -24,8 +24,6 @@
     };
 
     desktop = { }: {
-      ANDROID_BINDERFS = yes;
-      ANDROID_BINDER_IPC = yes;
       CACHY = yes;
       HZ = freeform "1000";
       HZ_1000 = yes;

@@ -1,6 +1,8 @@
 { lib, ... }: {
   kernel.config.performance = with lib.kernel; {
     include = { }: {
+      ANDROID_BINDERFS = yes;
+      ANDROID_BINDER_IPC = yes;
       BCACHE = yes;
       BINFMT_MISC = yes;
       BINFMT_SCRIPT = yes;
