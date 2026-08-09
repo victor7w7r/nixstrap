@@ -17,7 +17,7 @@
         CRYPTO_USER_API_AEAD = setupDenial isDenied yes;
         DEFAULT_WESTWOOD = setupDenial isDenied yes;
         DRM_GUD = setupDenial isDenied module;
-        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied yes;
+        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied module; # as module
         DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied yes;
         HID_RMI = setupDenial isDenied module;
         INPUT_JOYDEV = setupDenial isDenied module;
@@ -66,7 +66,7 @@
         DMABUF_HEAPS = yes;
         DMABUF_HEAPS_CMA = yes;
         DMABUF_HEAPS_SYSTEM = yes;
-        DRM_MSM = module;
+        DRM_MSM = module; #as module
         FAT_DEFAULT_UTF8 = yes;
         FB_SIMPLE = yes;
         FORCE_NR_CPUS = yes;
