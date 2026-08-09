@@ -45,15 +45,6 @@
               serviceConfig = {
                 Type = "oneshot";
                 RemainAfterExit = true;
-                ExecStart = pkgs.writeShellScript "zram-format" ''
-                  set -e
-                  ${lib.optionalString isPercent ''
-                    TOTAL_MEM=$(grep MemTotal /proc/meminfo | ${pkgs.gawk}/bin/awk '{print $2 * 1024}')
-                    SIZE=$((TOTAL_MEM * ${toString percent} / 100))
-                  ''}
-                  echo ${if isPercent then "$SIZE" else fixed} > /sys/block/zram1/disksize
-                  ${pkgs.e2fsprogs}/bin/mkfs.ext4 -m 0 -O "^has_journal,^huge_file,^flex_bg" /dev/zram1
-                '';
               };
               path = with pkgs; [
                 coreutils
@@ -61,6 +52,15 @@
                 systemd
                 util-linux
               ];
+              script = ''
+                set -e
+                ${lib.optionalString isPercent ''
+                  TOTAL_MEM=$(grep MemTotal /proc/meminfo | ${pkgs.gawk}/bin/awk '{print $2 * 1024}')
+                  SIZE=$((TOTAL_MEM * ${toString percent} / 100))
+                ''}
+                echo ${if isPercent then "$SIZE" else fixed} > /sys/block/zram1/disksize
+                ${pkgs.e2fsprogs}/bin/mkfs.ext4 -m 0 -O "^has_journal,^huge_file,^flex_bg" /dev/zram1
+              '';
             };
           };
       };

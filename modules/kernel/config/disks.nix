@@ -1,11 +1,8 @@
 { lib, ... }: {
   kernel.config.disks = with lib.kernel; {
     include = { }: {
-      BLK_DEV_DM = yes;
       BLK_DEV_NVME = yes;
       BLK_DEV_SD = yes;
-      DM_SNAPSHOT = yes;
-      DM_THIN_PROVISIONING = yes;
       SCSI = yes;
     };
 

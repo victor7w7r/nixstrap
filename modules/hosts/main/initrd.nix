@@ -11,6 +11,7 @@
           "brcmfmac"
           "brcmfmac_wcc"
           "cryptd"
+          "dm_mod"
           "dm_crypt"
           "ehci-hcd"
           "encrypted_keys"

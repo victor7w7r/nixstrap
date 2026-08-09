@@ -81,8 +81,9 @@
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
-                  "dw_mmc"
                   "dm_crypt"
+                  "dm_mod"
+                  "dw_mmc"
                 ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;

@@ -9,6 +9,7 @@
           "ahci"
           "cryptd"
           "dm_crypt"
+          "dm_mod"
           "ehci_hcd"
           "encrypted_keys"
           "overlay"

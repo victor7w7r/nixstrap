@@ -93,6 +93,7 @@
                   "ahci"
                   "ehci_hcd"
                   "dm_crypt"
+                  "dm_mod"
                   "encrypted_keys"
                   "sprdbt_tty"
                   "sprdwl_ng"
