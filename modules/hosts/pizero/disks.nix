@@ -2,7 +2,10 @@
 {
   den.aspects.pizero.disks.nixos = {
     imports = [ inputs.disko.nixosModules.disko ];
-    fileSystems."/etc".neededForBoot = true;
+    fileSystems = {
+      "/nix/persist".neededForBoot = true;
+      "/etc".neededForBoot = true;
+    };
     disko.devices = with disko; {
       disk = {
         root = disk.root { };
