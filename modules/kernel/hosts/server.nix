@@ -1,4 +1,4 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
   kernel.hosts.server =
     pkgs: armCross:
@@ -7,7 +7,7 @@
       localVer = "server-hardened-native";
       class = "x86";
       host = "server";
-      patches = with kernel.patches.injector pkgs; cachyos.hardened ++ bunker.hardened;
+      patches = [ inputs.linux-hardened ];
       structuredExtraConfig = kernel.config.default.server;
     });
 

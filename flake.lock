@@ -3228,6 +3228,18 @@
         "type": "github"
       }
     },
+    "linux-hardened": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-4wuxaEc91awppW0imFqcv4R1oZrAqEo2DRY3uzRsFRk=",
+        "type": "file",
+        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch"
+      }
+    },
     "linuxthemestore": {
       "flake": false,
       "locked": {
@@ -4770,6 +4782,7 @@
         "lifecycler": "lifecycler",
         "linux": "linux",
         "linux-config": "linux-config",
+        "linux-hardened": "linux-hardened",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",

@@ -73,16 +73,16 @@
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
               boot = {
                 kernelParams = [
+                  "earlycon"
                   "console=ttyS0,115200n8"
-                  "initrd.console=ttyS0,115200n8"
                   "clk_ignore_unused"
                   "ignore_loglevel"
-                  "boot.shell_on_fail"
-                  "rd.shell"
-                  "systemd.debug_shell=1"
-                  "zram.num_devices=2"
+                  "systemd.show_status=true"
+                  "systemd.log_target=console"
                   "oops=panic"
                   "randomize_kstack_offset=on"
+                  "boot.shell_on_fail"
+                  "rd.shell"
                 ];
                 initrd.kernelModules = [
                   "ahci"
