@@ -53,7 +53,7 @@
           map (file: {
             name = baseNameOf (toString file);
             patch = file;
-          }) (cachyos.std ++ bunker ++ tachyon ++ patches);
+          }) (cachyos.std ++ (bunker { }) ++ tachyon ++ patches);
 
         features = lib.optionalAttrs (!isArm) {
           ia32Emulation = true;
