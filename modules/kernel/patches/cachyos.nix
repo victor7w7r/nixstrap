@@ -17,9 +17,6 @@
         "0001-clang-polly"
         "dkms-clang"
       ];
-      hardened = map (patch: "${route}/misc/${patch}.patch") [
-        #"0001-hardened"
-      ];
       handheld = map (patch: "${route}/misc/${patch}.patch") [
         "0001-acpi-call"
         "0001-handheld"

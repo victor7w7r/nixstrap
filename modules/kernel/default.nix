@@ -10,7 +10,7 @@
   flake-file.inputs = {
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     linux = {
-      url = "github:CachyOS/linux/cachyos-7.1.6-1";
+      url = "github:CachyOS/linux/cachyos-7.1.8-1";
       flake = false;
     };
 
@@ -24,11 +24,19 @@
       localVer ? "native",
       structuredExtraConfig ? { },
       armCross ? false,
+      defconfig ? null,
       isArm ? false,
-      class ? "",
+      class ? "x86",
       dtbMake ? "",
     }:
-    (kernel.lib.kernel-wrapper pkgs class dtbMake)
+    (kernel.lib.kernel-wrapper {
+      inherit
+        pkgs
+        class
+        dtbMake
+        defconfig
+        ;
+    })
     |> (
       src:
       pkgs.buildLinux {
@@ -38,7 +46,7 @@
         modDirVersion = (kernel.lib.version pkgs src localVer).final;
         ignoreConfigErrors = true;
         enableCommonConfig = false;
-        defconfig = if (!isArm) then "cachyos_defconfig" else "defconfig";
+        defconfig = if (!isArm) then "cachyos_defconfig" else "armcust_defconfig";
         kernelArch = if armCross then "arm64" else null;
         kernelPatches =
           with kernel.patches.injector pkgs;
