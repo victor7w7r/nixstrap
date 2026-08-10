@@ -84,6 +84,18 @@
                   "dm_crypt"
                   "dm_mod"
                   "dw_mmc"
+                  "hantro_vpu"
+                  "phy_rockchip_snps_pcie3"
+                  "pinctrl_rk805"
+                  "pwm_fan"
+                  "rk805_pwrkey"
+                  "rng_core"
+                  "rockchip_rga"
+                  "rockchip_rng"
+                  "rockchip_vdec"
+                  "rockchipdrm"
+                  "rocket"
+                  "rtc_hym8563"
                 ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;
