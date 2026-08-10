@@ -20,6 +20,7 @@
       dontConfigure = true;
       installPhase = "mkdir -p $out && cp -r . $out/";
       postPatch = ''
+        sed -i 's/static int unprivileged_userns_clone = 1;/extern int unprivileged_userns_clone;/' kernel/fork.c
         ${
           if (class != "x86") then
             ''

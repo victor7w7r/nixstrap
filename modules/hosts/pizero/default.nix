@@ -83,6 +83,7 @@
                   "randomize_kstack_offset=on"
                   "boot.shell_on_fail"
                   "rd.shell"
+                  "devtmpfs.mount=1"
                 ];
                 initrd.kernelModules = [
                   "ahci"
