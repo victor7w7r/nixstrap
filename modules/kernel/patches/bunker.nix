@@ -38,7 +38,6 @@
       "zen/0009-mm-set-default-max-map-count-to-INT_MAX-5"
     ];
     hardened = map (patch: "${inputs.bunker-patches}/patches/7.1/hardened/${patch}.patch") [
-
     ];
   };
 }

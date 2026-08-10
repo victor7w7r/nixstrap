@@ -13,10 +13,7 @@
       url = "github:CachyOS/linux/cachyos-7.1.6-1";
       flake = false;
     };
-    linux-hardened = {
-      url = "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch";
-      flake = false;
-    };
+
   };
 
   kernel.lib.linux =

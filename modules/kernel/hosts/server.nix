@@ -1,4 +1,4 @@
-{ inputs, kernel, ... }:
+{ kernel, ... }:
 {
   kernel.hosts.server =
     pkgs: armCross:
@@ -7,7 +7,7 @@
       localVer = "server-hardened-native";
       class = "x86";
       host = "server";
-      patches = [ inputs.linux-hardened ];
+      patches = with kernel.patches.injector pkgs; [ hardened ];
       structuredExtraConfig = kernel.config.default.server;
     });
 
