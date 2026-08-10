@@ -2,10 +2,7 @@
 {
   den.aspects.pizero.disks.nixos = {
     imports = [ inputs.disko.nixosModules.disko ];
-    fileSystems = {
-      "/nix/persist".neededForBoot = true;
-      "/etc".neededForBoot = true;
-    };
+    fileSystems."/etc".neededForBoot = true;
     disko.devices = with disko; {
       disk = {
         root = disk.root { };
@@ -37,10 +34,13 @@
               };
             };
             system = btrfs.call {
-              name = "system-btrfs";
+              name = "system";
               priority = 2;
               size = "100%";
-              subvolumes = btrfs.subvolumes { hasEtc = true; };
+              subvolumes = btrfs.subvolumes {
+                hasEtc = true;
+                hasPersist = false;
+              };
             };
           };
         };
