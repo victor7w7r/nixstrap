@@ -3198,16 +3198,16 @@
     "linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1785768722,
-        "narHash": "sha256-B4kRsMeUxQuz5prPDPjAccMcFYaSTAbzCYs3kHGF5BI=",
+        "lastModified": 1786377387,
+        "narHash": "sha256-dPRXbKsfvFaPb/7L+oOOJ0yKfOfa9/pPZspxltVn92o=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "5641494883f546e11abaf40d9d30bcd8f5ae3dab",
+        "rev": "7a84732fd5e4350c1312fd0ed0c72ffa139fb766",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
-        "ref": "cachyos-7.1.6-1",
+        "ref": "cachyos-7.1.8-1",
         "repo": "linux",
         "type": "github"
       }
