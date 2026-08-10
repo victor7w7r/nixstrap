@@ -37,7 +37,7 @@
               };
             };
             system = btrfs.call {
-              name = "system";
+              name = "system-btrfs";
               priority = 2;
               size = "100%";
               subvolumes = btrfs.subvolumes { hasEtc = true; };
