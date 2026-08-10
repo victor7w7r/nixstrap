@@ -8,17 +8,14 @@
   ...
 }:
 {
-  #mount /dev/sde1 /mnt && rm -rf /mnt/* && mkdir -p /mnt/boot && tar --zstd -xvf boot.tar.zst -C /mnt/boot --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
+  #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
   #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
   perSystem.packages = {
     pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
-
-    pizero-image = inputs.self.nixosConfigurations.pizero.config.system.build.sdImage;
-
-    pizero-tarball = inputs.self.nixosConfigurations.pizero.config.system.build.tarball;
-
-    pizero-boot = inputs.self.nixosConfigurations.pizero.config.system.build.bootFiles;
+    pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
+    pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
+    pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
   };
 
   den = {
@@ -76,22 +73,21 @@
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
               boot = {
                 kernelParams = [
-                  "earlycon"
-                  "earlycon=uart,mmio32,0x05000000"
-                  "console=ttyS0,115200"
+                  "console=ttyS0,115200n8"
+                  "initrd.console=ttyS0,115200n8"
+                  "clk_ignore_unused"
                   "ignore_loglevel"
-                  "systemd.bpf_restrict_fs=0"
+                  "boot.shell_on_fail"
                   "rd.shell"
-                  "rd.retry=10"
                   "systemd.debug_shell=1"
                   "zram.num_devices=2"
-                  "page_poison=1"
                   "oops=panic"
                   "randomize_kstack_offset=on"
                 ];
                 initrd.kernelModules = [
                   "ahci"
                   "ehci_hcd"
+                  "phy_sun4i_usb"
                   "dm_crypt"
                   "dm_mod"
                   "encrypted_keys"

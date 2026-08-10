@@ -33,10 +33,11 @@
                 priority = 100;
               };
             };
-            system = xfs.call {
+            system = btrfs.call {
               name = "system";
+              priority = 2;
               size = "100%";
-              mountpoint = "/nix";
+              subvolumes = btrfs.subvolumes { hasEtc = true; };
             };
           };
         };

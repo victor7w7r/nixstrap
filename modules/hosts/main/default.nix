@@ -69,13 +69,13 @@
               "video=DP-3:1600x900@60e"
               "kvmfr.static_size_mb=128"
               "iommu=pt"
-              "i915.enable_guc=2"
-              "kvm_intel.nested=1"
+              #"i915.enable_guc=2"
               "intel_pstate=passive"
               "intel_iommu=on"
-              "pcie_ports=compat"
-              "libahci.ignore_sss=1"
-              "ahci.mobile_lpm_policy=2"
+              "pm_async=off"
+              #"pcie_ports=native"
+              #"libahci.ignore_sss=1"
+              #"ahci.mobile_lpm_policy=2"
               "drm.polled=14"
             ];
             extraModprobeConfig = ''
