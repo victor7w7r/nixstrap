@@ -370,7 +370,6 @@
         W1_SLAVE_DS2433 = no;
         W1_SLAVE_DS2438 = no;
         W1_SLAVE_DS250X = no;
-        W1_SLAVE_DS2781 = no;
         W1_SLAVE_DS28E04 = no;
         W1_SLAVE_DS28E17 = no;
       }
