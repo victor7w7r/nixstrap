@@ -204,11 +204,13 @@
     };
 
     denied = {
-      apply = with kernel.config.arch.denied; lib.mkMerge [
-        (acpi { })
-        (x86 { })
-        (virt { })
-      ];
+      apply =
+        with kernel.config.arch.denied;
+        lib.mkMerge [
+          (acpi { })
+          (x86 { })
+          (virt { })
+        ];
 
       acpi = { }: {
         ACPI_APEI_EINJ = no;
@@ -221,8 +223,6 @@
         ACPI_SBS = no;
         BYTCRC_PMIC_OPREGION = lib.mkForce no;
         CHTCRC_PMIC_OPREGION = lib.mkForce no;
-        CHT_DC_TI_PMIC_OPREGION = lib.mkForce no;
-        CHT_WC_PMIC_OPREGION = lib.mkForce no;
         TPS68470_PMIC_OPREGION = lib.mkForce no;
         PCI_IOV = no;
       };
@@ -325,6 +325,9 @@
         CAVIUM_ERRATUM_27456 = no;
         CAVIUM_ERRATUM_30115 = no;
         CAVIUM_TX2_ERRATUM_219 = no;
+        CPU_SUP_CENTAUR = no;
+        CPU_SUP_ZHAOXIN = no;
+        CPU_SUP_HYGON = no;
         FSL_EDMA = no;
         FSL_QDMA = no;
         FUJITSU_ERRATUM_010001 = no;
@@ -370,15 +373,19 @@
       x86 = { }: {
         X86_ACPI_CPUFREQ = no;
         X86_AMD_FREQ_SENSITIVITY = no;
+        X86_AMD_PSTATE_UT = no;
+        X86_CPA_STATISTICS = no;
         X86_EXTENDED_PLATFORM = no;
-        X86_PMEM_LEGACY = no;
+        X86_MCE_INJECT = no;
         X86_MPPARSE = no;
-        X86_PLATFORM_DRIVERS_DELL = lib.mkForce no;
         X86_P4_CLOCKMOD = no;
+        X86_PLATFORM_DRIVERS_DELL = lib.mkForce no;
+        X86_PMEM_LEGACY = no;
         X86_POWERNOW_K8 = no;
         X86_SGX = lib.mkForce no;
         X86_SPEEDSTEP_CENTRINO = no;
         X86_VERBOSE_BOOTUP = no;
+        XPOWER_PMIC_OPREGION = no;
       };
 
       virt = { }: {

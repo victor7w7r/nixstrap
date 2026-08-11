@@ -49,8 +49,6 @@
         (sound.rogally { isDenied = true; })
         {
           APPLE_BCE = module;
-          DRM_APPLETBDRM = module;
-          EEPROM_EE1004 = yes;
           HID_WACOM = module;
           SENSORS_APPLESMC_T2 = module;
           SND_HDA_CODEC_HDMI_INTEL = module;

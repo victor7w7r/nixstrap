@@ -8,7 +8,6 @@
 
     not-mmc = { }: {
       MMC = no;
-      MMC_BLOCK = no;
     };
 
     mmc = { }: {
@@ -18,7 +17,6 @@
       MMC_SDHCI = yes;
       MMC_SDHCI_PCI = yes;
       MMC_SDHCI_UHS2 = yes;
-      RPMB = yes;
     };
 
     raid = { }: {
@@ -59,6 +57,8 @@
         BLK_DEV_UBLK = no;
         BLK_DEV_ZONED_LOOP = no;
         CEPH_FS = no;
+        CIFS_ALLOW_INSECURE_LEGACY = no;
+        CIFS_COMPRESSION = no;
         CIFS_DEBUG = no;
         CX_ECAT = no;
         DLM = no;
@@ -67,10 +67,17 @@
         MEMSTICK = no;
         MTD = no;
         NET_FC = lib.mkForce no;
+        NET_NCSI = no;
+        NFS_V2 = no;
         NVME_FC = no;
         NVME_TARGET = lib.mkForce no;
         NVME_TCP = no;
+        PNFS_BLOCK = no;
+        PNFS_FLEXFILE_LAYOUT = no;
         PNP_DEBUG_MESSAGES = no;
+        RPCSEC_GSS_KRB5_ENCTYPES_AES_SHA1 = no;
+        RPCSEC_GSS_KRB5_ENCTYPES_CAMELLIA = no;
+        SUNRPC_DEBUG = no;
       }
       #MMC
       {
@@ -87,7 +94,7 @@
         MMC_VUB300 = no;
         MMC_WBSD = no;
       }
-      #RAID
+      #LVM / DISK MAPPER
       {
         DM_CACHE = no;
         DM_CLONE = no;
@@ -99,8 +106,11 @@
         DM_LOG_USERSPACE = no;
         DM_LOG_WRITES = no;
         DM_MULTIPATH = no;
+        DM_PCACHE = no;
         DM_SWITCH = no;
+        DM_VDO = no;
         DM_WRITECACHE = no;
+        DM_VERITY = no;
         DM_ZONED = no;
       }
       #SCSI
@@ -147,7 +157,7 @@
         SCSI_LOGGING = lib.mkForce no;
         SCSI_MPI3MR = no;
         SCSI_MPT2SAS = no;
-       # SCSI_MPT3SAS = no;
+        SCSI_MPT3SAS = no;
         SCSI_MVSAS = no;
         SCSI_MVUMI = no;
         SCSI_MYRB = no;
@@ -156,12 +166,12 @@
         SCSI_PMCRAID = no;
         SCSI_QLA_ISCSI = no;
         SCSI_QLOGIC_1280 = no;
-        #SCSI_SAS_ATTRS = no;
-        #SCSI_SAS_LIBSAS = no;
+        SCSI_SAS_ATTRS = no;
+        SCSI_SAS_LIBSAS = no;
         SCSI_SMARTPQI = no;
         SCSI_SNIC = no;
-        #SCSI_SPI_ATTRS = no;
-        #SCSI_SRP_ATTRS = no;
+        SCSI_SPI_ATTRS = no;
+        SCSI_SRP_ATTRS = no;
         SCSI_STEX = no;
         SCSI_SYM53C8XX_2 = no;
         SCSI_WD719X = no;

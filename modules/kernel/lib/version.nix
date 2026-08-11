@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   kernel.lib.version =
     pkgs: src: localVer:
@@ -20,7 +19,7 @@
       + toString (builtins.match ".+SUBLEVEL = ([0-9]+).+" (builtins.readFile file))
     )
     |> (string: {
-      majorMinor = lib.versions.majorMinor string;
+      majorMinor = pkgs.lib.versions.majorMinor string;
       final = "${string}-v7w7r-${localVer}";
     });
 }

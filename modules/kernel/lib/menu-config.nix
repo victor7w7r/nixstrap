@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   kernel.lib.menu-config =
     {
@@ -36,7 +35,7 @@
 
           ${pkgs.writeShellScript "patch-kernel.sh" ''
             set -e
-            ${lib.concatMapStringsSep "\n" (p: ''
+            ${pkgs.lib.concatMapStringsSep "\n" (p: ''
               echo "Setting up: ${p.name or "patch"}"
               patch -p1 < ${p.patch}
             '') kernel.kernelPatches}
@@ -45,8 +44,8 @@
           cd src
         fi
 
-        make ${lib.optionalString isArm "ARCH=arm64"} defconfig
-        make ${lib.optionalString isArm "ARCH=arm64"} menuconfig
+        make ${pkgs.lib.optionalString isArm "ARCH=arm64"} defconfig
+        make ${pkgs.lib.optionalString isArm "ARCH=arm64"} menuconfig
       '';
     };
 }

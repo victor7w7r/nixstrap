@@ -1,5 +1,17 @@
 { kernel, lib, ... }: {
   kernel.config.sound = with lib.kernel; {
+
+    include = { }: {
+      SND_SOC_SOF_TOPLEVEL = yes;
+      SND_SOC_SOF = module;
+      SND_SOC_SOF_PCI = module;
+      SND_SOC_SOF_INTEL_TOPLEVEL = yes;
+      SND_SOC_SOF_INTEL_COMMON = module;
+      SND_SOC_SOF_HDA_COMMON = module;
+      SND_SOC_SOF_HDA = module;
+      SND_SOC_SOF_COFFEELAKE= module;
+    };
+
     rogally =
       with kernel.config.utils;
       {
@@ -27,6 +39,7 @@
         SND_SOC_AMD_VANGOGH_MACH = setupDenial isDenied module;
         SND_SOC_CS35L41_I2C = setupDenial isDenied module;
         SND_SOC_CS35L41_SPI = setupDenial isDenied module;
+
         SND_SOC_MAX98388 = setupDenial isDenied module;
         SND_SOC_NAU8821 = setupDenial isDenied module;
         SND_SOC_SOF_AMD_ACP63 = setupDenial isDenied module;
@@ -38,7 +51,6 @@
       };
 
     denied-arm = { }: {
-      SND_OXYGEN_LIB = no;
       SND_SE6X = no;
       SND_SOC_MIKROE_PROTO = no;
       SND_SOC_FSL_RPMSG = no;
@@ -104,11 +116,13 @@
           SND_HDA_CODEC_ANALOG = no;
           SND_HDA_CODEC_CA0110 = no;
           SND_HDA_CODEC_CA0132 = no;
-          SND_HDA_CODEC_CIRRUS = no;
           SND_HDA_CODEC_CM9825 = no;
           SND_HDA_CODEC_CMEDIA = no;
           SND_HDA_CODEC_CONEXANT = no;
+          SND_HDA_CODEC_HDMI_NVIDIA = no;
+          SND_HDA_CODEC_HDMI_ATI = no;
           SND_HDA_CODEC_HDMI_NVIDIA_MCP = no;
+          SND_HDA_CODEC_HDMI_TEGRA = no;
           SND_HDA_CODEC_SENARYTECH = no;
           SND_HDA_CODEC_SI3054 = no;
           SND_HDA_CODEC_SIGMATEL = no;
@@ -175,13 +189,16 @@
           SND_NM256 = no;
           SND_OSSEMUL = lib.mkForce no;
           SND_OXYGEN = no;
+          SND_OXYGEN_LIB = no;
           SND_PCMTEST = no;
           SND_PCSP = no;
           SND_PCXHR = no;
+          SND_RAWMIDI = no;
           SND_RIPTIDE = no;
           SND_RME32 = no;
           SND_RME96 = no;
           SND_RME9652 = no;
+          SND_SEQUENCER = no;
           SND_SEQ_DUMMY = no;
           SND_SERIAL_U16550 = no;
           SND_SIMPLE_CARD = no;
@@ -199,7 +216,6 @@
           SND_USB_VARIAX = no;
           SND_VIA82XX = no;
           SND_VIA82XX_MODEM = no;
-          SND_VIRMIDI = no;
           SND_VIRTUOSO = no;
           SND_VX222 = no;
           SND_YMFPCI = no;
@@ -240,6 +256,8 @@
           SND_SOC_AW88166 = no;
           SND_SOC_AW88261 = no;
           SND_SOC_AW88395 = no;
+          SND_SOC_AW88395_LIB = no;
+          SND_SOC_AW88399 = no;
           SND_SOC_BD28623 = no;
           SND_SOC_CHV3_CODEC = no;
           SND_SOC_CHV3_I2S = no;
@@ -250,13 +268,18 @@
           SND_SOC_CS35L36 = no;
           SND_SOC_CS35L45_I2C = no;
           SND_SOC_CS35L45_SPI = no;
+          SND_SOC_CS35L56 = no;
           SND_SOC_CS35L56_I2C = no;
+          SND_SOC_CS35L56_SDW = no;
+          SND_SOC_CS35L56_SHARED = no;
+          SND_SOC_CS35L56_SPI = no;
           SND_SOC_CS4234 = no;
           SND_SOC_CS4265 = no;
           SND_SOC_CS4270 = no;
           SND_SOC_CS4271_I2C = no;
           SND_SOC_CS4271_SPI = no;
           SND_SOC_CS42L42 = no;
+          SND_SOC_CS42L42_CORE = no;
           SND_SOC_CS42L42_SDW = no;
           SND_SOC_CS42L43 = no;
           SND_SOC_CS42L51_I2C = no;
@@ -277,6 +300,7 @@
           SND_SOC_ES7134 = no;
           SND_SOC_ES7241 = no;
           SND_SOC_ES8311 = no;
+          SND_SOC_ES8316 = no;
           SND_SOC_ES8323 = no;
           SND_SOC_ES8326 = no;
           SND_SOC_ES8328_I2C = no;
@@ -342,6 +366,7 @@
           SND_SOC_MAX98090 = no;
           SND_SOC_MAX98357A = no;
           SND_SOC_MAX98363 = no;
+          SND_SOC_MAX98390 = no;
           SND_SOC_MAX98396 = no;
           SND_SOC_MAX98504 = no;
           SND_SOC_MAX98520 = no;
@@ -382,6 +407,7 @@
           SND_SOC_PM4125_SDW = no;
           SND_SOC_RT1017_SDCA_SDW = no;
           SND_SOC_RT1308_SDW = no;
+          SND_SOC_RT1316_SDW = no;
           SND_SOC_RT1318_SDW = no;
           SND_SOC_RT1320_SDW = no;
           SND_SOC_RT5616 = no;
@@ -390,8 +416,10 @@
           SND_SOC_RT5659 = no;
           SND_SOC_RT5682_SDW = no;
           SND_SOC_RT700_SDW = no;
+          SND_SOC_RT711 = no;
           SND_SOC_RT712_SDCA_DMIC_SDW = no;
           SND_SOC_RT712_SDCA_SDW = no;
+          SND_SOC_RT715 = no;
           SND_SOC_RT721_SDCA_SDW = no;
           SND_SOC_RT9120 = no;
           SND_SOC_RT9123 = no;
@@ -403,10 +431,6 @@
           SND_SOC_SIMPLE_MUX = no;
           SND_SOC_SMA1303 = no;
           SND_SOC_SMA1307 = no;
-          SND_SOC_UDA1380 = no;
-        }
-        #SND SOC
-        {
           SND_SOC_SOF_ACPI = lib.mkForce no;
           SND_SOC_SOF_ALDERLAKE = no;
           SND_SOC_SOF_APOLLOLAKE = lib.mkForce no;
@@ -460,6 +484,7 @@
           SND_SOC_TSCS454 = no;
           SND_SOC_UDA1334 = no;
           SND_SOC_UDA1342 = no;
+          SND_SOC_UDA1380 = no;
           SND_SOC_WCD937X_SDW = no;
           SND_SOC_WCD938X_SDW = no;
           SND_SOC_WCD939X_SDW = no;

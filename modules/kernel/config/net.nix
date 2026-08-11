@@ -12,13 +12,11 @@
     include = { }: {
       BRIDGE = yes;
       DEFAULT_BBR = yes;
-      DEFAULT_CUBIC = no;
       DEFAULT_HOSTNAME = freeform "v7w7r";
       DEFAULT_TCP_CONG = freeform "bbr";
       INET_AH = yes;
       INET_ESP = yes;
       INET_IPCOMP = yes;
-      IP6_NF_MANGLE = no;
       NETFILTER_XTABLES = yes;
       NETFILTER_XT_MATCH_ADDRTYPE = yes;
       NETFILTER_XT_MATCH_COMMENT = yes;
@@ -87,12 +85,15 @@
         NET_SCH_GRED = no;
         NET_SCH_HFSC = no;
         NET_SCH_HHF = no;
+        NET_SCH_HTB = no;
         NET_SCH_MQPRIO = no;
         NET_SCH_NETEM = no;
         NET_SCH_PIE = no;
         NET_SCH_PLUG = no;
+        NET_SCH_QFQ = no;
         NET_SCH_RED = no;
         NET_SCH_SFB = no;
+        NET_SCH_SFQ = no;
         NET_SCH_SKBPRIO = no;
         NET_SCH_TAPRIO = no;
         NET_SCH_TBF = no;
@@ -103,24 +104,8 @@
       #NETFILTER
       {
         BRIDGE_CFM = no;
-        BRIDGE_EBT_802_3 = no;
-        BRIDGE_EBT_AMONG = no;
-        BRIDGE_EBT_ARP = no;
-        BRIDGE_EBT_ARPREPLY = no;
-        BRIDGE_EBT_DNAT = no;
-        BRIDGE_EBT_IP = no;
-        BRIDGE_EBT_IP6 = no;
-        BRIDGE_EBT_LIMIT = no;
-        BRIDGE_EBT_LOG = no;
-        BRIDGE_EBT_MARK = no;
-        BRIDGE_EBT_MARK_T = no;
-        BRIDGE_EBT_NFLOG = no;
-        BRIDGE_EBT_PKTTYPE = no;
-        BRIDGE_EBT_REDIRECT = no;
-        BRIDGE_EBT_SNAT = no;
-        BRIDGE_EBT_STP = no;
-        BRIDGE_EBT_VLAN = no;
         BRIDGE_MRP = no;
+        BRIDGE_NF_EBTABLES = no;
         IP_NF_MATCH_ECN = no;
         IP_NF_MATCH_TTL = no;
         NETFILTER_XT_MATCH_CLUSTER = no;
@@ -147,6 +132,7 @@
         NETFILTER_XT_TARGET_IDLETIMER = no;
         NETFILTER_XT_TARGET_LED = no;
         NETFILTER_XT_TARGET_TEE = no;
+        NETFILTER_XTABLES_LEGACY = no;
         NF_CT_PROTO_SCTP = no;
         NF_CONNTRACK_AMANDA = no;
         NF_CONNTRACK_FTP = no;
@@ -180,21 +166,26 @@
         ARCNET = no;
         ATALK = no;
         ATM = no;
+        BAREUDP = no;
         BATMAN_ADV = no;
         CFG80211_CRDA_SUPPORT = no;
         CFG80211_DEBUGFS = lib.mkForce no;
         CFG80211_WEXT = lib.mkForce no;
         DIBS = no;
         EQUALIZER = no;
+        GENEVE = no;
         GTP = no;
         HSR = no;
         INET_ESPINTCP = lib.mkForce no;
+        IP_PIMSM_V1 = no;
         IP_PIMSM_V2 = no;
         IP_SCTP = no;
+        IP_SET = no;
         IP_VS = no;
         LAPB = no;
         LLC2 = no;
         MACSEC = no;
+        MHI_NET = no;
         MPLS = no;
         MPTCP = lib.mkForce no;
         NETCONSOLE = lib.mkForce no;
@@ -215,20 +206,20 @@
         PPP = no;
         PSE_CONTROLLER = no;
         RDS = no;
+        RXKAD = no;
         SLIP = no;
         TARGET_CORE = no;
         TLS_DEVICE = lib.mkForce no;
         VLAN_8021Q = no;
+        VSOCKMON = no;
+        VXLAN = no;
         WAN = lib.mkForce no;
         WWAN = no;
         X25 = no;
-        XFRM_IPTFS = no;
-        XFRM_USER_COMPAT = no;
       }
       #IPV6
       {
         "6LOWPAN" = no;
-        L2TP = no;
         IP6_NF_MATCH_AH = no;
         IP6_NF_MATCH_EUI64 = no;
         IP6_NF_MATCH_FRAG = no;
@@ -238,11 +229,16 @@
         IP6_NF_MATCH_OPTS = no;
         IP6_NF_MATCH_RT = no;
         IP6_NF_MATCH_SRH = no;
-        IP6_NF_TARGET_NPT = no;
         IP6_NF_TARGET_SYNPROXY = no;
+        IPV6_IOAM6_LWTUNNEL = no;
         IPV6_MIP6 = no;
+        IPV6_PIMSM_V2 = no;
+        IPV6_RPL_LWTUNNEL = no;
+        IPV6_SEG6_HMAC = no;
+        IPV6_SEG6_LWTUNNEL = no;
         IPV6_SIT = no;
         IPV6_VTI = no;
+        L2TP = no;
         NET_IPGRE_DEMUX = no;
         TIPC = no;
       }

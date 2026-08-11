@@ -172,7 +172,9 @@
       #GRAPHICS
       {
         AGP = lib.mkForce no;
+        DRM_ACCEL = no;
         DRM_ANALOGIX_ANX78XX = no;
+        DRM_APPLETBDRM = no;
         DRM_AST = no;
         DRM_BOCHS = no;
         DRM_CIRRUS_QEMU = no;
@@ -197,6 +199,8 @@
         DRM_ST7735R = no;
         DRM_ST7920 = no;
         DRM_UDL = no;
+        DRM_VBOXVIDEO = no;
+        DRM_VESADRM = no;
         DRM_VGEM = no;
         DRM_VIRTIO_GPU = no;
         DRM_VKMS = no;
@@ -231,7 +235,6 @@
         FB_SSD1307 = no;
         FB_TRIDENT = no;
         FB_UVESA = no;
-        FB_VESA = lib.mkForce no;
         FB_VGA16 = no;
         FB_VIA = no;
         FB_VIRTUAL = no;
@@ -264,6 +267,8 @@
         BNGE = no;
         BNX2X = no;
         BNXT = no;
+        BRCMDBG = no;
+        BRCM_TRACING = no;
         BROADCOM_PHY = no;
         CICADA_PHY = no;
         CORTINA_PHY = no;
@@ -276,10 +281,11 @@
         DP83TD510_PHY = no;
         DP83TG720_PHY = no;
         ETHOC = no;
-        FEALNX = no;
         FDDI = no;
+        FEALNX = no;
         FUJITSU_ES = no;
         ICPLUS_PHY = no;
+        INPUT_AXP20X_PEK = no;
         INTEL_XWAY_PHY = no;
         JME = no;
         LSI_ET1011C_PHY = no;
@@ -322,20 +328,26 @@
       }
       #USB
       {
-        USB_NET_ZAURUS = no;
-        USB_NET_INT51X1 = no;
+        USB_NET_CH9200 = no;
+        USB_NET_CX82310_ETH = no;
+        USB_NET_DM9601 = no;
         USB_NET_GL620A = no;
+        USB_NET_INT51X1 = no;
+        USB_NET_KALMIA = no;
+        USB_NET_MCS7830 = no;
         USB_NET_NET1080 = no;
         USB_NET_PLUSB = no;
-        USB_NET_CX82310_ETH = no;
-        USB_NET_KALMIA = no;
+        USB_NET_SMSC75XX = no;
+        USB_NET_SMSC95XX = no;
+        USB_NET_SR9700 = no;
+        USB_NET_SR9800 = no;
+        USB_NET_ZAURUS = no;
       }
       #WIFI / WIRELESS
       {
         B43 = no;
         B43LEGACY = no;
         IEEE802154 = no;
-        MAC80211_HWSIM = no;
         MT7601U = no;
         MT7603E = no;
         MT7615E = no;
@@ -494,7 +506,6 @@
         IDEAPAD_LAPTOP = no;
         INFINIBAND = lib.mkForce no;
         INSPUR_PLATFORM_PROFILE = no;
-        INTEL_CHTDC_TI_PWRBTN = no;
         INTEL_HID_EVENT = no;
         INTEL_IDXD = no;
         INTEL_INT0002_VGPIO = no;
@@ -526,8 +537,6 @@
         OXP_EC = no;
         PANASONIC_LAPTOP = no;
         PCENGINES_APU2 = no;
-        PMIC_ADP5520 = no;
-        PMIC_DA903X = no;
         REDMI_WMI = no;
         SAMSUNG_GALAXYBOOK = no;
         SAMSUNG_LAPTOP = no;
@@ -544,8 +553,6 @@
         TOSHIBA_HAPS = no;
         TOSHIBA_WMI = no;
         TUXEDO_NB04_WMI_AB = no;
-        TWL4030_CORE = no;
-        TWL6040_CORE = no;
         WINMATE_FM07_KEYS = no;
         WIRELESS_HOTKEY = no;
         X86_ANDROID_TABLETS = no;

@@ -1,7 +1,6 @@
 { lib, ... }: {
   kernel.config.peripherals = with lib.kernel; {
     include = { }: {
-      I2C_MUX = yes;
       PCI_REALLOC_ENABLE_AUTO = yes;
       USB_ACM = yes;
     };
@@ -9,19 +8,18 @@
     denied-arm = lib.mkMerge [
       #DRIVERS
       {
+        AMD_SBRMI_I2C = no;
         ARM_MHU_V2 = no;
         ARM_MHU_V3 = no;
         ARM_TIMER_SP804 = no;
+        CB710_CORE = no;
+        CB710_DEBUG_ASSUMPTIONS = no;
         FSL_ERRATUM_A008585 = no;
-        HISILICON_ERRATUM_161010101 = no;
-        MAILBOX_TEST = no;
-        PLATFORM_MHU = no;
-        SUN55I_A523_MCU_CCU = no;
-        SUN55I_A523_R_CCU = no;
-        AMD_SBRMI_I2C = no;
         HI6421V600_IRQ = no;
+        HISILICON_ERRATUM_161010101 = no;
         HISI_HIKEY_USB = no;
         IMX_SCMI_BBM_EXT = no;
+        MAILBOX_TEST = no;
         MCHP_LAN966X_PCI = no;
         MDIO_BCM_UNIMAC = no;
         MDIO_CAVIUM = no;
@@ -39,12 +37,17 @@
         PCI_ENDPOINT = no;
         PCI_HISI = no;
         PCI_XGENE = no;
+        PLATFORM_MHU = no;
         PPKB_POWER_MANAGER = no;
         SENSORS_LIS3_SPI = no;
+        SUN55I_A523_CCU = no;
+        SUN55I_A523_MCU_CCU = no;
+        SUN55I_A523_R_CCU = no;
+        TIFM_7XX1 = no;
+        TIFM_CORE = no;
         UACCE = no;
         VCPU_STALL_DETECTOR = no;
         VEXPRESS_CONFIG = no;
-        SUN55I_A523_CCU = no;
       }
       #CLK
       {
@@ -165,12 +168,13 @@
     denied = lib.mkMerge [
       #DRIVERS
       {
-        # ALTERA_STAPL = no;
         APPLICOM = no;
         C2PORT = no;
         CAN = no;
+        CHR_DEV_SCH = no;
         CXL_BUS = no;
         DEVPORT = no;
+        DUMMY_IRQ = no;
         DVB_CORE = no;
         FPGA = no;
         FWCTL = no;
@@ -193,13 +197,10 @@
         PCI_PWRCTRL_TC9563 = no;
         PROVIDE_OHCI1394_DMA_INIT = no;
         PWM_CLK = no;
-        PWM_CRC = no;
         PWM_DWC = no;
         PWM_PCA9685 = no;
         RAPIDIO = no;
-        RMI4_F03 = no;
         RMI4_F03_SERIO = no;
-        RMI4_2D_SENSOR = no;
         RMI4_F11 = no;
         RMI4_F12 = no;
         RMI4_F1A = no;
@@ -207,6 +208,7 @@
         RMI4_F30 = no;
         RMI4_F34 = no;
         RMI4_F3A = no;
+        RPMB = no;
         STAGING_MEDIA = lib.mkForce no;
         XILINX_VCU = no;
         XILLYBUS = no;
@@ -235,10 +237,18 @@
       }
       #BT
       {
+        BT_AOSPEXT = no;
         BT_DEBUGFS = no;
         BT_HCIBCM203X = no;
         BT_HCIBCM4377 = no;
         BT_HCIBFUSB = no;
+        BT_HCIBPA10X = no;
+        BT_HCIUART_3WIRE = no;
+        BT_HCIUART_AG6XX = no;
+        BT_HCIUART_AML = no;
+        BT_HCIUART_BCSP = no;
+        BT_HCIUART_MRVL = no;
+        BT_HCIUART_NOKIA = no;
         BT_HCIVHCI = no;
         BT_HIDP = no;
         BT_MRVL = no;
@@ -261,7 +271,6 @@
         EXTCON_ADC_JACK = no;
         EXTCON_FSA9480 = no;
         EXTCON_INTEL_INT3496 = no;
-        EXTCON_INTEL_CHT_WC = no;
         EXTCON_LC824206XA = no;
         EXTCON_MAX3355 = no;
         EXTCON_MAX14526 = no;
@@ -287,7 +296,6 @@
         I2C_AMD756 = no;
         I2C_AMD8111 = no;
         I2C_CBUS_GPIO = no;
-        I2C_CHT_WC = no;
         I2C_CP2615 = no;
         I2C_DIOLAN_U2C = no;
         I2C_EMEV2 = no;
@@ -421,9 +429,7 @@
         LPC_SCH = no;
         MFD_88PM800 = no;
         MFD_88PM805 = no;
-        MFD_88PM860X = no;
-        MFD_AAT2870_CORE = no;
-        MFD_AS3711 = no;
+        MFD_ARIZONA = no;
         MFD_ATC260X_I2C = no;
         MFD_BCM590XX = no;
         MFD_BD9571MWV = no;
@@ -431,9 +437,7 @@
         MFD_CGBC = no;
         MFD_CS40L50_I2C = no;
         MFD_CS40L50_SPI = no;
-        MFD_DA9052_I2C = no;
         MFD_DA9052_SPI = no;
-        MFD_DA9055 = no;
         MFD_DA9062 = no;
         MFD_DA9063 = no;
         MFD_DA9150 = no;
@@ -449,14 +453,9 @@
         MFD_MADERA = no;
         MFD_MAX14577 = no;
         MFD_MAX7360 = no;
-        MFD_MAX77541 = no;
         MFD_MAX77693 = no;
         MFD_MAX77705 = no;
-        MFD_MAX77843 = no;
         MFD_MAX8907 = no;
-        MFD_MAX8925 = no;
-        MFD_MAX8997 = no;
-        MFD_MAX8998 = no;
         MFD_MC13XXX_I2C = no;
         MFD_MC13XXX_SPI = no;
         MFD_MENF21BMC = no;
@@ -466,9 +465,8 @@
         MFD_MT6397 = no;
         MFD_NCT6694 = no;
         MFD_OCELOT = no;
-        MFD_PALMAS = no;
         MFD_QNAP_MCU = no;
-        MFD_RC5T583 = no;
+
         MFD_RDC321X = no;
         MFD_RETU = no;
         MFD_RT4831 = no;
@@ -478,14 +476,11 @@
         MFD_SKY81452 = no;
         MFD_SM501 = no;
         MFD_SMPRO = no;
-        MFD_SYSCON = no;
         MFD_SY7636A = no;
         MFD_TI_LMU = no;
         MFD_TI_LP873X = no;
         MFD_TPS65086 = no;
-        MFD_TPS65090 = no;
-        MFD_TPS6586X = no;
-        MFD_TPS65910 = no;
+
         MFD_TPS65912_I2C = no;
         MFD_TPS65912_SPI = no;
         MFD_TPS6594_I2C = no;
@@ -496,10 +491,8 @@
         MFD_VX855 = no;
         MFD_WM5102 = no;
         MFD_WM5110 = no;
-        MFD_WM831X_I2C = no;
         MFD_WM831X_SPI = no;
-        MFD_WM8350_I2C = no;
-        MFD_WM8400 = no;
+        MFD_WM8994 = no;
         MFD_WM8997 = no;
         MFD_WM8998 = no;
         RAVE_SP_CORE = no;
@@ -529,7 +522,6 @@
         PINCTRL_METEORPOINT = no;
         PINCTRL_SUNRISEPOINT = no;
         PINCTRL_TIGERLAKE = no;
-        PINCTRL_SX150X = no;
       }
       #SPI
       {
@@ -558,6 +550,7 @@
       }
       #USB
       {
+        #USB_ULPI_BUS = no;
         APPLE_MFI_FASTCHARGE = no;
         SSB = no;
         TYPEC_ANX7411 = no;
@@ -591,6 +584,8 @@
         USB_CHAOSKEY = no;
         USB_CYPRESS_CY7C63 = no;
         USB_CYTHERM = no;
+        USB_DWC3_HAPS = no;
+        USB_DWC3_GOOGLE = no;
         USB_EHCI_FSL = no;
         USB_EHSET_TEST_FIXTURE = no;
         USB_EMI26 = no;
@@ -622,6 +617,7 @@
         USB_MDC800 = no;
         USB_MICROTEK = no;
         USB_MOUSE = no;
+        USB_OHCI_HCD = no;
         USB_OXU210HP_HCD = no;
         USB_PEGASUS = no;
         USB_PRINTER = no;
@@ -696,7 +692,7 @@
         USB_TEST = no;
         USB_TMC = no;
         USB_TRANCEVIBRATOR = no;
-        #USB_ULPI_BUS = no;
+        USB_UHCI_HCD = no;
         USB_USBIO = no;
         USB_VL600 = no;
         USB_XHCI_PCI_RENESAS = no;

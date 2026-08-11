@@ -1,7 +1,6 @@
 { lib, ... }: {
   kernel.config.media = with lib.kernel; {
     denied = { }: {
-      CXD2880_SPI_DRV = no;
       DVB_A8293 = no;
       DVB_AF9013 = no;
       DVB_AF9033 = no;
@@ -122,7 +121,6 @@
       DVB_ZL10039 = no;
       DVB_ZL10353 = no;
       MEDIA_ANALOG_TV_SUPPORT = no;
-      MEDIA_CONTROLLER_DVB = no;
       MEDIA_DIGITAL_TV_SUPPORT = no;
       MEDIA_PLATFORM_SUPPORT = no;
       MEDIA_RADIO_SUPPORT = no;
@@ -163,17 +161,9 @@
       MEDIA_TUNER_XC2028 = no;
       MEDIA_TUNER_XC4000 = no;
       MEDIA_TUNER_XC5000 = no;
-      RADIO_ADAPTERS = no;
-      SDR_MAX2175 = no;
-      SDR_PLATFORM_DRIVERS = no;
-      SMS_SDIO_DRV = no;
-      SMS_SIANO_MDTV = no;
-      SMS_USB_DRV = no;
-      USB_AIRSPY = no;
-      USB_HACKRF = no;
-      USB_MSI2500 = no;
       USB_PWC = no;
       USB_S2255 = no;
+      V4L_TEST_DRIVERS = no;
       VIDEO_ADP1653 = no;
       VIDEO_ADV7170 = no;
       VIDEO_ADV7175 = no;
@@ -347,6 +337,11 @@
       VIDEO_VD55G1 = no;
       VIDEO_VD56G3 = no;
       VIDEO_VGXY61 = no;
+      VIDEO_VICODEC = no;
+      VIDEO_VIM2M = no;
+      VIDEO_VIMC = no;
+      VIDEO_VISL = no;
+      VIDEO_VIVID = no;
       VIDEO_VP27SMPX = no;
       VIDEO_VPX3220 = no;
       VIDEO_WM8739 = no;

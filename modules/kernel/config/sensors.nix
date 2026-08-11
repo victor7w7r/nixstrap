@@ -151,7 +151,6 @@
         IP5XXX_POWER = no;
         LCD_CLASS_DEVICE = no;
         MANAGER_SBS = no;
-        SILICOM_PLATFORM = no;
         TEST_POWER = no;
       }
       #LEDS
@@ -162,7 +161,6 @@
         LEDS_BD2606MVV = no;
         LEDS_BD2802 = no;
         LEDS_BLINKM = no;
-        LEDS_CHT_WCOVE = no;
         LEDS_DAC124S085 = no;
         LEDS_GPIO = no;
         LEDS_INTEL_SS4200 = no;
@@ -775,7 +773,6 @@
         INA2XX_ADC = no;
         INFINEON_TLV493D = no;
         INTEL_ATOMISP2_PM = no;
-        INTEL_DC_TI_ADC = no;
         INV_ICM42600_I2C = no;
         INV_ICM42600_SPI = no;
         INV_MPU6050_I2C = no;

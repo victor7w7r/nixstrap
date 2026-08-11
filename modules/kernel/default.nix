@@ -1,10 +1,4 @@
-{
-  inputs,
-  kernel,
-  lib,
-  ...
-}:
-{
+{ inputs, kernel, ... }: {
   imports = [ (inputs.den.namespace "kernel" true) ];
 
   flake-file.inputs = {
@@ -13,7 +7,6 @@
       url = "github:CachyOS/linux/cachyos-7.1.8-1";
       flake = false;
     };
-
   };
 
   kernel.lib.linux =
@@ -26,17 +19,10 @@
       armCross ? false,
       defconfig ? null,
       isArm ? false,
-      class ? "x86",
-      dtbMake ? "",
+      class ? null,
+      dtbMake ? null,
     }:
-    (kernel.lib.kernel-wrapper {
-      inherit
-        pkgs
-        class
-        dtbMake
-        defconfig
-        ;
-    })
+    (kernel.lib.kernel-wrapper pkgs class dtbMake defconfig)
     |> (
       src:
       pkgs.buildLinux {
@@ -55,7 +41,7 @@
             patch = file;
           }) (cachyos.std ++ (bunker { }) ++ tachyon ++ patches);
 
-        features = lib.optionalAttrs (!isArm) {
+        features = pkgs.lib.optionalAttrs (!isArm) {
           ia32Emulation = true;
           netfilterRPFilter = true;
           efiBootStub = true;
@@ -92,22 +78,16 @@
     )
     |> (base: {
       "${host}-kernel" = base;
+      "${host}-allconfig" = base.configfile;
       "${host}-kernelPackages" =
         base
         |> pkgs.linuxPackagesFor
         |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
-      "${host}-config" = (
-        pkgs.stdenvNoCC.mkDerivation {
-          name = "filtered-config";
-          src = base.configfile;
-          phases = [ "installPhase" ];
-          installPhase = ''
-            cp $src .config
-            sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
-            sed -i -E 's/[[:space:]]+"\s*$/"/' .config
-            mv .config $out
-          '';
-        }
-      );
+      "${host}-config" = pkgs.runCommand "filtered-config" { } ''
+        cp ${base.configfile} .config
+        sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config
+        sed -i -E 's/[[:space:]]+"\s*$/"/' .config
+        mv .config $out
+      '';
     });
 }

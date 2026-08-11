@@ -6,8 +6,9 @@
       EXT4_FS = yes;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;
+      EROFS_FS = yes;
       F2FS_FS = yes;
-      SQUASHFS = yes;
+      NTFS3_64BIT_CLUSTER = yes;
       ZRAM = lib.mkForce yes;
     };
 
@@ -24,7 +25,6 @@
         CRAMFS = no;
         CUSE = no;
         EFS_FS = no;
-        EROFS_FS = no;
         EXT2_FS = no;
         GFS2_FS = no;
         HFSPLUS_FS = no;
@@ -46,6 +46,7 @@
         QUOTA = no;
         ROMFS_FS = no;
         SOLARIS_X86_PARTITION = no;
+        SQUASHFS = no;
         TMPFS_QUOTA = no;
         UFS_FS = no;
         VXFS_FS = no;
@@ -56,7 +57,6 @@
         ZONEFS_FS = no;
         ZRAM_BACKEND_842 = lib.mkForce no;
         NETFS_DEBUG = no;
-        NETFS_STATS = no;
       }
     ];
   };
