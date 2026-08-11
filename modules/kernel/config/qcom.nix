@@ -8,7 +8,7 @@
     lib.mkMerge [
       {
         ATH10K_PCI = setupDenial isDenied yes;
-        BACKLIGHT_QCOM_WLED = setupDenial isDenied yes;
+        BACKLIGHT_QCOM_WLED = setupDenial isDenied module;
         BATTERY_BQ27XXX = setupDenial isDenied module;
         BLK_DEV_RAM = setupDenial isDenied module;
         CRYPTO_BLOWFISH = setupDenial isDenied module;

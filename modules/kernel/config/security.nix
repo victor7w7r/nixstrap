@@ -12,10 +12,9 @@
       #CRYPTO
       {
         CRYPTO_842 = no;
-        #CRYPTO_CAMELLIA = no;
-        CRYPTO_CAMELLIA_X86_64= no;
-        CRYPTO_CAMELLIA_AESNI_AVX_X86_64= no;
-        CRYPTO_CAMELLIA_AESNI_AVX2_X86_64= no;
+        CRYPTO_CAMELLIA_X86_64 = no;
+        CRYPTO_CAMELLIA_AESNI_AVX_X86_64 = no;
+        CRYPTO_CAMELLIA_AESNI_AVX2_X86_64 = no;
         CRYPTO_ADIANTUM = no;
         CRYPTO_AEGIS128 = no;
         CRYPTO_AEGIS128_AESNI_SSE2 = no;
@@ -30,7 +29,6 @@
         CRYPTO_CAST6 = no;
         CRYPTO_CAST6_AVX_X86_64 = no;
         CRYPTO_CRC32 = no;
-        CRYPTO_DES = no;
         CRYPTO_DEV_AMLOGIC_GXL = no;
         CRYPTO_DEV_ATMEL_ECC = no;
         CRYPTO_DEV_ATMEL_SHA204A = no;
@@ -53,7 +51,6 @@
         CRYPTO_LZ4 = no;
         CRYPTO_LZ4HC = no;
         CRYPTO_MD4 = no;
-        CRYPTO_MD5 = no;
         CRYPTO_NULL = no;
         CRYPTO_PCBC = no;
         CRYPTO_PCRYPT = no;

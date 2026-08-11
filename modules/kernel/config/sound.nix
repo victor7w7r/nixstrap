@@ -300,7 +300,6 @@
           SND_SOC_ES7134 = no;
           SND_SOC_ES7241 = no;
           SND_SOC_ES8311 = no;
-          SND_SOC_ES8316 = no;
           SND_SOC_ES8323 = no;
           SND_SOC_ES8326 = no;
           SND_SOC_ES8328_I2C = no;

@@ -22,7 +22,7 @@
       class ? null,
       dtbMake ? null,
     }:
-    (kernel.lib.kernel-wrapper pkgs class dtbMake defconfig)
+    (kernel.lib.kernel-wrapper pkgs defconfig class dtbMake)
     |> (
       src:
       pkgs.buildLinux {

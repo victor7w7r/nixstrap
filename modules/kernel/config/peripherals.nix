@@ -12,7 +12,6 @@
         ARM_MHU_V2 = no;
         ARM_MHU_V3 = no;
         ARM_TIMER_SP804 = no;
-        CB710_CORE = no;
         CB710_DEBUG_ASSUMPTIONS = no;
         FSL_ERRATUM_A008585 = no;
         HI6421V600_IRQ = no;

@@ -81,7 +81,6 @@
       }
       #MMC
       {
-        #MMC_CB710 = no;
         MMC_SDHCI_F_SDH30 = no;
         MMC_SDHCI_XENON = no;
         MMC_SPI = no;
@@ -157,7 +156,6 @@
         SCSI_LOGGING = lib.mkForce no;
         SCSI_MPI3MR = no;
         SCSI_MPT2SAS = no;
-        SCSI_MPT3SAS = no;
         SCSI_MVSAS = no;
         SCSI_MVUMI = no;
         SCSI_MYRB = no;
@@ -166,8 +164,6 @@
         SCSI_PMCRAID = no;
         SCSI_QLA_ISCSI = no;
         SCSI_QLOGIC_1280 = no;
-        SCSI_SAS_ATTRS = no;
-        SCSI_SAS_LIBSAS = no;
         SCSI_SMARTPQI = no;
         SCSI_SNIC = no;
         SCSI_SPI_ATTRS = no;

@@ -61,7 +61,6 @@
       FTRACE_SYSCALLS = lib.mkForce no;
       FUNCTION_ERROR_INJECTION = no;
       FUNCTION_TRACER = lib.mkForce no;
-
       HARDLOCKUP_DETECTOR = no;
       HIST_TRIGGERS = no;
       HWLAT_TRACER = no;
