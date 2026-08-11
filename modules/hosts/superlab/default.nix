@@ -81,21 +81,24 @@
                   "zram.num_devices=2"
                 ];
                 initrd.kernelModules = [
+                  "display_connector"
                   "dm_crypt"
                   "dm_mod"
-                  "dw_mmc"
                   "hantro_vpu"
+                  "panthor"
+                  "phy_rockchip_samsung_hdptx"
                   "phy_rockchip_snps_pcie3"
                   "pinctrl_rk805"
-                  "pwm_fan"
-                  "rk805_pwrkey"
                   "rng_core"
                   "rockchip_rga"
                   "rockchip_rng"
                   "rockchip_vdec"
                   "rockchipdrm"
                   "rocket"
-                  "rtc_hym8563"
+                  "snd_soc_es8316"
+                  "snd_soc_audio_graph_card"
+                  "synopsys_hdmirx"
+                  "spi_rockchip_sfc"
                 ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;
