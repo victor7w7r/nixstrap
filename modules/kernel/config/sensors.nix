@@ -660,7 +660,6 @@
         AFE4404 = no;
         AK09911 = no;
         AK8974 = no;
-        AK8975 = no;
         AL3000A = no;
         AL3010 = no;
         AL3320A = no;

@@ -6,4 +6,4 @@ result-*
 *.raw
 *.squashfs
 *.tar.xz
-jview.log
+*.log

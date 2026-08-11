@@ -282,7 +282,6 @@
         HID_KYE = no;
         HID_KYSONA = no;
         HID_LCPOWER = no;
-        HID_LED = no;
         HID_LENOVO = no;
         HID_LETSKETCH = no;
         HID_MACALLY = no;

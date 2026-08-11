@@ -3,7 +3,6 @@
     include = { }: {
       LEGACY_VSYSCALL_NONE = yes;
       MAGIC_SYSRQ_DEFAULT_ENABLE = freeform "0x84";
-      PSTORE_RAM = yes;
       RESET_ATTACK_MITIGATION = yes;
       SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
       TCG_TPM = yes;
