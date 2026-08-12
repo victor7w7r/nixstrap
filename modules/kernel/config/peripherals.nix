@@ -550,7 +550,7 @@
       {
         #USB_ULPI_BUS = no;
         APPLE_MFI_FASTCHARGE = no;
-        SSB = no;
+        #SSB = no;
         TYPEC_ANX7411 = no;
         TYPEC_HD3SS3220 = no;
         TYPEC_MUX_FSA4480 = no;
