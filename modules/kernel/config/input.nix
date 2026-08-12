@@ -152,7 +152,6 @@
         INPUT_AD714X = no;
         INPUT_ADXL34X = no;
         INPUT_APANEL = no;
-        INPUT_ARIZONA_HAPTICS = no;
         INPUT_ATI_REMOTE2 = no;
         INPUT_ATLAS_BTNS = no;
         INPUT_AW86927 = no;
@@ -227,12 +226,6 @@
         MOUSE_SERIAL = no;
         MOUSE_SYNAPTICS_I2C = no;
         MOUSE_SYNAPTICS_USB = no;
-        TABLET_SERIAL_WACOM4 = no;
-        TABLET_USB_ACECAD = no;
-        TABLET_USB_AIPTEK = no;
-        TABLET_USB_HANWANG = no;
-        TABLET_USB_KBTAB = no;
-        TABLET_USB_PEGASUS = no;
       }
       #HID
       {

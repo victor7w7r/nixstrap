@@ -260,15 +260,9 @@
         AQUANTIA_PHY = no;
         AS21XXX_PHY = no;
         AT803X_PHY = no;
-        B44 = no;
         BCM54140_PHY = no;
         BCM84881_PHY = no;
         BCM87XX_PHY = no;
-        BNGE = no;
-        BNX2X = no;
-        BNXT = no;
-        BRCMDBG = no;
-        BRCM_TRACING = no;
         BROADCOM_PHY = no;
         CICADA_PHY = no;
         CORTINA_PHY = no;
@@ -320,7 +314,6 @@
         RTASE = no;
         SFP = no;
         STE10XP = no;
-        SYSTEMPORT = no;
         TERANETICS_PHY = no;
         VITESSE_PHY = no;
         VMD = no;
@@ -345,8 +338,6 @@
       }
       #WIFI / WIRELESS
       {
-        B43 = no;
-        B43LEGACY = no;
         IEEE802154 = no;
         MT7601U = no;
         MT7603E = no;

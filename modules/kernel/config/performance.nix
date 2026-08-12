@@ -94,7 +94,6 @@
       PAGE_POOL_STATS = no;
       PCIEAER_INJECT = no;
       PM_DEBUG = lib.mkForce no;
-      PM_NOTIFIER_ERROR_INJECT = no;
       PREEMPTIRQ_DELAY_TEST = no;
       PRINTK_TIME = no;
       PROC_MEM_ALWAYS_FORCE = no;

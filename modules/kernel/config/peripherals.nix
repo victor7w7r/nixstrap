@@ -174,7 +174,6 @@
         CXL_BUS = no;
         DEVPORT = no;
         DUMMY_IRQ = no;
-        DVB_CORE = no;
         FPGA = no;
         FWCTL = no;
         GAMEPORT = no;

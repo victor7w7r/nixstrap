@@ -27,14 +27,13 @@
       }:
       {
         LIBNVDIMM = setupDenial isDenied module;
-        SCSI_SAS_LIBSAS =setupDenial isDenied module;
+        SCSI_SAS_LIBSAS = setupDenial isDenied module;
         SCSI_SAS_ATTRS = setupDenial isDenied module;
         SCSI_MPT3SAS = setupDenial isDenied module;
         CRYPTO_SM4_GENERIC = setupDenial isDenied module;
         CRYPTO_SM3 = setupDenial isDenied module;
         CRYPTO_DES = setupDenial isDenied module;
         CRYPTO_MD5 = setupDenial isDenied module;
-        CB710_CORE = setupDenial isDenied module;
       };
 
     x86 = { }: {

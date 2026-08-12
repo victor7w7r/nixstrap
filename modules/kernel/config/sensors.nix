@@ -277,8 +277,6 @@
         REGULATOR_ACT8865 = no;
         REGULATOR_AD5398 = no;
         REGULATOR_ADP5055 = no;
-        REGULATOR_ARIZONA_LDO1 = no;
-        REGULATOR_ARIZONA_MICSUPP = no;
         REGULATOR_AW37503 = no;
         REGULATOR_DA9210 = no;
         REGULATOR_DA9211 = no;
@@ -982,11 +980,6 @@
         TSL4531 = no;
         TSYS01 = no;
         TSYS02D = no;
-        UIO_AEC = no;
-        UIO_CIF = no;
-        UIO_MF624 = no;
-        UIO_NETX = no;
-        UIO_SERCOS3 = no;
         US5182D = no;
         USB4_DMA_TEST = no;
         USB_LGM_PHY = no;
