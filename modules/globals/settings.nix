@@ -3,12 +3,13 @@
   den.default.nixos = { lib, ... }: {
     _module.args = {
       armPkgs = import inputs.nixpkgs {
-        system = "x86_64-linux";
-        crossSystem.config = "aarch64-unknown-linux-gnu";
+        localSystem = "x86_64-linux";
+        crossSystem = "aarch64-linux";
       };
+
       x86Pkgs = import inputs.nixpkgs {
-        system = "aarch64-linux";
-        crossSystem.config = "x86_64-unknown-linux-gnu";
+        localSystem = "aarch64-linux";
+        crossSystem = "x86_64-linux";
       };
     };
 

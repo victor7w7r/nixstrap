@@ -58,7 +58,12 @@
           ];
 
           nixos =
-            { lib, pkgs, ... }:
+            {
+              lib,
+              pkgs,
+              armPkgs,
+              ...
+            }:
             {
               services = {
                 chrony.enable = lib.mkForce false;
@@ -116,7 +121,10 @@
                   generic-extlinux-compatible.enable = true;
                 };
               };
-            };
+            }
+            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+              _module.args.pkgs = armPkgs;
+            });
         };
       };
     };

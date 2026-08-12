@@ -7,6 +7,7 @@
     {
       nixos =
         {
+          pkgs,
           lib,
           host,
           modulesPath,
@@ -17,29 +18,29 @@
             inputs.microvm.nixosModules.microvm
             "${modulesPath}/virtualisation/qemu-vm.nix"
           ];
-
           microvm = {
             mem = 8192;
             vcpu = 4;
-            hypervisor = "qemu";
+            kernel = pkgs.linuxPackages_7_1.kernel;
+            initrdPath = "${
+              (pkgs.nixos {
+                imports = [
+                  "${pkgs.path}/nixos/modules/profiles/qemu-guest.nix"
+                  "${pkgs.path}/nixos/modules/profiles/minimal.nix"
+                ];
+                boot.kernelPackages = pkgs.linuxPackages_7_1;
+              }).config.system.build.initialRamdisk
+            }/initrd";
             cpu = if (host.system == "x86_64-linux") then "max" else "cortex-a72";
             qemu.extraArgs = [
               "-M"
-              "accel=kvm:tcg,mem-merge=on,sata=off"
+              "accel=kvm:tcg,mem-merge=on"
             ];
             interfaces = [
               {
                 id = "terf-qemu";
                 type = "user";
                 mac = "02:00:00:00:00:01";
-              }
-            ];
-            shares = [
-              {
-                source = "downloads";
-                mountPoint = "/home/victor7w7r/Descargas";
-                tag = "downloads";
-                proto = "virtiofs";
               }
             ];
             volumes = [

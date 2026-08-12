@@ -66,7 +66,12 @@
           ];
 
           nixos =
-            { lib, pkgs, ... }:
+            {
+              lib,
+              pkgs,
+              armPkgs,
+              ...
+            }:
             {
               networking.hostName = "v7w7r-radxarock5b";
               boot = {
@@ -116,7 +121,10 @@
                 firmware = [ pkgs.armbian-firmware ];
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
-            };
+            }
+            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+              _module.args.pkgs = armPkgs;
+            });
         };
       };
     };

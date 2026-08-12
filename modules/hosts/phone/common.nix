@@ -48,6 +48,7 @@
         config,
         inputs',
         pkgs,
+        armPkgs,
         lib,
         ...
       }:
@@ -163,6 +164,9 @@
           memoryPercent = 60;
           priority = 100;
         };
-      };
+      }
+      // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+        _module.args.pkgs = armPkgs;
+      });
   };
 }

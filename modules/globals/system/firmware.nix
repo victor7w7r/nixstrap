@@ -28,7 +28,7 @@
       hardware = {
         enableRedistributableFirmware = lib.mkForce false;
         wirelessRegulatoryDatabase = true;
-        firmware = with pkgs; lib.optional (isX86 || isPhone) linux-firmware;
+        firmware = with pkgs; lib.singleton linux-firmware;
       };
     };
 }
