@@ -604,6 +604,10 @@
       url = "github:xdearboy/mfetch";
       flake = false;
     };
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mynav = {
       url = "github:GianlucaP106/mynav";
       flake = false;

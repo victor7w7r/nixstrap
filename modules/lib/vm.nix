@@ -13,15 +13,6 @@
               ${host.system.build.vm}/bin/run-${host.networking.hostName}-vm "$@"
             '');
         };
-
-        vmHandheld = pkgs.writeShellApplication {
-          name = "handheld-vm";
-          text =
-            inputs.self.nixosConfigurations.handheld.config
-            |> (host: ''
-              ${host.system.build.vm}/bin/run-${host.networking.hostName}-vm "$@"
-            '');
-        };
       };
 
       apps = {
