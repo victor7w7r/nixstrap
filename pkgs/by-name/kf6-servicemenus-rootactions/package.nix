@@ -1,12 +1,14 @@
 {
   cache-stdenv,
-  inputs,
   pkgs,
 }:
 cache-stdenv.mkDerivation {
   pname = "kf6-servicemenus-rootactions";
   version = "latest";
-  src = inputs.kf6-servicemenus-rootactions;
+  src = pkgs.fetchurl {
+    url = "https://gitlab.com/stefanwimmer128/kf6-servicemenus-rootactions/-/releases/v1.2.0/downloads/kf6-servicemenus-rootactions-v1.2.0.tar.xz";
+    sha256 = "sha256-zhdIcjhc+axBO+sEYQ7rL1Hd2tMYCyCFKp0JqpMKRq8=";
+  };
   nativeBuildInputs = with pkgs; [ cmake ];
   buildInputs = with pkgs; [
     kdePackages.dolphin

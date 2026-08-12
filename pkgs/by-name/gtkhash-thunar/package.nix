@@ -1,12 +1,14 @@
 {
   cache-stdenv,
-  inputs,
   pkgs,
 }:
 cache-stdenv.mkDerivation {
   pname = "gtkhash-thunar";
   version = "latest";
-  src = inputs.gtkhash-thunar;
+  src = pkgs.fetchurl {
+    url = "https://github.com/tristanheaven/gtkhash/releases/download/v1.5/gtkhash-1.5.tar.xz";
+    sha256 = "sha256-cQKhkuyj6C7WeoJSpoUEQOUMHb6nxjZL2hVOyA+P8AU=";
+  };
 
   nativeBuildInputs = with pkgs; [
     meson

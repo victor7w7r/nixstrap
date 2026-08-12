@@ -78,6 +78,7 @@
               inputs'.agenix.packages.default
               ntfs2btrfs
               #procmux
+              self'.packages.open
               self'.packages.progressline
             ]
             ++ lib.optionals isEfi [

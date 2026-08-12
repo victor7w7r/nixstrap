@@ -2,12 +2,14 @@
   lib,
   pkgs,
   cache-stdenv,
-  inputs,
 }:
 cache-stdenv.mkDerivation {
   pname = "r-linux";
   version = "6.5.191754";
-  src = inputs.r-linux;
+  src = pkgs.fetchurl {
+    url = "https://www.r-studio.com/downloads/RLinux6_x64.deb";
+    sha256 = "sha256-8QKdTLFFkJlMYFjhJGrTgxC6K6gbrbho8i/9AijxkkY=";
+  };
   nativeBuildInputs = with pkgs; [
     dpkg
     autoPatchelfHook

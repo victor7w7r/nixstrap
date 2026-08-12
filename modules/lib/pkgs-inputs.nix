@@ -20,11 +20,6 @@
       flake = false;
     };
 
-    apkstudio = {
-      url = "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage";
-      flake = false;
-    };
-
     app-manager = {
       url = "github:ASHWIN990/app-manager";
       flake = false;
@@ -35,23 +30,8 @@
       flake = false;
     };
 
-    audio-share = {
-      url = "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz";
-      flake = false;
-    };
-
-    audiosource = {
-      url = "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource";
-      flake = false;
-    };
-
     autoricer = {
       url = "github:3rfaan/autoricer";
-      flake = false;
-    };
-
-    aya = {
-      url = "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage";
       flake = false;
     };
 
@@ -95,16 +75,6 @@
       flake = false;
     };
 
-    btrfs-data-recovery-map = {
-      url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map";
-      flake = false;
-    };
-
-    btrfs-data-recovery-scanner = {
-      url = "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner";
-      flake = false;
-    };
-
     btrfs-du = {
       url = "github:nachoparker/btrfs-du";
       flake = false;
@@ -112,16 +82,6 @@
 
     btrfsd = {
       url = "github:ximion/btrfsd";
-      flake = false;
-    };
-
-    carbonyl-amd64 = {
-      url = "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip";
-      flake = false;
-    };
-
-    carbonyl-arm64 = {
-      url = "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip";
       flake = false;
     };
 
@@ -137,11 +97,6 @@
 
     chalk-animation = {
       url = "github:bokub/chalk-animation";
-      flake = false;
-    };
-
-    chkufsd = {
-      url = "https://archive.org/download/tools_202401/tools.zip";
       flake = false;
     };
 
@@ -247,11 +202,6 @@
 
     fman = {
       url = "github:nore-dev/fman";
-      flake = false;
-    };
-
-    focaltech = {
-      url = "https://web.archive.org/web/20250314121447if_/https://raw.githubusercontent.com/ftfpteams/focaltech-linux-fingerprint-driver/refs/heads/main/Fedora_Redhat/libfprint-2-2_1.94.4%2Btod1_redhat_all_x64_20250219.install";
       flake = false;
     };
 
@@ -445,11 +395,6 @@
       flake = false;
     };
 
-    gtkhash-thunar = {
-      url = "https://github.com/tristanheaven/gtkhash/releases/download/v1.5/gtkhash-1.5.tar.xz";
-      flake = false;
-    };
-
     hexfetch = {
       url = "github:hexisXz/hexfetch";
       flake = false;
@@ -472,11 +417,6 @@
 
     hypr-zoom = {
       url = "github:FShou/hypr-zoom";
-      flake = false;
-    };
-
-    hyprmixer = {
-      url = "https://github.com/Torelli/hyprmixer/releases/download/1.0.1/hyprmixer.AppImage";
       flake = false;
     };
 
@@ -512,11 +452,6 @@
 
     kde-thumbnailer-apk = {
       url = "github:z3ntu/kde-thumbnailer-apk";
-      flake = false;
-    };
-
-    kf6-servicemenus-rootactions = {
-      url = "https://gitlab.com/stefanwimmer128/kf6-servicemenus-rootactions/-/releases/v1.2.0/downloads/kf6-servicemenus-rootactions-v1.2.0.tar.xz";
       flake = false;
     };
 
@@ -615,16 +550,6 @@
       flake = false;
     };
 
-    neo-cowsay-amd64 = {
-      url = "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_x86_64.tar.gz";
-      flake = false;
-    };
-
-    neo-cowsay-arm64 = {
-      url = "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_arm64.tar.gz";
-      flake = false;
-    };
-
     nitronx = {
       url = "github:UsiFX/OpenNitroN";
       flake = false;
@@ -637,11 +562,6 @@
 
     oneplus = {
       url = "gitlab:sdm845-mainline/firmware-oneplus-sdm845/176ca713448c5237a983fb1f158cf3a5c251d775";
-      flake = false;
-    };
-
-    open = {
-      url = "https://github.com/witt-bit/pc-guide/releases/download/v0.0.3/open.sh";
       flake = false;
     };
 
@@ -660,11 +580,6 @@
       flake = false;
     };
 
-    plasma-drawer = {
-      url = "https://github.com/p-connor/plasma-drawer/releases/download/v2.0.2/plasma-drawer-2.0.2.plasmoid";
-      flake = false;
-    };
-
     plasma-gamemode = {
       url = "github:orhun/pkgtop";
       flake = false;
@@ -675,38 +590,13 @@
       flake = false;
     };
 
-    progressline-amd64 = {
-      url = "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-x86_64-unknown-linux-gnu.zip";
-      flake = false;
-    };
-
-    progressline-arm64 = {
-      url = "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-aarch64-unknown-linux-gnu.zip";
-      flake = false;
-    };
-
     q6voiced = {
       url = "gitlab:postmarketOS/q6voiced/736138bfc9f7b455a96679e2d67fd922a8f16464";
       flake = false;
     };
 
-    r-linux = {
-      url = "https://www.r-studio.com/downloads/RLinux6_x64.deb";
-      flake = false;
-    };
-
     rbonsai = {
       url = "github:roberte777/rbonsai";
-      flake = false;
-    };
-
-    repair-usb-disc = {
-      url = "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc/distrib/repair-usb-disc-0.1-0.tar.gz";
-      flake = false;
-    };
-
-    repair-usb-disc-gtk4 = {
-      url = "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc-gtk4/distrib/repair-usb-disc-gtk4-0.1-0.tar.gz";
       flake = false;
     };
 
@@ -750,11 +640,6 @@
       flake = false;
     };
 
-    shutter-encoder = {
-      url = "https://www.shutterencoder.com/sdc_download/497/?key=lfpx4wqaghm4zgswrp015tljfm75ek";
-      flake = false;
-    };
-
     socktop = {
       url = "github:jasonwitty/socktop";
       flake = false;
@@ -786,7 +671,7 @@
     };
 
     sunxi = {
-      url = "github:armbian/firmware/4050e02da2dce2b74c97101f7964ecfb962f5aec";
+      url = "github:armbian/firmware";
       flake = false;
     };
 
@@ -817,11 +702,6 @@
 
     tablet-map = {
       url = "github:victor7w7r/tablet_map";
-      flake = false;
-    };
-
-    tahoma2d = {
-      url = "https://github.com/tahoma2d/tahoma2d/releases/download/v1.6.1/Tahoma2D-linux-clang.tar.gz";
       flake = false;
     };
 
