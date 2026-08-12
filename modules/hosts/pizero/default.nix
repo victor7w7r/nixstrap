@@ -26,18 +26,14 @@
     };
 
     aspects = {
-      pizero-sdimage = {
-        includes = with den.aspects; [
-          pizero.common
-          (sdcard.lib.call { })
-        ];
-      };
-      pizero-tarball = {
-        includes = with den.aspects; [
-          pizero.common
-          (tarball.lib.call { })
-        ];
-      };
+      pizero-sdimage.includes = with den.aspects; [
+        pizero.common
+        (sdcard.lib.call { })
+      ];
+      pizero-tarball.includes = with den.aspects; [
+        pizero.common
+        (tarball.lib.call { })
+      ];
       pizero = {
         includes = with den.aspects; [ pizero.common ];
         common = {
@@ -54,6 +50,7 @@
             misc.fetch
             pentest._
 
+            emulation
             cockpit
             virt
             secrets

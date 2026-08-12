@@ -30,8 +30,10 @@
       zen._
 
       phone._
+
       android
       bluetooth
+      emulation
       kitty
       virt
       libvirt

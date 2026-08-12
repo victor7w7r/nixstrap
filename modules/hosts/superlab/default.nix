@@ -23,25 +23,18 @@
     };
 
     aspects = {
-      superlab-sdimage = {
-        #nix build -L ".#nixosConfigurations.superlab-sdimage.config.system.build.sdImage"
-        #nix build -L ".#nixosConfigurations.superlab-sdimage.config.system.build.bootFiles"
-        includes = with den.aspects; [
-          superlab.common
-          (sdcard.lib.call {
-            nextPartSize = "65536";
-            isHDD = false;
-            isEntireDisk = true;
-          })
-        ];
-      };
-      superlab-tarball = {
-        #nix build -L ".#nixosConfigurations.superlab-tarball.config.system.build.tarball"
-        includes = with den.aspects; [
-          superlab.common
-          (tarball.lib.call { })
-        ];
-      };
+      superlab-sdimage.includes = with den.aspects; [
+        superlab.common
+        (sdcard.lib.call {
+          nextPartSize = "65536";
+          isHDD = false;
+          isEntireDisk = true;
+        })
+      ];
+      superlab-tarball.includes = with den.aspects; [
+        superlab.common
+        (tarball.lib.call { })
+      ];
       superlab = {
         includes = with den.aspects; [ superlab.common ];
         common = {
@@ -61,6 +54,7 @@
             #android
             bluetooth
             cockpit
+            emulation
             #kitty
             #virt
             #libvirt

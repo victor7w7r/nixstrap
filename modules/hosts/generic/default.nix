@@ -1,82 +1,75 @@
+{ den, inputs, ... }:
 {
-  den,
-  disko,
-  inputs,
-  ...
-}:
-{
-  perSystem.packages.generic-toplevel =
-    inputs.self.nixosConfigurations.generic.config.system.build.toplevel;
+  perSystem.packages = {
+    generic-x86-toplevel = inputs.self.nixosConfigurations.generic-x86.config.system.build.toplevel;
+    generic-x86-cross-toplevel =
+      inputs.self.nixosConfigurations.generic-x86-cross.config.system.build.toplevel;
+    generic-arm-toplevel = inputs.self.nixosConfigurations.generic-arm.config.system.build.toplevel;
+    generic-arm-cross-toplevel =
+      inputs.self.nixosConfigurations.generic-arm-cross.config.system.build.toplevel;
 
-  /*
-    pkgsGuest = import nixpkgs {
-       system = systemHost;
-       crossSystem = {
-         config = "aarch64-unknown-linux-gnu";
-       };
-     };
-
-     # Evaluamos NixOS para el invitado ARM64
-     arm64Vm = nixpkgs.lib.nixosSystem {
-       system = "aarch64-linux";
-       modules = [
-         ({ pkgs, modulesPath, ... }: {
-           virtualisation = {
-
-             qemu.options = [
-               "-machine" "virt"
-               "-cpu" "cortex-a72"
-               "-accel" "tcg,thread=multi"
-             ];
-           };
-
-           /* qemu.options = [
-                   "-machine" "q35"
-                   "-cpu" "max" # O una CPU x86 específica como 'Nehalem' o 'Haswell'
-                   "-accel" "tcg,thread=multi"
-                 ];
-
-           networking.hostName = "nixos-arm64-tcg";
-         })
-       ];
-     };
-    in
-    {
-     # Puedes ejecutarla directo con: nix run .#arm64-vm
-     apps.${systemHost}.arm64-vm = {
-       type = "app";
-       program = "${arm64Vm.config.system.build.vm}/bin/run-${arm64Vm.config.system.name}";
-     };
-    };
-  */
+    generic-x86-vm = inputs.self.nixosConfigurations.generic-x86.config.microvm.declaredRunner;
+    generic-arm-vm = inputs.self.nixosConfigurations.generic-arm.config.microvm.declaredRunner;
+    generic-x86-cross-vm =
+      inputs.self.nixosConfigurations.generic-x86-cross.config.microvm.declaredRunner;
+    generic-arm-cross-vm =
+      inputs.self.nixosConfigurations.generic-arm-cross.config.microvm.declaredRunner;
+  };
 
   den = {
     hosts = {
       x86_64-linux.generic-x86.users.snowflake = { };
-      aarch64-linux.generic-arm64.users.snowflake = { };
+      x86_64-linux.generic-arm-cross.users.snowflake = { };
+      aarch64-linux.generic-arm.users.snowflake = { };
+      aarch64-linux.generic-x86-cross.users.snowflake = { };
     };
 
-    aspects.generic = {
-      includes = with den.aspects; [
-        generic._
-
-        cli._
-        dev.mise
-        gui._
-        misc.comm
-        misc.fetch
-        zen._
-
-        kitty
-        plasma._
-        secrets
+    aspects = {
+      generic-x86.includes = with den.aspects; [
+        generic.common
+        (generic.vm-guest { })
+      ];
+      generic-arm.includes = with den.aspects; [
+        generic.common
+        (generic.vm-guest { })
+      ];
+      generic-x86-cross.includes = with den.aspects; [
+        generic.common
+        (generic.vm-guest { isCross = true; })
+      ];
+      generic-arm-cross.includes = with den.aspects; [
+        generic.common
+        (generic.vm-guest { isCross = true; })
       ];
 
-      nixos = { pkgs, ... }: {
-        nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
-        networking.hostName = "v7w7r-generic";
+      generic = {
+        includes = with den.aspects; [ generic.common ];
+        common = {
+          includes = with den.aspects; [
+            #generic.disks
 
-        boot.kernelPackages = pkgs.cachyosKernels.linuxPackages.linux-cachyos-latest-lto;
+            cli._
+            dev.mise
+            gui._
+            misc.comm
+            misc.fetch
+            zen._
+
+            kitty
+            plasma._
+            secrets
+          ];
+
+          nixos = { pkgs, host, ... }: {
+            nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
+            networking.hostName = "v7w7r-generic";
+            boot.kernelPackages =
+              if (host == "x86_64-linux") then
+                pkgs.cachyosKernels.linuxPackages.linux-cachyos-latest-lto
+              else
+                pkgs.linuxPackages_7_1;
+          };
+        };
       };
     };
   };

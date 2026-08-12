@@ -1,5 +1,5 @@
 {
-  den.default.nixos =
+  den.aspects.emulation.nixos =
     {
       isArm,
       isArmv7,

@@ -29,6 +29,7 @@
           zen._
 
           android
+          emulation
           bluetooth
           kitty
           virt

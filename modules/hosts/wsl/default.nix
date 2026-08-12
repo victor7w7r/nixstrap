@@ -26,6 +26,7 @@
         pentest._
 
         cockpit
+        emulation
         libvirt
         secrets
         waydroid

@@ -32,6 +32,7 @@
         zen._
 
         android
+        emulation
         bluetooth
         cockpit
         gestures

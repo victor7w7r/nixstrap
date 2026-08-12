@@ -4,6 +4,7 @@ result-*
 *.qcow2
 *.fd
 *.raw
+*.img
 *.squashfs
 *.tar.xz
 *.log

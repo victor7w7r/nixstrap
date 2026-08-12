@@ -32,6 +32,7 @@
           misc.fetch
           pentest._
 
+          emulation
           cockpit
           kitty
           virt
