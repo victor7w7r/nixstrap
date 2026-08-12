@@ -7,6 +7,7 @@
       localVer = "server-hardened-native";
       class = "x86";
       host = "server";
+      isHardened = true;
       patches = with kernel.patches.injector pkgs; [ hardened ];
       structuredExtraConfig = kernel.config.default.server;
     });

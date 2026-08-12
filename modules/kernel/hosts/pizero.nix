@@ -8,6 +8,7 @@
       isArm = true;
       host = "pizero";
       class = "allwinner";
+      isHardened = true;
       dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
       defconfig = "${inputs.armbian}/config/kernel/linux-sunxi64-edge.config";
       structuredExtraConfig = kernel.config.default.pizero;

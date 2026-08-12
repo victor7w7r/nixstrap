@@ -16,13 +16,14 @@
       patches ? [ ],
       localVer ? "native",
       structuredExtraConfig ? { },
+      isHardened ? false,
       armCross ? false,
       defconfig ? null,
       isArm ? false,
       class ? null,
       dtbMake ? null,
     }:
-    (kernel.lib.kernel-wrapper pkgs defconfig class dtbMake)
+    (kernel.lib.kernel-wrapper pkgs defconfig class dtbMake isHardened)
     |> (
       src:
       pkgs.buildLinux {

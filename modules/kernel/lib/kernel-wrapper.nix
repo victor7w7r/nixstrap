@@ -13,7 +13,7 @@
 
   kernel.lib = {
     kernel-wrapper =
-      pkgs: defconfig: class: dtbMake:
+      pkgs: defconfig: class: dtbMake: isHardened:
       pkgs.stdenvNoCC.mkDerivation {
         name = "kernel-wrapper";
         src = inputs.linux;
@@ -24,7 +24,7 @@
         ];
         installPhase = "mkdir -p $out && cp -r . $out/";
         postPatch = ''
-          sed -i 's/static int unprivileged_userns_clone = 1;/extern int unprivileged_userns_clone;/' kernel/fork.c
+          ${pkgs.lib.optionalString isHardened "sed -i 's/static int unprivileged_userns_clone = 1;/extern int unprivileged_userns_clone;/' kernel/fork.c"}
           ${
             if (class != null && dtbMake != null) then
               ''
