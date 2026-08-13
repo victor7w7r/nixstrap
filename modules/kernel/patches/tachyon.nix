@@ -1,13 +1,24 @@
-{ inputs, ... }:
+{ inputs, kernel, ... }:
 {
-  flake-file.inputs.tachyon-patches = {
-    url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
-    flake = false;
-  };
+  flake-file.inputs =
+    "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive"
+    |> (url: {
+      tachyon-patches-latest = {
+        url = "${url}/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
+        flake = false;
+      };
+      tachyon-patches-lts = {
+        url = "${url}/bab8787a6987ad7b38e39c4d6bbc75315a44329a.tar.gz";
+        flake = false;
+      };
+      tachyon-patches-legacy = {
+        url = "${url}/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz";
+        flake = false;
+      };
+    });
 
-  kernel.patches.tachyon =
-    pkgs:
-    map (patch: "${inputs.tachyon-patches}/patches/${patch}.patch") [
+  kernel.patches.tachyon = {
+    common = { }: [
       #"0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an"
       #"0002-sched-core-add-some-branch-hints-based-on-gcov-analy"
       #"0002-mm-disable-proactive-compaction-by-de"
@@ -74,4 +85,18 @@
       #"scale"
       #"slack"
     ];
+
+    latest = (
+      map (patch: "${inputs.tachyon-patches-latest}/patches/${patch}.patch") [ ]
+      ++ (kernel.patches.tachyon.common { })
+    );
+    lts = (
+      map (patch: "${inputs.tachyon-patches-lts}/patches/${patch}.patch") [ ]
+      ++ (kernel.patches.tachyon.common { })
+    );
+    legacy = (
+      map (patch: "${inputs.tachyon-patches-legacy}/patches/${patch}.patch") [ ]
+      ++ (kernel.patches.tachyon.common { })
+    );
+  };
 }

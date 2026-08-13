@@ -1,15 +1,7 @@
 {
   kernel.lib.version =
     pkgs: src: localVer:
-    (pkgs.stdenvNoCC.mkDerivation {
-      name = "linux-version";
-      inherit src;
-      installPhase = "cp -r Makefile $out";
-      phases = [
-        "unpackPhase"
-        "installPhase"
-      ];
-    })
+    (pkgs.runCommand "sunxi-patches" { } "cp ${src}/Makefile $out")
     |> (
       file:
       toString (builtins.match ".+VERSION = ([0-9]+).+" (builtins.readFile file))

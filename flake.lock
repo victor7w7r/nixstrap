@@ -383,6 +383,23 @@
         "type": "github"
       }
     },
+    "cachyos-patches-unsync": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775157685,
+        "narHash": "sha256-g8HgH7gADoEnrBN30BK3pz7+M2pT/p3xtfRFEuEov5w=",
+        "owner": "CachyOS",
+        "repo": "kernel-patches",
+        "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CachyOS",
+        "repo": "kernel-patches",
+        "rev": "c1ba300617a12d257b5721572b9bbe28efae182f",
+        "type": "github"
+      }
+    },
     "cargofetch": {
       "flake": false,
       "locked": {
@@ -982,11 +999,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1786556724,
-        "narHash": "sha256-8GdpQahqrldtU+gAsW7m9hLvcdfpFVcl92vzO00yV3o=",
+        "lastModified": 1786585960,
+        "narHash": "sha256-tUtlR9q9dsQ4s8Mwzh2vtze+eZPMcvgm5A6Jg4r7J20=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "fd1bf4ef5fb371a91fc38611bc6944b05c125c59",
+        "rev": "d1cdfb0655b3d47ea1338f1a5d81afe39a12d5a9",
         "type": "github"
       },
       "original": {
@@ -3033,6 +3050,22 @@
         "type": "github"
       }
     },
+    "linux-cachyos-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786438192,
+        "narHash": "sha256-Uz4uvAmDoipjBFXjBijcQArIV7ZqRubmqMVR2Hdi2pw=",
+        "owner": "CachyOS",
+        "repo": "linux-cachyos",
+        "rev": "8bf1f891057d69b50e6c7a212e33235bb8d3189f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CachyOS",
+        "repo": "linux-cachyos",
+        "type": "github"
+      }
+    },
     "linux-cachyos-latest": {
       "flake": false,
       "locked": {
@@ -3067,32 +3100,16 @@
         "type": "github"
       }
     },
-    "linux-config": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786438192,
-        "narHash": "sha256-Uz4uvAmDoipjBFXjBijcQArIV7ZqRubmqMVR2Hdi2pw=",
-        "owner": "CachyOS",
-        "repo": "linux-cachyos",
-        "rev": "8bf1f891057d69b50e6c7a212e33235bb8d3189f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "CachyOS",
-        "repo": "linux-cachyos",
-        "type": "github"
-      }
-    },
     "linux-hardened": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-4wuxaEc91awppW0imFqcv4R1oZrAqEo2DRY3uzRsFRk=",
+        "narHash": "sha256-FxuSXbMK7dtOOvFURGYeuE2fVKKxOyMwq8BR8RoZZPQ=",
         "type": "file",
-        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch"
+        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch"
+        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch"
       }
     },
     "linux-latest": {
@@ -3106,6 +3123,35 @@
       "original": {
         "type": "tarball",
         "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
+      }
+    },
+    "linux-latest-lts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785748933,
+        "narHash": "sha256-gvfh1zx67Ife+GboGz6hP4Vab6vyXJwxPR/oJiet6QA=",
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+      }
+    },
+    "linux-rockchip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784147556,
+        "narHash": "sha256-oeQTdBQk5oqFopDgtiqULDAM2WG98AvQIQ6fzL+EYkU=",
+        "owner": "armbian",
+        "repo": "linux-rockchip",
+        "rev": "5280f9b4336199c4025c8eed894d2b4e2268dcc6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "armbian",
+        "repo": "linux-rockchip",
+        "type": "github"
       }
     },
     "linuxthemestore": {
@@ -3712,11 +3758,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1786430034,
-        "narHash": "sha256-Vux08kA5PICwS2sViCMfwVLAHNoH8TkKAeBo25LjpMI=",
+        "lastModified": 1786535285,
+        "narHash": "sha256-rG5HKMAgAhMgydvKGtco6rqTxRq4EDZQCx9USLvVqYw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "70cc4559b10a6062b05ff1af17e0add065ccaed9",
+        "rev": "9f78f44a87948854445dae0b6bf82b2e87e4efb5",
         "type": "github"
       },
       "original": {
@@ -4439,6 +4485,7 @@
         "bunker-patches": "bunker-patches",
         "cachyos-kernel": "cachyos-kernel",
         "cachyos-patches": "cachyos-patches",
+        "cachyos-patches-unsync": "cachyos-patches-unsync",
         "cargofetch": "cargofetch",
         "catppuccin-refind": "catppuccin-refind",
         "cemetery-escape": "cemetery-escape",
@@ -4542,11 +4589,13 @@
         "layan-kde": "layan-kde",
         "lazysys": "lazysys",
         "lifecycler": "lifecycler",
+        "linux-cachyos-config": "linux-cachyos-config",
         "linux-cachyos-latest": "linux-cachyos-latest",
         "linux-cachyos-lts": "linux-cachyos-lts",
-        "linux-config": "linux-config",
         "linux-hardened": "linux-hardened",
         "linux-latest": "linux-latest",
+        "linux-latest-lts": "linux-latest-lts",
+        "linux-rockchip": "linux-rockchip",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",
@@ -4614,7 +4663,9 @@
         "t2-audio": "t2-audio",
         "t2fanrd": "t2fanrd",
         "tablet-map": "tablet-map",
-        "tachyon-patches": "tachyon-patches",
+        "tachyon-patches-latest": "tachyon-patches-latest",
+        "tachyon-patches-legacy": "tachyon-patches-legacy",
+        "tachyon-patches-lts": "tachyon-patches-lts",
         "termsaver": "termsaver",
         "tewi": "tewi",
         "texoxide": "texoxide",
@@ -5252,7 +5303,7 @@
         "type": "github"
       }
     },
-    "tachyon-patches": {
+    "tachyon-patches-latest": {
       "flake": false,
       "locked": {
         "lastModified": 1783978581,
@@ -5264,6 +5315,34 @@
       "original": {
         "type": "tarball",
         "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz"
+      }
+    },
+    "tachyon-patches-legacy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677169254,
+        "narHash": "sha256-0rpSov5fZchNqvO/9N7mINcqZqowWOB01/9rzJNpaPs=",
+        "rev": "74e253325b575983a85a4d17b60a03af7fd02a09",
+        "type": "tarball",
+        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz"
+      }
+    },
+    "tachyon-patches-lts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769183139,
+        "narHash": "sha256-gqX1NXaxfJqyITyZt3j9PwcL4+66Nb1LBZ5Zun2qn4I=",
+        "rev": "bab8787a6987ad7b38e39c4d6bbc75315a44329a",
+        "type": "tarball",
+        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/bab8787a6987ad7b38e39c4d6bbc75315a44329a.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/bab8787a6987ad7b38e39c4d6bbc75315a44329a.tar.gz"
       }
     },
     "termsaver": {

@@ -1,22 +1,15 @@
-{ kernel, ... }:
+{ inputs, kernel, ... }:
 {
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "server" false;
+
   kernel.hosts.server =
-    pkgs: armCross:
+    pkgs:
     (kernel.lib.linux {
       inherit pkgs;
       localVer = "server-hardened-native";
-      class = "x86";
       host = "server";
-      isHardened = true;
-      patches = with kernel.patches.injector pkgs; [ hardened ];
+      src = inputs.linux-cachyos-lts;
+      #patches = with kernel.patches.injector pkgs; [ hardened ];
       structuredExtraConfig = kernel.config.default.server;
     });
-
-  perSystem =
-    { pkgs, ... }:
-    kernel.lib.package-gen {
-      inherit pkgs;
-      host = "server";
-      cross = "x86_64-unknown-linux-gnu";
-    };
 }

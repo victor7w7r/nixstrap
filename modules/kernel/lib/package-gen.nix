@@ -1,40 +1,59 @@
-{ kernel, lib, ... }: {
+{ kernel, lib, ... }:
+{
   kernel.lib.package-gen =
-    {
-      pkgs,
-      host,
-      cross ? "aarch64-multiplatform",
-    }:
-    lib.mkMerge [
-      (
-        (kernel.hosts."${host}" pkgs false)
-        |> (src: {
-          devShells."${host}-menu-config" = kernel.lib.menu-config {
-            inherit pkgs;
-            kernel = src."${host}-kernel";
-          };
-          packages = lib.mkAfter {
-            "${host}-config" = src."${host}-config";
-            "${host}-allconfig" = src."${host}-allconfig";
-            "${host}-kernel" = src."${host}-kernel";
-          };
-        })
-      )
-      /*
-        (
-        (kernel.hosts."${host}" pkgs.pkgsCross."${cross}" true)
-        |> (src: {
-          devShells."${host}-cross-menu-config" = kernel.lib.menu-config {
-            pkgs = pkgs.pkgsCross."${cross}";
-            kernel = src."${host}-kernel";
-          };
-          packages = lib.mkAfter {
-            "${host}-cross-config" = src."${host}-config";
-            "${host}-allconfig" = src."${host}-allconfig";
-            "${host}-cross-kernel" = src."${host}-kernel";
-          };
-        })
-        )
-      */
-    ];
+    pkgs: host: isArm:
+    (kernel.hosts."${host}" pkgs)
+    |> (src: {
+       _module.args.kernel-opts.pkgs = {}: pkgs;
+
+      packages = lib.mkAfter {
+        "${host}-config" = src."${host}-config";
+        "${host}-allconfig" = src."${host}-allconfig";
+        "${host}-kernel" = src."${host}-kernel";
+      };
+
+      devShells."${host}-menu-config" = pkgs.mkShell {
+        nativeBuildInputs =
+          with pkgs;
+          kernel.nativeBuildInputs
+          ++ [
+            ncurses
+            pkg-config
+            bison
+            flex
+          ];
+
+        shellHook = ''
+          TMP_DIR="/tmp/kconfig-${src.name}"
+          mkdir -p "$TMP_DIR"
+          cd "$TMP_DIR"
+
+          if [ ! -d "src" ]; then
+            if [ -d "${src.src}" ]; then
+              cp -r --no-preserve=mode,ownership "${src.src}" src
+            else
+              mkdir src
+              tar -xf "${src.src}" -C src --strip-components=1
+              chmod -R +w src
+            fi
+
+            chmod -R +rwx src
+            cd src
+
+            ${pkgs.writeShellScript "patch-kernel.sh" ''
+              set -e
+              ${pkgs.lib.concatMapStringsSep "\n" (p: ''
+                echo "Setting up: ${p.name or "patch"}"
+                patch -p1 < ${p.patch}
+              '') src.kernelPatches}
+            ''}
+          else
+            cd src
+          fi
+
+          make ${pkgs.lib.optionalString isArm "ARCH=arm64"} defconfig
+          make ${pkgs.lib.optionalString isArm "ARCH=arm64"} menuconfig
+        '';
+      };
+    });
 }

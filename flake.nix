@@ -117,6 +117,10 @@
       url = "github:CachyOS/kernel-patches";
       flake = false;
     };
+    cachyos-patches-unsync = {
+      url = "github:CachyOS/kernel-patches/c1ba300617a12d257b5721572b9bbe28efae182f";
+      flake = false;
+    };
     cargofetch = {
       url = "github:arjav0703/cargofetch";
       flake = false;
@@ -496,6 +500,10 @@
       url = "github:cxreiff/lifecycler";
       flake = false;
     };
+    linux-cachyos-config = {
+      url = "github:CachyOS/linux-cachyos";
+      flake = false;
+    };
     linux-cachyos-latest = {
       url = "github:CachyOS/linux/cachyos-7.1.8-1";
       flake = false;
@@ -504,16 +512,20 @@
       url = "github:CachyOS/linux/cachyos-6.18.42-1";
       flake = false;
     };
-    linux-config = {
-      url = "github:CachyOS/linux-cachyos";
-      flake = false;
-    };
     linux-hardened = {
-      url = "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch";
+      url = "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch";
       flake = false;
     };
     linux-latest = {
       url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz";
+      flake = false;
+    };
+    linux-latest-lts = {
+      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz";
+      flake = false;
+    };
+    linux-rockchip = {
+      url = "github:armbian/linux-rockchip";
       flake = false;
     };
     linuxthemestore = {
@@ -754,8 +766,16 @@
       url = "github:victor7w7r/tablet_map";
       flake = false;
     };
-    tachyon-patches = {
+    tachyon-patches-latest = {
       url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
+      flake = false;
+    };
+    tachyon-patches-legacy = {
+      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz";
+      flake = false;
+    };
+    tachyon-patches-lts = {
+      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/bab8787a6987ad7b38e39c4d6bbc75315a44329a.tar.gz";
       flake = false;
     };
     termsaver = {

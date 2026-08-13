@@ -1,13 +1,12 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   flake-file.inputs.bunker-patches = {
     url = "github:amaanq/bunker-patches";
     flake = false;
   };
 
-  kernel.patches.bunker =
-    { }:
-    map (patch: "${inputs.bunker-patches}/patches/7.1/${patch}.patch") [
+  kernel.patches.bunker = {
+    latest = map (patch: "${inputs.bunker-patches}/patches/7.1/${patch}.patch") [
       "bunker/0003-rust-allow-clang-native-randstruct-configs"
       "bunker/0006-enable-kstack_erase-by-default"
       "bunker/0007-enable-page_table_check_enforced-by-default"
@@ -38,4 +37,15 @@
       "zen/0006-cpufreq-remove-schedutil-dependency-on-Intel-AMD-P-S"
       "zen/0009-mm-set-default-max-map-count-to-INT_MAX-5"
     ];
+    lts =
+      {
+        isVanilla ? true,
+      }:
+      (
+        map (patch: "${inputs.bunker-patches}/patches/6.18/${patch}.patch") [
+
+        ]
+        ++ lib.optionals isVanilla [ ]
+      );
+  };
 }
