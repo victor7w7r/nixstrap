@@ -670,11 +670,6 @@
       flake = false;
     };
 
-    sunxi = {
-      url = "github:armbian/firmware";
-      flake = false;
-    };
-
     supdock = {
       url = "github:segersniels/supdock";
       flake = false;

@@ -83,18 +83,6 @@
         "type": "github"
       }
     },
-    "apkstudio": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-z5HRznmkHQ1feB+u1eVqi1ZDO1PS7EB2uQWYC+xwNLU=",
-        "type": "file",
-        "url": "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/vaibhavpandeyvpz/apkstudio/releases/download/v6.3.0/ApkStudio-v6.3.0-x86_64.AppImage"
-      }
-    },
     "app-manager": {
       "flake": false,
       "locked": {
@@ -163,11 +151,11 @@
     "armbian": {
       "flake": false,
       "locked": {
-        "lastModified": 1786457902,
-        "narHash": "sha256-BwdpwsokhNizyMPtteg1D7kc5eYfDTJNl+UWwZTgyeU=",
+        "lastModified": 1786527935,
+        "narHash": "sha256-xHYF4aenAwqPDWW7UdrkE+gOnN/dvUMFyzVoBB4R3fg=",
         "owner": "armbian",
         "repo": "build",
-        "rev": "bb3eb9b7d99855fc80f9afa8b0997b47a5a25f47",
+        "rev": "259c7b157f9cc7968f077f5483ff0537f691c712",
         "type": "github"
       },
       "original": {
@@ -193,31 +181,6 @@
         "type": "gitlab"
       }
     },
-    "audio-share": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741272970,
-        "narHash": "sha256-WTyRgPZgtIn0WJl2+KFiona1DKQVTHT2lTHFvNzvu+E=",
-        "type": "tarball",
-        "url": "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/mkckr0/audio-share/releases/download/v0.3.4/audio-share-server-cmd-linux.tar.gz"
-      }
-    },
-    "audiosource": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-6BQJ7yJxn0ltQnftJbSdTFrk1OgMvTaZNh206bSasjI=",
-        "type": "file",
-        "url": "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/gdzx/audiosource/releases/download/v1.5/audiosource"
-      }
-    },
     "autoricer": {
       "flake": false,
       "locked": {
@@ -232,18 +195,6 @@
         "owner": "3rfaan",
         "repo": "autoricer",
         "type": "github"
-      }
-    },
-    "aya": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-CXk6CHtrYOIuKNxLJKXP2WnVDmuvIV7dtUgsIm2sqcU=",
-        "type": "file",
-        "url": "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/liriliri/aya/releases/download/v1.14.2/AYA-1.14.2-linux-x86_64.AppImage"
       }
     },
     "batfetch": {
@@ -347,30 +298,6 @@
         "type": "github"
       }
     },
-    "btrfs-data-recovery-map": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-p0A6GYKBnbfOW0I1FPOtONqf7X0AV8tRm8afVijb6Cg=",
-        "type": "file",
-        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-recovery-map"
-      }
-    },
-    "btrfs-data-recovery-scanner": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-3vngkkMqDnfJXnYgaBHY5T7lGIWJnAy/urOJkQ6lOnA=",
-        "type": "file",
-        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/davispuh/btrfs-data-recovery/releases/download/v1.0.0/btrfs-scanner"
-      }
-    },
     "btrfs-du": {
       "flake": false,
       "locked": {
@@ -456,32 +383,6 @@
         "type": "github"
       }
     },
-    "carbonyl-amd64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1676679515,
-        "narHash": "sha256-z4oYXTu2olzDioKJpe2ePraG2pQQYoBBR+f8aUiDF7Q=",
-        "type": "tarball",
-        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip"
-      }
-    },
-    "carbonyl-arm64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1676679542,
-        "narHash": "sha256-iV8I0a4xv+UJmqADwHdzMgueoccDVUH+J3wFaBx7rF0=",
-        "type": "tarball",
-        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip"
-      }
-    },
     "cargofetch": {
       "flake": false,
       "locked": {
@@ -544,19 +445,6 @@
         "owner": "bokub",
         "repo": "chalk-animation",
         "type": "github"
-      }
-    },
-    "chkufsd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1706196256,
-        "narHash": "sha256-lF1WsmiJK3nM7jcLBOSXVEnnrKVybxXRyy+fxqebPdU=",
-        "type": "tarball",
-        "url": "https://archive.org/download/tools_202401/tools.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://archive.org/download/tools_202401/tools.zip"
       }
     },
     "claude-desktop": {
@@ -711,11 +599,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1786475176,
-        "narHash": "sha256-ZP8AJqC0tMA7LLPby0QiuiPe9xDOuIcHM9ttKQJ+dQ0=",
+        "lastModified": 1786561641,
+        "narHash": "sha256-JwLJ1A7RSrMvt/XPodm4nf/Ywh0E/z2KhyPmG1yujMc=",
         "owner": "Rishabh5321",
         "repo": "custom-packages-flake",
-        "rev": "7669414c64ccd14262fb93dba2c857ceb586b58a",
+        "rev": "ce557fc40e05dd881aef8015d2dedf04cf52fbda",
         "type": "github"
       },
       "original": {
@@ -1094,11 +982,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1786470486,
-        "narHash": "sha256-1Cry4ez3UbooifFauFNJTPlwIRVPyMzu70LwbZJHaio=",
+        "lastModified": 1786556724,
+        "narHash": "sha256-8GdpQahqrldtU+gAsW7m9hLvcdfpFVcl92vzO00yV3o=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "5be80215d770810760722db11914d6be09f72cfc",
+        "rev": "fd1bf4ef5fb371a91fc38611bc6944b05c125c59",
         "type": "github"
       },
       "original": {
@@ -1117,11 +1005,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786438383,
-        "narHash": "sha256-KpcHLOOrgGNZGsM/IHbvAzo82RLT0pvG67nTcXgYLKs=",
+        "lastModified": 1786525954,
+        "narHash": "sha256-vvuDR8cnlfQaHHa2NsO9Zt6Zq4EGC8Cn0zQLmVSkS78=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "f0abc0e49d0e038cf603eaa6dcbd918c32193f1a",
+        "rev": "74bee45595ac419b21c6bd98ccd00b45420063c7",
         "type": "github"
       },
       "original": {
@@ -1221,11 +1109,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1786420971,
-        "narHash": "sha256-irKN0AY5fDS96h7z3Cjp3EB7OwTJU1SeWFb1GxnFu3E=",
+        "lastModified": 1786507366,
+        "narHash": "sha256-m6q5gr61PBbB3+X/2BONLVcUtJpC4TqaUOdp0rmu9fI=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "a56dfe072a448e664d208e9ed5f7f9dc9a720686",
+        "rev": "26ca4678580a84dbb0c544cb7c1e2ee142283e6f",
         "type": "gitlab"
       },
       "original": {
@@ -1615,18 +1503,6 @@
         "owner": "nore-dev",
         "repo": "fman",
         "type": "github"
-      }
-    },
-    "focaltech": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-l43uObuB/vA4Ok3ney+pcN1jDrHHl/KVrdNTURF7Ncs=",
-        "type": "file",
-        "url": "https://web.archive.org/web/20250314121447if_/https://raw.githubusercontent.com/ftfpteams/focaltech-linux-fingerprint-driver/refs/heads/main/Fedora_Redhat/libfprint-2-2_1.94.4%2Btod1_redhat_all_x64_20250219.install"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://web.archive.org/web/20250314121447if_/https://raw.githubusercontent.com/ftfpteams/focaltech-linux-fingerprint-driver/refs/heads/main/Fedora_Redhat/libfprint-2-2_1.94.4%2Btod1_redhat_all_x64_20250219.install"
       }
     },
     "fortune-anti-jokes": {
@@ -2122,19 +1998,6 @@
         "type": "github"
       }
     },
-    "gtkhash-thunar": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1663788862,
-        "narHash": "sha256-ntGZFZ5saeapdEchhfPZv+PN2mbzk0l7qKeHI5/E/ic=",
-        "type": "tarball",
-        "url": "https://github.com/tristanheaven/gtkhash/releases/download/v1.5/gtkhash-1.5.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/tristanheaven/gtkhash/releases/download/v1.5/gtkhash-1.5.tar.xz"
-      }
-    },
     "helluva-beelzebub": {
       "flake": false,
       "locked": {
@@ -2255,11 +2118,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786487128,
-        "narHash": "sha256-ad60hrRVhH/bo3Jl1YLzO+QcS3mUNZr9LNJdzhMO2P4=",
+        "lastModified": 1786538400,
+        "narHash": "sha256-PH8B1YKxedcWKNw2xsk6cKPVk/rJoLgdlWd5d+Icies=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f404edbfa4117810c96b97048299242fc50e5362",
+        "rev": "e13ba5e5abbd9b912fa8c6979bd119e87ca7fdd9",
         "type": "github"
       },
       "original": {
@@ -2709,18 +2572,6 @@
         "type": "github"
       }
     },
-    "hyprmixer": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-LYDLVxJ62ycjBNyyHpfD+GZSR6H211O5b/G73JG7hfg=",
-        "type": "file",
-        "url": "https://github.com/Torelli/hyprmixer/releases/download/1.0.1/hyprmixer.AppImage"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/Torelli/hyprmixer/releases/download/1.0.1/hyprmixer.AppImage"
-      }
-    },
     "hyprpicker": {
       "inputs": {
         "hyprutils": "hyprutils_2",
@@ -3081,19 +2932,6 @@
         "type": "github"
       }
     },
-    "kf6-servicemenus-rootactions": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757656937,
-        "narHash": "sha256-CxjipnkSpavD5kGp/40ZaeqcXXlBIcmdGLeUBFWlVZQ=",
-        "type": "tarball",
-        "url": "https://gitlab.com/stefanwimmer128/kf6-servicemenus-rootactions/-/releases/v1.2.0/downloads/kf6-servicemenus-rootactions-v1.2.0.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://gitlab.com/stefanwimmer128/kf6-servicemenus-rootactions/-/releases/v1.2.0/downloads/kf6-servicemenus-rootactions-v1.2.0.tar.xz"
-      }
-    },
     "kwin-effects-better-blur-dx": {
       "inputs": {
         "nixpkgs": [
@@ -3195,7 +3033,7 @@
         "type": "github"
       }
     },
-    "linux": {
+    "linux-cachyos-latest": {
       "flake": false,
       "locked": {
         "lastModified": 1786377387,
@@ -3208,6 +3046,23 @@
       "original": {
         "owner": "CachyOS",
         "ref": "cachyos-7.1.8-1",
+        "repo": "linux",
+        "type": "github"
+      }
+    },
+    "linux-cachyos-lts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785769231,
+        "narHash": "sha256-GzUYXt70aR7zN0tVFp85OC/hiFhnKqY6yrVy4X/avrA=",
+        "owner": "CachyOS",
+        "repo": "linux",
+        "rev": "1e1e569cfc070c1a2a026d6e6dba6cd6d7dc15d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CachyOS",
+        "ref": "cachyos-6.18.42-1",
         "repo": "linux",
         "type": "github"
       }
@@ -3238,6 +3093,19 @@
       "original": {
         "type": "file",
         "url": "https://github.com/anthraxx/linux-hardened/releases/download/v7.1.6-hardened1/linux-hardened-v7.1.6-hardened1.patch"
+      }
+    },
+    "linux-latest": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786300018,
+        "narHash": "sha256-xwFWtYRNYAmUsOE3WrTBCtYsKvk8rRjyenVGYzLCcnA=",
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
       }
     },
     "linuxthemestore": {
@@ -3485,32 +3353,6 @@
         "type": "github"
       }
     },
-    "neo-cowsay-amd64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645722465,
-        "narHash": "sha256-PbZ+9HLeGvq/XztpQBPwck7maezpaFkGL51R6vA+Mjs=",
-        "type": "tarball",
-        "url": "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_x86_64.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_x86_64.tar.gz"
-      }
-    },
-    "neo-cowsay-arm64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1645722466,
-        "narHash": "sha256-uZYHhpuFHKBNCGnHgeLMQZUcL26EFRqFDsmYo3Xetag=",
-        "type": "tarball",
-        "url": "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_arm64.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_arm64.tar.gz"
-      }
-    },
     "nimBytesized": {
       "flake": false,
       "locked": {
@@ -3641,11 +3483,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1786439814,
-        "narHash": "sha256-c94MlpDXoIECgN/cPqK1lY8XNtOhp6wyGrdmeoatT/I=",
+        "lastModified": 1786527217,
+        "narHash": "sha256-nwCS+rnfmP5RB/gpNVGcITKhnKMqrIRhIOPZdqpJ22s=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
-        "rev": "a38ecb1a413426620c553d1fb105c9beeb5f4f98",
+        "rev": "2bad7a4098ebc5c3b85266c567597e00c87cea19",
         "type": "github"
       },
       "original": {
@@ -3696,11 +3538,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1786217209,
-        "narHash": "sha256-rusAj5QBnbSwXG6csns6dwxTeCOGRcj08VmlnhUQ6ZY=",
+        "lastModified": 1786580329,
+        "narHash": "sha256-/8cBGYJ+Cj2bSdXv7+B+DFIU+s5u/iKouWUZUvFz32E=",
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "486357ea434dc0061ea52121ff99b1d33096c811",
+        "rev": "7be2ffcda4d9632edb7150b263ee081abba5e984",
         "type": "github"
       },
       "original": {
@@ -3870,11 +3712,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1786313170,
-        "narHash": "sha256-9BG7OgUWdu0ONDO5X2q6+K4bsuBITkX/3W4nNJu1Ito=",
+        "lastModified": 1786430034,
+        "narHash": "sha256-Vux08kA5PICwS2sViCMfwVLAHNoH8TkKAeBo25LjpMI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fcb8fcd6bf2d0adecae5bd491afaaaf8311b758d",
+        "rev": "70cc4559b10a6062b05ff1af17e0add065ccaed9",
         "type": "github"
       },
       "original": {
@@ -3996,11 +3838,11 @@
     },
     "nixpkgs_16": {
       "locked": {
-        "lastModified": 1786098110,
-        "narHash": "sha256-shi1tjDhCGGd0kIgVPNY03V8NBWSTzhMSFDb7IqSoec=",
+        "lastModified": 1786348146,
+        "narHash": "sha256-we5zDEFfn8TgzeWKjKDMIjeQZ59omEPl23NIF+13/ys=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "afb4584a80bbf779ce0f691509ff902d188c2b3d",
+        "rev": "d482ef84049d9b7276b83a06e4e4d76983830097",
         "type": "github"
       },
       "original": {
@@ -4107,11 +3949,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1786247143,
-        "narHash": "sha256-8S3Kcxs7D4UtxJxSJZz0m14CGhuW0MxfrIwJxeGWGnQ=",
+        "lastModified": 1786384358,
+        "narHash": "sha256-RzPPiWeUtuvymnpuEWsdtzli5w4kjZs49FqEs3/1u+I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "279b4a8275f032c566576b3f181fa0f27197f588",
+        "rev": "2fcb964de67fcf60b43471c55d5d99e61a9ccb5a",
         "type": "github"
       },
       "original": {
@@ -4220,11 +4062,11 @@
         "systems": "systems_11"
       },
       "locked": {
-        "lastModified": 1786376793,
-        "narHash": "sha256-57PySMBzfIOqHYfBQhDMIFy9CHMpRArhK9gWHZsp3/g=",
+        "lastModified": 1786577888,
+        "narHash": "sha256-EVSCHLGozO2S4d14WianQ9JiU9tpPgdFv9uD74/xqeQ=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "902dd3995bd830f824ca146796743e3baf587d4c",
+        "rev": "738351a7813be094fb00fce1a149bcc25e936c36",
         "type": "github"
       },
       "original": {
@@ -4264,18 +4106,6 @@
         "repo": "firmware-oneplus-sdm845",
         "rev": "176ca713448c5237a983fb1f158cf3a5c251d775",
         "type": "gitlab"
-      }
-    },
-    "open": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-c4td8DLoa4d7cjGsYDfL+756SW1N3SUVHoFi4QZ7cUo=",
-        "type": "file",
-        "url": "https://github.com/witt-bit/pc-guide/releases/download/v0.0.3/open.sh"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/witt-bit/pc-guide/releases/download/v0.0.3/open.sh"
       }
     },
     "paclear": {
@@ -4339,18 +4169,6 @@
         "owner": "orhun",
         "repo": "pkgtop",
         "type": "github"
-      }
-    },
-    "plasma-drawer": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-xEX4YRpGb/T5zyixbWTTUWHhCOSanzMdpkivnFwDgeA=",
-        "type": "file",
-        "url": "https://github.com/p-connor/plasma-drawer/releases/download/v2.0.2/plasma-drawer-2.0.2.plasmoid"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/p-connor/plasma-drawer/releases/download/v2.0.2/plasma-drawer-2.0.2.plasmoid"
       }
     },
     "plasma-gamemode": {
@@ -4471,32 +4289,6 @@
         "type": "github"
       }
     },
-    "progressline-amd64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736424347,
-        "narHash": "sha256-W+51twJ6klA0ZwklTYt53/dpyTyBbVYpaJ95KsvjRYM=",
-        "type": "tarball",
-        "url": "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-x86_64-unknown-linux-gnu.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-x86_64-unknown-linux-gnu.zip"
-      }
-    },
-    "progressline-arm64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736424364,
-        "narHash": "sha256-SS21YQmRnLi5VHyF3qM7OfdppEywcIymozr8rVIP3w8=",
-        "type": "tarball",
-        "url": "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-aarch64-unknown-linux-gnu.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-aarch64-unknown-linux-gnu.zip"
-      }
-    },
     "pyprland": {
       "inputs": {
         "flake-compat": "flake-compat_7",
@@ -4556,18 +4348,6 @@
         "type": "gitlab"
       }
     },
-    "r-linux": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-2bazFjLes8WpcoY5jAZBYdR+59v311yCe9QC6+NWy/M=",
-        "type": "file",
-        "url": "https://www.r-studio.com/downloads/RLinux6_x64.deb"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://www.r-studio.com/downloads/RLinux6_x64.deb"
-      }
-    },
     "rbonsai": {
       "flake": false,
       "locked": {
@@ -4582,32 +4362,6 @@
         "owner": "roberte777",
         "repo": "rbonsai",
         "type": "github"
-      }
-    },
-    "repair-usb-disc": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757445175,
-        "narHash": "sha256-docXI/B+SEQkBi2Pc+ZzH4eUOoMWPlnrJvvuT742uRs=",
-        "type": "tarball",
-        "url": "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc/distrib/repair-usb-disc-0.1-0.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc/distrib/repair-usb-disc-0.1-0.tar.gz"
-      }
-    },
-    "repair-usb-disc-gtk4": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757529984,
-        "narHash": "sha256-Smy1fRYWN1GfVtPf6io+tYgBobG0Xo4XGKVF+MDoN/Q=",
-        "type": "tarball",
-        "url": "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc-gtk4/distrib/repair-usb-disc-gtk4-0.1-0.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://gitlab.com/linux-stuffs/linux-goodies/-/raw/master/repair-usb-disc-gtk4/distrib/repair-usb-disc-gtk4-0.1-0.tar.gz"
       }
     },
     "rofi-process-killer": {
@@ -4670,34 +4424,25 @@
         "agenix": "agenix",
         "aim": "aim",
         "apkinspector": "apkinspector",
-        "apkstudio": "apkstudio",
         "app-manager": "app-manager",
         "appimage-thumbnailer": "appimage-thumbnailer",
         "armbian": "armbian",
         "asus": "asus",
-        "audio-share": "audio-share",
-        "audiosource": "audiosource",
         "autoricer": "autoricer",
-        "aya": "aya",
         "batfetch": "batfetch",
         "bestfetch": "bestfetch",
         "better-adb-sync": "better-adb-sync",
         "bollywood": "bollywood",
         "breezy-desktop": "breezy-desktop",
-        "btrfs-data-recovery-map": "btrfs-data-recovery-map",
-        "btrfs-data-recovery-scanner": "btrfs-data-recovery-scanner",
         "btrfs-du": "btrfs-du",
         "btrfsd": "btrfsd",
         "bunker-patches": "bunker-patches",
         "cachyos-kernel": "cachyos-kernel",
         "cachyos-patches": "cachyos-patches",
-        "carbonyl-amd64": "carbonyl-amd64",
-        "carbonyl-arm64": "carbonyl-arm64",
         "cargofetch": "cargofetch",
         "catppuccin-refind": "catppuccin-refind",
         "cemetery-escape": "cemetery-escape",
         "chalk-animation": "chalk-animation",
-        "chkufsd": "chkufsd",
         "claude-desktop": "claude-desktop",
         "cli-of-life": "cli-of-life",
         "clidle": "clidle",
@@ -4731,7 +4476,6 @@
         "flake-file": "flake-file",
         "flake-parts": "flake-parts_3",
         "fman": "fman",
-        "focaltech": "focaltech",
         "fortune-anti-jokes": "fortune-anti-jokes",
         "fortune-mod-anarchism": "fortune-mod-anarchism",
         "fortune-mod-archlinux": "fortune-mod-archlinux",
@@ -4762,7 +4506,6 @@
         "gof-rs": "gof-rs",
         "goto": "goto",
         "gspot": "gspot",
-        "gtkhash-thunar": "gtkhash-thunar",
         "helluva-beelzebub": "helluva-beelzebub",
         "helluva-blitz": "helluva-blitz",
         "helluva-loona": "helluva-loona",
@@ -4782,7 +4525,6 @@
         "hyprfloat": "hyprfloat",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
-        "hyprmixer": "hyprmixer",
         "hyprpicker": "hyprpicker",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
@@ -4794,16 +4536,17 @@
         "kat-oh": "kat-oh",
         "kde-control-station": "kde-control-station",
         "kde-thumbnailer-apk": "kde-thumbnailer-apk",
-        "kf6-servicemenus-rootactions": "kf6-servicemenus-rootactions",
         "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "kyun": "kyun",
         "kzones": "kzones",
         "layan-kde": "layan-kde",
         "lazysys": "lazysys",
         "lifecycler": "lifecycler",
-        "linux": "linux",
+        "linux-cachyos-latest": "linux-cachyos-latest",
+        "linux-cachyos-lts": "linux-cachyos-lts",
         "linux-config": "linux-config",
         "linux-hardened": "linux-hardened",
+        "linux-latest": "linux-latest",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",
@@ -4819,8 +4562,6 @@
         "mynav": "mynav",
         "ncmatrix": "ncmatrix",
         "neo": "neo",
-        "neo-cowsay-amd64": "neo-cowsay-amd64",
-        "neo-cowsay-arm64": "neo-cowsay-arm64",
         "nimBytesized": "nimBytesized",
         "nimElvis": "nimElvis",
         "nimTermstyle": "nimTermstyle",
@@ -4839,24 +4580,17 @@
         "nixvim": "nixvim",
         "no-more-secrets": "no-more-secrets",
         "oneplus": "oneplus",
-        "open": "open",
         "paclear": "paclear",
         "panel-spacer-extended": "panel-spacer-extended",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "pkgtop": "pkgtop",
-        "plasma-drawer": "plasma-drawer",
         "plasma-gamemode": "plasma-gamemode",
         "plasma-manager": "plasma-manager",
         "ponysay": "ponysay",
         "procmux": "procmux",
-        "progressline-amd64": "progressline-amd64",
-        "progressline-arm64": "progressline-arm64",
         "pyprland": "pyprland",
         "q6voiced": "q6voiced",
-        "r-linux": "r-linux",
         "rbonsai": "rbonsai",
-        "repair-usb-disc": "repair-usb-disc",
-        "repair-usb-disc-gtk4": "repair-usb-disc-gtk4",
         "rofi-process-killer": "rofi-process-killer",
         "rofi-tmux": "rofi-tmux",
         "rofi-tools": "rofi-tools",
@@ -4867,14 +4601,12 @@
         "screego": "screego",
         "sdm845-alsa": "sdm845-alsa",
         "sha256-animation": "sha256-animation",
-        "shutter-encoder": "shutter-encoder",
         "socktop": "socktop",
         "songfetch": "songfetch",
         "spofi": "spofi",
         "spotitube": "spotitube",
         "ssh-list": "ssh-list",
         "sticky-window-snapping": "sticky-window-snapping",
-        "sunxi": "sunxi",
         "supdock": "supdock",
         "swiftfetch": "swiftfetch",
         "sxtetris": "sxtetris",
@@ -4883,7 +4615,6 @@
         "t2fanrd": "t2fanrd",
         "tablet-map": "tablet-map",
         "tachyon-patches": "tachyon-patches",
-        "tahoma2d": "tahoma2d",
         "termsaver": "termsaver",
         "tewi": "tewi",
         "texoxide": "texoxide",
@@ -4951,11 +4682,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786420161,
-        "narHash": "sha256-PU4CY4GUCDFOoS67dGrc/fS6Y+d1cYZSh6nbgYqAAwE=",
+        "lastModified": 1786507911,
+        "narHash": "sha256-w5aZRLbiu7H6TqsYXVMdRKg0S4DRaJpxyqxx86AwxVk=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "3a646bd5daa3af78a78a1cb32329cb72d18fcae0",
+        "rev": "39db48099ad16834af7e27485a4babf9c28b3897",
         "type": "github"
       },
       "original": {
@@ -5061,18 +4792,6 @@
         "owner": "in3rsha",
         "repo": "sha256-animation",
         "type": "github"
-      }
-    },
-    "shutter-encoder": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-xQ1UoW3aAHlovdH87w34HkDHhrFzkeT9oSbCd8LRlQ8=",
-        "type": "file",
-        "url": "https://www.shutterencoder.com/sdc_download/497/?key=lfpx4wqaghm4zgswrp015tljfm75ek"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://www.shutterencoder.com/sdc_download/497/?key=lfpx4wqaghm4zgswrp015tljfm75ek"
       }
     },
     "socktop": {
@@ -5184,23 +4903,6 @@
       "original": {
         "owner": "Flupp",
         "repo": "sticky-window-snapping",
-        "type": "github"
-      }
-    },
-    "sunxi": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1742460371,
-        "narHash": "sha256-wc4xyNtUlONntofWJm8/w0KErJzXKHijOyh9hAYTCoU=",
-        "owner": "armbian",
-        "repo": "firmware",
-        "rev": "4050e02da2dce2b74c97101f7964ecfb962f5aec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "armbian",
-        "repo": "firmware",
-        "rev": "4050e02da2dce2b74c97101f7964ecfb962f5aec",
         "type": "github"
       }
     },
@@ -5564,19 +5266,6 @@
         "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz"
       }
     },
-    "tahoma2d": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1777610461,
-        "narHash": "sha256-gJ9SMORPUScMci5gQV6difA6YFJFfQJbCwgKIDV0YBo=",
-        "type": "tarball",
-        "url": "https://github.com/tahoma2d/tahoma2d/releases/download/v1.6.1/Tahoma2D-linux-clang.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/tahoma2d/tahoma2d/releases/download/v1.6.1/Tahoma2D-linux-clang.tar.gz"
-      }
-    },
     "termsaver": {
       "flake": false,
       "locked": {
@@ -5902,11 +5591,11 @@
         "nixpkgs": "nixpkgs_21"
       },
       "locked": {
-        "lastModified": 1785254763,
-        "narHash": "sha256-byIPMwoy5lbf/zEavhR0RPqsKd97rhpbFdiPblv4nu0=",
+        "lastModified": 1786572900,
+        "narHash": "sha256-nVUo0GmawyOyoX3gSzNXRstfjnGveYJWxVPBsMj/58E=",
         "owner": "vanilla-mobile-nixos",
         "repo": "vanilla-mobile-nixos",
-        "rev": "8353c39b3d6a02d2e276792c0d07d550191a9746",
+        "rev": "efc64cc76ea03c113c3c0c94c8de2799cbff5467",
         "type": "github"
       },
       "original": {
@@ -6061,11 +5750,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786347712,
-        "narHash": "sha256-yH+jWXH2TVd5h3J5KoZiE8/4O4HqoggfB0zl9uVj39w=",
+        "lastModified": 1786515268,
+        "narHash": "sha256-MPj7iVUEVlGg004Nsob4kMlkj6dz0BePTWZZqRc5b2o=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "945efbc704b7f8c1731a922aabbc5d95edc9eb74",
+        "rev": "044be1aba87c30d42568e817c78a94c1d8eacb14",
         "type": "github"
       },
       "original": {
