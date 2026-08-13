@@ -4,8 +4,6 @@
     pkgs: host: isArm:
     (kernel.hosts."${host}" pkgs)
     |> (src: {
-       _module.args.kernel-opts.pkgs = {}: pkgs;
-
       packages = lib.mkAfter {
         "${host}-config" = src."${host}-config";
         "${host}-allconfig" = src."${host}-allconfig";

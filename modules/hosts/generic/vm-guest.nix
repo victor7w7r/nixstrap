@@ -1,5 +1,10 @@
 { inputs, ... }:
 {
+  flake-file.inputs.microvm = {
+    url = "github:microvm-nix/microvm.nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.generic.vm-guest =
     {
       isCross ? false,

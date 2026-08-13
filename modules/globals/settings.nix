@@ -1,17 +1,6 @@
 { flakelib, inputs, ... }:
 {
   den.default.nixos = { lib, ... }: {
-    _module.args = {
-      armPkgs = import inputs.nixpkgs {
-        localSystem = "x86_64-linux";
-        crossSystem = "aarch64-linux";
-      };
-
-      x86Pkgs = import inputs.nixpkgs {
-        localSystem = "aarch64-linux";
-        crossSystem = "x86_64-linux";
-      };
-    };
 
     documentation = {
       enable = false;

@@ -6,14 +6,31 @@
     pkgs:
     (kernel.lib.linux {
       inherit pkgs;
-      localVer = "sunxi-hardened";
-      isArm = true;
-      host = "pizero";
-      src = inputs.linux-latest-lts;
-      /*class = "allwinner";
-      dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
-      defconfig = "${inputs.armbian}/config/kernel/linux-sunxi64-edge.config";*/
       structuredExtraConfig = kernel.config.default.pizero;
-      patches = with kernel.patches.injector pkgs; [ hardened ] ++ armbian.sunxi-patches;
+      localVer = "sunxi-hardened";
+      host = "pizero";
+      isArm = true;
+      patches =
+        with kernel.patches.injector pkgs;
+        (bunker.lts { isHardened = true; }) ++ tachyon.lts ++ armbian.sunxi;
+      src =
+        kernel.lib.uwe5622 pkgs
+        |> (
+          src:
+          kernel.lib.defconfig-clear {
+            inherit pkgs src;
+            arch = "arm64";
+            config = "${inputs.armbian}/config/kernel/linux-sunxi64-current.config";
+            defconfig = "sunxi_defconfig";
+          }
+        )
+        |> (
+          src:
+          kernel.lib.dts-cleaner {
+            inherit pkgs src;
+            class = "allwinner";
+            dtbMake = "dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb";
+          }
+        );
     });
 }

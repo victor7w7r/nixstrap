@@ -6,16 +6,31 @@
     pkgs:
     (kernel.lib.linux {
       inherit pkgs;
-      localVer = "sdm845";
-      isArm = true;
-      /*class = "qcom";
-      dtbMake = ''
-        dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-enchilada.dtb
-        dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-fajita.dtb
-        '';*/
-      host = "phone";
-      src = inputs.linux-latest;
       structuredExtraConfig = kernel.config.default.phone;
-      #patches =
+      localVer = "sdm845";
+      host = "phone";
+      isArm = true;
+      patches = with kernel.patches.injector pkgs; (bunker.latest { }) ++ tachyon.latest ++ qcom;
+      src =
+        inputs.linux-latest
+        |> (
+          src:
+          kernel.lib.defconfig-clear {
+            inherit pkgs src;
+            arch = "arm64";
+            defconfig = "phone_defconfig";
+          }
+        )
+        |> (
+          src:
+          kernel.lib.dts-cleaner {
+            inherit pkgs src;
+            class = "qcom";
+            dtbMake = ''
+              dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-enchilada.dtb
+              dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-fajita.dtb
+            '';
+          }
+        );
     });
 }

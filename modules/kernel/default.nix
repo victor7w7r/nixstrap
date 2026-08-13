@@ -2,7 +2,6 @@
   inputs,
   lib,
   kernel-versions,
-  config,
   ...
 }:
 {
@@ -14,7 +13,7 @@
     legacy = "6.1";
   };
 
-  flake-file.inputs = builtins.trace (builtins.attrNames config) {
+  flake-file.inputs = {
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     linux-cachyos-latest = {

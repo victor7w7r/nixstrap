@@ -6,10 +6,23 @@
     pkgs:
     (kernel.lib.linux {
       inherit pkgs;
+      structuredExtraConfig = kernel.config.default.server;
       localVer = "server-hardened-native";
       host = "server";
-      src = inputs.linux-cachyos-lts;
-      #patches = with kernel.patches.injector pkgs; [ hardened ];
-      structuredExtraConfig = kernel.config.default.server;
+      patches =
+        with kernel.patches.injector pkgs;
+        (cachyos.lts { isHardened = true; }) ++ (bunker.lts { isVanilla = false; }) ++ tachyon.lts;
+      src =
+        inputs.linux-cachyos-lts
+        |> (
+          src:
+          kernel.lib.defconfig-clear {
+            inherit src pkgs;
+            config = kernel.lib.patches.cachyos-defconfig {
+              inherit pkgs;
+              selector = "hardened";
+            };
+          }
+        );
     });
 }

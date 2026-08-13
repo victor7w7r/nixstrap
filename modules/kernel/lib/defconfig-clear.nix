@@ -2,14 +2,15 @@
   kernel.lib.defconfig-clear =
     {
       pkgs,
-      config,
-      arch ? "x86",
       src,
+      config ? null,
+      arch ? "x86",
       defconfig ? "cachyos_defconfig",
     }:
     pkgs.runCommand "defconfig-clear" { } ''
        mkdir -p $out
-       cp -r ${config} config
+       cp -r ${if config != null then config else "${src}/arch/${arch}/configs/defconfig"} config
+
        #sed -i '/^#/d' config
 
        #DEBUG

@@ -1,8 +1,4 @@
-{
-  inputs,
-  kernel,
-  ...
-}:
+{ inputs, kernel, ... }:
 {
   perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "main" false;
 
@@ -11,10 +7,22 @@
     (kernel.lib.linux {
       inherit pkgs;
       structuredExtraConfig = kernel.config.default.main-generic;
-      isArm = false;
       localVer = "native";
       host = "main";
-      src = inputs.linux-cachyos-lts;
-      #patches = with kernel.patches.injector pkgs; cachyos.bore;
+      patches =
+        with kernel.patches.injector pkgs;
+        (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ tachyon.lts;
+      src =
+        inputs.linux-cachyos-lts
+        |> (
+          src:
+          kernel.lib.defconfig-clear {
+            inherit pkgs src;
+            config = kernel.lib.patches.cachyos-defconfig {
+              inherit pkgs;
+              selector = "lts";
+            };
+          }
+        );
     });
 }

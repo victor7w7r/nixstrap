@@ -1,4 +1,10 @@
-{ inputs, lib, ... }: {
+{
+  inputs,
+  lib,
+  kernel-versions,
+  ...
+}:
+{
   flake-file.inputs = {
     armbian = {
       url = "github:armbian/build";
@@ -11,16 +17,22 @@
   };
 
   kernel.patches = {
-    rockchip = map (patch: "${inputs.armbian}/patch/kernel/rk35xx-vendor-6.1/${patch}.patch") [
-      "001-hid-sony"
-      "bluetooth-hci-quirk-v6.1-v6.15"
-    ];
+    rockchip =
+      map
+        (
+          patch:
+          "${inputs.armbian}/patch/kernel/rk35xx-vendor-${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
+        )
+        [
+          "001-hid-sony"
+          "bluetooth-hci-quirk-v6.1-v6.15"
+        ];
 
     sunxi =
       with lib;
       pkgs:
       (pkgs.runCommand "sunxi-patches" { } ''
-        cp ${inputs.armbian}/patch/kernel/archive/sunxi-6.18/series.conf ./series.conf
+        cp ${inputs.armbian}/patch/kernel/archive/sunxi-${lib.versions.majorMinor kernel-versions.lts}/series.conf ./series.conf
         #sed -i -E '/.*(a83t-suspend-7.0).*/d' series.conf
         mv series.conf $out
       '')
@@ -28,7 +40,10 @@
       |> splitString "\n"
       |> map strings.trim
       |> filter (line: line != "" && !(hasPrefix "#" line || hasPrefix "-" line))
-      |> map (path: "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/${path}");
+      |> map (
+        path:
+        "${inputs.armbian}/patch/kernel/archive/sunxi-${lib.versions.majorMinor kernel-versions.lts}/${path}"
+      );
 
     uwe5622 =
       pkgs:

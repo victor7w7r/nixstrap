@@ -1,9 +1,4 @@
-{
-  inputs,
-  kernel,
-  #kernel-opts,
-  ...
-}:
+{ inputs, kernel, ... }:
 {
   kernel.lib.linux =
     {

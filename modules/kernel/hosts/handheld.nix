@@ -2,14 +2,28 @@
 {
   perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "handheld" true;
 
-  kernel.handheld =
+  kernel.hosts.handheld =
     pkgs:
     (kernel.lib.linux {
       inherit pkgs;
+      structuredExtraConfig = kernel.config.default.handheld;
       localVer = "handheld-native";
       host = "handheld";
-      structuredExtraConfig = kernel.config.default.handheld;
-      src = inputs.linux-cachyos-latest;
-      #patches = with kernel.patches.injector pkgs; cachyos.handheld ++ asus;
+      patches =
+        with kernel.patches.injector pkgs;
+        cachyos.latest.std
+        ++ cachyos.latest.handheld
+        ++ (bunker.latest { isVanilla = false; })
+        ++ tachyon.latest
+        ++ asus;
+      src =
+        inputs.linux-cachyos-latest
+        |> (
+          src:
+          kernel.lib.defconfig-clear {
+            inherit pkgs src;
+            config = kernel.lib.patches.cachyos-defconfig { inherit pkgs; };
+          }
+        );
     });
 }
