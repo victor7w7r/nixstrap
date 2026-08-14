@@ -13,7 +13,7 @@
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; }) ++ sunxi;
+        sunxi ++ (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; });
       src =
         kernel.patches.uwe5622 pkgs
         |> (

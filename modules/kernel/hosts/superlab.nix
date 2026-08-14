@@ -12,7 +12,7 @@
       defconfig = "rockchip_defconfig";
       isArm = true;
       patches = with kernel.patches.injector pkgs;
-        cachyos.legacy ++ tachyon.legacy ++ (rockchip { });
+        (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
       src =
         inputs.linux-rockchip
         |> (

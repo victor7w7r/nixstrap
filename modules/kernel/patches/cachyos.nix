@@ -98,33 +98,45 @@
               "0004-cachy"
               "0005-crypto"
               "0006-fixes"
-              "0008-intel-pstate"
               "0009-sched-ext"
-              "0010-t2"
             ]
           ))
         )
         |> lib.sort lib.lessThan;
 
-      legacy =
+      legacy = pkgs.runCommand "cachyos-patches-legacy-diff"
+        {
+          nativeBuildInputs = with pkgs; [
+            findutils
+            patchutils
+          ];
+        }
+        ''
+          mkdir -p $out
+          cp -r ${inputs.cachyos-patches}/* ./
+          chmod -R +w . && find . -type d -empty -delete
+          filterdiff -x "*/arch/x86/Kconfig.cpu" "${lib.versions.majorMinor kernel-versions.legacy}/0002-cachy.patch" > 0002-cachy.patch
+          cat 0002-cachy.patch > "${lib.versions.majorMinor kernel-versions.legacy}/0002-cachy.patch"
+          rm 0002-cachy.patch
+          mv ./* $out/
+        ''
+      |> ( src:
         map
           (
-            patch: "${inputs.cachyos-patches}/${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
+            patch: "${src}/${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
           )
           [
             "0001-bbr2"
             "0002-cachy"
             "0003-clr"
             "0004-ksm"
-            "sched/0001-bore-cachy"
-            "misc/gcc-lto/0001-gcc-LTO-support-for-the-kernel"
+            #"sched-dev/0001-bore-cachy"
             "misc/gcc-lto/0002-gcc-lto-no-pie"
-            "misc/0001-Introduce-per-VMA-lock"
-            "misc/0001-bore-tuning"
-            "misc/0001-high-hz"
+            "misc/0001-bore-tuning-sysctl"
             "misc/0001-mm-add-zblock-new-allocator-for-use-via-zpool-API"
             "misc/0001-mm-introduce-THP-Shrinker"
-          ];
+          ]
+       );
     };
   };
 }

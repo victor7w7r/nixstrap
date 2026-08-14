@@ -13,7 +13,7 @@
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; }) ++ (qcom { });
+        (qcom { }) ++ (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; });
       src =
         inputs.linux-latest
         |> (
