@@ -30,6 +30,11 @@
       flake = false;
     };
 
+    armbian-firmware = {
+      url = "github:armbian/firmware";
+      flake = false;
+    };
+
     autoricer = {
       url = "github:3rfaan/autoricer";
       flake = false;

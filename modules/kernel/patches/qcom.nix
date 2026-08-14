@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  kernel.patches.qcom =
+  kernel.patches.qcom = { }:
     "${inputs.vanilla-mobile-nixos.outPath}/pkgs/linux-kernel/sdm845/kernel-patches"
     |> (
       patches:

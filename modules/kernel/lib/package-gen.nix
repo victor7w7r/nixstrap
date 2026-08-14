@@ -8,6 +8,7 @@
         "${host}-config" = src."${host}-config";
         "${host}-allconfig" = src."${host}-allconfig";
         "${host}-kernel" = src."${host}-kernel";
+        "${host}-kernelPackages" = src."${host}-kernelPackages";
       };
 
       devShells."${host}-menu-config" = pkgs.mkShell {

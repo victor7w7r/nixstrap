@@ -56,10 +56,7 @@
 
       # sed -i '/^$/N;/\n$/D' config
 
-      mkdir -p $out
-
-      cp -r ${src}/* $out/
-      chmod -R +w $out
+      mkdir -p $out && cp -r ${src}/* $out/ && chmod -R +w $out
       cp config $out/arch/${arch}/configs/${defconfig}
     '';
 }

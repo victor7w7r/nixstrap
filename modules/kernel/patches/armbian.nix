@@ -17,7 +17,7 @@
   };
 
   kernel.patches = {
-    rockchip =
+    rockchip = { }:
       map
         (
           patch:
@@ -48,13 +48,11 @@
     uwe5622 =
       pkgs:
       (pkgs.runCommand "uwe5622-patcher" { } ''
-        mkdir -p $out
-        cp -r ${inputs.linux-latest-lts}/* ./
-        mkdir -p "./drivers/net/wireless/uwe5622"
-        cp -R "${inputs.uwe5622}''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} "./drivers/net/wireless/uwe5622"
-        echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> ./drivers/net/wireless/Makefile
-        sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' "./drivers/net/wireless/Kconfig"
-        mv ./* $out/
+        mkdir -p $out && cp -r ${inputs.linux-latest-lts}/* $out/ && chmod -R +w $out
+        mkdir -p "$out/drivers/net/wireless/uwe5622"
+        cp -R "${inputs.uwe5622}''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} "$out/drivers/net/wireless/uwe5622"
+        echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> $out/drivers/net/wireless/Makefile
+        sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' "$out/drivers/net/wireless/Kconfig"
       '');
   };
 }

@@ -7,17 +7,17 @@
       isArm ? false,
       src,
       patches ? [ ],
+      defconfig ? "cachyos_defconfig",
       localVer ? "native",
       structuredExtraConfig ? { },
     }:
     pkgs.buildLinux {
-      inherit src structuredExtraConfig;
+      inherit src structuredExtraConfig defconfig;
       pname = "linux-v7w7r-${localVer}";
       version = (kernel.lib.version pkgs src localVer).final;
       modDirVersion = (kernel.lib.version pkgs src localVer).final;
       ignoreConfigErrors = true;
       enableCommonConfig = false;
-      defconfig = if (!isArm) then "cachyos_defconfig" else null;
       kernelArch = if isArm then "arm64" else null;
       kernelPatches = map (file: {
         name = baseNameOf (toString file);

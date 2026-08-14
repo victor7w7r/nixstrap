@@ -9,10 +9,11 @@
       structuredExtraConfig = kernel.config.default.phone;
       localVer = "sdm845";
       host = "phone";
+      defconfig = "phone_defconfig";
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; }) ++ qcom;
+        (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; }) ++ (qcom { });
       src =
         inputs.linux-latest
         |> (

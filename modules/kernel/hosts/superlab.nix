@@ -9,9 +9,10 @@
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       host = "superlab";
+      defconfig = "rockchip_defconfig";
       isArm = true;
       patches = with kernel.patches.injector pkgs;
-        cachyos.legacy ++ tachyon.legacy ++ armbian.rockchip;
+        cachyos.legacy ++ tachyon.legacy ++ (rockchip { });
       src =
         inputs.linux-rockchip
         |> (

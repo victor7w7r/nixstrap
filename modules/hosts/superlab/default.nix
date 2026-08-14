@@ -70,6 +70,7 @@
               lib,
               pkgs,
               armPkgs,
+              self',
               ...
             }:
             {
@@ -118,7 +119,7 @@
               };
 
               hardware = {
-                firmware = [ pkgs.armbian-firmware ];
+                firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
             }

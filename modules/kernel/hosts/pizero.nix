@@ -9,12 +9,13 @@
       structuredExtraConfig = kernel.config.default.pizero;
       localVer = "sunxi-hardened";
       host = "pizero";
+      defconfig = "sunxi_defconfig";
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; }) ++ armbian.sunxi;
+        (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; }) ++ sunxi;
       src =
-        kernel.lib.uwe5622 pkgs
+        kernel.patches.uwe5622 pkgs
         |> (
           src:
           kernel.lib.defconfig-clear {
