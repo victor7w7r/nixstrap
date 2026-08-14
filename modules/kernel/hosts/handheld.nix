@@ -14,7 +14,7 @@
         cachyos.latest.std
         ++ cachyos.latest.handheld
         ++ (bunker.latest { isVanilla = false; })
-        ++ tachyon.latest
+        ++ (tachyon.latest { })
         ++ asus;
       src =
         inputs.linux-cachyos-latest

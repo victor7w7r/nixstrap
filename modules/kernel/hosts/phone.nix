@@ -10,7 +10,9 @@
       localVer = "sdm845";
       host = "phone";
       isArm = true;
-      patches = with kernel.patches.injector pkgs; (bunker.latest { }) ++ tachyon.latest ++ qcom;
+      patches =
+        with kernel.patches.injector pkgs;
+        (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; }) ++ qcom;
       src =
         inputs.linux-latest
         |> (

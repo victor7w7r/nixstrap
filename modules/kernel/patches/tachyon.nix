@@ -80,7 +80,10 @@
           "ratelimit-sched-yield"
           "scale-net-alloc"
         ]
-        ++ (kernel.patches.tachyon.common { })
+        ++ (map (
+          patch:
+          "${inputs.tachyon-patches-latest}/patches/${patch}.patch"
+        ) (kernel.patches.tachyon.common { }))
         ++ (lib.optionals isVanilla (
           map (patch: "${inputs.tachyon-patches-latest}/patches/${patch}.patch") [
             #"0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an"
@@ -105,6 +108,7 @@
         ))
       )
       |> lib.sort lib.lessThan;
+
     lts =
       {
         isVanilla ? false,
@@ -129,7 +133,10 @@
           "ratelimit-sched-yield"
           "scale-net-alloc"
         ]
-        ++ (kernel.patches.tachyon.common { })
+        ++ (map (
+          patch:
+          "${inputs.tachyon-patches-lts}/patches/${patch}.patch"
+        ) (kernel.patches.tachyon.common { }))
         ++ (lib.optionals isVanilla (
           map (patch: "${inputs.tachyon-patches-latest}/patches/${patch}.patch") [
             #"0001-add-umonitor-umwait-C0.x-C-states"
@@ -153,6 +160,7 @@
         ))
       )
       |> lib.sort lib.lessThan;
+
     legacy = (
       map (patch: "${inputs.tachyon-patches-legacy}/patches/${patch}.patch") [
         #"0001-add-umonitor-umwait-C0.x-C-states"
@@ -220,7 +228,10 @@
         "scale"
         "tcptuning"
       ]
-      ++ (kernel.patches.tachyon.common { })
+      ++ (map (
+        patch:
+        "${inputs.tachyon-patches-legacy}/patches/${patch}.patch"
+      ) (kernel.patches.tachyon.common { }))
     );
   };
 }

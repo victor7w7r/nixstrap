@@ -12,7 +12,7 @@
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        (bunker.lts { isHardened = true; }) ++ tachyon.lts ++ armbian.sunxi;
+        (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; }) ++ armbian.sunxi;
       src =
         kernel.lib.uwe5622 pkgs
         |> (

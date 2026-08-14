@@ -11,7 +11,7 @@
       host = "server";
       patches =
         with kernel.patches.injector pkgs;
-        (cachyos.lts { isHardened = true; }) ++ (bunker.lts { isVanilla = false; }) ++ tachyon.lts;
+        (cachyos.lts { isHardened = true; }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });
       src =
         inputs.linux-cachyos-lts
         |> (

@@ -11,7 +11,7 @@
       host = "main";
       patches =
         with kernel.patches.injector pkgs;
-        (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ tachyon.lts;
+        (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });
       src =
         inputs.linux-cachyos-lts
         |> (

@@ -56,7 +56,10 @@
             "xanmod/0007-locking-rwsem-spin-more-aggressively-before-cpu_rela"
             "zen/0006-cpufreq-remove-schedutil-dependency-on-Intel-AMD-P-S"
           ]
-        ++ (kernel.patches.bunker.common { })
+        ++ (map (
+          patch:
+          "${inputs.bunker-patches}/patches/${lib.versions.majorMinor kernel-versions.latest}/${patch}.patch"
+        ) (kernel.patches.bunker.common { }))
         ++ (lib.optionals isVanilla (
           map
             (
@@ -150,7 +153,10 @@
             "upstream/0019-mount-add-OPEN_TREE_NAMESPACE"
             "xanmod/0015-kbuild-add-sms-based-software-pipelining-flags"
           ]
-        ++ (kernel.patches.bunker.common { })
+        ++ (map (
+          patch:
+          "${inputs.bunker-patches}/patches/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch"
+        ) (kernel.patches.bunker.common { }))
         ++ (lib.optionals isVanilla (
           map
             (
