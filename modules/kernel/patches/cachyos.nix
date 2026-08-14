@@ -24,7 +24,7 @@
         selector ? "",
       }:
       pkgs.runCommand "cachyos-defconfig" { } ''
-        cp "${inputs.cachyos-config}/linux-cachyos${
+        cp "${inputs.linux-cachyos-config}/linux-cachyos${
           if selector == "" then "" else "-${selector}"
         }/config" $out
       '';
@@ -65,6 +65,7 @@
       lts =
         {
           isHardened ? false,
+          isVanilla ? false,
         }:
         pkgs.runCommand "cachyos-patches-lts-diff"
           {
@@ -74,22 +75,25 @@
             ];
           }
           ''
-            cp -r ${inputs.cachyos-patches-unsync} ./work && cd work && chmod -R +w .
-            find . -type d -empty -delete
-
-            if [ -f "./${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch" ]; then
-              filterdiff -x "security/selinux/selinuxfs.c" "./${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch" > 0001-hardened-filter.patch || true
-              cat 0001-hardened-filter.patch > "./${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch" && rm 0001-hardened-filter.patch
-            fi
-            cp -r . $out
+            mkdir -p $out
+            cp -r ${inputs.cachyos-patches-unsync}/* ./
+            chmod -R +w . && find . -type d -empty -delete
+            filterdiff -x "*/security/selinux/selinuxfs.c" "${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch" > 0001-hardened-filter.patch
+            cat 0001-hardened-filter.patch > "${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch"
+            rm 0001-hardened-filter.patch && mv ./* $out/
           ''
         |> (
-          map
-            (
-              patch:
-              "${inputs.cachyos-patches-unsync}/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch"
-            )
-            [
+          src:
+          map (patch: "${src}/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch") [
+            "misc/0001-aufs-6.18-merge-v20251208"
+            "misc/0001-clang-polly"
+            "misc/dkms-clang"
+            "misc/nap-governor"
+            "misc/reflex-governor"
+          ]
+          ++ (pkgs.lib.optional isHardened "${src}/${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch")
+          ++ (pkgs.lib.optionals isVanilla (
+            map (patch: "${src}/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch") [
               "0003-bbr3"
               "0004-cachy"
               "0005-crypto"
@@ -97,14 +101,10 @@
               "0008-intel-pstate"
               "0009-sched-ext"
               "0010-t2"
-              "misc/0001-aufs-6.18-merge-v20251208"
-              "misc/0001-clang-polly"
-              "misc/dkms-clang"
-              "misc/nap-governor"
-              "misc/reflex-governor"
             ]
-          ++ (pkgs.lib.optional isHardened "misc/0001-hardened.patch")
-        );
+          ))
+        )
+        |> lib.sort lib.lessThan;
 
       legacy =
         map

@@ -8,8 +8,7 @@
       defconfig ? "cachyos_defconfig",
     }:
     pkgs.runCommand "defconfig-clear" { } ''
-       mkdir -p $out
-       cp -r ${if config != null then config else "${src}/arch/${arch}/configs/defconfig"} config
+       cp ${if config != null then config else "${src}/arch/${arch}/configs/defconfig"} config
 
        #sed -i '/^#/d' config
 
@@ -56,8 +55,11 @@
       # sed -i '/^CONFIG_ATH/d' config
 
       # sed -i '/^$/N;/\n$/D' config
-      cp -r ${src}/* ./
-      install -Dm644 config arch/${arch}/configs/${defconfig}
-      mv ./* $out/
+
+      mkdir -p $out
+
+      cp -r ${src}/* $out/
+      chmod -R +w $out
+      cp config $out/arch/${arch}/configs/${defconfig}
     '';
 }

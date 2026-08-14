@@ -18,7 +18,7 @@
           src:
           kernel.lib.defconfig-clear {
             inherit src pkgs;
-            config = kernel.lib.patches.cachyos-defconfig {
+            config = kernel.patches.cachyos-defconfig {
               inherit pkgs;
               selector = "hardened";
             };

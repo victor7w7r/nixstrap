@@ -22,7 +22,7 @@
           src:
           kernel.lib.defconfig-clear {
             inherit pkgs src;
-            config = kernel.lib.patches.cachyos-defconfig { inherit pkgs; };
+            config = kernel.patches.cachyos-defconfig { inherit pkgs; };
           }
         );
     });
