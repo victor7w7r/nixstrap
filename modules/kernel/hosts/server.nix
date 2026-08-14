@@ -1,14 +1,13 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "server" false;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "server";
 
   kernel.hosts.server =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host;
       structuredExtraConfig = kernel.config.default.server;
       localVer = "server-hardened-native";
-      host = "server";
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { isHardened = true; }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });

@@ -1,9 +1,9 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "superlab" true;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "superlab";
 
   kernel.hosts.superlab =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
       inherit pkgs;
       structuredExtraConfig = kernel.config.default.superlab;
@@ -11,8 +11,7 @@
       host = "superlab";
       defconfig = "rockchip_defconfig";
       isArm = true;
-      patches = with kernel.patches.injector pkgs;
-        (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
+      patches = with kernel.patches.injector pkgs; (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
       src =
         inputs.linux-rockchip
         |> (

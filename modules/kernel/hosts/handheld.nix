@@ -1,14 +1,13 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "handheld" true;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "handheld";
 
   kernel.hosts.handheld =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host;
       structuredExtraConfig = kernel.config.default.handheld;
       localVer = "handheld-native";
-      host = "handheld";
       patches =
         with kernel.patches.injector pkgs;
         cachyos.latest.std

@@ -1,14 +1,13 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "phone" true;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "phone";
 
   kernel.hosts.phone =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host;
       structuredExtraConfig = kernel.config.default.phone;
       localVer = "sdm845";
-      host = "phone";
       defconfig = "phone_defconfig";
       isArm = true;
       patches =

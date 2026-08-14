@@ -1,9 +1,9 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "pizero" true;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "pizero";
 
   kernel.hosts.pizero =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
       inherit pkgs;
       structuredExtraConfig = kernel.config.default.pizero;

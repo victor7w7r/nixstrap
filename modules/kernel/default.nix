@@ -7,10 +7,22 @@
 {
   imports = [ (inputs.den.namespace "kernel" true) ];
 
-  _module.args.kernel-versions = {
-    latest = "7.1.8";
-    lts = "6.18.42";
-    legacy = "6.1";
+  _module.args = {
+    kernel-versions = {
+      latest = "7.1.8";
+      lts = "6.18.42";
+      legacy = "6.1";
+    };
+    armPkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
+    x86Pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+    armCrossPkgs = import inputs.nixpkgs {
+      localSystem = "x86_64-linux";
+      crossSystem = "aarch64-linux";
+    };
+    x86CrossPkgs = import inputs.nixpkgs {
+      localSystem = "aarch64-linux";
+      crossSystem = "x86_64-linux";
+    };
   };
 
   flake-file.inputs = {

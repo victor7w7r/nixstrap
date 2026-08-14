@@ -1,8 +1,8 @@
 { kernel, lib, ... }:
 {
   kernel.lib.package-gen =
-    pkgs: host: isArm:
-    (kernel.hosts."${host}" pkgs)
+    pkgs: host:
+    (kernel.hosts."${host}" pkgs host pkgs.stdenv.hostPlatform.isAarch64)
     |> (src: {
       packages = lib.mkAfter {
         "${host}-config" = src."${host}-config";
@@ -50,8 +50,8 @@
             cd src
           fi
 
-          make ${pkgs.lib.optionalString isArm "ARCH=arm64"} defconfig
-          make ${pkgs.lib.optionalString isArm "ARCH=arm64"} menuconfig
+          make ${pkgs.lib.optionalString pkgs.stdenv.hostPlatform.isAarch64 "ARCH=arm64"} defconfig
+          make ${pkgs.lib.optionalString pkgs.stdenv.hostPlatform.isAarch64 "ARCH=arm64"} menuconfig
         '';
       };
     });

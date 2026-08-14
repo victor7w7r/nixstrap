@@ -1,14 +1,13 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "main" false;
+  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "main";
 
   kernel.hosts.main =
-    pkgs:
+    pkgs: host:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host;
       structuredExtraConfig = kernel.config.default.main-generic;
       localVer = "native";
-      host = "main";
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });
