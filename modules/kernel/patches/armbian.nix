@@ -33,7 +33,7 @@
       pkgs:
       (pkgs.runCommand "sunxi-patches" { } ''
         cp ${inputs.armbian}/patch/kernel/archive/sunxi-${lib.versions.majorMinor kernel-versions.lts}/series.conf ./series.conf
-        #sed -i -E '/.*(a83t-suspend-7.0).*/d' series.conf
+        sed -i -E '/.*(rk356x|rk3399|add-overlay-compilation).*/d' series.conf
         mv series.conf $out
       '')
       |> builtins.readFile

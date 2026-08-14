@@ -38,7 +38,6 @@
       "0108-smpboot-reuse-timer-calibration"
       "0112-init-wait-for-partition-and-retry-scan"
       "0116-migrate-some-systemd-defaults-to-the-kernel-defaults"
-      "0120-do-accept-in-LIFO-order-for-cache-efficiency"
       "0126-don-t-report-an-error-if-PowerClamp-run-on-other-CPU"
       "0127-lib-raid6-add-patch"
       "0133-novector"
@@ -79,6 +78,7 @@
           else
             [
               "0111-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit"
+              "0120-do-accept-in-LIFO-order-for-cache-efficiency"
               "0166-sched-fair-remove-upper-limit-on-cpu-number"
               "0167-net-sock-increase-default-number-of-_SK_MEM_PACKETS-"
               "0174-memcg-increase-MEMCG_CHARGE_BATCH-to-127"
@@ -97,49 +97,36 @@
       }:
       map (patch: "${inputs.tachyon-patches-lts}/patches/${patch}.patch") (
         [
-          "0003-mm-stop-kswapd-early-when-nothings-wa"
           "0050-Revert-ext4-do-not-create-EA-inode-under-buffer-lock"
           "0117-xattr-allow-setting-user.-attributes-on-symlinks-by-"
           "0136-crypto-kdf-make-the-module-init-call-a-late-init-cal"
           "0158-clocksource-only-perform-extended-clocksource-checks"
           "0161-ACPI-align-slab-buffers-for-improved-memory-performa"
           "0163-thermal-intel-powerclamp-check-MWAIT-first-use-pr_wa"
-          "0166-sched-fair-remove-upper-limit-on-cpu-number"
-          "0167-net-sock-increase-default-number-of-_SK_MEM_PACKETS-"
-          "0122-ata-libahci-ignore-staggered-spin-up"
           "0173-cpuidle-psd-add-power-sleep-demotion-prevention-for-"
-          "0174-memcg-increase-MEMCG_CHARGE_BATCH-to-127"
-          "0175-readdir-add-unlikely-hint-on-len-check"
-          "slack"
           "better_idle_balance"
           "posted_msi"
           "ratelimit-sched-yield"
-          "scale-net-alloc"
         ]
         ++ (
           if isVanilla then
             [
-              "0001-add-umonitor-umwait-C0.x-C-states"
-              "0001-mm-memcontrol-add-some-branch-hints-based-on-gcov-an"
-              "0001-sched-migrate"
-              "0002-sched-core-add-some-branch-hints-based-on-gcov-analy"
-              "0002-mm-disable-proactive-compaction-by-de"
               "0002-sched-migrate"
-              "0107-bootstats-add-printk-s-to-measure-boot-time-in-more-"
-              "0110-give-rdrand-some-credit"
-              "0118-add-scheduler-turbo3-patch"
-              "0129-mm-wakeups-remove-a-wakeup"
-              "0132-prezero-20220308"
               "0162-extra-optmization-flags"
-              "0175-readdir-add-unlikely-hint-on-len-check"
-              "netscale"
-              "revert-regression"
-              "scale"
             ]
           else
             [
+              "0003-mm-stop-kswapd-early-when-nothings-wa"
               "0111-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit"
+              "0120-do-accept-in-LIFO-order-for-cache-efficiency"
+              "0122-ata-libahci-ignore-staggered-spin-up"
+              "0166-sched-fair-remove-upper-limit-on-cpu-number"
+              "0167-net-sock-increase-default-number-of-_SK_MEM_PACKETS-"
+              "0174-memcg-increase-MEMCG_CHARGE_BATCH-to-127"
+              "0175-readdir-add-unlikely-hint-on-len-check"
               "mmput_async"
+              "scale-net-alloc"
+              "slack"
             ]
         )
         ++ (kernel.patches.tachyon.common { })
@@ -157,7 +144,6 @@
           "0002-sched-migrate"
           "0003-futex-bump"
           "0107-bootstats-add-printk-s-to-measure-boot-time-in-more-"
-          "0111-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit"
           "0134-md-raid6-algorithms-scale-test-duration-for-speedier"
           "0135-initcall-only-print-non-zero-initcall-debug-to-speed"
           "kdf-boottime"
@@ -166,7 +152,6 @@
           "netscale"
           "scale"
           "tcptuning"
-          "mmput_async"
         ]
         ++ (kernel.patches.tachyon.common { })
       )

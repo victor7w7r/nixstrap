@@ -2,7 +2,7 @@
 {
   kernel.lib.package-gen =
     pkgs: host:
-    (kernel.hosts."${host}" pkgs host pkgs.stdenv.hostPlatform.isAarch64)
+    (kernel.hosts."${host}" pkgs host)
     |> (src: {
       packages = lib.mkAfter {
         "${host}-config" = src."${host}-config";

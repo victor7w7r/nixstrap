@@ -94,7 +94,6 @@
           ++ (pkgs.lib.optional isHardened "${src}/${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch")
           ++ (pkgs.lib.optionals isVanilla (
             map (patch: "${src}/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch") [
-              "0003-bbr3"
               "0004-cachy"
               "0005-crypto"
               "0006-fixes"
