@@ -43,16 +43,16 @@
           with pkgs;
           with self'.packages;
           [
-            adbtuifm
-            simple-mtpfs
             adb-shell
+            adbtuifm
+            adebar
             apkinspector
             app-manager
-            adebar
             better-adb-sync
             logcat-color3
-            zilch
             scrcpy-wrapper
+            simple-mtpfs
+            zilch
           ]
           ++ (lib.optionals isX86 [
             aya

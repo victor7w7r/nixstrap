@@ -1,10 +1,5 @@
 {
   flake-file.inputs = {
-    adb_shell = {
-      url = "github:JeffLIrion/adb_shell";
-      flake = false;
-    };
-
     adebar = {
       url = "https://codeberg.org/izzy/Adebar/archive/master.tar.gz";
       flake = false;
@@ -749,13 +744,6 @@
       url = "github:nthnd/tuime";
       flake = false;
     };
-
-    /*
-      udefrag = {
-       url = "http://jp-andre.pagesperso-orange.fr/ultradefrag-5.0.0AB.8.zip";
-       flake = false;
-       };
-    */
 
     updo = {
       url = "github:Owloops/updo";
