@@ -66,7 +66,7 @@
         speechd.enable = false;
         upower.enable = lib.mkDefault (isHandheld || isPhone || isSuperlab);
         ananicy = lib.optionalAttrs hasVisualKeyboard {
-          enable = true;
+          enable = false;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
           extraRules = [

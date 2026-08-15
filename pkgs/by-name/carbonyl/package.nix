@@ -25,7 +25,7 @@ pkgs.stdenvNoCC.mkDerivation {
     stdenv.cc.cc.lib
   ];
   installPhase = ''
-    mkdir -p $out/bin && cp $src/* $out/bin/
+    mkdir -p $out/bin && cp ./* $out/bin/
     chmod +x $out/bin/carbonyl
   '';
 }

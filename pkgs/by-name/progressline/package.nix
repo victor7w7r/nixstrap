@@ -14,11 +14,14 @@ pkgs.stdenvNoCC.mkDerivation {
         url = "https://github.com/kattouf/ProgressLine/releases/download/0.2.4/progressline-0.2.4-x86_64-unknown-linux-gnu.zip";
         sha256 = "sha256-dr+U9v9WtZGrJGoQbRF29MIM5CvRO1+jjNTUJschGdM=";
       };
+
   dontUnpack = true;
+
   installPhase = ''
     mkdir -p $out/bin $out/temp
-    cp -r $src/* $out/bin/
-    ls $out/bin/
+    unzip $src -d $out/temp
+    mv $out/temp/progressline $out/bin/
+    rm -rf $out/temp
     chmod +x $out/bin/progressline
   '';
 }

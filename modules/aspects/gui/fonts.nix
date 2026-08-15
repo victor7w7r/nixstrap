@@ -13,7 +13,7 @@
           nerd-fonts.noto
           nerd-fonts.ubuntu
           nerd-fonts.symbols-only
-          openmoji-color
+          #openmoji-color
           open-sans
         ]
         ++ lib.optionals (!isPersistent) [

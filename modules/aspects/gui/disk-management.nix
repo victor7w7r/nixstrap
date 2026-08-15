@@ -16,7 +16,7 @@
       {
         home.packages = with pkgs; [
           btrfs-assistant
-          ddrescueview
+          #ddrescueview
           gparted
           qdiskinfo
           snapper-gui

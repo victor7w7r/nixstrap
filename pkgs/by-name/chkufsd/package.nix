@@ -7,5 +7,5 @@ pkgs.stdenvNoCC.mkDerivation {
     sha256 = "sha256-lINfV2LeKf68voizc16v4XrbGZe2tIT2s5x6FEdqk2w=";
   };
   nativeBuildInputs = with pkgs; [ unzip ];
-  installPhase = ''mkdir -p $out/bin && install -Dm755 $src/* -t "$out/bin"'';
+  installPhase = ''mkdir -p $out/bin && install -Dm755 ./* -t "$out/bin"'';
 }
