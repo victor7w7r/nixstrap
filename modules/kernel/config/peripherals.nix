@@ -3,7 +3,13 @@
     denied = lib.mkMerge [
       {
         APPLICOM = no;
+        AX25 = no;
+        AX25_DAMA_SLAVE = no;
+        BLK_DEV_PMEM = no;
+        BPQETHER = no;
+        BTT = no;
         C2PORT = no;
+        CAIF = no;
         CAN = no;
         CHR_DEV_SCH = no;
         CXL_BUS = no;
@@ -17,13 +23,22 @@
         GPIB = no;
         GP_PCI1XXXX = no;
         GREYBUS = no;
+        HAMRADIO = no;
         HSI = no;
+        ISDN = no;
+        LIBNVDIMM = no;
         MCTP = no;
         MEDIA_PCI_SUPPORT = lib.mkForce no;
+        MKISS = no;
         MOST = no;
         MOXA_INTELLIO = no;
         MOXA_SMARTIO = no;
+        ND_BTT = no;
+        ND_CLAIM = no;
+        ND_PFN = no;
+        NETROM = no;
         NSM = no;
+
         PARPORT = no;
         PCCARD = no;
         PCI_MESON = no;
@@ -41,6 +56,7 @@
         RMI4_F30 = no;
         RMI4_F34 = no;
         RMI4_F3A = no;
+        ROSE = no;
         RPMB = no;
         STAGING_MEDIA = lib.mkForce no;
         XILINX_VCU = no;
@@ -188,11 +204,11 @@
       }
       {
         GPIO_74X164 = no;
-        GPIO_AGGREGATOR = no;
+        #GPIO_AGGREGATOR = no;
         GPIO_ALTERA = no;
         GPIO_AMD8111 = no;
         GPIO_AMDPT = no;
-        GPIO_AMD_FCH = no;
+        #GPIO_AMD_FCH = no;
         GPIO_CDEV_V1 = no;
         GPIO_DS4520 = no;
         GPIO_DWAPB = no;
@@ -343,7 +359,7 @@
         SPI_MXIC = no;
         SPI_OC_TINY = no;
         SPI_PCI1XXXX = no;
-        SPI_PXA2XX = no;
+        #SPI_PXA2XX = no;
         SPI_SC18IS602 = no;
         SPI_SIFIVE = no;
         SPI_SPIDEV = no;
@@ -495,6 +511,7 @@
         VIDEO_T4KA3 = no;
         VIDEO_TC358743 = no;
         VIDEO_TC358746 = no;
+        VIDEO_TDA1997X = no;
         VIDEO_TDA7432 = no;
         VIDEO_TDA9840 = no;
         VIDEO_TEA6415C = no;
@@ -515,6 +532,7 @@
         VIDEO_UDA1342 = no;
         VIDEO_UPD64031A = no;
         VIDEO_UPD64083 = no;
+        VIDEO_USBTV = no;
         VIDEO_VD55G1 = no;
         VIDEO_VD56G3 = no;
         VIDEO_VGXY61 = no;
@@ -524,8 +542,8 @@
         VIDEO_WM8775 = no;
       }
       {
+        #SSB = no;
         APPLE_MFI_FASTCHARGE = no;
-        SSB = no;
         TYPEC_ANX7411 = no;
         TYPEC_HD3SS3220 = no;
         TYPEC_MUX_FSA4480 = no;
@@ -666,7 +684,7 @@
         USB_TMC = no;
         USB_TRANCEVIBRATOR = no;
         USB_UHCI_HCD = no;
-        USB_ULPI_BUS = no;
+        #USB_ULPI_BUS = no;
         USB_USBIO = no;
         USB_VL600 = no;
         USB_XHCI_PCI_RENESAS = no;

@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.input = with lib.kernel; {
     apply =
       {
@@ -8,7 +8,7 @@
       lib.mkMerge [
         (include { })
         denied
-        (lib.optional isArm (denied-arm { }))
+        (lib.optionalAttrs isArm denied-arm)
       ];
 
     include = { }: {
@@ -75,7 +75,7 @@
         KEYBOARD_CYPRESS_SF = no;
         KEYBOARD_DLINK_DIR685 = no;
         KEYBOARD_GPIO = no;
-        KEYBOARD_GPIO_POLLED = no;
+        #KEYBOARD_GPIO_POLLED = no;
         KEYBOARD_LKKBD = no;
         KEYBOARD_LM8323 = no;
         KEYBOARD_LM8333 = no;
@@ -213,6 +213,7 @@
         INPUT_AD714X = no;
         INPUT_ADXL34X = no;
         INPUT_APANEL = no;
+        INPUT_ARIZONA_HAPTICS = no;
         INPUT_ATI_REMOTE2 = no;
         INPUT_ATLAS_BTNS = no;
         INPUT_AW86927 = no;
@@ -248,6 +249,12 @@
         INPUT_YEALINK = no;
         INTEL_ISH_HID = no;
         INTEL_THC_HID = no;
+        TABLET_USB_ACECAD = no;
+        TABLET_USB_AIPTEK = no;
+        TABLET_USB_HANWANG = no;
+        TABLET_USB_KBTAB = no;
+        TABLET_USB_PEGASUS = no;
+        TABLET_SERIAL_WACOM4 = no;
       }
     ];
 

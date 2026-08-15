@@ -15,7 +15,7 @@
           (intel { isDenied = !isIntel; })
           (rogally { isDenied = !isRogally; })
           denied
-          (lib.optional isArm (denied-arm { }))
+          (lib.optionalAttrs isArm (denied-arm { }))
         ];
 
       include = { }: {

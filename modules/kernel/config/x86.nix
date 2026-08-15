@@ -12,13 +12,9 @@
         with kernel.config.x86;
         lib.mkMerge [
           (include { })
-          (lib.optional isIntel (intel {
-            isDenied = !isIntel;
-          }))
-          (lib.optional isRogally (rogally {
-            isDenied = !isRogally;
-          }))
-          (lib.optional enable (denied { }))
+          (intel { isDenied = !isIntel; })
+          (rogally { isDenied = !isRogally; })
+          (lib.optionalAttrs enable (denied { }))
         ];
 
       include = { }: {

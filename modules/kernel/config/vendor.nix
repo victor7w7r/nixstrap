@@ -46,6 +46,7 @@
         DRM_XE = no;
         FB_3DFX = no;
         FB_ARC = no;
+        FB_ARK = no;
         FB_ATY = no;
         FB_ATY128 = no;
         FB_CARMINE = no;
@@ -56,6 +57,8 @@
         FB_I740 = no;
         FB_IBM_GXT4500 = no;
         FB_KYRO = no;
+        FB_MATROX = no;
+        FB_MATROX_I2C = no;
         FB_MB862XX = no;
         FB_METRONOME = no;
         FB_N411 = no;
@@ -67,12 +70,15 @@
         FB_RADEON = no;
         FB_RIVA = no;
         FB_S1D13XXX = no;
+        FB_S3 = no;
+        FB_S3_DDC = no;
         FB_SAVAGE = no;
         FB_SIS = no;
         FB_SM712 = no;
         FB_SM750 = no;
         FB_SMSCUFX = no;
         FB_SSD1307 = no;
+        FB_SVGALIB = no;
         FB_TFT = no;
         FB_TRIDENT = no;
         FB_UVESA = no;
@@ -80,6 +86,8 @@
         FB_VIA = no;
         FB_VIRTUAL = no;
         FB_VOODOO1 = no;
+        FB_VT8623 = no;
+        VGASTATE = no;
         SYSFB_SIMPLEFB = lib.mkForce no;
         TINYDRM_HX8357D = no;
         TINYDRM_ILI9163 = no;
@@ -100,13 +108,22 @@
         AQUANTIA_PHY = no;
         AS21XXX_PHY = no;
         AT803X_PHY = no;
+        B43 = no;
+        B44 = no;
+        B43LEGACY = no;
         BCM54140_PHY = no;
         BCM84881_PHY = no;
         BCM87XX_PHY = no;
+        BNGE = no;
+        BNXT = no;
+        BNXT_DCB = no;
+        BNXT_FLOWER_OFFLOAD = no;
+        BNXT_HWMON = no;
         BROADCOM_PHY = no;
         CICADA_PHY = no;
         CORTINA_PHY = no;
         DAVICOM_PHY = no;
+        DNET = no;
         DP83822_PHY = no;
         DP83848_PHY = no;
         DP83867_PHY = no;
@@ -143,6 +160,8 @@
         NATIONAL_PHY = no;
         NCN26000_PHY = no;
         NET_VENDOR_INTEL = no;
+        NET_VENDOR_NETERION = no;
+        NET_VENDOR_PACKET_ENGINES = no;
         NXP_C45_TJA11XX_PHY = no;
         NXP_CBTX_PHY = no;
         NXP_TJA11XX_PHY = no;
@@ -152,12 +171,14 @@
         REALTEK_PHY_HWMON = no;
         RENESAS_PHY = no;
         RTASE = no;
+        S2IO = no;
         SFP = no;
         STE10XP = no;
         TERANETICS_PHY = no;
         VITESSE_PHY = no;
         VMD = no;
         XILINX_GMII2RGMII = no;
+        YELLOWFIN = no;
       }
       {
         USB_NET_CH9200 = no;
@@ -217,6 +238,7 @@
       {
         NET_VENDOR_3COM = no;
         NET_VENDOR_ADAPTEC = no;
+        NET_VENDOR_ALTEON = no;
         NET_VENDOR_ADI = no;
         NET_VENDOR_AGERE = no;
         NET_VENDOR_ALACRITECH = no;

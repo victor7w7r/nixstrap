@@ -12,9 +12,9 @@
         with kernel.config.disks;
         lib.mkMerge [
           (include { })
-          (lib.optional hasMmc (mmc { }))
-          (lib.optional hasRaid (raid { }))
-          (lib.optional isArm (denied-arm { }))
+          (lib.optionalAttrs hasMmc (mmc { }))
+          (lib.optionalAttrs hasRaid (raid { }))
+          (lib.optionalAttrs isArm (denied-arm { }))
           denied
         ];
 

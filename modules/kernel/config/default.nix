@@ -53,6 +53,7 @@
           (x86.apply { isRogally = true; })
           {
             CDROM = no;
+            NET_VENDOR_BROADCOM = no;
             MD = lib.mkForce no;
             R8169 = no;
             SND_USB_AUDIO = module;
@@ -74,6 +75,7 @@
           {
             CDROM = no;
             DW_DMAC = yes;
+            NET_VENDOR_BROADCOM = no;
             R8169 = yes;
             STAGING = lib.mkForce no;
             UDF_FS = lib.mkForce no;

@@ -6,7 +6,7 @@
     pkgs: host:
     (kernel.lib.linux {
       inherit pkgs host;
-      structuredExtraConfig = kernel.config.default.main-generic;
+      structuredExtraConfig = kernel.config.default.main;
       localVer = "native";
       patches =
         with kernel.patches.injector pkgs;
