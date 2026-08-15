@@ -60,8 +60,8 @@
       pkgs:
       (pkgs.runCommand "rk3588-patcher" { } ''
         mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
-        sed -i 's/goto \*__drm_exec_retry_ptr;/goto __drm_exec_retry;/' include/drm/drm_exec.h
-        sed -i 's/for (void \*__drm_exec_retry_ptr;/for (;/g' include/drm/drm_exec.h
+        sed -i 's/goto \*__drm_exec_retry_ptr;/goto __drm_exec_retry;/' $out/include/drm/drm_exec.h
+        sed -i 's/for (void \*__drm_exec_retry_ptr;/for (;/g' $out/include/drm/drm_exec.h
       '');
   };
 }
