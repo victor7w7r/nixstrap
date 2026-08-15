@@ -132,7 +132,7 @@
             "misc/gcc-lto/0002-gcc-lto-no-pie"
             "misc/0001-bore-tuning-sysctl"
             "misc/0001-mm-add-zblock-new-allocator-for-use-via-zpool-API"
-            "misc/0001-mm-introduce-THP-Shrinker"
+            #"misc/0001-mm-introduce-THP-Shrinker"
           ]
        );
     };
