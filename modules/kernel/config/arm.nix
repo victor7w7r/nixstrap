@@ -52,6 +52,7 @@
       KEYBOARD_MCS = no;
       KEYBOARD_TCA6416 = no;
       LTE = no;
+      LT7911D_FB_NOTIFIER = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
       MEDIA_TUNER_FC0012 = no;
