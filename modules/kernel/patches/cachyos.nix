@@ -124,7 +124,6 @@
             patch: "${src}/${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
           )
           [
-            "0001-bbr2"
             "0002-cachy"
             "0003-clr"
             "0004-ksm"
