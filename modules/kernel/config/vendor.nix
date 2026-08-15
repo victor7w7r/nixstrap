@@ -411,7 +411,7 @@
       }
     ];
 
-    denied-arm = { }: [
+    denied-arm = { }:
       {
         DRM_ANALOGIX_ANX6345 = no;
         DRM_ANALOGIX_ANX7625 = no;
@@ -577,7 +577,6 @@
         DRM_ARCPGU = no;
         DRM_TYR = no;
         DRM_VMWGFX = no;
-      }
-    ];
+      };
   };
 }

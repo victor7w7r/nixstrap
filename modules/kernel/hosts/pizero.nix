@@ -30,7 +30,7 @@
           kernel.lib.dts-cleaner {
             inherit pkgs src;
             class = "allwinner";
-            dtbMake = "dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb";
+            dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
           }
         );
     });

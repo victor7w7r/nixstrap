@@ -112,7 +112,6 @@
           MT7921U = setupDenial isDenied module;
           MT7925E = setupDenial isDenied module;
           MT7925U = setupDenial isDenied module;
-          NET_VENDOR_AMD = setupDenial isDenied yes;
           PERF_EVENTS_AMD_BRS = lib.mkForce (setupDenial isDenied yes);
           PERF_EVENTS_AMD_POWER = setupDenial isDenied module;
           PERF_EVENTS_AMD_UNCORE = setupDenial isDenied module;

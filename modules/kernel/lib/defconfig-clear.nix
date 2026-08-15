@@ -48,7 +48,6 @@
       # sed -i '/^CONFIG_MEMSTICK_/d' config
       # sed -i '/^CONFIG_MFD_/d' config
       # sed -i '/^CONFIG_MMC_/d' config
-      # sed -i '/^CONFIG_NET_/d' config
       # sed -i '/^CONFIG_PTP_1588_CLOCK/d' config
       # sed -i '/^CONFIG_REGULATOR/d' config
       # sed -i '/^CONFIG_SYSTEM/d' config

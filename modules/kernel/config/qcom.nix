@@ -97,7 +97,7 @@
         QCOM_WCNSS_CTRL = yes;
         QFMT_V2 = yes;
         SCSI_SCAN_ASYNC = yes;
-        SCSI_UFS_QCOM = yes;
+        SCSI_UFS_QCOM = module;
         TYPEC = lib.mkForce yes;
         USB_DWC3_ULPI = yes;
       })
@@ -400,8 +400,8 @@
         SND_SOC_SC8280XP = no;
         SND_SOC_SM8250 = no;
         SND_SOC_SOF_OF = no;
-        SND_SOC_SOF_PCI = no;
-        SND_SOC_SOF_TOPLEVEL = no;
+        SND_SOC_SOF_PCI = lib.mkForce no;
+        SND_SOC_SOF_TOPLEVEL = lib.mkForce no;
         SND_SOC_STORM = no;
         SND_SOC_TAS2557 = no;
         SND_SOC_TAS2559 = no;

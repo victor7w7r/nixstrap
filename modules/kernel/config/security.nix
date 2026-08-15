@@ -54,9 +54,6 @@
         CRYPTO_ECRDSA = no;
         CRYPTO_FCRYPT = no;
         CRYPTO_HCTR2 = no;
-        CRYPTO_LZ4 = no;
-        CRYPTO_LZ4HC = no;
-        CRYPTO_LZO = no;
         CRYPTO_MD4 = no;
         CRYPTO_NULL = no;
         CRYPTO_PCBC = no;

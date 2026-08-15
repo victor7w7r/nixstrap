@@ -26,7 +26,6 @@
         HAMRADIO = no;
         HSI = no;
         ISDN = no;
-        LIBNVDIMM = no;
         MCTP = no;
         MEDIA_PCI_SUPPORT = lib.mkForce no;
         MKISS = no;
@@ -706,7 +705,6 @@
         IMX_SCMI_BBM_EXT = no;
         MAILBOX_TEST = no;
         MCHP_LAN966X_PCI = no;
-        MDIO_BCM_UNIMAC = no;
         MDIO_CAVIUM = no;
         MDIO_HISI_FEMAC = no;
         MDIO_IPQ4019 = no;
