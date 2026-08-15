@@ -17,7 +17,8 @@
   };
 
   kernel.patches = {
-    rockchip = { }:
+    rockchip =
+      { }:
       map
         (
           patch:
@@ -53,6 +54,14 @@
         cp -R "${inputs.uwe5622}''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} "$out/drivers/net/wireless/uwe5622"
         echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> $out/drivers/net/wireless/Makefile
         sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' "$out/drivers/net/wireless/Kconfig"
+      '');
+
+    rk3588 =
+      pkgs:
+      (pkgs.runCommand "rk3588-patcher" { } ''
+        mkdir -p $out && cp -r ${inputs.rockchip}/* $out/ && chmod -R +w $out
+        sed -i 's/goto \*__drm_exec_retry_ptr;/goto __drm_exec_retry;/' include/drm/drm_exec.h
+        sed -i 's/for (void \*__drm_exec_retry_ptr;/for (;/g' include/drm/drm_exec.h
       '');
   };
 }

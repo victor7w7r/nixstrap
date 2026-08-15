@@ -95,6 +95,7 @@
       ROCKCHIP_MINIDUMP = no;
       ROCKCHIP_RAM_VENDOR_STORAGE = no;
       RTC_DRV_HYM8563 = yes;
+      RTC_DRV_RK630 = no;
       SENSORS_PWM_FAN = yes;
       SND_SOC_ES8316 = module;
       STMMAC_UIO = no;
@@ -225,6 +226,7 @@
       VIDEO_RK628 = no;
       VIDEO_RK628_BT1120 = no;
       VIDEO_RK628_CSI = no;
+      VIDEO_ROCKCHIP_PREISP = no;
       VIDEO_S5K3L6XX = no;
       VIDEO_S5K3L8XX = no;
       VIDEO_S5K4ECGX = no;
@@ -383,7 +385,7 @@
       FUJITSU_ERRATUM_010001 = no;
       HID_ASUS = no;
       HID_LOGITECH = no;
-      HID_PLAYSTATION= no;
+      HID_PLAYSTATION = no;
       HISILICON_ERRATUM_161600802 = no;
       HISILICON_ERRATUM_162100801 = no;
       HISI_PCIE_PMU = no;
