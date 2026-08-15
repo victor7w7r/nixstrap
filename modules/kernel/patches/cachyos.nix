@@ -89,7 +89,6 @@
             "misc/0001-clang-polly"
             "misc/dkms-clang"
             "misc/nap-governor"
-            "misc/reflex-governor"
           ]
           ++ (pkgs.lib.optional isHardened "${src}/${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch")
           ++ (pkgs.lib.optionals isVanilla (
