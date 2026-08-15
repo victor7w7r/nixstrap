@@ -87,6 +87,7 @@
       MEDIA_TUNER_TUA9001 = no;
       MEDIA_TUNER_XC2028 = no;
       REISERFS_FS = no;
+      ROCKCHIP_MINIDUMP = no;
       RTC_DRV_HYM8563 = yes;
       SENSORS_PWM_FAN = yes;
       SND_SOC_ES8316 = module;
