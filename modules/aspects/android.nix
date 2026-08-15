@@ -43,7 +43,7 @@
           with pkgs;
           with self'.packages;
           [
-            adb-shell
+            #adb-shell
             adbtuifm
             adebar
             apkinspector

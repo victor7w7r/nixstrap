@@ -115,7 +115,7 @@
                   "xhci_pci"
                 ];
                 initrd.systemd.tpm2.enable = false;
-                kernelPackages = (kernel.hosts.pizero pkgs false).pizero-kernelPackages;
+                kernelPackages = (kernel.hosts.pizero pkgs "pizero").pizero-kernelPackages;
                 loader = {
                   grub.enable = false;
                   generic-extlinux-compatible.enable = true;

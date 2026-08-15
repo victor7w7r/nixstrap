@@ -24,7 +24,6 @@
 
   kernel.patches.tachyon = {
     common = { }: [
-      "0113-print-fsync-count-for-bootchart"
       "0114-add-boot-option-to-allow-unsigned-modules"
       "0115-enable-stateless-firmware-loading"
       "0125-nvme-workaround"
@@ -37,6 +36,7 @@
       "0102-increase-the-ext4-default-commit-age"
       "0108-smpboot-reuse-timer-calibration"
       "0112-init-wait-for-partition-and-retry-scan"
+      "0113-print-fsync-count-for-bootchart"
       "0116-migrate-some-systemd-defaults-to-the-kernel-defaults"
       "0126-don-t-report-an-error-if-PowerClamp-run-on-other-CPU"
       "0127-lib-raid6-add-patch"
@@ -143,8 +143,6 @@
           "0002-sched-core-add-some-branch-hints-based-on-gcov-analy"
           "0002-sched-migrate"
           "0003-futex-bump"
-          "0107-bootstats-add-printk-s-to-measure-boot-time-in-more-"
-          "0134-md-raid6-algorithms-scale-test-duration-for-speedier"
           "0135-initcall-only-print-non-zero-initcall-debug-to-speed"
           "kdf-boottime"
           "kvm-printk"
