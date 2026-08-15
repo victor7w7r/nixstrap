@@ -47,6 +47,7 @@
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = yes;
       ARCH_SUNXI = no;
+      DMABUF_HEAPS_SRAM = no;
       INPUT_RK805_PWRKEY = yes;
       KEYBOARD_ADP5589 = no;
       KEYBOARD_MCS = no;
