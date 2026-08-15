@@ -1,5 +1,11 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.filesystems = with lib.kernel; {
+    apply =
+      with kernel.config.filesystems;
+      lib.mkMerge [
+        (include { })
+        denied
+      ];
 
     include = { }: {
       BTRFS_FS = yes;
@@ -36,6 +42,7 @@
         MAC_PARTITION = no;
         MINIX_FS = no;
         MINIX_SUBPARTITION = no;
+        NETFS_DEBUG = no;
         NILFS2_FS = no;
         NTFS_FS = no;
         OCFS2_FS = no;
@@ -56,7 +63,6 @@
         XZ_DEC_SPARC = no;
         ZONEFS_FS = no;
         ZRAM_BACKEND_842 = lib.mkForce no;
-        NETFS_DEBUG = no;
       }
     ];
   };

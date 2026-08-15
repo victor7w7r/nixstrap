@@ -1,138 +1,78 @@
 { kernel, lib, ... }: {
-  kernel.config.sound = with lib.kernel; {
+  kernel.config.sound =
+    with lib.kernel;
+    with kernel.config.utils;
+    {
+      apply =
+        {
+          isArm ? false,
+          isIntel ? false,
+          isRogally ? false,
+        }:
+        with kernel.config.sound;
+        lib.mkMerge [
+          (include { })
+          (intel { isDenied = !isIntel; })
+          (rogally { isDenied = !isRogally; })
+          denied
+          (lib.optional isArm (denied-arm { }))
+        ];
 
-    include = { }: {
-      SND_SOC_SOF_TOPLEVEL = yes;
-      SND_SOC_SOF = module;
-      SND_SOC_SOF_PCI = module;
-      SND_SOC_SOF_INTEL_TOPLEVEL = yes;
-      SND_SOC_SOF_INTEL_COMMON = module;
-      SND_SOC_SOF_HDA_COMMON = module;
-      SND_SOC_SOF_HDA = module;
-      SND_SOC_SOF_COFFEELAKE= module;
-    };
-
-    rogally =
-      with kernel.config.utils;
-      {
-        isDenied ? false,
-      }:
-      {
-        SOUNDWIRE_AMD = setupDenial isDenied module;
-        SND_AMD_ACP_CONFIG = setupDenial isDenied module;
-        SND_AMD_ASOC_ACP63 = setupDenial isDenied module;
-        SND_HDA_SCODEC_CS35L41_I2C = setupDenial isDenied module;
-        SND_HDA_SCODEC_CS35L41_SPI = setupDenial isDenied module;
-        SND_SOC_AMD_ACP3x = setupDenial isDenied module;
-        SND_SOC_AMD_ACP5x = setupDenial isDenied module;
-        SND_SOC_AMD_ACP63_TOPLEVEL = setupDenial isDenied module;
-        SND_SOC_AMD_SOUNDCARD = setupDenial isDenied module;
-        SND_SOC_AMD_ACP_COMMON = setupDenial isDenied module;
-        SND_SOC_AMD_ACP6x = setupDenial isDenied module;
-        SND_SOC_AMD_ACP_PCI = setupDenial isDenied module;
-        SND_SOC_AMD_MACH = setupDenial isDenied module;
-        SND_SOC_AMD_PS = setupDenial isDenied module;
-        SND_SOC_AMD_PS_MACH = setupDenial isDenied module;
-        SND_SOC_AMD_RENOIR = setupDenial isDenied module;
-        SND_SOC_AMD_SOUNDWIRE = setupDenial isDenied module;
-        SND_SOC_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
-        SND_SOC_AMD_VANGOGH_MACH = setupDenial isDenied module;
-        SND_SOC_CS35L41_I2C = setupDenial isDenied module;
-        SND_SOC_CS35L41_SPI = setupDenial isDenied module;
-
-        SND_SOC_MAX98388 = setupDenial isDenied module;
-        SND_SOC_NAU8821 = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_ACP63 = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_ACP70 = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_REMBRANDT = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_TOPLEVEL = setupDenial isDenied module;
-        SND_SOC_SOF_AMD_VANGOGH = setupDenial isDenied module;
+      include = { }: {
+        SND_SOC_SOF = module;
+        SND_SOC_SOF_HDA = module;
+        SND_SOC_SOF_HDA_COMMON = module;
+        SND_SOC_SOF_PCI = module;
+        SND_SOC_SOF_TOPLEVEL = yes;
       };
 
-    denied-arm = { }: {
-      SND_SE6X = no;
-      SND_SOC_MIKROE_PROTO = no;
-      SND_SOC_FSL_RPMSG = no;
-      SND_TEST_COMPONENT = no;
-      SND_VIRTIO = no;
-      SND_SOC_SDCA_OPTIONAL = no;
-      SND_SOC_SOF_MTK_TOPLEVEL = no;
-      SND_SOC_AW88395_LIB = no;
-      SND_SOC_AW87391 = no;
-      SND_SOC_AW88399 = no;
-      SND_SOC_BT_SCO = no;
-      SND_SOC_CS530X = no;
-      SND_SOC_CS530X_SPI = no;
-      SND_SOC_DA7219 = no;
-      SND_SOC_ES8328 = no;
-      SND_SOC_ES8328_I2C = no;
-      SND_SOC_ES8328_SPI = no;
-      SND_SOC_INNO_RK3036 = no;
-      SND_SOC_ROCKCHIP_MAX98090 = no;
-      SND_SOC_ROCKCHIP_RT5645 = no;
-      SND_SOC_RK3288_HDMI_ANALOG = no;
-      SND_SOC_RK3399_GRU_SOUND = no;
-      SND_SOC_MAX98090 = no;
-      SND_SOC_MAX98357A = no;
-      SND_SOC_MAX98373 = no;
-      SND_SOC_MAX98373_I2C = no;
-      SND_SOC_MAX98373_SDW = no;
-      SND_SOC_MAX98390 = no;
-      SND_SOC_RL6231 = no;
-      SND_SOC_RT1316_SDW = no;
-      SND_SOC_RT5514 = no;
-      SND_SOC_RT5514_SPI = no;
-      SND_SOC_RT5575 = no;
-      SND_SOC_RT5645 = no;
-      SND_SOC_RT5651 = no;
-      SND_SOC_RT711 = no;
-      SND_SOC_RT711_SDW = no;
-      SND_SOC_RT711_SDCA_SDW = no;
-      SND_SOC_RT722_SDCA_SDW = no;
-      SND_SOC_RT715 = no;
-      SND_SOC_RT715_SDW = no;
-      SND_SOC_RT715_SDCA_SDW = no;
-      SND_SOC_SDW_MOCKUP = no;
-      SND_SOC_SSM3515 = no;
-      SND_SOC_TS3A227E = no;
-      SND_SOC_WM8731 = no;
-    };
-
-    denied =
-      with lib.kernel;
-      lib.mkMerge [
-        #CODECS
+      intel =
         {
-          SND_HDA_CODEC_ALC260 = no;
-          SND_HDA_CODEC_ALC262 = no;
-          SND_HDA_CODEC_ALC268 = no;
-          SND_HDA_CODEC_ALC662 = no;
-          SND_HDA_CODEC_ALC680 = no;
-          SND_HDA_CODEC_ALC861 = no;
-          SND_HDA_CODEC_ALC861VD = no;
-          SND_HDA_CODEC_ALC880 = no;
-          SND_HDA_CODEC_ALC882 = no;
-          SND_HDA_CODEC_ANALOG = no;
-          SND_HDA_CODEC_CA0110 = no;
-          SND_HDA_CODEC_CA0132 = no;
-          SND_HDA_CODEC_CM9825 = no;
-          SND_HDA_CODEC_CMEDIA = no;
-          SND_HDA_CODEC_CONEXANT = no;
-          SND_HDA_CODEC_HDMI_NVIDIA = no;
-          SND_HDA_CODEC_HDMI_ATI = no;
-          SND_HDA_CODEC_HDMI_NVIDIA_MCP = no;
-          SND_HDA_CODEC_HDMI_TEGRA = no;
-          SND_HDA_CODEC_SENARYTECH = no;
-          SND_HDA_CODEC_SI3054 = no;
-          SND_HDA_CODEC_SIGMATEL = no;
-          SND_HDA_CODEC_VIA = no;
-          SND_HDA_SCODEC_CS35L56_I2C = no;
-          SND_HDA_SCODEC_CS35L56_SPI = no;
-          SND_HDA_SCODEC_TAS2781_I2C = no;
-          SND_HDA_SCODEC_TAS2781_SPI = no;
-        }
-        #GENERAL
+          isDenied ? false,
+        }:
+        {
+          SND_SOC_SOF_INTEL_TOPLEVEL = setupDenial isDenied yes;
+          SND_SOC_SOF_INTEL_COMMON = setupDenial isDenied module;
+          SND_SOC_SOF_COFFEELAKE = setupDenial isDenied module;
+        };
+
+      rogally =
+        {
+          isDenied ? false,
+        }:
+        {
+          SND_AMD_ACP_CONFIG = setupDenial isDenied module;
+          SND_AMD_ASOC_ACP63 = setupDenial isDenied module;
+          SND_HDA_SCODEC_CS35L41_I2C = setupDenial isDenied module;
+          SND_HDA_SCODEC_CS35L41_SPI = setupDenial isDenied module;
+          SND_SOC_AMD_ACP3x = setupDenial isDenied module;
+          SND_SOC_AMD_ACP5x = setupDenial isDenied module;
+          SND_SOC_AMD_ACP63_TOPLEVEL = setupDenial isDenied module;
+          SND_SOC_AMD_ACP6x = setupDenial isDenied module;
+          SND_SOC_AMD_ACP_COMMON = setupDenial isDenied module;
+          SND_SOC_AMD_ACP_PCI = setupDenial isDenied module;
+          SND_SOC_AMD_MACH = setupDenial isDenied module;
+          SND_SOC_AMD_PS = setupDenial isDenied module;
+          SND_SOC_AMD_PS_MACH = setupDenial isDenied module;
+          SND_SOC_AMD_RENOIR = setupDenial isDenied module;
+          SND_SOC_AMD_SOUNDCARD = setupDenial isDenied module;
+          SND_SOC_AMD_SOUNDWIRE = setupDenial isDenied module;
+          SND_SOC_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
+          SND_SOC_AMD_VANGOGH_MACH = setupDenial isDenied module;
+          SND_SOC_CS35L41_I2C = setupDenial isDenied module;
+          SND_SOC_CS35L41_SPI = setupDenial isDenied module;
+          SND_SOC_MAX98388 = setupDenial isDenied module;
+          SND_SOC_NAU8821 = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_ACP63 = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_ACP70 = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_REMBRANDT = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_SOUNDWIRE_LINK_BASELINE = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_TOPLEVEL = setupDenial isDenied module;
+          SND_SOC_SOF_AMD_VANGOGH = setupDenial isDenied module;
+          SOUNDWIRE_AMD = setupDenial isDenied module;
+        };
+
+      denied = lib.mkMerge [
         {
           SND_AD1889 = no;
           SND_ALOOP = no;
@@ -220,7 +160,35 @@
           SND_VX222 = no;
           SND_YMFPCI = no;
         }
-        #SOC
+        {
+          SND_HDA_CODEC_ALC260 = no;
+          SND_HDA_CODEC_ALC262 = no;
+          SND_HDA_CODEC_ALC268 = no;
+          SND_HDA_CODEC_ALC662 = no;
+          SND_HDA_CODEC_ALC680 = no;
+          SND_HDA_CODEC_ALC861 = no;
+          SND_HDA_CODEC_ALC861VD = no;
+          SND_HDA_CODEC_ALC880 = no;
+          SND_HDA_CODEC_ALC882 = no;
+          SND_HDA_CODEC_ANALOG = no;
+          SND_HDA_CODEC_CA0110 = no;
+          SND_HDA_CODEC_CA0132 = no;
+          SND_HDA_CODEC_CM9825 = no;
+          SND_HDA_CODEC_CMEDIA = no;
+          SND_HDA_CODEC_CONEXANT = no;
+          SND_HDA_CODEC_HDMI_ATI = no;
+          SND_HDA_CODEC_HDMI_NVIDIA = no;
+          SND_HDA_CODEC_HDMI_NVIDIA_MCP = no;
+          SND_HDA_CODEC_HDMI_TEGRA = no;
+          SND_HDA_CODEC_SENARYTECH = no;
+          SND_HDA_CODEC_SI3054 = no;
+          SND_HDA_CODEC_SIGMATEL = no;
+          SND_HDA_CODEC_VIA = no;
+          SND_HDA_SCODEC_CS35L56_I2C = no;
+          SND_HDA_SCODEC_CS35L56_SPI = no;
+          SND_HDA_SCODEC_TAS2781_I2C = no;
+          SND_HDA_SCODEC_TAS2781_SPI = no;
+        }
         {
           SND_SOC_AC97_CODEC = no;
           SND_SOC_ADAU1372_I2C = no;
@@ -523,5 +491,54 @@
           SND_SOC_ZL38060 = no;
         }
       ];
-  };
+
+      denied-arm = { }: {
+        SND_SE6X = no;
+        SND_SOC_AW87391 = no;
+        SND_SOC_AW88395_LIB = no;
+        SND_SOC_AW88399 = no;
+        SND_SOC_BT_SCO = no;
+        SND_SOC_CS530X = no;
+        SND_SOC_CS530X_SPI = no;
+        SND_SOC_DA7219 = no;
+        SND_SOC_ES8328 = no;
+        SND_SOC_ES8328_I2C = no;
+        SND_SOC_ES8328_SPI = no;
+        SND_SOC_FSL_RPMSG = no;
+        SND_SOC_INNO_RK3036 = no;
+        SND_SOC_MAX98090 = no;
+        SND_SOC_MAX98357A = no;
+        SND_SOC_MAX98373 = no;
+        SND_SOC_MAX98373_I2C = no;
+        SND_SOC_MAX98373_SDW = no;
+        SND_SOC_MAX98390 = no;
+        SND_SOC_MIKROE_PROTO = no;
+        SND_SOC_RK3288_HDMI_ANALOG = no;
+        SND_SOC_RK3399_GRU_SOUND = no;
+        SND_SOC_RL6231 = no;
+        SND_SOC_ROCKCHIP_MAX98090 = no;
+        SND_SOC_ROCKCHIP_RT5645 = no;
+        SND_SOC_RT1316_SDW = no;
+        SND_SOC_RT5514 = no;
+        SND_SOC_RT5514_SPI = no;
+        SND_SOC_RT5575 = no;
+        SND_SOC_RT5645 = no;
+        SND_SOC_RT5651 = no;
+        SND_SOC_RT711 = no;
+        SND_SOC_RT711_SDCA_SDW = no;
+        SND_SOC_RT711_SDW = no;
+        SND_SOC_RT715 = no;
+        SND_SOC_RT715_SDCA_SDW = no;
+        SND_SOC_RT715_SDW = no;
+        SND_SOC_RT722_SDCA_SDW = no;
+        SND_SOC_SDCA_OPTIONAL = no;
+        SND_SOC_SDW_MOCKUP = no;
+        SND_SOC_SOF_MTK_TOPLEVEL = no;
+        SND_SOC_SSM3515 = no;
+        SND_SOC_TS3A227E = no;
+        SND_SOC_WM8731 = no;
+        SND_TEST_COMPONENT = no;
+        SND_VIRTIO = no;
+      };
+    };
 }

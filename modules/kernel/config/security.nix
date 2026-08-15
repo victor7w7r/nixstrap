@@ -1,5 +1,12 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.security = with lib.kernel; {
+    apply =
+      with kernel.config.security;
+      lib.mkMerge [
+        (include { })
+        denied
+      ];
+
     include = { }: {
       LEGACY_VSYSCALL_NONE = yes;
       MAGIC_SYSRQ_DEFAULT_ENABLE = freeform "0x84";
@@ -9,12 +16,8 @@
     };
 
     denied = lib.mkMerge [
-      #CRYPTO
       {
         CRYPTO_842 = no;
-        CRYPTO_CAMELLIA_X86_64 = no;
-        CRYPTO_CAMELLIA_AESNI_AVX_X86_64 = no;
-        CRYPTO_CAMELLIA_AESNI_AVX2_X86_64 = no;
         CRYPTO_ADIANTUM = no;
         CRYPTO_AEGIS128 = no;
         CRYPTO_AEGIS128_AESNI_SSE2 = no;
@@ -24,6 +27,9 @@
         CRYPTO_ARIA_GFNI_AVX512_X86_64 = no;
         CRYPTO_BENCHMARK = no;
         CRYPTO_BLOWFISH_X86_64 = no;
+        CRYPTO_CAMELLIA_AESNI_AVX2_X86_64 = no;
+        CRYPTO_CAMELLIA_AESNI_AVX_X86_64 = no;
+        CRYPTO_CAMELLIA_X86_64 = no;
         CRYPTO_CAST5 = no;
         CRYPTO_CAST5_AVX_X86_64 = no;
         CRYPTO_CAST6 = no;
@@ -50,6 +56,7 @@
         CRYPTO_HCTR2 = no;
         CRYPTO_LZ4 = no;
         CRYPTO_LZ4HC = no;
+        CRYPTO_LZO = no;
         CRYPTO_MD4 = no;
         CRYPTO_NULL = no;
         CRYPTO_PCBC = no;
@@ -70,12 +77,14 @@
         CRYPTO_WP512 = no;
         CRYPTO_XCBC = no;
       }
-      #SECURITY
       {
         FIPS_SIGNATURE_SELFTEST = no;
         PKCS7_TEST_KEY = no;
         PKCS8_PRIVATE_KEY_PARSER = no;
+        SECURITY_IPE = no;
+        SECURITY_LOADPIN = no;
         SECURITY_SELINUX = no;
+        SECURITY_SMACK = no;
         SECURITY_TOMOYO = no;
         TCG_ATMEL = no;
         TCG_INFINEON = no;

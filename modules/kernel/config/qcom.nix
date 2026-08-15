@@ -17,8 +17,8 @@
         CRYPTO_USER_API_AEAD = setupDenial isDenied yes;
         DEFAULT_WESTWOOD = setupDenial isDenied yes;
         DRM_GUD = setupDenial isDenied module;
-        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied module; # as module
-        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied module; # as module
+        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied module;
+        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied module;
         HID_RMI = setupDenial isDenied module;
         INPUT_JOYDEV = setupDenial isDenied module;
         NETLINK_DIAG = setupDenial isDenied module;
@@ -36,7 +36,6 @@
         TCP_CONG_HTCP = lib.mkForce (setupDenial isDenied module);
         TCP_CONG_WESTWOOD = lib.mkForce (setupDenial isDenied yes);
       }
-      #COMMON
       (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;
         BLK_DEV_RAM_COUNT = freeform "16";
@@ -53,7 +52,6 @@
         USB_F_HID = module;
         U_SERIAL_CONSOLE = yes;
       })
-      #SOC
       (lib.optionalAttrs (!isDenied) {
         BATTERY_PMI8998_FG = module;
         BT_BNEP_MC_FILTER = yes;
@@ -103,7 +101,6 @@
         TYPEC = lib.mkForce yes;
         USB_DWC3_ULPI = yes;
       })
-      #MEDIA
       (lib.optionalAttrs (!isDenied) {
         SND_HWDEP = module;
         SND_SOC_QDSP6_Q6VOICE = module;
@@ -115,7 +112,6 @@
         VIDEO_IMX519 = module;
         VIDEO_LC898217XC = module;
       })
-      #CLEANUP
       (lib.optionalAttrs (!isDenied) {
         AHCI_CEVA = no;
         AHCI_MVEBU = no;

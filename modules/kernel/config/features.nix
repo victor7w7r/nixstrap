@@ -1,0 +1,157 @@
+{ kernel, lib, ... }: {
+  kernel.config.features = with lib.kernel; {
+    apply =
+      with kernel.config.features;
+      lib.mkMerge [
+        (include { })
+        denied
+      ];
+
+    include = { }: {
+      ANDROID_BINDERFS = yes;
+      ANDROID_BINDER_IPC = yes;
+      BCACHE = yes;
+      BINFMT_MISC = yes;
+      BINFMT_SCRIPT = yes;
+      CC_OPTIMIZE_FOR_PERFORMANCE = no;
+      CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
+      EXPERT = yes;
+      KVM = yes;
+      LSM = freeform "landlock,lockdown,yama,integrity,apparmor,bpf";
+      LTO_CLANG_THIN = yes;
+      NO_HZ = yes;
+      NO_HZ_COMMON = yes;
+      PCIE_BUS_PERFORMANCE = yes;
+      STAGING = yes;
+      TRANSPARENT_HUGEPAGE_MADVISE = yes;
+    };
+
+    denied = lib.mkMerge [
+      {
+        ACCESSIBILITY = lib.mkForce no;
+        BIG_KEYS = no;
+        BSD_PROCESS_ACCT = no;
+        CGROUP_DMEM = no;
+        CGROUP_RDMA = no;
+        EFI_BOOTLOADER_CONTROL = no;
+        EFI_CUSTOM_SSDT_OVERLAYS = no;
+        EFI_RCI2_TABLE = no;
+        HIST_TRIGGERS = no;
+        HYPERVISOR_GUEST = lib.mkForce no;
+        HZ_PERIODIC = no;
+        KALLSYMS_ALL = no;
+        KEXEC = no;
+        KVM_XEN = no;
+        LOCALVERSION_AUTO = no;
+        LTO_CLANG_FULL = no;
+        LTO_NONE = no;
+        MAXSMP = no;
+        MODULE_FORCE_LOAD = no;
+        MODULE_FORCE_UNLOAD = no;
+        NULL_TTY = no;
+        NUMA = lib.mkForce no;
+        PREEMPT_LAZY = lib.mkForce no;
+        PROC_MEM_ALWAYS_FORCE = no;
+        PVPANIC = no;
+        STRICT_DEVMEM = no;
+        SYNTH_EVENTS = no;
+        SYSTEM_BLACKLIST_KEYRING = no;
+        TASK_DELAY_ACCT = no;
+        TASK_XACCT = no;
+        TRANSPARENT_HUGEPAGE_ALWAYS = no;
+        UACCE = no;
+        VBOXGUEST = no;
+        VDPA = no;
+        VMWARE_PVSCSI = no;
+        VMWARE_VMCI = no;
+        VMXNET3 = no;
+        WATCHDOG = no;
+        ZONE_DMA = no;
+      }
+      {
+        ACPI_DEBUG = lib.mkForce no;
+        BLK_DEV_IO_TRACE = no;
+        BOOTTIME_TRACING = no;
+        BOOT_PRINTK_DELAY = no;
+        CHECK_SIGNATURE = no;
+        CMA_DEBUGFS = no;
+        DEBUG_BOOT_PARAMS = no;
+        DEBUG_BUGVERBOSE_DETAILED = no;
+        DEBUG_ENTRY = no;
+        DEBUG_INFO_DWARF5 = no;
+        DEBUG_MEMORY_INIT = no;
+        DEBUG_MISC = no;
+        DEBUG_PREEMPT = no;
+        DEBUG_RODATA_TEST = no;
+        DEBUG_SHIRQ = no;
+        DETECT_HUNG_TASK = no;
+        DMAPOOL_TEST = no;
+        DMA_CMA = no;
+        DYNAMIC_DEBUG = no;
+        DYNAMIC_DEBUG_CORE = no;
+        EARLY_PRINTK = no;
+        EFI_TEST = no;
+        FTRACE_SYSCALLS = lib.mkForce no;
+        FUNCTION_ERROR_INJECTION = no;
+        FUNCTION_TRACER = lib.mkForce no;
+        HARDLOCKUP_DETECTOR = no;
+        HWLAT_TRACER = no;
+        HWPOISON_INJECT = no;
+        KASAN = no;
+        KEXEC_HANDOVER_DEBUGFS = no;
+        KFENCE = lib.mkForce no;
+        KPROBE_EVENTS = no;
+        KUNIT = no;
+        LATENCYTOP = no;
+        LOCKUP_DETECTOR = no;
+        LOCK_EVENT_COUNTS = no;
+        MEMTEST = no;
+        MEM_ALLOC_PROFILING = lib.mkForce no;
+        MMIOTRACE = no;
+        MODULE_DEBUGFS = no;
+        NOTIFIER_ERROR_INJECTION = no;
+        OSNOISE_TRACER = no;
+        OVMF_DEBUG_LOG = no;
+        PAGE_EXTENSION = no;
+        PAGE_POISONING = lib.mkForce no;
+        PAGE_POOL_STATS = no;
+        PCIEAER_INJECT = no;
+        PM_DEBUG = lib.mkForce no;
+        PREEMPTIRQ_DELAY_TEST = no;
+        PRINTK_TIME = no;
+        PROFILING = no;
+        PUNIT_ATOM_DEBUG = no;
+        RAID6_PQ_BENCHMARK = no;
+        RCU_REF_SCALE_TEST = no;
+        RCU_SCALE_TEST = no;
+        RCU_TORTURE_TEST = no;
+        RCU_TRACE = no;
+        RING_BUFFER_BENCHMARK = no;
+        RUNTIME_TESTING_MENU = no;
+        SCF_TORTURE_TEST = no;
+        SCHEDSTATS = no;
+        SCHED_TRACER = lib.mkForce no;
+        SHRINKER_DEBUG = no;
+        SLUB_DEBUG = no;
+        SOFTLOCKUP_DETECTOR = no;
+        STACKTRACE_BUILD_ID = no;
+        STACK_TRACER = lib.mkForce no;
+        SYNTH_EVENT_GEN_TEST = no;
+        TEST_LOCKUP = no;
+        TIMERLAT_TRACER = no;
+        TORTURE_TEST = no;
+        TRACEFS_AUTOMOUNT_DEPRECATED = no;
+        TRACER_SNAPSHOT = no;
+        TRACE_GPU_MEM = no;
+        TRACE_REMOTE_TEST = no;
+        USER_EVENTS = no;
+        VIRTIO_DEBUG = no;
+        WW_MUTEX_SELFTEST = no;
+        X86_DEBUG_FPU = no;
+        X86_DECODER_SELFTEST = no;
+        XZ_DEC_TEST = no;
+        ZSMALLOC_STAT = no;
+      }
+    ];
+  };
+}
