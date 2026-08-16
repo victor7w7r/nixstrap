@@ -16,6 +16,8 @@
     };
   };
 
+  imports = [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];
+
   perSystem =
     { pkgs, system, ... }:
     {

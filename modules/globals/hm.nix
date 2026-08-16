@@ -1,4 +1,4 @@
-{ flakelib, lib, ... }:
+{ stateVersion, lib, ... }:
 {
   flake-file.inputs.home-manager = {
     url = "github:nix-community/home-manager";
@@ -42,7 +42,7 @@
                 { ... }:
                 {
                   systemd.user.startServices = "sd-switch";
-                  home.stateVersion = flakelib.stateVersion;
+                  home.stateVersion = stateVersion;
                 }
               )
             ];

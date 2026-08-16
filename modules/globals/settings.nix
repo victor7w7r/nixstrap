@@ -1,7 +1,25 @@
-{ flakelib, inputs, ... }:
 {
+  flake-config,
+  nix-config,
+  stateVersion,
+  inputs,
+  ...
+}:
+{
+  _module.args = {
+    armPkgs = import inputs.nixpkgs {
+      localSystem = "x86_64-linux";
+      crossSystem = "aarch64-linux";
+    };
+
+    x86Pkgs = import inputs.nixpkgs {
+      localSystem = "aarch64-linux";
+      crossSystem = "x86_64-linux";
+    };
+  };
+
   den.default.nixos = { lib, pkgs, ... }: {
-    system.stateVersion = flakelib.stateVersion;
+    system.stateVersion = stateVersion;
 
     documentation = {
       enable = false;
@@ -17,7 +35,7 @@
 
     nix = {
       package = lib.mkDefault pkgs.lix;
-      settings = (flakelib.flake-config { }) // (flakelib.nix-config { });
+      settings = flake-config // nix-config;
 
       gc = {
         automatic = true;
