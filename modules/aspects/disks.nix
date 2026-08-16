@@ -8,14 +8,11 @@
           udiskie
         ];
       };
-  };
 
-  nixos =
-    { pkgs, ... }:
-    {
-      environment.systemPackages =
-        with pkgs;
-        [
+    nixos =
+      { pkgs, ... }:
+      {
+        environment.systemPackages = with pkgs; [
           btdu
           btrfs-progs
           exfatprogs
@@ -34,5 +31,6 @@
             persistentTimer = true;
           };
         };
-    };
+      };
+  };
 }
