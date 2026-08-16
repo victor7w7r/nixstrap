@@ -16,17 +16,11 @@
           #boxxy
           firejail
           luksmeta
-          yubikey-manager
+          pam_u2f
           veracrypt
+          yubikey-manager
         ];
       };
-
-      /*
-        services.udev.packages = [ pkgs.yubikey-personalization ];
-        services.pcscd.enable = true;
-        environment.systemPackages = with pkgs; [ yubikey-manager ];
-          hardware.gpgSmartcards.enable = true;
-      */
 
       programs.yubikey-manager.enable = true;
 
@@ -52,11 +46,13 @@
         };
         #clamav-gui clamav-unofficial-sigs
         pam = {
-          #login.u2fAuth = true;
-          #sudo.u2fAuth = true;
+          login.u2fAuth = true;
+          sudo.u2fAuth = true;
+          y2f.enable = true;
           yubico = {
             enable = true;
             mode = "challenge-response";
+            control = "sufficient";
           };
         };
         polkit.enable = true;
