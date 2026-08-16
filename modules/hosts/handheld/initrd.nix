@@ -2,7 +2,8 @@
   den.aspects.handheld.initrd.nixos = {
     boot.initrd = {
       availableKernelModules = [
-        "snd_hda_scodec_cs35l41_i2c"
+        "dm_crypt"
+        "dm_mod"
         "snd_soc_cs35l41_i2c"
       ];
       kernelModules = [
