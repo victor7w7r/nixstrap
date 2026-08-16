@@ -46,9 +46,11 @@
         };
         #clamav-gui clamav-unofficial-sigs
         pam = {
-          login.u2fAuth = true;
-          sudo.u2fAuth = true;
-          y2f.enable = true;
+          services = {
+            login.u2fAuth = true;
+            sudo.u2fAuth = true;
+            y2f.enable = true;
+          };
           yubico = {
             enable = true;
             mode = "challenge-response";
