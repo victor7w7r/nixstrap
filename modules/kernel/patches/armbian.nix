@@ -69,8 +69,11 @@
         ''
           mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
           python3 ${self}/modules/kernel/patches/patch_drm_exec.py $out/include/drm/drm_exec.h
-          find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.h" -o -name "*.S" \) \
-            -exec sed -i 's|\.incbin "drivers/gpu/arm/bifrost/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' {} +
+          ABS_FW="$out/drivers/gpu/arm/bifrost/mali_csffw.bin"
+          find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.h" \) -exec sed -i \
+            -e 's|CONFIG_MALI_BIFROST_CSF_FIRMWARE_PATH|"'"$ABS_FW"'"|g' \
+            -e 's|CONFIG_MALI_CSF_FIRMWARE_PATH|"'"$ABS_FW"'"|g' \
+            -e 's|"drivers/gpu/arm/bifrost/mali_csffw.bin"|"'"$ABS_FW"'"|g' {} +
         ''
       );
   };
