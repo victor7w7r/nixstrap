@@ -36,6 +36,7 @@
           bluetooth
           disks
           emulation
+          firewall
           games
           kitty
           libvirt

@@ -35,6 +35,7 @@
       android
       bluetooth
       emulation
+      firewall
       games
       kitty
       libvirt

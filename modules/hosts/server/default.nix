@@ -38,6 +38,7 @@
 
           cockpit
           emulation
+          firewall
           kitty
           remote
           root

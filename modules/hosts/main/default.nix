@@ -39,6 +39,7 @@
         cockpit
         disks
         emulation
+        firewall
         games
         gestures
         kitty

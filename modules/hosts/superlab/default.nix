@@ -65,6 +65,7 @@
             bluetooth
             cockpit
             emulation
+            firewall
             games
             #kitty
             #virt
