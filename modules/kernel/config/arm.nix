@@ -56,6 +56,8 @@
       LT7911D_FB_NOTIFIER = no;
       LTE = no;
       MALI_KUTF = no;
+      NVMEM_ROCKCHIP_OTP = no;
+      NVMEM_ROCKCHIP_SEC_OTP = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
       MEDIA_TUNER_FC0012 = no;
