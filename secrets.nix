@@ -28,6 +28,7 @@ in
   "assets/secrets/seckey-b.age".publicKeys = keys;
   "assets/secrets/seckey-c.age".publicKeys = keys;
   "assets/secrets/seckey-d.age".publicKeys = keys;
+  "assets/secrets/yabe.age".publicKeys = keys;
   "modules/hosts/server/secrets/cloudflare-token.age".publicKeys = keys;
   "modules/hosts/server/secrets/password-db.age".publicKeys = keys;
   "modules/hosts/server/secrets/seafile-db-env.age".publicKeys = keys;
