@@ -1,12 +1,11 @@
-{ flake-config, ... }:
+{ flakelib, inputs, ... }:
 {
-  flake-file.nixConfig = flake-config // {
-    lazy-trees = true;
-    submodules = true;
-  };
+  imports = [ (inputs.den.namespace "flakelib" false) ];
 
-  _module.args = {
-    flake-config = {
+  flakelib.lib.config = {
+    stateVersion = "26.11";
+
+    flake-config = { }: {
       always-allow-substitutes = true;
       allow-import-from-derivation = true;
       accept-flake-config = true;
@@ -55,7 +54,8 @@
       extra-substituters = [ ];
       extra-trusted-public-keys = [ ];
     };
-    nix-config = {
+
+    nix-config = { }: {
       connect-timeout = 5;
       builders-use-substitutes = true;
       download-buffer-size = 524288000;
@@ -77,5 +77,10 @@
         "@wheel"
       ];
     };
+  };
+
+  flake-file.nixConfig = (flakelib.lib.config.flake-config { }) // {
+    lazy-trees = true;
+    submodules = true;
   };
 }

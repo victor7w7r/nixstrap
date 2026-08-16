@@ -1,10 +1,4 @@
-{
-  flake-config,
-  nix-config,
-  stateVersion,
-  inputs,
-  ...
-}:
+{ flakelib, inputs, ... }:
 {
   _module.args = {
     armPkgs = import inputs.nixpkgs {
@@ -19,7 +13,7 @@
   };
 
   den.default.nixos = { lib, pkgs, ... }: {
-    system.stateVersion = stateVersion;
+    system.stateVersion = flakelib.lib.config.stateVersion;
 
     documentation = {
       enable = false;
@@ -34,8 +28,8 @@
     };
 
     nix = {
-      package = lib.mkDefault pkgs.lix;
-      settings = flake-config // nix-config;
+      #package = lib.mkDefault pkgs.lix;
+      settings = (flakelib.lib.config.flake-config { }) // (flakelib.lib.config.nix-config { });
 
       gc = {
         automatic = true;

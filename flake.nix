@@ -43,10 +43,6 @@
   };
 
   inputs = {
-    adb_shell = {
-      url = "github:JeffLIrion/adb_shell";
-      flake = false;
-    };
     adebar = {
       url = "https://codeberg.org/izzy/Adebar/archive/master.tar.gz";
       flake = false;
@@ -70,6 +66,10 @@
     };
     armbian = {
       url = "github:armbian/build";
+      flake = false;
+    };
+    armbian-firmware = {
+      url = "github:armbian/firmware";
       flake = false;
     };
     asus = {

@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "adb_shell": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1730176068,
-        "narHash": "sha256-8Vqd3N87WyfvE2qt+CLaKIYj/rWGNAObaI8LOzV3yAk=",
-        "owner": "JeffLIrion",
-        "repo": "adb_shell",
-        "rev": "149ffbcff47b5a7fbd476cfdb26931e85be0c09c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JeffLIrion",
-        "repo": "adb_shell",
-        "type": "github"
-      }
-    },
     "adebar": {
       "flake": false,
       "locked": {
@@ -161,6 +145,22 @@
       "original": {
         "owner": "armbian",
         "repo": "build",
+        "type": "github"
+      }
+    },
+    "armbian-firmware": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784384079,
+        "narHash": "sha256-D9CPP7jJMi9uevpQyvIc0hKCHiUfw7IEL+toVEYkNG0=",
+        "owner": "armbian",
+        "repo": "firmware",
+        "rev": "d9846710f54da5e4383e2d67311819659ac2cf5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "armbian",
+        "repo": "firmware",
         "type": "github"
       }
     },
@@ -4465,7 +4465,6 @@
     },
     "root": {
       "inputs": {
-        "adb_shell": "adb_shell",
         "adebar": "adebar",
         "agenix": "agenix",
         "aim": "aim",
@@ -4473,6 +4472,7 @@
         "app-manager": "app-manager",
         "appimage-thumbnailer": "appimage-thumbnailer",
         "armbian": "armbian",
+        "armbian-firmware": "armbian-firmware",
         "asus": "asus",
         "autoricer": "autoricer",
         "batfetch": "batfetch",

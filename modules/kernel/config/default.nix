@@ -94,15 +94,16 @@
           {
             AXP20X_POWER = yes;
             CDROM = no;
-            IIO = yes;
+            DRM_GEM_DMA_HELPER = yes;
             DRM_SUN4I = no;
             DRM_SUN8I_MIXER = yes;
-            DRM_GEM_DMA_HELPER = yes;
+            FB_SUN5I_EINK = no;
+            IIO = yes;
             MFD_AXP20X = yes;
             MFD_AXP20X_I2C = yes;
             MFD_AXP20X_RSB = yes;
-            REGULATOR_AXP20X = yes;
             R8169 = no;
+            REGULATOR_AXP20X = yes;
             SPARD_WLAN_SUPPORT = yes;
             SUNXI_RSB = yes;
             UDF_FS = lib.mkForce no;

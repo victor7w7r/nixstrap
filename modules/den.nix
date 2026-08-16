@@ -19,10 +19,7 @@
     };
   };
 
-  _module.args = {
-    __findFile = den.lib.__findFile;
-    stateVersion = "26.11";
-  };
+  _module.args.__findFile = den.lib.__findFile;
 
   den.default.includes = [
     den.batteries.inputs'
