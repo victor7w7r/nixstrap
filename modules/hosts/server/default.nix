@@ -30,6 +30,7 @@
           dev.mise
           dev.tools
           dev.ccache
+          disks
           gui._
           misc.comm
           misc.fetch
@@ -38,8 +39,10 @@
           cockpit
           emulation
           kitty
+          remote
           root
           secrets
+          tools
           victor7w7r
           virt
         ];

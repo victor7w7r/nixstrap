@@ -9,6 +9,7 @@
       patches ? [ ],
       defconfig ? "cachyos_defconfig",
       localVer ? "native",
+      legacy ? false,
       structuredExtraConfig ? { },
     }:
     pkgs.buildLinux {
@@ -31,31 +32,33 @@
       };
 
       stdenv =
-        (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-        |> (
-          llvmStdenv:
-          llvmStdenv.override {
-            cc = pkgs.ccacheWrapper.override {
-              cc = llvmStdenv.cc;
-              extraConfig = ''
-                export CCACHE_COMPRESS=1
-                export CCACHE_DIR="/var/cache/ccache"
-                export CCACHE_UMASK="007"
-                export CCACHE_SLOPPINESS=random_seed
-                export CCACHE_READ_ONLY_FALLBACK=true
-              '';
-            };
-          }
-        );
+        if legacy then
+          pkgs.gcc13Stdenv
+        else
+          (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
+          |> (
+            custStdenv:
+            custStdenv.override {
+              cc = pkgs.ccacheWrapper.override {
+                cc = custStdenv.cc;
+                extraConfig = ''
+                  export CCACHE_COMPRESS=1
+                  export CCACHE_DIR="/var/cache/ccache"
+                  export CCACHE_UMASK="007"
+                  export CCACHE_SLOPPINESS=random_seed
+                  export CCACHE_READ_ONLY_FALLBACK=true
+                '';
+              };
+            }
+          );
 
       extraMakeFlags = [
+        "CCACHE_COMPILERCHECK=content"
+        "DTC_FLAGS=-Wno-unique_unit_address"
+        "KCFLAGS=-w"
         "LOCALVERSION=-v7w7r-${localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
-        "DTC_FLAGS=-Wno-unique_unit_address"
-        "KCFLAGS=-w"
-        "CCACHE_COMPILERCHECK=content"
-        "-j8"
       ];
     }
     |> (base: {

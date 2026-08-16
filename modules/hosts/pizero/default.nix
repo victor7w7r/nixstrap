@@ -55,14 +55,17 @@
             dev.mise
             dev.tools
             dev.ccache
+            disks
             misc.comm
             misc.fetch
             pentest._
 
             cockpit
             emulation
+            remote
             root
             secrets
+            tools
             victor7w7r
             virt
           ];

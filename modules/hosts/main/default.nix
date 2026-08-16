@@ -37,16 +37,19 @@
         android
         bluetooth
         cockpit
+        disks
         emulation
         games
         gestures
         kitty
         libvirt
         plasma._
+        remote
         root
         secrets
         victor7w7r
         virt
+        tools
         waydroid
         xr
       ];

@@ -32,18 +32,6 @@
         blacklist mac_hid
         blacklist intel_hid
       '';
-      initrd = {
-        checkJournalingFS = true;
-        services.lvm.enable = true;
-        compressorArgs = [
-          "-19"
-          "--ultra"
-          "-T0"
-          "--check"
-        ];
-        network.enable = true;
-        verbose = true;
-      };
     };
   };
 }

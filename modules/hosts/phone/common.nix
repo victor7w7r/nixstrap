@@ -23,6 +23,7 @@
       dev.ccache
       dev.zed
       dev.tools
+      disks
       gui._
       misc.comm
       misc.fetch
@@ -38,8 +39,10 @@
       kitty
       libvirt
       plasma._
+      remote
       root
       secrets
+      tools
       victor7w7r
       virt
       waydroid

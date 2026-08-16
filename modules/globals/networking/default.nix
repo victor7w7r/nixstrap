@@ -4,6 +4,7 @@
       isPersistent,
       isServer,
       isPhone,
+      isLive,
       lib,
       ...
     }:
@@ -66,6 +67,33 @@
             ];
           };
         });
+
+        services = {
+          openssh = lib.mkForce {
+            enable = true;
+            settings = {
+              AcceptEnv = null;
+              PermitRootLogin = if (isPhone || isLive) then "yes" else lib.mkDefault "prohibit-password";
+              PasswordAuthentication = true;
+              MaxAuthTries = 3;
+              ClientAliveInterval = 300;
+              ClientAliveCountMax = 2;
+            };
+          };
+          dnsmasq = {
+            enable = false;
+            settings = {
+              interface = [
+                "lo"
+                "wlp6s0"
+                "enp1s0"
+                "enp4s0"
+              ];
+              bind-interfaces = true;
+              except-interface = [ "virbr0" ];
+            };
+          };
+        };
     };
 
 }

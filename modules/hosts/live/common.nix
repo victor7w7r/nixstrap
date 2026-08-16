@@ -4,8 +4,10 @@
     includes = with den.aspects; [
       (den.batteries.tty-autologin "snowflake")
       cli._
+      disks
       secrets
       snowflake
+      tools
     ];
 
     nixos =

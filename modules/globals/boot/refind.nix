@@ -24,6 +24,18 @@
         };
       };
 
+      environment.systemPackages =
+        with pkgs;
+        lib.optionals isEfi [
+          efibooteditor
+          efibootmgr
+        ]
+        ++ lib.optionals isTpm [
+          mokutil
+          tpm2-tools
+          sbctl
+        ];
+
       system = lib.optionalAttrs isEfi {
         boot.loader.id = "refind";
         build.installBootLoader =

@@ -54,6 +54,7 @@
             audio._
             cli._
             dev._
+            disks
             #gui._
             misc.comm
             misc.fetch
@@ -69,9 +70,11 @@
             #virt
             #libvirt
             #plasma._
+            remote
             secrets
             victor7w7r
             root
+            tools
             #waydroid
             #xr
           ];

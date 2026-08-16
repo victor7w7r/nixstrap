@@ -1,6 +1,14 @@
 {
   den.default.nixos =
-    { pkgs, options, ... }:
+    {
+      hasVisualKeyboard,
+      isPersistent,
+      isX86,
+      lib,
+      pkgs,
+      options,
+      ...
+    }:
     {
       environment = {
         enableAllTerminfo = true;
@@ -52,6 +60,33 @@
             "pool.ntp.org"
           ];
         };
+
+        logrotate.enable = isPersistent;
+        irqbalance.enable = false;
+        orca.enable = lib.mkForce false;
+        speechd.enable = false;
+        #envfs.enable = true;
+        nohang = lib.optionalAttrs (!hasVisualKeyboard) { enable = true; };
+        scx.enable = isX86;
+        ananicy = lib.optionalAttrs hasVisualKeyboard {
+          enable = false;
+          package = pkgs.ananicy-cpp;
+          rulesProvider = pkgs.ananicy-rules-cachyos;
+          extraRules = [
+            {
+              "name" = "gamescope";
+              "nice" = -20;
+            }
+          ];
+        };
+        /*
+          dbus = {
+            packages = with pkgs; [
+              nohang
+              uresourced
+            ];
+          };
+        */
 
         journald.extraConfig = ''
           Storage=persistent

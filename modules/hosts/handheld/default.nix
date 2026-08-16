@@ -34,15 +34,18 @@
 
           android
           bluetooth
+          disks
           emulation
           games
           kitty
           libvirt
+          remote
           root
           plasma._
           secrets
           victor7w7r
           virt
+          tools
           waydroid
           xr
         ];

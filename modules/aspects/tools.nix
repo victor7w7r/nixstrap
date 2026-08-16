@@ -9,7 +9,7 @@
     };
   };
 
-  den.default = {
+  den.aspects.tools = {
     os =
       { pkgs, self', ... }:
       {

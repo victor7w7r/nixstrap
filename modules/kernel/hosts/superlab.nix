@@ -10,6 +10,7 @@
       localVer = "rockchip";
       host = "superlab";
       defconfig = "rockchip_defconfig";
+      legacy = true;
       isArm = true;
       patches = with kernel.patches.injector pkgs; (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
       src =

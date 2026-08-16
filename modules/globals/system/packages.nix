@@ -19,7 +19,6 @@
           lsof
           hexyl
           mommy
-          mtools
           p7zip
           phraze
           progress
@@ -31,7 +30,6 @@
           self'.packages.texoxide
           tmux
           tre-command
-          udiskie
           xz
         ];
 
@@ -46,9 +44,6 @@
 
     nixos =
       {
-        isEfi,
-        isTpm,
-        lib,
         inputs',
         pkgs,
         self',
@@ -57,42 +52,42 @@
       {
         environment.systemPackages =
           with pkgs;
+          with self'.packages;
           [
-            busybox
-            btrfs-progs
-            btdu
-            exfatprogs
-            gdown
-            f2fs-tools
-            fsarchiver
-            killall
-            modprobed-db
-            inputs'.agenix.packages.default
-            ntfs2btrfs
             #procmux
+            #socktop
+            busybox
+            fatrace
+            fsarchiver
+            gdown
+            inputs'.agenix.packages.default
+            journalview
+            killall
+            kmon
+            lazyjournal
+            lazysys
+            lnav
+            modprobed-db
+            pik
+            s-tui
             self'.packages.open
             self'.packages.progressline
-          ]
-          ++ lib.optionals isEfi [
-            efibooteditor
-            efibootmgr
-          ]
-          ++ lib.optionals isTpm [
-            mokutil
-            tpm2-tools
-            sbctl
+            systemctl-tui
+            sysz
+            watchexec
+            zps
           ];
       };
 
     provides.to-users.homeManager =
-      { lib, pkgs, ... }:
+      { lib, ... }:
       {
         programs = {
           command-not-found.enable = lib.mkDefault false;
-          fish.generateCompletions = lib.mkDefault false;
           fd.enable = true;
-          ripgrep-all.enable = true;
+          fish.generateCompletions = lib.mkDefault false;
           rclone.enable = true;
+          ripgrep-all.enable = true;
 
           bat = {
             enable = true;
