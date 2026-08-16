@@ -68,9 +68,9 @@
         }
         ''
           mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
-          python3 ${self}/modules/kernel/patches/patch_drm_exec.py $out/include/drm/drm_exec.h
-          find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.h" \) \
-            -exec sed -i 's|\.incbin "drivers/gpu/arm/bifrost/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' {} +
+          python3 ${self}/modules/kernel/patches/patch_drm_exec.py
+          find $out/drivers/gpu/arm/bifrost/csf -type f \( -name "*.c" -o -name "*.h" \) \
+            -exec sed -i 's|\.incbin "drivers/gpu/arm/bifrost/csf/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' {} +
         ''
       );
   };

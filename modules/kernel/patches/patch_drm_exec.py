@@ -1,24 +1,22 @@
-import sys, re
-
-path = sys.argv[1]
+path = "$out/include/drm/drm_exec.h"
 with open(path, "r") as f:
     content = f.read()
 
-new_drm_exec = """#define drm_exec_until_all_locked(exec)				\\
-	__label__ __drm_exec_retry;					\\
-	__drm_exec_retry:						\\
-	for (bool __retry = true; __retry; __retry = false)		\\
-		if (drm_exec_cleanup(exec)) {} else"""
+new_block = """#define drm_exec_until_all_locked(exec)				\\
+	for (bool __exec_retry = ({ __label__ __drm_exec_retry; __drm_exec_retry: true; }); \\
+	     __exec_retry; __exec_retry = false)			\\
+		for (; drm_exec_cleanup(exec); )
 
-content = re.sub(
-    r'#define drm_exec_until_all_locked\(exec\).*?drm_exec_cleanup\(exec\);\s*\}\);?\)',
-    new_drm_exec,
-    content,
-    flags=re.DOTALL
-)
+#define drm_exec_retry_on_contention(exec)			\\
+	if (unlikely(drm_exec_is_contended(exec)))		\\
+		goto __drm_exec_retry"""
 
-content = content.replace("goto *__drm_exec_retry_ptr;", "goto __drm_exec_retry;")
-content = content.replace("(void)__drm_exec_retry_ptr;", "")
+import re
+pattern = r"#define drm_exec_until_all_locked\(exec\).*?#define drm_exec_retry_on_contention\(exec\).*?goto \*__drm_exec_retry_ptr;"
+content = re.sub(pattern, new_block, content, flags=re.DOTALL)
+
+if "goto *__drm_exec_retry_ptr;" in content:
+    content = content.replace("goto *__drm_exec_retry_ptr;", "goto __drm_exec_retry;")
 
 with open(path, "w") as f:
     f.write(content)
