@@ -14,7 +14,7 @@
       isArm = true;
       patches = with kernel.patches.injector pkgs; (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
       src =
-        kernel.patches.rk3588 pkgs
+        inputs.linux-rockchip
         |> (
           src:
           kernel.lib.defconfig-clear {

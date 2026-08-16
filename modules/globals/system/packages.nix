@@ -27,6 +27,7 @@
           sshfs
           sd
           sig
+          sqlite
           self'.packages.texoxide
           tmux
           tre-command

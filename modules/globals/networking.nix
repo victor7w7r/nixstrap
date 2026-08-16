@@ -7,6 +7,7 @@
         isLive,
         lib,
         pkgs,
+        self',
         ...
       }:
       {

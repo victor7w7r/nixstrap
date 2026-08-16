@@ -9,14 +9,15 @@
     always-allow-substitutes = true;
     auto-optimise-store = true;
     experimental-features = [
-      "nix-command"
-      "flakes"
-      "fetch-closure"
-      "parse-toml-timestamps"
       "blake3-hashes"
-      "verified-fetches"
-      "pipe-operators"
+      "ca-derivations"
+      "fetch-closure"
+      "flakes"
       "git-hashing"
+      "nix-command"
+      "parse-toml-timestamps"
+      "pipe-operators"
+      "verified-fetches"
     ];
     extra-substituters = [ ];
     extra-trusted-public-keys = [ ];
