@@ -1,7 +1,5 @@
 { inputs, lib, ... }:
 {
-  imports = [ (inputs.den.namespace "crane" false) ];
-
   crane.lib.call =
     {
       pkgs,

@@ -40,6 +40,19 @@
           (final: prev: {
             makeModulesClosure = x: prev.makeModulesClosure (x // { allowMissing = true; });
             mbrola-voices = prev.mbrola-voices.override { languages = [ "*1" ]; };
+            linux-firmware = prev.linux-firmware.overrideAttrs (oldAttrs: {
+              postInstall = (oldAttrs.postInstall or "") + ''
+                rm -rf $out/lib/firmware/intel/iwlwifi
+                rm -rf $out/lib/firmware/ath11k $out/lib/firmware/ath12k $out/lib/firmware/libertas
+                rm -rf $out/lib/firmware/nvidia $out/lib/firmware/cxgb4 $out/lib/firmware/ti-connectivity
+                rm -rf $out/lib/firmware/cypress $out/lib/firmware/xe $out/lib/firmware/mellanox
+                rm -rf $out/lib/firmware/mrvl $out/lib/firmware/netronome $out/lib/firmware/dpaa2
+                rm -rf $out/lib/firmware/qed $out/lib/firmware/bnx2x $out/lib/firmware/liquidio
+                rm -rf $out/lib/firmware/rtw89 $out/lib/firmware/dell $out/lib/firmware/LENOVO
+
+                find $out/lib/firmware -xtype l -print -delete
+              '';
+            });
           })
         ];
 
@@ -52,17 +65,7 @@
             ksm.enable = true;
             #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
             enableRedistributableFirmware = lib.mkForce false;
-            firmware = [
-              pkgs.linux-firmware.overrideAttrs
-              (_: {
-                postInstall = ''
-                  rm -rf "$out"/lib/firmware/intel/iwlwifi
-                  rm -rf "$out"/lib/firmware/{ath11k,ath12k,libertas,nvidia,cxgb4,ti-connectivity,cypress,xe}
-                  rm -rf "$out"/lib/firmware/{mellanox,mrvl,netronome,dpaa2,qed,bnx2x,liquidio,rtw89,dpaa2,dell,LENOVO}
-                  find "$out/lib/firmware" -xtype l -print -delete
-                '';
-              })
-            ];
+            firmware = with pkgs; [ linux-firmware ];
           }
         ];
         services = {
