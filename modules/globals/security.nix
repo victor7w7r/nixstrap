@@ -16,6 +16,7 @@
           #boxxy
           firejail
           luksmeta
+          yubikey-manager
           veracrypt
         ];
       };
@@ -26,9 +27,15 @@
         environment.systemPackages = with pkgs; [ yubikey-manager ];
           hardware.gpgSmartcards.enable = true;
       */
+
+      programs.yubikey-manager.enable = true;
+
       services = {
         fail2ban.enable = true;
-        udev.packages = [ pkgs.yubikey-personalization ];
+        udev.packages = with pkgs; [
+          libfido2
+          yubikey-personalization
+        ];
         #opensnitch.enable = true;
         #clamav = {
         #  daemon.enable = true;
@@ -61,7 +68,10 @@
           wheelNeedsPassword = false;
           extraRules = [
             {
-              users = [ "victor7w7r" "snowflake" ];
+              users = [
+                "victor7w7r"
+                "snowflake"
+              ];
               commands = [
                 {
                   command = "ALL";
