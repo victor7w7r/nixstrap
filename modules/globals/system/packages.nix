@@ -3,20 +3,22 @@
     os =
       { pkgs, self', ... }:
       {
-        nixpkgs.config.allowUnfree = true;
         environment.systemPackages = with pkgs; [
           atool
           brush
           choose
+          clolcat
           cod
           file
           self'.packages.hf
           gnused
           gnutar
+          inxi
           lemmeknow
           #loop
           lsof
           hexyl
+          mommy
           mtools
           p7zip
           phraze
@@ -53,50 +55,41 @@
         ...
       }:
       {
-        environment = {
-          systemPackages =
-            with pkgs;
-            [
-              busybox
-              btrfs-progs
-              btdu
-              exfatprogs
-              gdown
-              f2fs-tools
-              fsarchiver
-              killall
-              modprobed-db
-              inputs'.agenix.packages.default
-              ntfs2btrfs
-              #procmux
-              self'.packages.open
-              self'.packages.progressline
-            ]
-            ++ lib.optionals isEfi [
-              efibooteditor
-              efibootmgr
-            ]
-            ++ lib.optionals isTpm [
-              mokutil
-              tpm2-tools
-              sbctl
-            ];
-        };
+        environment.systemPackages =
+          with pkgs;
+          [
+            busybox
+            btrfs-progs
+            btdu
+            exfatprogs
+            gdown
+            f2fs-tools
+            fsarchiver
+            killall
+            modprobed-db
+            inputs'.agenix.packages.default
+            ntfs2btrfs
+            #procmux
+            self'.packages.open
+            self'.packages.progressline
+          ]
+          ++ lib.optionals isEfi [
+            efibooteditor
+            efibootmgr
+          ]
+          ++ lib.optionals isTpm [
+            mokutil
+            tpm2-tools
+            sbctl
+          ];
       };
 
     provides.to-users.homeManager =
       { lib, pkgs, ... }:
       {
-        home.packages = with pkgs; [
-          inxi
-          clolcat
-          mommy
-        ];
-
         programs = {
           command-not-found.enable = lib.mkDefault false;
           fish.generateCompletions = lib.mkDefault false;
-
           fd.enable = true;
           ripgrep-all.enable = true;
           rclone.enable = true;

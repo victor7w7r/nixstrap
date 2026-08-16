@@ -12,7 +12,7 @@
     };
   };
 
-  den.default.nixos = { lib, pkgs, ... }: {
+  den.default.nixos = { lib, ... }: {
     system.stateVersion = flakelib.lib.config.stateVersion;
 
     documentation = {
@@ -22,9 +22,12 @@
       man.enable = false;
     };
 
-    nixpkgs.flake = {
-      setNixPath = false;
-      setFlakeRegistry = false;
+    nixpkgs = {
+      config.allowUnfree = true;
+      flake = {
+        setNixPath = false;
+        setFlakeRegistry = false;
+      };
     };
 
     nix = {
