@@ -25,7 +25,7 @@
     };
 
     provides.to-users.homeManager = { config, ... }: {
-      imports = [ inputs.agenix.nixosModules.default ];
+      imports = [ inputs.agenix.homeManagerModules.default ];
       xdg.configFile."Yubico/u2f_keys".source = config.age.secrets.yubikey.path;
     };
   };
