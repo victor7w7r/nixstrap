@@ -9,6 +9,10 @@
     {
       security.pam.services.ly = {
         u2fAuth = true;
+        rules.auth.u2f = {
+          control = "sufficient";
+          order = 100;
+        };
         kwallet = {
           enable = true;
           package = pkgs.kdePackages.kwallet-pam;
