@@ -1,4 +1,8 @@
-path = "$out/include/drm/drm_exec.h"
+import re
+import sys
+
+path = sys.argv[1]
+
 with open(path, "r") as f:
     content = f.read()
 
@@ -11,7 +15,6 @@ new_block = """#define drm_exec_until_all_locked(exec)				\\
 	if (unlikely(drm_exec_is_contended(exec)))		\\
 		goto __drm_exec_retry"""
 
-import re
 pattern = r"#define drm_exec_until_all_locked\(exec\).*?#define drm_exec_retry_on_contention\(exec\).*?goto \*__drm_exec_retry_ptr;"
 content = re.sub(pattern, new_block, content, flags=re.DOTALL)
 

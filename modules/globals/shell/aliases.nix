@@ -4,6 +4,10 @@
     {
       programs =
         {
+          nix-clean = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +1 && nix-collect-garbage -d";
+          nix-optimize = "nix-store --optimise";
+          nix-repair = "nix-store --verify --check-contents --repair";
+
           ssh = "TERM=xterm-256color command ssh";
           _ = "sudo";
           e = "emacs -nw";

@@ -7,7 +7,6 @@
       ...
     }:
     {
-      #  boot.kernelModules = [ "vhost_vsock" ];
       environment = {
         systemPackages = with pkgs; [
           distrobuilder
@@ -23,10 +22,6 @@
       virtualisation.incus = {
         enable = true;
         preseed = {
-          config = {
-            "core.https_address" = ":8443";
-            "core.metrics_address" = ":8444";
-          };
           networks = [
             {
               config = {
@@ -37,6 +32,7 @@
               type = "bridge";
             }
           ];
+
           profiles = [
             {
               devices = {
@@ -46,10 +42,9 @@
                   "type" = "nic";
                 };
                 root = {
-                  "path" = "/";
-                  "pool" = "default";
-                  size = "35GiB";
-                  "type" = "disk";
+                  path = "/";
+                  pool = "default";
+                  type = "disk";
                 };
               };
               name = "default";
@@ -58,10 +53,14 @@
           storage_pools = [
             {
               config.source = "/var/lib/incus/storage-pools/default";
-              driver = "btrfs";
+              driver = "dir";
               name = "default";
             }
           ];
+          config = {
+            "core.https_address" = ":8443";
+            "core.metrics_address" = ":8444";
+          };
         };
       };
     };
