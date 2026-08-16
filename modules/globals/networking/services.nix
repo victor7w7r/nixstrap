@@ -30,7 +30,7 @@
               except-interface = [ "virbr0" ];
             };
           };
-          services.openssh = lib.mkForce {
+          openssh = lib.mkForce {
             enable = true;
             settings = {
               AcceptEnv = null;
