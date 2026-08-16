@@ -13,8 +13,8 @@
 
   den = {
     hosts.aarch64-linux.phone-fajita.users = {
-      snowflake = { };
-      root = { };
+      #root = { };
+      victor7w7r = { };
     };
     aspects.phone-fajita = {
       includes = with den.aspects; [ phone.common ];

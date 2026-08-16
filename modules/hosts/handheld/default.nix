@@ -11,8 +11,8 @@
 
   den = {
     hosts.x86_64-linux.handheld.users = {
-      snowflake = { };
-      root = { };
+      #root = { };
+      victor7w7r = { };
     };
 
     aspects.handheld =

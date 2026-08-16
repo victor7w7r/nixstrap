@@ -19,20 +19,20 @@
   den = {
     hosts = {
       x86_64-linux.generic-x86.users = {
+        #root = { };
         snowflake = { };
-        root = { };
       };
       x86_64-linux.generic-arm-cross.users = {
+        #root = { };
         snowflake = { };
-        root = { };
       };
       aarch64-linux.generic-arm.users.users = {
+        #root = { };
         snowflake = { };
-        root = { };
       };
       aarch64-linux.generic-x86-cross.users.users = {
+        #root = { };
         snowflake = { };
-        root = { };
       };
     };
 

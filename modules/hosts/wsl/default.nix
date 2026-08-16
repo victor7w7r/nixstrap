@@ -12,8 +12,8 @@
     hosts.x86_64-linux.wsl = {
       wsl.enable = true;
       users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
     };
 

@@ -17,7 +17,12 @@
       nixos =
         { lib, isPersistent, ... }:
         lib.mkMerge [
-          { home-manager.sharedModules = [ inputs.zen-browser.homeModules.beta ]; }
+          {
+            home-manager = {
+              users.root.programs.zen-browser.enable = lib.mkForce false;
+              sharedModules = [ inputs.zen-browser.homeModules.beta ];
+            };
+          }
           (lib.optionalAttrs isPersistent {
             environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
               ".cache/zen"
@@ -27,7 +32,12 @@
         ];
 
       provides.to-users.homeManager =
-        { config, pkgs, ... }:
+        {
+          config,
+          lib,
+          pkgs,
+          ...
+        }:
         {
           home.file.".zen".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zen";
 

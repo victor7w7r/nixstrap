@@ -14,8 +14,8 @@
       server-physical-chroot.users.victor7w7r = { };
       server-logical-chroot.users.victor7w7r = { };
       server.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
     };
 

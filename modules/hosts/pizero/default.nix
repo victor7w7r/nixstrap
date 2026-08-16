@@ -21,16 +21,16 @@
   den = {
     hosts.aarch64-linux = {
       pizero.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
       pizero-sdimage.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
       pizero-tarball.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
     };
 

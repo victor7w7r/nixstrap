@@ -18,16 +18,16 @@
   den = {
     hosts.aarch64-linux = {
       superlab.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
       superlab-sdimage.users = {
-        snowflake = { };
         root = { };
+        victor7w7r = { };
       };
       superlab-tarball.users = {
-        snowflake = { };
         root = { };
+        victor7w7r = { };
       };
     };
 

@@ -10,8 +10,8 @@
 
   den = {
     hosts.aarch64-linux.phone-enchilada.users = {
-      snowflake = { };
-      root = { };
+      #root = { };
+      victor7w7r = { };
     };
     aspects.phone-enchilada = {
       includes = with den.aspects; [ phone.common ];

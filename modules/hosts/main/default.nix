@@ -15,8 +15,8 @@
     hosts.x86_64-linux = {
       main-chroot.users.victor7w7r = { };
       main.users = {
-        snowflake = { };
-        root = { };
+        #root = { };
+        victor7w7r = { };
       };
     };
 
