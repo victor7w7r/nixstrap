@@ -2,10 +2,7 @@
   den.default.nixos =
     {
       hasVisualKeyboard,
-      isHandheld,
       isPersistent,
-      isPhone,
-      isSuperlab,
       isX86,
       lib,
       pkgs,
@@ -33,17 +30,6 @@
         ];
 
       services = {
-        journald.extraConfig = ''
-          Storage=persistent
-          Compress=yes
-          MaxLevelStore=debug
-          SystemMaxUse=500M
-          RuntimeMaxUse=200M
-          ForwardToConsole=yes
-          MaxLevelConsole=debug
-          TTYPath=/dev/ttyS0
-        '';
-
         btrfs.autoScrub = {
           enable = false;
           interval = "weekly";
@@ -56,15 +42,13 @@
 
         #envfs.enable = true;
         fstrim.enable = true;
-        fwupd.enable = hasVisualKeyboard;
         irqbalance.enable = false;
         locate.enable = true;
         logrotate.enable = isPersistent;
         nohang = lib.optionalAttrs (!hasVisualKeyboard) { enable = true; };
         orca.enable = lib.mkForce false;
-        scx.enable = isX86;
         speechd.enable = false;
-        upower.enable = lib.mkDefault (isHandheld || isPhone || isSuperlab);
+        scx.enable = isX86;
         ananicy = lib.optionalAttrs hasVisualKeyboard {
           enable = false;
           package = pkgs.ananicy-cpp;

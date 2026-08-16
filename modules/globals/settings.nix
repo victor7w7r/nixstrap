@@ -1,6 +1,7 @@
 { flakelib, inputs, ... }:
 {
-  den.default.nixos = { lib, ... }: {
+  den.default.nixos = { lib, pkgs, ... }: {
+    system.stateVersion = flakelib.stateVersion;
 
     documentation = {
       enable = false;
@@ -14,10 +15,9 @@
       setFlakeRegistry = false;
     };
 
-    system.stateVersion = flakelib.lib.config.stateVersion;
     nix = {
-      #package = lib.mkDefault (pkgs.lix);
-      settings = (flakelib.lib.config.flake-config { }) // (flakelib.lib.config.nix-config { });
+      package = lib.mkDefault pkgs.lix;
+      settings = (flakelib.flake-config { }) // (flakelib.nix-config { });
 
       gc = {
         automatic = true;
@@ -31,12 +31,15 @@
       };
     };
 
-    programs.nh = {
-      #clean.enable = true;
-      #clean.extraArgs = --keep 10 --keep-since 5d";
-      enable = true;
-      flake = "github:herobrauni/nix";
-      #flake = "/etc/nixos";
+    programs = {
+      nix-ld.enable = true;
+      nh = {
+        enable = true;
+        #clean.enable = true;
+        #clean.extraArgs = --keep 10 --keep-since 5d";
+        #flake = "github:herobrauni/nix";
+        #flake = "/etc/nixos";
+      };
     };
 
     system.autoUpgrade = {

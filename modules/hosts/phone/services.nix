@@ -19,6 +19,7 @@
       msm-modem-uim-selection.enable = true;
       rmtfs.enable = true;
       swclock-offset.enable = true;
+      upower.enable = true;
       tqftpserv.enable = true;
 
       udev.extraRules = ''

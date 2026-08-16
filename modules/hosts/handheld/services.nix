@@ -13,8 +13,9 @@
             tuned.enable = false;
             inputplumber.enable = lib.mkForce false;
             powerstation.enable = false;
-
+            upower.enable = true;
             btrfs.autoScrub.fileSystems = [ "/run/media/games" ];
+            fwupd.enable = true;
 
             handheld-daemon = {
               enable = false;

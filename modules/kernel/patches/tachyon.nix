@@ -111,7 +111,6 @@
         ++ (
           if isVanilla then
             [
-              "0002-sched-migrate"
               "0162-extra-optmization-flags"
             ]
           else

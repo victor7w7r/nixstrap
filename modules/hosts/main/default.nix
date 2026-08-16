@@ -32,16 +32,17 @@
         zen._
 
         android
-        emulation
         bluetooth
         cockpit
+        emulation
+        games
         gestures
         kitty
-        virt
         libvirt
         plasma._
         secrets
         victor7w7r
+        virt
         waydroid
         xr
       ];

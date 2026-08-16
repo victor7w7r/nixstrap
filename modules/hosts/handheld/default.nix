@@ -29,14 +29,15 @@
           zen._
 
           android
-          emulation
           bluetooth
+          emulation
+          games
           kitty
-          virt
           libvirt
           plasma._
           secrets
           victor7w7r
+          virt
           waydroid
           xr
         ];

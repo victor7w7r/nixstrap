@@ -1,12 +1,13 @@
 { flakelib, lib, ... }:
 {
   flake-file.inputs.home-manager = {
-   url = "github:nix-community/home-manager";
-   inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:nix-community/home-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   den = {
     schema.user.classes = lib.mkDefault [ "homeManager" ];
+
     default = {
       os.home-manager = {
         useGlobalPkgs = true;
@@ -30,6 +31,7 @@
           )
         ];
       };
+
       nixos =
         { pkgs, ... }:
         {
@@ -40,12 +42,19 @@
                 { ... }:
                 {
                   systemd.user.startServices = "sd-switch";
-                  home.stateVersion = flakelib.lib.config.stateVersion;
+                  home.stateVersion = flakelib.stateVersion;
                 }
               )
             ];
           };
         };
+
+      provides.to-users.homeManager = { config, pkgs, ... }: {
+        home = {
+          packages = with pkgs; [ home-manager ];
+          file."repositories/snowflake".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos";
+        };
+      };
     };
   };
 }

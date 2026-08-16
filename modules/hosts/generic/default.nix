@@ -55,6 +55,7 @@
             misc.fetch
             zen._
 
+            games
             kitty
             plasma._
             secrets

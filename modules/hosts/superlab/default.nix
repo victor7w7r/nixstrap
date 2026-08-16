@@ -55,6 +55,7 @@
             bluetooth
             cockpit
             emulation
+            games
             #kitty
             #virt
             #libvirt

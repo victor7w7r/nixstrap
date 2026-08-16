@@ -1,13 +1,24 @@
 {
   den.default.nixos =
-    { pkgs, ... }:
     {
-      environment.systemPackages = with pkgs; [
-        #boxxy
-        firejail
-        luksmeta
-        veracrypt
-      ];
+      isPersistent,
+      isTpm,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      environment = {
+        persistence = lib.optionalAttrs isPersistent {
+          "/nix/persist".directories = [ (lib.mkIf isTpm "/var/lib/sbctl") ];
+        };
+        systemPackages = with pkgs; [
+          #boxxy
+          firejail
+          luksmeta
+          veracrypt
+        ];
+      };
 
       /*
         services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -32,6 +43,7 @@
           enable = true;
           enableCache = true;
         };
+        #clamav-gui clamav-unofficial-sigs
         pam = {
           #login.u2fAuth = true;
           #sudo.u2fAuth = true;
@@ -42,7 +54,6 @@
         };
         polkit.enable = true;
         rtkit.enable = true;
-        #clamav-gui clamav-unofficial-sigs
         sudo-rs = {
           enable = true;
           package = pkgs.sudo-rs;
@@ -50,7 +61,7 @@
           wheelNeedsPassword = false;
           extraRules = [
             {
-              users = [ "victor7w7r" ];
+              users = [ "victor7w7r" "snowflake" ];
               commands = [
                 {
                   command = "ALL";

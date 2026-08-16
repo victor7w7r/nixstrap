@@ -45,7 +45,6 @@
     nixos =
       {
         isEfi,
-        isPersistent,
         isTpm,
         lib,
         inputs',
@@ -54,15 +53,7 @@
         ...
       }:
       {
-        programs.nix-ld.enable = true;
         environment = {
-          persistence = lib.optionalAttrs isPersistent {
-            "/nix/persist".directories = [
-              "/var/lib/containers"
-              "/var/lib/nixos-containers"
-              (lib.mkIf isTpm "/var/lib/sbctl")
-            ];
-          };
           systemPackages =
             with pkgs;
             [
@@ -94,59 +85,18 @@
       };
 
     provides.to-users.homeManager =
-      {
-        lib,
-        pkgs,
-        self',
-        ...
-      }:
-      let
-        cookies = pkgs.symlinkJoin {
-          name = "fortune-cookies";
-          paths = with self'.packages; [
-            pkgs.fortune
-            fortune-anti-jokes
-            fortune-mod-archlinux
-            fortune-mod-anarchism
-            fortune-mod-bofh-excuses
-            fortune-mod-billwurtz
-            fortune-mod-canada-nctr
-            fortune-mod-calvin
-            fortune-mod-confucius
-            fortune-mod-darkknight
-            fortune-mod-dhammapada
-            fortune-mod-doctorwho-classic-series
-            fortune-mod-doctorwho-new-series
-            fortune-mod-es
-            fortune-mod-futurama
-            fortune-mod-g
-            fortune-mod-helluva
-            fortune-mod-husse
-            fortune-mod-issa-haiku
-            fortune-mod-leftism
-            fortune-mod-limetricks
-            fortune-mod-matrix
-            fortune-mod-portal-game
-            fortune-mod-protolol
-            fortune-mod-starwars
-            fortune-mod-vimtips
-          ];
-        };
-      in
+      { lib, pkgs, ... }:
       {
         home.packages = with pkgs; [
           inxi
-          home-manager
           clolcat
-          (pkgs.writeShellScriptBin "fortune" ''
-            exec ${
-              pkgs.fortune.override { withOffensive = true; }
-            }/bin/fortune -s "${cookies}/share/games/fortunes" "$@"
-          '')
           mommy
         ];
 
         programs = {
+          command-not-found.enable = lib.mkDefault false;
+          fish.generateCompletions = lib.mkDefault false;
+
           fd.enable = true;
           ripgrep-all.enable = true;
           rclone.enable = true;
@@ -169,9 +119,6 @@
               update_ms = 500;
             };
           };
-
-          command-not-found.enable = lib.mkDefault false;
-          fish.generateCompletions = lib.mkDefault false;
 
           eza = {
             enable = true;

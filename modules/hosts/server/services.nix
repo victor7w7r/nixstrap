@@ -3,6 +3,8 @@
     { pkgs, ... }:
     {
       services = {
+        fwupd.enable = true;
+
         xrdp = {
           enable = true;
           defaultWindowManager = "${pkgs.xfce4-session}/bin/startxfce4";

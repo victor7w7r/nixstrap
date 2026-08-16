@@ -1,23 +1,22 @@
 {
   den.default = {
-    provides.to-users.homeManager =
-      { isPersistent, ... }:
-      {
-        services.pbgopy.enable = isPersistent;
-      };
-
     nixos =
-      { isPersistent, lib, ... }:
+      {
+        isPersistent,
+        isPhone,
+        isLive,
+        lib,
+        ...
+      }:
       {
         systemd.services.tailscaled = lib.optionalAttrs isPersistent {
           after = [ "network-online.target" ];
           wants = [ "network-online.target" ];
         };
 
-        services = lib.optionalAttrs isPersistent {
+        services = {
           #aria2.enable = true; NEEDS KEY
-          #openvpn.package = true;
-          croc.enable = true;
+          croc.enable = isPersistent;
           dnsmasq = {
             enable = false;
             settings = {
@@ -31,8 +30,19 @@
               except-interface = [ "virbr0" ];
             };
           };
-          tailscale = {
+          services.openssh = lib.mkForce {
             enable = true;
+            settings = {
+              AcceptEnv = null;
+              PermitRootLogin = if (isPhone || isLive) then "yes" else lib.mkDefault "prohibit-password";
+              PasswordAuthentication = true;
+              MaxAuthTries = 3;
+              ClientAliveInterval = 300;
+              ClientAliveCountMax = 2;
+            };
+          };
+          tailscale = {
+            enable = isPersistent;
             openFirewall = true;
             useRoutingFeatures = "server";
             extraUpFlags = [
@@ -42,27 +52,17 @@
               "--accept-routes"
             ];
           };
-
-          chrony = {
-            enable = true;
-            initstepslew = {
-              enabled = true;
-              threshold = 1.0;
-            };
-            servers = [
-              "1.1.1.1"
-              "8.8.8.8"
-              "time.cloudflare.com"
-              "pool.ntp.org"
-            ];
-          };
-
           ttyd = {
-            enable = false;
+            enable = isPersistent;
             writeable = true;
           };
         };
       };
-  };
 
+    provides.to-users.homeManager =
+      { isPersistent, ... }:
+      {
+        services.pbgopy.enable = isPersistent;
+      };
+  };
 }

@@ -38,6 +38,33 @@
         };
       };
 
+      services = {
+        chrony = {
+          enable = true;
+          initstepslew = {
+            enabled = true;
+            threshold = 1.0;
+          };
+          servers = [
+            "1.1.1.1"
+            "8.8.8.8"
+            "time.cloudflare.com"
+            "pool.ntp.org"
+          ];
+        };
+
+        journald.extraConfig = ''
+          Storage=persistent
+          Compress=yes
+          MaxLevelStore=debug
+          SystemMaxUse=500M
+          RuntimeMaxUse=200M
+          ForwardToConsole=yes
+          MaxLevelConsole=debug
+          TTYPath=/dev/ttyS0
+        '';
+      };
+
       systemd = {
         enableEmergencyMode = true;
         network.wait-online.enable = false;

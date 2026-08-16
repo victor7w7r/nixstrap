@@ -10,7 +10,7 @@
     {
       environment = lib.optionalAttrs isPersistent {
         persistence."/nix/persist".directories = lib.mkAfter [
-          "/etc/NetworkManager/"
+          "/etc/NetworkManager"
           "/var/lib/NetworkManager"
         ];
       };
@@ -28,15 +28,18 @@
           };
           nat = {
             enable = true;
-            internalInterfaces = [ "virbr0" ];
+            internalInterfaces = [
+              "incusbr0"
+              "virbr0"
+            ];
           };
           nftables.enable = true;
+          modemmanager.enable = lib.mkForce isPhone;
           networkmanager = {
             enable = true;
             insertNameservers = nameservers;
             dhcp = "dhcpcd";
           };
-          modemmanager.enable = lib.mkForce isPhone;
           firewall = {
             enable = true;
             allowPing = true;

@@ -2,7 +2,7 @@
 {
   flake-file.inputs.ponysay.url = "github:CrystalSplitter/ponysay-modern";
 
-  den.default = {
+  den.aspects.games = {
     os =
       {
         isPersistent,

@@ -27,9 +27,8 @@
 
         cockpit
         emulation
-        libvirt
+        games
         secrets
-        waydroid
         victor7w7r
       ];
 

@@ -1,8 +1,6 @@
-{ flakelib, inputs, ... }:
+{ flakelib, ... }:
 {
-  imports = [ (inputs.den.namespace "flakelib" false) ];
-
-  flakelib.lib.config = {
+  _module.args.flakelib = {
     stateVersion = "26.11";
 
     flake-config = { }: {
@@ -79,7 +77,7 @@
     };
   };
 
-  flake-file.nixConfig = (flakelib.lib.config.flake-config { }) // {
+  flake-file.nixConfig = (flakelib.config.flake-config { }) // {
     lazy-trees = true;
     submodules = true;
   };
