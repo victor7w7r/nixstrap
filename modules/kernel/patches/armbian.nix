@@ -60,7 +60,7 @@
       pkgs:
       (pkgs.runCommand "rk3588-patcher" { } ''
         mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
-        sed -i 's|\.incbin "drivers/gpu/arm/bifrost/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' $out/drivers/gpu/arm/bifrost/mali_kbase_csf_firmware.c
+        sed -i 's|\.incbin "drivers/gpu/arm/bifrost/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' $out/drivers/gpu/arm/bifrost/csf/mali_kbase_csf_firmware.c
 
         python3 -c '
               path = "$out/include/drm/drm_exec.h"
