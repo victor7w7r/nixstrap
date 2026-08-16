@@ -25,7 +25,7 @@
     };
 
     provides.to-users.homeManager = { config, ... }: {
-      xdg.configFile."Yubico/u2f_keys".source = config.age.secrets.yubikey.path
+      xdg.configFile."Yubico/u2f_keys".source = config.age.secrets.yubikey.path;
     };
   };
 }
