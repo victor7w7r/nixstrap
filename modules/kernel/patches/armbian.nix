@@ -58,9 +58,10 @@
 
     rk3588 =
       pkgs:
-      (pkgs.runCommand "rk3588-patcher" { } ''
+      (pkgs.runCommand "rk3588-patcher" { nativeBuildInputs = [ pkgs.python3 ]; } ''
         mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
         sed -i 's|\.incbin "drivers/gpu/arm/bifrost/mali_csffw.bin"|\.incbin "mali_csffw.bin"|g' $out/drivers/gpu/arm/bifrost/csf/mali_kbase_csf_firmware.c
+        sed -i 's/goto \*__drm_exec_retry_ptr;/goto __drm_exec_retry;/' $out/include/drm/drm_exec.h
 
         python3 -c '
               path = "$out/include/drm/drm_exec.h"
@@ -88,7 +89,6 @@
               with open(path, "w") as f:
                   f.write(content)
               '
-          sed -i 's/goto \*__drm_exec_retry_ptr;/goto __drm_exec_retry;/' $out/include/drm/drm_exec.h
       '');
   };
 }
