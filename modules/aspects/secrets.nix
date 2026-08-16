@@ -22,6 +22,7 @@
       age = {
         secrets.yubikey = {
           file = "${self}/assets/secrets/yabe.age";
+          path = "${config.home.homeDirectory}/.config/Yubico/u2f_keys";
           mode = "770";
         };
         identityPaths = [
@@ -29,8 +30,6 @@
           "/nix/persist/etc/ssh/ssh_host_rsa_key"
         ];
       };
-
-      xdg.configFile."Yubico/u2f_keys".source = config.age.secrets.yubikey.path;
     };
   };
 }
