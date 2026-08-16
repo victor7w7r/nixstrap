@@ -61,19 +61,13 @@
       pkgs:
       (pkgs.runCommand "rk3588-patcher"
         {
-          nativeBuildInputs = with pkgs; [
-            python3
-            findutils
-          ];
+          nativeBuildInputs = with pkgs; [ findutils ];
         }
         ''
-          mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
-          python3 ${self}/modules/kernel/patches/patch_drm_exec.py $out/include/drm/drm_exec.h
-          ABS_FW="$out/drivers/gpu/arm/bifrost/mali_csffw.bin"
-          find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.h" \) -exec sed -i \
-            -e 's|CONFIG_MALI_BIFROST_CSF_FIRMWARE_PATH|"'"$ABS_FW"'"|g' \
-            -e 's|CONFIG_MALI_CSF_FIRMWARE_PATH|"'"$ABS_FW"'"|g' \
-            -e 's|"drivers/gpu/arm/bifrost/mali_csffw.bin"|"'"$ABS_FW"'"|g' {} +
+            mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
+            FW_PATH="$out/drivers/gpu/arm/bifrost/mali_csffw.bin"
+            find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.S" -o -name "*.h" \) \
+                -exec sed -i "s|drivers/gpu/arm/bifrost/mali_csffw.bin|$FW_PATH|g" {} +
         ''
       );
   };
