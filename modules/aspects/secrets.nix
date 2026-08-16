@@ -10,6 +10,15 @@
         wants = [ "sshd.service" ];
       };
 
+      age.identityPaths = [
+        "/nix/persist/etc/ssh/ssh_host_ed25519_key"
+        "/nix/persist/etc/ssh/ssh_host_rsa_key"
+      ];
+    };
+
+    provides.to-users.homeManager = { config, ... }: {
+      imports = [ inputs.agenix.homeManagerModules.default ];
+
       age = {
         secrets.yubikey = {
           file = "${self}/assets/secrets/yabe.age";
@@ -22,10 +31,7 @@
           "/nix/persist/etc/ssh/ssh_host_rsa_key"
         ];
       };
-    };
 
-    provides.to-users.homeManager = { config, ... }: {
-      imports = [ inputs.agenix.homeManagerModules.default ];
       xdg.configFile."Yubico/u2f_keys".source = config.age.secrets.yubikey.path;
     };
   };
