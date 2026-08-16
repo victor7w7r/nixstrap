@@ -27,11 +27,10 @@
       };
     };
 
-    provides.to-users.homeManager =
-      { isPersistent, ... }:
-      {
-        services.pbgopy.enable = isPersistent;
-      };
+    provides.to-users.homeManager = {
+      services.pbgopy.enable = true;
+      programs.himalaya.enable = true;
+    };
 
   };
 }

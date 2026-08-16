@@ -65,9 +65,12 @@
       "${host}-kernel" = base;
       "${host}-allconfig" = base.configfile;
       "${host}-kernelPackages" =
-        base
-        |> pkgs.linuxPackagesFor
-        |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
+        if legacy then
+          base |> pkgs.linuxPackagesFor
+        else
+          base
+          |> pkgs.linuxPackagesFor
+          |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
       "${host}-config" = pkgs.runCommand "filtered-config" { } ''
         cp ${base.configfile} .config
         sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config

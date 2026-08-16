@@ -12,59 +12,43 @@
         environment.systemPackages =
           with pkgs;
           [
-            curlFull
-            nmap
-            gping
-            inetutils
-            wget
-            wol
-          ]
-          ++ (lib.optionals (isPersistent || isMainMac) [
             #ariang
+            #self'.packages.screego
+            curlFull
             doggo
             goto
+            gping
+            inetutils
             lazyssh
             netscanner
+            nmap
             openresolv
             rustscan
-            sshs
-            speedtest-cli
             self'.packages.aim
-            #self'.packages.screego
-          ]);
-      };
-
-    provides.to-users.homeManager =
-      { isPersistent, pkgs, ... }:
-      {
-        home.packages = with pkgs; [ axel ];
-        programs.himalaya.enable = isPersistent;
+            speedtest-cli
+            sshs
+            wget
+            wol
+          ];
       };
 
     nixos =
       {
         isPersistent,
-        isMainMac,
         lib,
         pkgs,
         self',
         ...
       }:
       {
-        environment.systemPackages =
-          with pkgs;
-          [
-            ethtool
-            iptables
-            net-tools
-            wget2
-          ]
-          ++ (lib.optionals (isPersistent || isMainMac) [
-            #ariang
-            slirp4netns
-            rquickshare
-            self'.packages.ssh-list
-          ]);
+        environment.systemPackages = with pkgs; [
+          axel
+          ethtool
+          net-tools
+          wget2
+          slirp4netns
+          self'.packages.ssh-list
+        ];
 
         programs = lib.optionalAttrs isPersistent {
           bandwhich.enable = true;
