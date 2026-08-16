@@ -13,7 +13,10 @@
     hosts.x86_64-linux = {
       server-physical-chroot.users.victor7w7r = { };
       server-logical-chroot.users.victor7w7r = { };
-      server.users.victor7w7r = { };
+      server.users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects.server =
@@ -32,12 +35,13 @@
           misc.fetch
           pentest._
 
-          emulation
           cockpit
+          emulation
           kitty
-          virt
+          root
           secrets
           victor7w7r
+          virt
         ];
 
         nixos =

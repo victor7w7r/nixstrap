@@ -1,5 +1,5 @@
 {
-  crane,
+  craneCall,
   den,
   inputs,
   withSystem,
@@ -46,7 +46,7 @@
                 '';
               }
             );
-            crane = crane.lib.call;
+            crane = craneCall;
           })
         ];
       };

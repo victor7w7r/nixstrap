@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 {
-  crane.lib.call =
+  _module.args.craneCall =
     {
       pkgs,
       pname,

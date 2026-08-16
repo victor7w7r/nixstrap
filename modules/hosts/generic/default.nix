@@ -18,10 +18,22 @@
 
   den = {
     hosts = {
-      x86_64-linux.generic-x86.users.snowflake = { };
-      x86_64-linux.generic-arm-cross.users.snowflake = { };
-      aarch64-linux.generic-arm.users.snowflake = { };
-      aarch64-linux.generic-x86-cross.users.snowflake = { };
+      x86_64-linux.generic-x86.users = {
+        snowflake = { };
+        root = { };
+      };
+      x86_64-linux.generic-arm-cross.users = {
+        snowflake = { };
+        root = { };
+      };
+      aarch64-linux.generic-arm.users.users = {
+        snowflake = { };
+        root = { };
+      };
+      aarch64-linux.generic-x86-cross.users.users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects = {
@@ -58,7 +70,9 @@
             games
             kitty
             plasma._
+            root
             secrets
+            snowflake
           ];
 
           nixos = { pkgs, host, ... }: {

@@ -9,7 +9,10 @@
   };
 
   den = {
-    hosts.aarch64-linux.phone-enchilada.users.victor7w7r = { };
+    hosts.aarch64-linux.phone-enchilada.users = {
+      snowflake = { };
+      root = { };
+    };
     aspects.phone-enchilada = {
       includes = with den.aspects; [ phone.common ];
 

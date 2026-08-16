@@ -20,9 +20,18 @@
 
   den = {
     hosts.aarch64-linux = {
-      pizero.users.victor7w7r = { };
-      pizero-sdimage.users.victor7w7r = { };
-      pizero-tarball.users.victor7w7r = { };
+      pizero.users = {
+        snowflake = { };
+        root = { };
+      };
+      pizero-sdimage.users = {
+        snowflake = { };
+        root = { };
+      };
+      pizero-tarball.users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects = {
@@ -52,9 +61,10 @@
 
             cockpit
             emulation
-            virt
+            root
             secrets
             victor7w7r
+            virt
           ];
 
           nixos =

@@ -11,7 +11,10 @@
   den = {
     hosts.x86_64-linux.wsl = {
       wsl.enable = true;
-      users.victor7w7r = { };
+      users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects.wsl = {
@@ -28,6 +31,7 @@
         cockpit
         emulation
         games
+        root
         secrets
         victor7w7r
       ];

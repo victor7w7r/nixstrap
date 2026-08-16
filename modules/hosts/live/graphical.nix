@@ -16,6 +16,7 @@
         gui._
 
         kitty
+        snowflake
         xfce
       ];
 

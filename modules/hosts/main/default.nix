@@ -14,7 +14,10 @@
   den = {
     hosts.x86_64-linux = {
       main-chroot.users.victor7w7r = { };
-      main.users.victor7w7r = { };
+      main.users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects.main = {
@@ -40,6 +43,7 @@
         kitty
         libvirt
         plasma._
+        root
         secrets
         victor7w7r
         virt

@@ -38,6 +38,7 @@
       kitty
       libvirt
       plasma._
+      root
       secrets
       victor7w7r
       virt

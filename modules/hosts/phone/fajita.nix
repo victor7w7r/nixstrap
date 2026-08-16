@@ -12,7 +12,10 @@
   };
 
   den = {
-    hosts.aarch64-linux.phone-fajita.users.victor7w7r = { };
+    hosts.aarch64-linux.phone-fajita.users = {
+      snowflake = { };
+      root = { };
+    };
     aspects.phone-fajita = {
       includes = with den.aspects; [ phone.common ];
       nixos =

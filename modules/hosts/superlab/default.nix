@@ -17,9 +17,18 @@
 
   den = {
     hosts.aarch64-linux = {
-      superlab.users.victor7w7r = { };
-      superlab-sdimage.users.victor7w7r = { };
-      superlab-tarball.users.victor7w7r = { };
+      superlab.users = {
+        snowflake = { };
+        root = { };
+      };
+      superlab-sdimage.users = {
+        snowflake = { };
+        root = { };
+      };
+      superlab-tarball.users = {
+        snowflake = { };
+        root = { };
+      };
     };
 
     aspects = {
@@ -62,6 +71,7 @@
             #plasma._
             secrets
             victor7w7r
+            root
             #waydroid
             #xr
           ];

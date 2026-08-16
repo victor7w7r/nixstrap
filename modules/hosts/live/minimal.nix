@@ -8,7 +8,10 @@
   den = {
     hosts.x86_64-linux.minimal-live.users.snowflake = { };
     aspects.minimal-live = {
-      includes = with den.aspects; [ live.common ];
+      includes = with den.aspects; [
+        live.common
+        snowflake
+      ];
       nixos =
         { lib, ... }:
         {

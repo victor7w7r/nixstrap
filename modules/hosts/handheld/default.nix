@@ -10,7 +10,11 @@
     inputs.self.nixosConfigurations.handheld.config.system.build.toplevel;
 
   den = {
-    hosts.x86_64-linux.handheld.users.victor7w7r = { };
+    hosts.x86_64-linux.handheld.users = {
+      snowflake = { };
+      root = { };
+    };
+
     aspects.handheld =
       { user, ... }:
       {
@@ -34,6 +38,7 @@
           games
           kitty
           libvirt
+          root
           plasma._
           secrets
           victor7w7r
