@@ -17,8 +17,7 @@
 
       luks.devices.swapcrypt = {
         device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
-        crypttabExtraOpts = [ "tpm2-device=auto" ];
-        preLVM = true;
+        crypttabExtraOpts = [ "fido2-device=auto" ];
       };
     };
   };

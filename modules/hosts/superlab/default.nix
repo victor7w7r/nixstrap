@@ -114,6 +114,7 @@
                   "snd_soc_audio_graph_card"
                   "synopsys_hdmirx"
                   "spi_rockchip_sfc"
+                  "usbhid"
                 ];
                 loader = lib.mkForce {
                   #systemd-boot.enable = true;

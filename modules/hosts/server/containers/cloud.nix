@@ -1,23 +1,6 @@
-{ containers, inputs, ... }:
+{ containers, ... }:
 {
-  den = {
-    #nix build .#nixosConfigurations.cloud.config.system.build.squashfs --print-out-paths
-    #nix build .#nixosConfigurations.cloud.config.system.build.metadata --print-out-paths
-    #incus image import --alias nixos/cloud/container /nix/store/.../tarball/nixos-system-x86_64-linux.tar.xz /nix/store/...
-    #incus image list nixos/cloud/container
-    #incus launch nixos/cloud/container -c security.nesting=true
-    #incus shell square-heron
-    hosts.x86_64-linux.cloud.users.victor7w7r = { };
-    /*
-      aspects.cloud = {
-      nixos = { pkgs, ... }: {
-        imports = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxc-container.nix" ];
-      };
-      };
-    */
-  };
-
-  den.aspects.server.provides.containers.nixos.containers.cloud = containers.lib.call {
+  den.aspects.server.containers.nixos.containers.cloud = containers.call {
     ip = "2";
     name = "cloud";
     rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
