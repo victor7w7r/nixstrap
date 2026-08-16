@@ -1,10 +1,8 @@
-{ inputs, uboot, ... }:
+{ uboot, tauchgang, ... }:
 {
-  imports = [ (inputs.den.namespace "uboot" false) ];
-
-  uboot.lib = {
-    enchilada = pkgs: (uboot.lib.tauchgang pkgs false);
-    fajita = pkgs: (uboot.lib.tauchgang pkgs true);
+  _module.args.uboot = {
+    enchilada = pkgs: (tauchgang pkgs false);
+    fajita = pkgs: (tauchgang pkgs true);
     opizero2w =
       pkgs:
       pkgs.buildUBoot {
@@ -114,25 +112,25 @@
 
   perSystem = { pkgs, ... }: {
     devShells = {
-      opizero2w-menu-config = uboot.lib.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.lib.opizero2w pkgs
+      opizero2w-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
+        uboot.opizero2w pkgs
       );
-      rock5b-menu-config = uboot.lib.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.lib.rock5b pkgs
+      rock5b-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
+        uboot.rock5b pkgs
       );
-      fajita-menu-config = uboot.lib.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.lib.fajita pkgs
+      fajita-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
+        uboot.fajita pkgs
       );
-      enchilada-menu-config = uboot.lib.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.lib.enchilada pkgs
+      enchilada-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
+        uboot.enchilada pkgs
       );
     };
 
     packages = {
-      uboot-opizero2w = uboot.lib.opizero2w pkgs.pkgsCross.aarch64-multiplatform;
-      uboot-rock5b = uboot.lib.rock5b pkgs.pkgsCross.aarch64-multiplatform;
-      uboot-fajita = uboot.lib.fajita pkgs.pkgsCross.aarch64-multiplatform;
-      uboot-enchilada = uboot.lib.enchilada pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-opizero2w = uboot.opizero2w pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-rock5b = uboot.rock5b pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-fajita = uboot.fajita pkgs.pkgsCross.aarch64-multiplatform;
+      uboot-enchilada = uboot.enchilada pkgs.pkgsCross.aarch64-multiplatform;
     };
   };
 }

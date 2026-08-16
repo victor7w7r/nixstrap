@@ -1,11 +1,14 @@
-{ flakelib, inputs, ... }:
+{ flake-config, ... }:
 {
-  imports = [ (inputs.den.namespace "flakelib" false) ];
+  flake-file.nixConfig = flake-config // {
+    lazy-trees = true;
+    submodules = true;
+  };
 
-  flakelib.lib.config = {
+  _module.args = {
     stateVersion = "26.11";
 
-    flake-config = { }: {
+    flake-config = {
       always-allow-substitutes = true;
       allow-import-from-derivation = true;
       accept-flake-config = true;
@@ -13,15 +16,15 @@
       use-xdg-base-directories = true;
 
       experimental-features = [
-        "nix-command"
-        #"ca-derivations"
-        "flakes"
-        "fetch-closure"
-        "parse-toml-timestamps"
         "blake3-hashes"
-        "verified-fetches"
-        "pipe-operators"
+        "ca-derivations"
+        "fetch-closure"
+        "flakes"
         "git-hashing"
+        "nix-command"
+        "parse-toml-timestamps"
+        "pipe-operators"
+        "verified-fetches"
       ];
 
       substituters = [
@@ -29,9 +32,7 @@
         "https://cache.nixos.org"
         "https://vanilla-mobile-nixos.cachix.org"
         "https://cache.xinux.uz"
-        #"https://cache.saumon.network/proxmox-nixos"
         #"https://nix-gaming.cachix.org"
-        #"https://attic.xuyh0120.win/lantian"
       ];
 
       trusted-public-keys = [
@@ -39,8 +40,6 @@
         "vanilla-mobile-nixos.cachix.org-1:nicMQxxTD4n6PM9dCvylqsCOCA6M2C6gybbCKrei8AQ="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
-        #"proxmox-nixos:D9RYSWpQQC/msZUWphOY2I5RLH5Dd6yQcaHIuug7dWM="
-        #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         #"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
 
@@ -55,7 +54,7 @@
       extra-trusted-public-keys = [ ];
     };
 
-    nix-config = { }: {
+    nix-config = {
       connect-timeout = 5;
       builders-use-substitutes = true;
       download-buffer-size = 524288000;
@@ -77,10 +76,5 @@
         "@wheel"
       ];
     };
-  };
-
-  flake-file.nixConfig = (flakelib.lib.config.flake-config { }) // {
-    lazy-trees = true;
-    submodules = true;
   };
 }

@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  uboot.lib.tauchgang =
+  _module.args.tauchgang =
     pkgs: isFajita:
     (pkgs.buildUBoot {
       pname = "uboot-tauchgang-${if isFajita then "fajita" else "enchilada"}";

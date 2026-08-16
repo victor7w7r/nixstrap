@@ -1,8 +1,6 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 {
-  imports = [ (inputs.den.namespace "hosts" false) ];
-
-  hosts.lib = {
+  _module.args.hosts.lib = {
     static-network = iface: address: {
       nixos.networking.networkmanager.ensureProfiles.profiles."static-network" = {
         connection = {
