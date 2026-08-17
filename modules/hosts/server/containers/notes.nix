@@ -6,7 +6,6 @@
     rules = [
       "d /opt/couchdb/data 0770 couchdb couchdb - -"
       "d /opt/couchdb/etc/local.d 0770 couchdb couchdb - -"
-      "z /run/secrets/password-db 0400 couchdb couchdb - -"
       "d /web/vaults 0770 couchdb couchdb - -"
       "d /web/config 0770 couchdb couchdb - -"
     ];
