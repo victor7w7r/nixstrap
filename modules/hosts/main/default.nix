@@ -23,6 +23,7 @@
     aspects.main = {
       includes = with den.aspects; [
         (hosts.lib.static-network "enp4s0" "6")
+        (hosts.lib.zram { })
         main._
 
         audio._

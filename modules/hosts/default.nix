@@ -32,10 +32,15 @@
           {
             boot.initrd.systemd.services.zram-format = {
               wantedBy = [ "initrd.target" ];
-              requiredBy = [ "sysroot.mount" ];
+              requiredBy = [
+                "cryptsetup.target"
+                "sysroot.mount"
+              ];
               before = [
+                "cryptsetup.target"
                 "initrd-fs.target"
                 "sysroot.mount"
+                "systemd-cryptsetup-pre.target"
               ]
               ++ mappers;
               after = [ "systemd-modules-load.service" ];
