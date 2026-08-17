@@ -16,11 +16,16 @@
           emergency = btrfs.emergency { priority = 3; };
           recovery = win.recovery { };
           win = win.call { };
-          system = btrfs.call {
+          system = luks.call {
             name = "system";
             size = "110G";
+            enrollFido2 = true;
+            device = "${disk.constants.partlabel}/disk-nvme-system";
             priority = 7;
-            subvolumes = btrfs.subvolumes { hasEtc = true; };
+            content = btrfs.call {
+              entireDisk = false;
+              subvolumes = btrfs.subvolumes { hasEtc = true; };
+            };
           };
           games = btrfs.shared { name = "games"; };
         };

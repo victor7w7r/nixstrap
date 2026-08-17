@@ -75,25 +75,37 @@
 
     call =
       {
-        name,
-        size,
+        name ? null,
+        size ? null,
         priority ? 3,
+        entireDisk ? true,
         mountpoint ? null,
         mountOptions ? [ ],
         subvolumes ? { },
       }:
       {
-        inherit name size priority;
-        type = "8300";
-        content = {
-          inherit subvolumes mountpoint mountOptions;
-          type = "btrfs";
-          extraArgs = [
-            "-f"
-            "-L"
-            "${name}"
-          ];
-        };
-      };
+        inherit subvolumes mountpoint mountOptions;
+        type = "btrfs";
+        extraArgs = [
+          "-f"
+          "-L"
+          "${name}"
+        ];
+      }
+      |> (
+        content:
+        if (!entireDisk) then
+          {
+            inherit
+              name
+              size
+              priority
+              content
+              ;
+            type = "8300";
+          }
+        else
+          content
+      );
   };
 }

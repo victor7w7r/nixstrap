@@ -101,10 +101,6 @@
             persist = luks.entire {
               name = "persist";
               device = "/dev/${disk.constants.id}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
-              postMount = ''
-                CACHE_SET_UUID=$(sudo bcache-super-show /dev/mapper/persistcachecrypt | grep 'cset.uuid' | awk '{print $2}')
-                echo $CACHE_SET_UUID > /sys/block/bcache0/bcache/attach
-              '';
               postCreate = "make-bcache -B /dev/mapper/persist";
             };
           };

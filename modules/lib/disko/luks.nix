@@ -9,18 +9,20 @@
         size ? "100%",
         content ? null,
         allowDiscards ? true,
-        isForTest ? false,
         entireDisk ? false,
         postCreate ? "",
         postMount ? "",
+        enrollFido2 ? false,
         keyFile ? "/tmp/key.txt",
       }:
       {
         type = "luks";
-        inherit name content;
+        inherit name content enrollFido2;
         postMountHook = postMount;
-        settings = { inherit keyFile allowDiscards; };
-        preCreateHook = (if isForTest then ''echo -n "test" > /tmp/key.txt'' else "");
+        settings = {
+          inherit allowDiscards;
+          keyFile = if (!enrollFido2) then keyFile else null;
+        };
         postCreateHook = ''
           cryptsetup config ${device} --label "${name}"
           ${postCreate}
