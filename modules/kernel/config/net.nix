@@ -14,6 +14,8 @@
       INET_AH = yes;
       INET_ESP = yes;
       INET_IPCOMP = yes;
+      IP_NF_NAT = module;
+      IP_NF_IPTABLES_LEGACY = yes;
       NETFILTER_XTABLES = yes;
       NETFILTER_XT_MATCH_ADDRTYPE = yes;
       NETFILTER_XT_MATCH_COMMENT = yes;
@@ -23,9 +25,10 @@
       NETFILTER_XT_MATCH_STATE = yes;
       NETFILTER_XT_TARGET_LOG = yes;
       NETFILTER_XT_TARGET_MASQUERADE = yes;
+      NETFILTER_XTABLES_LEGACY = yes;
       NET_FOU = yes;
       NET_SCH_FQ = yes;
-      NFT_COMPAT = no;
+      NFT_COMPAT = module;
       NFT_FIB_IPV4 = yes;
       NFT_MASQ = yes;
       NFT_NAT = yes;
@@ -190,7 +193,6 @@
         BRIDGE_NF_EBTABLES = no;
         IP_NF_MATCH_ECN = no;
         IP_NF_MATCH_TTL = no;
-        NETFILTER_XTABLES_LEGACY = no;
         NETFILTER_XT_MATCH_CLUSTER = no;
         NETFILTER_XT_MATCH_CPU = no;
         NETFILTER_XT_MATCH_DCCP = no;
