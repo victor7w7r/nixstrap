@@ -26,6 +26,9 @@
               "virbr0"
               "ve-+"
             ];
+            extraInputRules = ''
+              iifname "ve-+" accept
+            '';
             allowedTCPPorts = [
               22
               53

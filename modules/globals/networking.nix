@@ -35,7 +35,17 @@
             enable = true;
             wait = "background";
           };
-          nftables.enable = true;
+          nftables = {
+            enable = true;
+            ruleset = ''
+              table ip custom_nat {
+                chain postrouting {
+                  type nat hook postrouting priority srcnat; policy accept;
+                  oifname "enp1s0" ip saddr 10.200.0.0/16 masquerade
+                }
+              }
+            '';
+          };
           modemmanager.enable = lib.mkForce isPhone;
           networkmanager = {
             enable = true;
@@ -76,6 +86,7 @@
           goto
           gping
           inetutils
+          iptables
           lazyssh
           netscanner
           nmap
