@@ -47,6 +47,7 @@
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = yes;
       ARCH_SUNXI = no;
+      CPU_FREQ_GOV_INTERACTIVE = no;
       DMABUF_HEAPS_SRAM = no;
       DRM_MAXIM_MAX96745 = no;
       DRM_PANEL_INNOLUX_AFJ101_BA2131 = no;
@@ -58,6 +59,8 @@
       LT7911D_FB_NOTIFIER = no;
       LTE = no;
       MALI_KUTF = no;
+      MALI400 = no;
+      MALI450 = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
       MEDIA_TUNER_FC0012 = no;
@@ -102,6 +105,10 @@
       RK_SFC_NOR = no;
       ROCKCHIP_MINIDUMP = no;
       ROCKCHIP_RAM_VENDOR_STORAGE = no;
+      ROCKCHIP_HW_DECOMPRESS = yes;
+      ROCKCHIP_HW_DECOMPRESS_USER = yes;
+      ROCKCHIP_RGA2 = yes;
+      ROCKCHIP_RGA = yes;
       RTC_DRV_HYM8563 = yes;
       RTC_DRV_RK630 = no;
       SENSORS_PWM_FAN = yes;
