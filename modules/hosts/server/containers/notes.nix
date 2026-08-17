@@ -56,6 +56,8 @@
           };
 
           chttpd = {
+            bind_address = "0.0.0.0";
+            port = 5984;
             require_valid_user = true;
             max_http_request_size = 4294967296;
             enable_cors = true;
