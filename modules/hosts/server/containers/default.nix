@@ -67,6 +67,10 @@
             hostPath = "/home/victor7w7r/.ssh";
             isReadOnly = true;
           };
+          "/var/lib/docker" = {
+            hostPath = "/var/lib/docker";
+            isReadOnly = false;
+          };
         }
         // bindMounts;
 
