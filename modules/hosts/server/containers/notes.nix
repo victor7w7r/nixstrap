@@ -77,7 +77,7 @@
       funnel-db = containers.lib.funnel {
         inherit pkgs;
         incoming = "5984";
-        outcoming = "8443";
+        outgoing = "8443";
       };
     };
 

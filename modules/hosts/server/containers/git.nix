@@ -11,12 +11,12 @@
     systemd = pkgs: {
       funnel-db = containers.lib.funnel {
         inherit pkgs;
-        outcoming = "6610";
+        outgoing = "6610";
       };
       funnel-ssh = containers.lib.funnel {
         inherit pkgs;
         incoming = "6611";
-        outcoming = "8443";
+        outgoing = "8443";
       };
     };
     containers = _: {
