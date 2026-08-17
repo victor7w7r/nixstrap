@@ -109,6 +109,7 @@
 
             environment = {
               etc."intel-undervolt.conf".text = "power package 8 28 10 2.4";
+              persistence."/nix/persist".directories = lib.mkAfter [ "/var/lib/docker" ];
               systemPackages = with pkgs; [
                 mdadm
                 intel-undervolt

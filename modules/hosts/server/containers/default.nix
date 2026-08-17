@@ -55,7 +55,11 @@
         ephemeral = false;
         hostAddress = "10.200.1.1";
         localAddress = "10.200.1.${ip}";
-        extraFlags = [ "--private-users-ownership=chown" ];
+        extraFlags = [
+          "--private-users-ownership=chown"
+          "--system-call-filter=@keyring"
+          "--capability=all"
+        ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         inherit forwardPorts;
         bindMounts = {
@@ -119,6 +123,7 @@
             virtualisation = {
               docker = {
                 enable = true;
+                extraOptions = "--storage-driver=vfs";
                 autoPrune = {
                   enable = true;
                   dates = "weekly";
