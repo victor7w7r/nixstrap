@@ -54,7 +54,6 @@
           {
             CDROM = no;
             NET_VENDOR_BROADCOM = no;
-            MD = lib.mkForce no;
             R8169 = no;
             SND_USB_AUDIO = module;
             UDF_FS = lib.mkForce no;
@@ -123,7 +122,6 @@
           (sound.apply { isArm = true; })
           {
             CDROM = no;
-            MD = lib.mkForce no;
             R8169 = no;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
@@ -143,7 +141,6 @@
           {
             CDROM = no;
             HIBERNATION = no;
-            MD = lib.mkForce no;
             R8169 = no;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
