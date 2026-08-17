@@ -51,7 +51,7 @@
         ];
 
         nixos =
-          { config, pkgs, ... }:
+          { lib, pkgs, ... }:
           {
             nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
             hardware.cpu.intel.updateMicrocode = true;
@@ -61,6 +61,10 @@
             networking = {
               hostName = "v7w7r-youyeetoox1";
               #interfaces."enp1s0".wakeOnLan.enable = true;
+             nat = {
+                internalInterfaces = lib.mkAfter ["ve-+"];
+                externalInterface = "enp1s0";
+              };
             };
 
             virtualisation.incus = {
