@@ -22,7 +22,6 @@
 
        sed -i '/^CONFIG_AF_RXRPC/d' config
        sed -i '/^CONFIG_ALTERA_STAPL/d' config
-       sed -i '/^CONFIG_BLK_DEV/d' config
        sed -i '/^CONFIG_COMEDI/d' config
        sed -i '/^CONFIG_CPU_SUP_/d' config
        sed -i '/^CONFIG_CRYPTO_/d' config
