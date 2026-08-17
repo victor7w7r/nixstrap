@@ -7,6 +7,7 @@
           nat = {
             enable = true;
             internalInterfaces = [
+              "ve-+"
               "incusbr0"
               "virbr0"
             ];

@@ -53,8 +53,8 @@
         privateNetwork = true;
         enableTun = true;
         ephemeral = false;
-        hostAddress = "192.168.1.1";
-        localAddress = "192.168.1.${ip}";
+        hostAddress = "10.100.0.1";
+        localAddress = "10.100.0.${ip}";
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         inherit forwardPorts;
@@ -80,7 +80,10 @@
               hostName = "v7w7r-${name}";
               firewall.enable = false;
               useHostResolvConf = lib.mkForce false;
-              nameservers = [ "1.1.1.1" "8.8.8.8" ];
+              nameservers = [
+                "1.1.1.1"
+                "8.8.8.8"
+              ];
             };
             services = {
               resolved.enable = true;

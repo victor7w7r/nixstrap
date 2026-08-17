@@ -60,8 +60,7 @@
             networking = {
               hostName = "v7w7r-youyeetoox1";
               #interfaces."enp1s0".wakeOnLan.enable = true;
-             nat = {
-                internalInterfaces = lib.mkAfter ["ve-+"];
+              nat = {
                 externalInterface = "enp1s0";
               };
             };
