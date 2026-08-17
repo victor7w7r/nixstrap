@@ -19,15 +19,15 @@
           swapcrypt = luks.call {
             name = "swapcrypt";
             size = "14G";
-            enrollFido2 = true;
+            #enrollFido2 = true;
             content = swap.call { };
             priority = 6;
           };
           system = luks.call {
             name = "system";
             size = "110G";
-            enrollFido2 = true;
-            device = "${disk.constants.partlabel}/disk-nvme-system";
+            #enrollFido2 = true;
+            device = "${disk.constants.partlabel}/disk-main-system";
             priority = 7;
             content = btrfs.call {
               name = "system";
