@@ -78,7 +78,7 @@
         name ? null,
         size ? null,
         priority ? 3,
-        entireDisk ? true,
+        isPartition ? true,
         mountpoint ? null,
         mountOptions ? [ ],
         subvolumes ? { },
@@ -94,7 +94,7 @@
       }
       |> (
         content:
-        if (!entireDisk) then
+        if isPartition then
           {
             inherit
               name

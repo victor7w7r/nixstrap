@@ -23,7 +23,7 @@
             device = "${disk.constants.partlabel}/disk-nvme-system";
             priority = 7;
             content = btrfs.call {
-              entireDisk = false;
+              isPartition = false;
               subvolumes = btrfs.subvolumes { hasEtc = true; };
             };
           };
