@@ -20,8 +20,10 @@
 
       include = { }: {
         BLK_DEV_DM = module;
+        BLK_DEV_MD = yes;
         BLK_DEV_NVME = yes;
         BLK_DEV_SD = yes;
+        MD = yes;
         DM_CRYPT = module;
         SCSI = yes;
       };
@@ -36,7 +38,6 @@
       };
 
       raid = { }: {
-        BLK_DEV_MD = yes;
         DM_RAID = module;
         MD_RAID456 = yes;
       };
