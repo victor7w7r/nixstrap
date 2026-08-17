@@ -31,6 +31,19 @@
       tailnet.file = ../secrets/tailnet.age;
     };
 
+    forwardPorts = [
+      {
+        containerPort = 5984;
+        hostPort = 5984;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 8443;
+        hostPort = 8000;
+        protocol = "tcp";
+      }
+    ];
+
     services = config: _: {
       couchdb = {
         enable = true;
