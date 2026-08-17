@@ -8,6 +8,7 @@
     }:
     {
       security.pam.services.ly = {
+        u2fAuth = true;
         kwallet = {
           enable = true;
           package = pkgs.kdePackages.kwallet-pam;

@@ -28,8 +28,12 @@
       seafile-env.file = ../secrets/seafile-env.age;
       tailnet.file = ../secrets/tailnet.age;
     };
+
     systemd = pkgs: {
-      funnel = containers.lib.funnel { inherit pkgs; };
+      funnel = containers.lib.funnel {
+        inherit pkgs;
+        incoming = "80";
+      };
       create-seafile-net = {
         serviceConfig.Type = "oneshot";
         wantedBy = [
@@ -45,6 +49,7 @@
         '';
       };
     };
+
     containers = config: {
       seafile-db = {
         image = "mariadb:10.11";

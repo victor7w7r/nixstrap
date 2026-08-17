@@ -76,8 +76,9 @@
       funnel-client = containers.lib.funnel { inherit pkgs; };
       funnel-db = containers.lib.funnel {
         inherit pkgs;
-        incoming = "5984";
-        outgoing = "8443";
+        incoming = "8443";
+        incomingTcp = "5984";
+        outgoingTcp = "8443";
       };
     };
 

@@ -74,8 +74,9 @@
       };
       funnel = containers.lib.funnel {
         inherit pkgs;
-        outgoing = "443";
-        incoming = "6112";
+        incoming = "80";
+        outgoingTcp = "443";
+        incomingTcp = "6112";
       };
     };
   };

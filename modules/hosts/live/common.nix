@@ -1,4 +1,9 @@
-{ den, inputs, ... }:
+{
+  den,
+  inputs,
+  stateVersion,
+  ...
+}:
 {
   den.aspects.live.common = {
     includes = with den.aspects; [
@@ -49,6 +54,7 @@
         };
 
         system = {
+          inherit stateVersion;
           extraDependencies =
             with pkgs;
             lib.mkForce [
@@ -57,7 +63,6 @@
               busybox
               makeInitrdNGTool
             ];
-          stateVersion = "26.05";
         };
 
         hardware.cpu = {
@@ -97,7 +102,7 @@
         };
 
         virtualisation = {
-          vmware.guest.enable = true;
+          vmware.guest.enable = false;
           virtualbox.guest.enable = false;
         };
 

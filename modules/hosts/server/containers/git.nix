@@ -9,14 +9,11 @@
     };
     secrets.tailnet.file = ../secrets/tailnet.age;
     systemd = pkgs: {
-      funnel-db = containers.lib.funnel {
+      funnel = containers.lib.funnel {
         inherit pkgs;
-        outgoing = "6610";
-      };
-      funnel-ssh = containers.lib.funnel {
-        inherit pkgs;
-        incoming = "6611";
-        outgoing = "8443";
+        incoming = "6610";
+        incomingTcp = "6611";
+        outgoingTcp = "8443";
       };
     };
     containers = _: {

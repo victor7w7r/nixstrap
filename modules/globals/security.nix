@@ -51,10 +51,11 @@
             sudo.u2fAuth = true;
             y2f.enable = true;
           };
-          yubico = {
+          u2f = {
             enable = true;
-            mode = "challenge-response";
-            control = "sufficient";
+            control = "sufficient"; 
+            cue = true;
+            authFile = "/etc/u2f_keys";
           };
         };
         polkit.enable = true;

@@ -11,20 +11,27 @@
     funnel =
       {
         pkgs,
-        incoming ? "80",
-        outgoing ? "",
+        incoming ? null,
+        incomingTcp ? null,
+        outgoingTcp ? null,
       }:
       {
         wantedBy = [ "multi-user.target" ];
         after = [ "tailscaled.service" ];
         wants = [ "tailscaled.service" ];
         serviceConfig = {
-          RestartSec = "5";
+          RestartSec = "10s";
           Restart = "on-failure";
           User = "root";
-          ExecStart = "${pkgs.tailscale}/bin/tailscale funnel ${incoming} ${
-            lib.optionalString (outgoing != "") "--https ${outgoing}"
-          }";
+          ExecStart = ''
+            ${pkgs.tailscale}/bin/tailscale funnel --service \
+              ${lib.optionalString (incoming != null) ''
+                https+insecure://localhost:${incoming} \
+              ''}
+              ${lib.optionalString (incomingTcp != null && outgoingTcp != null) ''
+                --tcp=${outgoingTcp} tcp://localhost:${incomingTcp}
+              ''}
+          '';
         };
       };
 

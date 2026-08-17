@@ -53,7 +53,6 @@
         nixos =
           { lib, pkgs, ... }:
           {
-            nixpkgs.overlays = [ inputs.cachyos-kernel.overlays.pinned ];
             hardware.cpu.intel.updateMicrocode = true;
 
             # wol -i 192.168.1.255 00:11:22:33:44:55
