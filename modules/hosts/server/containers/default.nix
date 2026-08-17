@@ -24,7 +24,7 @@
           Restart = "on-failure";
           User = "root";
           ExecStart = ''
-            ${pkgs.tailscale}/bin/tailscale funnel --service \
+            ${pkgs.tailscale}/bin/tailscale funnel --bg \
               ${lib.optionalString (incoming != null) ''
                 https+insecure://localhost:${incoming} \
               ''}
