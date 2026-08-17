@@ -97,6 +97,7 @@
       ROCKCHIP_MINIDUMP = no;
       ROCKCHIP_RAM_VENDOR_STORAGE = no;
       RK_FLASH = no;
+      RK_NAND = no;
       RK_SFC_NOR = no;
       RK_SFC_NAND = no;
       RTC_DRV_HYM8563 = yes;
