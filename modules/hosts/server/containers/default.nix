@@ -53,8 +53,8 @@
         privateNetwork = true;
         enableTun = true;
         ephemeral = false;
-        hostAddress = "10.100.0.1";
-        localAddress = "10.100.0.${ip}";
+        hostAddress = "10.200.1.1";
+        localAddress = "10.200.1.${ip}";
         extraFlags = [ "--private-users-ownership=chown" ];
         additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         inherit forwardPorts;
@@ -71,6 +71,7 @@
           {
             system.stateVersion = stateVersion;
             imports = [ inputs.agenix.nixosModules.default ];
+            environment.systemPackages = with pkgs; [ tcpdump ];
             boot.isContainer = true;
             age = {
               identityPaths = [ "/etc/ssh/id_ed25519" ];

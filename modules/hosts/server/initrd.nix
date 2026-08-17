@@ -13,6 +13,7 @@
           "dm_raid"
           "ehci_hcd"
           "encrypted_keys"
+          "iptable_nat"
           "overlay"
           "uas"
           "uhci_hcd"

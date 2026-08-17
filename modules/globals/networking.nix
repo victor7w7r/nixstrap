@@ -84,6 +84,7 @@
           self'.packages.aim
           speedtest-cli
           sshs
+          tcpdump
           wget
           wol
         ];
