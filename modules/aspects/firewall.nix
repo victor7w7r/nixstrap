@@ -23,6 +23,7 @@
               "incusbr0"
               "tailscale0"
               "virbr0"
+              "ve-+"
             ];
             allowedTCPPorts = [
               22

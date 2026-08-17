@@ -80,6 +80,7 @@
               hostName = "v7w7r-${name}";
               firewall.enable = false;
               useHostResolvConf = lib.mkForce false;
+              nameservers = [ "1.1.1.1" "8.8.8.8" ];
             };
             services = {
               resolved.enable = true;
