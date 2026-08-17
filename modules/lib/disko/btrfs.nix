@@ -75,7 +75,7 @@
 
     call =
       {
-        name ? null,
+        name,
         size ? null,
         priority ? 3,
         isPartition ? true,

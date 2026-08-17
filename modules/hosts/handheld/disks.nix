@@ -16,6 +16,13 @@
           emergency = btrfs.emergency { priority = 3; };
           recovery = win.recovery { };
           win = win.call { };
+          swapcrypt = luks.call {
+            name = "swapcrypt";
+            size = "14G";
+            enrollFido2 = true;
+            content = swap.call { };
+            priority = 6;
+          };
           system = luks.call {
             name = "system";
             size = "110G";
@@ -23,6 +30,7 @@
             device = "${disk.constants.partlabel}/disk-nvme-system";
             priority = 7;
             content = btrfs.call {
+              name = "system";
               isPartition = false;
               subvolumes = btrfs.subvolumes { hasEtc = true; };
             };
