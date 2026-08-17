@@ -136,7 +136,6 @@
     legacy =
       map (patch: "${inputs.tachyon-patches-legacy}/${patch}.patch") (
         [
-          "0001-powerbump-functionality"
           "0001-sched-migrate"
           "0002-add-networking-support-for-powerbump"
           "0002-sched-core-add-some-branch-hints-based-on-gcov-analy"
