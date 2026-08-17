@@ -121,8 +121,8 @@
                 backend = "docker";
               };
             };
-          };
-      }
-      // extra;
+          }
+          // (extra pkgs);
+      };
   };
 }
