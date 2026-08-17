@@ -138,10 +138,10 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
-            }
-            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+            };
+           /* // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
               _module.args.pkgs = armPkgs;
-            });
+              });*/
         };
       };
     };
