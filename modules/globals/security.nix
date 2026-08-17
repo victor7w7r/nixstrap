@@ -53,9 +53,11 @@
           };
           u2f = {
             enable = true;
-            control = "sufficient"; 
-            cue = true;
-            authFile = "/etc/u2f_keys";
+            control = "sufficient";
+            settings = {
+              cue = true;
+              authFile = "/etc/u2f_keys";
+            };
           };
         };
         polkit.enable = true;
