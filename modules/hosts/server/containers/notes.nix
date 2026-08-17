@@ -6,7 +6,7 @@
     rules = [
       "d /opt/couchdb/data 0770 couchdb couchdb - -"
       "d /opt/couchdb/etc/local.d 0770 couchdb couchdb - -"
-      "d /run/secrets/couchdb-admins.ini 0770 couchdb couchdb - -"
+      "z /run/secrets/password-db 0400 couchdb couchdb - -"
       "d /web/vaults 0770 couchdb couchdb - -"
       "d /web/config 0770 couchdb couchdb - -"
     ];
@@ -27,7 +27,12 @@
     };
 
     secrets = {
-      password-db.file = ../secrets/password-db.age;
+      password-db = {
+        file = ../secrets/password-db.age;
+        owner = "couchdb";
+        group = "couchdb";
+        mode = "0400";
+      };
       tailnet.file = ../secrets/tailnet.age;
     };
 
