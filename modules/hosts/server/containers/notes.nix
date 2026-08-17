@@ -73,8 +73,7 @@
     };
 
     systemd = pkgs: {
-      funnel-client = containers.lib.funnel { inherit pkgs; };
-      funnel-db = containers.lib.funnel {
+      funnel = containers.lib.funnel {
         inherit pkgs;
         incoming = "8443";
         incomingTcp = "5984";
