@@ -63,6 +63,7 @@
             cockpit
             emulation
             firewall
+            games
             remote
             root
             secrets
