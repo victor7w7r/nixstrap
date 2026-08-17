@@ -25,6 +25,7 @@
         includes = with den.aspects; [
           (hosts.lib.static-network "enp1s0" "10")
           server._
+          server.containers
 
           cli._
           dev.mise
