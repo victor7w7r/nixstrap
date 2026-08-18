@@ -1,4 +1,4 @@
-{ inputs, ... }:
+g{ inputs, ... }:
 {
   flake-file.inputs = {
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/0.1";
