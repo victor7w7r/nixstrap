@@ -54,7 +54,7 @@
     };
 
     linux-rockchip = {
-      url = "github:armbian/linux-rockchip";
+      url = "github:armbian/linux-rockchip/rk-6.1-rkr7.2";
       flake = false;
     };
 

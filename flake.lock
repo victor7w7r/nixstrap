@@ -3125,7 +3125,7 @@
         "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
       }
     },
-    "linux-latest-lts": {
+    "linux-lts": {
       "flake": false,
       "locked": {
         "lastModified": 1785748933,
@@ -4594,7 +4594,7 @@
         "linux-cachyos-lts": "linux-cachyos-lts",
         "linux-hardened": "linux-hardened",
         "linux-latest": "linux-latest",
-        "linux-latest-lts": "linux-latest-lts",
+        "linux-lts": "linux-lts",
         "linux-rockchip": "linux-rockchip",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",

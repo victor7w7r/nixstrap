@@ -74,7 +74,7 @@
             remote
             secrets
             victor7w7r
-            root
+            #root
             tools
             #waydroid
             #xr
