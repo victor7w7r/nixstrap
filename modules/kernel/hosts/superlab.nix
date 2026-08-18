@@ -10,17 +10,18 @@
       localVer = "rockchip";
       host = "superlab";
       defconfig = "rockchip_defconfig";
-      legacy = true;
       isArm = true;
-      patches = with kernel.patches.injector pkgs; (rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
+      patches =
+        with kernel.patches.injector pkgs;
+        rockchip ++ (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
       src =
-        (kernel.patches.rk3588 pkgs)
+        inputs.linux-lts
         |> (
           src:
           kernel.lib.defconfig-clear {
             inherit pkgs src;
             arch = "arm64";
-            config = "${inputs.armbian}/config/kernel/linux-rk35xx-vendor.config";
+            config = "${inputs.armbian}/config/kernel/linux-rockchip64-current.config";
             defconfig = "rockchip_defconfig";
           }
         )

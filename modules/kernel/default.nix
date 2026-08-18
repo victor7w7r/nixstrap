@@ -48,7 +48,7 @@
       flake = false;
     };
 
-    linux-latest-lts = {
+    linux-lts = {
       url = "https://cdn.kernel.org/pub/linux/kernel/v${lib.versions.major kernel-versions.lts}.x/linux-${kernel-versions.lts}.tar.xz";
       flake = false;
     };

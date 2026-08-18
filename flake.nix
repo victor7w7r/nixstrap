@@ -521,7 +521,7 @@
       url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz";
       flake = false;
     };
-    linux-latest-lts = {
+    linux-lts = {
       url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz";
       flake = false;
     };
