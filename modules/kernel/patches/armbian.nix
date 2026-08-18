@@ -19,8 +19,8 @@
 
   kernel.patches.armbian = {
     patcher =
-      pkgs:
       with lib;
+      pkgs:
       isRockchip:
       (pkgs.runCommand "armbian-patches" { } ''
         ${
@@ -45,8 +45,8 @@
         }-${lib.versions.majorMinor kernel-versions.lts}/${path}"
       );
 
-    sunxi = kernel.patches.armbian.patcher false;
-    rockchip = kernel.patches.armbian.patcher true;
+    sunxi = pkgs: kernel.patches.armbian.patcher pkgs false;
+    rockchip = pkgs: kernel.patches.armbian.patcher pkgs true;
 
     uwe5622 =
       pkgs:

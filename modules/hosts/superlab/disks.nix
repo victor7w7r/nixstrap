@@ -24,12 +24,15 @@
             priority = 1;
             };
           */
-          system = btrfs.call {
+          system = luks.call {
             name = "system";
             size = "100%";
             priority = 2;
-            subvolumes = disko.btrfs.subvolumes {
-              hasEtc = true;
+            device = "${disk.constants.partlabel}/disk-main-system";
+            content = btrfs.call {
+              name = "system";
+              isPartition = false;
+              subvolumes = btrfs.subvolumes { hasEtc = true; };
             };
           };
         };
