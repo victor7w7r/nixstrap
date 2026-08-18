@@ -1,5 +1,5 @@
-{ inputs, stdenvNoCC }:
-stdenvNoCC.mkDerivation {
+{ inputs, pkgs }:
+pkgs.stdenvNoCC.mkDerivation {
   pname = "armbian-firmware";
   version = "latest";
   nativeBuildInputs = [ pkgs.findutils ];
