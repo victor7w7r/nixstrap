@@ -15,7 +15,7 @@
         with kernel.patches.injector pkgs;
         sunxi ++ (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; });
       src =
-        kernel.patches.uwe5622 pkgs
+        kernel.patches.armbian.uwe5622 pkgs
         |> (
           src:
           kernel.lib.defconfig-clear {
