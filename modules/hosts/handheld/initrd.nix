@@ -17,8 +17,6 @@
       ];
 
       luks = {
-        yubikeySupport = true;
-        reusePassphrases = true;
         devices = {
           swapcrypt = {
             device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
