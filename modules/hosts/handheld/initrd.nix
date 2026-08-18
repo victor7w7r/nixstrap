@@ -16,9 +16,15 @@
         "usbhid"
       ];
 
-      luks.devices.swapcrypt = {
-        device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
-        crypttabExtraOpts = [ "fido2-device=auto" ];
+      luks.devices = {
+        swapcrypt = {
+          device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
+          crypttabExtraOpts = [ "fido2-device=auto" ];
+        };
+        system = {
+          device = "/dev/disk/by-partlabel/disk-main-system";
+          crypttabExtraOpts = [ "fido2-device=auto" ];
+        };
       };
     };
   };
