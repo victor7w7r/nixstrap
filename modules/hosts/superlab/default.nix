@@ -22,11 +22,11 @@
         victor7w7r = { };
       };
       superlab-sdimage.users = {
-        root = { };
+        #root = { };
         victor7w7r = { };
       };
       superlab-tarball.users = {
-        root = { };
+        #root = { };
         victor7w7r = { };
       };
     };
@@ -74,7 +74,7 @@
             remote
             secrets
             victor7w7r
-            #root
+            root
             tools
             #waydroid
             #xr
