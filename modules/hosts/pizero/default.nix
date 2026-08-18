@@ -136,10 +136,10 @@
                   generic-extlinux-compatible.enable = true;
                 };
               };
-            }
-            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+            };
+           /* // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
               _module.args.pkgs = armPkgs;
-            });
+              });*/
         };
       };
     };
