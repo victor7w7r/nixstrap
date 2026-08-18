@@ -1,5 +1,5 @@
 {
-  den.aspects.pizero.hardware.nixos = { self', ... }: {
+  den.aspects.pizero.hardware.nixos = { lib, self', ... }: {
     zramSwap = {
       enable = true;
       algorithm = "zstd";
