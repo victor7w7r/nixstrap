@@ -46,7 +46,7 @@
             };
           })
 
-          (lib.mkIf (isArm || isArmv7) {
+        /*  (lib.mkIf (isArm || isArmv7) {
             FEX-x86_64 = {
               interpreter = "${pkgs.fex or "/usr/bin/FEXInterpreter"}/bin/FEXInterpreter";
               recognitionType = "magic";
@@ -66,7 +66,7 @@
               fixBinary = true;
               wrapInterpreterInShell = false;
             };
-          })
+            })*/
           {
             javascript-bun = {
               recognitionType = "extension";
