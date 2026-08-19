@@ -116,6 +116,7 @@
                     "synopsys_hdmirx"
                     "spi_rockchip_sfc"
                     "usbhid"
+                  ];
 
                   luks.devices = {
                     swapcrypt = {
