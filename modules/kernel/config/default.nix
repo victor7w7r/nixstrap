@@ -121,8 +121,19 @@
           (qcom { isDenied = true; })
           (sound.apply { isArm = true; })
           {
+            ARM_SCMI_CPUFREQ = no;
+            ARM_SCPI_CPUFREQ = yes;
             CDROM = no;
+            DRM_ACCEL = yes;
+            DRM_ACCEL_ROCKET = module;
+            PLATFORM_MHU = yes;
+            PCIE_ROCKCHIP_EP = yes;
+            PCIE_ROCKCHIP_DW_EP = yes;
+            PCI_ENDPOINT = yes;
+            PCI_ENDPOINT_CONFIGFS = yes;
+            PCIE_DW_PLAT_EP = yes;
             R8169 = no;
+            REGULATOR_GPIO = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
             XFS_FS = no;
