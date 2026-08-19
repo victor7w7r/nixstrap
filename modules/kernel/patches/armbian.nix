@@ -3,7 +3,6 @@
   lib,
   kernel-versions,
   kernel,
-  self,
   ...
 }:
 {

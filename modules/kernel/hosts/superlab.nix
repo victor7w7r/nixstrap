@@ -1,4 +1,4 @@
-{ inputs, kernel, ... }:
+{ inputs, kernel,  self, ... }:
 {
   perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "superlab";
 
