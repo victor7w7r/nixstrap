@@ -123,6 +123,7 @@
           {
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
+            COMMON_CLK_SCPI = yes;
             CDROM = no;
             DRM_ACCEL_ROCKET = module;
             PCIE_ROCKCHIP_EP = yes;

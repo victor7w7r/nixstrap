@@ -386,7 +386,6 @@
       ARM_SCMI_POWER_CONTROL = no;
       ARM_SCMI_TRANSPORT_OPTEE = no;
       ARM_SCMI_TRANSPORT_VIRTIO = no;
-      ARM_SCPI_PROTOCOL = no;
       ATARI_PARTITION = no;
       BCMGENET = no;
       BCM_SBA_RAID = no;
