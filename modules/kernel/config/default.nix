@@ -91,7 +91,7 @@
           (input.apply { isArm = true; })
           (qcom { isDenied = true; })
           {
-            ARM_SCMI_POWER_CONTROL = lib.mkForce yes;
+            ARM_SCMI_POWER_CONTROL = lib.mkForce module;
             ARM_TIMER_SP804 = lib.mkForce yes;
             AXP20X_POWER = yes;
             CDROM = no;
