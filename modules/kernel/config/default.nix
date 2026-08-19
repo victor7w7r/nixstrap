@@ -91,9 +91,7 @@
           (input.apply { isArm = true; })
           (qcom { isDenied = true; })
           {
-             MUX_GPIO = lib.mkForce module;
             ARM_SCMI_POWER_CONTROL = lib.mkForce yes;
-            ARM_SCMI_POWER_CONTROL = module;
             ARM_TIMER_SP804 = lib.mkForce yes;
             AXP20X_POWER = yes;
             CDROM = no;
@@ -110,6 +108,7 @@
             MFD_AXP20X_I2C = yes;
             MFD_AXP20X_RSB = yes;
             MFD_SUN4I_GPADC = lib.mkForce module;
+            MUX_GPIO = lib.mkForce module;
             PWM_CLK = lib.mkForce module;
             PWM_DWC = lib.mkForce module;
             R8169 = no;
