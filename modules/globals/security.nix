@@ -26,10 +26,7 @@
 
       services = {
         fail2ban.enable = true;
-        udev.packages = with pkgs; [
-          libfido2
-          yubikey-personalization
-        ];
+        udev.packages = with pkgs; [ yubikey-personalization ];
         #opensnitch.enable = true;
         #clamav = {
         #  daemon.enable = true;
@@ -80,18 +77,6 @@
                     "NOPASSWD"
                     "SETENV"
                   ];
-                }
-                {
-                  command = "${pkgs.systemd}/bin/systemctl suspend";
-                  options = [ "NOPASSWD" ];
-                }
-                {
-                  command = "${pkgs.systemd}/bin/reboot";
-                  options = [ "NOPASSWD" ];
-                }
-                {
-                  command = "${pkgs.systemd}/bin/poweroff";
-                  options = [ "NOPASSWD" ];
                 }
               ];
             }

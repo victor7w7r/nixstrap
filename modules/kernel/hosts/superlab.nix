@@ -18,7 +18,7 @@
       defconfig = "rockchip_defconfig";
       patches =
         with kernel.patches.injector pkgs;
-        (legacy-rockchip { }) ++ cachyos.legacy ++ tacyon.legacy;
+        (kernel.patches.armbian.legacy-rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;
       #++ (bunker.lts { })
       # ++ (tachyon.lts { isVanilla = true; })
       #++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];

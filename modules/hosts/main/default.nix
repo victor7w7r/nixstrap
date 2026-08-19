@@ -77,17 +77,15 @@
           boot = {
             kernelPackages = (kernel.hosts.main pkgs "main").main-kernelPackages;
             kernelParams = [
-              "video=DP-3:1600x900@60e"
-              "kvmfr.static_size_mb=128"
-              "iommu=pt"
-              #"i915.enable_guc=2"
-              "intel_pstate=passive"
+              "ahci.mobile_lpm_policy=2"
               "intel_iommu=on"
-              "pm_async=off"
-              #"pcie_ports=native"
-              #"libahci.ignore_sss=1"
-              #"ahci.mobile_lpm_policy=2"
-              "drm.polled=14"
+              "intel_pstate=passive"
+              "iommu=pt"
+              "kvmfr.static_size_mb=128"
+              "libahci.ignore_sss=1"
+              "pcie_ports=compat"
+              "video=DP-3:1600x900@60e"
+              #"i915.enable_guc=2"
             ];
             extraModprobeConfig = ''
               options kvm-intel nested=1

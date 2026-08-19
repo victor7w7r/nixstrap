@@ -31,13 +31,17 @@
           (x86.apply { isIntel = true; })
           {
             APPLE_BCE = module;
-            HID_WACOM = module;
+            DW_DMAC_PCI = yes;
             GPIO_ICH = module;
+            HID_WACOM = module;
             MACINTOSH_DRIVERS = lib.mkForce yes;
+            MFD_INTEL_LPSS = yes;
+            MFD_INTEL_LPSS_ACPI = yes;
+            MFD_INTEL_LPSS_PCI = yes;
             MMC = no;
-            R8169 = no;
-            PINCTRL_INTEL_PLATFORM = lib.mkForce module;
             PINCTRL_CANNONLAKE = lib.mkForce module;
+            PINCTRL_INTEL_PLATFORM = lib.mkForce module;
+            R8169 = no;
             SENSORS_APPLESMC_T2 = module;
             SND_HDA_CODEC_HDMI_INTEL = module;
             SND_HDA_INTEL = module;
