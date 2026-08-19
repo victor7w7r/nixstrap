@@ -1,16 +1,21 @@
-{ inputs, kernel,  self, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "superlab";
+  inputs,
+  kernel,
+  self,
+  ...
+}:
+{
+  perSystem =
+    { pkgs, ... }:
+    kernel.lib.package-gen pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.superlab =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
-      host = "superlab";
       defconfig = "rockchip_defconfig";
-      isArm = true;
       patches =
         with kernel.patches.injector pkgs;
         rockchip

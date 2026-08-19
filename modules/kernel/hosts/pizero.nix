@@ -1,16 +1,15 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "pizero";
+  perSystem =
+    { pkgs, ... }: kernel.lib.package-gen pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.pizero =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.pizero;
       localVer = "sunxi-hardened";
-      host = "pizero";
       defconfig = "sunxi_defconfig";
-      isArm = true;
       patches =
         with kernel.patches.injector pkgs;
         sunxi ++ (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; });

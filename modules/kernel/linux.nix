@@ -1,10 +1,15 @@
-{ inputs, kernel, ... }:
+{
+  inputs,
+  kernel,
+  lib,
+  ...
+}:
 {
   kernel.lib.linux =
     {
       pkgs,
       host,
-      isArm ? false,
+      arch,
       src,
       patches ? [ ],
       defconfig ? "cachyos_defconfig",
@@ -19,13 +24,19 @@
       modDirVersion = (kernel.lib.version pkgs src localVer).final;
       ignoreConfigErrors = true;
       enableCommonConfig = false;
-      kernelArch = if isArm then "arm64" else null;
+      kernelArch =
+        if pkgs.stdenv.buildPlatform != pkgs.stdenv.hostPlatform && arch == "aarch64-linux" then
+          "arm64"
+        else if pkgs.stdenv.buildPlatform != pkgs.stdenv.hostPlatform && arch == "x86_64-linux" then
+          "x86_64"
+        else
+          null;
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
       }) patches;
 
-      features = pkgs.lib.optionalAttrs (!isArm) {
+      features = pkgs.lib.optionalAttrs (arch != "aarch64-linux") {
         ia32Emulation = true;
         netfilterRPFilter = true;
         efiBootStub = true;
@@ -59,7 +70,11 @@
         "LOCALVERSION=-v7w7r-${localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
-      ];
+        "ARCH=${pkgs.stdenv.hostPlatform.linuxArch}"
+      ]
+      ++ (lib.optional (
+        pkgs.stdenv.buildPlatform != pkgs.stdenv.hostPlatform
+      ) "CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix}");
     }
     |> (base: {
       "${host}-kernel" = base;

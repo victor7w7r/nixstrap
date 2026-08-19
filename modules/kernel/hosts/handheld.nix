@@ -1,11 +1,13 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "handheld";
+  perSystem =
+    { pkgs, ... }:
+    kernel.lib.package-gen pkgs "handheld" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.handheld =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs host;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.handheld;
       localVer = "handheld-native";
       patches =

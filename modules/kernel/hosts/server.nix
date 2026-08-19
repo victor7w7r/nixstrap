@@ -1,11 +1,12 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "server";
+  perSystem =
+    { pkgs, ... }: kernel.lib.package-gen pkgs "server" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.server =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs host;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.server;
       localVer = "server-hardened-native";
       patches =

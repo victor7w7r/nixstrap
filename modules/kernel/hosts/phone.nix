@@ -1,15 +1,15 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "phone";
+  perSystem =
+    { pkgs, ... }: kernel.lib.package-gen pkgs "phone" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.phone =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs host;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.phone;
       localVer = "sdm845";
       defconfig = "phone_defconfig";
-      isArm = true;
       patches =
         with kernel.patches.injector pkgs;
         (qcom { }) ++ (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; });

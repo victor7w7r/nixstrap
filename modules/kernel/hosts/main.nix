@@ -1,11 +1,12 @@
 { inputs, kernel, ... }:
 {
-  perSystem = { pkgs, ... }: kernel.lib.package-gen pkgs "main";
+  perSystem =
+    { pkgs, ... }: kernel.lib.package-gen pkgs "main" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.main =
-    pkgs: host:
+    pkgs: host: arch:
     (kernel.lib.linux {
-      inherit pkgs host;
+      inherit pkgs host arch;
       structuredExtraConfig = kernel.config.default.main;
       localVer = "native";
       patches =
