@@ -717,7 +717,6 @@
         PCIE_KIRIN = no;
         PCIE_MICROCHIP_HOST = no;
         PCIE_XILINX = no;
-        PCI_ENDPOINT = no;
         PCI_HISI = no;
         N_HDLC = no;
         PCI_XGENE = no;

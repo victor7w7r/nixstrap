@@ -128,8 +128,6 @@
             PLATFORM_MHU = yes;
             PCIE_ROCKCHIP_EP = yes;
             PCIE_ROCKCHIP_DW_EP = yes;
-            PCI_ENDPOINT = yes;
-            PCI_ENDPOINT_CONFIGFS = yes;
             PCIE_DW_PLAT_EP = yes;
             R8169 = no;
             REGULATOR_GPIO = yes;

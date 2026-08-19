@@ -25,6 +25,8 @@
         CRYPTO_MD5 = setupDenial isDenied module;
         CRYPTO_SM3 = setupDenial isDenied module;
         CRYPTO_SM4_GENERIC = setupDenial isDenied module;
+        PCI_ENDPOINT = setupDenial isDenied yes;
+        PCI_ENDPOINT_CONFIGFS = setupDenial isDenied yes;
         CRYPTO_LZ4 = setupDenial isDenied module;
         CRYPTO_LZ4HC = setupDenial isDenied module;
         CRYPTO_LZO = setupDenial isDenied module;
