@@ -18,18 +18,20 @@
       defconfig = "rockchip_defconfig";
       patches =
         with kernel.patches.injector pkgs;
-        rockchip
-        ++ (bunker.lts { })
-        ++ (tachyon.lts { isVanilla = true; })
-        ++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
+        (legacy-rockchip { }) ++ cachyos.legacy ++ tacyon.legacy;
+      #++ (bunker.lts { })
+      # ++ (tachyon.lts { isVanilla = true; })
+      #++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
       src =
-        inputs.linux-lts
+        #inputs.linux-lts
+        (kernel.patches.armbian.legacy-rk3588 pkgs)
         |> (
           src:
           kernel.lib.defconfig-clear {
             inherit pkgs src;
             arch = "arm64";
-            config = "${inputs.armbian}/config/kernel/linux-rockchip64-current.config";
+            config = "${inputs.armbian}/config/kernel/linux-rk35xx-vendor.config";
+            #config = "${inputs.armbian}/config/kernel/linux-rockchip64-current.config";
             defconfig = "rockchip_defconfig";
           }
         )
