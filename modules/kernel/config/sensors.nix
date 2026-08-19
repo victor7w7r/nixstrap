@@ -176,7 +176,6 @@
       REGULATOR_DA9210 = no;
       REGULATOR_DA9211 = no;
       REGULATOR_FAN53555 = no;
-      REGULATOR_GPIO = no;
       REGULATOR_ISL6271A = no;
       REGULATOR_ISL9305 = no;
       REGULATOR_LP3971 = no;

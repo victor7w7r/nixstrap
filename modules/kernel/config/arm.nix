@@ -32,6 +32,7 @@
         CRYPTO_LZ4HC = setupDenial isDenied module;
         CRYPTO_LZO = setupDenial isDenied module;
         LIBNVDIMM = setupDenial isDenied module;
+        REGULATOR_GPIO = setupDenial isDenied yes;
         SCSI_MPT3SAS = setupDenial isDenied module;
         SCSI_SAS_ATTRS = setupDenial isDenied module;
         SCSI_SAS_LIBSAS = setupDenial isDenied module;

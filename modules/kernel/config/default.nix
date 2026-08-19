@@ -129,7 +129,6 @@
             PCIE_ROCKCHIP_DW_EP = yes;
             PCIE_DW_PLAT_EP = yes;
             R8169 = no;
-            REGULATOR_GPIO = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
             XFS_FS = no;
