@@ -3,6 +3,7 @@
   lib,
   kernel-versions,
   kernel,
+  self,
   ...
 }:
 {
@@ -19,7 +20,7 @@
 
   kernel.patches.armbian = {
     patcher =
-      with lib;
+      (with lib;
       pkgs:
       isRockchip:
       (pkgs.runCommand "armbian-patches" { } ''
@@ -43,7 +44,7 @@
         "${inputs.armbian}/patch/kernel/archive/${
           if isRockchip then "rockchip64" else "sunxi"
         }-${lib.versions.majorMinor kernel-versions.lts}/${path}"
-      );
+      )) ++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
 
     sunxi = pkgs: kernel.patches.armbian.patcher pkgs false;
     rockchip = pkgs: kernel.patches.armbian.patcher pkgs true;
