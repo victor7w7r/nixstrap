@@ -76,7 +76,6 @@
             {
               lib,
               pkgs,
-              armPkgs,
               ...
             }:
             {
@@ -130,16 +129,19 @@
                   "xhci_pci"
                 ];
                 initrd.systemd.tpm2.enable = false;
-                kernelPackages = (kernel.hosts.pizero pkgs "pizero").pizero-kernelPackages;
+                kernelPackages = (kernel.hosts.pizero pkgs "pizero" "aarch64-linux").pizero-kernelPackages;
+
                 loader = {
                   grub.enable = false;
                   generic-extlinux-compatible.enable = true;
                 };
               };
             };
-           /* // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
-              _module.args.pkgs = armPkgs;
-              });*/
+          /*
+            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
+            _module.args.pkgs = armPkgs;
+            });
+          */
         };
       };
     };

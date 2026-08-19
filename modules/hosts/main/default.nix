@@ -75,7 +75,7 @@
           ];
 
           boot = {
-            kernelPackages = (kernel.hosts.main pkgs "main").main-kernelPackages;
+            kernelPackages = (kernel.hosts.main pkgs "main" "x86_64-linux").main-kernelPackages;
             kernelParams = [
               "ahci.mobile_lpm_policy=2"
               "intel_iommu=on"

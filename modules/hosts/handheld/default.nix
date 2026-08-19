@@ -57,7 +57,7 @@
             networking.hostName = "v7w7r-rc71l";
             boot = {
               resumeDevice = "/dev/mapper/swapcrypt";
-              kernelPackages = (kernel.hosts.handheld pkgs "handheld").handheld-kernelPackages;
+              kernelPackages = (kernel.hosts.handheld pkgs "handheld" "x86_64-linux").handheld-kernelPackages;
               extraModprobeConfig = "options kvm-amd nested=1";
               kernelParams = [
                 "mitigations=off"

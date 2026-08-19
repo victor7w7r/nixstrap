@@ -1,6 +1,7 @@
 {
   den,
   hosts,
+  kernel,
   inputs,
   tarball,
   ...
@@ -54,7 +55,6 @@
         config,
         inputs',
         pkgs,
-        armPkgs,
         lib,
         ...
       }:
@@ -90,7 +90,7 @@
         };
 
         boot = {
-          #  kernelPackages = inputs'.vanilla-mobile.installer.crossPkgs.linuxPackagesFor inputs.vanilla-mobile.installer.vanillaMobileCrossPkgs.linuxKernels.linux_sdm845;
+          kernelPackages = (kernel.hosts.main pkgs "phone" "aarch64-linux").main-kernelPackages;
           kernelParams = [
             "console=tty0"
             "zram.num_devices=2"
