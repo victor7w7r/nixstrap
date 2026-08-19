@@ -720,7 +720,6 @@
         PCI_HISI = no;
         N_HDLC = no;
         PCI_XGENE = no;
-        PLATFORM_MHU = no;
         PPKB_POWER_MANAGER = no;
         SENSORS_LIS3_SPI = no;
         SUN55I_A523_CCU = no;
