@@ -116,10 +116,6 @@
                     "synopsys_hdmirx"
                     "spi_rockchip_sfc"
                     "usbhid"
-                  ];
-                  #REGULATOR_GPIO
-                  #ARM_SCPI_CPUFREQ
-                  #DRM_ACCEL_ROCKET
 
                   luks.devices = {
                     swapcrypt = {

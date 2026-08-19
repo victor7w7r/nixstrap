@@ -8,6 +8,7 @@
           brush
           choose
           clolcat
+          cryptsetup
           cod
           file
           self'.packages.hf

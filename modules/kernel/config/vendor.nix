@@ -11,7 +11,6 @@
     denied = lib.mkMerge [
       {
         AGP = lib.mkForce no;
-        DRM_ACCEL = no;
         DRM_ANALOGIX_ANX78XX = no;
         DRM_APPLETBDRM = no;
         DRM_AST = no;
@@ -411,7 +410,8 @@
       }
     ];
 
-    denied-arm = { }:
+    denied-arm =
+      { }:
       {
         DRM_ANALOGIX_ANX6345 = no;
         DRM_ANALOGIX_ANX7625 = no;

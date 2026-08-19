@@ -20,6 +20,7 @@
         isDenied ? false,
       }:
       {
+        DRM_ACCEL = setupDenial isDenied module;
         CRYPTO_DES = setupDenial isDenied module;
         CRYPTO_MD5 = setupDenial isDenied module;
         CRYPTO_SM3 = setupDenial isDenied module;
