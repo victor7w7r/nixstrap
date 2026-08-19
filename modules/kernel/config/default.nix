@@ -124,7 +124,6 @@
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
             CDROM = no;
-            DRM_ACCEL = yes;
             DRM_ACCEL_ROCKET = module;
             PLATFORM_MHU = yes;
             PCIE_ROCKCHIP_EP = yes;
