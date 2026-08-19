@@ -14,7 +14,7 @@
       devShells."${host}-menu-config" = pkgs.mkShell {
         nativeBuildInputs =
           with pkgs;
-          kernel.nativeBuildInputs
+          src."${host}-kernel".nativeBuildInputs
           ++ [
             ncurses
             pkg-config
@@ -23,16 +23,16 @@
           ];
 
         shellHook = ''
-          TMP_DIR="/tmp/kconfig-${src.name}"
+          TMP_DIR="/tmp/kconfig-${src."${host}-kernel".name}"
           mkdir -p "$TMP_DIR"
           cd "$TMP_DIR"
 
           if [ ! -d "src" ]; then
-            if [ -d "${src.src}" ]; then
-              cp -r --no-preserve=mode,ownership "${src.src}" src
+            if [ -d "${src."${host}-kernel".src}" ]; then
+              cp -r --no-preserve=mode,ownership "${src."${host}-kernel".src}" src
             else
               mkdir src
-              tar -xf "${src.src}" -C src --strip-components=1
+              tar -xf "${src."${host}-kernel".src}" -C src --strip-components=1
               chmod -R +w src
             fi
 
@@ -44,7 +44,7 @@
               ${pkgs.lib.concatMapStringsSep "\n" (p: ''
                 echo "Setting up: ${p.name or "patch"}"
                 patch -p1 < ${p.patch}
-              '') src.kernelPatches}
+              '') src."${host}-kernel".kernelPatches}
             ''}
           else
             cd src

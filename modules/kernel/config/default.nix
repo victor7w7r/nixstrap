@@ -9,7 +9,7 @@
           features.apply
           filesystems.apply
           net.apply
-          peripherals.denied
+          peripherals.apply
           security.apply
           sensors.denied
           vendor.denied
@@ -32,8 +32,12 @@
           {
             APPLE_BCE = module;
             HID_WACOM = module;
+            GPIO_ICH = module;
+            MACINTOSH_DRIVERS = lib.mkForce yes;
             MMC = no;
             R8169 = no;
+            PINCTRL_INTEL_PLATFORM = lib.mkForce module;
+            PINCTRL_CANNONLAKE = lib.mkForce module;
             SENSORS_APPLESMC_T2 = module;
             SND_HDA_CODEC_HDMI_INTEL = module;
             SND_HDA_INTEL = module;
@@ -114,9 +118,6 @@
             R8169 = no;
             REGULATOR_AXP20X = yes;
             SPARD_WLAN_SUPPORT = yes;
-            SPI_DW_DMA = lib.mkForce yes;
-            SPI_DW_MMIO = lib.mkForce module;
-            SPI_DW_PCI = lib.mkForce module;
             SPI_MUX = lib.mkForce module;
             SPI_SUN4I = lib.mkForce yes;
             SUNXI_RSB = yes;

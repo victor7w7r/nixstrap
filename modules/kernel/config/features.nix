@@ -15,13 +15,18 @@
       BINFMT_SCRIPT = yes;
       CC_OPTIMIZE_FOR_PERFORMANCE = no;
       CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
+      CONNECTOR = yes;
+      DEBUG_INFO_BTF = yes;
       EXPERT = yes;
+      EXT_GROUP_SCHED = yes;
+      IKCONFIG = yes;
       KVM = yes;
       LSM = freeform "landlock,lockdown,yama,integrity,apparmor,bpf";
       LTO_CLANG_THIN = yes;
       NO_HZ = yes;
       NO_HZ_COMMON = yes;
       PCIE_BUS_PERFORMANCE = yes;
+      SCHED_CLASS_EXT = yes;
       STAGING = yes;
       TRANSPARENT_HUGEPAGE_MADVISE = yes;
     };
@@ -30,7 +35,6 @@
       {
         ACCESSIBILITY = lib.mkForce no;
         BIG_KEYS = no;
-        BSD_PROCESS_ACCT = no;
         CGROUP_DMEM = no;
         CGROUP_RDMA = no;
         EFI_BOOTLOADER_CONTROL = no;

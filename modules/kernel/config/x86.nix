@@ -18,7 +18,10 @@
         ];
 
       include = { }: {
+        ACPI_ADXL = yes;
         ACPI_BUTTON = yes;
+        ACPI_TABLE_LIB = yes;
+        ACPI_I2C_OPREGION = yes;
         INPUT_TOUCHSCREEN = no;
         GNSS = no;
         MOTORCOMM_PHY = no;
@@ -188,7 +191,6 @@
         ACPI_SBS = no;
         BYTCRC_PMIC_OPREGION = lib.mkForce no;
         CHTCRC_PMIC_OPREGION = lib.mkForce no;
-        PCI_IOV = no;
         SND_SOC_ES8316 = no;
         TPS68470_PMIC_OPREGION = lib.mkForce no;
         X86_ACPI_CPUFREQ = no;

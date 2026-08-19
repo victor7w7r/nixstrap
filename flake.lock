@@ -3141,15 +3141,16 @@
     "linux-rockchip": {
       "flake": false,
       "locked": {
-        "lastModified": 1784147556,
-        "narHash": "sha256-oeQTdBQk5oqFopDgtiqULDAM2WG98AvQIQ6fzL+EYkU=",
+        "lastModified": 1787138219,
+        "narHash": "sha256-0Ynq2Y/ttOyKgsVBMksTuKi3xucK8KwRmOKiBVlL23Y=",
         "owner": "armbian",
         "repo": "linux-rockchip",
-        "rev": "5280f9b4336199c4025c8eed894d2b4e2268dcc6",
+        "rev": "b311cba7d694ccd8b69ad64b066d36e72dab3849",
         "type": "github"
       },
       "original": {
         "owner": "armbian",
+        "ref": "rk-6.1-rkr7.2",
         "repo": "linux-rockchip",
         "type": "github"
       }

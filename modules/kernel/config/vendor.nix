@@ -364,7 +364,6 @@
         INTEL_SMARTCONNECT = no;
         INTEL_SPEED_SELECT_INTERFACE = no;
         INTEL_TH = no;
-        INTEL_UNCORE_FREQ_CONTROL = no;
         INTEL_VBTN = no;
         INTEL_WMI_SBL_FW_UPDATE = no;
         LENOVO_WMI_CAMERA = no;

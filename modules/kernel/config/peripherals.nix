@@ -1,5 +1,33 @@
-{ lib, ... }: {
+{ kernel, lib, ... }: {
   kernel.config.peripherals = with lib.kernel; {
+    apply =
+      with kernel.config.peripherals;
+      lib.mkMerge [
+        (include { })
+        denied
+      ];
+
+    include = { }: {
+      DRM = yes;
+      FB = yes;
+      FB_CORE = yes;
+      FB_EFI = yes;
+      HID = yes;
+      HID_BPF = yes;
+      HWMON = yes;
+      I2C = yes;
+      I2C_DESIGNWARE_CORE = yes;
+      I2C_DESIGNWARE_PCI = yes;
+      I2C_I801_MUX = yes;
+      GPIO_ICH = module;
+      MFD_CORE = yes;
+      SPI_DW_DMA = yes;
+      SPI_DW_MMIO = module;
+      SPI_DW_PCI = module;
+      THERMAL_HWMON = yes;
+      USB_HID = module;
+    };
+
     denied = lib.mkMerge [
       {
         APPLICOM = no;
@@ -247,8 +275,6 @@
         GPIO_XRA1403 = no;
       }
       {
-        LPC_ICH = no;
-        LPC_SCH = no;
         MFD_88PM800 = no;
         MFD_88PM805 = no;
         MFD_ARIZONA = no;
@@ -347,9 +373,6 @@
         SPI_AXI_SPI_ENGINE = no;
         SPI_CADENCE = no;
         SPI_CH341 = no;
-        SPI_DW_DMA = no;
-        SPI_DW_MMIO = no;
-        SPI_DW_PCI = no;
         SPI_LANTIQ_SSC = no;
         SPI_LOOPBACK_TEST = no;
         SPI_MICROCHIP_CORE_QSPI = no;
