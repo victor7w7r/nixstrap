@@ -13,7 +13,10 @@
       isArm = true;
       patches =
         with kernel.patches.injector pkgs;
-        rockchip ++ (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
+        rockchip
+        ++ (bunker.lts { })
+        ++ (tachyon.lts { isVanilla = true; })
+        ++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
       src =
         inputs.linux-lts
         |> (
