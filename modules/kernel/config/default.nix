@@ -140,16 +140,18 @@
           {
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
-            COMMON_CLK_SCPI = yes;
-            REGULATOR_RK8XX = yes;
             CDROM = no;
+            COMMON_CLK_SCPI = yes;
             DRM_ACCEL_ROCKET = module;
-            PM_DOMAINS = yes;
-            ROCKCHIP_PM_DOMAINS = yes;
-            PCIE_ROCKCHIP_EP = yes;
-            PCIE_ROCKCHIP_DW_EP = yes;
             PCIE_DW_PLAT_EP = yes;
+            PCIE_ROCKCHIP_DW_EP = yes;
+            PCIE_ROCKCHIP_EP = yes;
+            PM_DOMAINS = yes;
             R8169 = no;
+            REGULATOR_RK806 = yes;
+            REGULATOR_RK8XX = yes;
+            RESET_ROCKCHIP = yes;
+            ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
             XFS_FS = no;

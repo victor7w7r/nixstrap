@@ -1,6 +1,6 @@
 {
   den.aspects.main.initrd.nixos =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
       boot.initrd = {
         supportedFilesystems = lib.mkAfter [ "xfs" ];
@@ -36,7 +36,7 @@
             };
 
             persistcachecrypt = {
-              device = "${partlabel}/disk-ssd-swapcrypt";
+              device = "${partlabel}/disk-ssd-persistcachecrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
               preLVM = true;
             };
@@ -51,6 +51,7 @@
               device = "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT";
               crypttabExtraOpts = [ "fido2-device=auto" ];
               preLVM = true;
+              postOpenCommands = "vgchange -ay vg1";
             };
           };
       };
