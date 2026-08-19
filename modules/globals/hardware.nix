@@ -16,6 +16,7 @@
       {
         isGraphic,
         isX86,
+        isPhone,
         lib,
         pkgs,
         ...
@@ -62,7 +63,7 @@
             ksm.enable = true;
             #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives
             enableRedistributableFirmware = lib.mkForce false;
-            firmware = with pkgs; [ linux-firmware ];
+            firmware = with pkgs; (lib.optional (isX86 || isPhone) linux-firmware);
           }
         ];
         services = {
