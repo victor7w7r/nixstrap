@@ -73,11 +73,7 @@
           ];
 
           nixos =
-            {
-              lib,
-              pkgs,
-              ...
-            }:
+            { lib, pkgs, ... }:
             {
               services = {
                 chrony.enable = lib.mkForce false;
@@ -101,34 +97,7 @@
                   "rd.shell"
                   "devtmpfs.mount=1"
                 ];
-                initrd.kernelModules = [
-                  "ac200_phy"
-                  "ahci"
-                  "configfs"
-                  "display_connector"
-                  "dm_crypt"
-                  "dm_mod"
-                  "ehci_hcd"
-                  "encrypted_keys"
-                  "musb_hdrc"
-                  "panfrost"
-                  "phy_generic"
-                  "phy_sun4i_usb"
-                  "sprdbt_tty"
-                  "sprdwl_ng"
-                  "sun50i_h6_prcm_ppu"
-                  "sun8i_ce"
-                  "sunxi"
-                  "sunxi_addr"
-                  "uas"
-                  "uhci_hcd"
-                  "usb_storage"
-                  "usbcore"
-                  "usbhid"
-                  "xhci_hcd"
-                  "xhci_pci"
-                ];
-                initrd.systemd.tpm2.enable = false;
+
                 kernelPackages =
                   (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
                   .pizero-kernelPackages;
