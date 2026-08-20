@@ -57,7 +57,7 @@
       DRM_MAXIM_MAX96745 = no;
       DRM_PANEL_INNOLUX_AFJ101_BA2131 = no;
       DRM_ROHM_BU18XL82 = no;
-      INPUT_RK805_PWRKEY = yes;
+      INPUT_RK805_PWRKEY = module;
       KEYBOARD_ADP5589 = no;
       KEYBOARD_MCS = no;
       KEYBOARD_TCA6416 = no;
@@ -113,7 +113,7 @@
       ROCKCHIP_MINIDUMP = no;
       ROCKCHIP_RAM_VENDOR_STORAGE = no;
       ROCKCHIP_RGA = no;
-      ROCKCHIP_RGA2 = yes;
+      ROCKCHIP_RGA2 = no;
       ROCKCHIP_RGA2_DEBUG = no;
       ROCKCHIP_RGA3 = yes;
       RTC_DRV_HYM8563 = yes;

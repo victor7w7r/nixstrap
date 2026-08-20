@@ -143,14 +143,14 @@
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
             CDROM = no;
-            COMMON_CLK_SCPI = yes;
+            COMMON_CLK_SCPI = no;
             DRM_ACCEL_ROCKET = module;
             PCIE_DW_PLAT_EP = yes;
             PCIE_ROCKCHIP_DW_EP = yes;
             PCIE_ROCKCHIP_EP = yes;
             PM_DOMAINS = yes;
             R8169 = no;
-            REGULATOR_RK806 = yes;
+            REGULATOR_RK806 = module;
             REGULATOR_RK8XX = yes;
             RESET_ROCKCHIP = yes;
             ROCKCHIP_PM_DOMAINS = yes;
