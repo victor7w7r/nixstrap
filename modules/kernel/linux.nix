@@ -32,6 +32,7 @@
           "x86_64"
         else
           null;
+
       kernelPatches = map (file: {
         name = baseNameOf (toString file);
         patch = file;
@@ -66,7 +67,6 @@
 
       extraMakeFlags = [
         "CCACHE_COMPILERCHECK=content"
-        "DTC_FLAGS=-Wno-unique_unit_address"
         "KCFLAGS=-w"
         "LOCALVERSION=-v7w7r-${localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"

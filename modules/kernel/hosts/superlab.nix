@@ -21,6 +21,7 @@
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
+      legacy = true;
       patches =
         with kernel.patches.injector pkgs;
         (kernel.patches.armbian.legacy-rockchip { }) ++ cachyos.legacy ++ tachyon.legacy;

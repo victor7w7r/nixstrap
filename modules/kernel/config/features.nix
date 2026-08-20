@@ -37,6 +37,7 @@
         BIG_KEYS = no;
         CGROUP_DMEM = no;
         CGROUP_RDMA = no;
+        CMA_DMA = yes;
         EFI_BOOTLOADER_CONTROL = no;
         EFI_CUSTOM_SSDT_OVERLAYS = no;
         EFI_RCI2_TABLE = no;
@@ -90,7 +91,6 @@
         DEBUG_SHIRQ = no;
         DETECT_HUNG_TASK = no;
         DMAPOOL_TEST = no;
-        DMA_CMA = no;
         DYNAMIC_DEBUG = no;
         DYNAMIC_DEBUG_CORE = no;
         EARLY_PRINTK = no;

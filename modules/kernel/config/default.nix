@@ -35,7 +35,6 @@
             GPIO_ICH = module;
             HID_WACOM = module;
             MACINTOSH_DRIVERS = lib.mkForce yes;
-
             MMC = no;
             PINCTRL_CANNONLAKE = lib.mkForce module;
             PINCTRL_INTEL_PLATFORM = lib.mkForce module;
@@ -46,6 +45,7 @@
             SND_SOC_INTEL_AVS = module;
             SND_USB_AUDIO = module;
             XFS_FS = yes;
+            ZONE_DMA = lib.mkForce yes;
           }
         ];
 

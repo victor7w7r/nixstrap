@@ -1,5 +1,7 @@
 { inputs, kernel, ... }:
 {
+  #inputs.nixpkgs-gcc11.url = "github:NixOS/nixpkgs/nixos-24.05";
+
   perSystem =
     { pkgs, ... }:
     kernel.lib.package-gen pkgs "handheld" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
