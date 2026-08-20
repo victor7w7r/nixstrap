@@ -9,7 +9,7 @@
         fsType = "f2fs";
         depends = [ "/nix" ];
         neededForBoot = true;
-        options = (f2fs.args "system" false { }).mountOptions;
+        options = (f2fs.args "system" false).mountOptions;
       };
     };
     disko.devices = {
