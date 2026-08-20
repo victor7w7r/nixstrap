@@ -86,17 +86,15 @@
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
                 kernelParams = [
-                  "earlycon"
-                  "console=ttyS0,115200n8"
-                  "clk_ignore_unused"
+                  #"earlycon"
+                  #"console=ttyS0,115200n8"
+                  #"clk_ignore_unused"
                   "ignore_loglevel"
                   "systemd.show_status=true"
                   "systemd.log_target=console"
-                  "oops=panic"
                   "randomize_kstack_offset=on"
-                  "boot.shell_on_fail"
-                  "rd.shell"
                   "devtmpfs.mount=1"
+                  "usbcore.autosuspend=-1"
                 ];
 
                 kernelPackages =
