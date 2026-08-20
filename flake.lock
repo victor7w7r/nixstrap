@@ -4650,6 +4650,8 @@
         "scrcpy-wrapper": "scrcpy-wrapper",
         "screego": "screego",
         "sdm845-alsa": "sdm845-alsa",
+        "sdm845-config": "sdm845-config",
+        "sdm845-misc": "sdm845-misc",
         "sha256-animation": "sha256-animation",
         "socktop": "socktop",
         "songfetch": "songfetch",
@@ -4828,6 +4830,30 @@
         "repo": "alsa-ucm-conf",
         "rev": "aaa7889f7a6de640b4d78300e118457335ad16c0",
         "type": "gitlab"
+      }
+    },
+    "sdm845-config": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-EIZNRxZt9d1l1Ug1y3MEdiyJtpUeVs1KKfsrVK+4hdY=",
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/sdm845.config?ref_type=tags"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/sdm845.config?ref_type=tags"
+      }
+    },
+    "sdm845-misc": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-SUmtSdg+VZfcUEPlSWnWUUviLACPwgizAmzH0kMtRGo=",
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/misc.config?ref_type=tags"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/misc.config?ref_type=tags"
       }
     },
     "sha256-animation": {

@@ -711,6 +711,14 @@
       url = "gitlab:sdm845-mainline/alsa-ucm-conf/aaa7889f7a6de640b4d78300e118457335ad16c0";
       flake = false;
     };
+    sdm845-config = {
+      url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/sdm845.config?ref_type=tags";
+      flake = false;
+    };
+    sdm845-misc = {
+      url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/misc.config?ref_type=tags";
+      flake = false;
+    };
     sha256-animation = {
       url = "github:in3rsha/sha256-animation";
       flake = false;

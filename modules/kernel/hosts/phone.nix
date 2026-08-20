@@ -23,6 +23,7 @@
           kernel.lib.defconfig-clear {
             inherit pkgs src;
             arch = "arm64";
+            config = kernel.patches.qcom-defconfig pkgs;
             defconfig = "phone_defconfig";
           }
         )
