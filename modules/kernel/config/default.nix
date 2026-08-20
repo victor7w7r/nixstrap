@@ -145,7 +145,7 @@
             CDROM = no;
             COMMON_CLK_SCPI = no;
             DRM_ACCEL_ROCKET = module;
-            MALI_PLATFORM_NAME = "rk";
+            MALI_PLATFORM_NAME = freeform "rk";
             MALI_EXPERT = yes;
             MALI_DEBUG = no;
             PCIE_DW_PLAT_EP = yes;
