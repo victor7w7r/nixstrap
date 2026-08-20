@@ -5,9 +5,14 @@
     kernel.lib.package-gen pkgs "handheld" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.handheld =
-    pkgs: host: arch:
+    pkgs: host: arch: system:
     (kernel.lib.linux {
-      inherit pkgs host arch;
+      inherit
+        pkgs
+        host
+        arch
+        system
+        ;
       structuredExtraConfig = kernel.config.default.handheld;
       localVer = "handheld-native";
       patches =

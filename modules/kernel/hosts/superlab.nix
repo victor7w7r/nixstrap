@@ -10,9 +10,14 @@
     kernel.lib.package-gen pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.superlab =
-    pkgs: host: arch:
+    pkgs: host: arch: system:
     (kernel.lib.linux {
-      inherit pkgs host arch;
+      inherit
+        pkgs
+        host
+        arch
+        system
+        ;
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";

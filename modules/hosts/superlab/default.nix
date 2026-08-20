@@ -135,7 +135,9 @@
                   generic-extlinux-compatible.enable = true;
                   grub.enable = false;
                 };
-                kernelPackages = (kernel.hosts.superlab pkgs "superlab" "aarch64-linux").superlab-kernelPackages;
+                kernelPackages =
+                  (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+                  .superlab-kernelPackages;
                 #pkgs.ubootRock5ModelB;
                 # kernelPackages = kernel.packages;
               };

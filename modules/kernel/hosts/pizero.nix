@@ -4,9 +4,14 @@
     { pkgs, ... }: kernel.lib.package-gen pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.pizero =
-    pkgs: host: arch:
+    pkgs: host: arch: system:
     (kernel.lib.linux {
-      inherit pkgs host arch;
+      inherit
+        pkgs
+        host
+        arch
+        system
+        ;
       structuredExtraConfig = kernel.config.default.pizero;
       localVer = "sunxi-hardened";
       defconfig = "sunxi_defconfig";

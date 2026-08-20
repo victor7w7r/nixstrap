@@ -231,7 +231,6 @@
       VIDEO_OS05A20 = no;
       VIDEO_OS05L10 = no;
       VIDEO_OS08A20 = no;
-      VIDEO_OTP_EEPROM = no;
       VIDEO_OV02B10 = no;
       VIDEO_OV02K10 = no;
       VIDEO_OV12D2Q = no;

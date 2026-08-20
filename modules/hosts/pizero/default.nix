@@ -129,7 +129,9 @@
                   "xhci_pci"
                 ];
                 initrd.systemd.tpm2.enable = false;
-                kernelPackages = (kernel.hosts.pizero pkgs "pizero" "aarch64-linux").pizero-kernelPackages;
+                kernelPackages =
+                  (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+                  .pizero-kernelPackages;
 
                 loader = {
                   grub.enable = false;

@@ -35,9 +35,7 @@
             GPIO_ICH = module;
             HID_WACOM = module;
             MACINTOSH_DRIVERS = lib.mkForce yes;
-            MFD_INTEL_LPSS = yes;
-            MFD_INTEL_LPSS_ACPI = yes;
-            MFD_INTEL_LPSS_PCI = yes;
+
             MMC = no;
             PINCTRL_CANNONLAKE = lib.mkForce module;
             PINCTRL_INTEL_PLATFORM = lib.mkForce module;

@@ -4,9 +4,14 @@
     { pkgs, ... }: kernel.lib.package-gen pkgs "main" "x86_64-linux" pkgs.stdenv.hostPlatform.system;
 
   kernel.hosts.main =
-    pkgs: host: arch:
+    pkgs: host: arch: system:
     (kernel.lib.linux {
-      inherit pkgs host arch;
+      inherit
+        pkgs
+        host
+        arch
+        system
+        ;
       structuredExtraConfig = kernel.config.default.main;
       localVer = "native";
       patches =

@@ -10,6 +10,7 @@
       pkgs,
       host,
       arch,
+      system,
       src,
       patches ? [ ],
       defconfig ? "cachyos_defconfig",
@@ -70,11 +71,9 @@
         "LOCALVERSION=-v7w7r-${localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
         "NIX_ENFORCE_NO_NATIVE=0"
-        "ARCH=${pkgs.stdenv.hostPlatform.linuxArch}"
+        "ARCH=${if arch == "aarch64-linux" then "arm64" else "x86_64"}"
       ]
-      ++ (lib.optional (
-        pkgs.stdenv.buildPlatform != pkgs.stdenv.hostPlatform
-      ) "CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix}");
+      ++ (lib.optional (system != arch) "CROSS_COMPILE=${pkgs.stdenv.hostPlatform.config}-");
     }
     |> (base: {
       "${host}-kernel" = base;

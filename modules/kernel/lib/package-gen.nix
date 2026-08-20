@@ -14,7 +14,7 @@
     package-gen =
       pkgs: host: arch: system:
       (kernel.lib.cross-calc pkgs arch system)
-      |> (recPkgs: kernel.hosts."${host}" recPkgs host arch)
+      |> (recPkgs: kernel.hosts."${host}" recPkgs host arch system)
       |> (src: {
         packages = lib.mkAfter {
           "${host}-config" = src."${host}-config";

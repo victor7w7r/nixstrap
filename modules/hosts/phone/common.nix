@@ -90,7 +90,9 @@
         };
 
         boot = {
-          kernelPackages = (kernel.hosts.main pkgs "phone" "aarch64-linux").main-kernelPackages;
+          kernelPackages =
+            (kernel.hosts.main pkgs "phone" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+            .main-kernelPackages;
           kernelParams = [
             "console=tty0"
             "zram.num_devices=2"
