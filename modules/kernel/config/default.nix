@@ -156,13 +156,16 @@
             REGULATOR_RK806 = module;
             REGULATOR_RK8XX = yes;
             RESET_ROCKCHIP = yes;
-            VEHICLE_DRIVER = no;
-            VEHICLE_ADC = no;
-            VEHICLE_GPIO = no;
-            VEHICLE_SPI_PROTOCOL = no;
             ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
+            VEHICLE_ADC = no;
+            VEHICLE_CORE = no;
+            VEHICLE_DRIVER = no;
+            VEHICLE_GPIO = no;
+            VEHICLE_GPIO_MCU_EXPANDER = no;
+            VEHICLE_SPI = no;
+            VEHICLE_SPI_PROTOCOL = no;
             XFS_FS = no;
           }
         ];
