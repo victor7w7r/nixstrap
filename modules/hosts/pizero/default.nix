@@ -84,6 +84,7 @@
               networking.hostName = "v7w7r-opizero2w";
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
               boot = {
+                blacklistedKernelModules = [ "sun8i_ce" ];
                 kernelParams = [
                   "earlycon"
                   "console=ttyS0,115200n8"

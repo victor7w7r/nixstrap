@@ -16,7 +16,6 @@
       "sprdbt_tty"
       "sprdwl_ng"
       "sun50i_h6_prcm_ppu"
-      "sun8i_ce"
       "sunxi"
       "sunxi_addr"
       "uas"
