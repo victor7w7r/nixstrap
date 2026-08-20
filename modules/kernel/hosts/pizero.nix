@@ -1,4 +1,9 @@
-{ inputs, kernel, ... }:
+{
+  inputs,
+  kernel,
+  self,
+  ...
+}:
 {
   perSystem =
     { pkgs, ... }: kernel.lib.package-gen pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system;
@@ -17,7 +22,10 @@
       defconfig = "sunxi_defconfig";
       patches =
         with kernel.patches.injector pkgs;
-        sunxi ++ (bunker.lts { isHardened = true; }) ++ (tachyon.lts { isVanilla = true; });
+        sunxi
+        ++ (bunker.lts { isHardened = true; })
+        ++ (tachyon.lts { isVanilla = true; })
+        ++ [ "${self}/modules/kernel/patches/fix-opi-zero2w-supplies.patch" ];
       src =
         kernel.patches.armbian.uwe5622 pkgs
         |> (

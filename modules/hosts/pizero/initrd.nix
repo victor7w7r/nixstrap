@@ -18,6 +18,7 @@
       "sun50i_h6_prcm_ppu"
       "sunxi"
       "sunxi_addr"
+      "sun4i-gpadc-iio"
       "uas"
       "uhci_hcd"
       "usb_storage"

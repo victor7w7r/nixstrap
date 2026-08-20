@@ -1,0 +1,20 @@
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+@@ -130,6 +130,7 @@
+ };
+
+ &pio {
++	vcc-pa-supply = <&reg_dldo1>;
+ 	vcc-pc-supply = <&reg_dldo1>;
+ 	vcc-pf-supply = <&reg_dldo1>;
+ 	vcc-pg-supply = <&reg_aldo1>;
+@@ -185,7 +186,10 @@
+ };
+
+ &usbphy {
++	usb0_vbus-supply = <&reg_vcc5v>;
+ 	usb1_vbus-supply = <&reg_vcc5v>;
++	usb2_vbus-supply = <&reg_vcc5v>;
++	usb3_vbus-supply = <&reg_vcc5v>;
+ 	status = "okay";
+ };
