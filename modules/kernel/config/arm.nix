@@ -65,6 +65,10 @@
       LTE = no;
       MALI400 = no;
       MALI450 = no;
+      MALI_BIFROST = no;
+      MALI_MIDGARD = yes;
+      MALI_VALHALL = yes;
+      MALI_VALHALL_BUILD_KERNEL_DRIVER = yes;
       MALI_KUTF = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
