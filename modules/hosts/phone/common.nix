@@ -83,7 +83,6 @@
         };
 
         nixpkgs.config = {
-          allowUnfree = true;
           allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
         };
 
@@ -96,15 +95,12 @@
           kernelPackages =
             (kernel.hosts.main pkgs "phone" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
             .main-kernelPackages;
+
           kernelParams = [
             "console=tty0"
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
-          initrd.systemd = {
-            package = pkgs.systemd;
-            tpm2.enable = false;
-          };
           blacklistedKernelModules = [
             "ipa"
             "ath10k_pci"

@@ -1,5 +1,5 @@
 {
-  den.aspects.phone.services.nixos = { config, ... }: {
+  den.aspects.phone.services.nixos = { config, pkgs, ... }: {
     boot.initrd = {
       includeDefaultModules = false;
       availableKernelModules = [ "sd_mod" ];
@@ -12,6 +12,7 @@
       ];
       systemd = {
         enable = true;
+        package = pkgs.systemd;
         tpm2.enable = false;
         storePaths =
           map
