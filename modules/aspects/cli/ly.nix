@@ -8,7 +8,6 @@
     }:
     {
       security.pam.services.ly = {
-        enableGdmAuth = true;
         u2fAuth = true;
         kwallet = {
           enable = true;
