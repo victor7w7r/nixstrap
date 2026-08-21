@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  den.aspects.pizero.passbolt.nixos = { pkgs, ... }: {
+  den.aspects.pizero-test.passbolt.nixos = { pkgs, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
