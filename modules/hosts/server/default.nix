@@ -69,9 +69,7 @@
             networking = {
               hostName = "v7w7r-youyeetoox1";
               #interfaces."enp1s0".wakeOnLan.enable = true;
-              nat = {
-                externalInterface = "enp1s0";
-              };
+              nat.externalInterface = "enp1s0";
             };
 
             virtualisation.incus = {
