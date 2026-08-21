@@ -23,5 +23,6 @@
           "xhci_hcd"
           "xhci_pci"
         ];
+      };
     };
 }
