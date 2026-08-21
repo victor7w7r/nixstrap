@@ -10,8 +10,7 @@
     };
 
     systemd = {
-      tmpfiles.rules = [ "d /opt/seafile-data 0770 1000 1000 - -" ];
-      services = {
+      /*services = {
         tailscaled = {
           after = [ "systemd-resolved.service" ];
           wants = [ "systemd-resolved.service" ];
@@ -27,9 +26,9 @@
             ExecStart = "${pkgs.tailscale}/bin/tailscale funnel 80";
           };
         };
-      };
+        };*/
     };
-    virtualisation.oci-containers.containers = {
+  /*  virtualisation.oci-containers.containers = {
       pb-mariadb = {
         image = "mariadb";
         ports = [
@@ -69,6 +68,6 @@
         };
         extraOptions = [ "--network=container:pb-mariadb" ];
       };
-    };
+      };*/
   };
 }

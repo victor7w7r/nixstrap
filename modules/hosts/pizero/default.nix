@@ -51,7 +51,7 @@
               value = "256M";
               memoryPercent = 100;
             })
-            #(hosts.lib.static-network "enp4s0" "6")
+            (hosts.lib.static-network "enp4s0" "14")
             pizero._
 
             cli._
@@ -72,7 +72,6 @@
             secrets
             tools
             victor7w7r
-            virt
           ];
 
           nixos =
@@ -84,7 +83,6 @@
             }:
             {
               services = {
-                chrony.enable = lib.mkForce false;
                 displayManager.ly.enable = lib.mkForce false;
                 fail2ban.enable = lib.mkForce false;
               };
