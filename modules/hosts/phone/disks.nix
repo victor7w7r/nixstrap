@@ -4,6 +4,7 @@
     fileSystems."/".autoResize = true;
     fileSystems."/tmp" = {
       device = "/nix/tmp";
+      fsType = "none";
       options = [ "bind" ];
     };
 

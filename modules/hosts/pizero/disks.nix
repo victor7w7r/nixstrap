@@ -13,6 +13,7 @@
       };
       "/tmp" = {
         device = "/nix/tmp";
+        fsType = "none";
         options = [ "bind" ];
       };
     };
