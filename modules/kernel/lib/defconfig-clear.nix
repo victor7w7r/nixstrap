@@ -19,6 +19,7 @@
        sed -i '/^CONFIG_LD_/d' config
        sed -i '/^CONFIG_RUNTIME_TESTING_MENU/d' config
        sed -i '/^CONFIG_RUSTC*_/d' config
+       sed -i '/^CONFIG_LOCALVERSION/d' config
 
        sed -i '/^CONFIG_AF_RXRPC/d' config
        sed -i '/^CONFIG_ALTERA_STAPL/d' config

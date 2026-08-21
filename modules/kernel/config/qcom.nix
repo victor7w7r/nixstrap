@@ -8,18 +8,18 @@
     lib.mkMerge [
       {
         ATH10K_PCI = setupDenial isDenied yes;
-        BACKLIGHT_QCOM_WLED = setupDenial isDenied module;
-        BATTERY_BQ27XXX = setupDenial isDenied module;
+        BACKLIGHT_QCOM_WLED = setupDenial isDenied yes;
+        BATTERY_BQ27XXX = setupDenial isDenied yes;
         BLK_DEV_RAM = setupDenial isDenied module;
-        CRYPTO_BLOWFISH = setupDenial isDenied module;
-        CRYPTO_LRW = setupDenial isDenied module;
-        CRYPTO_TWOFISH = setupDenial isDenied module;
+        CRYPTO_BLOWFISH = setupDenial isDenied yes;
+        CRYPTO_LRW = setupDenial isDenied yes;
+        CRYPTO_TWOFISH = setupDenial isDenied yes;
         CRYPTO_USER_API_AEAD = setupDenial isDenied yes;
         DEFAULT_WESTWOOD = setupDenial isDenied yes;
         DRM_GUD = setupDenial isDenied module;
-        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied module;
-        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied module;
-        HID_RMI = setupDenial isDenied module;
+        DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied yes;
+        DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied yes;
+        HID_RMI = setupDenial isDenied yes;
         INPUT_JOYDEV = setupDenial isDenied module;
         NETLINK_DIAG = setupDenial isDenied module;
         NET_SCH_MULTIQ = setupDenial isDenied module;
@@ -38,11 +38,15 @@
       }
       (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;
+        BLK_DEV_RAM = lib.mkForce yes;
+        BLK_DEV_DM = lib.mkForce yes;
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
+        DM_CRYPT = lib.mkForce yes;
         EFI_ZBOOT = yes;
         FS_ENCRYPTION_INLINE_CRYPT = yes;
         INPUT_QCOM_SPMI_HAPTICS = module;
+        INPUT_JOYDEV = lib.mkForce yes;
         MODULE_COMPRESS_ZSTD = yes;
         MODULE_DECOMPRESS = yes;
         NLS_ASCII = yes;
@@ -64,7 +68,7 @@
         DMABUF_HEAPS = yes;
         DMABUF_HEAPS_CMA = yes;
         DMABUF_HEAPS_SYSTEM = yes;
-        DRM_MSM = module; #as module
+        DRM_MSM = yes;
         FAT_DEFAULT_UTF8 = yes;
         FB_SIMPLE = yes;
         FORCE_NR_CPUS = yes;
@@ -73,7 +77,7 @@
         INTERCONNECT_QCOM_OSM_L3 = yes;
         MFD_QCOM_RPM = yes;
         PHY_QCOM_QMP = yes;
-        PHY_QCOM_QMP_COMBO = module;
+        PHY_QCOM_QMP_COMBO = yes;
         PHY_QCOM_QMP_PCIE = yes;
         PHY_QCOM_QMP_UFS = yes;
         PHY_QCOM_QMP_USB = yes;
@@ -118,7 +122,6 @@
         AHCI_QORIQ = no;
         AHCI_XGENE = no;
         ALTERA_FREEZE_BRIDGE = no;
-        DEFAULT_BBR = lib.mkForce no;
         ARCH_ROCKCHIP = no;
         ARCH_SUNXI = no;
         CLK_ELIZA_DISPCC = no;
@@ -145,6 +148,7 @@
         CLK_X1E80100_TCSRCC = no;
         CLK_X1P42100_GPUCC = no;
         COMMON_CLK_ROCKCHIP = no;
+        DEFAULT_BBR = lib.mkForce no;
         DRM_MSM_DSI_14NM_PHY = no;
         DRM_MSM_DSI_20NM_PHY = no;
         DRM_MSM_DSI_28NM_8960_PHY = no;
@@ -305,6 +309,8 @@
         SA_DISPCC_8775P = no;
         SA_GPUCC_8775P = no;
         SA_VIDEOCC_8775P = no;
+        SCSI_SAS_ATTRS = lib.mkForce yes;
+        SCSI_SAS_LIBSAS = lib.mkForce yes;
         SC_CAMCC_7180 = no;
         SC_CAMCC_7280 = no;
         SC_CAMCC_8180X = no;
