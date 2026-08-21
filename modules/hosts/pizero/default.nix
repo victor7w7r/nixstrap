@@ -48,8 +48,8 @@
         common = {
           includes = with den.aspects; [
             (hosts.lib.zram {
-              value = "16G";
-              memoryPercent = 50;
+              value = "256M";
+              memoryPercent = 100;
             })
             #(hosts.lib.static-network "enp4s0" "6")
             pizero._
