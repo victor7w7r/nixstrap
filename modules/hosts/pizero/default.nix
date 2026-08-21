@@ -79,25 +79,17 @@
               config,
               lib,
               pkgs,
+              self',
               ...
             }:
             {
-              services = {
-                displayManager.ly.enable = lib.mkForce false;
-                fail2ban.enable = lib.mkForce false;
-              };
-              system.autoUpgrade.enable = lib.mkForce false;
               networking.hostName = "v7w7r-opizero2w";
 
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
-                deviceTree = {
-                  enable = true;
-                  filter = "sun50i-h618-orangepi-zero2w.dtb";
-                  name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
-                };
+                deviceTree.name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
               };
 
               boot = {
@@ -110,16 +102,20 @@
                   "usbcore.autosuspend=-1"
                   #"resume=${config.boot.resumeDevice}"
                 ];
-
-                kernelPackages =
-                  (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
-                  .pizero-kernelPackages;
-
                 loader = {
                   grub.enable = false;
                   generic-extlinux-compatible.enable = true;
                 };
+                kernelPackages =
+                  (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+                  .pizero-kernelPackages;
               };
+
+              services = {
+                displayManager.ly.enable = lib.mkForce false;
+                fail2ban.enable = lib.mkForce false;
+              };
+              system.autoUpgrade.enable = lib.mkForce false;
             };
         };
       };

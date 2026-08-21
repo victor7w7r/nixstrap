@@ -93,77 +93,23 @@
             }:
             {
               networking.hostName = "v7w7r-radxarock5b";
-              boot = {
-                kernelParams = [
-                  "console=ttyS2,1500000n8"
-                  "deferred_probe_timeout=30"
-                ];
-                initrd = {
-                  tpm2.enable = false;
-                  kernelModules = [
-                    "display_connector"
-                    "dm_crypt"
-                    "dm_mod"
-                    "hantro_vpu"
-                    "panthor"
-                    "phy_rockchip_samsung_hdptx"
-                    "phy_rockchip_snps_pcie3"
-                    "pinctrl_rk805"
-                    "rng_core"
-                    "rockchip_rga"
-                    "rockchip_rng"
-                    "rockchip_vdec"
-                    "rockchipdrm"
-                    "rocket"
-                    "snd_soc_es8316"
-                    "snd_soc_audio_graph_card"
-                    "synopsys_hdmirx"
-                    "spi_rockchip_sfc"
-                    "usbhid"
-                    "resume=${config.boot.resumeDevice}"
-                  ];
-
-                  luks.devices = {
-                    swapcrypt = {
-                      device = "/dev/disk/by-partlabel/disk-main-swapcrypt";
-                      crypttabExtraOpts = [ "fido2-device=auto" ];
-                    };
-                    system = {
-                      device = "/dev/disk/by-partlabel/disk-main-system";
-                      crypttabExtraOpts = [ "fido2-device=auto" ];
-                    };
-                  };
-                };
-                loader = lib.mkForce {
-                  #systemd-boot.enable = true;
-                  efi.canTouchEfiVariables = true;
-                  generic-extlinux-compatible.enable = true;
-                  grub.enable = false;
-                };
-                kernelPackages =
-                  (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
-                  .superlab-kernelPackages;
-                #pkgs.ubootRock5ModelB;
-                # kernelPackages = kernel.packages;
-              };
-
-              zramSwap = {
-                enable = true;
-                algorithm = "zstd";
-                memoryPercent = 20;
-                priority = 100;
-              };
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
+
+              boot = {
+                kernelParams = [ "console=ttyS2,1500000n8" ];
+                loader = {
+                  grub.enable = false;
+                  generic-extlinux-compatible.enable = true;
+                };
+                kernelPackages =
+                  (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+                  .superlab-kernelPackages;
+              };
             };
-          /*
-            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
-            _module.args.pkgs = armPkgs;
-            });
-          */
         };
       };
     };

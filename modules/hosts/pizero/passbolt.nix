@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, lib, ... }: {
   den.aspects.pizero-test.passbolt.nixos = { pkgs, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
@@ -30,6 +30,7 @@
             Restart = "on-failure";
             User = "root";
             ExecStart = "${pkgs.tailscale}/bin/tailscale funnel --bg https+insecure://localhost:80";
+          };
         };
       };
     };
@@ -89,5 +90,6 @@
           };
         };
       };
+    };
   };
 }
