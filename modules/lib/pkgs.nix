@@ -1,5 +1,5 @@
 {
-  craneCall,
+  rustCall,
   den,
   inputs,
   withSystem,
@@ -7,14 +7,7 @@
   ...
 }:
 {
-  flake-file.inputs = {
-    crane.url = "github:ipetkov/crane";
-    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  flake-file.inputs.pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
   imports = [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];
 
@@ -45,7 +38,7 @@
                 '';
               }
             );
-            crane = craneCall;
+            rustBuild = rustCall;
           })
         ];
       };

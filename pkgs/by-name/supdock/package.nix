@@ -1,9 +1,9 @@
 {
-  crane,
+  rustBuild,
   inputs,
   pkgs,
 }:
-(crane {
+(rustBuild {
   inherit pkgs;
   pname = "supdock";
   src = inputs.supdock;

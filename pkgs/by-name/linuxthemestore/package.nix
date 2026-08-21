@@ -1,9 +1,9 @@
 {
-  crane,
+  rustBuild,
   inputs,
   pkgs,
 }:
-(crane {
+(rustBuild {
   inherit pkgs;
   pname = "linuxthemestore";
   src = inputs.linuxthemestore;

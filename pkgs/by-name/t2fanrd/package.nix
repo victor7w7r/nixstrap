@@ -1,9 +1,9 @@
 {
-  crane,
+  rustBuild,
   inputs,
   pkgs,
 }:
-(crane {
+(rustBuild {
   inherit pkgs;
   pname = "t2fanrd";
   src = inputs.t2fanrd;

@@ -48,7 +48,6 @@
             package = pkgs.qemu_full.override {
               cephSupport = false;
               enableDocs = false;
-              glusterfsSupport = false;
               xenSupport = false;
               hostCpuTargets = [
                 "i386-softmmu"
