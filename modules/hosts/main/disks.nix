@@ -58,6 +58,14 @@
           "/nix/persist".neededForBoot = true;
           "/etc".neededForBoot = true;
         };
+        resumeDevice = "/dev/mapper/swapcrypt";
+        swapDevices = [
+           {
+             device = "/dev/mapper/swapcrypt";
+             discardPolicy = "both";
+             options = [ "nofail" ];
+           }
+         ];
         disko.devices = {
           inherit lvm_vg;
           disk = {

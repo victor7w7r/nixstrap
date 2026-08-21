@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   _module.args.hosts.lib = {
     static-network = iface: address: {
@@ -22,15 +21,20 @@
     zram =
       {
         mappers ? [ ],
-        isPercent ? false,
-        percent ? "25",
-        fixed ? "4G",
+        value ? "4G",
+        memoryPercent ? 50
       }:
       {
         nixos =
           { pkgs, ... }:
           {
-            boot.initrd.systemd.services.zram-format = {
+            zramSwap = {
+              enable = true;
+              algorithm = "zstd";
+              inherit memoryPercent;
+              priority = 100;
+            };
+            boot.initrd.systemd.services.zram-rootfs = {
               wantedBy = [ "initrd.target" ];
               requiredBy = [
                 "cryptsetup.target"
@@ -57,11 +61,7 @@
               ];
               script = ''
                 set -e
-                ${lib.optionalString isPercent ''
-                  TOTAL_MEM=$(grep MemTotal /proc/meminfo | ${pkgs.gawk}/bin/awk '{print $2 * 1024}')
-                  SIZE=$((TOTAL_MEM * ${toString percent} / 100))
-                ''}
-                echo ${if isPercent then "$SIZE" else fixed} > /sys/block/zram1/disksize
+                echo ${value} > /sys/block/zram1/disksize
                 ${pkgs.e2fsprogs}/bin/mkfs.ext4 -m 0 -O "^has_journal,^huge_file,^flex_bg" /dev/zram1
               '';
             };

@@ -23,7 +23,10 @@
     aspects.main = {
       includes = with den.aspects; [
         (hosts.lib.static-network "enp4s0" "6")
-        (hosts.lib.zram { fixed = "32G"; })
+        (hosts.lib.zram {
+          value = "32G";
+          memoryPercent = 25;
+        })
         main._
 
         audio._
@@ -56,7 +59,12 @@
         xr
       ];
       nixos =
-        { pkgs, inputs', ... }:
+        {
+          config,
+          pkgs,
+          inputs',
+          ...
+        }:
         {
           networking = {
             hostName = "v7w7r-macmini81";
@@ -89,13 +97,13 @@
               "libahci.ignore_sss=1"
               "pcie_ports=compat"
               "video=DP-3:1600x900@60e"
+              "resume=${config.boot.resumeDevice}"
               #"i915.enable_guc=2"
             ];
             extraModprobeConfig = ''
               options kvm-intel nested=1
               options kvm_intel emulate_invalid_guest_state=0
             '';
-            resumeDevice = "/dev/mapper/swapcrypt";
           };
 
           environment.systemPackages = with pkgs; [

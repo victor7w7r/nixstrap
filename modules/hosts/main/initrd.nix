@@ -23,18 +23,6 @@
           "xhci_hcd"
         ];
 
-        systemd.services.activate-vg1 = {
-          wantedBy = [ "cryptsetup.target" ];
-          after = [ "systemd-cryptsetup@storage.service" ];
-          requires = [ "systemd-cryptsetup@storage.service" ];
-          unitConfig.DefaultDependencies = false;
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            ExecStart = "${pkgs.lvm2}/bin/vgchange -ay vg1";
-          };
-        };
-
         luks.devices =
           let
             partlabel = "/dev/disk/by-partlabel";

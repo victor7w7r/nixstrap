@@ -18,7 +18,10 @@
   den.aspects.phone.common = {
     includes = with den.aspects; [
       (tarball.lib.call { })
-      (hosts.lib.zram { })
+      (hosts.lib.zram {
+        value = "8G";
+        memoryPercent = 100;
+      })
       audio._
       cli._
       dev.ccache
@@ -165,13 +168,6 @@
           };
         };
         security.pam.services.sshd.allowNullPassword = lib.mkImageMediaOverride true;
-
-        zramSwap = {
-          enable = true;
-          algorithm = "zstd";
-          memoryPercent = 60;
-          priority = 100;
-        };
       };
   };
   /*

@@ -24,6 +24,10 @@
       {
         includes = with den.aspects; [
           (hosts.lib.static-network "enp1s0" "10")
+          (hosts.lib.zram {
+            value = "8G";
+            memoryPercent = 70;
+          })
           server._
           server.containers
 
@@ -51,7 +55,12 @@
         ];
 
         nixos =
-          { lib, pkgs, ... }:
+          {
+            config,
+            lib,
+            pkgs,
+            ...
+          }:
           {
             hardware.cpu.intel.updateMicrocode = true;
 
@@ -72,7 +81,6 @@
 
             boot = {
               initrd.services.lvm.enable = true;
-              resumeDevice = "/dev/mapper/swapcrypt";
               kernelParams = [
                 "pcie_aspm=off"
                 "kvmfr.static_size_mb=128"
@@ -87,6 +95,7 @@
                 "page_poison=1"
                 "oops=panic"
                 "randomize_kstack_offset=on"
+                "resume=${config.boot.resumeDevice}"
               ];
               extraModprobeConfig = ''
                 options kvm-intel nested=1
@@ -120,26 +129,11 @@
               ];
             };
 
-            zramSwap = {
-              enable = true;
-              algorithm = "zstd";
-              memoryPercent = 100;
-              priority = 100;
-            };
-
             services = {
               thermald.enable = true;
               lvm.boot.thin.enable = true;
               rustdesk-server.enable = false;
             };
-
-            swapDevices = [
-              {
-                device = "/dev/mapper/swapcrypt";
-                discardPolicy = "both";
-                options = [ "nofail" ];
-              }
-            ];
           };
 
         provides.to-users.homeManager =

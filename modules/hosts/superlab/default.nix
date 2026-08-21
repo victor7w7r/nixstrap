@@ -48,7 +48,10 @@
         includes = with den.aspects; [ superlab.common ];
         common = {
           includes = with den.aspects; [
-            (hosts.lib.zram { })
+            (hosts.lib.zram {
+              value = "4G";
+              memoryPercent = 100;
+            })
             superlab.disks
 
             audio._
@@ -82,9 +85,9 @@
 
           nixos =
             {
+              config,
               lib,
               pkgs,
-              armPkgs,
               self',
               ...
             }:
@@ -116,6 +119,7 @@
                     "synopsys_hdmirx"
                     "spi_rockchip_sfc"
                     "usbhid"
+                    "resume=${config.boot.resumeDevice}"
                   ];
 
                   luks.devices = {

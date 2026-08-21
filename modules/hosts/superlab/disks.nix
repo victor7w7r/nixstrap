@@ -2,11 +2,18 @@
 {
   den.aspects.superlab.disks.nixos = {
     imports = [ inputs.disko.nixosModules.disko ];
-
     fileSystems = {
       "/nix/persist".neededForBoot = true;
       "/etc".neededForBoot = true;
     };
+    resumeDevice = "/dev/mapper/swapcrypt";
+    swapDevices = [
+      {
+        device = "/dev/mapper/swapcrypt";
+        discardPolicy = "both";
+        options = [ "nofail" ];
+      }
+    ];
     disko.devices.disk = with disko; {
       root = disk.root { };
       main = disk.gpt {

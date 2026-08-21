@@ -68,6 +68,14 @@
             nvme = nvme { };
           };
         };
+        resumeDevice = "/dev/mapper/swapcrypt";
+        swapDevices = [
+          {
+            device = "/dev/mapper/swapcrypt";
+            discardPolicy = "both";
+            options = [ "nofail" ];
+          }
+        ];
       };
       server-physical-chroot.nixos = {
         imports = [ inputs.disko.nixosModules.disko ];

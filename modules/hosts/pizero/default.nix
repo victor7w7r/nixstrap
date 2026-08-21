@@ -47,7 +47,10 @@
         includes = with den.aspects; [ pizero.common ];
         common = {
           includes = with den.aspects; [
-            (hosts.lib.zram { })
+            (hosts.lib.zram {
+              value = "16G";
+              memoryPercent = 50;
+            })
             #(hosts.lib.static-network "enp4s0" "6")
             pizero._
 
@@ -73,7 +76,12 @@
           ];
 
           nixos =
-            { lib, pkgs, ... }:
+            {
+              config,
+              lib,
+              pkgs,
+              ...
+            }:
             {
               services = {
                 chrony.enable = lib.mkForce false;
@@ -91,6 +99,7 @@
                   "systemd.show_status=true"
                   "systemd.log_target=console"
                   "usbcore.autosuspend=-1"
+                  #"resume=${config.boot.resumeDevice}"
                 ];
 
                 kernelPackages =

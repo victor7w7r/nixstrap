@@ -8,6 +8,25 @@
       };
       systemd = {
         services = {
+          activate-vg1 = {
+            wantedBy = [ "local-fs.target" ];
+            before = [ "local-fs.target" ];
+            after = [ "dev-mapper-storage.device" "local-fs-pre.target" ];
+            bindsTo = [ "dev-mapper-storage.device" ];
+
+            unitConfig = {
+              DefaultDependencies = false;
+              ConditionPathExists = "!/dev/vg1";
+            };
+
+            path = [ pkgs.lvm2 pkgs.coreutils ];
+
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+              ExecStart = "${pkgs.lvm2}/bin/vgchange -ay vg1";
+            };
+          };
           t2fanrd = {
             enable = true;
             description = "T2FanRD daemon to manage fan curves for T2 Macs";

@@ -19,7 +19,10 @@
       { user, ... }:
       {
         includes = with den.aspects; [
-          (hosts.lib.zram { })
+          (hosts.lib.zram {
+            value = "8G";
+            memoryPercent = 100;
+          })
           handheld._
 
           audio._
@@ -52,11 +55,15 @@
         ];
 
         nixos =
-          { lib, pkgs, ... }:
+          {
+            config,
+            lib,
+            pkgs,
+            ...
+          }:
           {
             networking.hostName = "v7w7r-rc71l";
             boot = {
-              resumeDevice = "/dev/mapper/swapcrypt";
               kernelPackages =
                 (kernel.hosts.handheld pkgs "handheld" "x86_64-linux" pkgs.stdenv.hostPlatform.system)
                 .handheld-kernelPackages;
@@ -69,7 +76,7 @@
                 "amdgpu.sg_display=0"
                 "amd_iommu=on"
                 "amd_pstate=passive"
-                #"resume=/dev/mapper/swapcrypt"
+                "resume=${config.boot.resumeDevice}"
               ];
             };
 
@@ -94,13 +101,6 @@
                 tbtools
                 thunderbolt
               ];
-            };
-
-            zramSwap = {
-              enable = true;
-              algorithm = "zstd";
-              memoryPercent = 60;
-              priority = 100;
             };
 
             programs.rog-control-center = {

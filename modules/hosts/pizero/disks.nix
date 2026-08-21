@@ -12,6 +12,14 @@
         options = (f2fs.args "system" false).mountOptions;
       };
     };
+    resumeDevice = "/dev/mapper/swapcrypt";
+    swapDevices = [
+      {
+        device = "/dev/mapper/swapcrypt";
+        discardPolicy = "both";
+        options = [ "nofail" ];
+      }
+    ];
     disko.devices = {
       disk = {
         root = disk.root { };
