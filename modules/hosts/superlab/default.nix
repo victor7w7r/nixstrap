@@ -99,6 +99,7 @@
                   "deferred_probe_timeout=30"
                 ];
                 initrd = {
+                  tpm2.enable = false;
                   kernelModules = [
                     "display_connector"
                     "dm_crypt"

@@ -101,7 +101,10 @@
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
-          initrd.systemd.package = pkgs.systemd;
+          initrd.systemd = {
+            package = pkgs.systemd;
+            tpm2.enable = false;
+          };
           blacklistedKernelModules = [
             "ipa"
             "ath10k_pci"

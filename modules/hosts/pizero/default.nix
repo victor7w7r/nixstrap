@@ -88,7 +88,18 @@
               };
               system.autoUpgrade.enable = lib.mkForce false;
               networking.hostName = "v7w7r-opizero2w";
+
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
+
+              hardware = {
+                firmware = with self'.packages; lib.singleton armbian-firmware;
+                deviceTree = {
+                  enable = true;
+                  filter = "sun50i-h618-orangepi-zero2w.dtb";
+                  name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
+                };
+              };
+
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
                 kernelParams = [
@@ -110,11 +121,6 @@
                 };
               };
             };
-          /*
-            // (lib.optionalAttrs pkgs.stdenv.buildPlatform.isx86_64 {
-            _module.args.pkgs = armPkgs;
-            });
-          */
         };
       };
     };
