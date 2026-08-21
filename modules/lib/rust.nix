@@ -14,7 +14,7 @@
       buildInputs ? [ ],
       postInstall ? "",
       installPhase ? "",
-      cargoHash ? lib.fakeSha256,
+      cargoHash ? lib.fakeHash,
       version ? "latest",
     }:
     let

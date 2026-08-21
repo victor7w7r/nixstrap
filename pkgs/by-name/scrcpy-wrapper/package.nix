@@ -7,6 +7,7 @@
   inherit pkgs;
   pname = "scrcpy-wrapper";
   src = inputs.scrcpy-wrapper;
+  cargoHash = "sha256-o48iriH7rRsi3XM+dhnrs2HbRAKv82RtiEEG2DPSJjo=";
 
   nativeBuildInputs = with pkgs; [
     pkg-config

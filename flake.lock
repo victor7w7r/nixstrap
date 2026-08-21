@@ -583,21 +583,6 @@
     },
     "crane": {
       "locked": {
-        "lastModified": 1787275140,
-        "narHash": "sha256-PqFGJPOBHd+Nbz008oDcEiCB+kEkb+JSuG097qLvP2Q=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "a1a1116e8ec16f03bcc23e5c77db557a5fc9b4d6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
-    "crane_2": {
-      "locked": {
         "lastModified": 1759893430,
         "narHash": "sha256-yAy4otLYm9iZ+NtQwTMEbqHwswSFUbhn7x826RR6djw=",
         "owner": "ipetkov",
@@ -1862,7 +1847,7 @@
     },
     "gestures": {
       "inputs": {
-        "crane": "crane_2",
+        "crane": "crane",
         "fenix": "fenix",
         "flake-compat": "flake-compat_3",
         "nixpkgs": "nixpkgs_8",
@@ -4498,7 +4483,6 @@
         "compress": "compress",
         "conway-screensaver": "conway-screensaver",
         "corrupter": "corrupter",
-        "crane": "crane",
         "custom-packages": "custom-packages",
         "customfetch": "customfetch",
         "darwin": "darwin_2",

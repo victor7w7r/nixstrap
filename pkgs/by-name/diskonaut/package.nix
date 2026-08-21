@@ -6,6 +6,7 @@
 (rustBuild {
   inherit pkgs;
   pname = "diskonaut";
+  cargoHash = "sha256-k6x72RznW9XBPONeZjCofOXk7zBANCBmdfjv3LMJnVE=";
   src = pkgs.runCommand "diskonaut-src-with-lock" { } ''
     mkdir -p $out
     cp -r --no-target-directory ${inputs.diskonaut} $out
