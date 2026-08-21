@@ -21,7 +21,7 @@
       "synopsys_hdmirx"
       "spi_rockchip_sfc"
       "usbhid"
-      "resume=${config.boot.resumeDevice}"
+      #"resume=${config.boot.resumeDevice}"
     ];
 
     luks.devices = {
