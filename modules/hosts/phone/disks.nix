@@ -2,7 +2,15 @@
 {
   den.aspects.phone.disks.nixos = { pkgs, ... }: {
     fileSystems."/".autoResize = true;
+    fileSystems."/tmp" = {
+      device = "/nix/tmp";
+      options = [ "bind" ];
+    };
+
+    systemd.tmpfiles.rules = [ "d /nix/tmp 1777 root root -" ];
+
     imports = [ inputs.disko-mobile.nixosModules.disko ];
+
     disko = {
       imageBuilder = {
         imageFormat = "raw";

@@ -11,8 +11,13 @@
         neededForBoot = true;
         options = (f2fs.args "system" false).mountOptions;
       };
+      "/tmp" = {
+        device = "/nix/tmp";
+        options = [ "bind" ];
+      };
     };
-    resumeDevice = "/dev/mapper/swapcrypt";
+    boot.resumeDevice = "/dev/mapper/swapcrypt";
+    systemd.tmpfiles.rules = [ "d /nix/tmp 1777 root root -" ];
     swapDevices = [
       {
         device = "/dev/mapper/swapcrypt";

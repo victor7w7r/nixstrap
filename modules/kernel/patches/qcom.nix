@@ -10,7 +10,7 @@
       flake = false;
     };
     sdm845-defconfig = {
-      url = "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads";
+      url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/defconfig?ref_type=tags";
       flake = false;
     };
   };

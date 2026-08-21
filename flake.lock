@@ -4848,13 +4848,13 @@
     "sdm845-defconfig": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-dmjcusvaJ9iwkd2iYQPRnN4Fni5rxxmKcoQSUkgiAbE=",
+        "narHash": "sha256-pRkdDFMFH45l0+UmcBlo/NoakHMlI4WfN3/fNKKnChU=",
         "type": "file",
-        "url": "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads"
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/defconfig?ref_type=tags"
       },
       "original": {
         "type": "file",
-        "url": "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads"
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/defconfig?ref_type=tags"
       }
     },
     "sdm845-misc": {

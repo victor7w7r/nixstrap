@@ -21,10 +21,7 @@
         "kvm.ignore_msrs=1"
         "kvm.report_ignored_msrs=0"
       ];
-      tmp = {
-        cleanOnBoot = true;
-        useTmpfs = true;
-      };
+      tmp.useTmpfs = false;
       extraModprobeConfig = ''
         blacklist iTCO_wdt
         blacklist joydev

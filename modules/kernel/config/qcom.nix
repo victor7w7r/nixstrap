@@ -39,10 +39,8 @@
       (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;
         BLK_DEV_RAM = lib.mkForce yes;
-        BLK_DEV_DM = lib.mkForce yes;
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
-        DM_CRYPT = lib.mkForce yes;
         EFI_ZBOOT = yes;
         FS_ENCRYPTION_INLINE_CRYPT = yes;
         INPUT_QCOM_SPMI_HAPTICS = module;
@@ -82,7 +80,7 @@
         PHY_QCOM_QMP_UFS = yes;
         PHY_QCOM_QMP_USB = yes;
         PHY_QCOM_QUSB2 = yes;
-        PHY_QCOM_USB_HS = yes;
+        PHY_QCOM_USB_HS = module;
         PHY_QCOM_USB_SNPS_FEMTO_V2 = yes;
         PM_AUTOSLEEP = yes;
         POWER_RESET_QCOM_PON = yes;
