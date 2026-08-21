@@ -715,6 +715,10 @@
       url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/sdm845.config?ref_type=tags";
       flake = false;
     };
+    sdm845-defconfig = {
+      url = "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads";
+      flake = false;
+    };
     sdm845-misc = {
       url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/misc.config?ref_type=tags";
       flake = false;

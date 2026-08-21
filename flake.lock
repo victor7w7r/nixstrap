@@ -4651,6 +4651,7 @@
         "screego": "screego",
         "sdm845-alsa": "sdm845-alsa",
         "sdm845-config": "sdm845-config",
+        "sdm845-defconfig": "sdm845-defconfig",
         "sdm845-misc": "sdm845-misc",
         "sha256-animation": "sha256-animation",
         "socktop": "socktop",
@@ -4842,6 +4843,18 @@
       "original": {
         "type": "file",
         "url": "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/sdm845.config?ref_type=tags"
+      }
+    },
+    "sdm845-defconfig": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-dmjcusvaJ9iwkd2iYQPRnN4Fni5rxxmKcoQSUkgiAbE=",
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads"
       }
     },
     "sdm845-misc": {

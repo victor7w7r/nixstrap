@@ -9,6 +9,10 @@
       url = "https://gitlab.com/sdm845-mainline/linux/-/raw/sdm845-7.1-rc1-r0/arch/arm64/configs/misc.config?ref_type=tags";
       flake = false;
     };
+    sdm845-defconfig = {
+      url = "https://gitlab.com/sdm845-mainline/linux/-/blob/sdm845/7.1-dev/arch/arm64/configs/defconfig?ref_type=heads";
+      flake = false;
+    };
   };
 
   kernel.patches = {
@@ -76,9 +80,10 @@
     qcom-defconfig =
       pkgs:
       (pkgs.runCommand "qcom-defconfig" { } ''
+        cp ${inputs.sdm845-defconfig} defconfig
         cp ${inputs.sdm845-config} sdm845.config
         cp ${inputs.sdm845-misc} misc.config
-        (cat sdm845.config; echo ""; cat misc.config) > $out
+        (cat defconfig; echo ""; cat sdm845.config; echo ""; cat misc.config) > $out
       '');
   };
 }
