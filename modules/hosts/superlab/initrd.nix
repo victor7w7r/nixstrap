@@ -1,6 +1,6 @@
 {
   den.aspects.superlab.initrd.nixos.boot.initrd = {
-    tpm2.enable = false;
+    systemd.tpm2.enable = false;
     kernelModules = [
       "display_connector"
       "dm_crypt"

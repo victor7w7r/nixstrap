@@ -22,7 +22,7 @@
           "usbhid"
           "xhci_hcd"
         ];
-        tpm2.enable = false;
+        systemd.tpm2.enable = false;
 
         luks.devices =
           let
