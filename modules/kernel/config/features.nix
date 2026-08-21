@@ -41,6 +41,8 @@
         EFI_BOOTLOADER_CONTROL = no;
         EFI_CUSTOM_SSDT_OVERLAYS = no;
         EFI_RCI2_TABLE = no;
+        FW_LOADER_COMPRESS = no;
+        FW_LOADER_COMPRESS_ZSTD = no;
         HIST_TRIGGERS = no;
         HYPERVISOR_GUEST = lib.mkForce no;
         HZ_PERIODIC = no;
