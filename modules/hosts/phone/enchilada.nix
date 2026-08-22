@@ -1,4 +1,9 @@
-{ den, inputs, ... }:
+{
+  den,
+  inputs,
+  tarball,
+  ...
+}:
 {
   perSystem.packages = {
     phone-enchilada-toplevel =
@@ -6,6 +11,8 @@
 
     phone-enchilada-script =
       inputs.self.nixosConfigurations.phone-enchilada.config.system.build.diskoImagesScript;
+
+    phone-enchilada-boot = inputs.self.nixosConfigurations.phone-enchilada.config.system.build.bootFiles;
   };
 
   den = {
@@ -14,7 +21,10 @@
       victor7w7r = { };
     };
     aspects.phone-enchilada = {
-      includes = with den.aspects; [ phone.common ];
+      includes = with den.aspects; [
+        phone.common
+        (tarball.lib.call { })
+      ];
 
       nixos = {
         networking.hostName = "v7w7r-enchilada";
