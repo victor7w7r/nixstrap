@@ -23,7 +23,6 @@
           manix
           namaka
           niv
-          #nixd
           nix-diff
           nix-du
           nix-health
@@ -33,7 +32,6 @@
           nix-search-cli
           nix-tree
           nix-update
-          nixfmt
           nvd
           optnix
           statix

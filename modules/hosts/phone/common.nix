@@ -93,8 +93,8 @@
 
         boot = {
           kernelPackages =
-            (kernel.hosts.main pkgs "phone" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
-            .main-kernelPackages;
+            (kernel.hosts.phone pkgs "phone" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+            .phone-kernelPackages;
 
           kernelParams = [
             "console=tty0"
