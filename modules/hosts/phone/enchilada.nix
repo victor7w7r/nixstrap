@@ -21,10 +21,7 @@
       victor7w7r = { };
     };
     aspects.phone-enchilada = {
-      includes = with den.aspects; [
-        phone.common
-        (tarball.lib.call { })
-      ];
+      includes = with den.aspects; [ phone.common ];
 
       nixos = {
         networking.hostName = "v7w7r-enchilada";
