@@ -1,6 +1,6 @@
 {
   den.aspects.server.initrd.nixos =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
       boot.initrd = {
         supportedFilesystems = lib.mkAfter [ "xfs" ];
@@ -27,29 +27,34 @@
         luks.devices =
           let
             partlabel = "/dev/disk/by-partlabel";
-            idpart = "/dev/disk/by-id";
           in
           {
-            swapcrypt = {
-              device = "${partlabel}/disk-ssd-swapcrypt";
+            bcache = {
+              device = "/dev/bcache0";
               crypttabExtraOpts = [ "fido2-device=auto" ];
               preLVM = true;
             };
 
-            persistcachecrypt = {
-              device = "${partlabel}/disk-ssd-persistcachecrypt";
+            swapcrypt = {
+              device = "${partlabel}/disk-nvme-swapcrypt";
+              crypttabExtraOpts = [ "fido2-device=auto" ];
+              preLVM = true;
+            };
+
+            cloudlogcrypt = {
+              device = "${partlabel}/disk-nvme-cloudlogcrypt";
+              crypttabExtraOpts = [ "fido2-device=auto" ];
+              preLVM = true;
+            };
+
+            cloudcachecrypt = {
+              device = "${partlabel}/disk-nvme-cloudcachecrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
               preLVM = true;
             };
 
             persist = {
-              device = "${idpart}/ata-WDC_WD5000LPSX-75A6WT0_WX12A21JEEPK";
-              crypttabExtraOpts = [ "fido2-device=auto" ];
-              preLVM = true;
-            };
-
-            storage = {
-              device = "${idpart}/ata-ST500LT012-1DG142_S3PMCMHT";
+              device = "${partlabel}/disk-nvme-persist";
               crypttabExtraOpts = [ "fido2-device=auto" ];
               preLVM = true;
             };
