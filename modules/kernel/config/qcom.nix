@@ -19,6 +19,8 @@
         DRM_GUD = setupDenial isDenied module;
         DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied yes;
         DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied yes;
+        FW_LOADER_COMPRESS = setupDenial isDenied yes;
+        FW_LOADER_COMPRESS_ZSTD = setupDenial isDenied yes;
         HID_RMI = setupDenial isDenied yes;
         INPUT_JOYDEV = setupDenial isDenied module;
         NETLINK_DIAG = setupDenial isDenied module;
