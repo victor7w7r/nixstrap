@@ -7,12 +7,9 @@
       "display_connector"
       "dm_crypt"
       "dm_mod"
-      "ehci_hcd"
-      "encrypted_keys"
       "musb_hdrc"
       "panfrost"
       "phy_generic"
-      "phy_sun4i_usb"
       "sprdbt_tty"
       "sprdwl_ng"
       "sun50i_h6_prcm_ppu"
@@ -21,11 +18,7 @@
       "sun4i-gpadc-iio"
       "uas"
       "uhci_hcd"
-      "usb_storage"
-      "usbcore"
       "usbhid"
-      "xhci_hcd"
-      "xhci_pci"
     ];
 
     systemd.tpm2.enable = false;
