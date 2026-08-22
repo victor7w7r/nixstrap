@@ -24,7 +24,7 @@
       legacy = true;
       patches =
         with kernel.patches.injector pkgs;
-        (kernel.patches.armbian.rockchip { }) ++ (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
+        rockchip ++ (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
       src =
         inputs.linux-lts
         |> (
