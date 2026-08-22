@@ -59,6 +59,7 @@
           (lib.mkIf (isGraphic && isX86) { graphics.enable32Bit = true; })
           {
             wirelessRegulatoryDatabase = true;
+            firmwareCompression = "none";
             sensor.iio.enable = true;
             ksm.enable = true;
             #sensor.hddtemp.enable = true; SPECIFICATE IN HOSTS with .drives

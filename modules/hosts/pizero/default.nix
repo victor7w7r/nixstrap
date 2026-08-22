@@ -43,7 +43,7 @@
         pizero.common
         (tarball.lib.call { })
       ];
-      pizero = {
+      pizero = { user, ... }: {
         includes = with den.aspects; [ pizero.common ];
         common = {
           includes = with den.aspects; [
@@ -91,6 +91,8 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree.name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
               };
+
+              environment.persistence."/nix/persist".users."${user.name}".directories = [ ".cache/nix" ];
 
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
