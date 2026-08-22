@@ -92,7 +92,7 @@
                 deviceTree.name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
               };
 
-              environment.persistence."/nix/persist".users."${user.name}".directories = [ ".cache/nix" ];
+              environment.persistence."/nix/persist".users."${user.name}".directories = [ ".cache" ];
 
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
