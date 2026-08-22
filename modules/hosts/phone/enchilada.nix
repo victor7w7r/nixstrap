@@ -1,9 +1,4 @@
-{
-  den,
-  inputs,
-  tarball,
-  ...
-}:
+{ den, inputs, ... }:
 {
   perSystem.packages = {
     phone-enchilada-toplevel =
@@ -13,6 +8,8 @@
       inputs.self.nixosConfigurations.phone-enchilada.config.system.build.diskoImagesScript;
 
     phone-enchilada-boot = inputs.self.nixosConfigurations.phone-enchilada.config.system.build.bootFiles;
+
+    phone-enchilada-initrd = inputs.self.nixosConfigurations.phone-enchilada.config.system.build.initialRamdisk;
   };
 
   den = {
