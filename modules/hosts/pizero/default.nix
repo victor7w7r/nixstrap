@@ -102,6 +102,7 @@
                   "systemd.show_status=true"
                   "systemd.log_target=console"
                   "usbcore.autosuspend=-1"
+                  "firmware_class.path=/extra-firmware"
                   #"resume=${config.boot.resumeDevice}"
                 ];
                 loader = {
