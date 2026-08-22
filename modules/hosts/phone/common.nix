@@ -42,7 +42,7 @@
       firewall
       games
       kitty
-      libvirt
+      #libvirt
       plasma._
       remote
       root
