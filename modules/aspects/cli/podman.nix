@@ -32,7 +32,7 @@
               self'.packages.dockadvisor
               #self'.packages.dockerfilegraph
               #self'.packages.dprs
-              self'.packages.supdock
+              #self'.packages.supdock
             ];
           };
           virtualisation.podman = {

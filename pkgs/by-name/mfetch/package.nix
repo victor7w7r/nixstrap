@@ -6,7 +6,7 @@
 (rustBuild {
   inherit pkgs;
   pname = "mfetch";
-  cargoHash = "sha256-ywqXUp3X9Jf6O7OdWyyrUPaAJx+IAAvPQU+7nP2okpM=";
+  cargoHash = "sha256-Udh66rEV512yZYiTs1D6sgzo79+fOIWJOj9kK0cz04I=";
   src = pkgs.runCommand "mfetch-src-with-lock" { } ''
     mkdir -p $out
     cp -r --no-target-directory ${inputs.mfetch} $out

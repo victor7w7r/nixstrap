@@ -4,7 +4,7 @@
     {
       services = {
         fwupd.enable = true;
-        thermald.enable = true;
+        #thermald.enable = true;
       };
       systemd = {
         services = {
