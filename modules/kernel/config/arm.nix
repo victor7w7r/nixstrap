@@ -68,9 +68,9 @@
       MALI_MIDGARD = no;
       MALI_PLATFORM_NAME = freeform "rk";
       MALI_VALHALL_PLATFORM_NAME = freeform "rk";
-      MALI_VALHALL_FOR_ROCKCHIP = yes;
-      MALI_VALHALL = yes;
-      MALI_VALHALL_BUILD_KERNEL_DRIVER = yes;
+      MALI_VALHALL_FOR_ROCKCHIP = no;
+      MALI_VALHALL = no;
+      MALI_VALHALL_BUILD_KERNEL_DRIVER = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
       MEDIA_TUNER_FC0012 = no;
@@ -108,7 +108,6 @@
       NVMEM_ROCKCHIP_OTP = no;
       NVMEM_ROCKCHIP_SEC_OTP = no;
       REGULATOR_DW9807 = no;
-      LTO_NONE = no;
       REISERFS_FS = no;
       RK_FLASH = no;
       RK_NAND = no;

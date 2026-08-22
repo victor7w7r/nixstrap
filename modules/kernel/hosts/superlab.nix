@@ -21,7 +21,6 @@
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
-      legacy = true;
       patches =
         with kernel.patches.injector pkgs;
         rockchip ++ (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });

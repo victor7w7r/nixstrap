@@ -145,9 +145,6 @@
             CDROM = no;
             COMMON_CLK_SCPI = no;
             DRM_ACCEL_ROCKET = module;
-            MALI_PLATFORM_NAME = freeform "rk";
-            MALI_EXPERT = yes;
-            MALI_DEBUG = no;
             PCIE_DW_PLAT_EP = yes;
             PCIE_ROCKCHIP_DW_EP = yes;
             PCIE_ROCKCHIP_EP = yes;
@@ -159,15 +156,6 @@
             ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
-            VEHICLE_ADC = no;
-            VEHICLE_BUG_REPORT = no;
-            VEHICLE_CORE = no;
-            VEHICLE_DRIVER = no;
-            VEHICLE_DUMMY = no;
-            VEHICLE_GPIO = no;
-            VEHICLE_GPIO_MCU_EXPANDER = no;
-            VEHICLE_SPI = no;
-            VEHICLE_SPI_PROTOCOL = no;
             XFS_FS = no;
           }
         ];
