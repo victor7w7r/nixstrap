@@ -43,9 +43,9 @@
         pizero.common
         (tarball.lib.call { })
       ];
-      pizero = { user, ... }: {
+      pizero = {
         includes = with den.aspects; [ pizero.common ];
-        common = {
+        common = { user, ... }: {
           includes = with den.aspects; [
             (hosts.lib.zram {
               value = "256M";
