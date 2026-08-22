@@ -12,7 +12,12 @@
         {
           programs.zed-editor = {
             enable = true;
-            package = pkgs.zed-editor-fhs;
+            extraPackages = with pkgs; [
+              bash-language-server
+              nixd
+              nixfmt
+            ];
+            installRemoteServer = true;
             extensions = [
               "astro"
               "basher"
@@ -130,7 +135,8 @@
               lsp = {
                 nixd = {
                   binary = {
-                    path = "nixd";
+                    "ignore_system_version" = false;
+                    "path" = "${pkgs.nixd}/bin/nixd";
                   };
                   initialization_options = {
                     formatting = {
@@ -142,7 +148,13 @@
 
               languages = {
                 Nix = {
-                  formatter = "language_server";
+                  formatter.external = {
+                    command = "nixfmt";
+                    arguments = [
+                      "--quiet"
+                      "--"
+                    ];
+                  };
                   format_on_save = "on";
                   language_servers = [ "nixd" ];
                   tab_size = 2;

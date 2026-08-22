@@ -11,7 +11,10 @@
           activate-vg1 = {
             wantedBy = [ "local-fs.target" ];
             before = [ "local-fs.target" ];
-            after = [ "dev-mapper-storage.device" "local-fs-pre.target" ];
+            after = [
+              "dev-mapper-storage.device"
+              "local-fs-pre.target"
+            ];
             bindsTo = [ "dev-mapper-storage.device" ];
 
             unitConfig = {
@@ -19,7 +22,10 @@
               ConditionPathExists = "!/dev/vg1";
             };
 
-            path = [ pkgs.lvm2 pkgs.coreutils ];
+            path = [
+              pkgs.lvm2
+              pkgs.coreutils
+            ];
 
             serviceConfig = {
               Type = "oneshot";
@@ -104,14 +110,6 @@
                 fi
               '';
             };
-          };
-        };
-
-        timers.bcache-health-check = {
-          wantedBy = [ "timers.target" ];
-          timerConfig = {
-            OnBootSec = "30s";
-            OnUnitActiveSec = "10s";
           };
         };
       };

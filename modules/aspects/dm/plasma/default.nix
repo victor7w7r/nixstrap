@@ -39,10 +39,12 @@
 
           xdg.portal = {
             enable = true;
-            extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
             config = lib.mkForce {
               common = {
-                default = [ "kde" ];
+                default = [
+                  "kde"
+                  "*"
+                ];
               };
             };
           };
