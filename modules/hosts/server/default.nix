@@ -123,6 +123,7 @@
                 mdadm
                 intel-undervolt
                 iproute2
+                picocom
                 procps
               ];
             };
