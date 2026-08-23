@@ -1,4 +1,4 @@
-{
+{ lib, ... }:{
   kernel.lib.dts-compiler =
     {
       pkgs,
