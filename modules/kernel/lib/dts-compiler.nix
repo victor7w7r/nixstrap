@@ -28,23 +28,30 @@
           if [ -f "$f" ]; then
             base=$(basename "$f")
 
-            dts_preprocessed=$(cpp -nostdinc \
-              -I src/include \
+            echo "Processing $base..."
+
+            cpp -nostdinc \
               -I src/arch/arm64/boot/dts \
               -I src/arch/arm64/boot/dts/${class} \
               -I src/arch/arm64/boot/dts/${class}/overlay \
-              -undef -D__DTS__ -x assembler-with-cpp "$f")
+              -I src/include \
+              -I src/scripts/dtc/include-prefixes \
+              -undef -D__DTS__ -D__KERNEL__ -x assembler-with-cpp "$f" > preprocessed.tmp 2>/dev/null || true
 
-            if echo "$dts_preprocessed" | grep -q "/plugin/;"; then
-              name=$(echo "$base" | sed -E 's/\.(dtso|dts)$/\.dtbo/')
-              echo "Compiling OVERLAY: $f -> build/$name"
-              echo "$dts_preprocessed" | dtc -@ -I dts -O dtb -o "build/$name" - || true
+            if [ -s preprocessed.tmp ]; then
+              if grep -q "/plugin/;" preprocessed.tmp; then
+                name=$(echo "$base" | sed -E 's/\.(dtso|dts)$/\.dtbo/')
+                echo " -> Compiling OVERLAY: build/$name"
+                dtc -@ -I dts -O dtb -o "build/$name" preprocessed.tmp || true
+              else
+                name=$(echo "$base" | sed -E 's/\.(dtso|dts)$/\.dtb/')
+                echo " -> Compiling BASE DTB: build/$name"
+                dtc -I dts -O dtb -o "build/$name" preprocessed.tmp || true
+              fi
             else
-              name=$(echo "$base" | sed -E 's/\.(dtso|dts)$/\.dtb/')
-              echo "Compiling BASE DTB: $f -> build/$name"
-
-              echo "$dts_preprocessed" | dtc -I dts -O dtb -o "build/$name" - || true
+              echo "  ERROR for $f"
             fi
+            rm -f preprocessed.tmp
           fi
         done
 
