@@ -24,7 +24,7 @@
           ephemeral-root = disk.root { };
           boot = {
             type = "disk";
-            device = "/dev/disk/by-label/nixos-boot";
+            device = "/dev/disk/by-partlabel/EFI";
             imageName = "nixos-boot";
             imageSize = "2G";
             content = esp.call {
@@ -34,7 +34,7 @@
           };
           root = {
             type = "disk";
-            device = "/dev/disk/by-label/nixos-root";
+            device = "/dev/disk/by-partlabel/userdata";
             imageName = "nixos-root";
             imageSize = "48G";
             content = f2fs.call {
