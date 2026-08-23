@@ -10,7 +10,10 @@
     }:
     pkgs.runCommand "dts-compiler"
       {
-        nativeBuildInputs = with pkgs; [ dtc ];
+        nativeBuildInputs = with pkgs; [
+          dtc
+          buildPackages.stdenv.cc
+        ];
       }
       ''
         mkdir -p src build && cp -r ${src}/* src/ && chmod -R +w src
