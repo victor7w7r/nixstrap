@@ -20,7 +20,11 @@
         dtbClass = "rk3588";
         overlays = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay";
         overlayClass = "rockchip-rk3588";
-        extraClass = ''bananapi\|walnutpi\'';
+        extraClass = [
+          "nanopc"
+          "orangepi"
+          "nanopi"
+        ];
         src =
           (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
           .superlab-kernel.src;

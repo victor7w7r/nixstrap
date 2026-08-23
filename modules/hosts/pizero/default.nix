@@ -26,6 +26,7 @@
         extraClass = [
           "bananapi"
           "walnutpi"
+          "ws2812"
         ];
         src =
           (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
