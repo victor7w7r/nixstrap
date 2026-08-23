@@ -1,4 +1,4 @@
-{ lib, ... }:{
+{ lib, ... }: {
   kernel.lib.dts-compiler =
     {
       pkgs,
@@ -27,7 +27,7 @@
 
         ${lib.optionalString (extraClass != null) ''
           find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f \
-            \( ${lib.concatMapStringsSep " -o " (c: "-name '${c}*'") extraClass} \) \
+            \( ${lib.concatMapStringsSep " -o " (c: "-name '*${c}*'") extraClass} \) \
             -delete
         ''}
 
