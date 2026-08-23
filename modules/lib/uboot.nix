@@ -36,6 +36,9 @@
         '';
       };
 
+      /*setenv boot_targets "usb0"
+      setenv bootcmd "usb stop; usb start; bootflow scan -lb"*/
+
     rock5b =
       pkgs:
       pkgs.ubootRock5ModelB.overrideAttrs (oldAttrs: {

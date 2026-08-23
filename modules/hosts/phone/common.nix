@@ -118,9 +118,11 @@
             "qcom_spmi_haptics"
             "rmi_i2c"
             "u_serial"
+            "ucsi_glink"
             "ufs-qcom"
             "ufshcd-core"
             "usb_f_acm"
+            "usbhid"
           ];
           loader = {
             efi.canTouchEfiVariables = false;
