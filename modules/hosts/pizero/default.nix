@@ -23,7 +23,10 @@
         dtbClass = "sun50i-h61";
         overlays = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64";
         overlayClass = "sun50i-h616";
-        extraClass = ''\bananapi\|\walnutpi\'';
+        extraClass = [
+          "bananapi"
+          "walnutpi"
+        ];
         src =
           (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
           .pizero-kernel.src;

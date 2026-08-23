@@ -26,7 +26,9 @@
         find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f ! -name '${overlayClass}-*' -delete
 
         ${lib.optionalString (extraClass != null) ''
-          find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f -regex ".*/\(${extraClass}).*" -delete
+          find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f \
+            \( ${lib.concatMapStringsSep " -o " (c: "-name '${c}*'") extraClass} \) \
+            -delete
         ''}
 
         for f in src/arch/arm64/boot/dts/${class}/overlay/*.dts src/arch/arm64/boot/dts/${class}/overlay/*.dtso; do
