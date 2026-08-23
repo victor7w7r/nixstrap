@@ -19,6 +19,8 @@
         DRM_GUD = setupDenial isDenied module;
         DRM_PANEL_SAMSUNG_S6E3FC2X01 = setupDenial isDenied yes;
         DRM_PANEL_SAMSUNG_SOFEF00 = setupDenial isDenied yes;
+        DWC3_GADGET = setupDenial isDenied module;
+        DWC3_HOST = setupDenial isDenied module;
         FW_LOADER_COMPRESS = setupDenial isDenied yes;
         FW_LOADER_COMPRESS_ZSTD = setupDenial isDenied yes;
         HID_RMI = setupDenial isDenied yes;
@@ -26,6 +28,7 @@
         NETLINK_DIAG = setupDenial isDenied module;
         NET_SCH_MULTIQ = setupDenial isDenied module;
         NET_SCH_PRIO = setupDenial isDenied module;
+        QCOM_IPA = setupDenial isDenied module;
         QCOM_SPMI_ADC5 = setupDenial isDenied yes;
         QCOM_SPMI_VADC = setupDenial isDenied yes;
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
@@ -37,6 +40,7 @@
         TCP_CONG_BIC = lib.mkForce (setupDenial isDenied module);
         TCP_CONG_HTCP = lib.mkForce (setupDenial isDenied module);
         TCP_CONG_WESTWOOD = lib.mkForce (setupDenial isDenied yes);
+        USB_G_SERIAL = setupDenial isDenied module;
       }
       (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;

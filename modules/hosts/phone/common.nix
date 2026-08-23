@@ -82,6 +82,11 @@
           };
         };
 
+        /*
+            # Core de USB Gadget y función Serie
+
+        */
+
         nixpkgs.config = {
           allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
         };
@@ -98,13 +103,24 @@
 
           kernelParams = [
             "console=tty0"
+            "console=ttyGS0,115200"
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
           blacklistedKernelModules = [
-            "ipa"
-            "ath10k_pci"
             "ath10k_core"
+            "ath10k_pci"
+            "dm_mod"
+            "g_serial"
+            "ipa"
+            "libcomposite"
+            "qcom_pd_mapper"
+            "qcom_spmi_haptics"
+            "rmi_i2c"
+            "u_serial"
+            "ufs-qcom"
+            "ufshcd-core"
+            "usb_f_acm"
           ];
           loader = {
             efi.canTouchEfiVariables = false;
