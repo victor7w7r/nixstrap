@@ -116,9 +116,9 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree = {
                   name = "rockchip/rk3588-rock-5b.dtb";
-                  overlays = lib.mapAttrsToList (name: _: "${self'.packages.superlab-dts}/dtbs/overlay/${name}") (
+                  overlays = lib.mapAttrsToList (name: _: "${self'.packages.superlab-dts}/${name}") (
                     lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".dtbo" name) (
-                      builtins.readDir "${self'.packages.superlab-dts}/dtbs/overlay"
+                      builtins.readDir "${self'.packages.superlab-dts}"
                     )
                   );
                 };
