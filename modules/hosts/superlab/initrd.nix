@@ -9,6 +9,7 @@
         }) [ "mali_csffw.bin" ];
       };
       kernelModules = [
+        "clk-rk808"
         "display_connector"
         "dm_crypt"
         "dm_mod"
@@ -18,6 +19,7 @@
         "phy_rockchip_snps_pcie3"
         "pinctrl_rk805"
         "rng_core"
+        "rk808"
         "rockchip_rga"
         "rockchip_rng"
         "rockchip_vdec"
