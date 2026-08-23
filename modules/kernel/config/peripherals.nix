@@ -132,7 +132,6 @@
         COMMON_CLK_CDCE706 = no;
         COMMON_CLK_CS2000_CP = no;
         COMMON_CLK_MAX9485 = no;
-        COMMON_CLK_PWM = no;
         COMMON_CLK_SI5341 = no;
         COMMON_CLK_SI5351 = no;
         COMMON_CLK_SI544 = no;
@@ -165,11 +164,9 @@
         I2C_CP2615 = no;
         I2C_DIOLAN_U2C = no;
         I2C_EMEV2 = no;
-        I2C_GPIO = no;
         I2C_ISCH = no;
         I2C_ISMT = no;
         I2C_MLXCPLD = no;
-        I2C_MUX_GPIO = no;
         I2C_MUX_LTC4306 = no;
         I2C_MUX_MLXCPLD = no;
         I2C_MUX_PCA9541 = no;
@@ -195,8 +192,6 @@
         I2C_VIAPRO = no;
         I2C_XILINX = no;
         I2C_ZHAOXIN = no;
-        I3C = no;
-        MUX_GPIO = no;
       }
       {
         SERIO_ALTERA_PS2 = no;
@@ -384,7 +379,6 @@
         #SPI_PXA2XX = no;
         SPI_SC18IS602 = no;
         SPI_SIFIVE = no;
-        SPI_SPIDEV = no;
         SPI_TLE62X0 = no;
         SPI_XCOMM = no;
         SPI_XILINX = no;

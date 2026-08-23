@@ -29,6 +29,7 @@
       SCHED_CLASS_EXT = yes;
       STAGING = yes;
       TRANSPARENT_HUGEPAGE_MADVISE = yes;
+      ZONE_DMA = yes;
     };
 
     denied = lib.mkMerge [
@@ -71,7 +72,6 @@
         VMWARE_VMCI = no;
         VMXNET3 = no;
         WATCHDOG = no;
-        ZONE_DMA = no;
       }
       {
         ACPI_DEBUG = lib.mkForce no;

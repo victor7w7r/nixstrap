@@ -20,16 +20,34 @@
         isDenied ? false,
       }:
       {
-        DRM_ACCEL = setupDenial isDenied yes;
+        ARCH_HAS_DMA_OPS = setupDenial isDenied yes;
+        ARCH_HAS_NONLEAF_PMD_YOUNG = setupDenial isDenied yes;
+        ARCH_HAS_SUBPAGE_FAULTS = setupDenial isDenied yes;
+        COMMON_CLK_PWM = setupDenial isDenied yes;
         CRYPTO_DES = setupDenial isDenied yes;
-        CRYPTO_MD5 = setupDenial isDenied yes;
-        CRYPTO_SM3 = setupDenial isDenied yes;
-        PCI_ENDPOINT = setupDenial isDenied yes;
-        PCI_ENDPOINT_CONFIGFS = setupDenial isDenied yes;
-        PLATFORM_MHU = setupDenial isDenied yes;
         CRYPTO_LZ4 = setupDenial isDenied yes;
         CRYPTO_LZ4HC = setupDenial isDenied yes;
         CRYPTO_LZO = setupDenial isDenied yes;
+        CRYPTO_MD5 = setupDenial isDenied yes;
+        CRYPTO_SM3 = setupDenial isDenied yes;
+        DRM_ACCEL = setupDenial isDenied yes;
+        GPIO_GENERIC_PLATFORM = setupDenial isDenied module;
+        GPIO_REGMAP = setupDenial isDenied module;
+        HAVE_SETUP_PER_CPU_AREA = setupDenial isDenied yes;
+        I3C = setupDenial isDenied module;
+        MUX_GPIO = setupDenial isDenied module;
+        NVMEM_U_BOOT_ENV = setupDenial isDenied yes;
+        NEED_PER_CPU_EMBED_FIRST_CHUNK = setupDenial isDenied yes;
+        NEED_PER_CPU_PAGE_FIRST_CHUNK = setupDenial isDenied yes;
+        NVMEM_ROCKCHIP_OTP = setupDenial isDenied yes;
+        NVMEM_ROCKCHIP_SEC_OTP = setupDenial isDenied yes;
+        PCI_ENDPOINT = setupDenial isDenied yes;
+        PCI_ENDPOINT_CONFIGFS = setupDenial isDenied yes;
+        PLATFORM_MHU = setupDenial isDenied yes;
+        REGMAP_I3C = setupDenial isDenied module;
+        REGMAP_SCCB = setupDenial isDenied module;
+        REGULATOR_PWM = setupDenial isDenied yes;
+        REGULATOR_FAN53555 = setupDenial isDenied yes;
         REGULATOR_GPIO = setupDenial isDenied yes;
         SCSI_MPT3SAS = setupDenial isDenied module;
       };
@@ -58,19 +76,6 @@
       KEYBOARD_MCS = no;
       KEYBOARD_TCA6416 = no;
       LT7911D_FB_NOTIFIER = no;
-      LTE = no;
-      MALI400 = no;
-      MALI450 = no;
-      MALI_BIFROST = no;
-      MALI_DEBUG = no;
-      MALI_EXPERT = yes;
-      MALI_KUTF = no;
-      MALI_MIDGARD = no;
-      MALI_PLATFORM_NAME = freeform "rk";
-      MALI_VALHALL_PLATFORM_NAME = freeform "rk";
-      MALI_VALHALL_FOR_ROCKCHIP = no;
-      MALI_VALHALL = no;
-      MALI_VALHALL_BUILD_KERNEL_DRIVER = no;
       MEDIA_TUNER_E4000 = no;
       MEDIA_TUNER_FC0011 = no;
       MEDIA_TUNER_FC0012 = no;
@@ -105,8 +110,6 @@
       MEDIA_TUNER_TEA5767 = no;
       MEDIA_TUNER_TUA9001 = no;
       MEDIA_TUNER_XC2028 = no;
-      NVMEM_ROCKCHIP_OTP = no;
-      NVMEM_ROCKCHIP_SEC_OTP = no;
       REGULATOR_DW9807 = no;
       REISERFS_FS = no;
       RK_FLASH = no;
@@ -375,7 +378,6 @@
       ARM64_ERRATUM_832075 = no;
       ARM64_ERRATUM_845719 = no;
       ARM64_GCS = no;
-      ARM64_HAFT = no;
       ARM64_LSUI = no;
       ARM64_MTE = no;
       ARM64_PMEM = lib.mkForce no;
@@ -434,7 +436,6 @@
       QCOM_FALKOR_ERRATUM_1009 = no;
       QCOM_FALKOR_ERRATUM_E1041 = no;
       QCOM_QDF2400_ERRATUM_0065 = no;
-      ROCKCHIP_ERRATUM_3568002 = no;
       SGI_PARTITION = no;
       SNET_VDPA = no;
       SOCIONEXT_SYNQUACER_PREITS = no;

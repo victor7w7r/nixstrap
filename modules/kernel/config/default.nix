@@ -45,7 +45,6 @@
             SND_SOC_INTEL_AVS = module;
             SND_USB_AUDIO = module;
             XFS_FS = yes;
-            ZONE_DMA = lib.mkForce yes;
           }
         ];
 
@@ -101,7 +100,6 @@
             ARM_TIMER_SP804 = lib.mkForce yes;
             AXP20X_POWER = yes;
             CDROM = no;
-            COMMON_CLK_PWM = lib.mkForce yes;
             DRM_GEM_DMA_HELPER = yes;
             DRM_SUN4I = no;
             DRM_SUN8I_MIXER = yes;
