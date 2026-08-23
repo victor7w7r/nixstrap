@@ -24,6 +24,7 @@
           "nanopc"
           "orangepi"
           "nanopi"
+          "odroidm2"
         ];
         src =
           (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
@@ -113,7 +114,12 @@
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
-                deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
+                deviceTree = {
+                  name = "rockchip/rk3588-rock-5b.dtb";
+                  overlays = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".dtbo" name) (
+                    builtins.readDir self'.packages.superlab-dts
+                  );
+                };
               };
 
               boot = {

@@ -106,7 +106,12 @@
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
-                deviceTree.name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
+                deviceTree = {
+                  name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
+                  overlays = (name: type: type == "regular" && lib.hasSuffix ".dtbo" name) (
+                    builtins.readDir self'.packages.pizero-dts
+                  );
+                };
               };
 
               environment.persistence."/nix/persist".users."${user.name}".directories = [ ".cache" ];
