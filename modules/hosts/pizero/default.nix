@@ -108,8 +108,10 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree = {
                   name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
-                  overlays = (name: type: type == "regular" && lib.hasSuffix ".dtbo" name) (
-                    builtins.readDir self'.packages.pizero-dts
+                  overlays = lib.mapAttrsToList (name: _: "${self'.packages.pizero-dts}/dtbs/overlay/${name}") (
+                    lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".dtbo" name) (
+                      builtins.readDir "${self'.packages.pizero-dts}/dtbs/overlay"
+                    )
                   );
                 };
               };
