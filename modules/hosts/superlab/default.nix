@@ -8,11 +8,23 @@
   ...
 }:
 {
-  perSystem.packages = {
-    superlab-toplevel = inputs.self.nixosConfigurations.superlab.config.system.build.toplevel;
-    superlab-image = inputs.self.nixosConfigurations.superlab-sdimage.config.system.build.sdImage;
-    superlab-mktarball = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.tarball;
-    superlab-boot = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.bootFiles;
+  perSystem = { pkgs, ... }: {
+    packages = {
+      superlab-toplevel = inputs.self.nixosConfigurations.superlab.config.system.build.toplevel;
+      superlab-image = inputs.self.nixosConfigurations.superlab-sdimage.config.system.build.sdImage;
+      superlab-mktarball = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.tarball;
+      superlab-boot = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.bootFiles;
+      pizero-dts = kernel.lib.dts-compiler {
+        inherit pkgs;
+        class = "rockchip";
+        dtbClass = "rk3588";
+        overlays = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay";
+        overlayClass = "rockchip-rk3588";
+        src =
+          (kernel.hosts.superlab pkgs "superlab" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+          .superlab-kernel.src;
+      };
+    };
   };
 
   den = {

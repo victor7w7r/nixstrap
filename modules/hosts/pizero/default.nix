@@ -11,11 +11,23 @@
   #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
   #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
-  perSystem.packages = {
-    pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
-    pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
-    pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
-    pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
+  perSystem = { pkgs, ... }: {
+    packages = {
+      pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
+      pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
+      pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
+      pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
+      pizero-dts = kernel.lib.dts-compiler {
+        inherit pkgs;
+        class = "allwinner";
+        dtbClass = "sun50i-h61";
+        overlays = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64";
+        overlayClass = "sun50i-h616";
+        src =
+          (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
+          .pizero-kernel.src;
+      };
+    };
   };
 
   den = {
