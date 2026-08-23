@@ -14,7 +14,7 @@
       superlab-image = inputs.self.nixosConfigurations.superlab-sdimage.config.system.build.sdImage;
       superlab-mktarball = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.tarball;
       superlab-boot = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.bootFiles;
-      pizero-dts = kernel.lib.dts-compiler {
+      superlab-dts = kernel.lib.dts-compiler {
         inherit pkgs;
         class = "rockchip";
         dtbClass = "rk3588";

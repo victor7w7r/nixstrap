@@ -1,11 +1,12 @@
 {
   den.default.provides.to-users.homeManager =
-    { config, ... }:
+    { config, user, ... }:
     {
       programs =
         {
           EDITOR = "nvim";
           VISUAL = "nvim";
+          SHELL = "/etc/profiles/per-user/${user}/bin/zsh";
           GPG_TTY = "$(tty)";
           COLORTERM = "truecolor";
           TERMINAL = "kitty";
