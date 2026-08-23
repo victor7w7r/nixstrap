@@ -32,7 +32,7 @@
         CRYPTO_SM3 = setupDenial isDenied yes;
         DRM_ACCEL = setupDenial isDenied yes;
         GPIO_GENERIC_PLATFORM = setupDenial isDenied module;
-        GPIO_REGMAP = setupDenial isDenied module;
+        GPIO_REGMAP = setupDenial isDenied yes;
         HAVE_SETUP_PER_CPU_AREA = setupDenial isDenied yes;
         I3C = setupDenial isDenied module;
         MUX_GPIO = setupDenial isDenied module;
@@ -66,6 +66,7 @@
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = yes;
       ARCH_SUNXI = no;
+      COMMON_CLK_SCPI = yes;
       CPU_FREQ_GOV_INTERACTIVE = no;
       DMABUF_HEAPS_SRAM = no;
       DRM_MAXIM_MAX96745 = no;
