@@ -1,9 +1,4 @@
-{
-  inputs,
-  kernel,
-  self,
-  ...
-}:
+{ inputs, kernel, ... }:
 {
   perSystem =
     { pkgs, ... }:
@@ -19,7 +14,6 @@
         system
         ;
       structuredExtraConfig = kernel.config.default.superlab;
-      class = "rockchip";
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
       patches =
