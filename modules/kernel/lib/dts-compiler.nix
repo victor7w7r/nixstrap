@@ -5,8 +5,9 @@
       src,
       class,
       dtbClass,
-      overlays ? null,
-      overlayClass ? null,
+      overlays,
+      overlayClass,
+      extraClass ? null,
     }:
     pkgs.runCommand "dts-compiler"
       {
@@ -23,6 +24,10 @@
         mkdir -p "src/arch/arm64/boot/dts/${class}/overlay"
         cp -r ${overlays}/* src/arch/arm64/boot/dts/${class}/overlay/ && chmod -R +w src
         find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f ! -name '${overlayClass}-*' -delete
+
+        ${lib.optionalString (extraClass != null) ''
+          find src/arch/arm64/boot/dts/${class}/overlay -maxdepth 1 -type f ! -regex ".*/\(${extraClass}).*" -delete
+        ''}
 
         for f in src/arch/arm64/boot/dts/${class}/overlay/*.dts src/arch/arm64/boot/dts/${class}/overlay/*.dtso; do
           if [ -f "$f" ]; then
