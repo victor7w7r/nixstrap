@@ -9,7 +9,24 @@
         "rmi_core"
         "rmi_i2c"
         "qcom_spmi_haptics"
+        "uinput"
+        "evdev"
       ];
+      extraUtilsCommands = ''
+        copy_bin_and_libs ${pkgs.buffyboard}/bin/buffyboard
+        cp -a ${pkgs.libinput.out}/share $out/
+      '';
+      extraUdevRulesCommands = ''
+        cp -v ${config.systemd.package}/lib/udev/rules.d/60-input-id.rules $out/
+        cp -v ${config.systemd.package}/lib/udev/rules.d/60-persistent-input.rules $out/
+        cp -v ${config.systemd.package}/lib/udev/rules.d/70-touchpad.rules $out/
+      '';
+      preLVMCommands = ''
+        mkdir -p /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${pkgs.libinput.name}/
+        ln -s "$(dirname "$(dirname "$(which buffyboard)")")"/share /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${pkgs.libinput.name}/
+        buffyboard 2>/dev/null &
+      '';
+      postMountCommands = "pkill -x buffyboard";
       systemd = {
         enable = true;
         package = pkgs.systemd;
