@@ -62,7 +62,7 @@
       ];
       pizero = {
         includes = with den.aspects; [ pizero.common ];
-        common = { user, ... }: {
+        common ={
           includes = with den.aspects; [
             (hosts.lib.zram {
               value = "256M";
@@ -102,6 +102,8 @@
             {
               networking.hostName = "v7w7r-opizero2w";
 
+              environment.persistence."/nix/persist".users."victor7w7r".directories = [ ".cache" ];
+
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
 
               hardware = {
@@ -115,8 +117,6 @@
                   );
                 };
               };
-
-              environment.persistence."/nix/persist".users."${user.name}".directories = [ ".cache" ];
 
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
