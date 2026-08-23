@@ -240,7 +240,6 @@
         GPIO_VIRTUSER = no;
         GPIO_EXAR = no;
         GPIO_FXL6408 = no;
-        GPIO_GENERIC_PLATFORM = no;
         GPIO_LATCH = no;
         GPIO_MAX3191X = no;
         GPIO_MAX7300 = no;
