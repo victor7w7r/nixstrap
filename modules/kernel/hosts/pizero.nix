@@ -19,6 +19,7 @@
         ;
       structuredExtraConfig = kernel.config.default.pizero;
       localVer = "sunxi-hardened";
+      class = "allwinner";
       defconfig = "sunxi_defconfig";
       patches =
         with kernel.patches.injector pkgs;

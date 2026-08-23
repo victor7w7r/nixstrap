@@ -19,6 +19,7 @@
         system
         ;
       structuredExtraConfig = kernel.config.default.superlab;
+      class = "rockchip";
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
       patches =

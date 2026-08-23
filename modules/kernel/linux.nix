@@ -11,6 +11,7 @@
       host,
       arch,
       system,
+      class ? null,
       src,
       patches ? [ ],
       defconfig ? "cachyos_defconfig",
@@ -18,7 +19,7 @@
       legacy ? false,
       structuredExtraConfig ? { },
     }:
-    pkgs.buildLinux {
+    (pkgs.buildLinux {
       inherit src structuredExtraConfig defconfig;
       pname = "linux-v7w7r-${localVer}";
       version = (kernel.lib.version pkgs src localVer).final;
@@ -74,7 +75,12 @@
         "ARCH=${if arch == "aarch64-linux" then "arm64" else "x86_64"}"
       ]
       ++ (lib.optional (system != arch) "CROSS_COMPILE=${pkgs.stdenv.hostPlatform.config}-");
-    }
+    }.overrideAttrs (attrs: {
+      postInstall = (attrs.postInstall or "") + lib.optionalString (class != null) ''
+        mkdir -p $out/dtbs/${class}/overlay
+        find arch/arm64/boot/dts/${class}/overlay -name "*.dtbo" -exec cp -v {} $out/dtbs/${class}/overlay/ \;
+      '';
+    }))
     |> (base: {
       "${host}-kernel" = base;
       "${host}-allconfig" = base.configfile;
