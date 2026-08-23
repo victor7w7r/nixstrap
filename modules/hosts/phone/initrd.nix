@@ -5,12 +5,19 @@
       availableKernelModules = [ "sd_mod" ];
       kernelModules = [
         "dm_mod"
+        "g_serial"
         "i2c_qcom_geni"
+        "libcomposite"
+        "qcom_pd_mapper"
+        "qcom_spmi_haptics"
         "rmi_core"
         "rmi_i2c"
-        "qcom_spmi_haptics"
-        "uinput"
-        "evdev"
+        "u_serial"
+        "ucsi_glink"
+        "ufs-qcom"
+        "ufshcd-core"
+        "usb_f_acm"
+        "usbhid"
       ];
       extraUtilsCommands = ''
         copy_bin_and_libs ${pkgs.buffyboard}/bin/buffyboard
@@ -25,6 +32,10 @@
         mkdir -p /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${pkgs.libinput.name}/
         ln -s "$(dirname "$(dirname "$(which buffyboard)")")"/share /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${pkgs.libinput.name}/
         buffyboard 2>/dev/null &
+      '';
+      postDeviceCommands = ''
+        echo "=== DISPOSITIVOS DETECTADOS EN /DEV ==="
+        ls -la /dev
       '';
       postMountCommands = "pkill -x buffyboard";
       systemd = {
