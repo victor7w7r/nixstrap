@@ -116,7 +116,8 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree = {
                   name = "rockchip/rk3588-rock-5b.dtb";
-                  overlays = map (dtbo: "${self'.packages.superlab-dts}/rockchip-rk3588-${dtbo}.dtbo") [
+                  /*
+                    overlays = map (dtbo: "${self'.packages.superlab-dts}/rockchip-rk3588-${dtbo}.dtbo") [
                     "fanctrl"
                     "sata0"
                     "sata1"
@@ -165,7 +166,8 @@
                     "uart6-m1"
                     "uart7-m2"
                     "uart8-m1"
-                  ];
+                    ];
+                  */
                 };
               };
 
