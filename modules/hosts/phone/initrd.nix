@@ -38,6 +38,31 @@
         enable = true;
         package = pkgs.systemd;
         tpm2.enable = false;
+        journald.settings.Journal.Storage = "volatile";
+        services.save-initrd-log = {
+          description = "Guardar journalctl de initrd en la partición EFI";
+          wantedBy = [
+            "emergency.target"
+            "rescue.target"
+          ];
+          before = [ "emergency.service" ];
+
+          unitConfig.DefaultDependencies = false;
+
+          script = ''
+            mkdir -p /mnt/efi
+            if mount -t vfat /dev/disk/by-partlabel/system_a /mnt/efi; then
+              /bin/journalctl -b > /mnt/efi/initrd-journal.txt
+              sync
+              umount /mnt/efi
+            fi
+          '';
+
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+        };
         storePaths =
           map
             (fw: {
