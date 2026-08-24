@@ -115,7 +115,9 @@
             systemd-boot = lib.mkForce {
               enable = true;
               editor = false;
-              extraFiles = "efi/uefi.img" = "${self}/assets/sdm845/uefi.img";
+              extraFiles = {
+                "efi/uefi.img" = "${self}/assets/sdm845/uefi.img";
+              };
               extraEntries = {
                 "uefi.conf" = ''
                   title UEFI Loader
