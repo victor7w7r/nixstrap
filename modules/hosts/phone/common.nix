@@ -82,10 +82,7 @@
           };
         };
 
-        /*
-            # Core de USB Gadget y función Serie
-
-        */
+        # # Core de USB Gadget y función Serie
 
         nixpkgs.config = {
           allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
@@ -103,7 +100,7 @@
 
           kernelParams = [
             "console=tty0"
-            "console=ttyGS0,115200"
+            #"console=ttyGS0,115200"
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
