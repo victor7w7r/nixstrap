@@ -110,43 +110,49 @@
                 firmware = with self'.packages; lib.singleton armbian-firmware;
                 deviceTree = {
                   name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
-                  overlays = map (dtbo: "${self'.packages.pizero-dts}/sun50i-h616-${dtbo}.dtbo") [
-                    "gpu"
-                    "i2c0-pi"
-                    "i2c1-pi"
-                    "i2c2-pi"
-                    "i2c2-ph"
-                    "i2c3-pg"
-                    "i2c3-ph"
-                    "i2c4-pg"
-                    "i2c4-ph"
-                    "keys"
-                    "pwm1-ph3"
-                    "pwm1-pi11"
-                    "pwm2-ph2"
-                    "pwm2-pi12"
-                    "pwm3-ph0"
-                    "pwm3-pi13"
-                    "pwm4-ph1"
-                    "pwm4-pi14"
-                    "uart2-pg"
-                    "uart2-pg-rts-cts"
-                    "uart2-ph"
-                    "uart2-ph-rts-cts"
-                    "uart2-pi"
-                    "uart2-pi-rts-cts"
-                    "uart3-pi"
-                    "uart3-pi-rts-cts"
-                    "uart4-pi"
-                    "uart4-pi-rts-cts"
-                    "uart5"
-                    "spi-spidev"
-                    "spidev0_0"
-                    "spidev1_0"
-                    "spidev1_1"
-                    "spidev1_2"
-                    "ir"
-                  ];
+                  overlays =
+                    map
+                      (dtso: {
+                        name = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}.dtso";
+                        dtsFile = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}";
+                      })
+                      [
+                        "gpu"
+                        "i2c0-pi"
+                        "i2c1-pi"
+                        "i2c2-pi"
+                        "i2c2-ph"
+                        "i2c3-pg"
+                        "i2c3-ph"
+                        "i2c4-pg"
+                        "i2c4-ph"
+                        "keys"
+                        "pwm1-ph3"
+                        "pwm1-pi11"
+                        "pwm2-ph2"
+                        "pwm2-pi12"
+                        "pwm3-ph0"
+                        "pwm3-pi13"
+                        "pwm4-ph1"
+                        "pwm4-pi14"
+                        "uart2-pg"
+                        "uart2-pg-rts-cts"
+                        "uart2-ph"
+                        "uart2-ph-rts-cts"
+                        "uart2-pi"
+                        "uart2-pi-rts-cts"
+                        "uart3-pi"
+                        "uart3-pi-rts-cts"
+                        "uart4-pi"
+                        "uart4-pi-rts-cts"
+                        "uart5"
+                        "spi-spidev"
+                        "spidev0_0"
+                        "spidev1_0"
+                        "spidev1_1"
+                        "spidev1_2"
+                        "ir"
+                      ];
                 };
               };
 
