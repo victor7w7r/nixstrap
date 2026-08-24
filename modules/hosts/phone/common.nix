@@ -114,6 +114,12 @@
             systemd-boot = lib.mkForce {
               enable = true;
               editor = false;
+              extraEntries = {
+                "uefi.conf" = ''
+                  title UEFI Loader
+                  efi /EFI/uefi.efi
+                '';
+              };
             };
           };
         };
