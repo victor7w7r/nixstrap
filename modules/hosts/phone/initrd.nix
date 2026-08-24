@@ -6,11 +6,9 @@
       kernelModules = [
         "dm_mod"
         "g_serial"
-        "i2c_qcom_geni"
         "libcomposite"
         "qcom_pd_mapper"
         "qcom_spmi_haptics"
-        "rmi_core"
         "rmi_i2c"
         "u_serial"
         "ucsi_glink"
