@@ -13,12 +13,13 @@
         extraOptions = [
           "largeio"
           "swalloc"
+          "nofail"
           "sunit=1024"
           "swidth=4096"
           "inode64"
           "logdev=/dev/mapper/cloudlogcrypt"
-          "x-systemd.device-timeout=300"
-          "x-systemd.mount-timeout=300"
+          "x-systemd.device-timeout=10"
+          "x-systemd.mount-timeout=10"
         ];
       };
       emmc = disk.gpt {
@@ -134,22 +135,23 @@
             cloud5 = disk.mdraid { device = "ata-TOSHIBA_DT01ACA100_Y7JAA68MS"; };
           };
         };
-        server-logical-chroot.nixos.disko.devices = {
-          imports = [ inputs.disko.nixosModules.disko ];
-          inherit lvm_vg;
-          disk = {
-            inherit cloud;
-            bcache = luks.entire {
-              name = "cloud";
-              device = "/dev/bcache0";
-              postMount = ''
-                #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
-                #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
-              '';
-            };
+      };
+      server-logical-chroot.nixos.disko.devices = {
+        imports = [ inputs.disko.nixosModules.disko ];
+        inherit lvm_vg;
+        disk = {
+          inherit cloud;
+          bcache = luks.entire {
+            name = "cloud";
+            device = "/dev/bcache0";
+            postMount = ''
+              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudcachecrypt cloudcachecrypt --key-file /tmp/key.txt || true
+              #cryptsetup open ${disk.constants.partlabel}/disk-nvme-cloudlogcrypt cloudlogcrypt --key-file /tmp/key.txt || true
+            '';
           };
         };
       };
+
     };
 }
 
