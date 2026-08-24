@@ -9,7 +9,7 @@
 }:
 {
   #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
-  #mount -o noatime,nodiratime,lazytime,logbufs=8,logbsize=256k /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
+  #mount -o noatime,nodiratime,lazytime,discard=async,compress-force=zstd:3,subvol=@nix /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
   perSystem = { pkgs, ... }: {
     packages = {
@@ -154,10 +154,6 @@
                 blacklistedKernelModules = [ "sun8i_ce" ];
                 kernelParams = [
                   "console=ttyS0,115200n8"
-                  "ignore_loglevel"
-                  "systemd.show_status=true"
-                  "systemd.log_target=console"
-                  "usbcore.autosuspend=-1"
                   "firmware_class.path=/extra-firmware"
                   #"resume=${config.boot.resumeDevice}"
                 ];

@@ -9,11 +9,18 @@
 
     include = { }: {
       BTRFS_FS = yes;
-      EXT4_FS = yes;
       ECRYPT_FS_MESSAGING = yes;
       EFIVAR_FS = yes;
       EROFS_FS = yes;
+      EXT4_FS = yes;
+      F2FS_CHECK_FS = yes;
       F2FS_FS = yes;
+      F2FS_FS_COMPRESSION = yes;
+      F2FS_FS_SECURITY = yes;
+      F2FS_FS_ZSTD = yes;
+      F2FS_IOSTAT = yes;
+      F2FS_STAT_FS = yes;
+      F2FS_UNFAIR_RWSEM = yes;
       NTFS3_64BIT_CLUSTER = yes;
       ZRAM = lib.mkForce yes;
     };

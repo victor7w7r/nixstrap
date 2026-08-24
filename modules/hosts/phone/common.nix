@@ -3,6 +3,7 @@
   hosts,
   kernel,
   inputs,
+  self,
   tarball,
   ...
 }:
@@ -114,10 +115,11 @@
             systemd-boot = lib.mkForce {
               enable = true;
               editor = false;
+              extraFiles = "efi/uefi.img" = "${self}/assets/sdm845/uefi.img";
               extraEntries = {
                 "uefi.conf" = ''
                   title UEFI Loader
-                  efi /EFI/uefi.efi
+                  efi /EFI/uefi.img
                 '';
               };
             };
