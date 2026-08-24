@@ -33,10 +33,6 @@
         ln -s "$(dirname "$(dirname "$(which buffyboard)")")"/share /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${pkgs.libinput.name}/
         buffyboard 2>/dev/null &
       '';
-      postDeviceCommands = ''
-        echo "=== DISPOSITIVOS DETECTADOS EN /DEV ==="
-        ls -la /dev
-      '';
       postMountCommands = "pkill -x buffyboard";
       systemd = {
         enable = true;
