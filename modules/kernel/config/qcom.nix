@@ -11,8 +11,6 @@
         ATH10K_SDIO = setupDenial isDenied module;
         ATH10K_SNOC = setupDenial isDenied module;
         ATH10K_DEBUG = setupDenial isDenied yes;
-        ATH10K_DEBUGFS = setupDenial isDenied yes;
-        ATH10K_SPECTRAL = setupDenial isDenied yes;
         BACKLIGHT_QCOM_WLED = setupDenial isDenied yes;
         BATTERY_BQ27XXX = setupDenial isDenied yes;
         BLK_DEV_RAM = setupDenial isDenied module;
