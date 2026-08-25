@@ -135,14 +135,7 @@
 
         hardware = {
           firmwareCompression = lib.mkForce "zstd";
-          firmware = [
-            (inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware.overrideAttrs (oldAttrs: {
-              postInstall = (oldAttrs.postInstall or "") + ''
-                rm -rf $out/lib/firmware/ath10k
-                mkdir -p $out/lib/firmware/ath10k
-              '';
-            }))
-          ];
+          firmware = [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
           sensor.iio.enable = true;
           deviceTree.enable = true;
         };

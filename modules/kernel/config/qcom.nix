@@ -8,9 +8,11 @@
     lib.mkMerge [
       {
         ATH10K = setupDenial isDenied module;
-        ATH10K_PCI = setupDenial isDenied module;
         ATH10K_SDIO = setupDenial isDenied module;
         ATH10K_SNOC = setupDenial isDenied module;
+        ATH10K_DEBUG = setupDenial isDenied yes;
+        ATH10K_DEBUGFS = setupDenial isDenied yes;
+        ATH10K_SPECTRAL = setupDenial isDenied yes;
         BACKLIGHT_QCOM_WLED = setupDenial isDenied yes;
         BATTERY_BQ27XXX = setupDenial isDenied yes;
         BLK_DEV_RAM = setupDenial isDenied module;
@@ -138,6 +140,7 @@
         AHCI_MVEBU = no;
         AHCI_QORIQ = no;
         AHCI_XGENE = no;
+        ATH10K_PCI = no;
         ALTERA_FREEZE_BRIDGE = no;
         ARCH_ROCKCHIP = no;
         ARCH_SUNXI = no;
