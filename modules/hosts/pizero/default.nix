@@ -102,10 +102,6 @@
                         dtsFile = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}.dtso";
                       })
                       [
-                        "gpu"
-                        "i2c0-pi"
-                        "i2c1-pi"
-                        "i2c2-pi"
                         "i2c2-ph"
                         "i2c3-pg"
                         "i2c3-ph"
@@ -118,8 +114,6 @@
                         "pwm2-pi12"
                         "pwm3-ph0"
                         "pwm3-pi13"
-                        "pwm4-ph1"
-                        "pwm4-pi14"
                         "uart2-pg"
                         "uart2-pg-rts-cts"
                         "uart2-ph"
@@ -131,12 +125,6 @@
                         "uart4-pi"
                         "uart4-pi-rts-cts"
                         "uart5"
-                        "spi-spidev"
-                        "spidev0_0"
-                        "spidev1_0"
-                        "spidev1_1"
-                        "spidev1_2"
-                        "ir"
                       ];
                 };
               };
