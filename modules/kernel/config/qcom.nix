@@ -72,6 +72,7 @@
         REGULATOR_QCOM_REFGEN = yes;
         REMOTEPROC_CDEV = yes;
         USB_F_HID = module;
+        USB_ULPI_BUS = yes;
         U_SERIAL_CONSOLE = yes;
       })
       (lib.optionalAttrs (!isDenied) {
