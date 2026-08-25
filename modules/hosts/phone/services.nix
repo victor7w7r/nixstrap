@@ -4,6 +4,7 @@
       bootmac = {
         enable = true;
         bluetooth.enable = true;
+        wifi.enable = true;
       };
       buffyboard = {
         enable = true;
@@ -24,10 +25,8 @@
 
       udev.extraRules = ''
         ACTION=="remove", GOTO="iio_sensor_proxy_end"
-
         SUBSYSTEM=="misc", KERNEL=="fastrpc-adsp*", ENV{IIO_SENSOR_PROXY_TYPE}+="ssc-accel ssc-proximity"
         SUBSYSTEM=="misc", KERNEL=="fastrpc-sdsp*", ENV{IIO_SENSOR_PROXY_TYPE}+="ssc-accel ssc-proximity"
-
         LABEL="iio_sensor_proxy_end"
       '';
 
