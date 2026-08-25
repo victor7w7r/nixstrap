@@ -19,40 +19,10 @@
           "ufshcd-core"
         ];
 
-       /* services.udev.packages = [
-          config.systemd.package
-          pkgs.libinput
-          ];*/
-
         systemd = {
           enable = true;
           package = pkgs.systemd;
           tpm2.enable = false;
-          services = {
-            save-initrd-log = {
-              wantedBy = [
-                "emergency.target"
-                "rescue.target"
-              ];
-              before = [ "emergency.service" ];
-
-              unitConfig.DefaultDependencies = false;
-
-              script = ''
-                mkdir -p /mnt/efi
-                if ${pkgs.util-linux}/bin/mount -t vfat /dev/disk/by-partlabel/system_a /mnt/efi 2>/dev/null; then
-                  ${pkgs.systemd}/bin/journalctl -b > /mnt/efi/initrd-journal.txt
-                  sync
-                  ${pkgs.util-linux}/bin/umount /mnt/efi
-                fi
-              '';
-
-              serviceConfig = {
-                Type = "oneshot";
-                RemainAfterExit = true;
-              };
-            };
-          };
           storePaths =
             map
               (fw: {

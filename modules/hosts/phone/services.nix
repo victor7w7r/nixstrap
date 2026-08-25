@@ -1,6 +1,5 @@
 {
   den.aspects.phone.services.nixos = { config, lib, ... }: {
-
     systemd.services.usb-moded-turn-off-rescue-mode.enable = false;
 
     services = {
