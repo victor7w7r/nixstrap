@@ -19,10 +19,10 @@
           "ufshcd-core"
         ];
 
-        services.udev.packages = [
+       /* services.udev.packages = [
           config.systemd.package
           pkgs.libinput
-        ];
+          ];*/
 
         systemd = {
           enable = true;
