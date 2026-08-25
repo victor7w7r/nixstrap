@@ -98,65 +98,7 @@
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
-                deviceTree = {
-                  name = "rockchip/rk3588-rock-5b.dtb";
-                  overlays =
-                    map
-                      (dtso: {
-                        name = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}";
-                        dtsFile = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}.dtso";
-                      })
-                      [
-                        "fanctrl"
-                        "sata0"
-                        "sata1"
-                        "sata2"
-                        "hdmirx"
-                        "can0-m0"
-                        "can0-m1"
-                        "can1-m0"
-                        "can1-m1"
-                        "can2-m0"
-                        "can2-m1"
-                        "i2c8-m2"
-                        "pwm0-m0"
-                        "pwm0-m1"
-                        "pwm0-m2"
-                        "pwm1-m0"
-                        "pwm1-m1"
-                        "pwm1-m2"
-                        "pwm2-m1"
-                        "pwm3-m0"
-                        "pwm3-m1"
-                        "pwm3-m2"
-                        "pwm3-m3"
-                        "pwm5-m2"
-                        "pwm6-m0"
-                        "pwm6-m2"
-                        "pwm7-m0"
-                        "pwm7-m3"
-                        "pwm8-m0"
-                        "pwm10-m0"
-                        "pwm11-m0"
-                        "pwm11-m1"
-                        "pwm12-m0"
-                        "pwm13-m0"
-                        "pwm13-m2"
-                        "pwm14-m0"
-                        "pwm14-m1"
-                        "pwm14-m2"
-                        "pwm15-m0"
-                        "pwm15-m1"
-                        "pwm15-m2"
-                        "pwm15-m3"
-                        "uart1-m1"
-                        "uart3-m1"
-                        "uart4-m2"
-                        "uart6-m1"
-                        "uart7-m2"
-                        "uart8-m1"
-                      ];
-                };
+                deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
 
               boot = {
