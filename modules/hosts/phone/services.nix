@@ -34,7 +34,12 @@
 
       openssh = {
         openFirewall = lib.mkForce false;
-        listenAddresses = [ "0.0.0.0" ];
+        listenAddresses = [
+          {
+            addr = "0.0.0.0";
+            port = 22;
+          }
+        ];
         settings = {
           UsePAM = lib.mkImageMediaOverride true;
         };
