@@ -53,11 +53,7 @@
               };
             };
           };
-          storePaths = [
-            "${self'.packages.buffyboard}/bin/buffyboard"
-            "${pkgs.libinput.out}/share"
-          ]
-          ++
+          storePaths =
             map
               (fw: {
                 source = "${config.hardware.firmware}/lib/firmware/${fw}.zst";
