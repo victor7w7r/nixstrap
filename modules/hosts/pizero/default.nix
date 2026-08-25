@@ -17,21 +17,6 @@
       pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
       pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
       pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
-      pizero-dts = kernel.lib.dts-compiler {
-        inherit pkgs;
-        class = "allwinner";
-        dtbClass = "sun50i-h61";
-        overlays = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64";
-        overlayClass = "sun50i-h616";
-        extraClass = [
-          "bananapi"
-          "walnutpi"
-          "ws2812"
-        ];
-        src =
-          (kernel.hosts.pizero pkgs "pizero" "aarch64-linux" pkgs.stdenv.hostPlatform.system)
-          .pizero-kernel.src;
-      };
     };
   };
 
