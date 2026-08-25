@@ -100,11 +100,7 @@
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
-          blacklistedKernelModules = [
-            "ath10k_core"
-            "ath10k_pci"
-            "ipa"
-          ];
+          blacklistedKernelModules = [ "ipa" ];
           loader = {
             efi.canTouchEfiVariables = false;
             systemd-boot = lib.mkForce {

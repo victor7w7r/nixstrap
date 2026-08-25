@@ -7,7 +7,10 @@
     }:
     lib.mkMerge [
       {
-        ATH10K_PCI = setupDenial isDenied yes;
+        ATH10K = setupDenial isDenied module;
+        ATH10K_PCI = setupDenial isDenied module;
+        ATH10K_SDIO = setupDenial isDenied module;
+        ATH10K_SNOC = setupDenial isDenied module;
         BACKLIGHT_QCOM_WLED = setupDenial isDenied yes;
         BATTERY_BQ27XXX = setupDenial isDenied yes;
         BLK_DEV_RAM = setupDenial isDenied module;
@@ -29,6 +32,7 @@
         QCOM_IPA = setupDenial isDenied module;
         QCOM_SPMI_ADC5 = setupDenial isDenied yes;
         QCOM_SPMI_VADC = setupDenial isDenied yes;
+        QCOM_FASTRPC = setupDenial isDenied yes;
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
         RMI4_F55 = setupDenial isDenied yes;
         RPMSG_CHAR = setupDenial isDenied yes;

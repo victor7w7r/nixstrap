@@ -83,7 +83,7 @@
         cp ${inputs.sdm845-defconfig} defconfig
         cp ${inputs.sdm845-config} sdm845.config
         cp ${inputs.sdm845-misc} misc.config
-        (cat defconfig; echo ""; cat sdm845.config; echo ""; cat misc.config) > $out
+        cat defconfig sdm845.config misc.config > $out
       '');
   };
 }
