@@ -32,6 +32,7 @@
        sed -i '/^CONFIG_INFINIBAND_/d' config
        sed -i '/^CONFIG_KEYBOARD_/d' config
        sed -i '/^CONFIG_RXKAD/d' config
+       sed -i '/^CONFIG_PHY_QCOM_USB_HS/d' config
        sed -i '/^CONFIG_SCSI_/d' config
        sed -i '/^CONFIG_SND_/d' config
        sed -i '/^CONFIG_SSB/d' config
