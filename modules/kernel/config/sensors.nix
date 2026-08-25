@@ -233,7 +233,6 @@
       MAX31827 = no;
       NTB = no;
       PMBUS = no;
-      REMOTEPROC = no;
       SENSORS_ABITUGURU = no;
       SENSORS_ABITUGURU3 = no;
       SENSORS_ACPI_POWER = no;

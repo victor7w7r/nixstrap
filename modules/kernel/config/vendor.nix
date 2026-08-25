@@ -304,7 +304,6 @@
         ATH11K_PCI = no;
         ATH12K = no;
         WLAN_VENDOR_ADMTEK = no;
-        WLAN_VENDOR_ATH = no;
         WLAN_VENDOR_ATMEL = no;
         WLAN_VENDOR_INTEL = no;
         WLAN_VENDOR_INTERSIL = no;

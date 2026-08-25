@@ -42,6 +42,7 @@
         QCOM_Q6V5_MSS = setupDenial isDenied module;
         QCOM_SYSMON = setupDenial isDenied module;
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
+        REMOTEPROC = setupDenial isDenied yes;
         RMI4_F55 = setupDenial isDenied yes;
         RPMSG_CHAR = setupDenial isDenied yes;
         RPMSG_QCOM_GLINK_SMEM = setupDenial isDenied yes;
@@ -53,6 +54,7 @@
         TCP_CONG_WESTWOOD = lib.mkForce (setupDenial isDenied yes);
         USB_G_SERIAL = setupDenial isDenied module;
         USB_F_NCM = setupDenial isDenied yes;
+        WLAN_VENDOR_ATH = setupDenial isDenied yes;
       }
       (lib.optionalAttrs (!isDenied) {
         ARCH_QCOM = yes;
