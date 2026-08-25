@@ -113,8 +113,8 @@
                   overlays =
                     map
                       (dtso: {
-                        name = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}.dtso";
-                        dtsFile = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}";
+                        name = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}";
+                        dtsFile = "${inputs.armbian}/patch/kernel/archive/sunxi-6.18/overlay_64/sun50i-h616-${dtso}.dtso";
                       })
                       [
                         "gpu"

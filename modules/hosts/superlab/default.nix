@@ -119,8 +119,8 @@
                   overlays =
                     map
                       (dtso: {
-                        name = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}.dtso";
-                        dtsFile = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}";
+                        name = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}";
+                        dtsFile = "${inputs.armbian}/patch/kernel/archive/rockchip64-6.18/overlay/rockchip-rk3588-${dtso}.dtso";
                       })
                       [
                         "fanctrl"
