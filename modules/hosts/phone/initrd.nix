@@ -12,7 +12,6 @@
         availableKernelModules = [ "sd_mod" ];
         kernelModules = [
           "dm_mod"
-          "qcom_pd_mapper"
           "qcom_spmi_haptics"
           "rmi_i2c"
           "ufs-qcom"

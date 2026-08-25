@@ -9,7 +9,7 @@
 }:
 {
   #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
-  #mount -o noatime,nodiratime,lazytime,discard=async,compress-force=zstd:3,subvol=@nix /dev/sde2 /mnt && rm -rf /mnt/* && tar --zstd -xvf store.tar.zst -C /mnt/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
+  #mount -o noatime,nodiratime,lazytime,discard=async,compress-force=zstd:3,subvol=@nix /dev/sde2 /mnt && rm -rf /mnt/store/* && tar --zstd -xvf store.tar.zst -C /mnt/store/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
   perSystem = { pkgs, ... }: {
     packages = {

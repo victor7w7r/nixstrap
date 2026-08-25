@@ -26,13 +26,20 @@
         FW_LOADER_COMPRESS_ZSTD = setupDenial isDenied yes;
         HID_RMI = setupDenial isDenied yes;
         INPUT_JOYDEV = setupDenial isDenied module;
+        IIO_ST_LSM6DSX = setupDenial isDenied module;
+        IIO_ST_MAGN_3AXIS = setupDenial isDenied module;
         NETLINK_DIAG = setupDenial isDenied module;
         NET_SCH_MULTIQ = setupDenial isDenied module;
         NET_SCH_PRIO = setupDenial isDenied module;
         QCOM_IPA = setupDenial isDenied module;
+        QCOM_A53PLL = setupDenial isDenied yes;
+        QCOM_L3_PMU = setupDenial isDenied yes;
         QCOM_SPMI_ADC5 = setupDenial isDenied yes;
         QCOM_SPMI_VADC = setupDenial isDenied yes;
         QCOM_FASTRPC = setupDenial isDenied yes;
+        QCOM_Q6V5_PAS = setupDenial isDenied module;
+        QCOM_Q6V5_MSS = setupDenial isDenied module;
+        QCOM_SYSMON = setupDenial isDenied module;
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
         RMI4_F55 = setupDenial isDenied yes;
         RPMSG_CHAR = setupDenial isDenied yes;
@@ -92,7 +99,7 @@
         PHY_QCOM_QMP_UFS = yes;
         PHY_QCOM_QMP_USB = yes;
         PHY_QCOM_QUSB2 = yes;
-        PHY_QCOM_USB_HS = module;
+        PHY_QCOM_USB_HS = yes;
         PHY_QCOM_USB_SNPS_FEMTO_V2 = yes;
         PM_AUTOSLEEP = yes;
         POWER_RESET_QCOM_PON = yes;
@@ -214,6 +221,7 @@
         INTERCONNECT_QCOM_SM8750 = no;
         INTERCONNECT_QCOM_SMD_RPM = no;
         INTERCONNECT_QCOM_X1E80100 = no;
+        QCOM_PD_MAPPER = no;
         IPQ_APSS_5424 = no;
         IPQ_APSS_6018 = no;
         IPQ_APSS_PLL = no;
