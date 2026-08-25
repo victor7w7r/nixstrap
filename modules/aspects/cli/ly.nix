@@ -4,6 +4,7 @@
       lib,
       pkgs,
       isHandheld,
+      isMain,
       ...
     }:
     {
@@ -16,7 +17,7 @@
       };
 
       services.displayManager.ly = {
-        enable = true;
+        enable = isHandheld || isMain;
         settings = lib.mkMerge [
           {
             animation = "gameoflife";

@@ -100,6 +100,7 @@
           kernelParams = [
             "console=tty0"
             "zram.num_devices=2"
+            "cma=128M"
             "firmware_class.path=/extra-firmware"
           ];
           blacklistedKernelModules = [

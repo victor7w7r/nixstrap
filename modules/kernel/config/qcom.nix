@@ -47,12 +47,14 @@
         BLK_DEV_RAM = lib.mkForce yes;
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
+        DRM_SIMPLEDRM = yes;
         EFI_ZBOOT = yes;
         FS_ENCRYPTION_INLINE_CRYPT = yes;
         INPUT_QCOM_SPMI_HAPTICS = module;
         INPUT_JOYDEV = lib.mkForce yes;
         MODULE_COMPRESS_ZSTD = yes;
         MODULE_DECOMPRESS = yes;
+        SYSFB_SIMPLEFB = yes;
         NLS_ASCII = yes;
         PACKET_DIAG = yes;
         REGULATOR_QCOM_REFGEN = yes;
@@ -162,7 +164,6 @@
         DRM_MSM_HDMI_HDCP = no;
         DRM_MSM_MDP4 = no;
         DRM_MSM_MDP5 = no;
-        DRM_SIMPLEDRM = lib.mkForce no;
         EC_ACER_ASPIRE1 = no;
         EC_HUAWEI_GAOKUN = no;
         EC_LENOVO_THINKPAD_T14S = no;
@@ -416,7 +417,6 @@
         SND_SOC_TAS2557 = no;
         SND_SOC_TAS2559 = no;
         SND_SOC_X1E80100 = no;
-        SYSFB_SIMPLEFB = lib.mkForce no;
         TOUCHSCREEN_FTM4 = no;
         TOUCHSCREEN_STM_FTS_DOWNSTREAM = no;
         TOUCHSCREEN_SW49410 = no;

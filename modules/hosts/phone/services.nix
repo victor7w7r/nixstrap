@@ -35,7 +35,7 @@
 
       openssh = {
         openFirewall = lib.mkForce false;
-        listenAddresses = [ { addr = config.vanilla-mobile.usb-gadget.network.serverAddress; } ];
+        listenAddresses = [ "0.0.0.0" ];
         settings = {
           UsePAM = lib.mkImageMediaOverride true;
         };
