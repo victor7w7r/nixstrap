@@ -34,7 +34,6 @@
         NET_SCH_MULTIQ = setupDenial isDenied module;
         NET_SCH_PRIO = setupDenial isDenied module;
         QCOM_IPA = setupDenial isDenied module;
-        QCOM_A53PLL = setupDenial isDenied yes;
         QCOM_L3_PMU = setupDenial isDenied yes;
         QCOM_SPMI_ADC5 = setupDenial isDenied yes;
         QCOM_SPMI_VADC = setupDenial isDenied yes;
