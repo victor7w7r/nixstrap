@@ -3,12 +3,6 @@
   den.aspects.server.containers.nixos.containers.notes = containers.lib.call {
     ip = "3";
     name = "notes";
-    rules = [
-      "d /opt/couchdb/data 0770 couchdb couchdb - -"
-      "d /opt/couchdb/etc/local.d 0770 couchdb couchdb - -"
-      "d /web/vaults 0770 couchdb couchdb - -"
-      "d /web/config 0770 couchdb couchdb - -"
-    ];
 
     bindMounts = {
       "/opt/couchdb/data" = {
