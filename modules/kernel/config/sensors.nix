@@ -652,9 +652,8 @@
       IIO_SIMPLE_DUMMY = no;
       IIO_SSP_SENSORHUB = no;
       IIO_ST_GYRO_3AXIS = no;
-      IIO_ST_LSM6DSX = no;
       IIO_ST_LSM9DS0 = no;
-      IIO_ST_MAGN_3AXIS = no;
+
       IIO_ST_PRESS = no;
       IIO_SYSFS_TRIGGER = no;
       IIO_TIGHTLOOP_TRIGGER = no;
