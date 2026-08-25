@@ -17,7 +17,6 @@
           "rmi_i2c"
           "ufs-qcom"
           "ufshcd-core"
-          "usb_configfs"
         ];
 
         services.udev.packages = [

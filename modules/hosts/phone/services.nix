@@ -1,5 +1,8 @@
 {
   den.aspects.phone.services.nixos = { config, lib, ... }: {
+
+    systemd.services.usb-moded-turn-off-rescue-mode.enable = false;
+
     services = {
       bootmac = {
         enable = true;
@@ -16,12 +19,12 @@
       };
 
       getty.autologinUser = "victor7w7r";
-      hexagonrpcd.sdsp.enable = true;
+      hexagonrpcd.sdsp.enable = false;
       msm-modem-uim-selection.enable = true;
-      rmtfs.enable = true;
+      rmtfs.enable = false;
       swclock-offset.enable = true;
       upower.enable = true;
-      tqftpserv.enable = true;
+      tqftpserv.enable = false;
 
       udev.extraRules = ''
         ACTION=="remove", GOTO="iio_sensor_proxy_end"
@@ -31,13 +34,9 @@
       '';
 
       openssh = {
-        enable = true;
-        openFirewall = lib.mkImageMediaOverride false;
+        openFirewall = lib.mkForce false;
         listenAddresses = [ { addr = config.vanilla-mobile.usb-gadget.network.serverAddress; } ];
         settings = {
-          PermitRootLogin = lib.mkImageMediaOverride "yes";
-          PasswordAuthentication = lib.mkImageMediaOverride true;
-          PermitEmptyPasswords = lib.mkImageMediaOverride true;
           UsePAM = lib.mkImageMediaOverride true;
         };
       };

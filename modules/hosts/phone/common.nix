@@ -26,32 +26,32 @@
       audio._
       cli._
       dev.ccache
-      dev.zed
+      #dev.zed
       dev.tools
       disks
-      gui._
+      #gui._
       misc.comm
       misc.fetch
       pentest._
-      zen._
+      #zen._
 
       phone._
 
-      android
+      #android
       bluetooth
       emulation
       firewall
       games
-      kitty
+      #kitty
       #libvirt
-      plasma._
-      remote
+      #plasma._
+      #remote
       root
       secrets
       tools
       victor7w7r
-      virt
-      waydroid
+      #virt
+      #waydroid
     ];
 
     nixos =
@@ -83,8 +83,6 @@
           };
         };
 
-        # # Core de USB Gadget y función Serie
-
         nixpkgs.config = {
           allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
         };
@@ -101,7 +99,6 @@
 
           kernelParams = [
             "console=tty0"
-            #"console=ttyGS0,115200"
             "zram.num_devices=2"
             "firmware_class.path=/extra-firmware"
           ];
@@ -177,10 +174,9 @@
               "${pkgs.modemmanager}/bin/ModemManager --test-quick-suspend-resume"
             ];
             iio-sensor-proxy.serviceConfig.TimeoutStopSec = 3;
-            usb-moded-turn-off-rescue-mode.enable = false;
           };
         };
-        security.pam.services.sshd.allowNullPassword = lib.mkImageMediaOverride true;
+        security.pam.services.sshd.allowNullPassword = lib.mkForce true;
       };
   };
   /*
