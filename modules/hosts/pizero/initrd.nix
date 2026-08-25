@@ -4,21 +4,18 @@
       kernelModules = [
         "ac200_phy"
         "ahci"
-        "configfs"
-        "display_connector"
+        #"display_connector"
         "dm_crypt"
         "dm_mod"
         "musb_hdrc"
-        "panfrost"
+        #"panfrost"
         "phy_generic"
         #"sprdbt_tty"
         #"sprdwl_ng"
         "sun50i_h6_prcm_ppu"
         "sunxi"
         "sunxi_addr"
-        "sun4i-gpadc-iio"
         "uas"
-        "uhci_hcd"
         "usbhid"
       ];
 
