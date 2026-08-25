@@ -5,7 +5,7 @@
     name = "notes";
 
     bindMounts = {
-      "/opt/couchdb/data" = {
+      "/var/lib/couchdb" = {
         hostPath = "/nix/persist/containers/notes/data";
         isReadOnly = false;
       };
