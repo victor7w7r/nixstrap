@@ -2,7 +2,7 @@
   den.aspects.server.services.nixos =
     { pkgs, ... }:
     {
-      environment.etc."xrdp/startwm.sh" = {
+      environment.etc."static/xrdp/startwm.sh" = {
         text = ''
           ${pkgs.runtimeShell}
           . /etc/profile
