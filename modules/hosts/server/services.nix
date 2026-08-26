@@ -8,8 +8,6 @@
           . /etc/profile
           exec ${pkgs.xfce4-session}/bin/xfce4-session
         '';
-        mode = "755";
-        force = true;
       };
 
       services = {
