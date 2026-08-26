@@ -39,7 +39,7 @@
         QCOM_Q6V5_PAS = setupDenial isDenied module;
         QCOM_Q6V5_MSS = setupDenial isDenied module;
         QCOM_SYSMON = setupDenial isDenied module;
-        QUOTA = setupDenial isDenied yes;
+        QUOTA = lib.mkForce (setupDenial isDenied yes);
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
         REMOTEPROC = setupDenial isDenied yes;
         RMI4_F55 = setupDenial isDenied yes;
