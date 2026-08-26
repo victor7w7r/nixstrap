@@ -15,7 +15,6 @@
         "hantro_vpu"
         "panthor"
         "phy_rockchip_samsung_hdptx"
-        "phy_rockchip_snps_pcie3"
         "pinctrl_rk805"
         "pwm_fan"
         "rk805_pwrkey"

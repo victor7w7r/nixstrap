@@ -111,12 +111,6 @@
       MEDIA_TUNER_TEA5767 = no;
       MEDIA_TUNER_TUA9001 = no;
       MEDIA_TUNER_XC2028 = no;
-      REGULATOR_DW9807 = no;
-      REISERFS_FS = no;
-      RK_FLASH = no;
-      RK_NAND = no;
-      RK_SFC_NAND = no;
-      RK_SFC_NOR = no;
       ROCKCHIP_HW_DECOMPRESS = yes;
       ROCKCHIP_HW_DECOMPRESS_USER = yes;
       ROCKCHIP_MINIDUMP = no;

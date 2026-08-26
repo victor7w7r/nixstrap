@@ -145,6 +145,7 @@
             PCIE_DW_PLAT_EP = yes;
             PCIE_ROCKCHIP_DW_EP = yes;
             PCIE_ROCKCHIP_EP = yes;
+            PHY_ROCKCHIP_SNPS_PCIE3 = yes;
             PM_DOMAINS = yes;
             R8169 = no;
             REGULATOR_RK806 = module;

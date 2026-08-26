@@ -14,7 +14,6 @@
         nixos =
           { config, pkgs, ... }:
           {
-
             system.build.kernelFiles = pkgs.stdenvNoCC.mkDerivation {
               name = "kernelFiles";
               buildCommand = ''
