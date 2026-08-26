@@ -1,5 +1,4 @@
 *.fd
-*.img
 *.log
 *.qcow2
 *.raw
