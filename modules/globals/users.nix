@@ -43,6 +43,7 @@
           "gamemode"
           "input"
           "kvm"
+          "feedbackd"
           "incus-admin"
           "libvirt-qemu"
           "libvirtd"
