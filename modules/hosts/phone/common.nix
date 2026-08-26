@@ -113,15 +113,15 @@
               editor = false;
               configurationLimit = 20;
               extraFiles = {
-                "EFI/uefi.img" = "${self}/assets/sdm845/uefi.img";
+                "EFI/uefi.efi" = "${self}/assets/sdm845/uefi.img";
                 "EFI/shell.efi" = "${pkgs.edk2-uefi-shell}/shell.efi";
                 "EFI/tools/poweroff.nsh" = pkgs.writeText "poweroff.nsh" "reset -s";
                 "EFI/tools/reboot.nsh" = pkgs.writeText "reboot.nsh" "reset -c";
               };
               extraEntries = {
                 "uefi.conf" = ''
-                  title UEFI
-                  efi /EFI/uefi.img
+                  title      UEFI
+                  efi        /EFI/uefi.efi
                 '';
                 "poweroff.conf" = ''
                   title      Apagar (Poweroff)

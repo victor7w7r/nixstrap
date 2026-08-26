@@ -36,8 +36,10 @@
         '';
       };
 
-      /*setenv boot_targets "usb0"
-      setenv bootcmd "usb stop; usb start; bootflow scan -lb"*/
+    /*
+      setenv boot_targets "usb0"
+      setenv bootcmd "usb stop; usb start; bootflow scan -lb"
+    */
 
     rock5b =
       pkgs:
@@ -118,12 +120,8 @@
       opizero2w-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
         uboot.opizero2w pkgs
       );
-      rock5b-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.rock5b pkgs
-      );
-      fajita-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
-        uboot.fajita pkgs
-      );
+      rock5b-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (uboot.rock5b pkgs);
+      fajita-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (uboot.fajita pkgs);
       enchilada-menu-config = uboot.menu-config pkgs.pkgsCross.aarch64-multiplatform (
         uboot.enchilada pkgs
       );
