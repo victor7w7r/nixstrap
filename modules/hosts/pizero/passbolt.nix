@@ -20,6 +20,9 @@
         tailscaled = {
           after = [ "systemd-resolved.service" ];
           wants = [ "systemd-resolved.service" ];
+          environment = {
+            TS_LOG_LEVEL = "0";
+          };
         };
         funnel = {
           wantedBy = [ "multi-user.target" ];

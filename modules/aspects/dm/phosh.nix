@@ -9,9 +9,11 @@
           group = "users";
         };
 
-        environment.systemPackages = [
-          pkgs.alacritty
-          pkgs.phosh-mobile-settings
+        environment.systemPackages = with pkgs; [
+          phosh-mobile-settings
+          epiphany
+          gnome-console
+          megapixels
         ];
       };
   };

@@ -135,6 +135,8 @@
                 kernelParams = [
                   "console=ttyS0,115200n8"
                   "firmware_class.path=/extra-firmware"
+                  "systemd.show_status=false"
+                  "loglevel=3"
                   #"resume=${config.boot.resumeDevice}"
                 ];
                 loader = {

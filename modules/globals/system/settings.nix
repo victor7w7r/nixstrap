@@ -94,7 +94,7 @@
           MaxLevelStore=debug
           SystemMaxUse=500M
           RuntimeMaxUse=200M
-          ForwardToConsole=yes
+          ForwardToConsole=no
           MaxLevelConsole=debug
           TTYPath=/dev/ttyS0
         '';
