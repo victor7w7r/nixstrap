@@ -39,6 +39,7 @@
         QCOM_Q6V5_PAS = setupDenial isDenied module;
         QCOM_Q6V5_MSS = setupDenial isDenied module;
         QCOM_SYSMON = setupDenial isDenied module;
+        QUOTA = setupDenial isDenied yes;
         REGULATOR_QCOM_LABIBB = setupDenial isDenied yes;
         REMOTEPROC = setupDenial isDenied yes;
         RMI4_F55 = setupDenial isDenied yes;
@@ -59,21 +60,21 @@
         BLK_DEV_RAM = lib.mkForce yes;
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
-        DRM_SIMPLEDRM = yes;
         EFI_ZBOOT = yes;
         FS_ENCRYPTION_INLINE_CRYPT = yes;
-        INPUT_QCOM_SPMI_HAPTICS = module;
         INPUT_JOYDEV = lib.mkForce yes;
+        INPUT_QCOM_SPMI_HAPTICS = module;
         MODULE_COMPRESS_ZSTD = yes;
         MODULE_DECOMPRESS = yes;
-        SYSFB_SIMPLEFB = yes;
         NLS_ASCII = yes;
         PACKET_DIAG = yes;
         REGULATOR_QCOM_REFGEN = yes;
         REMOTEPROC_CDEV = yes;
+        SYSFB_SIMPLEFB = yes;
         USB_F_HID = module;
         USB_ULPI_BUS = yes;
         U_SERIAL_CONSOLE = yes;
+        VIDEO_CAMERA_LENS = lib.mkForce yes;
       })
       (lib.optionalAttrs (!isDenied) {
         BATTERY_PMI8998_FG = module;
@@ -120,7 +121,7 @@
         QCOM_WCNSS_CTRL = yes;
         QFMT_V2 = yes;
         SCSI_SCAN_ASYNC = yes;
-        SCSI_UFS_QCOM = module;
+        SCSI_UFS_QCOM = yes;
         TYPEC = lib.mkForce yes;
         USB_DWC3_ULPI = yes;
       })
@@ -178,6 +179,7 @@
         DRM_MSM_HDMI_HDCP = no;
         DRM_MSM_MDP4 = no;
         DRM_MSM_MDP5 = no;
+        DRM_SIMPLEDRM = no;
         EC_ACER_ASPIRE1 = no;
         EC_HUAWEI_GAOKUN = no;
         EC_LENOVO_THINKPAD_T14S = no;
