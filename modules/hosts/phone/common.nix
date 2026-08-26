@@ -125,12 +125,12 @@
                 '';
                 "poweroff.conf" = ''
                   title      Apagar (Poweroff)
-                  efi        /EFI/shell.efi
+                  efi        /EFI/tools/shell.efi
                   options    -e -noexit /EFI/tools/poweroff.nsh
                 '';
                 "reboot.conf" = ''
                   title      Reiniciar (Reboot)
-                  efi        /EFI/shell.efi
+                  efi        /EFI/tools/shell.efi
                   options    -e -noexit /EFI/tools/reboot.nsh
                 '';
               };
