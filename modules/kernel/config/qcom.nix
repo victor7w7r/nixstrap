@@ -61,7 +61,7 @@
         BLK_DEV_RAM_COUNT = freeform "16";
         BLK_DEV_RAM_SIZE = freeform "8192";
         EFI_ZBOOT = yes;
-        FS_ENCRYPTION_INLINE_CRYPT = yes;
+        FS_ENCRYPTION_INLINE_CRYPT = yes;ad
         INPUT_JOYDEV = lib.mkForce yes;
         INPUT_QCOM_SPMI_HAPTICS = module;
         MODULE_COMPRESS_ZSTD = yes;
@@ -70,6 +70,8 @@
         PACKET_DIAG = yes;
         REGULATOR_QCOM_REFGEN = yes;
         REMOTEPROC_CDEV = yes;
+        SCSI_UFSHCD = yes;
+        SCSI_UFSHCD_PLATFORM = yes;
         SYSFB_SIMPLEFB = yes;
         USB_F_HID = module;
         USB_ULPI_BUS = yes;
