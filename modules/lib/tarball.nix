@@ -59,8 +59,10 @@
                   rsyncy -aHAxr --no-o --no-g --files-from=${closureInfo}/store-paths / root/store
                   cp ${closureInfo}/registration root/nix-path-registration
                   mkdir -p root/var/nix/daemon-socket
-
                   chmod -R +w root
+                  mv root/store/nix/store/* root/store/
+                  rm -rf root/store/nix
+                  chmod -R a-w root/store
 
                   echo "Compressing with $SIZE..."
                   tar --owner=0 --group=0 --numeric-owner -cv -C root . | zstd -T$NIX_BUILD_CORES > $out/store.tar.zst
