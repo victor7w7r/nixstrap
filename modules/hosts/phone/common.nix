@@ -29,7 +29,7 @@
       #dev.zed
       dev.tools
       disks
-      #gui._
+      gui._
       misc.comm
       misc.fetch
       pentest._
@@ -44,6 +44,7 @@
       games
       #kitty
       #libvirt
+      phosh
       #plasma._
       #remote
       root
