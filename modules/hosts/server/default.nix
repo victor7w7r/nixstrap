@@ -141,6 +141,12 @@
             home.file = {
               "shared".source = config.lib.file.mkOutOfStoreSymlink "/run/media/shared";
               "cloud".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/cloud";
+              "startwm.sh".text = ''
+                ${pkgs.runtimeShell}
+                . /etc/profile
+                ${pkgs.xfce4-session}/bin/xfce4-session
+              '';
+
               /*
                 ".xinitrc".text = ''
                 export XAUTHORITY=/home/${user.name}/.Xauthority
