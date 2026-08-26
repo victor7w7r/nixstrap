@@ -141,13 +141,14 @@
             home.file = {
               "shared".source = config.lib.file.mkOutOfStoreSymlink "/run/media/shared";
               "cloud".source = config.lib.file.mkOutOfStoreSymlink "/nix/persist/cloud";
-              /*".xinitrc".text = ''
-                export PATH="${pkgs.xfce4-session}/bin:$PATH"
+              /*
+                ".xinitrc".text = ''
                 export XAUTHORITY=/home/${user.name}/.Xauthority
                 export XDG_SESSION_TYPE=x11
                 export DESKTOP_SESSION=xfce
                 exec xfce4-session
-                '';*/
+                '';
+              */
             };
           };
       };

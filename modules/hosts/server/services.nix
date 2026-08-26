@@ -2,6 +2,15 @@
   den.aspects.server.services.nixos =
     { pkgs, ... }:
     {
+      environment.etc."xrdp/startwm.sh" = {
+        text = ''
+          ${pkgs.runtimeShell}
+          . /etc/profile
+          ${pkgs.xfce4-session}/bin/xfce4-session
+        '';
+        mode = "755";
+      };
+
       services = {
         fwupd.enable = true;
 
