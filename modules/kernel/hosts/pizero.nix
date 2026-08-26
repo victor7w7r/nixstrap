@@ -23,8 +23,8 @@
       patches =
         with kernel.patches.injector pkgs;
         sunxi
-        ++ (bunker.lts { isHardened = true; })
-        ++ (tachyon.lts { isVanilla = true; })
+        #++ (bunker.lts { isHardened = true; })
+        #++ (tachyon.lts { isVanilla = true; })
         ++ [ "${self}/modules/kernel/patches/fix-opi-zero2w-supplies.patch" ];
       src =
         kernel.patches.armbian.uwe5622 pkgs
