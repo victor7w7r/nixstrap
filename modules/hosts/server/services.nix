@@ -6,9 +6,10 @@
         text = ''
           ${pkgs.runtimeShell}
           . /etc/profile
-          ${pkgs.xfce4-session}/bin/xfce4-session
+          exec ${pkgs.xfce4-session}/bin/xfce4-session
         '';
         mode = "755";
+        force = true;
       };
 
       services = {
