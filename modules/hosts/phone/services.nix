@@ -3,6 +3,7 @@
     systemd.services.usb-moded-turn-off-rescue-mode.enable = false;
 
     services = {
+      fail2ban.enable = lib.mkForce false;
       bootmac = {
         enable = true;
         bluetooth.enable = true;

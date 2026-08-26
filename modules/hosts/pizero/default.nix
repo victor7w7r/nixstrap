@@ -146,10 +146,7 @@
                   .pizero-kernelPackages;
               };
 
-              services = {
-                displayManager.ly.enable = lib.mkForce false;
-                fail2ban.enable = lib.mkForce false;
-              };
+              services.fail2ban.enable = lib.mkForce false;
               system.autoUpgrade.enable = lib.mkForce false;
             };
         };

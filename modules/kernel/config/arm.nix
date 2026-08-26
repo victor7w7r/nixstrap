@@ -125,9 +125,9 @@
       ROCKCHIP_RGA2 = no;
       ROCKCHIP_RGA2_DEBUG = no;
       ROCKCHIP_RGA3 = yes;
-      RTC_DRV_HYM8563 = yes;
+      RTC_DRV_HYM8563 = module;
       RTC_DRV_RK630 = no;
-      SENSORS_PWM_FAN = yes;
+      SENSORS_PWM_FAN = module;
       SERDES_DISPLAY_CHIP_MAXIM_MAX96745 = no;
       SERDES_DISPLAY_CHIP_ROHM_BU18RL82 = no;
       SERDES_DISPLAY_CHIP_ROHM_BU18TL82 = no;
