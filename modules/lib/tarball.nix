@@ -14,6 +14,16 @@
         nixos =
           { config, pkgs, ... }:
           {
+
+            system.build.kernelFiles = pkgs.stdenvNoCC.mkDerivation {
+              name = "kernelFiles";
+              buildCommand = ''
+                mkdir -p $out
+                cp "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" $out/initrd
+                cp "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" $out/vmlinuz
+              '';
+            };
+
             system.build.bootFiles = pkgs.stdenvNoCC.mkDerivation {
               name = "bootFiles";
               nativeBuildInputs = with pkgs; [ zstd ] ++ additionalBuildInputs;
@@ -23,15 +33,6 @@
                   -c ${config.system.build.toplevel} -d firmware/boot
                 mv firmware/boot ./boot
                 tar -cv -C boot . | zstd -T$NIX_BUILD_CORES > $out/boot.tar.zst
-              '';
-            };
-
-            system.build.kernelFiles = pkgs.stdenvNoCC.mkDerivation {
-              name = "kernelFiles";
-              buildCommand = ''
-                mkdir -p $out
-                cp "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}" $out/initrd
-                cp "${config.boot.kernelPackages.kernel}/${config.system.boot.loader.kernelFile}" $out/vmlinuz
               '';
             };
 
@@ -59,6 +60,11 @@
                   mv root/store/nix/store/* root/store/ && rm -rf root/store/nix
                   chmod -R a-w root/store
                   tar --owner=0 --group=0 --numeric-owner -cv -C root . | zstd -T$NIX_BUILD_CORES > $out/store.tar.zst
+
+                  ${config.boot.loader.generic-extlinux-compatible.populateCmd} \
+                    -c ${config.system.build.toplevel} -d firmware/boot
+                  mv firmware/boot ./boot
+                  tar -cv -C boot . | zstd -T$NIX_BUILD_CORES > $out/boot.tar.zst
                 '');
             };
           };
