@@ -2,20 +2,12 @@
   den.aspects.server.services.nixos =
     { pkgs, ... }:
     {
-      environment.etc."static/xrdp/startwm.sh" = {
-        text = ''
-          ${pkgs.runtimeShell}
-          . /etc/profile
-          exec ${pkgs.xfce4-session}/bin/xfce4-session
-        '';
-      };
-
       services = {
         fwupd.enable = true;
 
         xrdp = {
           enable = true;
-          defaultWindowManager = "xfce4-session";
+          defaultWindowManager = "${pkgs.xfce.xfce4-session}/bin/xfce4-session";
           openFirewall = true;
         };
 
