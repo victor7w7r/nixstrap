@@ -136,7 +136,7 @@
           };
 
         provides.to-users.homeManager =
-          { config, ... }:
+          { config, pkgs, ... }:
           {
             home.file = {
               "shared".source = config.lib.file.mkOutOfStoreSymlink "/run/media/shared";
