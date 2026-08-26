@@ -26,7 +26,7 @@
             type = "disk";
             device = "/dev/disk/by-partlabel/system_a";
             imageName = "nixos-boot";
-            imageSize = "2G";
+            imageSize = "300M";
             content = esp.call {
               hasDefSectorSize = true;
               entireDisk = true;
@@ -36,7 +36,7 @@
             type = "disk";
             device = "/dev/disk/by-partlabel/userdata";
             imageName = "nixos-root";
-            imageSize = "48G";
+            imageSize = "32G";
             content = f2fs.call {
               hasDefSectorSize = true;
               entireDisk = true;

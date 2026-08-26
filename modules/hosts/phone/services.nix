@@ -7,7 +7,6 @@
       bootmac = {
         enable = true;
         bluetooth.enable = true;
-        wifi.enable = true;
       };
       buffyboard = {
         enable = true;
