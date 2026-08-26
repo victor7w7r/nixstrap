@@ -18,12 +18,12 @@
       };
 
       getty.autologinUser = "victor7w7r";
-      hexagonrpcd.sdsp.enable = false;
+      hexagonrpcd.sdsp.enable = true;
       msm-modem-uim-selection.enable = true;
-      rmtfs.enable = false;
+      rmtfs.enable = true;
       swclock-offset.enable = true;
       upower.enable = true;
-      tqftpserv.enable = false;
+      tqftpserv.enable = true;
 
       udev.extraRules = ''
         ACTION=="remove", GOTO="iio_sensor_proxy_end"

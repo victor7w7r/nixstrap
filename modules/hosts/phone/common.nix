@@ -145,7 +145,6 @@
           deviceTree.enable = true;
         };
 
-        networking.modemmanager.enable = true;
         systemd = {
           sockets.sshd.socketConfig.FreeBind = lib.mkIf config.services.openssh.startWhenNeeded true;
           package =

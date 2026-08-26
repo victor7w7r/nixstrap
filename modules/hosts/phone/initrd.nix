@@ -11,12 +11,12 @@
         includeDefaultModules = false;
         availableKernelModules = [ "sd_mod" ];
         kernelModules = [
+          "ath10k_core"
           "ath10k_snoc"
           "dm_mod"
           "qcom_spmi_haptics"
+          "qcom_q6v5_pas"
           "rmi_i2c"
-          "ufs-qcom"
-          "ufshcd-core"
         ];
 
         systemd = {
