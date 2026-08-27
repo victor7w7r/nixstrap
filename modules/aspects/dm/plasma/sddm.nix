@@ -57,7 +57,7 @@
             };
           };
 
-          services.displayManager = lib.mkForce {
+          services.displayManager = {
             sddm.settings.General.DisplayServer = "wayland";
             #generic.execCmd = "exec /run/current-system/sw/bin/sddm";
             sessionPackages = with pkgs.kdePackages; [ plasma-mobile ];
