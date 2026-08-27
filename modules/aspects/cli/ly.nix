@@ -3,7 +3,6 @@
     {
       lib,
       pkgs,
-      isHandheld,
       isMain,
       ...
     }:
@@ -47,9 +46,6 @@
             xinitrc = "null";
             tty = 1;
           }
-          (lib.mkIf isHandheld {
-            battery_id = "BAT0";
-          })
         ];
       };
     };
