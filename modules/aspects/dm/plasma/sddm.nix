@@ -10,6 +10,7 @@
     lib.mkMerge [
       {
         services.displayManager.sddm.enable = isHandheld || isPhone;
+        services.xserver.displayManager.lightdm.enable = false;
         environment.etc."xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
           Wayland."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
           Wayland.VirtualKeyboardEnabled = "true";
