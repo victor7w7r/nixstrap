@@ -44,7 +44,7 @@
       games
       #kitty
       #libvirt
-      phosh
+      plasma-mobile
       #plasma._
       #remote
       root
