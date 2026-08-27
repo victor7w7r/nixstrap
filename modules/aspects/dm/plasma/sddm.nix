@@ -78,6 +78,7 @@
             sddm = {
               package = lib.mkForce pkgs.kdePackages.sddm;
               #theme = "sddm-astronaut-theme";
+              sessionPackages = with pkgs.kdePackages; [ plasma-desktop ];
               wayland.enable = true;
               enableHidpi = true;
 
@@ -96,12 +97,10 @@
                     DisableAvatarsThreshold = 7;
                   };
                 */
-                /*
-                  Wayland = {
+                Wayland = {
                   CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod maliit-keyboard";
-                  EnableHiDPI = true;
-                  };
-                */
+                  Session = "plasmawayland";
+                };
                 Users = {
                   #DefaultPath = "/run/current-system/sw/bin";
                   RememberLastSession = true;
