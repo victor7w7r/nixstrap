@@ -90,7 +90,7 @@
               unset SSH_ASKPASS
               unset PROMPT_FIRST_TIME
               setopt shwordsplit
-              
+
               bindkey '^[[1;2B' down-line-or-history
               bindkey '^[[1;2A' up-line-or-history
               bindkey '^[[1;2C' forward-word
@@ -110,6 +110,12 @@
           ];
 
           bash.bashrcExtra = lib.mkMerge [
+            (lib.mkOrder 400 ''
+              if [[ $- == *i* ]] && [ -n "$SSH_CLIENT" ] && [ -x "$(command -v zsh)" ]; then
+                  export SHELL="$(command -v zsh)"
+                  exec zsh -l
+                fi
+            '')
             (lib.mkOrder 450 tmux-init)
             (lib.mkOrder 500 kitty)
             (lib.mkOrder 600 ''
