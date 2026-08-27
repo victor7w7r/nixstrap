@@ -9,27 +9,31 @@
     }:
     lib.mkMerge [
       {
-        services.displayManager.sddm.enable = isHandheld || isPhone;
-        services.xserver.displayManager.lightdm.enable = false;
-        environment.etc."xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
-          Wayland."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
-          Wayland.VirtualKeyboardEnabled = "true";
-          "org.kde.kdecoration2".NoPlugin = "true";
+        services = {
+          displayManager.sddm.enable = isHandheld || isPhone;
+          xserver.displayManager.lightdm.enable = false;
         };
-        systemPackages = with pkgs; [
-          (sddm-astronaut.override {
-            themeConfig = {
-              # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
-              background = pkgs.fetchurl {
-                url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
-                sha256 = "sha256-7CMuETntiVUCKhUIdJzX+sf3F47GvuX2a61o4xbEzww=";
+        environment = {
+          etc."xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
+            Wayland."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+            Wayland.VirtualKeyboardEnabled = "true";
+            "org.kde.kdecoration2".NoPlugin = "true";
+          };
+          systemPackages = with pkgs; [
+            (sddm-astronaut.override {
+              themeConfig = {
+                # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
+                background = pkgs.fetchurl {
+                  url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
+                  sha256 = "sha256-7CMuETntiVUCKhUIdJzX+sf3F47GvuX2a61o4xbEzww=";
+                };
+                ScreenWidth = 1920;
+                ScreenHeight = 1080;
+                blur = false;
               };
-              ScreenWidth = 1920;
-              ScreenHeight = 1080;
-              blur = false;
-            };
-          })
-        ];
+            })
+          ];
+        };
       }
       (lib.mkIf isPhone {
         environment = {
