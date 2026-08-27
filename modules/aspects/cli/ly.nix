@@ -17,7 +17,7 @@
       };
 
       services.displayManager.ly = {
-        enable = isHandheld || isMain;
+        enable = isMain;
         settings = lib.mkMerge [
           {
             animation = "gameoflife";

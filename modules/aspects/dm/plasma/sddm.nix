@@ -1,28 +1,35 @@
 {
   den.aspects.plasma.sddm.nixos =
     {
-      isGeneric,
+      isHandheld,
       isPhone,
       lib,
       pkgs,
       ...
     }:
     lib.mkMerge [
+      {
+        services.displayManager.sddm.enable = true;
+        environment.etc."xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
+          Wayland."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+          Wayland.VirtualKeyboardEnabled = "true";
+          "org.kde.kdecoration2".NoPlugin = "true";
+        };
+      }
       (lib.mkIf isPhone {
         environment = {
           etc = {
-            "xdg/kdeglobals".source = (pkgs.formats.ini { }).generate "kdeglobals" {
+            "xdg/kdeglobals".source = (pkgs.formats.ini {}).generate "kdeglobals" {
               KDE.LookAndFeelPackage = "org.kde.plasma.phone";
             };
 
-            "xdg/kwinrc".source = (pkgs.formats.ini { }).generate "kwinrc" {
-              Wayland."InputMethod[$e]" =
-                "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+            "xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
+              Wayland."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
               Wayland.VirtualKeyboardEnabled = "true";
               "org.kde.kdecoration2".NoPlugin = "true";
             };
           };
-          systemPackages = with pkgs; [
+        /*  systemPackages = with pkgs; [
             (sddm-astronaut.override {
               themeConfig = {
                 # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
@@ -35,16 +42,12 @@
                 blur = false;
               };
             })
-          ];
+            ];*/
         };
 
         services.displayManager = lib.mkForce {
-          sddm = {
-            enable = false;
-            settings.General.DisplayServer = "wayland";
-            package = lib.mkForce pkgs.kdePackages.sddm;
-          };
-          generic.execCmd = "exec /run/current-system/sw/bin/sddm";
+          sddm.settings.General.DisplayServer = "wayland";
+          #generic.execCmd = "exec /run/current-system/sw/bin/sddm";
           sessionPackages = with pkgs.kdePackages; [ plasma-mobile ];
           defaultSession = "plasma-mobile";
           autoLogin = {
@@ -58,17 +61,7 @@
           package = pkgs.kdePackages.kwallet-pam;
         };
       })
-      (lib.mkIf isGeneric {
-        systemd.services.sddm.environment = {
-          QT_IM_MODULE = "qtvirtualkeyboard";
-          QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = "0";
-        };
-
-        environment.etc."sddm.conf.d/virtual-keyboard.conf".text = ''
-          [General]
-          InputMethod=qtvirtualkeyboard
-        '';
-
+      (lib.mkIf isHandheld {
         services.displayManager = {
           defaultSession = "plasma";
           sddm = {

@@ -8,7 +8,7 @@
   den.aspects.plasma.default-packages = {
     nixos =
       {
-        hasVisualKeyboard,
+        isHandheld,
         lib,
         pkgs,
         ...
@@ -48,30 +48,30 @@
               qtstyleplugin-kvantum
               sddm-kcm
               sweeper
+              qtquick3d
               inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
               pkgs.application-title-bar
-              pkgs.qt5.qtquickcontrols2
-              pkgs.qt5.qtgraphicaleffects
-              qtquick3d
-              qtvirtualkeyboard
-              pkgs.heaptrack
               pkgs.ffmpegthumbnailer
-              pkgs.kurve
               pkgs.graphviz
+              pkgs.heaptrack
               pkgs.icoextract
               pkgs.icoutils
               pkgs.kdiff3
               pkgs.kdiskmark
               pkgs.krita
               pkgs.krusader
+              pkgs.kurve
               pkgs.maliit-keyboard
-              pkgs.onboard
-              pkgs.qpwgraph
+              pkgs.maliit-keyboard
               pkgs.okteta
+              pkgs.onboard
               pkgs.pinentry-qt
+              pkgs.qpwgraph
+              pkgs.qt5.qtgraphicaleffects
+              pkgs.qt5.qtquickcontrols2
               pkgs.systemdgenie
             ]
-            ++ (lib.optionals hasVisualKeyboard [
+            ++ (lib.optionals isHandheld [
               pkgs.krename
               pkgs.kdePackages.isoimagewriter
               pkgs.ulauncher
@@ -96,8 +96,8 @@
             kzones
             layan
             maxwell
-            plasma-drawer
             panel-spacer-extended
+            plasma-drawer
             sticky-window-snapping
             virtual-desktops-only-on-primary
             wallpaper-effects
