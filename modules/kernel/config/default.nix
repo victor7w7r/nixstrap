@@ -147,7 +147,7 @@
             PCIE_ROCKCHIP_EP = yes;
             PHY_ROCKCHIP_SNPS_PCIE3 = yes;
             PM_DOMAINS = yes;
-            R8169 = no;
+            R8169 = yes;
             ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
