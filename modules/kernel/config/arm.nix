@@ -211,7 +211,6 @@
       HYPERV = lib.mkForce no;
       IFCVF = no;
       MT7921_COMMON = no;
-      MTD_CFI = no;
       MTD_CFI_AMDSTD = no;
       MTD_CFI_UTIL = no;
       MTD_COMPLEX_MAPPINGS = no;
