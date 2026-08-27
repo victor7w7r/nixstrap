@@ -1,10 +1,9 @@
-{ inputs, lib, ... }: {
-  den.aspects.pizero-test.passbolt.nixos = { pkgs, ... }: {
+{ inputs, ... }: {
+  den.aspects.pizero.passbolt.nixos = { pkgs, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
       identityPaths = [ "/etc/ssh/id_ed25519" ];
-      secrets.tailnet.file = ../server/secrets/tailnet.age;
     };
 
     systemd = {
@@ -13,17 +12,9 @@
         "d /nix/persist/passbolt/jwt 0770 1000 1000 - -"
         "d /nix/persist/passbolt/mariadb 0770 1000 1000 - -"
       ];
+
       services = {
-        tailscaled-autoconnect.serviceConfig = {
-          Type = lib.mkForce "exec";
-        };
-        tailscaled = {
-          after = [ "systemd-resolved.service" ];
-          wants = [ "systemd-resolved.service" ];
-          environment = {
-            TS_LOG_LEVEL = "0";
-          };
-        };
+        tailscaled.environment.TS_LOG_LEVEL = "0";
         funnel = {
           wantedBy = [ "multi-user.target" ];
           after = [ "tailscaled.service" ];

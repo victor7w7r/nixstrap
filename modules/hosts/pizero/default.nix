@@ -86,10 +86,18 @@
             }:
             {
               networking.hostName = "v7w7r-opizero2w";
-              environment.persistence."/nix/persist".users = {
-                "victor7w7r".directories = [ ".cache" ];
-                root.directories = [ ".cache" ];
+              environment.persistence."/nix/persist" = {
+                directories = [
+                  "/var/lib/containers"
+                  "/var/cache"
+                  "/var/tmp"
+                ];
+                users = {
+                  "victor7w7r".directories = [ ".cache" ];
+                  root.directories = [ ".cache" ];
+                };
               };
+
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
 
               hardware = {

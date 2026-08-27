@@ -1,6 +1,6 @@
 {
   den.aspects.remote = {
-    nixos = {
+    nixos = { isPiZero, ... }: {
       systemd.services.tailscaled = {
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
@@ -8,7 +8,7 @@
 
       services = {
         #aria2.enable = true; NEEDS KEY
-        croc.enable = true;
+        croc.enable = !isPiZero;
         tailscale = {
           enable = true;
           openFirewall = true;
