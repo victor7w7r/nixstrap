@@ -75,10 +75,10 @@
         })
         (lib.mkIf isHandheld {
           services.displayManager = {
+            sessionPackages = with pkgs.kdePackages; [ plasma-desktop ];
             sddm = {
               package = lib.mkForce pkgs.kdePackages.sddm;
               #theme = "sddm-astronaut-theme";
-              sessionPackages = with pkgs.kdePackages; [ plasma-desktop ];
               wayland.enable = true;
               enableHidpi = true;
 
