@@ -8,9 +8,12 @@
         mountpoint,
         entireDisk ? false,
         hasDefSectorSize ? false,
+        highEnd ? true,
         size ? null,
       }:
-      (disko.f2fs.args name hasDefSectorSize)
+      (disko.f2fs.args {
+        inherit name hasDefSectorSize highEnd;
+      })
       |> (args: {
         inherit mountpoint;
         type = "filesystem";
@@ -34,25 +37,30 @@
           content
       );
 
-    args = name: hasDefSectorSize: {
+    args = {
+      name ? "",
+      hasDefSectorSize ? false,
+      highEnd ? true
+    }: {
       mountOptions = [
         "lazytime"
         "noatime"
-        "compress_chksum"
-        "compress_algorithm=zstd"
-        "age_extent_cache"
-        "compress_extension=so"
         "inline_xattr"
         "inline_data"
         "inline_dentry"
         "errors=remount-ro"
-        "compress_extension=bin"
-        "atgc"
         "flush_merge"
-        "discard"
         "checkpoint_merge"
         "gc_merge"
-      ];
+      ] ++ (lib.optionals highEnd [
+        "atgc"
+        "age_extent_cache"
+        "compress_chksum"
+        "compress_algorithm=zstd"
+        "compress_extension=bin"
+        "compress_extension=so"
+        "discard"
+      ]);
       extraArgs = [
         "-f"
         "-O"

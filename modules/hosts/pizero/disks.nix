@@ -9,7 +9,27 @@
         fsType = "f2fs";
         depends = [ "/nix" ];
         neededForBoot = true;
-        options = (f2fs.args "system" false).mountOptions;
+        options = (f2fs.args { highEnd = false; }).mountOptions;
+      };
+      "/home/victor7w7r/.cache" = {
+        device = "/nix/victor7w7r/.cache";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+      "/root/.cache" = {
+        device = "/nix/root/.cache";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+      "/var/cache" = {
+        device = "/nix/var/cache";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+      "/var/tmp" = {
+        device = "/nix/var/tmp";
+        fsType = "none";
+        options = [ "bind" ];
       };
       "/tmp" = {
         device = "/nix/tmp";
