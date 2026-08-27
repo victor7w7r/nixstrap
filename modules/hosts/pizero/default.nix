@@ -57,6 +57,7 @@
             pizero._
 
             cli._
+            containers
             dev.mise
             dev.tools
             dev.ccache

@@ -1,5 +1,5 @@
 {
-  den.aspects.cli.podman =
+  den.aspects.containers =
     { user, ... }:
     {
       nixos =
@@ -35,7 +35,7 @@
               #self'.packages.supdock
             ];
           };
-          virtualisation.podman = {
+         /* virtualisation.podman = {
             enable = true;
             autoPrune.enable = true;
             dockerCompat = true;
@@ -51,7 +51,7 @@
               slirp4netns
               skopeo
             ];
-          };
+            };*/
         };
 
       provides.to-users.homeManager =
