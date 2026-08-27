@@ -46,6 +46,7 @@
       #https://github.com/poetaman/arttime
       zsh = {
         autocd = true;
+        enable = true;
         enableCompletion = true;
         autosuggestion.enable = true;
 
