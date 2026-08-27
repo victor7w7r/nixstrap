@@ -9,7 +9,7 @@
         services.xserver.enable = true;
         services.displayManager.defaultSession = "plasma-mobile";
         services.displayManager.sessionPackages = [pkgs.kdePackages.plasma-mobile];
-        environment.etc."xdg/kdeglobals".source = ini.generate "kdeglobals" {
+        environment.etc."xdg/kdeglobals".source = (pkgs.formats.ini {}).generate "kdeglobals" {
           KDE.LookAndFeelPackage = "org.kde.plasma.phone";
         };
         environment.etc."xdg/kwinrc".source = (pkgs.formats.ini {}).generate "kwinrc" {
