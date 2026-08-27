@@ -10,16 +10,6 @@
       }:
       lib.mkMerge [
         {
-          nixpkgs.overlays = [
-            (final: prev: {
-              sddm = prev.sddm.overrideAttrs (oldAttrs: {
-                postInstall = (oldAttrs.postInstall or "") + ''
-                  substituteInPlace $out/share/sddm/scripts/wayland-session \
-                    --replace-fail 'SDDM_USER_SHELL=$SHELL' 'SDDM_USER_SHELL=${prev.bash}/bin/bash'
-                '';
-              });
-            })
-          ];
           services.displayManager.sddm.enable = isHandheld || isPhone;
           environment = {
             etc."xdg/kwinrc".source = (pkgs.formats.ini { }).generate "kwinrc" {

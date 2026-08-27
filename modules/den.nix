@@ -25,6 +25,5 @@
     <den/define-user>
     <den/primary-user>
     <den/mutual-provider>
-    (<den/user-shell> "zsh")
   ];
 }

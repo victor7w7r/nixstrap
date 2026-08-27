@@ -10,6 +10,7 @@
       {
         environment = lib.mkMerge [
           {
+            programs.zsh.enable = true;
             pathsToLink = [ "/share/zsh" ];
           }
           (lib.mkIf isPersistent {
