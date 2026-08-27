@@ -23,7 +23,7 @@
 
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce.xfce4-session}/bin/startxfce4
+              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
             |> (session: "exec ${session}");
           openFirewall = true;
