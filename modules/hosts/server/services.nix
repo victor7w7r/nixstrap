@@ -23,7 +23,18 @@
 
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
+              if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+                export XDG_RUNTIME_DIR="/tmp/run-user-$USER_UID"
+                mkdir -p "$XDG_RUNTIME_DIR"
+                chmod 700 "$XDG_RUNTIME_DIR"
+              fi
+
+              if [ -S "$XDG_RUNTIME_DIR/bus" ]; then
+                export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+                exec ${pkgs.xfce4-session}/bin/startxfce4
+              else
+                exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
+              fi
             ''
             |> (session: "exec ${session}");
           openFirewall = true;
