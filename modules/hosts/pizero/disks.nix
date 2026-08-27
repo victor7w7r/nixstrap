@@ -14,16 +14,19 @@
       "/home/victor7w7r/.cache" = {
         device = "/nix/victor7w7r/.cache";
         fsType = "none";
+        neededForBoot = true;
         options = [ "bind" ];
       };
       "/root/.cache" = {
         device = "/nix/root/.cache";
         fsType = "none";
+        neededForBoot = true;
         options = [ "bind" ];
       };
       "/var/cache" = {
         device = "/nix/var/cache";
         fsType = "none";
+        neededForBoot = true;
         options = [ "bind" ];
       };
       "/var/tmp" = {
