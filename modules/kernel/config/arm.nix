@@ -37,7 +37,7 @@
         HAVE_SETUP_PER_CPU_AREA = setupDenial isDenied yes;
         I2C_MUX_PCA954x = setupDenial isDenied module;
         I3C = setupDenial isDenied module;
-        MTD = setupDenial isDenied module;
+        MTD = lib.mkForce (setupDenial isDenied yes);
         MTD_OF_PARTS = setupDenial isDenied yes;
         MTD_BLKDEVS = setupDenial isDenied yes;
         MTD_BLOCK = setupDenial isDenied yes;
