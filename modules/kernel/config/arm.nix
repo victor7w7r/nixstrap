@@ -23,6 +23,7 @@
         ARCH_HAS_DMA_OPS = setupDenial isDenied yes;
         ARCH_HAS_NONLEAF_PMD_YOUNG = setupDenial isDenied yes;
         ARCH_HAS_SUBPAGE_FAULTS = setupDenial isDenied yes;
+        ARM64_MTE = setupDenial isDenied yes;
         COMMON_CLK_PWM = setupDenial isDenied yes;
         CRYPTO_DES = setupDenial isDenied yes;
         CRYPTO_LZ4 = setupDenial isDenied yes;
@@ -34,11 +35,20 @@
         GPIO_GENERIC_PLATFORM = setupDenial isDenied module;
         GPIO_REGMAP = setupDenial isDenied yes;
         HAVE_SETUP_PER_CPU_AREA = setupDenial isDenied yes;
+        I2C_MUX_PCA954x = setupDenial isDenied module;
         I3C = setupDenial isDenied module;
+        MTD = setupDenial isDenied module;
+        MTD_OF_PARTS = setupDenial isDenied yes;
+        MTD_BLKDEVS = setupDenial isDenied yes;
+        MTD_BLOCK = setupDenial isDenied yes;
+        MTD_SPI_NOR = setupDenial isDenied yes;
+        MTD_SPI_NOR_USE_4K_SECTORS = setupDenial isDenied yes;
+        MTD_SPI_NOR_SWP_DISABLE_ON_VOLATILE = setupDenial isDenied yes;
         MUX_GPIO = setupDenial isDenied module;
         NVMEM_U_BOOT_ENV = setupDenial isDenied yes;
         NEED_PER_CPU_EMBED_FIRST_CHUNK = setupDenial isDenied yes;
         NEED_PER_CPU_PAGE_FIRST_CHUNK = setupDenial isDenied yes;
+        NODES_SHIFT = setupDenial isDenied yes;
         NVMEM_ROCKCHIP_OTP = setupDenial isDenied yes;
         NVMEM_ROCKCHIP_SEC_OTP = setupDenial isDenied yes;
         PCI_ENDPOINT = setupDenial isDenied yes;
@@ -50,6 +60,7 @@
         REGULATOR_FAN53555 = setupDenial isDenied yes;
         REGULATOR_GPIO = setupDenial isDenied yes;
         SCSI_MPT3SAS = setupDenial isDenied module;
+        SCHED_CLUSTER = setupDenial isDenied yes;
       };
 
     sunxi = { }: {
@@ -155,7 +166,6 @@
       ARM64_ERRATUM_845719 = no;
       ARM64_GCS = no;
       ARM64_LSUI = no;
-      ARM64_MTE = no;
       ARM64_PMEM = lib.mkForce no;
       ARM64_POE = no;
       ARM64_SME = no;
@@ -201,6 +211,12 @@
       HYPERV = lib.mkForce no;
       IFCVF = no;
       MT7921_COMMON = no;
+      MTD_CFI = no;
+      MTD_CFI_AMDSTD = no;
+      MTD_CFI_UTIL = no;
+      MTD_COMPLEX_MAPPINGS = no;
+      MTD_GEN_PROBE = no;
+      MTD_HYPERBUS = no;
       MV_XOR_V2 = no;
       NVIDIA_CARMEL_CNP_ERRATUM = no;
       OCTEONEP_VDPA = no;

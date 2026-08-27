@@ -170,7 +170,6 @@
         I2C_MUX_LTC4306 = no;
         I2C_MUX_MLXCPLD = no;
         I2C_MUX_PCA9541 = no;
-        I2C_MUX_PCA954x = no;
         I2C_MUX_REG = no;
         I2C_NFORCE2 = no;
         I2C_NVIDIA_GPU = no;

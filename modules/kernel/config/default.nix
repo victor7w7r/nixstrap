@@ -148,9 +148,6 @@
             PHY_ROCKCHIP_SNPS_PCIE3 = yes;
             PM_DOMAINS = yes;
             R8169 = no;
-            REGULATOR_RK806 = module;
-            REGULATOR_RK8XX = yes;
-            RESET_ROCKCHIP = yes;
             ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
