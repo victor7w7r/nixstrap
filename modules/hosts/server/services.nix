@@ -7,7 +7,7 @@
 
         xrdp = {
           enable = true;
-          defaultWindowManager = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/xfce4-session";
+          defaultWindowManager = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce.startxfce4}/bin/startxfce4";
           openFirewall = true;
         };
 
