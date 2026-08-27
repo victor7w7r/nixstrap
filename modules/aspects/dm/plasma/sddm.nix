@@ -16,6 +16,20 @@
           Wayland.VirtualKeyboardEnabled = "true";
           "org.kde.kdecoration2".NoPlugin = "true";
         };
+        systemPackages = with pkgs; [
+          (sddm-astronaut.override {
+            themeConfig = {
+              # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
+              background = pkgs.fetchurl {
+                url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
+                sha256 = "sha256-7CMuETntiVUCKhUIdJzX+sf3F47GvuX2a61o4xbEzww=";
+              };
+              ScreenWidth = 1920;
+              ScreenHeight = 1080;
+              blur = false;
+            };
+          })
+        ];
       }
       (lib.mkIf isPhone {
         environment = {
@@ -30,20 +44,6 @@
               "org.kde.kdecoration2".NoPlugin = "true";
             };
           };
-        /*  systemPackages = with pkgs; [
-            (sddm-astronaut.override {
-              themeConfig = {
-                # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
-                background = pkgs.fetchurl {
-                  url = "https://wrothmir.is-a.dev/records/records-on-nixos/record-on-getting-started/images/featured-image.png";
-                  sha256 = "sha256-7CMuETntiVUCKhUIdJzX+sf3F47GvuX2a61o4xbEzww=";
-                };
-                ScreenWidth = 1920;
-                ScreenHeight = 1080;
-                blur = false;
-              };
-            })
-            ];*/
         };
 
         services.displayManager = lib.mkForce {
@@ -91,10 +91,6 @@
               };
               Users = {
                 DefaultPath = "/run/current-system/sw/bin";
-                HideShells = "";
-                HideUsers = "";
-                MaximumUid = 60513;
-                MinimumUid = 1000;
                 RememberLastSession = true;
                 RememberLastUser = true;
                 ReuseSession = false;
