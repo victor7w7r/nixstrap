@@ -76,9 +76,10 @@
         (lib.mkIf isHandheld {
           services.displayManager = {
             sddm = {
-              #package = lib.mkForce pkgs.kdePackages.sddm;
+              package = lib.mkForce pkgs.kdePackages.sddm;
               #theme = "sddm-astronaut-theme";
               wayland.enable = true;
+              enableHidpi = true;
 
               settings = {
                 General = {
