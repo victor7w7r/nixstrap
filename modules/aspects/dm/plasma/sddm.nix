@@ -19,7 +19,7 @@
             Wayland.VirtualKeyboardEnabled = "true";
             "org.kde.kdecoration2".NoPlugin = "true";
           };
-          systemPackages = with pkgs; [
+       /*  systemPackages = with pkgs; [
             (sddm-astronaut.override {
               themeConfig = {
                 # https://github.com/Keyitdev/sddm-astronaut-theme/blob/master/Themes/astronaut.conf
@@ -32,7 +32,7 @@
                 blur = false;
               };
             })
-          ];
+            ];*/
         };
       }
       (lib.mkIf isPhone {
@@ -70,7 +70,7 @@
         services.displayManager = {
           defaultSession = "plasma";
           sddm = {
-            theme = "sddm-astronaut-theme";
+            #theme = "sddm-astronaut-theme";
             wayland = {
               enable = true;
               compositor = "kwin";
@@ -81,20 +81,20 @@
                 GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
                 InputMethod = "qtvirtualkeyboard";
               };
-              Theme = {
+              /*Theme = {
                 theme = "sddm-astronaut-theme";
                 ThemeDir = "/run/current-system/sw/share/sddm/themes";
                 FacesDir = "/var/lib/AccountsService/icons";
                 Font = "Ubuntu Nerd Font";
                 EnableAvatars = true;
                 DisableAvatarsThreshold = 7;
-              };
-              Wayland = {
+              };*/
+              /*Wayland = {
                 CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod maliit-keyboard";
                 EnableHiDPI = true;
-              };
+                };*/
               Users = {
-                DefaultPath = "/run/current-system/sw/bin";
+                #DefaultPath = "/run/current-system/sw/bin";
                 RememberLastSession = true;
                 RememberLastUser = true;
                 ReuseSession = false;
