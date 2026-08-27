@@ -89,7 +89,8 @@
               unsetopt LIST_BEEP
               unset SSH_ASKPASS
               unset PROMPT_FIRST_TIME
-
+              setopt shwordsplit
+              
               bindkey '^[[1;2B' down-line-or-history
               bindkey '^[[1;2A' up-line-or-history
               bindkey '^[[1;2C' forward-word

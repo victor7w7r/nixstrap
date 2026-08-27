@@ -49,8 +49,7 @@
               };
 
               "xdg/kwinrc".source = (pkgs.formats.ini { }).generate "kwinrc" {
-                Wayland."InputMethod[$e]" =
-                  "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+                Wayland."InputMethod[$e]" = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
                 Wayland.VirtualKeyboardEnabled = "true";
                 "org.kde.kdecoration2".NoPlugin = "true";
               };
@@ -80,7 +79,7 @@
               #theme = "sddm-astronaut-theme";
               wayland.enable = true;
               enableHidpi = true;
-
+              extraPackages = [ pkgs.maliit-keyboard ];
               settings = {
                 General = {
                   #GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
@@ -97,8 +96,8 @@
                   };
                 */
                 Wayland = {
-                  CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod maliit-keyboard";
-                  Session = "plasmawayland";
+                  CompositorCommand = "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-lockscreen --inputmethod ${pkgs.maliit-keyboard}/bin/maliit-keyboard";
+                  Session = "plasma";
                 };
                 Users = {
                   #DefaultPath = "/run/current-system/sw/bin";
