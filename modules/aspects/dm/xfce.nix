@@ -44,7 +44,6 @@
             pavucontrol
             ristretto
             xfce4-notifyd
-            xfce4-session
             xfce4-screensaver
             xfce4-screenshooter
             xfce4-terminal
