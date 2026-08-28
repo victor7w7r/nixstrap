@@ -40,7 +40,10 @@
         */
         system = {
           device = "/dev/disk/by-partlabel/disk-main-system";
-          crypttabExtraOpts = [ "fido2-device=auto" ];
+          crypttabExtraOpts = [
+            "fido2-device=auto"
+            "x-systemd.device-timeout=30s"
+          ];
         };
       };
     };
