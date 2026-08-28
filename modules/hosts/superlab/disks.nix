@@ -6,14 +6,14 @@
       "/nix/persist".neededForBoot = true;
       "/etc".neededForBoot = true;
     };
-    #boot.resumeDevice = "/dev/mapper/swapcrypt";
+    /*boot.resumeDevice = "/dev/mapper/swapcrypt";
     swapDevices = [
       {
         device = "/dev/mapper/swapcrypt";
         discardPolicy = "both";
         options = [ "nofail" ];
       }
-    ];
+    ];*/
     disko.devices.disk = with disko; {
       root = disk.root { };
       main = disk.gpt {
