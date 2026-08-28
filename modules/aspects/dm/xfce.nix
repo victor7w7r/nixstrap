@@ -63,6 +63,7 @@
               gigolo
               xarchiver
               xfce4-appfinder
+              xfce4-session
               xfce4-clipman-plugin
               xfce4-cpufreq-plugin
               xfce4-cpugraph-plugin
