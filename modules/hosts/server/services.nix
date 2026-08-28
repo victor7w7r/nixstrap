@@ -8,50 +8,6 @@
         xrdp = {
           enable = true;
           defaultWindowManager =
-            with pkgs;
-            /*
-              [
-                dejavu_fonts
-                desktop-file-utils
-                fontconfig
-                garcon
-                gsettings-desktop-schemas
-                hicolor-icon-theme
-                nerd-fonts.ubuntu
-                shared-mime-info
-                thunar
-                tumbler
-                xfce4-appfinder
-                xfce4-clipman-plugin
-                xfce4-cpufreq-plugin
-                xfce4-cpugraph-plugin
-                xfce4-diskperf-plugin
-                xfce4-fsguard-plugin
-                xfce4-genmon-plugin
-                xfce4-mount-plugin
-                xfce4-netload-plugin
-                xfce4-panel
-                xfce4-panel-profiles
-                xfce4-sensors-plugin
-                xfce4-session
-                xfce4-systemload-plugin
-                xfce4-taskmanager
-                xfce4-whiskermenu-plugin
-                xfce4-xkb-plugin
-                xfconf
-                xfdesktop
-                xfwm4
-              ]
-              |> (
-                paths:
-                pkgs.buildEnv {
-                  name = "xrdp-xfce-env";
-                  inherit paths;
-                }
-              )
-              |> (
-              env:
-            */
             pkgs.writeShellScript "xrdp-xfce-session" ''
               exec > /tmp/xrdp-debug.log 2>&1
               set -x
@@ -64,16 +20,8 @@
               export NIXOS_OZONE_WL=0
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-
               exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
-            #)
-            #export FONTCONFIG_FILE="/etc/fonts/fonts.conf"
-            #export FONTCONFIG_PATH="/etc/fonts"
-            #export GSETTINGS_BACKEND="keyfile"
-            #export PATH="${env}/bin:$PATH"
-            #export XDG_DATA_DIRS="${env}/share:/run/current-system/sw/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
-            #export XDG_CONFIG_DIRS="${env}/etc/xdg:/run/current-system/sw/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
             |> (session: "exec ${session}");
           openFirewall = true;
         };

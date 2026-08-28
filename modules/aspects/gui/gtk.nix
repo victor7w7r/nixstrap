@@ -3,7 +3,6 @@
     { pkgs, ... }:
     {
       gtk = {
-        #appmenu-gtk-module
         enable = true;
         font = {
           name = "JetBrainsMono Nerd Font";
@@ -21,12 +20,11 @@
             colorVariants = [ "purple" ];
           };
         };
-        /*
-          theme = {
+        theme = {
           name = "Layan-Dark";
           package = pkgs.layan-gtk-theme;
-          };
-        */
+        };
+
         gtk2.extraConfig = "
   				gtk-primary-button-wraps-slider = 1
   				gtk-toolbar-style = 3
@@ -45,7 +43,7 @@
 
       home.packages = with pkgs; [
         dconf
-        #layan-gtk-theme
+        layan-gtk-theme
         (colloid-icon-theme.override {
           schemeVariants = [ "catppuccin" ];
           colorVariants = [ "purple" ];
