@@ -15,7 +15,10 @@
               echo "User: $USER"
               echo "Path: $PATH"
 
-              export PATH="${pkgs.xfce4-session}/bin:${pkgs.xfce4-panel}/bin:$PATH"
+              export XDG_CONFIG_DIRS="${pkgs.xfce4-session}/etc/xdg:${pkgs.xfce.libxfce4ui}/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
+              export XDG_DATA_DIRS="${pkgs.xfce4-session}/share:${pkgs.xfce.xfconf}/share:${pkgs.xfce.xfce4-panel}/share:${pkgs.hicolor-icon-theme}/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+
+              export PATH="${pkgs.xfce4-session}/bin:${pkgs.xfce4-panel}/bin:${pkgs.xfconf}/bin:$PATH"
               export XDG_SESSION_TYPE=x11
               export XDG_CURRENT_DESKTOP=XFCE
               export DESKTOP_SESSION=xfce
@@ -24,7 +27,7 @@
               export NIXOS_OZONE_WL=0
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              ${pkgs.xfce4-session}/bin/startxfce4
+              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
             |> (session: "exec ${session}");
           openFirewall = true;
