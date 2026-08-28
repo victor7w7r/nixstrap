@@ -20,7 +20,7 @@
               export NIXOS_OZONE_WL=0
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              exec ${pkgs.dbus}/bin/dbus-run-session -- ${pkgs.xfce4-session}/bin/xfce4-session
+              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
             |> (session: "exec ${session}");
           openFirewall = true;
