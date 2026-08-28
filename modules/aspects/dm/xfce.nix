@@ -54,35 +54,35 @@
             with self'.packages;
             [
               blueman
+              catfish
               deja-dup
               epiphany
+              gigolo
+              gtkhash-thunar
+              thunar-custom-actions
+              thunar-shares-plugin
+              xarchiver
               xarchiver
               xclip
-              xsel
-              catfish
-              gigolo
-              xarchiver
               xfce4-appfinder
-              xfce4-session
               xfce4-clipman-plugin
               xfce4-cpufreq-plugin
               xfce4-cpugraph-plugin
+              xfce4-diskperf-plugin
               xfce4-fsguard-plugin
               xfce4-genmon-plugin
+              xfce4-mount-plugin
               xfce4-netload-plugin
               xfce4-panel
               xfce4-panel-profiles
-              xfce4-taskmanager
               xfce4-sensors-plugin
+              xfce4-session
               xfce4-systemload-plugin
+              xfce4-taskmanager
               xfce4-whiskermenu-plugin
               xfce4-xkb-plugin
               xfdashboard
-              thunar-shares-plugin
-              gtkhash-thunar
-              thunar-custom-actions
-              xfce4-diskperf-plugin
-              xfce4-mount-plugin
+              xsel
             ];
         };
       };
@@ -91,17 +91,15 @@
       qt.enable = false;
       xfconf.settings = {
         xsettings = {
-          "Gtk/MonospaceFontName" = "UbuntuMono Nerd Font 11";
-          "Gtk/FontName" = "Ubuntu Nerd Font 10";
+          "Gtk/CursorThemeName" = "Capitaine Cursors";
+          "Gtk/DecorationLayout" = "close,minimize,maximize:";
           "Net/IconThemeName" = "Colloid-Purple-Catppuccin-Dark";
-          "Net/ThemeName" = "Layan-Dark";
+          #"Gtk/FontName" = "Ubuntu Nerd Font 10";
+          #"Gtk/MonospaceFontName" = "UbuntuMono Nerd Font 11";
+          #"Net/ThemeName" = "Layan-Dark";
         };
         xfwm4 = {
-          "general/theme" = "Layan-Dark";
-        };
-        xfce4-power-manager = {
-          "lid-action-on-ac" = 1;
-          "lock-screen-suspend-hibernate" = false;
+          "general/button_layout" = "CHM|T";
         };
         xfce4-desktop = {
           "desktop-icons/style" = 1;

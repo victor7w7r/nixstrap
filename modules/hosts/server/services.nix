@@ -8,44 +8,25 @@
         xrdp = {
           enable = true;
           defaultWindowManager =
-            pkgs.symlinkJoin {
-              name = "xfce-env";
-              paths = with pkgs; [
-                xfce4-session
-                xfce4-panel
-                xfdesktop
-                xfwm4
-                xfce4-settings
-                xfconf
-                garcon
-                libxfce4ui
-                xfce4-appfinder
-                hicolor-icon-theme
-                adwaita-icon-theme
-                gsettings-desktop-schemas
-              ];
-            }
-            |> (
-              xfceEnv:
-              pkgs.writeShellScript "xrdp-xfce-session" ''
-                exec > /tmp/xrdp-debug.log 2>&1
-                set -x
 
-                export PATH="${xfceEnv}/bin:$PATH"
-                export XDG_DATA_DIRS="${xfceEnv}/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
-                export XDG_CONFIG_DIRS="${xfceEnv}/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
+            pkgs.writeShellScript "xrdp-xfce-session" ''
+              exec > /tmp/xrdp-debug.log 2>&1
+              set -x
 
-                export XDG_SESSION_TYPE=x11
-                export XDG_CURRENT_DESKTOP=XFCE
-                export DESKTOP_SESSION=xfce
-                export GDK_BACKEND=x11
-                export QT_QPA_PLATFORM=xcb
-                export NIXOS_OZONE_WL=0
-                export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+              if [ -f /etc/set-environment ]; then
+              . /etc/set-environment
+              fi
 
-                exec ${pkgs.dbus}/bin/dbus-run-session ${xfceEnv}/bin/startxfce4
-              ''
-            )
+              export XDG_SESSION_TYPE=x11
+              export XDG_CURRENT_DESKTOP=XFCE
+              export DESKTOP_SESSION=xfce
+              export GDK_BACKEND=x11
+              export QT_QPA_PLATFORM=xcb
+              export NIXOS_OZONE_WL=0
+              export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
+              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce.startxfce4}/bin/startxfce4
+            ''
             |> (session: "exec ${session}");
           openFirewall = true;
         };
