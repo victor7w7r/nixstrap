@@ -15,6 +15,7 @@
               echo "User: $USER"
               echo "Path: $PATH"
 
+              export PATH="${pkgs.xfce4-session}/bin:${pkgs.xfce4-panel}/bin:$PATH"
               export XDG_SESSION_TYPE=x11
               export XDG_CURRENT_DESKTOP=XFCE
               export DESKTOP_SESSION=xfce
