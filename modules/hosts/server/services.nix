@@ -7,7 +7,8 @@
 
         xrdp = {
           enable = true;
-          defaultWindowManager =
+          defaultWindowManager = "${pkgs.xfce4-session}/bin/xfce4-session";
+          /*defaultWindowManager =
             pkgs.writeShellScript "xrdp-xfce-session" ''
               exec > /tmp/xrdp-debug.log 2>&1
               set -x
@@ -24,7 +25,7 @@
 
               exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
-            |> (session: "exec ${session}");
+            |> (session: "exec ${session}");*/
           openFirewall = true;
         };
 
