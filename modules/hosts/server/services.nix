@@ -7,7 +7,7 @@
 
         xrdp = {
           enable = true;
-          defaultWindowManager = "${pkgs.xfce4-session}/bin/xfce4-session";
+          defaultWindowManager = "startxfce4";
           /*defaultWindowManager =
             pkgs.writeShellScript "xrdp-xfce-session" ''
               exec > /tmp/xrdp-debug.log 2>&1
