@@ -13,9 +13,7 @@
               exec > /tmp/xrdp-debug.log 2>&1
               set -x
 
-              if [ -f /etc/set-environment ]; then
-              . /etc/set-environment
-              fi
+              . /etc/profile
 
               export XDG_SESSION_TYPE=x11
               export XDG_CURRENT_DESKTOP=XFCE
