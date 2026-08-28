@@ -5,6 +5,11 @@
       {
         security.pam.services.gdm.enableGnomeKeyring = true;
 
+        fonts.packages = with pkgs; [
+          jetbrains-mono
+          ubuntu-sans
+        ];
+
         programs = {
           dconf.enable = true;
           thunar = {
@@ -58,8 +63,6 @@
               deja-dup
               epiphany
               gigolo
-              jetbrains-mono
-              ubuntu-sans
               #gtkhash-thunar
               #thunar-custom-actions
               thunar-shares-plugin
