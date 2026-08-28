@@ -80,7 +80,6 @@
             ]
         )
         ++ (kernel.patches.tachyon.common { })
-        ++ (kernel.patches.tachyon.common-not-legacy { })
       )
       |> lib.sort lib.lessThan;
 
@@ -122,7 +121,6 @@
             ]
         )
         ++ (kernel.patches.tachyon.common { })
-        ++ (kernel.patches.tachyon.common-not-legacy { })
       )
       |> lib.sort lib.lessThan;
 

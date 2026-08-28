@@ -3098,6 +3098,19 @@
         "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.2.tar.xz"
       }
     },
+    "linux-lts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785748933,
+        "narHash": "sha256-gvfh1zx67Ife+GboGz6hP4Vab6vyXJwxPR/oJiet6QA=",
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+      }
+    },
     "linuxthemestore": {
       "flake": false,
       "locked": {
@@ -4552,6 +4565,7 @@
         "linux-cachyos-latest": "linux-cachyos-latest",
         "linux-cachyos-lts": "linux-cachyos-lts",
         "linux-latest": "linux-latest",
+        "linux-lts": "linux-lts",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",
