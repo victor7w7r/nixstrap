@@ -3054,16 +3054,16 @@
     "linux-cachyos-latest": {
       "flake": false,
       "locked": {
-        "lastModified": 1786377387,
-        "narHash": "sha256-dPRXbKsfvFaPb/7L+oOOJ0yKfOfa9/pPZspxltVn92o=",
+        "lastModified": 1787903670,
+        "narHash": "sha256-9LEuyPrIUSbE7+MNTCzwFGjLiSsLA846Glj4C4C85LY=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "7a84732fd5e4350c1312fd0ed0c72ffa139fb766",
+        "rev": "11f0a985180e84707198334e5e612c24fa947f9c",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
-        "ref": "cachyos-7.1.8-1",
+        "ref": "cachyos-7.2.2-1",
         "repo": "linux",
         "type": "github"
       }
@@ -3085,59 +3085,17 @@
         "type": "github"
       }
     },
-    "linux-hardened": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-FxuSXbMK7dtOOvFURGYeuE2fVKKxOyMwq8BR8RoZZPQ=",
-        "type": "file",
-        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch"
-      }
-    },
     "linux-latest": {
       "flake": false,
       "locked": {
-        "lastModified": 1786300018,
-        "narHash": "sha256-xwFWtYRNYAmUsOE3WrTBCtYsKvk8rRjyenVGYzLCcnA=",
+        "lastModified": 1787898322,
+        "narHash": "sha256-xl5dTfz3CsmqE++gnESrUgQmuXotTHu2S7m7gnPwypw=",
         "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.2.tar.xz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz"
-      }
-    },
-    "linux-lts": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785748933,
-        "narHash": "sha256-gvfh1zx67Ife+GboGz6hP4Vab6vyXJwxPR/oJiet6QA=",
-        "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
-      }
-    },
-    "linux-rockchip": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787138219,
-        "narHash": "sha256-0Ynq2Y/ttOyKgsVBMksTuKi3xucK8KwRmOKiBVlL23Y=",
-        "owner": "armbian",
-        "repo": "linux-rockchip",
-        "rev": "b311cba7d694ccd8b69ad64b066d36e72dab3849",
-        "type": "github"
-      },
-      "original": {
-        "owner": "armbian",
-        "ref": "rk-6.1-rkr7.2",
-        "repo": "linux-rockchip",
-        "type": "github"
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.2.tar.xz"
       }
     },
     "linuxthemestore": {
@@ -4593,10 +4551,7 @@
         "linux-cachyos-config": "linux-cachyos-config",
         "linux-cachyos-latest": "linux-cachyos-latest",
         "linux-cachyos-lts": "linux-cachyos-lts",
-        "linux-hardened": "linux-hardened",
         "linux-latest": "linux-latest",
-        "linux-lts": "linux-lts",
-        "linux-rockchip": "linux-rockchip",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",
@@ -4669,7 +4624,6 @@
         "t2fanrd": "t2fanrd",
         "tablet-map": "tablet-map",
         "tachyon-patches-latest": "tachyon-patches-latest",
-        "tachyon-patches-legacy": "tachyon-patches-legacy",
         "tachyon-patches-lts": "tachyon-patches-lts",
         "termsaver": "termsaver",
         "tewi": "tewi",
@@ -5357,20 +5311,6 @@
       "original": {
         "type": "tarball",
         "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz"
-      }
-    },
-    "tachyon-patches-legacy": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1677169254,
-        "narHash": "sha256-0rpSov5fZchNqvO/9N7mINcqZqowWOB01/9rzJNpaPs=",
-        "rev": "74e253325b575983a85a4d17b60a03af7fd02a09",
-        "type": "tarball",
-        "url": "https://git.staropensource.de/api/v1/repos/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz"
       }
     },
     "tachyon-patches-lts": {

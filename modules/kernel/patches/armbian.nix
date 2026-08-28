@@ -57,30 +57,5 @@
         sed -i '/source "drivers\/net\/wireless\/ti\/Kconfig"/a source "drivers\/net\/wireless\/uwe5622\/Kconfig"' "$out/drivers/net/wireless/Kconfig"
       '');
 
-    legacy-rockchip =
-      { }:
-      map
-        (
-          patch:
-          "${inputs.armbian}/patch/kernel/rk35xx-vendor-${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
-        )
-        [
-          "001-hid-sony"
-          "bluetooth-hci-quirk-v6.1-v6.15"
-        ];
-
-    legacy-rk3588 =
-      pkgs:
-      (pkgs.runCommand "rk3588-patcher"
-        {
-          nativeBuildInputs = with pkgs; [ findutils ];
-        }
-        ''
-          mkdir -p $out && cp -r ${inputs.linux-rockchip}/* $out/ && chmod -R +w $out
-          FW_PATH="$out/drivers/gpu/arm/bifrost/mali_csffw.bin"
-          find $out/drivers/gpu/arm/bifrost/ -type f \( -name "*.c" -o -name "*.S" -o -name "*.h" \) \
-              -exec sed -i "s|drivers/gpu/arm/bifrost/mali_csffw.bin|$FW_PATH|g" {} +
-        ''
-      );
   };
 }

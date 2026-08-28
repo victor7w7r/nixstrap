@@ -9,9 +9,8 @@
 
   _module.args = {
     kernel-versions = {
-      latest = "7.1.8";
+      latest = "7.2.2";
       lts = "6.18.42";
-      legacy = "6.1";
     };
     armPkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
     x86Pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
@@ -43,23 +42,13 @@
       flake = false;
     };
 
+    linux-lts = {
+      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz";
+      flake = false;
+    };
+
     linux-latest = {
       url = "https://cdn.kernel.org/pub/linux/kernel/v${lib.versions.major kernel-versions.latest}.x/linux-${kernel-versions.latest}.tar.xz";
-      flake = false;
-    };
-
-    linux-lts = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v${lib.versions.major kernel-versions.lts}.x/linux-${kernel-versions.lts}.tar.xz";
-      flake = false;
-    };
-
-    linux-rockchip = {
-      url = "github:armbian/linux-rockchip/rk-6.1-rkr7.2";
-      flake = false;
-    };
-
-    linux-hardened = {
-      url = "https://github.com/anthraxx/linux-hardened/releases/download/v${kernel-versions.lts}-hardened1/linux-hardened-v${kernel-versions.lts}-hardened1.patch";
       flake = false;
     };
   };

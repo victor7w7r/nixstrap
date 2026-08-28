@@ -101,39 +101,6 @@
           ))
         )
         |> lib.sort lib.lessThan;
-
-      legacy = pkgs.runCommand "cachyos-patches-legacy-diff"
-        {
-          nativeBuildInputs = with pkgs; [
-            findutils
-            patchutils
-          ];
-        }
-        ''
-          mkdir -p $out
-          cp -r ${inputs.cachyos-patches}/* ./
-          chmod -R +w . && find . -type d -empty -delete
-          filterdiff -x "*/arch/x86/Kconfig.cpu" "${lib.versions.majorMinor kernel-versions.legacy}/0002-cachy.patch" > 0002-cachy.patch
-          cat 0002-cachy.patch > "${lib.versions.majorMinor kernel-versions.legacy}/0002-cachy.patch"
-          rm 0002-cachy.patch
-          mv ./* $out/
-        ''
-      |> ( src:
-        map
-          (
-            patch: "${src}/${lib.versions.majorMinor kernel-versions.legacy}/${patch}.patch"
-          )
-          [
-            "0002-cachy"
-            "0003-clr"
-            "0004-ksm"
-            #"sched-dev/0001-bore-cachy"
-            "misc/gcc-lto/0002-gcc-lto-no-pie"
-            "misc/0001-bore-tuning-sysctl"
-            "misc/0001-mm-add-zblock-new-allocator-for-use-via-zpool-API"
-            #"misc/0001-mm-introduce-THP-Shrinker"
-          ]
-       );
     };
   };
 }

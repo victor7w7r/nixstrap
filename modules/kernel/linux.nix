@@ -15,7 +15,6 @@
       patches ? [ ],
       defconfig ? "cachyos_defconfig",
       localVer ? "native",
-      legacy ? false,
       structuredExtraConfig ? { },
     }:
     pkgs.buildLinux {
@@ -45,26 +44,23 @@
       };
 
       stdenv =
-        if legacy then
-          pkgs.gcc13Stdenv
-        else
-          (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
-          |> (
-            custStdenv:
-            custStdenv.override {
-              cc = pkgs.ccacheWrapper.override {
-                cc = custStdenv.cc;
-                extraConfig = ''
-                  export CCACHE_COMPRESS=1
-                  export CCACHE_DIR="/var/cache/ccache"
-                  export CCACHE_UMASK="007"
-                  export CCACHE_SLOPPINESS="time_macros,include_file_mtime,include_file_ctime,file_stat_matches"
-                  export CCACHE_DIRECT=1
-                  export CCACHE_READ_ONLY_FALLBACK=true
-                '';
-              };
-            }
-          );
+        (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).stdenvLLVM
+        |> (
+          custStdenv:
+          custStdenv.override {
+            cc = pkgs.ccacheWrapper.override {
+              cc = custStdenv.cc;
+              extraConfig = ''
+                export CCACHE_COMPRESS=1
+                export CCACHE_DIR="/var/cache/ccache"
+                export CCACHE_UMASK="007"
+                export CCACHE_SLOPPINESS="time_macros,include_file_mtime,include_file_ctime,file_stat_matches"
+                export CCACHE_DIRECT=1
+                export CCACHE_READ_ONLY_FALLBACK=true
+              '';
+            };
+          }
+        );
 
       extraMakeFlags = [
         "CCACHE_COMPILERCHECK=content"
@@ -80,12 +76,9 @@
       "${host}-kernel" = base;
       "${host}-allconfig" = base.configfile;
       "${host}-kernelPackages" =
-        if legacy then
-          base |> pkgs.linuxPackagesFor
-        else
-          base
-          |> pkgs.linuxPackagesFor
-          |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
+        base
+        |> pkgs.linuxPackagesFor
+        |> (pkgs.callPackage "${inputs.cachyos-kernel.outPath}/helpers.nix" { }).kernelModuleLLVMOverride;
       "${host}-config" = pkgs.runCommand "filtered-config" { } ''
         cp ${base.configfile} .config
         sed -i '/^[[:space:]]*#/d; /^[[:space:]]*$/d' .config

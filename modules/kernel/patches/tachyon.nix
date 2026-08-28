@@ -16,32 +16,25 @@
         url = "${url}/bab8787a6987ad7b38e39c4d6bbc75315a44329a.tar.gz";
         flake = false;
       };
-      tachyon-patches-legacy = {
-        url = "${url}/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz";
-        flake = false;
-      };
     });
 
   kernel.patches.tachyon = {
     common = { }: [
-      "0114-add-boot-option-to-allow-unsigned-modules"
-      "0115-enable-stateless-firmware-loading"
-      "0125-nvme-workaround"
-      "0131-add-a-per-cpu-minimum-high-watermark-an-tune-batch-s"
-      "epp-retune"
-      "libsgrowdown"
-    ];
-
-    common-not-legacy = { }: [
       "0102-increase-the-ext4-default-commit-age"
       "0108-smpboot-reuse-timer-calibration"
       "0112-init-wait-for-partition-and-retry-scan"
       "0113-print-fsync-count-for-bootchart"
+      "0114-add-boot-option-to-allow-unsigned-modules"
+      "0115-enable-stateless-firmware-loading"
       "0116-migrate-some-systemd-defaults-to-the-kernel-defaults"
+      "0125-nvme-workaround"
       "0126-don-t-report-an-error-if-PowerClamp-run-on-other-CPU"
       "0127-lib-raid6-add-patch"
+      "0131-add-a-per-cpu-minimum-high-watermark-an-tune-batch-s"
       "0133-novector"
       "0135-initcall-only-print-non-zero-initcall-debug-to-speed"
+      "epp-retune"
+      "libsgrowdown"
     ];
 
     latest =
@@ -133,21 +126,5 @@
       )
       |> lib.sort lib.lessThan;
 
-    legacy =
-      map (patch: "${inputs.tachyon-patches-legacy}/${patch}.patch") (
-        [
-          "0001-sched-migrate"
-          "0002-sched-migrate"
-          "0135-initcall-only-print-non-zero-initcall-debug-to-speed"
-          "kdf-boottime"
-          "kvm-printk"
-          "mmput_async"
-          "netscale"
-          "scale"
-          "tcptuning"
-        ]
-        ++ (kernel.patches.tachyon.common { })
-      )
-      |> lib.sort lib.lessThan;
   };
 }

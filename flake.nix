@@ -505,27 +505,19 @@
       flake = false;
     };
     linux-cachyos-latest = {
-      url = "github:CachyOS/linux/cachyos-7.1.8-1";
+      url = "github:CachyOS/linux/cachyos-7.2.2-1";
       flake = false;
     };
     linux-cachyos-lts = {
       url = "github:CachyOS/linux/cachyos-6.18.42-1";
       flake = false;
     };
-    linux-hardened = {
-      url = "https://github.com/anthraxx/linux-hardened/releases/download/v6.18.42-hardened1/linux-hardened-v6.18.42-hardened1.patch";
-      flake = false;
-    };
     linux-latest = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.1.8.tar.xz";
+      url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.2.tar.xz";
       flake = false;
     };
     linux-lts = {
       url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz";
-      flake = false;
-    };
-    linux-rockchip = {
-      url = "github:armbian/linux-rockchip/rk-6.1-rkr7.2";
       flake = false;
     };
     linuxthemestore = {
@@ -781,10 +773,6 @@
     };
     tachyon-patches-latest = {
       url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/25bfa5ba12783e5e1b0a15cfac570b532f711329.tar.gz";
-      flake = false;
-    };
-    tachyon-patches-legacy = {
-      url = "https://git.staropensource.de/StarOpenSource/Linux-Tachyon/archive/74e253325b575983a85a4d17b60a03af7fd02a09.tar.gz";
       flake = false;
     };
     tachyon-patches-lts = {
