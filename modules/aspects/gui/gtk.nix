@@ -1,8 +1,8 @@
-{ inputs, ... }: {
-  flake-file.inputs.nixpkgs-gtk2.url = "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17";
+{
+  flake-file.inputs.nixpkgs-gtk2.url = "github:NixOS/nixpkgs/48199e04590301db3a47603919037df65c828797";
 
   den.aspects.gui.gtk.provides.to-users.homeManager =
-    { pkgs, ... }:
+    { inputs', pkgs, ... }:
     {
       gtk = {
         enable = true;
@@ -24,7 +24,7 @@
         };
         theme = {
           name = "Layan-Dark";
-          package = inputs.nixpkgs-gtk2.legacyPackages.layan-gtk-theme;
+          package = inputs'.nixpkgs-gtk2.legacyPackages.layan-gtk-theme;
         };
 
         gtk2.extraConfig = "
@@ -45,8 +45,8 @@
 
       home.packages = with pkgs; [
         dconf
-        inputs.nixpkgs-gtk2.legacyPackages.gtk-engine-murrine
-        inputs.nixpkgs-gtk2.legacyPackages.layan-gtk-theme
+        inputs'.nixpkgs-gtk2.legacyPackages.gtk-engine-murrine
+        inputs'.nixpkgs-gtk2.legacyPackages.layan-gtk-theme
         (colloid-icon-theme.override {
           schemeVariants = [ "catppuccin" ];
           colorVariants = [ "purple" ];

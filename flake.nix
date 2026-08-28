@@ -629,7 +629,7 @@
       };
     };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs-gtk2.url = "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17";
+    nixpkgs-gtk2.url = "github:NixOS/nixpkgs/48199e04590301db3a47603919037df65c828797";
     nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
     nixvim.url = "github:nix-community/nixvim";
     no-more-secrets = {
