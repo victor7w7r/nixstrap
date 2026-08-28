@@ -8,27 +8,44 @@
         xrdp = {
           enable = true;
           defaultWindowManager =
-            pkgs.writeShellScript "xrdp-xfce-session" ''
-              exec > /tmp/xrdp-debug.log 2>&1
-              set -x
+            pkgs.symlinkJoin {
+              name = "xfce-env";
+              paths = with pkgs; [
+                xfce4-session
+                xfce4-panel
+                xfdesktop
+                xfwm4
+                xfce4-settings
+                xfconf
+                garcon
+                libxfce4ui
+                xfce4-appfinder
+                hicolor-icon-theme
+                adwaita-icon-theme
+                gsettings-desktop-schemas
+              ];
+            }
+            |> (
+              xfceEnv:
+              pkgs.writeShellScript "xrdp-xfce-session" ''
+                exec > /tmp/xrdp-debug.log 2>&1
+                set -x
 
-              echo "User: $USER"
-              echo "Path: $PATH"
+                export PATH="${xfceEnv}/bin:$PATH"
+                export XDG_DATA_DIRS="${xfceEnv}/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+                export XDG_CONFIG_DIRS="${xfceEnv}/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
 
-              export XDG_CONFIG_DIRS="${pkgs.xfce4-session}/etc/xdg:${pkgs.xfce.libxfce4ui}/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
-              export XDG_DATA_DIRS="${pkgs.xfce4-session}/share:${pkgs.xfce.xfconf}/share:${pkgs.xfce.xfce4-panel}/share:${pkgs.hicolor-icon-theme}/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+                export XDG_SESSION_TYPE=x11
+                export XDG_CURRENT_DESKTOP=XFCE
+                export DESKTOP_SESSION=xfce
+                export GDK_BACKEND=x11
+                export QT_QPA_PLATFORM=xcb
+                export NIXOS_OZONE_WL=0
+                export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              export PATH="${pkgs.xfce4-session}/bin:${pkgs.xfce4-panel}/bin:${pkgs.xfconf}/bin:$PATH"
-              export XDG_SESSION_TYPE=x11
-              export XDG_CURRENT_DESKTOP=XFCE
-              export DESKTOP_SESSION=xfce
-              export GDK_BACKEND=x11
-              export QT_QPA_PLATFORM=xcb
-              export NIXOS_OZONE_WL=0
-              export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-
-              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
-            ''
+                exec ${pkgs.dbus}/bin/dbus-run-session ${xfceEnv}/bin/startxfce4
+              ''
+            )
             |> (session: "exec ${session}");
           openFirewall = true;
         };
