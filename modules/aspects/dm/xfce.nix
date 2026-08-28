@@ -58,7 +58,7 @@
               deja-dup
               epiphany
               gigolo
-              gtkhash-thunar
+              #gtkhash-thunar
               #thunar-custom-actions
               thunar-shares-plugin
               xarchiver
