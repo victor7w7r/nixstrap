@@ -59,7 +59,7 @@
               epiphany
               gigolo
               gtkhash-thunar
-              thunar-custom-actions
+              #thunar-custom-actions
               thunar-shares-plugin
               xarchiver
               xclip
