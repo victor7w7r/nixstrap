@@ -79,7 +79,6 @@
 
           nixos =
             {
-              config,
               lib,
               pkgs,
               self',
@@ -87,7 +86,21 @@
             }:
             {
               networking.hostName = "v7w7r-opizero2w";
-              environment.persistence."/nix/persist".directories = [ "/var/lib/containers" ];
+              environment.persistence."/nix/persist" = {
+                directories = [ "/var/lib/containers" ];
+                users = {
+                  "victor7w7r".directories = lib.mkForce [
+                    "repositories"
+                    "remote"
+                    ".config/nix"
+                    ".local/share/cod"
+                    ".local/share/zoxide"
+                    ".ssh"
+                    ".gnupg"
+                  ];
+                  root.directories = lib.mkForce [ ".zsh" ];
+                };
+              };
               systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
 
               hardware = {
