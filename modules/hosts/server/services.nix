@@ -30,6 +30,13 @@
               xfwm4
             ]
             |> (
+              paths:
+              pkgs.buildEnv {
+                name = "xrdp-xfce-env";
+                inherit pkgs;
+              }
+            )
+            |> (
               env:
               pkgs.writeShellScript "xrdp-xfce-session" ''
                 exec > /tmp/xrdp-debug.log 2>&1
