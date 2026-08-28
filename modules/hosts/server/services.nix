@@ -11,12 +11,12 @@
             with pkgs;
             [
               dejavu_fonts
-              nerd-fonts.ubuntu
               desktop-file-utils
               fontconfig
               garcon
               gsettings-desktop-schemas
               hicolor-icon-theme
+              nerd-fonts.ubuntu
               shared-mime-info
               thunar
               tumbler
@@ -61,12 +61,12 @@
                 export QT_QPA_PLATFORM=xcb
                 export NIXOS_OZONE_WL=0
                 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-                export FONTCONFIG_FILE="/etc/fonts/fonts.conf"
-                export FONTCONFIG_PATH="/etc/fonts"
-                export GSETTINGS_BACKEND="keyfile"
-                export PATH="${env}/bin:$PATH"
-                export XDG_DATA_DIRS="${env}/share:/run/current-system/sw/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
-                export XDG_CONFIG_DIRS="${env}/etc/xdg:/run/current-system/sw/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
+                #export FONTCONFIG_FILE="/etc/fonts/fonts.conf"
+                #export FONTCONFIG_PATH="/etc/fonts"
+                #export GSETTINGS_BACKEND="keyfile"
+                #export PATH="${env}/bin:$PATH"
+                #export XDG_DATA_DIRS="${env}/share:/run/current-system/sw/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+                #export XDG_CONFIG_DIRS="${env}/etc/xdg:/run/current-system/sw/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
 
                 exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
               ''

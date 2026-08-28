@@ -52,6 +52,7 @@
           tools
           victor7w7r
           virt
+          xfce
         ];
 
         nixos =
