@@ -62,7 +62,6 @@
               thunar-custom-actions
               thunar-shares-plugin
               xarchiver
-              xarchiver
               xclip
               xfce4-appfinder
               xfce4-clipman-plugin

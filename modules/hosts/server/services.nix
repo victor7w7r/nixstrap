@@ -10,8 +10,8 @@
           defaultWindowManager =
             with pkgs;
             [
-              adwaita-icon-theme
               dejavu_fonts
+              nerd-fonts.ubuntu
               desktop-file-utils
               fontconfig
               garcon
@@ -19,12 +19,24 @@
               hicolor-icon-theme
               shared-mime-info
               thunar
-              thunar-volman
               tumbler
               xfce4-appfinder
+              xfce4-clipman-plugin
+              xfce4-cpufreq-plugin
+              xfce4-cpugraph-plugin
+              xfce4-diskperf-plugin
+              xfce4-fsguard-plugin
+              xfce4-genmon-plugin
+              xfce4-mount-plugin
+              xfce4-netload-plugin
               xfce4-panel
+              xfce4-panel-profiles
+              xfce4-sensors-plugin
               xfce4-session
-              xfce4-settings
+              xfce4-systemload-plugin
+              xfce4-taskmanager
+              xfce4-whiskermenu-plugin
+              xfce4-xkb-plugin
               xfconf
               xfdesktop
               xfwm4
