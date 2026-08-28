@@ -58,6 +58,8 @@
               deja-dup
               epiphany
               gigolo
+              jetbrains-mono
+              ubuntu-sans
               #gtkhash-thunar
               #thunar-custom-actions
               thunar-shares-plugin
