@@ -7,11 +7,13 @@
 
         xrdp = {
           enable = true;
-          defaultWindowManager = "startxfce4";
           /*defaultWindowManager =
             pkgs.writeShellScript "xrdp-xfce-session" ''
               exec > /tmp/xrdp-debug.log 2>&1
               set -x
+
+              echo "User: $USER"
+              echo "Path: $PATH"
 
               export XDG_SESSION_TYPE=x11
               export XDG_CURRENT_DESKTOP=XFCE
@@ -21,11 +23,9 @@
               export NIXOS_OZONE_WL=0
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-              export PATH="$PATH:${pkgs.xfce4-session}/bin"
-
-              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
+              ${pkgs.xfce4-session}/bin/startxfce4
             ''
-            |> (session: "exec ${session}");*/
+            |> (session: "exec ${session}");
           openFirewall = true;
         };
 
