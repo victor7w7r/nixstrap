@@ -34,8 +34,9 @@
           "${modulesPath}/installer/cd-dvd/channel.nix"
         ];
 
+        networking.hostName = "v7w7r-live";
+        
         environment = {
-          networking.hostName = "v7w7r-live";
           defaultPackages =
             with pkgs;
             lib.mkDefault [
