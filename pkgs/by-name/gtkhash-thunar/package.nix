@@ -27,7 +27,7 @@ cache-stdenv.mkDerivation {
     libgcrypt
     nettle
     librsvg
-    xfce.thunar
+    thunar
   ];
 
   mesonFlags = [
