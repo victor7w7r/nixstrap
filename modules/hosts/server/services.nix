@@ -20,6 +20,8 @@
               export NIXOS_OZONE_WL=0
               export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
+              export PATH="$PATH:${pkgs.xfce4-session}/bin"
+
               exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
             ''
             |> (session: "exec ${session}");
