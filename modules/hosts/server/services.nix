@@ -33,7 +33,7 @@
               paths:
               pkgs.buildEnv {
                 name = "xrdp-xfce-env";
-                inherit pkgs;
+                inherit paths;
               }
             )
             |> (
