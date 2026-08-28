@@ -8,23 +8,50 @@
         xrdp = {
           enable = true;
           defaultWindowManager =
+            with pkgs;
+            [
+              adwaita-icon-theme
+              dejavu_fonts
+              desktop-file-utils
+              fontconfig
+              garcon
+              gsettings-desktop-schemas
+              hicolor-icon-theme
+              shared-mime-info
+              thunar
+              thunar-volman
+              tumbler
+              xfce4-appfinder
+              xfce4-panel
+              xfce4-session
+              xfce4-settings
+              xfconf
+              xfdesktop
+              xfwm4
+            ]
+            |> (
+              env:
+              pkgs.writeShellScript "xrdp-xfce-session" ''
+                exec > /tmp/xrdp-debug.log 2>&1
+                set -x
 
-            pkgs.writeShellScript "xrdp-xfce-session" ''
-              exec > /tmp/xrdp-debug.log 2>&1
-              set -x
+                export XDG_SESSION_TYPE=x11
+                export XDG_CURRENT_DESKTOP=XFCE
+                export DESKTOP_SESSION=xfce
+                export GDK_BACKEND=x11
+                export QT_QPA_PLATFORM=xcb
+                export NIXOS_OZONE_WL=0
+                export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+                export FONTCONFIG_FILE="/etc/fonts/fonts.conf"
+                export FONTCONFIG_PATH="/etc/fonts"
+                export GSETTINGS_BACKEND="keyfile"
+                export PATH="${env}/bin:$PATH"
+                export XDG_DATA_DIRS="${env}/share:/run/current-system/sw/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+                export XDG_CONFIG_DIRS="${env}/etc/xdg:/run/current-system/sw/etc/xdg''${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}"
 
-              . /etc/profile
-
-              export XDG_SESSION_TYPE=x11
-              export XDG_CURRENT_DESKTOP=XFCE
-              export DESKTOP_SESSION=xfce
-              export GDK_BACKEND=x11
-              export QT_QPA_PLATFORM=xcb
-              export NIXOS_OZONE_WL=0
-              export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-
-              exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
-            ''
+                exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce4-session}/bin/startxfce4
+              ''
+            )
             |> (session: "exec ${session}");
           openFirewall = true;
         };
