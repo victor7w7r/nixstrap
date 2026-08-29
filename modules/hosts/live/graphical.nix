@@ -23,7 +23,10 @@
         { lib, ... }:
         {
           system.nixos.variant_id = lib.mkDefault "graphical";
-          isoImage.edition = "xfce";
+          isoImage = {
+            edition = "xfce";
+            configurationName = "xfce";
+          };
           powerManagement.enable = true;
           hardware.graphics = {
             enable = true;
@@ -44,12 +47,9 @@
             xe-guest-utilities.enable = false;
             xserver = {
               exportConfiguration = true;
-              displayManager = {
-                lightdm.enable = lib.mkDefault true;
-                autoLogin = {
-                  enable = true;
-                  user = "snowflake";
-                };
+              displayManager.autoLogin = {
+                enable = true;
+                user = "snowflake";
               };
             };
           };

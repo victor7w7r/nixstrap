@@ -7,7 +7,6 @@
 {
   den.aspects.live.common = {
     includes = with den.aspects; [
-      (den.batteries.tty-autologin "snowflake")
       cli._
       disks
       secrets
@@ -35,7 +34,7 @@
         ];
 
         networking.hostName = "v7w7r-live";
-        
+
         environment = {
           defaultPackages =
             with pkgs;
@@ -85,7 +84,6 @@
         };
 
         isoImage = {
-          #configurationName = flavor;
           makeEfiBootable = true;
           makeUsbBootable = true;
           squashfsCompression = "xz -Xbcj x86 -Xdict-size 100% -b 512K -limit 75 -percentage";

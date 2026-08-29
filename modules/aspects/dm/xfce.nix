@@ -25,7 +25,7 @@
           displayManager.defaultSession = "xfce";
           xserver = {
             excludePackages = with pkgs; [ xterm ];
-            displayManager.lightdm.enable = false;
+            displayManager.lightdm.enable = true;
             desktopManager = {
               xterm.enable = false;
               xfce = {

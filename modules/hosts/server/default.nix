@@ -133,6 +133,7 @@
               thermald.enable = true;
               lvm.boot.thin.enable = true;
               rustdesk-server.enable = false;
+              xserver.displayManager.lightdm.enable = lib.mkForce false;
             };
           };
 
