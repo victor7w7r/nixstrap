@@ -3,7 +3,10 @@
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
-      identityPaths = [ "/etc/ssh/id_ed25519" ];
+      identityPaths = [
+        "/nix/persist/etc/ssh/ssh_host_ed25519_key"
+        "/nix/persist/etc/ssh/ssh_host_rsa_key"
+      ];
     };
 
     systemd = {
