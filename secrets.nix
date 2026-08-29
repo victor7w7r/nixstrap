@@ -7,7 +7,7 @@ let
   user-main = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGTZ3iQqtjrClKVnqQ0w9Yn2sUoE9lAAW8ZYhR45nV5 arkano036@gmail.com";
   user-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEPhrJrz1JVStN0KQfLK0ZPVEKCwpGsTh0hlkg6eMgt1 arkano036@gmail.com";
   user-handheld = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXqgBzeyPlT4h+2OGnZobsVj24gyEmgLLqNLAA/D3Qo arkano036@gmail.com";
-  user-pizero = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDtH26q1AfO+AHd84H9L+a8FB28xfMIJLJgsCjgYWebi arkano036@gmail.com";
+  user-pizero = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEt+MtaZc+7VD/9RY4F/h/Ix+MrMoOwp/oq2TOyQx0+f arkano036@gmail.com";
 
   keys = [
     main

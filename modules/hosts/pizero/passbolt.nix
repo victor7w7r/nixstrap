@@ -15,10 +15,12 @@
 
       services = {
         tailscaled.environment.TS_LOG_LEVEL = "0";
+        docker.after = [ "systemd-time-wait-sync.service" ];
+        tailscaled.after = [ "systemd-time-wait-sync.service" ];
         funnel = {
           wantedBy = [ "multi-user.target" ];
-          after = [ "tailscaled.service" ];
-          wants = [ "tailscaled.service" ];
+          after = [ "docker.service" ];
+          wants = [ "docker.service" ];
           serviceConfig = {
             RestartSec = "10s";
             Restart = "on-failure";
