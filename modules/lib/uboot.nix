@@ -36,10 +36,7 @@
         '';
       };
 
-    /*
-      setenv boot_targets "usb0"
-      setenv bootcmd "usb stop; usb start; bootflow scan -lb"
-    */
+    #setenv boot_targets "usb0"
 
     rock5b =
       pkgs:
