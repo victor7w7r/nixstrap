@@ -21,6 +21,7 @@
       I2C_I801_MUX = yes;
       GPIO_ICH = module;
       MFD_CORE = yes;
+      USB = yes;
       SPI_DW_DMA = yes;
       SPI_DW_MMIO = module;
       SPI_DW_PCI = module;
