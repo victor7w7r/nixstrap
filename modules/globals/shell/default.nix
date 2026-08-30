@@ -74,7 +74,10 @@
         enable = true;
         enableBashIntegration = true;
         enableZshIntegration = true;
-        flags = [ "--disable-up-arrow" ];
+        flags = [
+          "--disable-up-arrow"
+          "--disable-ctrl-r"
+        ];
         settings = {
           auto_sync = true;
           sync_frequency = "5m";
