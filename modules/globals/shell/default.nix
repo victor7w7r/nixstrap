@@ -69,6 +69,25 @@
         };
         cdpath = [ "~/repositories/snowflake" ];
       };
+
+      atuin = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        flags = [ "--disable-up-arrow" ];
+        settings = {
+          auto_sync = true;
+          sync_frequency = "5m";
+          sync_address = "http://100.64.0.1:8888";
+          search_mode = "fuzzy";
+          keymap_mode = "vim-insert";
+          update_check = "false";
+          style = "compact";
+          theme = {
+            name = "autumn";
+          };
+        };
+      };
     };
   };
 }
