@@ -3,9 +3,15 @@
   den.aspects.server.provides.containers.nixos.containers.git = containers.lib.call {
     ip = "4";
     name = "git";
-    bindMounts."/opt/onedev" = {
-      hostPath = "/nix/persist/containers/git";
-      isReadOnly = false;
+    bindMounts = {
+      "/opt/onedev" = {
+        hostPath = "/nix/persist/containers/git";
+        isReadOnly = false;
+      };
+      "/var/lib/tailscale" = {
+        hostPath = "/nix/persist/containers/git/tailscale";
+        isReadOnly = false;
+      };
     };
     secrets.tailnet.file = ../secrets/tailnet.age;
     systemd = pkgs: {

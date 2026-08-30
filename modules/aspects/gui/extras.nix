@@ -74,6 +74,8 @@
               linuxthemestore
               #shutter-encoder
               tahoma2d
+              xpipe
+              watchyourlan
               ytdl
             ]
             ++ (lib.optionals isX86 [

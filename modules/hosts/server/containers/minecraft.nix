@@ -5,7 +5,11 @@
     name = "mc";
     bindMounts = {
       "/var/lib/minecraft" = {
-        hostPath = "/nix/persist/containers/minecraft";
+        hostPath = "/nix/persist/containers/minecraft/data";
+        isReadOnly = false;
+      };
+      "/var/lib/tailscale" = {
+        hostPath = "/nix/persist/containers/minecraft/tailscale";
         isReadOnly = false;
       };
     };

@@ -9,6 +9,10 @@
         hostPath = "/nix/persist/cloud/seafile/mysql";
         isReadOnly = false;
       };
+      "/var/lib/tailscale" = {
+        hostPath = "/nix/persist/containers/cloud/tailscale";
+        isReadOnly = false;
+      };
       "/opt/seafile-data" = {
         hostPath = "/nix/persist/cloud/seafile/shared";
         isReadOnly = false;

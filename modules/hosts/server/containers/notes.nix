@@ -9,6 +9,10 @@
         hostPath = "/nix/persist/containers/notes/data";
         isReadOnly = false;
       };
+      "/var/lib/tailscale" = {
+        hostPath = "/nix/persist/containers/notes/tailscale";
+        isReadOnly = false;
+      };
       "/web/vaults" = {
         hostPath = "/nix/persist/containers/notes/web/vaults";
         isReadOnly = false;

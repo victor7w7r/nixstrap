@@ -4,6 +4,7 @@
     graphical-live-toplevel =
       inputs.self.nixosConfigurations.graphical-live.config.system.build.toplevel;
     graphical-live-image = inputs.self.nixosConfigurations.graphical-live.config.system.build.isoImage;
+    emergency = inputs.self.nixosConfigurations.graphical-live.config.system.build.emergency-erofs;
   };
 
   den = {
@@ -14,6 +15,7 @@
         dev.zed
         gui._
 
+        emergency
         kitty
         snowflake
         xfce
@@ -45,12 +47,10 @@
             qemuGuest.enable = true;
             spice-vdagentd.enable = true;
             xe-guest-utilities.enable = false;
-            xserver = {
-              exportConfiguration = true;
-              displayManager.autoLogin = {
-                enable = true;
-                user = "snowflake";
-              };
+            xserver.exportConfiguration = true;
+            displayManager.autoLogin = {
+              enable = true;
+              user = "snowflake";
             };
           };
         };

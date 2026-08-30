@@ -8,6 +8,10 @@
         hostPath = "/nix/persist/containers/wand/houdini";
         isReadOnly = false;
       };
+      "/var/lib/tailscale" = {
+        hostPath = "/nix/persist/containers/wand/tailscale";
+        isReadOnly = false;
+      };
       "/opt/wand/.data" = {
         hostPath = "/nix/persist/containers/wand/data";
         isReadOnly = false;
