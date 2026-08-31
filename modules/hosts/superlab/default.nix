@@ -101,6 +101,10 @@
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
 
+              services.udev.extraRules = ''
+                KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+              '';
+
               boot = {
                 kernelParams = [
                   "console=ttyS2,1500000n8"

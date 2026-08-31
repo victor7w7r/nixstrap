@@ -1,6 +1,10 @@
 {
   den.aspects.superlab.initrd.nixos = { config, ... }: {
     boot.initrd = {
+      services.udev.rules = ''
+        KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0666"
+      '';
+
       systemd = {
         tpm2.enable = false;
         storePaths =
@@ -40,10 +44,7 @@
         */
         system = {
           device = "/dev/disk/by-partlabel/disk-main-system";
-          crypttabExtraOpts = [
-            "fido2-device=auto"
-            "x-systemd.device-timeout=30s"
-          ];
+          crypttabExtraOpts = [ "fido2-device=auto" ];
           allowDiscards = true;
         };
       };

@@ -47,6 +47,7 @@
           "incus-admin"
           "libvirt-qemu"
           "libvirtd"
+          "plugdev"
           "power"
           "qemu"
           "qemu-libvirtd"
