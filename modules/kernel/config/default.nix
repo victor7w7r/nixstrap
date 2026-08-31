@@ -104,6 +104,7 @@
             DRM_SUN4I = no;
             DRM_SUN8I_MIXER = yes;
             FB_SUN5I_EINK = no;
+            KSM = yes;
             I2C_MV64XXX = lib.mkForce yes;
             I2C_GPIO = lib.mkForce yes;
             I2C_MUX_GPIO = lib.mkForce yes;
