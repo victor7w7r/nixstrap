@@ -6,7 +6,7 @@
       identityPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
 
-    firewall.allowedTCPPorts = [
+    networking.firewall.allowedTCPPorts = [
       80
       443
     ];
