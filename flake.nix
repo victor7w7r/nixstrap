@@ -509,7 +509,7 @@
       flake = false;
     };
     linux-cachyos-lts = {
-      url = "github:CachyOS/linux/cachyos-6.18.42-1";
+      url = "github:CachyOS/linux/cachyos-6.18.48-2";
       flake = false;
     };
     linux-latest = {
@@ -517,7 +517,7 @@
       flake = false;
     };
     linux-lts = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz";
+      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz";
       flake = false;
     };
     linuxthemestore = {
