@@ -1,15 +1,15 @@
 {
-  den.aspects.superlab.initrd.nixos = { config, ... }: {
+  den.aspects.superlab.initrd.nixos = { config, pkgs, ... }: {
     boot.initrd = {
-      services.udev.rules = ''
-        KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0666"
-      '';
+      services.udev.packages = [ pkgs.yubikey-personalization ];
 
       systemd = {
         enable = true;
         tpm2.enable = false;
+
         storePaths =
-          map
+          with pkgs;
+          (map
             (fw: {
               source = "${config.hardware.firmware}/lib/firmware/${fw}";
               target = "/extra-firmware/${fw}";
@@ -17,7 +17,13 @@
             [
               "rtl_nic/rtl8125b-2.fw"
               "arm/mali/arch10.8/mali_csffw.bin"
-            ];
+            ]
+          )
+          ++ [
+            pcsclite.lib
+            libfido2
+            "${config.boot.initrd.systemd.package}/lib/cryptsetup/libcryptsetup-token-systemd-fido2.so"
+          ];
       };
       kernelModules = [
         "display_connector"

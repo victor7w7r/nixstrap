@@ -14,11 +14,15 @@
         };
         systemPackages = with pkgs; [
           #boxxy
+          age
           firejail
+          libfido2
           luksmeta
           pam_u2f
           veracrypt
           yubikey-manager
+          yubikey-personalization
+          yubikey-personalization-gui
         ];
       };
 
@@ -26,7 +30,12 @@
 
       services = {
         fail2ban.enable = true;
-        udev.packages = with pkgs; [ yubikey-personalization ];
+        pcscd.enable = true;
+        udev.packages = with pkgs; [
+          yubikey-personalization
+          libfido2
+          libu2f-host
+        ];
         #opensnitch.enable = true;
         #clamav = {
         #  daemon.enable = true;
