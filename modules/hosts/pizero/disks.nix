@@ -34,6 +34,11 @@
         fsType = "none";
         options = [ "bind" ];
       };
+      "/var/lib/docker" = {
+        device = "/nix/var/lib/docker";
+        fsType = "none";
+        options = [ "bind" ];
+      };
       "/tmp" = {
         device = "/nix/tmp";
         fsType = "none";

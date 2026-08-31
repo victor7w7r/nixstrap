@@ -87,10 +87,6 @@
             {
               networking.hostName = "v7w7r-opizero2w";
               environment.persistence."/nix/persist" = {
-                directories = [
-                  "/var/lib/containers"
-                  "/var/lib/docker"
-                ];
                 users = {
                   "victor7w7r".directories = lib.mkForce [
                     "repositories"
