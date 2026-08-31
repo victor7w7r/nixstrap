@@ -27,11 +27,9 @@
     };
 
     default = {
-      nixos = { user, ... }: {
-        users = {
-          groups.i2c = { };
-          users."${user.name}".extraGroups = [ "i2c" ];
-        };
+      nixos.users.groups = {
+        i2c = { };
+        plugdev = { };
       };
 
       provides.to-users.user = {
@@ -45,6 +43,7 @@
           "kvm"
           "feedbackd"
           "incus-admin"
+          "i2c"
           "libvirt-qemu"
           "libvirtd"
           "plugdev"
