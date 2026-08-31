@@ -16,7 +16,7 @@ pkgs.stdenvNoCC.mkDerivation {
 
     cd $out/lib/firmware
 
-    find . -mindepth 1 -maxdepth 1 ! -name 'arm*' ! -name 'rockchip*' ! -name '*uwe5622*' -exec rm -rf {} +
+    find . -mindepth 1 -maxdepth 1 ! -name 'arm*' ! -name 'rockchip*' ! -name '*uwe5622*' ! -name '*rtl_nic*' -exec rm -rf {} +
     find -L . -type l -delete
   '';
 }
