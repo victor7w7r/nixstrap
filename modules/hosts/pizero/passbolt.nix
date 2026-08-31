@@ -6,6 +6,11 @@
       identityPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
 
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+
     systemd = {
       tmpfiles.rules = [
         "d /nix/persist/passbolt/gpg 0770 root 33 -"
@@ -54,7 +59,7 @@
             image = "mariadb";
             ports = [
               "80:80"
-              "445:443"
+              "443:443"
             ];
             volumes = [ "/nix/persist/passbolt/mariadb:/var/lib/mysql" ];
             environment = {
