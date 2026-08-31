@@ -39,11 +39,13 @@
           device = "/dev/disk/by-partlabel/disk-sda-swapcrypt";
           crypttabExtraOpts = [ "fido2-device=auto" ];
           preLVM = true;
+          allowDiscards = true;
         };
         system = {
           device = "/dev/disk/by-partlabel/disk-main-system";
           crypttabExtraOpts = [ "fido2-device=auto" ];
           preLVM = true;
+          allowDiscards = true;
         };
       };
     };

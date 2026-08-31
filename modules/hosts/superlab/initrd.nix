@@ -44,6 +44,7 @@
             "fido2-device=auto"
             "x-systemd.device-timeout=30s"
           ];
+          allowDiscards = true;
         };
       };
     };

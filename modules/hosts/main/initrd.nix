@@ -33,12 +33,14 @@
             swapcrypt = {
               device = "${partlabel}/disk-ssd-swapcrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
+              allowDiscards = true;
               preLVM = true;
             };
 
             persistcachecrypt = {
               device = "${partlabel}/disk-ssd-persistcachecrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
+              allowDiscards = true;
               preLVM = true;
             };
 

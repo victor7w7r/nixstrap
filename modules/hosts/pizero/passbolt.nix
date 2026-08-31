@@ -11,9 +11,12 @@
 
     systemd = {
       tmpfiles.rules = [
-        "d /nix/persist/passbolt/gpg 0770 1000 1000 - -"
-        "d /nix/persist/passbolt/jwt 0770 1000 1000 - -"
-        "d /nix/persist/passbolt/mariadb 0770 1000 1000 - -"
+        "d /nix/persist/passbolt/gpg 0770 root 33 -"
+        "z /nix/persist/passbolt/gpg 0770 root 33 -"
+        "d /nix/persist/passbolt/jwt 0770 root 33 -"
+        "z /nix/persist/passbolt/jwt 0770 root 33 -"
+        "d /nix/persist/passbolt/mariadb 0770 999 999 -"
+        "z /nix/persist/passbolt/mariadb 0770 999 999 -"
       ];
 
       services = {
@@ -65,7 +68,7 @@
             };
           };
           passbolt = {
-            image = "passbolt/passbolt";
+            image = "passbolt/passbolt:latest-ce";
             dependsOn = [ "pb-mariadb" ];
             #environmentFiles = [ config.age.secrets.seafile-env.path ];
             volumes = [
