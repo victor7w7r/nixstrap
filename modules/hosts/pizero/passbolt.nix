@@ -1,12 +1,9 @@
 { inputs, ... }: {
-  den.aspects.pizero.passbolt.nixos = { pkgs, ... }: {
+  den.aspects.pizero.passbolt.nixos = { lib, pkgs, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
-      identityPaths = [
-        "/nix/persist/etc/ssh/ssh_host_ed25519_key"
-        "/nix/persist/etc/ssh/ssh_host_rsa_key"
-      ];
+      identityPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
 
     systemd = {
@@ -21,12 +18,12 @@
 
       services = {
         tailscaled.environment.TS_LOG_LEVEL = "0";
-        docker.after = [ "systemd-time-wait-sync.service" ];
-        tailscaled.after = [ "systemd-time-wait-sync.service" ];
+        docker.after = [ "chronyd.service" ];
+        tailscaled.after = [ "chronyd.service" ];
         funnel = {
           wantedBy = [ "multi-user.target" ];
-          after = [ "docker.service" ];
-          wants = [ "docker.service" ];
+          after = [ "docker-passbolt.service" ];
+          wants = [ "docker-passbolt.service" ];
           serviceConfig = {
             RestartSec = "10s";
             Restart = "on-failure";

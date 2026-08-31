@@ -6,6 +6,7 @@
       '';
 
       systemd = {
+        enable = true;
         tpm2.enable = false;
         storePaths =
           map

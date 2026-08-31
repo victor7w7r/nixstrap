@@ -12,24 +12,25 @@
 
       age.identityPaths = [
         "/nix/persist/etc/ssh/ssh_host_ed25519_key"
-        "/nix/persist/etc/ssh/ssh_host_rsa_key"
       ];
     };
 
-    provides.to-users.homeManager = { config, ... }: {
-      imports = [ inputs.agenix.homeManagerModules.default ];
+    /*
+      provides.to-users.homeManager = { config, ... }: {
+       imports = [ inputs.agenix.homeManagerModules.default ];
 
-      age = {
-        secrets.yubikey = {
-          file = "${self}/assets/secrets/yabe.age";
-          path = "${config.home.homeDirectory}/.config/Yubico/u2f_keys";
-          mode = "770";
-        };
-        identityPaths = [
-          "/nix/persist/etc/ssh/ssh_host_ed25519_key"
-          "/nix/persist/etc/ssh/ssh_host_rsa_key"
-        ];
-      };
-    };
+       age = {
+         secrets.yubikey = {
+           file = "${self}/assets/secrets/yabe.age";
+           path = "${config.home.homeDirectory}/.config/Yubico/u2f_keys";
+           mode = "770";
+         };
+         identityPaths = [
+           "/nix/persist/etc/ssh/ssh_host_ed25519_key"
+           "/nix/persist/etc/ssh/ssh_host_rsa_key"
+         ];
+       };
+       };
+    */
   };
 }

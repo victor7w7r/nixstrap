@@ -102,7 +102,7 @@
               };
 
               services.udev.extraRules = ''
-                KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+                KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0666"
               '';
 
               boot = {
