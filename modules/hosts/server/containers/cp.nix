@@ -1,7 +1,7 @@
 { containers, ... }:
 {
   den.aspects.server.provides.containers.nixos.containers.cp = containers.lib.call {
-    ip = "7";
+    ip = "8";
     name = "mc";
     bindMounts = {
       "/opt/wand/houdini" = {

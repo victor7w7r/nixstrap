@@ -3071,16 +3071,16 @@
     "linux-cachyos-lts": {
       "flake": false,
       "locked": {
-        "lastModified": 1785769231,
-        "narHash": "sha256-GzUYXt70aR7zN0tVFp85OC/hiFhnKqY6yrVy4X/avrA=",
+        "lastModified": 1788096714,
+        "narHash": "sha256-xHAV+1vb9/Wz1RsfbHJcjsk0UdOYiH9tBjWrs1+nYeM=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "1e1e569cfc070c1a2a026d6e6dba6cd6d7dc15d1",
+        "rev": "7464f72874a30017c059c2b596547bc84b227e7b",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
-        "ref": "cachyos-6.18.42-1",
+        "ref": "cachyos-6.18.48-2",
         "repo": "linux",
         "type": "github"
       }
@@ -3101,14 +3101,14 @@
     "linux-lts": {
       "flake": false,
       "locked": {
-        "lastModified": 1785748933,
-        "narHash": "sha256-gvfh1zx67Ife+GboGz6hP4Vab6vyXJwxPR/oJiet6QA=",
+        "lastModified": 1787898174,
+        "narHash": "sha256-JtkaXMcM4gCbnoG/eX0YcJTx0g19dBfROm4NHFx4Atw=",
         "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.42.tar.xz"
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz"
       }
     },
     "linuxthemestore": {
