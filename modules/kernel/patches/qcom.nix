@@ -58,6 +58,7 @@
               "0162-arm64-dts-qcom-sdm845-shift-axolotl-Add-actuator-for"
               "0185-arm64-dts-qcom-sdm845-lg-common-Add-camera-flash"
               "0186-arm64-dts-qcom-sdm845-lg-common-Change-ipa-gsi-loade"
+              "0187-arm64-dts-qcom-sdm845-lg-judyln-judyp-Reference-memo"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
