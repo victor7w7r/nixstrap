@@ -47,7 +47,7 @@
               "${inputs.cachyos-patches}/${lib.versions.majorMinor kernel-versions.latest}/misc/${patch}.patch"
             )
             [
-              "dkms-clang"
+              #"dkms-clang"
             ];
         handheld =
           map
