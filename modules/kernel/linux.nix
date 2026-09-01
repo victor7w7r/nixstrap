@@ -58,17 +58,17 @@
                 export CCACHE_BASEDIR="$PWD"
                 export CCACHE_NOCPP2=1
                 export CCACHE_DIRECT=1
+                export CCACHE_NOHASHDIR=1
+                export CCACHE_COMPILERCHECK=content
               '';
             };
           }
         );
 
       extraMakeFlags = [
-        "CCACHE_COMPILERCHECK=content"
         "KCFLAGS=-w"
         "LOCALVERSION=-v7w7r-${localVer}"
         "NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING=1"
-        "NIX_ENFORCE_NO_NATIVE=0"
         "ARCH=${if arch == "aarch64-linux" then "arm64" else "x86_64"}"
       ]
       ++ (lib.optional (system != arch) "CROSS_COMPILE=${pkgs.stdenv.hostPlatform.config}-");
