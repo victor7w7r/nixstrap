@@ -125,6 +125,7 @@
               systemPackages = with pkgs; [
                 mdadm
                 intel-undervolt
+                seafile-client
                 iproute2
                 picocom
                 procps
