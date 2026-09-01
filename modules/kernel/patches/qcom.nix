@@ -59,6 +59,7 @@
               "0185-arm64-dts-qcom-sdm845-lg-common-Add-camera-flash"
               "0186-arm64-dts-qcom-sdm845-lg-common-Change-ipa-gsi-loade"
               "0187-arm64-dts-qcom-sdm845-lg-judyln-judyp-Reference-memo"
+              "0188-arm64-dts-qcom-sdm845-lg-Enable-qcom-snoc-host-cap-s"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
