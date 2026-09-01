@@ -32,7 +32,7 @@
             "1.1.1.1"
           ];
           extraHosts = ''
-            192.168.100.44 passbolt.local
+            192.168.100.11 passbolt.local
             100.64.0.4 passbolt.local
           '';
           dhcpcd = {
