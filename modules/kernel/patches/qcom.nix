@@ -34,6 +34,7 @@
               "0089-arm64-dts-qcom-sdm845-google-common-Enable-NFC"
               "0092-Input-synaptics-rmi4-handle-duplicate-unknown-PDT-en"
               "0093-Input-synaptics-rmi4-f12-use-hardcoded-values-for-af"
+              "0097-Input-synaptics-rmi4-support-fallback-values-for-PDT"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
