@@ -65,7 +65,6 @@
       lts =
         {
           isHardened ? false,
-          isVanilla ? false,
         }:
         pkgs.runCommand "cachyos-patches-lts-diff"
           {
@@ -91,14 +90,6 @@
             "misc/nap-governor"
           ]
           ++ (pkgs.lib.optional isHardened "${src}/${lib.versions.majorMinor kernel-versions.lts}/misc/0001-hardened.patch")
-          ++ (pkgs.lib.optionals isVanilla (
-            map (patch: "${src}/${lib.versions.majorMinor kernel-versions.lts}/${patch}.patch") [
-              "0004-cachy"
-              "0005-crypto"
-              "0006-fixes"
-              "0009-sched-ext"
-            ]
-          ))
         )
         |> lib.sort lib.lessThan;
     };

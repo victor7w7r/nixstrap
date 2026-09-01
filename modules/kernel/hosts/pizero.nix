@@ -23,6 +23,7 @@
       patches =
         with kernel.patches.injector pkgs;
         sunxi
+        ++ (cachyos.lts { isHardened = true; })
         #++ (bunker.lts { isHardened = true; })
         #++ (tachyon.lts { isVanilla = true; })
         ++ [ "${self}/modules/kernel/patches/fix-opi-zero2w-supplies.patch" ];

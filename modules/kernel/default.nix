@@ -12,6 +12,7 @@
       latest = "7.2.2";
       lts = "6.18.48";
     };
+
     armPkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
     x86Pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     armCrossPkgs = import inputs.nixpkgs {
@@ -22,28 +23,24 @@
       localSystem = "aarch64-linux";
       crossSystem = "x86_64-linux";
     };
+
   };
 
   flake-file.inputs = {
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
-    linux-cachyos-latest = {
-      url = "github:CachyOS/linux/cachyos-${kernel-versions.latest}-1";
-      flake = false;
-    };
 
     linux-cachyos-config = {
       url = "github:CachyOS/linux-cachyos";
       flake = false;
     };
 
-    linux-cachyos-lts = {
-      url = "github:CachyOS/linux/cachyos-${kernel-versions.lts}-2";
+    linux-cachyos-latest = {
+      url = "github:CachyOS/linux/cachyos-${kernel-versions.latest}-1";
       flake = false;
     };
 
-    linux-lts = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernel-versions.lts}.tar.xz";
+    linux-cachyos-lts = {
+      url = "github:CachyOS/linux/cachyos-${kernel-versions.lts}-2";
       flake = false;
     };
 
