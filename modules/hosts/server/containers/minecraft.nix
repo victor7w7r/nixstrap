@@ -18,7 +18,7 @@
 
       bindMounts = {
         "/var/lib/minecraft" = {
-          hostPath = "/nix/persist/containers/minecraft/data";
+          hostPath = "/nix/persist/containers/mc/data";
           isReadOnly = false;
         };
       };

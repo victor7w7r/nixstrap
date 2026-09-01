@@ -6,7 +6,7 @@
 
     containers.cp = containers.lib.call {
       ip = "8";
-      name = "mc";
+      name = "wand";
 
       forwardPorts = [
         {
