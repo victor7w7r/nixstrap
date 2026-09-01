@@ -54,6 +54,7 @@
               value = "4G";
               memoryPercent = 100;
             })
+            (hosts.lib.static-network "enP4p65s0" "12")
             superlab.disks
 
             audio._

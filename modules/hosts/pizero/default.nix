@@ -53,7 +53,7 @@
               value = "256M";
               memoryPercent = 100;
             })
-            (hosts.lib.static-network "enp4s0" "14")
+            (hosts.lib.static-network "eth0" "11")
             pizero._
 
             cli._
