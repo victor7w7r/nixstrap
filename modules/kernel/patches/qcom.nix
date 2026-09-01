@@ -29,6 +29,7 @@
             !builtins.elem item.name [
               "0001-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-ath10k"
               "0027-arm64-dts-qcom-sdm670-google-sargo-Enable-fuel-gauge"
+              "0079-arm64-dts-qcom-sdm845-shift-axolotl-Introduce-camera"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
