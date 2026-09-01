@@ -53,6 +53,7 @@
               "0149-arm64-dts-qcom-sdm845-xiaomi-beryllium-Fix-compatibl"
               "0153-media-qcom-camss-Prepare-CSID-for-C-PHY-support"
               "0154-media-qcom-camss-Initialize-lanes-after-lane-configu"
+              "0155-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.1-MIPI-CSI-2"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
