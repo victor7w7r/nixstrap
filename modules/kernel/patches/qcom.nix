@@ -31,6 +31,7 @@
               "0027-arm64-dts-qcom-sdm670-google-sargo-Enable-fuel-gauge"
               "0079-arm64-dts-qcom-sdm845-shift-axolotl-Introduce-camera"
               "0088-arm64-dts-qcom-sdm845-shift-axolotl-Enable-NFC"
+              "0089-arm64-dts-qcom-sdm845-google-common-Enable-NFC"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
