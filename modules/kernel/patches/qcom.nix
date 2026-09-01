@@ -41,6 +41,7 @@
               "0118-arm64-dts-qcom-sdm845-samsung-starqltechn-Convert-fb"
               "0123-Input-stmfts-Fix-the-MODULE_LICENSE-string"
               "0124-Input-stmfts-Use-dev-struct-directly"
+              "0125-Input-stmfts-Switch-to-devm_regulator_bulk_get_const"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
