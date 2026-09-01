@@ -200,6 +200,7 @@
       FSL_QDMA = no;
       FUJITSU_ERRATUM_010001 = no;
       HID_ASUS = no;
+      HID_ASUS_ALLY = no;
       HID_LOGITECH = no;
       HID_PLAYSTATION = no;
       HISILICON_ERRATUM_161600802 = no;
@@ -228,6 +229,7 @@
       QCOM_FALKOR_ERRATUM_E1041 = no;
       QCOM_QDF2400_ERRATUM_0065 = no;
       SGI_PARTITION = no;
+      SENSORS_ASUS_ROG_RYUJIN = no;
       SNET_VDPA = no;
       SOCIONEXT_SYNQUACER_PREITS = no;
       SUN_PARTITION = no;

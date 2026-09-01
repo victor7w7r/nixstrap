@@ -38,6 +38,7 @@
             swapcrypt = {
               device = "${partlabel}/disk-nvme-swapcrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
+              allowDiscards = true;
               preLVM = true;
             };
 
@@ -50,6 +51,7 @@
             cloudcachecrypt = {
               device = "${partlabel}/disk-nvme-cloudcachecrypt";
               crypttabExtraOpts = [ "fido2-device=auto" ];
+              allowDiscards = true;
               preLVM = true;
             };
 

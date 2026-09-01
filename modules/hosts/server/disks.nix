@@ -70,6 +70,15 @@
           };
         };
         boot.resumeDevice = "/dev/mapper/swapcrypt";
+        fileSystems = {
+          "/nix/persist" = {
+            device = "/dev/mapper/persist";
+            fsType = "btrfs";
+            depends = [ "/nix" ];
+            neededForBoot = true;
+            options = (f2fs.args { highEnd = false; }).mountOptions;
+          };
+        };
         swapDevices = [
           {
             device = "/dev/mapper/swapcrypt";
