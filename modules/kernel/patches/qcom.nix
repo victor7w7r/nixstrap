@@ -47,6 +47,7 @@
               "0128-Input-stmfts-use-client-to-make-future-code-cleaner"
               "0129-dt-bindings-input-touchscreen-st-stmfts-Introduce-re"
               "0130-Input-stmfts-add-optional-reset-GPIO-support"
+              "0132-Input-stmfts-support-FTS5"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
