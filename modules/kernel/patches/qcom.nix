@@ -40,6 +40,7 @@
               "0117-arm64-dts-qcom-sdm845-shift-axolotl-Convert-fb-to-us"
               "0118-arm64-dts-qcom-sdm845-samsung-starqltechn-Convert-fb"
               "0123-Input-stmfts-Fix-the-MODULE_LICENSE-string"
+              "0124-Input-stmfts-Use-dev-struct-directly"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
