@@ -28,6 +28,7 @@
             item:
             !builtins.elem item.name [
               "0001-arm64-dts-qcom-sdm845-xiaomi-beryllium-Enable-ath10k"
+              "0027-arm64-dts-qcom-sdm670-google-sargo-Enable-fuel-gauge"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
