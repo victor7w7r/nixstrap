@@ -54,9 +54,10 @@
                 export CCACHE_COMPRESS=1
                 export CCACHE_DIR="/var/cache/ccache"
                 export CCACHE_UMASK="007"
-                export CCACHE_SLOPPINESS="time_macros,include_file_mtime,include_file_ctime,file_stat_matches"
+                export CCACHE_SLOPPINESS="pch_defines,time_macros,include_file_mtime,include_file_ctime,random_seed"
+                export CCACHE_BASEDIR="$PWD"
+                export CCACHE_NOCPP2=1
                 export CCACHE_DIRECT=1
-                export CCACHE_READ_ONLY_FALLBACK=true
               '';
             };
           }
