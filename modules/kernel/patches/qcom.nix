@@ -49,6 +49,7 @@
               "0130-Input-stmfts-add-optional-reset-GPIO-support"
               "0132-Input-stmfts-support-FTS5"
               "0141-arm64-dts-qcom-sdm845-shift-axolotl-describe-WiFi-BT"
+              "0148-dt-bindings-arm-qcom-Add-Xiaomi-Poco-F1-Tianma-varia"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
