@@ -18,9 +18,7 @@
 
     networking.firewall = {
       allowedTCPPorts = [ 8888 ];
-      interfaces."tailscale0" = {
-        allowedTCPPorts = [ 8888 ];
-      };
+      interfaces."tailscale0".allowedTCPPorts = [ 8888 ];
     };
   };
 }

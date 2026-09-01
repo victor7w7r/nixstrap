@@ -1,15 +1,21 @@
 { inputs, ... }: {
-  den.aspects.pizero.passbolt.nixos = { lib, pkgs, ... }: {
+  den.aspects.pizero.passbolt.nixos = { lib, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
       identityPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
 
-    networking.firewall.allowedTCPPorts = [
-      80
-      443
-    ];
+    networking.firewall = {
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      interfaces."tailscale0".allowedTCPPorts = [
+        80
+        443
+      ];
+    };
 
     systemd = {
       tmpfiles.rules = [
@@ -25,17 +31,6 @@
         tailscaled.environment.TS_LOG_LEVEL = "0";
         docker.after = [ "chronyd.service" ];
         tailscaled.after = [ "chronyd.service" ];
-        funnel = {
-          wantedBy = [ "multi-user.target" ];
-          after = [ "docker-passbolt.service" ];
-          wants = [ "docker-passbolt.service" ];
-          serviceConfig = {
-            RestartSec = "10s";
-            Restart = "on-failure";
-            User = "root";
-            ExecStart = "${pkgs.tailscale}/bin/tailscale funnel --bg https+insecure://localhost:80";
-          };
-        };
       };
     };
 
