@@ -37,6 +37,7 @@
               "0097-Input-synaptics-rmi4-support-fallback-values-for-PDT"
               "0107-arm64-dts-qcom-Introduce-support-for-Xiaomi-Mi-Mix-3"
               "0115-arm64-dts-qcom-sdm845-xiaomi-beryllium-Introduce-fra"
+              "0117-arm64-dts-qcom-sdm845-shift-axolotl-Convert-fb-to-us"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
