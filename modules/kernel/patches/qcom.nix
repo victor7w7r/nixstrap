@@ -54,6 +54,7 @@
               "0153-media-qcom-camss-Prepare-CSID-for-C-PHY-support"
               "0154-media-qcom-camss-Initialize-lanes-after-lane-configu"
               "0155-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.1-MIPI-CSI-2"
+              "0156-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.2.1-MIPI-CSI"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
