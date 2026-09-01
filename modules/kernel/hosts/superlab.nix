@@ -21,7 +21,9 @@
         rockchip
         ++ (cachyos.lts { })
         ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
-        ++ (tachyon.lts { }); # (bunker.lts { }) ++
+        ++ (tachyon.lts { })
+        ++ (bunker.common { })
+        ++ (bunker.lts { });
       src =
         inputs.linux-lts
         |> (

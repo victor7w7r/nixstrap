@@ -20,8 +20,9 @@
         (qcom { })
         ++ cachyos.latest.std
         ++ (tachyon.common { source = inputs.tachyon-patches-latest; })
-        ++ (tachyon.latest { });
-      # ++ (bunker.latest { })
+        ++ (tachyon.latest { })
+        ++ (bunker.common { isLts = false; })
+        ++ (bunker.latest { });
       src =
         inputs.linux-latest
         |> (

@@ -26,7 +26,9 @@
         ++ (cachyos.lts { isHardened = true; })
         ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
         ++ (tachyon.lts { })
-        #++ (bunker.lts { isHardened = true; })
+        ++ (bunker.common { })
+        ++ (bunker.lts { })
+        ++ (bunker.hardening { })
         ++ [ "${self}/modules/kernel/patches/files/fix-opi-zero2w-supplies.patch" ];
       src =
         kernel.patches.armbian.uwe5622 pkgs

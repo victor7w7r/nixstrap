@@ -17,9 +17,11 @@
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { })
-        ++ (bunker.lts { isVanilla = false; })
         ++ (tachyon.common-x86 { source = inputs.tachyon-patches-lts; })
-        ++ (tachyon.lts { });
+        ++ (tachyon.lts { })
+        ++ (bunker.common { })
+        ++ (bunker.lts-x86 { })
+        ++ (bunker.lts { });
       src =
         inputs.linux-lts
         |> (

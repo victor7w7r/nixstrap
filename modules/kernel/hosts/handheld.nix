@@ -21,13 +21,15 @@
         with kernel.patches.injector pkgs;
         cachyos.latest.std
         ++ cachyos.latest.handheld
-        ++ (bunker.latest { isVanilla = false; })
         ++ (tachyon.common-x86 { source = inputs.tachyon-patches-latest; })
         ++ (tachyon.latest { })
         ++ (map (patch: "${inputs.tachyon-patches-latest}/patches/${patch}.patch") [
           "0001-ACPI-processor-Disable-bus-master-check-for-AMD"
           "0002-drm-amd-display_Fix_high_busy_wait_load_in_dmub_srv_wait_for_idle"
         ])
+        ++ (bunker.common { isLts = false; })
+        ++ (bunker.latest-x86 { })
+        ++ (bunker.latest { })
         ++ asus;
       src =
         inputs.linux-latest
