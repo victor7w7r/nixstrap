@@ -1,112 +1,115 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos.containers.notes = containers.lib.call {
-    ip = "3";
-    name = "notes";
+  den.aspects.server.containers.nixos = {
 
-    bindMounts = {
-      "/var/lib/couchdb" = {
-        hostPath = "/nix/persist/containers/notes/data";
-        isReadOnly = false;
-      };
-      "/var/lib/tailscale" = {
-        hostPath = "/nix/persist/containers/notes/tailscale";
-        isReadOnly = false;
-      };
-      "/web/vaults" = {
-        hostPath = "/nix/persist/containers/notes/web/vaults";
-        isReadOnly = false;
-      };
-      "/web/config" = {
-        hostPath = "/nix/persist/containers/notes/web/config";
-        isReadOnly = false;
-      };
-    };
-
-    secrets = {
-      password-db = {
-        file = ../secrets/password-db.age;
-        owner = "couchdb";
-        group = "couchdb";
-        mode = "0400";
-      };
-      tailnet.file = ../secrets/tailnet.age;
-    };
-
-    forwardPorts = [
-      {
-        containerPort = 5984;
-        hostPort = 5984;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 8443;
-        hostPort = 8000;
-        protocol = "tcp";
-      }
+    firewall.allowedTCPPorts = [
+      5984
+      8003
     ];
 
-    services = config: _: {
-      couchdb = {
-        enable = true;
-        bindAddress = "0.0.0.0";
-        extraConfig = {
-          couchdb = {
-            single_node = true;
-            max_http_request_size = 4294967296;
-            max_document_size = 50000000;
-          };
+    containers.notes = containers.lib.call {
+      ip = "3";
+      name = "notes";
 
-          chttpd = {
-            bind_address = "0.0.0.0";
-            port = 5984;
-            require_valid_user = true;
-            max_http_request_size = 4294967296;
-            enable_cors = true;
-          };
+      forwardPorts = [
+        {
+          containerPort = 5984;
+          hostPort = 5984;
+          protocol = "tcp";
+        }
+        {
+          containerPort = 8443;
+          hostPort = 8003;
+          protocol = "tcp";
+        }
+      ];
 
-          chttpd_auth = {
-            require_valid_user = true;
-            authentication_redirect = "/_utils/session.html";
-          };
-
-          httpd = {
-            WWW-Authenticate = ''Basic realm="couchdb"'';
-            enable_cors = true;
-            bind_address = "0.0.0.0";
-          };
-
-          cors = {
-            origins = "app://obsidian.md, capacitor://localhost, http://localhost";
-            credentials = true;
-            headers = "accept, authorization, content-type, origin, referer";
-            methods = "GET,PUT,POST,HEAD,DELETE";
-            max_age = 3600;
-          };
-
+      bindMounts = {
+        "/var/lib/couchdb" = {
+          hostPath = "/nix/persist/containers/notes/data";
+          isReadOnly = false;
         };
-        extraConfigFiles = [ config.age.secrets.password-db.path ];
+        "/web/vaults" = {
+          hostPath = "/nix/persist/containers/notes/web/vaults";
+          isReadOnly = false;
+        };
+        "/web/config" = {
+          hostPath = "/nix/persist/containers/notes/web/config";
+          isReadOnly = false;
+        };
       };
-    };
 
-    systemd = pkgs: {
-      funnel = containers.lib.funnel {
-        inherit pkgs;
-        incoming = "8443";
-        incomingTcp = "5984";
-        outgoingTcp = "8443";
+      secrets = {
+        password-db = {
+          file = ../secrets/password-db.age;
+          owner = "couchdb";
+          group = "couchdb";
+          mode = "0400";
+        };
       };
-    };
 
-    containers = _: {
-      obsidian-web = {
-        image = "docker.io/sytone/obsidian-remote:latest";
-        autoStart = true;
-        extraOptions = [ "--network=host" ];
-        volumes = [
-          "/web/vaults:/vaults"
-          "/web/config:/config"
-        ];
+      services = config: _: {
+        couchdb = {
+          enable = true;
+          bindAddress = "0.0.0.0";
+          extraConfig = {
+            couchdb = {
+              single_node = true;
+              max_http_request_size = 4294967296;
+              max_document_size = 50000000;
+            };
+
+            chttpd = {
+              bind_address = "0.0.0.0";
+              port = 5984;
+              require_valid_user = true;
+              max_http_request_size = 4294967296;
+              enable_cors = true;
+            };
+
+            chttpd_auth = {
+              require_valid_user = true;
+              authentication_redirect = "/_utils/session.html";
+            };
+
+            httpd = {
+              WWW-Authenticate = ''Basic realm="couchdb"'';
+              enable_cors = true;
+              bind_address = "0.0.0.0";
+            };
+
+            cors = {
+              origins = "app://obsidian.md, capacitor://localhost, http://localhost";
+              credentials = true;
+              headers = "accept, authorization, content-type, origin, referer";
+              methods = "GET,PUT,POST,HEAD,DELETE";
+              max_age = 3600;
+            };
+
+          };
+          extraConfigFiles = [ config.age.secrets.password-db.path ];
+        };
+      };
+
+      systemd = pkgs: {
+        funnel = containers.lib.funnel {
+          inherit pkgs;
+          incoming = "8443";
+          incomingTcp = "5984";
+          outgoingTcp = "8443";
+        };
+      };
+
+      containers = _: {
+        obsidian-web = {
+          image = "docker.io/sytone/obsidian-remote:latest";
+          autoStart = true;
+          extraOptions = [ "--network=host" ];
+          volumes = [
+            "/web/vaults:/vaults"
+            "/web/config:/config"
+          ];
+        };
       };
     };
   };

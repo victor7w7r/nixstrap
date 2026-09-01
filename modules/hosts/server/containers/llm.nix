@@ -4,6 +4,7 @@
     containers.llm = containers.lib.call {
       ip = "5";
       name = "llm";
+      
       bindMounts = {
         "/dev/dri" = {
           hostPath = "/dev/dri";
@@ -18,8 +19,6 @@
         };
         nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "open-webui" ];
       };
-
-      secrets.tailnet.file = ../secrets/tailnet.age;
 
       services = _: __: {
         open-webui = {

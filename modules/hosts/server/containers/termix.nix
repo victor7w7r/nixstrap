@@ -1,43 +1,45 @@
 { containers, ... }:
 {
-  den.aspects.server.containers.nixos.containers.termix = containers.lib.call {
-    ip = "7";
-    name = "termix";
-    bindMounts = {
-      "/app/data" = {
-        hostPath = "/nix/persist/containers/termix";
-        isReadOnly = false;
-      };
-      "/var/lib/tailscale" = {
-        hostPath = "/nix/persist/containers/termix/tailscale";
-        isReadOnly = false;
-      };
-    };
+  den.aspects.server.containers.nixos = {
 
-    forwardPorts = [
-      {
-        containerPort = 8080;
-        hostPort = 8002;
-        protocol = "tcp";
-      }
-    ];
+    firewall.allowedTCPPorts = [ 8007 ];
 
-    secrets.tailnet.file = ../secrets/tailnet.age;
-    systemd = pkgs: {
-      funnel = containers.lib.funnel {
-        inherit pkgs;
-        incoming = "8080";
-      };
-    };
-    containers = _: {
-      termix = {
-        image = "lukegus/termix:latest";
-        autoStart = true;
-        ports = [ "8080:8080" ];
-        environment = {
-          "PORT" = "8080";
+    containers.termix = containers.lib.call {
+      ip = "7";
+      name = "termix";
+
+      forwardPorts = [
+        {
+          containerPort = 8080;
+          hostPort = 8007;
+          protocol = "tcp";
+        }
+      ];
+
+      bindMounts = {
+        "/app/data" = {
+          hostPath = "/nix/persist/containers/termix/data";
+          isReadOnly = false;
         };
-        volumes = [ "termix-data:/app/data" ];
+      };
+
+      secrets.tailnet.file = ../secrets/tailnet.age;
+      systemd = pkgs: {
+        funnel = containers.lib.funnel {
+          inherit pkgs;
+          incoming = "8080";
+        };
+      };
+      containers = _: {
+        termix = {
+          image = "lukegus/termix:latest";
+          autoStart = true;
+          ports = [ "8080:8080" ];
+          environment = {
+            "PORT" = "8080";
+          };
+          volumes = [ "termix-data:/app/data" ];
+        };
       };
     };
   };

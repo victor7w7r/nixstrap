@@ -71,6 +71,10 @@
             hostPath = "/var/lib/docker";
             isReadOnly = false;
           };
+          "/var/lib/tailscale" = {
+            hostPath = "/nix/persist/containers/${name}/tailscale";
+            isReadOnly = false;
+          };
         }
         // bindMounts;
 
@@ -83,7 +87,10 @@
             boot.isContainer = true;
             age = {
               identityPaths = [ "/etc/ssh/id_ed25519" ];
-              inherit secrets;
+              secrets = {
+                tailnet.file = ../secrets/tailnet.age;
+              }
+              // secrets;
             };
             networking = {
               hostName = "v7w7r-${name}";
