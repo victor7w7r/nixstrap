@@ -52,6 +52,7 @@
               "0148-dt-bindings-arm-qcom-Add-Xiaomi-Poco-F1-Tianma-varia"
               "0149-arm64-dts-qcom-sdm845-xiaomi-beryllium-Fix-compatibl"
               "0153-media-qcom-camss-Prepare-CSID-for-C-PHY-support"
+              "0154-media-qcom-camss-Initialize-lanes-after-lane-configu"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
