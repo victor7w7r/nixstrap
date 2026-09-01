@@ -56,6 +56,7 @@
               "0155-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.1-MIPI-CSI-2"
               "0156-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.2.1-MIPI-CSI"
               "0162-arm64-dts-qcom-sdm845-shift-axolotl-Add-actuator-for"
+              "0185-arm64-dts-qcom-sdm845-lg-common-Add-camera-flash"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
