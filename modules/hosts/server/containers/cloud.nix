@@ -2,7 +2,7 @@
 {
   den.aspects.server.containers.nixos = {
 
-    networking.firewall.allowedTCPPorts = [ 8001 ];
+    networking.firewall.allowedTCPPorts = [ 8081 ];
 
     containers.cloud = containers.lib.call {
       ip = "2";
@@ -11,7 +11,7 @@
       forwardPorts = [
         {
           containerPort = 80;
-          hostPort = 8001;
+          hostPort = 8081;
           protocol = "tcp";
         }
       ];
