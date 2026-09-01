@@ -86,6 +86,8 @@
 
         nixpkgs.config.allowUnfreePackages = [ "oneplus-sdm845-firmware" ];
 
+        powerManagement.cpuFreqGovernor = "schedutil";
+
         environment = {
           systemPackages = [ inputs'.vanilla-mobile-nixos.packages.oneplus-sdm845-firmware ];
           persistence."/nix/persist".users = {
