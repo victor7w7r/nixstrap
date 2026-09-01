@@ -140,6 +140,8 @@
                 };
               };
 
+              powerManagement.cpuFreqGovernor = "schedutil";
+
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
                 kernelParams = [
