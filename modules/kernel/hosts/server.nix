@@ -13,7 +13,7 @@
         system
         ;
       structuredExtraConfig = kernel.config.default.server;
-      localVer = "server-hardened-native";
+      localVer = "server-hardened-v2";
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { isHardened = true; })

@@ -43,24 +43,19 @@
         XZ_DEC_ARM = no;
         XZ_DEC_ARM64 = no;
         XZ_DEC_ARMTHUMB = no;
+        X86_NATIVE_CPU = no;
       };
 
-      processor =
-        {
-          isNative ? true,
-        }:
-        if isNative then
-          {
-            GENERIC_CPU = no;
-            X86_NATIVE_CPU = yes;
-          }
-        else
-          {
-            GENERIC_CPU = yes;
-            MZEN4 = no;
-            X86_NATIVE_CPU = no;
-            X86_64_VERSION = freeform "2";
-          };
+      level = { isTwo ? false }: {
+        GENERIC_CPU = yes;
+        MZEN4 = no;
+        X86_64_VERSION = freeform (if isTwo then "2" else "3");
+      };
+
+      zen4 = { }: {
+        GENERIC_CPU = no;
+        MZEN4 = yes;
+      };
 
       rogally =
         with kernel.config.utils;

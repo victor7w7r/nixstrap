@@ -16,7 +16,7 @@
         system
         ;
       structuredExtraConfig = kernel.config.default.handheld;
-      localVer = "handheld-native";
+      localVer = "handheld-zen4";
       patches =
         with kernel.patches.injector pkgs;
         cachyos.latest.std

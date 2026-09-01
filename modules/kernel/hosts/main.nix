@@ -13,7 +13,7 @@
         system
         ;
       structuredExtraConfig = kernel.config.default.main;
-      localVer = "native";
+      localVer = "v3";
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { })

@@ -29,6 +29,7 @@
           (qcom { isDenied = true; })
           (sound.apply { isIntel = true; })
           (x86.apply { isIntel = true; })
+          (x86.level { })
           {
             APPLE_BCE = module;
             DW_DMAC_PCI = yes;
@@ -56,6 +57,7 @@
           (qcom { isDenied = true; })
           (sound.apply { isRogally = true; })
           (x86.apply { isRogally = true; })
+          (x86.zen4 { })
           {
             CDROM = no;
             NET_VENDOR_BROADCOM = no;
@@ -76,6 +78,7 @@
           (input.apply { })
           (qcom { isDenied = true; })
           (x86.apply { isIntel = true; })
+           (x86.zen4 { isTwo = true; })
           {
             CDROM = no;
             DW_DMAC = yes;
