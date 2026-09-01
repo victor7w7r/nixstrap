@@ -17,7 +17,7 @@
       defconfig = "phone_defconfig";
       patches = with kernel.patches.injector pkgs; (qcom { }); # ++ (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; });
       src =
-        inputs.linux-cachyos-latest
+        inputs.linux-latest
         |> (
           src:
           kernel.lib.defconfig-clear {

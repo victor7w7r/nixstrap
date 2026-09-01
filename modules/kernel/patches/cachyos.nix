@@ -24,7 +24,7 @@
         selector ? "",
       }:
       pkgs.runCommand "cachyos-defconfig" { } ''
-        cp "${inputs.linux-cachyos-config}/linux-cachyos${
+        cp "${inputs.linux-config}/linux-cachyos${
           if selector == "" then "" else "-${selector}"
         }/config" $out
       '';

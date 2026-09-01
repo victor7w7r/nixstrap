@@ -18,7 +18,7 @@
       defconfig = "rockchip_defconfig";
       patches = with kernel.patches.injector pkgs; rockchip ++ (cachyos.lts { isHardened = true; }); # (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
       src =
-        inputs.linux-cachyos-lts
+        inputs.linux-lts
         |> (
           src:
           kernel.lib.defconfig-clear {

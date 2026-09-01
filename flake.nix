@@ -501,15 +501,15 @@
       url = "github:cxreiff/lifecycler";
       flake = false;
     };
-    linux-cachyos-config = {
+    linux-config = {
       url = "github:CachyOS/linux-cachyos";
       flake = false;
     };
-    linux-cachyos-latest = {
+    linux-latest = {
       url = "github:CachyOS/linux/cachyos-7.2.2-1";
       flake = false;
     };
-    linux-cachyos-lts = {
+    linux-lts = {
       url = "github:CachyOS/linux/cachyos-6.18.48-2";
       flake = false;
     };

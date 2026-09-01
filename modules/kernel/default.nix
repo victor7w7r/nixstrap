@@ -29,17 +29,17 @@
   flake-file.inputs = {
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
-    linux-cachyos-config = {
+    linux-config = {
       url = "github:CachyOS/linux-cachyos";
       flake = false;
     };
 
-    linux-cachyos-latest = {
+    linux-latest = {
       url = "github:CachyOS/linux/cachyos-${kernel-versions.latest}-1";
       flake = false;
     };
 
-    linux-cachyos-lts = {
+    linux-lts = {
       url = "github:CachyOS/linux/cachyos-${kernel-versions.lts}-2";
       flake = false;
     };

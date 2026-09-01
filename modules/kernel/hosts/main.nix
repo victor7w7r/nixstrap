@@ -18,7 +18,7 @@
         with kernel.patches.injector pkgs;
         (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });
       src =
-        inputs.linux-cachyos-lts
+        inputs.linux-lts
         |> (
           src:
           kernel.lib.defconfig-clear {

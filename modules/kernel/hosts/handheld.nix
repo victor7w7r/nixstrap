@@ -25,7 +25,7 @@
         ++ (tachyon.latest { })
         ++ asus;
       src =
-        inputs.linux-cachyos-latest
+        inputs.linux-latest
         |> (
           src:
           kernel.lib.defconfig-clear {
