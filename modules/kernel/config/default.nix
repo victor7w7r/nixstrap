@@ -78,7 +78,7 @@
           (input.apply { })
           (qcom { isDenied = true; })
           (x86.apply { isIntel = true; })
-           (x86.zen4 { isTwo = true; })
+          (x86.level { isTwo = true; })
           {
             CDROM = no;
             DW_DMAC = yes;
