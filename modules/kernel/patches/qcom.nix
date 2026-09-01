@@ -48,6 +48,7 @@
               "0129-dt-bindings-input-touchscreen-st-stmfts-Introduce-re"
               "0130-Input-stmfts-add-optional-reset-GPIO-support"
               "0132-Input-stmfts-support-FTS5"
+              "0141-arm64-dts-qcom-sdm845-shift-axolotl-describe-WiFi-BT"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
