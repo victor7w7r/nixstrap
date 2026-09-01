@@ -2,7 +2,7 @@
 {
   den.aspects.server.provides.containers.nixos = {
 
-    firewall.allowedTCPPorts = [ 8008 ];
+     networking.firewall.allowedTCPPorts = [ 8008 ];
 
     containers.cp = containers.lib.call {
       ip = "8";

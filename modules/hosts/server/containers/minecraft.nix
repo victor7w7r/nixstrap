@@ -2,7 +2,7 @@
 {
   den.aspects.server.provides.containers = {
 
-    firewall.allowedTCPPorts = [ 25565 ];
+    networking.firewall.allowedTCPPorts = [ 25565 ];
 
     nixos.containers.minecraft = containers.lib.call {
       ip = "6";

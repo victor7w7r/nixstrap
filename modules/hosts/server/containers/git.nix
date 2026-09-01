@@ -2,7 +2,7 @@
 {
   den.aspects.server.containers.nixos = {
 
-    firewall.allowedTCPPorts = [ 8004 ];
+    networking.firewall.allowedTCPPorts = [ 8004 ];
 
     containers.git = containers.lib.call {
       ip = "4";

@@ -2,7 +2,7 @@
 {
   den.aspects.server.containers.nixos = {
 
-    firewall.allowedTCPPorts = [
+     networking.firewall.allowedTCPPorts = [
       5984
       8003
     ];
