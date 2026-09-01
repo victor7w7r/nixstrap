@@ -51,7 +51,7 @@
         ]
         ++ nativeBuildInputs;
       SCCACHE_DIR = "/var/cache/sccache";
-      RUSTFLAGS = "-C linker=clang -C link-arg=-fuse-ld=mold -C target-cpu=native";
+      RUSTFLAGS = "-C linker=clang -C link-arg=-fuse-ld=mold";
       RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
       doCheck = false;
     };
