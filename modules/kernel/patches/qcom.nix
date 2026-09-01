@@ -45,6 +45,7 @@
               "0126-Input-stmfts-abstract-reading-information-from-the-f"
               "0127-Input-stmfts-disable-regulators-when-power-on-fails"
               "0128-Input-stmfts-use-client-to-make-future-code-cleaner"
+              "0129-dt-bindings-input-touchscreen-st-stmfts-Introduce-re"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
