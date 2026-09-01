@@ -46,6 +46,7 @@
               "0127-Input-stmfts-disable-regulators-when-power-on-fails"
               "0128-Input-stmfts-use-client-to-make-future-code-cleaner"
               "0129-dt-bindings-input-touchscreen-st-stmfts-Introduce-re"
+              "0130-Input-stmfts-add-optional-reset-GPIO-support"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
