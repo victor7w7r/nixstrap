@@ -51,6 +51,7 @@
               "0141-arm64-dts-qcom-sdm845-shift-axolotl-describe-WiFi-BT"
               "0148-dt-bindings-arm-qcom-Add-Xiaomi-Poco-F1-Tianma-varia"
               "0149-arm64-dts-qcom-sdm845-xiaomi-beryllium-Fix-compatibl"
+              "0153-media-qcom-camss-Prepare-CSID-for-C-PHY-support"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
