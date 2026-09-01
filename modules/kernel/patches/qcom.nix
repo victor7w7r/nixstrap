@@ -38,6 +38,7 @@
               "0107-arm64-dts-qcom-Introduce-support-for-Xiaomi-Mi-Mix-3"
               "0115-arm64-dts-qcom-sdm845-xiaomi-beryllium-Introduce-fra"
               "0117-arm64-dts-qcom-sdm845-shift-axolotl-Convert-fb-to-us"
+              "0118-arm64-dts-qcom-sdm845-samsung-starqltechn-Convert-fb"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
