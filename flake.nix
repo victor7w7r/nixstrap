@@ -162,6 +162,7 @@
       url = "github:cdkw2/conway-screensaver";
       flake = false;
     };
+    copyparty.url = "github:9001/copyparty";
     corrupter = {
       url = "github:r00tman/corrupter";
       flake = false;
@@ -510,14 +511,6 @@
     };
     linux-cachyos-lts = {
       url = "github:CachyOS/linux/cachyos-6.18.48-2";
-      flake = false;
-    };
-    linux-latest = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.2.tar.xz";
-      flake = false;
-    };
-    linux-lts = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz";
       flake = false;
     };
     linuxthemestore = {

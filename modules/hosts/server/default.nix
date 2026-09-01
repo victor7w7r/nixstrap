@@ -30,7 +30,7 @@
           })
           server._
           server.containers
-          server.services
+          server.services._
 
           cli._
           dev.mise

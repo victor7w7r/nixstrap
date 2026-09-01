@@ -43,10 +43,5 @@
       url = "github:CachyOS/linux/cachyos-${kernel-versions.lts}-2";
       flake = false;
     };
-
-    linux-latest = {
-      url = "https://cdn.kernel.org/pub/linux/kernel/v${lib.versions.major kernel-versions.latest}.x/linux-${kernel-versions.latest}.tar.xz";
-      flake = false;
-    };
   };
 }

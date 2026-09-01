@@ -16,8 +16,11 @@
       database.createLocally = true;
     };
 
-    networking.firewall.interfaces."tailscale0" = {
+    networking.firewall = {
       allowedTCPPorts = [ 8888 ];
+      interfaces."tailscale0" = {
+        allowedTCPPorts = [ 8888 ];
+      };
     };
   };
 }
