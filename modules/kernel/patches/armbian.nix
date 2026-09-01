@@ -50,7 +50,7 @@
     uwe5622 =
       pkgs:
       (pkgs.runCommand "uwe5622-patcher" { } ''
-        mkdir -p $out && cp -r ${inputs.linux-lts}/* $out/ && chmod -R +w $out
+        mkdir -p $out && cp -r ${inputs.linux-cachyos-lts}/* $out/ && chmod -R +w $out
         mkdir -p "$out/drivers/net/wireless/uwe5622"
         cp -R "${inputs.uwe5622}''${uwe5622ver#*:}"/{tty-sdio,unisocwcn,unisocwifi,Kconfig,Makefile} "$out/drivers/net/wireless/uwe5622"
         echo "obj-\$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/" >> $out/drivers/net/wireless/Makefile
