@@ -42,6 +42,7 @@
               "0123-Input-stmfts-Fix-the-MODULE_LICENSE-string"
               "0124-Input-stmfts-Use-dev-struct-directly"
               "0125-Input-stmfts-Switch-to-devm_regulator_bulk_get_const"
+              "0126-Input-stmfts-abstract-reading-information-from-the-f"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
