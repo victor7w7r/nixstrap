@@ -55,6 +55,7 @@
               "0154-media-qcom-camss-Initialize-lanes-after-lane-configu"
               "0155-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.1-MIPI-CSI-2"
               "0156-media-qcom-camss-csiphy-3ph-Add-Gen2-v1.2.1-MIPI-CSI"
+              "0162-arm64-dts-qcom-sdm845-shift-axolotl-Add-actuator-for"
             ]
           )
           |> map (item: "${patches}/${item.name}.patch")
