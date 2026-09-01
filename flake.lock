@@ -3069,14 +3069,14 @@
         "type": "github"
       }
     },
-    "linux-cachyos-config": {
+    "linux-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1787904196,
-        "narHash": "sha256-v25HdtLIDnS6U78MKgdGuGQVYDhkP4JPHsy0GN3PamA=",
+        "lastModified": 1788201271,
+        "narHash": "sha256-ZNq+hweD6SucGtphTrCkE/NtngKCt0TfqpyIZcBNjAo=",
         "owner": "CachyOS",
         "repo": "linux-cachyos",
-        "rev": "bd8a07da314743eede668d999d37253c1a77c186",
+        "rev": "00baa5f3c9d467a1a4ff525ef546c21357c50257",
         "type": "github"
       },
       "original": {
@@ -3085,7 +3085,7 @@
         "type": "github"
       }
     },
-    "linux-cachyos-latest": {
+    "linux-latest": {
       "flake": false,
       "locked": {
         "lastModified": 1787903670,
@@ -3102,7 +3102,7 @@
         "type": "github"
       }
     },
-    "linux-cachyos-lts": {
+    "linux-lts": {
       "flake": false,
       "locked": {
         "lastModified": 1788096714,
@@ -4585,9 +4585,9 @@
         "layan-kde": "layan-kde",
         "lazysys": "lazysys",
         "lifecycler": "lifecycler",
-        "linux-cachyos-config": "linux-cachyos-config",
-        "linux-cachyos-latest": "linux-cachyos-latest",
-        "linux-cachyos-lts": "linux-cachyos-lts",
+        "linux-config": "linux-config",
+        "linux-latest": "linux-latest",
+        "linux-lts": "linux-lts",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",

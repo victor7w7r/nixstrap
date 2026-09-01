@@ -16,7 +16,10 @@
       localVer = "native";
       patches =
         with kernel.patches.injector pkgs;
-        (cachyos.lts { }) ++ (bunker.lts { isVanilla = false; }) ++ (tachyon.lts { });
+        (cachyos.lts { })
+        ++ (bunker.lts { isVanilla = false; })
+        ++ (tachyon.common-x86 { source = inputs.tachyon-patches-lts; })
+        ++ (tachyon.lts { });
       src =
         inputs.linux-lts
         |> (

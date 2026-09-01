@@ -47,7 +47,6 @@
               "${inputs.cachyos-patches}/${lib.versions.majorMinor kernel-versions.latest}/misc/${patch}.patch"
             )
             [
-              "0001-clang-polly"
               "dkms-clang"
             ];
         handheld =

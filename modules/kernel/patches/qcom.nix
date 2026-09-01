@@ -24,7 +24,8 @@
         [ "${patches}/../config_fixes.patch" ]
         ++ (
           (import patches)
-          |> builtins.filter (
+          /*
+            |> builtins.filter (
             item:
             !builtins.elem item.name [
               "0017-arm64-dts-qcom-sdm845-xiaomi-beryllium-Add-haptics-s"
@@ -73,7 +74,8 @@
               "0192-arm64-dts-qcom-sdm845-lg-common-Enable-NFC"
               "0193-sdm845.config-Drivers-for-LG-G7-ThinQ"
             ]
-          )
+            )
+          */
           |> map (item: "${patches}/${item.name}.patch")
         )
       );

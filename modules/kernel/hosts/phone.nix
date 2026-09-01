@@ -15,7 +15,13 @@
       structuredExtraConfig = kernel.config.default.phone;
       localVer = "sdm845";
       defconfig = "phone_defconfig";
-      patches = with kernel.patches.injector pkgs; (qcom { }); # ++ (bunker.latest { }) ++ (tachyon.latest { isVanilla = true; });
+      patches =
+        with kernel.patches.injector pkgs;
+        (qcom { })
+        ++ cachyos.latest.std
+        ++ (tachyon.common { source = inputs.tachyon-patches-latest; })
+        ++ (tachyon.latest { });
+      # ++ (bunker.latest { })
       src =
         inputs.linux-latest
         |> (

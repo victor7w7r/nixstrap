@@ -24,9 +24,10 @@
         with kernel.patches.injector pkgs;
         sunxi
         ++ (cachyos.lts { isHardened = true; })
+        ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
+        ++ (tachyon.lts { })
         #++ (bunker.lts { isHardened = true; })
-        #++ (tachyon.lts { isVanilla = true; })
-        ++ [ "${self}/modules/kernel/patches/fix-opi-zero2w-supplies.patch" ];
+        ++ [ "${self}/modules/kernel/patches/files/fix-opi-zero2w-supplies.patch" ];
       src =
         kernel.patches.armbian.uwe5622 pkgs
         |> (

@@ -18,7 +18,6 @@
       asus:
       map (patch: "${asus}/${patch}.patch") [
         "0001-acpi-proc-idle-skip-dummy-wait"
-        "0070-acpi-x86-s2idle-Add-ability-to-configure-wakeup-by-A"
         "asus-ally-patch-series"
       ]
     );

@@ -16,7 +16,12 @@
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
-      patches = with kernel.patches.injector pkgs; rockchip ++ (cachyos.lts { isHardened = true; }); # (bunker.lts { }) ++ (tachyon.lts { isVanilla = true; });
+      patches =
+        with kernel.patches.injector pkgs;
+        rockchip
+        ++ (cachyos.lts { })
+        ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
+        ++ (tachyon.lts { }); # (bunker.lts { }) ++
       src =
         inputs.linux-lts
         |> (
