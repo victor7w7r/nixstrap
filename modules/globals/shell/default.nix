@@ -20,6 +20,7 @@
                 ".bash_history"
               ];
               directories = [
+                ".local/share/atuin"
                 ".cache/antidote"
                 ".zsh"
               ];
