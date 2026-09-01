@@ -35,7 +35,7 @@
           shared = f2fs.call {
             name = "shared";
             size = "100%";
-            mountpoint = "/run/media/shared";
+            mountpoint = "/nix/persist/shared";
             priority = 3;
           };
         };
@@ -60,7 +60,11 @@
     in
     {
       server.disks.nixos = {
+        # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudlogcrypt cloudlogcrypt
+        # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudcachecrypt cloudcachecrypt
+        # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-persist persist
         imports = [ inputs.disko.nixosModules.disko ];
+        boot.resumeDevice = "/dev/mapper/swapcrypt";
         disko.devices = {
           inherit lvm_vg mdadm;
           disk = {
@@ -69,15 +73,19 @@
             nvme = nvme { };
           };
         };
-        boot.resumeDevice = "/dev/mapper/swapcrypt";
-        fileSystems = {
-          "/nix/persist" = {
-            device = "/dev/mapper/persist";
-            fsType = "btrfs";
-            depends = [ "/nix" ];
-            neededForBoot = true;
-            options = (f2fs.args { highEnd = false; }).mountOptions;
-          };
+        fileSystems."/nix/persist" = {
+          device = "/dev/mapper/persist";
+          fsType = "xfs";
+          depends = [ "/nix" ];
+          neededForBoot = true;
+          options = [
+            "noatime"
+            "discard"
+            "nodiratime"
+            "lazytime"
+            "logbufs=8"
+            "logbsize=256k"
+          ];
         };
         swapDevices = [
           {
@@ -92,11 +100,9 @@
         disko.devices = {
           inherit mdadm;
           disk = {
+            inherit emmc;
             nvme = nvme {
               extraParts = {
-                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudlogcrypt cloudlogcrypt
-                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-cloudcachecrypt cloudcachecrypt
-                # cryptsetup luksOpen /dev/disk/by-partlabel/disk-nvme-persist persist
                 swapcrypt = luks.call {
                   name = "swapcrypt";
                   device = "${disk.constants.partlabel}/disk-nvme-swapcrypt";
@@ -136,7 +142,6 @@
                 };
               };
             };
-            inherit emmc;
             cloud1 = disk.mdraid { device = "ata-MM1000GBKAL_9XG3YGXQ"; };
             cloud2 = disk.mdraid { device = "ata-WDC_WD10EZEX-60ZF5A0_WD-WMC1S2944154"; };
             cloud3 = disk.mdraid { device = "ata-WDC_WD10SPZX-24Z10_WD-WXU1E887FE3H"; };

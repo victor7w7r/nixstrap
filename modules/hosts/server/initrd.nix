@@ -58,6 +58,7 @@
             persist = {
               device = "${partlabel}/disk-nvme-persist";
               crypttabExtraOpts = [ "fido2-device=auto" ];
+              allowDiscards = true;
               preLVM = true;
             };
           };
