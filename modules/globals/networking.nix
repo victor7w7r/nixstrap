@@ -31,6 +31,10 @@
             "8.8.8.8"
             "1.1.1.1"
           ];
+          extraHosts = ''
+            192.168.100.44 passbolt.local
+            100.64.0.4 passbolt.local
+          '';
           dhcpcd = {
             enable = true;
             wait = "background";
