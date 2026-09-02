@@ -24,7 +24,7 @@
           Restart = "on-failure";
           User = "root";
           ExecStart = ''
-            ${pkgs.tailscale}/bin/tailscale funnel --bg \
+            ${pkgs.tailscale}/bin/tailscale funnel \
               ${lib.optionalString (incoming != null) ''
                 https+insecure://localhost:${incoming} \
               ''}
@@ -60,6 +60,7 @@
           "--system-call-filter=@keyring"
           "--system-call-filter=bpf"
           "--system-call-filter=@network-io"
+          "--system-call-filter=@system-service"
           "--capability=all"
         ];
         inherit forwardPorts;
@@ -69,7 +70,7 @@
             isReadOnly = true;
           };
           "/var/lib/docker" = {
-            hostPath = "/var/lib/docker";
+            hostPath = "/nix/persist/containers/${name}/docker";
             isReadOnly = false;
           };
           "/var/lib/tailscale" = {
@@ -125,10 +126,6 @@
               services = {
                 tailscaled-autoconnect.serviceConfig = {
                   Type = lib.mkForce "exec";
-                };
-                tailscaled = {
-                  after = [ "systemd-resolved.service" ];
-                  wants = [ "systemd-resolved.service" ];
                 };
               }
               // (systemd pkgs);
