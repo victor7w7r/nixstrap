@@ -5,7 +5,16 @@
   den.aspects.server.services.copyparty.nixos = { lib, pkgs, ... }: {
 
     imports = [ inputs.copyparty.nixosModules.default ];
-    networking.firewall.allowedTCPPorts = [ 3923 ];
+    networking.firewall = {
+      allowedTCPPorts = [
+        8080
+        3923
+      ];
+      interfaces."tailscale0".allowedTCPPorts = [
+        8080
+        3923
+      ];
+    };
     nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
     environment = {
       systemPackages = [ pkgs.copyparty ];
@@ -24,6 +33,9 @@
         }
       ];
     };
-    services.copyparty.enable = true;
+    services.copyparty = {
+      enable = true;
+      i = "0.0.0.0";
+    };
   };
 }
