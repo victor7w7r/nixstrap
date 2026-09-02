@@ -12,7 +12,11 @@
     {
       imports = [ inputs.copyparty.nixosModules.default ];
 
-      age.secrets.copyparty-pass.file = ../secrets/copyparty-pass.age;
+      age.secrets.copyparty-pass = {
+        file = ../secrets/copyparty-pass.age;
+        owner = "copyparty";
+        group = "copyparty";
+      };
 
       networking.firewall = {
         allowedTCPPorts = [
