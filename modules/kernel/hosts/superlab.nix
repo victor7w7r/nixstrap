@@ -29,7 +29,7 @@
         ++ (tachyon.lts { })
         ++ (bunker.common { })
         ++ (bunker.lts { })
-        ++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
+        ++ [ "${self}/modules/kernel/patches/files/rk3588-domain.patch" ];
       src =
         inputs.linux-lts
         |> (
