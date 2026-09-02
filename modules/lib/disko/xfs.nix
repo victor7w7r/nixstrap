@@ -48,7 +48,7 @@
           "-i"
           "size=512,sparse=1,nrext64=1"
           "-m"
-          "bigtime=1,crc=1,finobt=1,inobtcount=1,rmapbt=1,reflink=1"
+          "bigtime=1,crc=1,finobt=1,inobtcount=1,rmapbt=1,reflink=${if isRaid then "0" else "1"}"
           "-l"
           "${lib.optionalString (logdev != null) "logdev=${logdev}"}"
           "${lib.optionalString (logsize != null) ",logsize=${logsize}"}"
@@ -57,7 +57,7 @@
           "-d"
           "agcount=${
             if isRaid || isVmStorage || isSolid then "4" else "2"
-          },cowextsize=64${lib.optionalString isRaid ",sunit=1024,swidth=4096"}"
+          }${if isRaid then ",sunit=1024,swidth=4096" else ",cowextsize=64"}"
         ];
       }
       |> (
