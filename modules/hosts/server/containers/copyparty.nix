@@ -3,10 +3,7 @@
   flake-file.inputs.copyparty.url = "github:9001/copyparty";
 
   den.aspects.server.containers.nixos = {
-    networking.firewall.allowedTCPPorts = [
-      8080
-      3923
-    ];
+    networking.firewall.allowedTCPPorts = [ 3922 3923 ];
 
     containers.copyparty = containers.lib.call {
       ip = "10";
@@ -16,13 +13,15 @@
 
       forwardPorts = [
         {
+          #http
           containerPort = 3923;
           hostPort = 3923;
           protocol = "tcp";
         }
         {
-          containerPort = 8080;
-          hostPort = 8080;
+          #sftp
+          containerPort = 3922;
+          hostPort = 3922;
           protocol = "tcp";
         }
       ];

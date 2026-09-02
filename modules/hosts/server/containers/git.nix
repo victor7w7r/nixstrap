@@ -8,7 +8,7 @@
 
       forwardPorts = [
         {
-          containerPort = 6610;
+          containerPort = 80;
           hostPort = 8004;
           protocol = "tcp";
         }
@@ -26,7 +26,7 @@
           image = "1dev/server";
           autoStart = true;
           ports = [
-            "6610:6610"
+            "80:6610"
             "6611:6611"
           ];
           environment = {
