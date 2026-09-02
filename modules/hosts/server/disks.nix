@@ -73,19 +73,28 @@
             nvme = nvme { };
           };
         };
-        fileSystems."/nix/persist" = {
-          device = "/dev/mapper/persist";
-          fsType = "xfs";
-          depends = [ "/nix" ];
-          neededForBoot = true;
-          options = [
-            "noatime"
-            "discard"
-            "nodiratime"
-            "lazytime"
-            "logbufs=8"
-            "logbsize=256k"
-          ];
+        fileSystems = {
+          "/nix/persist" = {
+            device = "/dev/mapper/persist";
+            fsType = "xfs";
+            depends = [ "/nix" ];
+            neededForBoot = true;
+            options = [
+              "noatime"
+              "discard"
+              "nodiratime"
+              "lazytime"
+              "logbufs=8"
+              "logbsize=256k"
+            ];
+          };
+
+          "/var/lib/copyparty" = {
+            device = "/nix/persist/copyparty";
+            fsType = "none";
+            neededForBoot = true;
+            options = [ "bind" ];
+          };
         };
         swapDevices = [
           {
