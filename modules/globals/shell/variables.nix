@@ -1,12 +1,11 @@
 {
   den.default.provides.to-users.homeManager =
-    { config, user, ... }:
+    { config, ... }:
     {
       programs =
         {
           EDITOR = "nvim";
           VISUAL = "nvim";
-          SHELL = "/etc/profiles/per-user/${user}/bin/zsh";
           GPG_TTY = "$(tty)";
           COLORTERM = "truecolor";
           TERMINAL = "kitty";
@@ -85,10 +84,10 @@
             BASH_SILENCE_DEPRECATION_WARNING = 1;
             BASH_IT = "${config.home.homeDirectory}/.config/bash/bash_it";
             BASH_IT_THEME = "clean";
-            SHELL = "bash";
+            SHELL = "/run/current-system/sw/bin/bash";
           };
           zsh.sessionVariables = common // {
-            SHELL = "zsh";
+            SHELL = "/run/current-system/sw/bin/zsh";
           };
         });
     };
