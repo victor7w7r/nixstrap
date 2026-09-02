@@ -3,7 +3,7 @@
     { user, ... }:
     {
       nixos =
-        { lib, ... }:
+        { lib, pkgs, ... }:
         {
           services = {
             acpid.enable = true;
@@ -16,11 +16,14 @@
             upower.enable = true;
             btrfs.autoScrub.fileSystems = [ "/run/media/games" ];
             fwupd.enable = true;
+            udev.packages = with pkgs; [
+              hhd
+            ];
 
             handheld-daemon = {
-              enable = false;
+              enable = true;
               user = user.name;
-              ui.enable = false;
+              ui.enable = true;
               adjustor.enable = true;
               adjustor.loadAcpiCallModule = true;
             };
