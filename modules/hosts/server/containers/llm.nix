@@ -1,10 +1,9 @@
-{ containers, ... }:
-{
+{ containers, ... }: {
   den.aspects.server.provides.containers.nixos = { pkgs, lib, ... }: {
     containers.llm = containers.lib.call {
       ip = "5";
       name = "llm";
-      
+
       bindMounts = {
         "/dev/dri" = {
           hostPath = "/dev/dri";

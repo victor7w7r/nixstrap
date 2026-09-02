@@ -1,7 +1,5 @@
-{ containers, ... }:
-{
+{ containers, ... }: {
   den.aspects.server.containers.nixos = {
-
     networking.firewall.allowedTCPPorts = [ 8004 ];
 
     containers.git = containers.lib.call {
@@ -23,14 +21,6 @@
         };
       };
 
-      systemd = pkgs: {
-        funnel = containers.lib.funnel {
-          inherit pkgs;
-          incoming = "6610";
-          incomingTcp = "6611";
-          outgoingTcp = "8443";
-        };
-      };
       containers = _: {
         onedev = {
           image = "1dev/server";

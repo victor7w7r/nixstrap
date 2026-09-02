@@ -1,8 +1,6 @@
-{ containers, ... }:
-{
+{ containers, ... }: {
   den.aspects.server.containers.nixos = {
-
-     networking.firewall.allowedTCPPorts = [
+    networking.firewall.allowedTCPPorts = [
       5984
       8003
     ];
@@ -10,10 +8,6 @@
     containers.notes = containers.lib.call {
       ip = "3";
       name = "notes";
-
-      rules = [
-        "d /nix/persist/containers/notes/data 0755 106 106 -"
-      ];
 
       forwardPorts = [
         {

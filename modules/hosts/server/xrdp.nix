@@ -1,5 +1,5 @@
 {
-  den.aspects.server.services.xrdp.nixos =
+  den.aspects.server.xrdp.nixos =
     { pkgs, ... }:
     {
       services = {

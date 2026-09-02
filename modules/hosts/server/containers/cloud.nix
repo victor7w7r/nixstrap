@@ -1,7 +1,5 @@
-{ containers, ... }:
-{
+{ containers, ... }: {
   den.aspects.server.containers.nixos = {
-
     networking.firewall.allowedTCPPorts = [ 8081 ];
 
     containers.cloud = containers.lib.call {

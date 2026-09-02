@@ -43,6 +43,7 @@
         extra ? pkgs: { },
         containers ? config: { },
         forwardPorts ? [ ],
+        imports ? [ ],
         services ? config: pkgs: { },
         secrets ? { },
         systemd ? pkgs: { },
@@ -69,23 +70,25 @@
             hostPath = "/home/victor7w7r/.ssh";
             isReadOnly = true;
           };
-          "/var/lib/docker" = {
-            hostPath = "/nix/persist/containers/${name}/docker";
-            isReadOnly = false;
-          };
+
           "/var/lib/tailscale" = {
             hostPath = "/nix/persist/containers/${name}/tailscale";
             isReadOnly = false;
           };
         }
+        // (lib.optionalAttrs (containers != null) {
+          "/var/lib/docker" = {
+            hostPath = "/nix/persist/containers/${name}/docker";
+            isReadOnly = false;
+          };
+        })
         // bindMounts;
 
         config =
           { config, pkgs, ... }:
           {
             system.stateVersion = stateVersion;
-            imports = [ inputs.agenix.nixosModules.default ];
-            environment.systemPackages = with pkgs; [ tcpdump ];
+            imports = [ inputs.agenix.nixosModules.default ] ++ imports;
             boot.isContainer = true;
             age = {
               identityPaths = [ "/etc/ssh/id_ed25519" ];
@@ -130,7 +133,8 @@
               }
               // (systemd pkgs);
             };
-
+          }
+          // (lib.optionalAttrs (containers != null) {
             virtualisation = {
               docker = {
                 enable = true;
@@ -149,7 +153,7 @@
                 backend = "docker";
               };
             };
-          }
+          })
           // (extra pkgs);
       };
   };

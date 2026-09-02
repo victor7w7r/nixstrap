@@ -1,5 +1,5 @@
 {
-  den.aspects.server.services.harmonia.nixos.services = {
+  den.aspects.server.harmonia.nixos.services = {
     harmonia.cache = {
       enable = false;
       signKeyPaths = [ "/var/lib/secrets/harmonia.secret" ];

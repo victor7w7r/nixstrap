@@ -1,8 +1,6 @@
-{ containers, ... }:
-{
+{ containers, ... }: {
   den.aspects.server.containers.nixos = {
-
-     networking.firewall.allowedTCPPorts = [ 8007 ];
+    networking.firewall.allowedTCPPorts = [ 8007 ];
 
     containers.termix = containers.lib.call {
       ip = "7";
@@ -23,13 +21,6 @@
         };
       };
 
-      secrets.tailnet.file = ../secrets/tailnet.age;
-      systemd = pkgs: {
-        funnel = containers.lib.funnel {
-          inherit pkgs;
-          incoming = "8080";
-        };
-      };
       containers = _: {
         termix = {
           image = "lukegus/termix:latest";
