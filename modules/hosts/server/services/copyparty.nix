@@ -35,7 +35,9 @@
     };
     services.copyparty = {
       enable = true;
-      i = "0.0.0.0";
+      settings = {
+        i = "0.0.0.0";
+      };
     };
   };
 }
