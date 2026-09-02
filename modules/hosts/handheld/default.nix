@@ -92,7 +92,6 @@
                 amdgpu_top
                 asusctl
                 bolt
-                hhd
                 brightnessctl
                 kdePackages.plasma-thunderbolt
                 qjoypad

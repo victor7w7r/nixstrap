@@ -16,9 +16,6 @@
             upower.enable = true;
             btrfs.autoScrub.fileSystems = [ "/run/media/games" ];
             fwupd.enable = true;
-            udev.packages = with pkgs; [
-              hhd
-            ];
 
             handheld-daemon = {
               enable = true;
