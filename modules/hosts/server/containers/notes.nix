@@ -16,7 +16,7 @@
           protocol = "tcp";
         }
         {
-          containerPort = 8443;
+          containerPort = 443;
           hostPort = 8003;
           protocol = "tcp";
         }
@@ -92,9 +92,7 @@
       systemd = pkgs: {
         funnel = containers.lib.funnel {
           inherit pkgs;
-          incoming = "8443";
-          incomingTcp = "5984";
-          outgoingTcp = "8443";
+          incoming = "443";
         };
       };
 
@@ -103,6 +101,10 @@
           image = "docker.io/sytone/obsidian-remote:latest";
           autoStart = true;
           extraOptions = [ "--network=host" ];
+          ports = [
+            "443:8443"
+            "80:8080"
+          ];
           volumes = [
             "/web/vaults:/vaults"
             "/web/config:/config"
