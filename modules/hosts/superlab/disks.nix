@@ -1,19 +1,38 @@
 { disko, inputs, ... }:
 {
-  den.aspects.superlab.disks.nixos = {
+  den.aspects.superlab.disks.nixos = with disko; {
     imports = [ inputs.disko.nixosModules.disko ];
     fileSystems = {
-      "/nix/persist".neededForBoot = true;
-      "/etc".neededForBoot = true;
+      "/nix" = {
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = (btrfs.mountOptions { }) ++ [
+          "noacl"
+          "subvol=@nix"
+        ];
+      };
+      "/nix/persist" = {
+        fsType = "btrfs";
+        depends = [ "/nix" ];
+        neededForBoot = true;
+        options = (btrfs.mountOptions { }) ++ [ "subvol=@persist" ];
+      };
+      "/etc" = {
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = (btrfs.mountOptions { }) ++ [ "subvol=@etc" ];
+      };
     };
-    /*boot.resumeDevice = "/dev/mapper/swapcrypt";
-    swapDevices = [
-      {
-        device = "/dev/mapper/swapcrypt";
-        discardPolicy = "both";
-        options = [ "nofail" ];
-      }
-    ];*/
+    /*
+      boot.resumeDevice = "/dev/mapper/swapcrypt";
+      swapDevices = [
+        {
+          device = "/dev/mapper/swapcrypt";
+          discardPolicy = "both";
+          options = [ "nofail" ];
+        }
+      ];
+    */
     disko.devices.disk = with disko; {
       root = disk.root { };
       main = disk.gpt {
@@ -25,23 +44,23 @@
           };
           /*
             swapcrypt = luks.call {
-            name = "swapcrypt";
-            size = "32G";
-            content = swap.call { };
-            priority = 1;
+              name = "swapcrypt";
+              size = "32G";
+              content = swap.call { };
+              priority = 1;
+              };
+            system = luks.call {
+              name = "system";
+              size = "100%";
+              priority = 2;
+              device = "${disk.constants.partlabel}/disk-main-system";
+              content = btrfs.call {
+                name = "system";
+                isPartition = false;
+                subvolumes = btrfs.subvolumes { hasEtc = true; };
+              };
             };
           */
-          system = luks.call {
-            name = "system";
-            size = "100%";
-            priority = 2;
-            device = "${disk.constants.partlabel}/disk-main-system";
-            content = btrfs.call {
-              name = "system";
-              isPartition = false;
-              subvolumes = btrfs.subvolumes { hasEtc = true; };
-            };
-          };
         };
       };
     };
