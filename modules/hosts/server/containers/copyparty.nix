@@ -3,7 +3,7 @@
   flake-file.inputs.copyparty.url = "github:9001/copyparty";
 
   den.aspects.server.containers.nixos = {
-    networking.firewall.allowedTCPPorts = [ 3922 3923 ];
+    networking.firewall.allowedTCPPorts = [ 3922 3923 3945 ];
 
     containers.copyparty = containers.lib.call {
       ip = "10";
@@ -24,8 +24,14 @@
           hostPort = 3922;
           protocol = "tcp";
         }
+        {
+          #smb
+          containerPort = 3945;
+          hostPort = 3945;
+          protocol = "tcp";
+        }
       ];
-      #copyparty
+
       bindMounts = {
         "/var/lib/copyparty" = {
           hostPath = "/nix/persist/containers/copyparty/data";
@@ -39,6 +45,7 @@
 
       secrets = {
         copyparty-pass = {
+        tunnel.file = ../secrets/tunnel.age;
           file = ../secrets/copyparty-pass.age;
           owner = "copyparty";
           group = "copyparty";
@@ -48,6 +55,13 @@
       extra = pkgs: {
         nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
         environment.systemPackages = [ pkgs.copyparty ];
+      };
+
+      systemd = pkgs: {
+        funnel = containers.lib.funnel {
+          inherit pkgs;
+          incoming = "3923";
+        };
       };
 
       services = config: __: {
