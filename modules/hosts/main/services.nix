@@ -4,6 +4,12 @@
     {
       services = {
         fwupd.enable = true;
+        cockpit.allowed-origins = [
+          "https://192.168.100.6:9090"
+          "http://192.168.100.6:9090"
+          "https://100.64.0.2:9090"
+          "http://100.64.0.2:9090"
+        ];
         #thermald.enable = true;
       };
       systemd = {

@@ -28,7 +28,6 @@
         misc.fetch
         pentest._
 
-        cockpit
         emulation
         games
         root

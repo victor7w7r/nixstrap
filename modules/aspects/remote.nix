@@ -1,6 +1,6 @@
 {
   den.aspects.remote = {
-    nixos = { isPiZero, ... }: {
+    nixos = {
       systemd.services.tailscaled = {
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
@@ -8,7 +8,6 @@
 
       services = {
         #aria2.enable = true; NEEDS KEY
-        croc.enable = !isPiZero;
         tailscale = {
           enable = true;
           openFirewall = true;
@@ -20,10 +19,6 @@
             "--accept-routes"
           ];
         };
-        ttyd = {
-          enable = true;
-          writeable = true;
-        };
       };
     };
 
@@ -31,6 +26,5 @@
       services.pbgopy.enable = true;
       programs.himalaya.enable = true;
     };
-
   };
 }

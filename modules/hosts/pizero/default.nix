@@ -158,7 +158,15 @@
                   .pizero-kernelPackages;
               };
 
-              services.fail2ban.enable = lib.mkForce false;
+              services = {
+                fail2ban.enable = lib.mkForce false;
+                cockpit.allowed-origins = [
+                  "https://192.168.100.11:9090"
+                  "http://192.168.100.11:9090"
+                  "https://100.64.0.4:9090"
+                  "http://100.64.0.4:9090"
+                ];
+              };
               system.autoUpgrade.enable = lib.mkForce false;
             };
         };

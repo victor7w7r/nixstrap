@@ -69,7 +69,6 @@
 
             #android
             bluetooth
-            cockpit
             emulation
             firewall
             games
