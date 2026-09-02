@@ -1,4 +1,9 @@
-{ inputs, kernel, ... }:
+{
+  inputs,
+  kernel,
+  self,
+  ...
+}:
 {
   perSystem =
     { pkgs, ... }:
@@ -23,7 +28,8 @@
         ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
         ++ (tachyon.lts { })
         ++ (bunker.common { })
-        ++ (bunker.lts { });
+        ++ (bunker.lts { })
+        ++ [ "${self}/modules/kernel/patches/rk3588-domain.patch" ];
       src =
         inputs.linux-lts
         |> (

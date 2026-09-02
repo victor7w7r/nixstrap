@@ -1,0 +1,33 @@
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH] arm64: dts: rockchip: Add GPU power domain regulator dependency for Rock 5B
+Date: Thu, 20 Feb 2025 19:58:11 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Enabling the GPU power domain requires that the GPU regulator is
+enabled. Avoid failure states by adding an explicit regulator 
+dependency to the power domain for Rock 5B.
+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 5acec6b97a46..b4f31b7d1c77 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -409,6 +409,10 @@ &pcie3x4 {
+ 	status = "okay";
+ };
+
++&pd_gpu {
++	domain-supply = <&vdd_gpu_s0>;
++};
++
+ &pinctrl {
+ 	hym8563 {
+ 		hym8563_int: hym8563-int {
+-- 
+2.47.2

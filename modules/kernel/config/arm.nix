@@ -78,7 +78,9 @@
       ARCH_ROCKCHIP = yes;
       ARCH_SUNXI = no;
       COMMON_CLK_SCPI = yes;
-      INPUT_RK805_PWRKEY = module;
+      GPIO_BY_PINCTRL = yes;
+      I3C_OR_I2C = yes;
+      INPUT_RK805_PWRKEY = yes;
       LT7911D_FB_NOTIFIER = no;
       MEDIA_TUNER_M88RS6000T = no;
       MEDIA_TUNER_MT2131 = no;
@@ -87,10 +89,20 @@
       MEDIA_TUNER_QM1D1B0004 = no;
       MEDIA_TUNER_QM1D1C0042 = no;
       MEDIA_TUNER_TDA18250 = no;
-      RTC_DRV_HYM8563 = module;
+      MFD_PF1550 = module;
+      PCI_PWRCTRL_GENERIC = module;
+      PCI_REALLOC_ENABLE_AUTO = yes;
+      REGULATOR_RT8092 = module;
+      RTC_DRV_HYM8563 = yes;
       RTC_DRV_RK630 = no;
+      SENSORS_MCP9982 = module;
       SENSORS_PWM_FAN = module;
+      SENSORS_TSC1641 = module;
       SND_SOC_ES8316 = module;
+      SCSI_UFSHCD = yes;
+      SCSI_UFSHCD_PLATFORM = yes;
+      SCSI_UFS_ROCKCHIP = yes;
+      USB_ACM = yes;
     };
 
     denied = { }: {
