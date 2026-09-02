@@ -76,8 +76,8 @@
             };
 
             virtualisation.incus = {
-              ui.enable = true;
-              agent.enable = true;
+              ui.enable = false;
+              agent.enable = false;
             };
 
             boot = {

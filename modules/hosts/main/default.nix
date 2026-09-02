@@ -73,7 +73,7 @@
 
           virtualisation = {
             kvmgt.enable = true;
-            incus.ui.enable = true;
+            incus.ui.enable = false;
           };
 
           systemd.tmpfiles.rules = [

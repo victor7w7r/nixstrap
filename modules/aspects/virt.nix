@@ -20,7 +20,7 @@
       };
 
       virtualisation.incus = {
-        enable = true;
+        enable = false;
         preseed = {
           networks = [
             {
