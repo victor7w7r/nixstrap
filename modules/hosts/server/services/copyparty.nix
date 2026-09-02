@@ -47,7 +47,7 @@
           no-robots = true;
           theme = 2;
         };
-        #accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
+        accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
       };
     };
 }
