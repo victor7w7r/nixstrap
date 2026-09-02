@@ -8,7 +8,7 @@
 
       forwardPorts = [
         {
-          containerPort = 80;
+          containerPort = 8080;
           hostPort = 8007;
           protocol = "tcp";
         }
@@ -25,9 +25,9 @@
         termix = {
           image = "ghcr.io/lukegus/termix:latest";
           autoStart = true;
-          ports = [ "80:8080" ];
+          ports = [ "8080:8080" ];
           environment = {
-            "PORT" = "80";
+            "PORT" = "8080";
           };
           volumes = [ "termix-data:/app/data" ];
         };
