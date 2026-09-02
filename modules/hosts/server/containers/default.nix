@@ -58,7 +58,8 @@
         extraFlags = [
           "--private-users-ownership=chown"
           "--system-call-filter=@keyring"
-          "--system-call-filter=add_key keyctl bpf"
+          "--system-call-filter=bpf"
+          "--system-call-filter=@network-io"
           "--capability=all"
         ];
         inherit forwardPorts;
