@@ -11,6 +11,10 @@
       ip = "3";
       name = "notes";
 
+      rules = [
+        "d /nix/persist/containers/notes/data 0755 106 106 -"
+      ];
+
       forwardPorts = [
         {
           containerPort = 5984;
