@@ -12,6 +12,7 @@
       ip = "10";
       name = "copyparty";
       imports = [ inputs.copyparty.nixosModules.default ];
+      containers = null;
 
       forwardPorts = [
         {

@@ -5,6 +5,7 @@
     containers.atuin = containers.lib.call {
       ip = "9";
       name = "atuin";
+      containers = null;
 
       forwardPorts = [
         {
