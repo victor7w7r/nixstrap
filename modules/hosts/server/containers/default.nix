@@ -58,9 +58,9 @@
         extraFlags = [
           "--private-users-ownership=chown"
           "--system-call-filter=@keyring"
+          "--system-call-filter=add_key keyctl bpf"
           "--capability=all"
         ];
-        additionalCapabilities = [ ''all" --system-call-filter="add_key keyctl bpf" --capability="all'' ];
         inherit forwardPorts;
         bindMounts = {
           "/etc/ssh" = {
@@ -96,14 +96,16 @@
               hostName = "v7w7r-${name}";
               firewall.enable = false;
               useHostResolvConf = lib.mkForce false;
+              defaultGateway = "10.200.1.1";
               nameservers = [
                 "1.1.1.1"
                 "8.8.8.8"
               ];
             };
             services = {
-              resolved.enable = true;
+              resolved.enable = false;
               journald.extraConfig = "SystemMaxUse=100M";
+              timesyncd.enable = false;
               tailscale = {
                 enable = true;
                 openFirewall = true;
