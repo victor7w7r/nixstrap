@@ -13,6 +13,7 @@
   _module.args.__findFile = den.lib.__findFile;
 
   flake-file.inputs = {
+    agenix.url = "github:ryantm/agenix";
     den.url = "github:denful/den";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     flake-file.url = "github:vic/flake-file";

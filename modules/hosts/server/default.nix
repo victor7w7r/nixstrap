@@ -49,7 +49,6 @@
           kitty
           remote
           root
-          secrets
           tools
           victor7w7r
           virt
@@ -64,6 +63,9 @@
             ...
           }:
           {
+            imports = [ inputs.agenix.nixosModules.default ];
+            age.identityPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
+
             hardware.cpu.intel.updateMicrocode = true;
 
             # wol -i 192.168.1.255 00:11:22:33:44:55

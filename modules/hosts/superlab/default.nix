@@ -78,7 +78,6 @@
             #libvirt
             #plasma._
             remote
-            secrets
             victor7w7r
             root
             tools

@@ -72,7 +72,6 @@
             games
             remote
             root
-            secrets
             tools
             victor7w7r
           ];

@@ -46,7 +46,6 @@
           remote
           root
           plasma._
-          secrets
           victor7w7r
           virt
           tools

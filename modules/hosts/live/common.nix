@@ -9,7 +9,6 @@
     includes = with den.aspects; [
       cli._
       disks
-      secrets
       snowflake
       tools
     ];

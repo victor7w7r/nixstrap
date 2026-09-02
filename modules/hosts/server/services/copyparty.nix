@@ -10,8 +10,10 @@
       ...
     }:
     {
-
       imports = [ inputs.copyparty.nixosModules.default ];
+
+      age.secrets.copyparty-pass.file = ../secrets/copyparty-pass.age;
+
       networking.firewall = {
         allowedTCPPorts = [
           8080

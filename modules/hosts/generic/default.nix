@@ -71,7 +71,6 @@
             kitty
             plasma._
             root
-            secrets
             snowflake
           ];
 

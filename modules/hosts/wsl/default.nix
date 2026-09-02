@@ -32,7 +32,6 @@
         emulation
         games
         root
-        secrets
         tools
         victor7w7r
       ];

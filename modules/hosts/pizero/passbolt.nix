@@ -1,9 +1,9 @@
 { inputs, ... }: {
-  den.aspects.pizero.passbolt.nixos = { lib, ... }: {
+  den.aspects.pizero.passbolt.nixos = {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age = {
-      identityPaths = lib.mkForce [ "/etc/ssh/ssh_host_ed25519_key" ];
+      identityPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
     };
 
     networking.firewall = {
