@@ -33,10 +33,6 @@
       };
 
       systemd = pkgs: {
-        funnel = containers.lib.funnel {
-          inherit pkgs;
-          incoming = "80";
-        };
         create-seafile-net = {
           serviceConfig.Type = "oneshot";
           wantedBy = [

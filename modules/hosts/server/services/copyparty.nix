@@ -52,6 +52,8 @@
           i = "0.0.0.0";
           no-robots = true;
           theme = 2;
+          xff-hdr = "x-forwarded-for";
+          xff-src = "192.168.100.10,100.64.0.1";
         };
         accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
       };
