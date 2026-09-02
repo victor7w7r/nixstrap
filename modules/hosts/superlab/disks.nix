@@ -5,6 +5,7 @@
     fileSystems = {
       "/nix" = {
         fsType = "btrfs";
+        device = "/dev/mapper/system";
         neededForBoot = true;
         options = (btrfs.mountOptions { }) ++ [
           "noacl"
@@ -13,12 +14,14 @@
       };
       "/nix/persist" = {
         fsType = "btrfs";
+        device = "/dev/mapper/system";
         depends = [ "/nix" ];
         neededForBoot = true;
         options = (btrfs.mountOptions { }) ++ [ "subvol=@persist" ];
       };
       "/etc" = {
         fsType = "btrfs";
+        device = "/dev/mapper/system";
         neededForBoot = true;
         options = (btrfs.mountOptions { }) ++ [ "subvol=@etc" ];
       };
