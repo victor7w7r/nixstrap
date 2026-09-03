@@ -40,7 +40,7 @@ cache-stdenv.mkDerivation (attrs: {
     qtdeclarative
     qt3d
     qtquick3d
-    libepoxy
+    pkgs.libepoxy
   ];
 
   postPatch = ''
