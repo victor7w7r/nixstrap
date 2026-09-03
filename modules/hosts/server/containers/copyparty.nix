@@ -88,7 +88,6 @@
               path = "/cloud";
               access = {
                 A = [ "victor7w7r" ];
-                rg = "*";
               };
               flags = {
                 fk = 4;
