@@ -92,7 +92,7 @@
       systemd = pkgs: {
         funnel = containers.lib.funnel {
           inherit pkgs;
-          incoming = "443";
+          incoming = "8443";
         };
       };
 
@@ -101,10 +101,6 @@
           image = "docker.io/sytone/obsidian-remote:latest";
           autoStart = true;
           extraOptions = [ "--network=host" ];
-          ports = [
-            "443:8443"
-            "80:8080"
-          ];
           volumes = [
             "/web/vaults:/vaults"
             "/web/config:/config"
