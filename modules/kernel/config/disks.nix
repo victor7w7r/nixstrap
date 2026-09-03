@@ -25,7 +25,7 @@
         BLK_DEV_SD = yes;
         MD = yes;
         DM_CRYPT = yes;
-        DAX = yes;
+        DAX = module;
         SCSI = yes;
         ENCRYPTED_KEYS = yes;
         TRUSTED_KEYS = yes;

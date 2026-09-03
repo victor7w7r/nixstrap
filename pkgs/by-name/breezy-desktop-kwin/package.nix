@@ -1,6 +1,6 @@
 { cache-stdenv, pkgs }:
 cache-stdenv.mkDerivation (attrs: {
-  pname = "breezy-desktop";
+  pname = "breezy-desktop-kwin";
   version = "2.11.8";
 
   src = pkgs.fetchFromGitHub {

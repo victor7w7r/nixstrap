@@ -5,7 +5,7 @@
       boot.kernelModules = [ "uinput" ];
 
       environment.systemPackages = with self'.packages; [
-        breezy-desktop
+        breezy-desktop-kwin
         xrlinux
       ];
 
