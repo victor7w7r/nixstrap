@@ -21,6 +21,9 @@
        sed -i '/^CONFIG_RUSTC*_/d' config
        sed -i '/^CONFIG_LOCALVERSION/d' config
 
+       sed -i '/^CONFIG_ENCRYPTED_KEYS/d' config
+       sed -i '/^CONFIG_TRUSTED_KEYS/d' config
+
        sed -i '/^CONFIG_AF_RXRPC/d' config
        sed -i '/^CONFIG_ALTERA_STAPL/d' config
        sed -i '/^CONFIG_COMEDI/d' config
