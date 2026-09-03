@@ -43,7 +43,7 @@
         spiceUSBRedirection.enable = true;
         libvirtd = {
           enable = true;
-          onBoot = "ignore";
+          onBoot = "start";
           qemu = {
             package = pkgs.qemu_full.override {
               cephSupport = false;

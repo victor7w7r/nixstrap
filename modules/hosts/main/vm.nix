@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ main-domains, inputs, ... }:
 {
   flake-file.inputs = {
     nixvirt = {
@@ -17,7 +17,9 @@
     };
   };
 
-  den.aspects.main.vm.nixos = {
+  imports = [ (inputs.den.namespace "main-domains" false) ];
+
+  den.aspects.main.vm.nixos = { pkgs, ... }: {
     imports = [ inputs.nixvirt.nixosModules.default ];
 
     boot.extraModprobeConfig = ''
@@ -30,17 +32,25 @@
     virtualisation = {
       kvmgt.enable = true;
       incus.ui.enable = false;
+      libvirt.connections."qemu:///system" = {
+        domains = [
+          {
+            definition = main-domains.lib.win { inherit pkgs; };
+            active = null;
+            restart = false;
+          }
+          {
+            definition = main-domains.lib.macos { };
+            active = null;
+            restart = false;
+          }
+        ];
+      };
     };
 
     systemd.tmpfiles.rules = [
       "d /var/lib/libvirt/roms 0755 libvirt-qemu kvm -"
       "d /var/lib/libvirt/images 0755 libvirt-qemu kvm -"
-
-      "C+ /var/lib/libvirt/roms/OVMF_CODE.fd 0644 libvirt-qemu kvm - ${inputs.osx-kvm}/OVMF_CODE.fd"
-      "C+ /var/lib/libvirt/roms/Mac_VARS.fd 0644 libvirt-qemu kvm - ${inputs.osx-kvm}/OVMF_VARS-1024x768.fd"
-      "C+ /var/lib/libvirt/images/OpenCore.qcow2 0644 libvirt-qemu kvm - ${inputs.osx-kvm}/OpenCore/OpenCore.qcow2"
-
-      "L+ /var/lib/libvirt/roms/i915ovmf.rom - libvirt-qemu kvm - ${inputs.macos-kvm}/ovmf/other/i915ovmf-new.rom"
 
       "w /sys/bus/pci/devices/0000:00:02.0/mdev_supported_types/i915-GVTg_V5_4/create - - - - 01234567-89ab-4cde-8f01-23456789abcd"
     ];

@@ -52,6 +52,7 @@
               "toml"
               "tmux"
               "unocss"
+              "xml"
             ];
 
             userSettings = {
