@@ -66,7 +66,6 @@
             dvdbounce
             dvdts
             gof-rs
-            lifecycler
             ncmatrix
             no-more-secrets
             rbonsai
