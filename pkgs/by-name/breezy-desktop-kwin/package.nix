@@ -7,7 +7,7 @@ cache-stdenv.mkDerivation (attrs: {
     owner = "wheaney";
     repo = "breezy-desktop";
     rev = "v${attrs.version}";
-    hash = "sha256-rRDdvFhoI3nE9zET2Whr/BSQ3J7JQzpv7/UUdvfW4wY=";
+    hash = "sha256-rRDdvFhoI3nE9zET2Whr/BSQ3J7JQzpv7/AAdvfW4wY=";
     fetchSubmodules = true;
   };
 
