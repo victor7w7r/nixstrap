@@ -7,7 +7,7 @@
           nix-clean = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +1 && nix-collect-garbage -d";
           nix-optimize = "nix-store --optimise";
           nix-repair = "nix-store --verify --check-contents --repair";
-          nix-compare = ''test "$(readlink -f /run/current-system)" = "$(readlink -f /nix/var/nix/profiles/system)" && echo "YES" || echo "NO'';
+          nix-compare = ''test "$(readlink -f /run/current-system)" = "$(readlink -f /nix/var/nix/profiles/system)" && echo "YES" || echo "NO"'';
 
           ssh = "TERM=xterm-256color command ssh";
           _ = "sudo";

@@ -1,22 +1,38 @@
 { cache-stdenv, pkgs }:
+let
+  arch =
+    if pkgs.stdenv.hostPlatform.isx86_64 then
+      "x86_64"
+    else if pkgs.stdenv.hostPlatform.isAarch64 then
+      "aarch64"
+    else
+      throw "Unsupported architecture for xr-linux-driver";
+in
 cache-stdenv.mkDerivation (attrs: {
   pname = "xr-linux-driver";
-  version = "2.9.4";
+  version = "2.11.7";
+  cargoRoot = "modules/xrealInterfaceLibrary/interface_lib/modules/xreal_one_driver";
+
+  cargoDeps = pkgs.rustPlatform.importCargoLock {
+    lockFile = "${attrs.src}/${attrs.cargoRoot}/Cargo.lock";
+  };
 
   src = pkgs.fetchgit {
     url = "https://github.com/wheaney/XRLinuxDriver";
     rev = "v${attrs.version}";
     fetchSubmodules = true;
-    deepClone = false;
-    hash = "sha256-fbaNdv6vjRphYYSzbOYqmRK6c24hv1gkTh3xlql0VEU=";
+    hash = "sha256-fbaNdv6vjRphYYSzbOYqmRK6cAAhv1gkTh3xlql0VEU=";
   };
 
   nativeBuildInputs = with pkgs; [
     cmake
     pkg-config
     (python3.withPackages (ps: [ ps.pyyaml ]))
-    makeWrapper
+    cargo
+    rustc
+    rustPlatform.cargoSetupHook
     autoPatchelfHook
+    makeWrapper
   ];
 
   buildInputs = with pkgs; [
@@ -27,78 +43,74 @@ cache-stdenv.mkDerivation (attrs: {
     curl
     wayland
     systemd
-    gcc-unwrapped.lib
+    stdenv.cc.cc.lib
   ];
 
   postPatch = ''
     substituteInPlace CMakeLists.txt \
-      --replace-quiet "git submodule update --init --recursive" "true"
-    rm -rf modules/xrealInterfaceLibrary/interface_lib/modules/xreal_one_driver
+      --replace-fail 'execute_process(COMMAND git submodule update --init --recursive' \
+                     'message(STATUS "Skipping git submodule update in Nix build"'
 
-    cat > modules/xrealInterfaceLibrary/interface_lib/src/imu_protocol_xo_stub.c <<'EOF'
-    #include "imu_protocol.h"
-    static bool xo_open(struct device_imu_t* d, const struct imu_hid_info* i) { (void)d; (void)i; return false; }
-    static void xo_close(struct device_imu_t* d) { (void)d; }
-    static bool xo_start_stream(struct device_imu_t* d) { (void)d; return false; }
-    static bool xo_stop_stream(struct device_imu_t* d) { (void)d; return false; }
-    static bool xo_get_static_id(struct device_imu_t* d, uint32_t* o) { (void)d; (void)o; return false; }
-    static bool xo_load_cal(struct device_imu_t* d, uint32_t* l, char** o) { (void)d; (void)l; (void)o; return false; }
-    static int  xo_next_sample(struct device_imu_t* d, struct imu_sample* o, int t) { (void)d; (void)o; (void)t; return -1; }
-    const imu_protocol imu_protocol_xreal_one = {
-        .open = xo_open,
-        .close = xo_close,
-        .start_stream = xo_start_stream,
-        .stop_stream = xo_stop_stream,
-        .get_static_id = xo_get_static_id,
-        .load_calibration_json = xo_load_cal,
-        .next_sample = xo_next_sample,
-    };
+    cat > custom_banner_config.yml <<EOF
+    start_date: 0
+    end_date: 0
     EOF
-    substituteInPlace modules/xrealInterfaceLibrary/interface_lib/CMakeLists.txt \
-      --replace-fail \
-        "src/hid_ids.c" \
-        "src/hid_ids.c src/imu_protocol_xo_stub.c"
   '';
 
-  cmakeFlags = [
-    "-DCMAKE_EXE_LINKER_FLAGS=-Wl,--unresolved-symbols=ignore-in-shared-libs"
-    "-DCMAKE_SKIP_BUILD_RPATH=ON"
-  ];
+  cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Release" ];
 
-  hardeningDisable = [
-    "fortify"
-    "fortify3"
-  ];
+  NIX_LDFLAGS = "-ludev";
 
   installPhase = ''
-    install -Dm755 xrDriver "$out/bin/xrDriver"
-    install -d "$out/lib"
+    install -Dm755 xrDriver $out/bin/xrDriver
 
-    cp -P modules/xrealInterfaceLibrary/interface_lib/modules/hidapi/src/linux/libhidapi-hidraw.so* "$out/lib/"
-    cp -P modules/xrealInterfaceLibrary/interface_lib/modules/hidapi/src/libusb/libhidapi-libusb.so* "$out/lib/"
+    mkdir -p $out/lib
+    for so in $src/lib/${arch}/*.so; do
+      [ -f "$so" ] && install -Dm755 "$so" $out/lib/$(basename "$so")
+    done
+    if [ -d "$src/lib/${arch}/viture" ]; then
+      for so in $src/lib/${arch}/viture/*.so*; do
+        [ -f "$so" ] && install -Dm755 "$so" $out/lib/$(basename "$so")
+      done
+    fi
 
-    cp -rP ../lib/x86_64/* "$out/lib/"
-    install -d "$out/lib/udev/rules.d"
-    cp ../udev/*.rules "$out/lib/udev/rules.d/"
-    install -d "$out/lib/systemd/user"
-    sed \
-      -e "s|{ld_library_path}|$out/lib:$out/lib/viture|g" \
-      -e "s|{bin_dir}|$out/bin|g" \
-      ../systemd/xr-driver.service \
-      > "$out/lib/systemd/user/xr-driver.service"
+    find . -name 'libhidapi*.so*' \( -type f -o -type l \) | while read -r f; do
+      cp -a "$f" $out/lib/
+    done
+
+    patchelf --set-rpath "$out/lib:${
+      pkgs.lib.makeLibraryPath [
+        pkgs.systemd
+        pkgs.stdenv.cc.cc.lib
+        pkgs.curl
+        pkgs.openssl
+        pkgs.json_c
+        pkgs.libusb1
+        pkgs.libevdev
+        pkgs.wayland
+      ]
+    }" $out/bin/xrDriver
+
+    install -Dm755 $src/bin/xr_driver_cli $out/bin/xr_driver_cli
+    wrapProgram $out/bin/xr_driver_cli \
+      --prefix PATH : ${
+        pkgs.lib.makeBinPath [
+          pkgs.jq
+          pkgs.curl
+        ]
+      }
+
+    install -Dm644 $src/udev/70-xreal-xr.rules $out/lib/udev/rules.d/70-xreal-xr.rules
+    install -Dm644 $src/udev/70-uinput-xr.rules $out/lib/udev/rules.d/70-uinput-xr.rules
+    install -Dm644 $src/udev/70-rayneo-xr.rules $out/lib/udev/rules.d/70-rayneo-xr.rules
+    install -Dm644 $src/udev/70-rokid-xr.rules $out/lib/udev/rules.d/70-rokid-xr.rules
+    install -Dm644 $src/udev/70-viture-xr.rules $out/lib/udev/rules.d/70-viture-xr.rules
+
+    install -Dm644 $src/systemd/xr-driver.service $out/lib/systemd/user/xr-driver.service
+    substituteInPlace $out/lib/systemd/user/xr-driver.service \
+      --replace-fail '{ld_library_path}' "$out/lib" \
+      --replace-fail '{bin_dir}' "$out/bin"
   '';
 
-  postFixup = ''
-    wrapProgram "$out/bin/xrDriver" \
-      --prefix LD_LIBRARY_PATH : "$out/lib:$out/lib/viture"
-  '';
-
-  dontAutoPatchelf = false;
-  autoPatchelfIgnoreMissingDeps = [
-    "libRayNeoXRMiniSDK.so"
-    "libGlassSDK.so"
-    "libcarina_vio.so"
-    "libglasses.so"
-    "libopencv_*.so*"
-  ];
+  autoPatchelfIgnoreMissingDeps = [ "libopencv_*" ];
 })
