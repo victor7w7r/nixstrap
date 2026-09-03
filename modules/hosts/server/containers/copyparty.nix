@@ -54,6 +54,11 @@
       extra = pkgs: {
         nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
         environment.systemPackages = [ pkgs.copyparty ];
+        users.users.victor7w7r = {
+          isNormalUser = true;
+          uid = 1000;
+          extraGroups = [ "users" ];
+        };
       };
 
       systemd = pkgs: {
