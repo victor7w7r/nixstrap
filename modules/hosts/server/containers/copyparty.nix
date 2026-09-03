@@ -46,8 +46,8 @@
         tunnel.file = ../secrets/tunnel.age;
         copyparty-pass = {
           file = ../secrets/copyparty-pass.age;
-          owner = "copyparty";
-          group = "copyparty";
+          owner = "victor7w7r";
+          group = "users";
         };
       };
 
