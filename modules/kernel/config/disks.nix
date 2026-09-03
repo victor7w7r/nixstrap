@@ -26,6 +26,7 @@
         MD = yes;
         DM_CRYPT = yes;
         SCSI = yes;
+        TRUSTED_KEYS = yes;
       };
 
       mmc = { }: {
