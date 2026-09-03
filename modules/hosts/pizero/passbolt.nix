@@ -2,10 +2,6 @@
   den.aspects.pizero.passbolt.nixos = {
     imports = [ inputs.agenix.nixosModules.default ];
 
-    age = {
-      identityPaths = [ "/nix/persist/etc/ssh/ssh_host_ed25519_key" ];
-    };
-
     networking.firewall = {
       allowedTCPPorts = [
         80
@@ -47,27 +43,44 @@
           setSocketVariable = true;
         };
       };
+
+      /*
+        docker exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake \
+          passbolt register_user \
+            -u YOUR_EMAIL \
+            -f YOUR_NAME \
+            -l YOUR_LASTNAME \
+            -r admin" -s /bin/sh www-data
+      */
+
       oci-containers = {
         backend = "docker";
         containers = {
-          pb-mariadb = {
-            image = "mariadb";
-            ports = [
-              "80:80"
-              "443:443"
-            ];
+          passbolt-db = {
+            image = "mariadb:10.11";
             volumes = [ "/nix/persist/passbolt/mariadb:/var/lib/mysql" ];
             environment = {
-              MYSQL_RANDOM_ROOT_PASSWORD = "true";
               MYSQL_DATABASE = "passbolt";
-              MYSQL_USER = "passbolt";
               MYSQL_PASSWORD = "P4ssb0lt";
+              MYSQL_RANDOM_ROOT_PASSWORD = "true";
+              MYSQL_USER = "passbolt";
             };
           };
           passbolt = {
             image = "passbolt/passbolt:latest-ce";
-            dependsOn = [ "pb-mariadb" ];
-            #environmentFiles = [ config.age.secrets.seafile-env.path ];
+            dependsOn = [ "passbolt-db" ];
+            ports = [
+              "80:80"
+              "443:443"
+            ];
+            cmd = [
+              "/usr/bin/wait-for.sh"
+              "-t"
+              "0"
+              "db:3306"
+              "--"
+              "/docker-entrypoint.sh"
+            ];
             volumes = [
               "/nix/persist/passbolt/gpg:/etc/passbolt/gpg"
               "/nix/persist/passbolt/jwt:/etc/passbolt/jwt"
@@ -79,7 +92,7 @@
               DATASOURCES_DEFAULT_USERNAME = "passbolt";
               DATASOURCES_DEFAULT_DATABASE = "passbolt";
             };
-            extraOptions = [ "--network=container:pb-mariadb" ];
+            extraOptions = [ "--network=container:passbolt-db" ];
           };
         };
       };
