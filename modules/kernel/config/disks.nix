@@ -24,10 +24,10 @@
         BLK_DEV_NVME = yes;
         BLK_DEV_SD = yes;
         MD = yes;
-        DM_CRYPT = yes;
+        DM_CRYPT = module;
         SCSI = yes;
-        ENCRYPTED_KEYS = yes;
-        TRUSTED_KEYS = yes;
+        ENCRYPTED_KEYS = module;
+        TRUSTED_KEYS = module;
       };
 
       mmc = { }: {
