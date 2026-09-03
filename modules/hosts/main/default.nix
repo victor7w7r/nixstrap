@@ -70,11 +70,6 @@
             networkmanager.unmanaged = [ "enp2s0f1u1" ];
           };
 
-          virtualisation = {
-            kvmgt.enable = true;
-            incus.ui.enable = false;
-          };
-
           systemd.tmpfiles.rules = [
             "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
             "w /sys/devices/system/cpu/intel_pstate/max_perf_pct - - - - 80"
@@ -89,6 +84,9 @@
               "intel_iommu=on"
               "intel_pstate=passive"
               "iommu=pt"
+              "i915.enable_gvt=1"
+              "i915.enable_guc=0"
+              "i915.enable_fbc=0"
               "kvmfr.static_size_mb=128"
               "coherent_pool=64M"
               "cma=256M"
@@ -97,12 +95,7 @@
               "pcie_ports=compat"
               "video=DP-3:1600x900@60e"
               "resume=${config.boot.resumeDevice}"
-              #"i915.enable_guc=2"
             ];
-            extraModprobeConfig = ''
-              options kvm-intel nested=1
-              options kvm_intel emulate_invalid_guest_state=0
-            '';
           };
 
           environment.systemPackages = with pkgs; [

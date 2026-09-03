@@ -4,6 +4,9 @@
     {
       services = {
         fwupd.enable = true;
+        udev.extraRules = ''
+          SUBSYSTEM=="kvmfr", OWNER="libvirt-qemu", GROUP="libvirt-qemu", MODE="0660"
+        '';
         cockpit.allowed-origins = [
           "https://192.168.100.6:9090"
           "http://192.168.100.6:9090"

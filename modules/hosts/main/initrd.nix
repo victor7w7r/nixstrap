@@ -1,6 +1,6 @@
 {
   den.aspects.main.initrd.nixos =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
       boot.initrd = {
         supportedFilesystems = lib.mkAfter [ "xfs" ];
@@ -11,16 +11,23 @@
           "brcmfmac"
           "brcmfmac_wcc"
           "cryptd"
-          "dm_mod"
           "dm_crypt"
+          "dm_mod"
           "dm_raid"
           "ehci-hcd"
           "encrypted_keys"
+          "kvm_intel"
+          "kvmfr"
+          "kvmgt"
+          "mdev"
           "uas"
           "uhci_hcd"
           "usb_storage"
           "usbhid"
           "xhci_hcd"
+          "vfio"
+          "vfio_iommu_type1"
+          "vfio_pci"
         ];
         systemd.tpm2.enable = false;
 
