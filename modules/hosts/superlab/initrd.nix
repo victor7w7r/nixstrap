@@ -4,8 +4,11 @@
       availableKernelModules = [
         "dm_crypt"
         "dm_mod"
-        "crypto_aes"
         "aes_ce_cipher"
+        "aes_arm64"
+        "sm3_ce"
+        "sm3_generic"
+        "essiv"
       ];
 
       kernelModules = [
@@ -18,9 +21,7 @@
         "rk_crypto2"
         "rockchip_rng"
         "sg"
-        "sm3_generic"
         "trusted"
-        #"resume=${config.boot.resumeDevice}"
       ];
 
       systemd = {

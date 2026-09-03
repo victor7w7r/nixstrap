@@ -19,12 +19,12 @@
         ];
 
       include = { }: {
-        BLK_DEV_DM = module;
+        BLK_DEV_DM = yes;
         BLK_DEV_MD = yes;
         BLK_DEV_NVME = yes;
         BLK_DEV_SD = yes;
         MD = yes;
-        DM_CRYPT = module;
+        DM_CRYPT = yes;
         SCSI = yes;
       };
 
