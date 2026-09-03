@@ -3247,6 +3247,22 @@
         "type": "github"
       }
     },
+    "macos-kvm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770253894,
+        "narHash": "sha256-yUOXZ6GXBpcK3kL/3VHNaujhnu46FmvYIPTufgcLBoU=",
+        "owner": "Coopydood",
+        "repo": "ultimate-macOS-KVM",
+        "rev": "a0b1570573124afceef44c7306186dc25de00887",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Coopydood",
+        "repo": "ultimate-macOS-KVM",
+        "type": "github"
+      }
+    },
     "maxwell": {
       "flake": false,
       "locked": {
@@ -4117,6 +4133,25 @@
         "type": "github"
       }
     },
+    "nixvirt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748140003,
+        "narHash": "sha256-DNBZmuk1YRM2PmwbHzVdXumRjCUzQkMarg4iI/37rOQ=",
+        "rev": "5dfe108fd859b122f9a96981cb6bc12297653d6c",
+        "revCount": 407,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/AshleyYakeley/NixVirt/0.6.0/0197059a-e45f-7446-86b5-411ccc894ab0/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/AshleyYakeley/NixVirt/%2A.tar.gz"
+      }
+    },
     "no-more-secrets": {
       "flake": false,
       "locked": {
@@ -4148,6 +4183,22 @@
         "repo": "firmware-oneplus-sdm845",
         "rev": "176ca713448c5237a983fb1f158cf3a5c251d775",
         "type": "gitlab"
+      }
+    },
+    "osx-kvm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769413003,
+        "narHash": "sha256-BmMWWGkNtZwEH9utoc3Mj5gGCjlgIicGsTEPxAxG7hw=",
+        "owner": "kholia",
+        "repo": "OSX-KVM",
+        "rev": "4c378a4b5e0b219783683012bec680325eb40719",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kholia",
+        "repo": "OSX-KVM",
+        "type": "github"
       }
     },
     "paclear": {
@@ -4596,6 +4647,7 @@
         "lyricstify": "lyricstify",
         "m4-utils": "m4-utils",
         "mabel": "mabel",
+        "macos-kvm": "macos-kvm",
         "maxwell": "maxwell",
         "memavaild": "memavaild",
         "mfetch": "mfetch",
@@ -4620,8 +4672,10 @@
         "nixpkgs-gtk2": "nixpkgs-gtk2",
         "nixpkgs-wine": "nixpkgs-wine",
         "nixvim": "nixvim",
+        "nixvirt": "nixvirt",
         "no-more-secrets": "no-more-secrets",
         "oneplus": "oneplus",
+        "osx-kvm": "osx-kvm",
         "paclear": "paclear",
         "panel-spacer-extended": "panel-spacer-extended",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",

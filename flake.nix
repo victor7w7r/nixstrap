@@ -545,6 +545,10 @@
       url = "github:smmr-software/mabel";
       flake = false;
     };
+    macos-kvm = {
+      url = "github:Coopydood/ultimate-macOS-KVM";
+      flake = false;
+    };
     maxwell = {
       url = "github:wilversings/maxwell";
       flake = false;
@@ -617,12 +621,20 @@
     nixpkgs-gtk2.url = "github:NixOS/nixpkgs/48199e04590301db3a47603919037df65c828797";
     nixpkgs-wine.url = "github:NixOS/nixpkgs/a1945f760a8fe019a4d753808de424dcd4e5b3cf";
     nixvim.url = "github:nix-community/nixvim";
+    nixvirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     no-more-secrets = {
       url = "github:bartobri/no-more-secrets";
       flake = false;
     };
     oneplus = {
       url = "gitlab:sdm845-mainline/firmware-oneplus-sdm845/176ca713448c5237a983fb1f158cf3a5c251d775";
+      flake = false;
+    };
+    osx-kvm = {
+      url = "github:kholia/OSX-KVM";
       flake = false;
     };
     paclear = {
