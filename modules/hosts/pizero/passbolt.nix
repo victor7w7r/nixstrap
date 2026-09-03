@@ -77,7 +77,7 @@
             ];
             environment = {
               APP_FULL_BASE_URL = "http://passbolt.local";
-              DATASOURCES_DEFAULT_PASSWORD = "passbolt";
+              DATASOURCES_DEFAULT_PASSWORD = "P4ssb0lt";
               DATASOURCES_DEFAULT_HOST = "127.0.0.1";
               DATASOURCES_DEFAULT_USERNAME = "passbolt";
               DATASOURCES_DEFAULT_DATABASE = "passbolt";
