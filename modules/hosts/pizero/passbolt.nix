@@ -63,12 +63,11 @@
           passbolt = {
             image = "passbolt/passbolt:latest-ce";
             dependsOn = [ "passbolt-db" ];
-            ports = [ "80:80" ];
             cmd = [
               "/usr/bin/wait-for.sh"
               "-t"
               "0"
-              "passbolt-db:3306"
+              "127.0.0.1:3306"
               "--"
               "/docker-entrypoint.sh"
             ];
