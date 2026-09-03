@@ -21,24 +21,24 @@
        sed -i '/^CONFIG_RUSTC*_/d' config
        sed -i '/^CONFIG_LOCALVERSION/d' config
 
-       sed -i '/^CONFIG_ENCRYPTED_KEYS/d' config
-       sed -i '/^CONFIG_TRUSTED_KEYS/d' config
-
        sed -i '/^CONFIG_AF_RXRPC/d' config
        sed -i '/^CONFIG_ALTERA_STAPL/d' config
        sed -i '/^CONFIG_COMEDI/d' config
        sed -i '/^CONFIG_CPU_SUP_/d' config
        sed -i '/^CONFIG_CRYPTO_/d' config
+       sed -i '/^CONFIG_DAX/d' config
        sed -i '/^CONFIG_DEBUG_/d' config
+       sed -i '/^CONFIG_ENCRYPTED_KEYS/d' config
        sed -i '/^CONFIG_FUSION_/d' config
        sed -i '/^CONFIG_GPIO_/d' config
        sed -i '/^CONFIG_INFINIBAND_/d' config
        sed -i '/^CONFIG_KEYBOARD_/d' config
-       sed -i '/^CONFIG_RXKAD/d' config
        sed -i '/^CONFIG_PHY_QCOM_USB_HS/d' config
+       sed -i '/^CONFIG_RXKAD/d' config
        sed -i '/^CONFIG_SCSI_/d' config
        sed -i '/^CONFIG_SND_/d' config
        sed -i '/^CONFIG_SSB/d' config
+       sed -i '/^CONFIG_TRUSTED_KEYS/d' config
        sed -i '/^CONFIG_W1/d' config
        sed -i '/^CONFIG_W1_/d' config
        sed -i '/^CONFIG_XFRM/d' config

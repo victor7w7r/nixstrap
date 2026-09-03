@@ -16,7 +16,6 @@
         wantedBy = [ "default.target" ];
         serviceConfig = {
           Type = "simple";
-          #ExecStartPre = "${pkgs.coreutils}/bin/install -Dm644 ${../../../../dotfiles/default/xr_driver/config.ini} %h/.config/xr_driver/config.ini";
           ExecStart = "${self'.packages.xrlinux}/bin/xrDriver";
           Restart = "always";
           RestartSec = 2;
