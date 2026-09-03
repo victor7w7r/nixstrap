@@ -4,90 +4,81 @@
     {
       systemd = {
         timers.auto-sleep-check = {
-          enable = false;
           wantedBy = [ "timers.target" ];
           timerConfig = {
-            OnBootSec = "5m";
-            OnUnitActiveSec = "1m";
-            Unit = "auto-sleep-check.service";
-          };
-        };
-        timers.lvm-snapshot-weekly = {
-          wantedBy = [ "timers.target" ];
-          timerConfig = {
-            OnCalendar = "weekly";
+            OnCalendar = "*:0/5";
             Persistent = true;
-            Unit = "lvm-snapshot-weekly.service";
           };
-        };
-        services = {
-          auto-sleep-check = {
-            enable = false;
-            serviceConfig = {
-              Type = "oneshot";
-              ExecStart =
-                let
-                  idleScript = pkgs.writeShellScriptBin "auto-sleep-check" ''
-                    MC_PORT=25565
-                    IDLE_LIMIT=1800
-                    IDLE_FILE="/tmp/server_idle_counter"
-                    BLOCKING_PROCS=("nix-build" "rsync" "ffmpeg")
+          timers.lvm-snapshot-weekly = {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnCalendar = "weekly";
+              Persistent = true;
+              Unit = "lvm-snapshot-weekly.service";
+            };
+          };
+          services = {
+            lvm-snapshot-weekly = {
+              serviceConfig = {
+                Type = "oneshot";
+                ExecStart = ''
+                  /run/current-system/sw/bin/lvcreate \
+                    --snapshot --name "snapshot-cloud-$(date +%Y-%m-%d)" \
+                    vg0/cloud
+                '';
+              };
+            };
+            auto-sleep-check = {
+              enable = false;
+              serviceConfig = {
+                Type = "oneshot";
+                ExecStart =
+                  let
+                    idleScript = pkgs.writeShellScriptBin "auto-sleep-check" ''
+                      PATH="${pkgs.coreutils}/bin:${pkgs.procps}/bin:${pkgs.systemd}/bin"
 
-                    for proc in "''${BLOCKING_PROCS[@]}"; do
+                      HOUR=$(date +%H)
+                      IDLE_LIMIT=1800
+                      IDLE_FILE="/tmp/server_idle_counter"
+                      BLOCKING_PROCS=("nix-build" "rsync")
+
+                      if [ "$HOUR" -ge 22 ] || [ "$HOUR" -lt 6 ]; then
+                          echo "Horario nocturno alcanzado (22:00 - 06:00). Suspendiendo inmediatamente..."
+                          rm -f "$IDLE_FILE"
+                          systemctl suspend
+                          exit 0
+                      fi
+
+                      for proc in "''${BLOCKING_PROCS[@]}"; do
                         if pgrep -x "$proc" > /dev/null; then
-                            echo "$proc is running. Resetting timer."
+                            echo "Proceso $proc corriendo en horario diurno. Reseteando timer."
                             rm -f "$IDLE_FILE"
                             exit 0
                         fi
-                    done
+                      done
 
-                    PLAYER_COUNT=$(ss -Htn sport = :$MC_PORT | grep -c ESTAB)
+                      if [ ! -f "$IDLE_FILE" ]; then
+                          date +%s > "$IDLE_FILE"
+                          echo "Sin procesos activos en el día. Iniciando temporizador de 30 min..."
+                          exit 0
+                      fi
 
-                    if [ "$PLAYER_COUNT" -gt 0 ]; then
-                        echo "$PLAYER_COUNT is online. Resetting timer."
-                        rm -f "$IDLE_FILE"
-                        exit 0
-                    fi
+                      START_TIME=$(cat "$IDLE_FILE")
+                      CURRENT_TIME=$(date +%s)
+                      IDLE_DURATION=$((CURRENT_TIME - START_TIME))
 
-                    if [ ! -f "$IDLE_FILE" ]; then
-                        date +%s > "$IDLE_FILE"
-                        echo "Starting idle..."
-                        exit 0
-                    fi
+                      if [ "$IDLE_DURATION" -lt "$IDLE_LIMIT" ]; then
+                          echo "Lleva $((IDLE_DURATION / 60)) min inactivo de día. Faltan $(((IDLE_LIMIT - IDLE_DURATION) / 60)) min para suspender."
+                          exit 0
+                      fi
 
-                    START_TIME=$(cat "$IDLE_FILE")
-                    CURRENT_TIME=$(date +%s)
-                    IDLE_DURATION=$((CURRENT_TIME - START_TIME))
-
-                    if [ "$IDLE_DURATION" -lt "$IDLE_LIMIT" ]; then
-                        echo "Is $((IDLE_DURATION / 60)) min from idle. $(((IDLE_LIMIT - IDLE_DURATION) / 60)) min remaining."
-                        exit 0
-                    fi
-
-                    HOUR=$(date +%H)
-
-                    if [ "$HOUR" -ge 22 ] || [ "$HOUR" -lt 7 ]; then
-                        echo "Hibernating..."
-                        rm -f "$IDLE_FILE"
-                        systemctl hibernate
-                    else
-                        echo "Suspending..."
-                        rm -f "$IDLE_FILE"
-                        systemctl suspend
-                    fi
-                  '';
-                in
-                "${idleScript}/bin/auto-sleep-check";
-            };
-          };
-          lvm-snapshot-weekly = {
-            serviceConfig = {
-              Type = "oneshot";
-              ExecStart = ''
-                /run/current-system/sw/bin/lvcreate \
-                  --snapshot --name "snapshot-cloud-$(date +%Y-%m-%d)" \
-                  vg0/cloud
-              '';
+                      echo "Servidor inactivo por más de 30 min durante el día. Suspendiendo..."
+                      rm -f "$IDLE_FILE"
+                      systemctl suspend
+                    '';
+                  in
+                  "${idleScript}/bin/auto-sleep-check";
+              };
             };
           };
         };
