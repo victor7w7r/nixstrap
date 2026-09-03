@@ -31,6 +31,7 @@
         CRYPTO_LZO = setupDenial isDenied yes;
         CRYPTO_MD5 = setupDenial isDenied yes;
         CRYPTO_SM3 = setupDenial isDenied yes;
+        CRYPTO_AES_ARM64_CE = setupDenial isDenied yes;
         DRM_ACCEL = setupDenial isDenied yes;
         GPIO_GENERIC_PLATFORM = setupDenial isDenied module;
         GPIO_REGMAP = setupDenial isDenied yes;
