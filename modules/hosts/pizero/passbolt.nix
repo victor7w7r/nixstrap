@@ -3,14 +3,8 @@
     imports = [ inputs.agenix.nixosModules.default ];
 
     networking.firewall = {
-      allowedTCPPorts = [
-        80
-        443
-      ];
-      interfaces."tailscale0".allowedTCPPorts = [
-        80
-        443
-      ];
+      allowedTCPPorts = [ 80 ];
+      interfaces."tailscale0".allowedTCPPorts = [ 80 ];
     };
 
     systemd = {
@@ -69,15 +63,12 @@
           passbolt = {
             image = "passbolt/passbolt:latest-ce";
             dependsOn = [ "passbolt-db" ];
-            ports = [
-              "80:80"
-              "443:443"
-            ];
+            ports = [ "80:80" ];
             cmd = [
               "/usr/bin/wait-for.sh"
               "-t"
               "0"
-              "db:3306"
+              "passbolt-db:3306"
               "--"
               "/docker-entrypoint.sh"
             ];
@@ -86,7 +77,8 @@
               "/nix/persist/passbolt/jwt:/etc/passbolt/jwt"
             ];
             environment = {
-              APP_FULL_BASE_URL = "https://passbolt.local";
+              APP_FULL_BASE_URL = "http://passbolt.local";
+              PASSBOLT_SSL_FORCE = "false";
               DATASOURCES_DEFAULT_PASSWORD = "passbolt";
               DATASOURCES_DEFAULT_HOST = "127.0.0.1";
               DATASOURCES_DEFAULT_USERNAME = "passbolt";
