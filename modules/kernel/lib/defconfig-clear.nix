@@ -25,6 +25,7 @@
        sed -i '/^CONFIG_ALTERA_STAPL/d' config
        sed -i '/^CONFIG_COMEDI/d' config
        sed -i '/^CONFIG_BLK_DEV_DM/d' config
+       sed -i '/^CONFIG_BLK_DEV_MD/d' config
        sed -i '/^CONFIG_CPU_SUP_/d' config
        sed -i '/^CONFIG_CRYPTO_/d' config
        sed -i '/^CONFIG_DAX/d' config
