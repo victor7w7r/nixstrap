@@ -3,15 +3,15 @@
     boot.initrd = {
       kernelModules = [
         "display_connector"
+        "dm_crypt"
+        "dm_mod"
         "rng_core"
+        "rockchip_rng"
         "rockchipdrm"
         "spi_rockchip_sfc"
-        "uhid"
+        "uas"
         "usbhid"
-        "rk_crypto2"
-        "rockchip_rng"
-        "sg"
-        "trusted"
+        #"rk_crypto2"
       ];
 
       systemd = {

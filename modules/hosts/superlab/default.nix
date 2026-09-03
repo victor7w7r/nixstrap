@@ -8,13 +8,11 @@
   ...
 }:
 {
-  perSystem = { pkgs, ... }: {
-    packages = {
-      superlab-toplevel = inputs.self.nixosConfigurations.superlab.config.system.build.toplevel;
-      superlab-image = inputs.self.nixosConfigurations.superlab-sdimage.config.system.build.sdImage;
-      superlab-mktarball = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.tarball;
-      superlab-boot = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.bootFiles;
-    };
+  perSystem.packages = {
+    superlab-toplevel = inputs.self.nixosConfigurations.superlab.config.system.build.toplevel;
+    superlab-image = inputs.self.nixosConfigurations.superlab-sdimage.config.system.build.sdImage;
+    superlab-mktarball = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.tarball;
+    superlab-boot = inputs.self.nixosConfigurations.superlab-tarball.config.system.build.bootFiles;
   };
 
   den = {
@@ -86,7 +84,6 @@
 
           nixos =
             {
-              config,
               lib,
               pkgs,
               self',

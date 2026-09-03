@@ -11,13 +11,11 @@
   #mount /dev/sde1 /mnt && rm -rf /mnt/* && tar --zstd -xvf boot.tar.zst -C /mnt/ --no-same-owner && sync && umount /dev/sde1 && udisksctl power-off -b /dev/sde
   #mount -o noatime,nodiratime,lazytime,discard=async,compress-force=zstd:3,subvol=@nix /dev/sde2 /mnt && rm -rf /mnt/store/* && tar --zstd -xvf store.tar.zst -C /mnt/store/ && sync && umount /dev/sde2 && udisksctl power-off -b /dev/sde
 
-  perSystem = { pkgs, ... }: {
-    packages = {
-      pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
-      pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
-      pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
-      pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
-    };
+  perSystem.packages = {
+    pizero-toplevel = inputs.self.nixosConfigurations.pizero.config.system.build.toplevel;
+    pizero-image = inputs.self.nixosConfigurations.pizero-sdimage.config.system.build.sdImage;
+    pizero-mktarball = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.tarball;
+    pizero-boot = inputs.self.nixosConfigurations.pizero-tarball.config.system.build.bootFiles;
   };
 
   den = {

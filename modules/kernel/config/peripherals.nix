@@ -26,7 +26,7 @@
       SPI_DW_MMIO = module;
       SPI_DW_PCI = module;
       THERMAL_HWMON = yes;
-      USB_HID = yes;
+      USB_HID = module;
     };
 
     denied = lib.mkMerge [
