@@ -66,9 +66,11 @@
       services = config: pkgs: {
         copyparty = {
           enable = true;
-          package = pkgs.copyparty.override {
-            extraPackages = [ pkgs.python3Packages.paramiko ];
-          };
+          package = pkgs.copyparty.overridePythonAttrs (old: {
+            propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [
+              pkgs.python3Packages.paramiko
+            ];
+          });
           settings = {
             i = "0.0.0.0";
             p = "3922,3923";
