@@ -3,7 +3,11 @@
   flake-file.inputs.copyparty.url = "github:9001/copyparty";
 
   den.aspects.server.containers.nixos = {
-    networking.firewall.allowedTCPPorts = [ 3922 3923 3945 ];
+    networking.firewall.allowedTCPPorts = [
+      3922
+      3923
+      3945
+    ];
 
     containers.copyparty = containers.lib.call {
       ip = "10";
@@ -33,6 +37,10 @@
       ];
 
       bindMounts = {
+        "/cloud" = {
+          hostPath = "/nix/persist/cloud";
+          isReadOnly = false;
+        };
         "/var/lib/copyparty" = {
           hostPath = "/nix/persist/containers/copyparty/data";
           isReadOnly = false;
@@ -75,6 +83,22 @@
             xff-src = "192.168.100.10,100.64.0.1,100.64.0.10";
           };
           accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
+          volumes = {
+            "/" = {
+              path = "/cloud";
+              access = {
+                A = [ "victor7w7r" ];
+                rg = "*";
+              };
+              flags = {
+                fk = 4;
+                scan = 60;
+                e2d = true;
+                d2t = true;
+                nohash = "\.iso$";
+              };
+            };
+          };
         };
       };
     };
