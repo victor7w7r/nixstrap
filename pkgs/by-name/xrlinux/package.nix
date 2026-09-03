@@ -17,11 +17,13 @@ cache-stdenv.mkDerivation (attrs: {
     lockFile = "${attrs.src}/${attrs.cargoRoot}/Cargo.lock";
   };
 
-  src = pkgs.fetchgit {
-    url = "https://github.com/wheaney/XRLinuxDriver";
+  src = pkgs.fetchFromGitHub {
+    owner = "wheaney";
+    repo = "XRLinuxDriver";
     rev = "v${attrs.version}";
+    hash = "sha256-/KAQ2XgZ5W1ug2DhA93do6PtJLjBv3f5BAAauy9xrT4=";
     fetchSubmodules = true;
-    hash = "sha256-fbaNdv6vjRphYYSzbOYqmRK6cAAhv1gkTh3xlql0VEU=";
+    deepClone = true;
   };
 
   nativeBuildInputs = with pkgs; [
@@ -45,6 +47,14 @@ cache-stdenv.mkDerivation (attrs: {
     systemd
     stdenv.cc.cc.lib
   ];
+
+  postFetch = ''
+    cd $out
+    if [ -f .gitmodules ]; then
+        substituteInPlace .gitmodules \
+        --replace "git@github.com:" "https://github.com/"
+    fi
+  '';
 
   postPatch = ''
     substituteInPlace CMakeLists.txt \

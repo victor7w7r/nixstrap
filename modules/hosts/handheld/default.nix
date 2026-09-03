@@ -50,7 +50,7 @@
           virt
           tools
           waydroid
-          xr
+          #xr
         ];
 
         nixos =

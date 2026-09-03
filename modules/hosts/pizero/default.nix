@@ -99,7 +99,6 @@
                   root.directories = lib.mkForce [ ".zsh" ];
                 };
               };
-              systemd.tmpfiles.rules = [ "L+ /lib/firmware - - - - /run/current-system/firmware" ];
 
               hardware = {
                 firmware = with self'.packages; lib.singleton armbian-firmware;
