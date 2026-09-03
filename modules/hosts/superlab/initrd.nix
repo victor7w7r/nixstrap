@@ -10,11 +10,11 @@
         "spi_rockchip_sfc"
         "uhid"
         "usbhid"
-        #"rk_crypto2"
-        #"rockchip_rng"
-        #"sg"
-        #"sm3_generic"
-        #"trusted"
+        "rk_crypto2"
+        "rockchip_rng"
+        "sg"
+        "sm3_generic"
+        "trusted"
         #"resume=${config.boot.resumeDevice}"
       ];
 
