@@ -66,6 +66,8 @@
       services = config: pkgs: {
         copyparty = {
           enable = true;
+          user = "victor7w7r";
+          group = "users";
           package = pkgs.copyparty.overridePythonAttrs (old: {
             propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [
               pkgs.python3Packages.paramiko
@@ -77,6 +79,7 @@
             theme = 2;
             lang = "spa";
             sftp = "3922";
+            sftp-pw = true;
           };
           accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
           volumes = {
