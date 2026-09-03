@@ -1,10 +1,15 @@
 {
   den.aspects.superlab.initrd.nixos = { config, ... }: {
     boot.initrd = {
-      kernelModules = [
-        "display_connector"
+      availableKernelModules = [
         "dm_crypt"
         "dm_mod"
+        "crypto_aes"
+        "aes_ce_cipher"
+      ];
+
+      kernelModules = [
+        "display_connector"
         "rng_core"
         "rockchipdrm"
         "spi_rockchip_sfc"
@@ -20,8 +25,8 @@
 
       systemd = {
         tpm2.enable = false;
-        storePaths =
-          (map
+        storePaths = (
+          map
             (fw: {
               source = "${config.hardware.firmware}/lib/firmware/${fw}";
               target = "/extra-firmware/${fw}";
@@ -30,10 +35,8 @@
               "rtl_nic/rtl8125b-2.fw"
               "arm/mali/arch10.8/mali_csffw.bin"
             ]
-          )
-         ;
+        );
       };
-
 
       luks.devices = {
         /*
