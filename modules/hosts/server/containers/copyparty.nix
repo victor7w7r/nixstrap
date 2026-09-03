@@ -94,6 +94,8 @@
                 scan = 60;
                 e2d = true;
                 d2t = true;
+                grid = true;
+                dothidden = true;
                 nohash = "\.iso$";
               };
             };
