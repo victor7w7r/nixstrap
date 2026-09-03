@@ -75,10 +75,8 @@
               "/nix/persist/passbolt/gpg:/etc/passbolt/gpg"
               "/nix/persist/passbolt/jwt:/etc/passbolt/jwt"
             ];
-            ports = [ "80:80" ];
             environment = {
               APP_FULL_BASE_URL = "http://passbolt.local";
-              PASSBOLT_SSL_FORCE = "false";
               DATASOURCES_DEFAULT_PASSWORD = "passbolt";
               DATASOURCES_DEFAULT_HOST = "127.0.0.1";
               DATASOURCES_DEFAULT_USERNAME = "passbolt";

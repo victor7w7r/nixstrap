@@ -99,7 +99,7 @@
               };
 
               hardware = {
-                firmware = with self'.packages; lib.singleton armbian-firmware;
+                firmware = with self'.packages; lib.singleton uwe5622-firmware;
                 deviceTree = {
                   name = "allwinner/sun50i-h618-orangepi-zero2w.dtb";
                   overlays =
@@ -140,9 +140,12 @@
 
               boot = {
                 blacklistedKernelModules = [ "sun8i_ce" ];
+                kernelModules = [
+                  "sprdbt_tty"
+                  "sprdwl_ng"
+                ];
                 kernelParams = [
                   "console=ttyS0,115200n8"
-                  "firmware_class.path=/extra-firmware"
                   "loglevel=3"
                   #"resume=${config.boot.resumeDevice}"
                 ];

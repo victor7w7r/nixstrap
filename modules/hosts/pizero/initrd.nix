@@ -1,15 +1,6 @@
 {
-  den.aspects.pizero.initrd.nixos = { self', ... }: {
-    systemd.tmpfiles.rules = [
-      "L+ /lib/firmware/wcnmodem.bin - - - - /lib/firmware/uwe5622/wcnmodem.bin"
-    ];
-
+  den.aspects.pizero.initrd.nixos = {
     boot.initrd = {
-      extraFiles = {
-        "/lib/firmware/uwe5622/wcnmodem.bin".source = "${self'.packages.armbian-firmware}/lib/firmware/uwe5622/wcnmodem.bin";
-        "/lib/firmware/wcnmodem.bin".source = "${self'.packages.armbian-firmware}/lib/firmware/uwe5622/wcnmodem.bin";
-      };
-
       kernelModules = [
         "ac200_phy"
         "ahci"
@@ -17,8 +8,6 @@
         "dm_mod"
         "musb_hdrc"
         "phy_generic"
-        "sprdbt_tty"
-        "sprdwl_ng"
         "sun50i_h6_prcm_ppu"
         "sunxi"
         "sunxi_addr"
