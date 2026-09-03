@@ -6,7 +6,6 @@
     networking.firewall.allowedTCPPorts = [
       3922
       3923
-      3945
     ];
 
     containers.copyparty = containers.lib.call {
@@ -17,21 +16,13 @@
 
       forwardPorts = [
         {
-          #http
           containerPort = 3923;
           hostPort = 3923;
           protocol = "tcp";
         }
         {
-          #sftp
           containerPort = 3922;
           hostPort = 3922;
-          protocol = "tcp";
-        }
-        {
-          #smb
-          containerPort = 3945;
-          hostPort = 3945;
           protocol = "tcp";
         }
       ];
@@ -77,10 +68,12 @@
           enable = true;
           settings = {
             i = "0.0.0.0";
-            no-robots = true;
+            p = "3922,3923";
             theme = 2;
-            xff-hdr = "x-forwarded-for";
-            xff-src = "192.168.100.10,100.64.0.1,100.64.0.10";
+            lang = "esp";
+            sftp = "3922";
+            #xff-hdr = "x-forwarded-for";
+            #xff-src = "192.168.100.10,100.64.0.1,100.64.0.10";
           };
           accounts.victor7w7r.passwordFile = config.age.secrets.copyparty-pass.path;
           volumes = {
