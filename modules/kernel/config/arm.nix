@@ -68,6 +68,7 @@
       ARCH_SUNXI = yes;
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = no;
+      GNSS = no;
       INPUT_RK805_PWRKEY = no;
       RTC_DRV_HYM8563 = no;
       SND_SOC_ES8316 = no;
@@ -81,6 +82,7 @@
       COMMON_CLK_SCPI = yes;
       DRM_ACCEL_ROCKET = module;
       GPIO_BY_PINCTRL = yes;
+      GNSS = no;
       I3C_OR_I2C = yes;
       INPUT_RK805_PWRKEY = yes;
       LT7911D_FB_NOTIFIER = no;

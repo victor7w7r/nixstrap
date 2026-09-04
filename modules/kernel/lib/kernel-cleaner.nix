@@ -56,6 +56,7 @@
         sed -i '/^CONFIG_KEYBOARD_/d' config
         sed -i '/^CONFIG_LAPB/d' config
         sed -i '/^CONFIG_LLC2/d' config
+        sed -i '/^CONFIG_MTD_/d' config
         sed -i '/^CONFIG_PHONET/d' config
         sed -i '/^CONFIG_PHY_QCOM_USB_HS/d' config
         sed -i '/^CONFIG_RDS/d' config
