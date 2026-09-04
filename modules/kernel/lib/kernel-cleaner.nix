@@ -80,16 +80,14 @@
         ${pkgs.lib.optionalString (class != null) ''
           DTS_DIR="arch/${arch}/boot/dts"
 
-          if [ -d "$DTS_DIR" ]; then
-            find "$DTS_DIR" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
-            cat <<EOF > "$DTS_DIR/Makefile"
-              subdir-y += ${class}
-            EOF
+          find "$DTS_DIR" -mindepth 1 -maxdepth 1 -type d ! -name "${class}" -exec rm -rf {} +
+          cat <<EOF > "$DTS_DIR/Makefile"
+            subdir-y += ${class}
+          EOF
 
-            cat <<EOF > "$DTS_DIR/${class}/Makefile"
-              ${dtbMake}
-            EOF
-          fi
+          cat <<EOF > "$DTS_DIR/${class}/Makefile"
+            ${dtbMake}
+          EOF
         ''}
       '';
     };
