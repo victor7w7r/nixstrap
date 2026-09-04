@@ -21,9 +21,26 @@ cache-stdenv.mkDerivation (attrs: {
     owner = "wheaney";
     repo = "XRLinuxDriver";
     rev = "v${attrs.version}";
-    hash = "sha256-/KAQ2XgZ5W1ug2DhA93do6PtJLjBv3f5BAAauy9xrT4=";
-    fetchSubmodules = true;
-    deepClone = true;
+    hash = "sha256-Hv+/jX7Qk9Mnx4WQhBX1z8jJH736lblU1C4qBPOeA54=";
+    leaveDotGit = true;
+    postFetch = ''
+        cd $out
+
+        if [ -f .gitmodules ]; then
+            substituteInPlace .gitmodules \
+            --replace-quiet "git@github.com:" "https://github.com/" \
+            --replace-quiet "git@gitlab.com:" "https://gitlab.com/" \
+            --replace-quiet "ssh://git@" "https://" \
+            --replace-quiet "git@" "https://"
+        fi
+
+        git -c url."https://github.com/".insteadOf="git@github.com:" \
+            -c url."https://gitlab.com/".insteadOf="git@gitlab.com:" \
+            -c url."https://".insteadOf="git@" \
+            submodule update --init --recursive
+
+        find . -name ".git" -exec rm -rf {} +
+    '';
   };
 
   nativeBuildInputs = with pkgs; [
@@ -47,14 +64,6 @@ cache-stdenv.mkDerivation (attrs: {
     systemd
     stdenv.cc.cc.lib
   ];
-
-  postFetch = ''
-    cd $out
-    if [ -f .gitmodules ]; then
-        substituteInPlace .gitmodules \
-        --replace "git@github.com:" "https://github.com/"
-    fi
-  '';
 
   postPatch = ''
     substituteInPlace CMakeLists.txt \

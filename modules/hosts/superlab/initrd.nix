@@ -11,6 +11,7 @@
         "spi_rockchip_sfc"
         "uas"
         "usbhid"
+        "uhid"
         #"rk_crypto2"
       ];
 
@@ -25,7 +26,10 @@
         */
         system = {
           device = "/dev/disk/by-partlabel/disk-main-system";
-          crypttabExtraOpts = [ "fido2-device=auto" ];
+          crypttabExtraOpts = [
+            "fido2-device=/dev/hidraw0"
+            "x-systemd.device-timeout=10"
+          ];
           preLVM = true;
           allowDiscards = true;
         };
