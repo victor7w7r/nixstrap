@@ -276,7 +276,6 @@
         MFD_BCM590XX = no;
         MFD_BD9571MWV = no;
         MFD_BQ257XX = no;
-        MFD_CGBC = no;
         MFD_CS40L50_I2C = no;
         MFD_CS40L50_SPI = no;
         MFD_DA9052_SPI = no;
