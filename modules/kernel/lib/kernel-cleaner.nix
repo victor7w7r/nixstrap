@@ -17,7 +17,20 @@
 
       dontBuild = true;
       dontConfigure = true;
-      installPhase = "mkdir -p $out && cp -r . $out/";
+      installPhase = "true;";
+
+      unpackPhase = ''
+        mkdir -p "$out"
+
+        if [ -d "$src" ]; then
+          cp -r "$src"/* "$out/"
+        else
+          tar -x -f "$src" -C "$out" --strip-components=1 2>/dev/null || \
+          unzip -q "$src" -d "$out"
+        fi
+
+        chmod -R +w "$out" && cd "$out"
+      '';
 
       patchPhase = ''
         cp ${if config != null then config else "${src}/arch/${arch}/configs/defconfig"} config
