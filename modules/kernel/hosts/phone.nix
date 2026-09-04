@@ -15,6 +15,18 @@
       structuredExtraConfig = kernel.config.default.phone;
       localVer = "sdm845";
       defconfig = "phone_defconfig";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-latest;
+        arch = "arm64";
+        defconfig = "phone_defconfig";
+        class = "qcom";
+        dtbMake = ''
+          dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-enchilada.dtb
+          dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-fajita.dtb
+        '';
+        config = kernel.patches.qcom-defconfig pkgs;
+      };
       patches =
         with kernel.patches.injector pkgs;
         (qcom { })
@@ -23,27 +35,5 @@
         ++ (tachyon.latest { })
         ++ (bunker.common { isLts = false; })
         ++ (bunker.latest { });
-      src =
-        inputs.linux-latest
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit pkgs src;
-            arch = "arm64";
-            config = kernel.patches.qcom-defconfig pkgs;
-            defconfig = "phone_defconfig";
-          }
-        )
-        |> (
-          src:
-          kernel.lib.dts-cleaner {
-            inherit pkgs src;
-            class = "qcom";
-            dtbMake = ''
-              dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-enchilada.dtb
-              dtb-\$(CONFIG_ARCH_QCOM) += sdm845-oneplus-fajita.dtb
-            '';
-          }
-        );
     });
 }

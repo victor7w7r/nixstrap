@@ -17,6 +17,11 @@
         ;
       structuredExtraConfig = kernel.config.default.handheld;
       localVer = "handheld-zen4";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-latest;
+        config = kernel.patches.cachyos-defconfig { inherit pkgs; };
+      };
       patches =
         with kernel.patches.injector pkgs;
         cachyos.latest.std
@@ -31,14 +36,5 @@
         ++ (bunker.latest-x86 { })
         ++ (bunker.latest { })
         ++ asus;
-      src =
-        inputs.linux-latest
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit pkgs src;
-            config = kernel.patches.cachyos-defconfig { inherit pkgs; };
-          }
-        );
     });
 }

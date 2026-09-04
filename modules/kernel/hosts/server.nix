@@ -14,6 +14,14 @@
         ;
       structuredExtraConfig = kernel.config.default.server;
       localVer = "server-hardened-v2";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-lts;
+        config = kernel.patches.cachyos-defconfig {
+          inherit pkgs;
+          selector = "hardened";
+        };
+      };
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { isHardened = true; })
@@ -23,17 +31,5 @@
         ++ (bunker.lts-x86 { })
         ++ (bunker.lts { })
         ++ (bunker.hardening { });
-      src =
-        inputs.linux-lts
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit src pkgs;
-            config = kernel.patches.cachyos-defconfig {
-              inherit pkgs;
-              selector = "hardened";
-            };
-          }
-        );
     });
 }

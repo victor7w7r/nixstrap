@@ -14,6 +14,14 @@
         ;
       structuredExtraConfig = kernel.config.default.main;
       localVer = "v3";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-lts;
+        config = kernel.patches.cachyos-defconfig {
+          inherit pkgs;
+          selector = "lts";
+        };
+      };
       patches =
         with kernel.patches.injector pkgs;
         (cachyos.lts { })
@@ -22,17 +30,5 @@
         ++ (bunker.common { })
         ++ (bunker.lts-x86 { })
         ++ (bunker.lts { });
-      src =
-        inputs.linux-lts
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit pkgs src;
-            config = kernel.patches.cachyos-defconfig {
-              inherit pkgs;
-              selector = "lts";
-            };
-          }
-        );
     });
 }

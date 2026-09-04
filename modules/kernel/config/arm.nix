@@ -79,6 +79,7 @@
       ARCH_ROCKCHIP = yes;
       ARCH_SUNXI = no;
       COMMON_CLK_SCPI = yes;
+      DRM_ACCEL_ROCKET = module;
       GPIO_BY_PINCTRL = yes;
       I3C_OR_I2C = yes;
       INPUT_RK805_PWRKEY = yes;
@@ -91,18 +92,24 @@
       MEDIA_TUNER_QM1D1C0042 = no;
       MEDIA_TUNER_TDA18250 = no;
       MFD_PF1550 = module;
+      PCIE_DW_PLAT_EP = yes;
+      PCIE_ROCKCHIP_DW_EP = yes;
+      PCIE_ROCKCHIP_EP = yes;
       PCI_PWRCTRL_GENERIC = module;
       PCI_REALLOC_ENABLE_AUTO = yes;
+      PHY_ROCKCHIP_SNPS_PCIE3 = yes;
+      PM_DOMAINS = yes;
       REGULATOR_RT8092 = module;
+      ROCKCHIP_PM_DOMAINS = yes;
       RTC_DRV_HYM8563 = yes;
       RTC_DRV_RK630 = no;
+      SCSI_UFSHCD = yes;
+      SCSI_UFSHCD_PLATFORM = yes;
+      SCSI_UFS_ROCKCHIP = yes;
       SENSORS_MCP9982 = module;
       SENSORS_PWM_FAN = module;
       SENSORS_TSC1641 = module;
       SND_SOC_ES8316 = module;
-      SCSI_UFSHCD = yes;
-      SCSI_UFSHCD_PLATFORM = yes;
-      SCSI_UFS_ROCKCHIP = yes;
       USB_ACM = yes;
     };
 

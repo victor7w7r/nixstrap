@@ -11,7 +11,6 @@
         "spi_rockchip_sfc"
         "uas"
         "usbhid"
-        "uhid"
         #"rk_crypto2"
       ];
 

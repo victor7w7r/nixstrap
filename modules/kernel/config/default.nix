@@ -145,14 +145,8 @@
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
             CDROM = no;
-            DRM_ACCEL_ROCKET = module;
-            PCIE_DW_PLAT_EP = yes;
-            PCIE_ROCKCHIP_DW_EP = yes;
-            PCIE_ROCKCHIP_EP = yes;
-            PHY_ROCKCHIP_SNPS_PCIE3 = yes;
-            PM_DOMAINS = yes;
+
             R8169 = yes;
-            ROCKCHIP_PM_DOMAINS = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;
             XFS_FS = no;

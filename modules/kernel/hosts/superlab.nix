@@ -21,6 +21,15 @@
       structuredExtraConfig = kernel.config.default.superlab;
       localVer = "rockchip";
       defconfig = "rockchip_defconfig";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-lts;
+        arch = "arm64";
+        defconfig = "rockchip_defconfig";
+        class = "rockchip";
+        dtbMake = ''dtb-\$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb'';
+        config = "${inputs.armbian}/config/kernel/linux-rockchip64-current.config";
+      };
       patches =
         with kernel.patches.injector pkgs;
         rockchip
@@ -30,25 +39,5 @@
         ++ (bunker.common { })
         ++ (bunker.lts { })
         ++ [ "${self}/modules/kernel/patches/files/rk3588-domain.patch" ];
-      src =
-        inputs.linux-lts
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit pkgs src;
-            arch = "arm64";
-            config = "${inputs.armbian}/config/kernel/linux-rockchip64-current.config";
-            defconfig = "rockchip_defconfig";
-          }
-        )
-        |> (
-          src:
-          kernel.lib.dts-cleaner {
-            inherit pkgs src;
-            class = "rockchip";
-            dtbMake = ''dtb-\$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb'';
-          }
-        );
     });
-
 }

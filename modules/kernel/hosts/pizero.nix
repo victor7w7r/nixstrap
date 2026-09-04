@@ -20,6 +20,15 @@
       structuredExtraConfig = kernel.config.default.pizero;
       localVer = "sunxi-hardened";
       defconfig = "sunxi_defconfig";
+      src = kernel.lib.kernel-cleaner {
+        inherit pkgs;
+        src = inputs.linux-lts;
+        arch = "arm64";
+        defconfig = "sunxi_defconfig";
+        class = "allwinner";
+        dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
+        config = "${inputs.armbian}/config/kernel/linux-sunxi64-current.config";
+      };
       patches =
         with kernel.patches.injector pkgs;
         sunxi
@@ -30,24 +39,5 @@
         ++ (bunker.lts { })
         ++ (bunker.hardening { })
         ++ [ "${self}/modules/kernel/patches/files/fix-opi-zero2w-supplies.patch" ];
-      src =
-        kernel.patches.armbian.uwe5622 pkgs
-        |> (
-          src:
-          kernel.lib.defconfig-clear {
-            inherit pkgs src;
-            arch = "arm64";
-            config = "${inputs.armbian}/config/kernel/linux-sunxi64-current.config";
-            defconfig = "sunxi_defconfig";
-          }
-        )
-        |> (
-          src:
-          kernel.lib.dts-cleaner {
-            inherit pkgs src;
-            class = "allwinner";
-            dtbMake = ''dtb-\$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb'';
-          }
-        );
     });
 }
