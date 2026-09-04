@@ -1,7 +1,7 @@
 { inputs, ... }: {
   main-domains.lib.macos =
     {
-      uuidGpu ? "",
+      uuidGpu ? "01234567-89ab-4cde-8f01-23456789abcd",
       memory ? 16384,
     }:
     let
@@ -43,16 +43,16 @@
         <on_reboot>restart</on_reboot>
         <on_crash>restart</on_crash>
         <devices>
-          <emulator>/usr/bin/qemu-system-x86_64</emulator>
+          <emulator>/run/current-system/sw/bin/qemu-system-x86_64</emulator>
           <disk type="file" device="disk">
             <driver name="qemu" type="qcow2" cache="writeback" io="threads"/>
-            <source file="${inputs.osx-kvm}/OpenCore/OpenCore.qcow2"/>
+            <source file="/var/lib/libvirt/images/OpenCore.qcow2"/>
             <target dev="sda" bus="sata"/>
             <address type="drive" controller="0" bus="0" target="0" unit="0"/>
           </disk>
-          <disk type="file" device="disk">
-            <driver name="qemu" type="qcow2" cache="writeback" io="threads"/>
-            <source file="/var/lib/libvirt/images/macos.qcow2"/>
+          <disk type="block" device="disk">
+            <driver name="qemu" type="raw" cache="writeback" io="threads"/>
+            <source dev="/dev/nvme0n1p2"/>
             <target dev="sdb" bus="sata"/>
             <address type="drive" controller="0" bus="0" target="0" unit="1"/>
           </disk>

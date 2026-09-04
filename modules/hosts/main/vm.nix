@@ -22,14 +22,12 @@
   den.aspects.main.vm.nixos = { pkgs, ... }: {
     imports = [ inputs.nixvirt.nixosModules.default ];
 
-    /*
-      boot.extraModprobeConfig = ''
+    boot.extraModprobeConfig = ''
       options kvm-intel nested=1
       options kvm_intel emulate_invalid_guest_state=0
       options vfio-pci ids=8086:3e9b,8086:a348
       options kvmfr static_size_mb=32
-      '';
-    */
+    '';
 
     virtualisation = {
       kvmgt.enable = true;
@@ -54,11 +52,10 @@
       "d /var/lib/libvirt/roms 0755 libvirt-qemu kvm -"
       "d /var/lib/libvirt/images 0755 libvirt-qemu kvm -"
 
-      #"w /sys/bus/pci/devices/0000:00:02.0/mdev_supported_types/i915-GVTg_V5_4/create - - - - 01234567-89ab-4cde-8f01-23456789abcd"
+      "w /sys/bus/pci/devices/0000:00:02.0/mdev_supported_types/i915-GVTg_V5_4/create - - - - 01234567-89ab-4cde-8f01-23456789abcd"
     ];
 
-    /*
-      security.pam.loginLimits = [
+    security.pam.loginLimits = [
       {
         domain = "@kvm";
         item = "memlock";
@@ -83,8 +80,6 @@
         type = "hard";
         value = "unlimited";
       }
-      ];
-    */
+    ];
   };
-
 }

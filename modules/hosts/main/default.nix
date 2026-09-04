@@ -79,6 +79,13 @@
           boot = {
             kernelPackages =
               (kernel.hosts.main pkgs "main" "x86_64-linux" pkgs.stdenv.hostPlatform.system).main-kernelPackages;
+            kernelModules = [
+              #"kvmgt"
+              #"mdev"
+              #"vfio"
+              #"vfio_iommu_type1"
+              #"vfio_pci"
+            ];
             kernelParams = [
               "ahci.mobile_lpm_policy=2"
               "intel_iommu=on"

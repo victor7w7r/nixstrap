@@ -1,6 +1,9 @@
 {
+  flake-file.inputs.nixpkgs-qemu9.url = "github:NixOS/nixpkgs/fcb54ddcc974cff59bdfb7c1ac9e080299763d2d";
+
   den.aspects.libvirt.nixos =
     {
+      inputs',
       lib,
       pkgs,
       isX86,
@@ -16,22 +19,24 @@
         ];
         sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 
-        systemPackages = with pkgs; [
-          bridge-utils
-          nemu
-          netcat-openbsd
-          OVMFFull
-          qemu
-          qemu-utils
-          usbkvm
-          virt-manager
-          virt-viewer
-          virtio-win
-          virtnbdbackup
-          virglrenderer
-          win-spice
-          x11_ssh_askpass
-        ] ++ lib.optional isX86 winboat;
+        systemPackages =
+          with pkgs;
+          [
+            bridge-utils
+            nemu
+            netcat-openbsd
+            OVMFFull
+            qemu-utils
+            usbkvm
+            virt-manager
+            virt-viewer
+            virtio-win
+            virtnbdbackup
+            virglrenderer
+            win-spice
+            x11_ssh_askpass
+          ]
+          ++ lib.optional isX86 winboat;
       };
 
       programs = {
@@ -45,7 +50,7 @@
           enable = true;
           onBoot = "start";
           qemu = {
-            package = pkgs.qemu_full.override {
+            package = inputs'.nixpkgs-qemu9.legacyPackages.qemu_full.override {
               cephSupport = false;
               enableDocs = false;
               xenSupport = false;
