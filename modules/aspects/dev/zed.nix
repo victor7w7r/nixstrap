@@ -5,11 +5,13 @@
       nixos.environment.persistence."/nix/persist".users."${user.name}".directories = [
         ".config/zed"
         ".local/share/zed"
+        ".vscode"
       ];
 
       provides.to-users.homeManager =
         { pkgs, ... }:
         {
+          programs.vscode.enable = true;
           programs.zed-editor = {
             enable = true;
             extraPackages = with pkgs; [

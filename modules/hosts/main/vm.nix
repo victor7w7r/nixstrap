@@ -1,5 +1,7 @@
 { main-domains, inputs, ... }:
 {
+  imports = [ (inputs.den.namespace "main-domains" false) ];
+
   flake-file.inputs = {
     nixvirt = {
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
@@ -16,8 +18,6 @@
       flake = false;
     };
   };
-
-  imports = [ (inputs.den.namespace "main-domains" false) ];
 
   den.aspects.main.vm.nixos = { pkgs, ... }: {
     imports = [ inputs.nixvirt.nixosModules.default ];

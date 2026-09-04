@@ -1,6 +1,13 @@
 {
   den.aspects.superlab.initrd.nixos = {
     boot.initrd = {
+      availableKernelModules = [
+        "dm_mod"
+        "dm_crypt"
+        "encrypted_keys"
+        "trusted"
+        "aes_arm64"
+      ];
       kernelModules = [
         "display_connector"
         "dm_crypt"
