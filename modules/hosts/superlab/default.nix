@@ -97,15 +97,15 @@
                 deviceTree.name = "rockchip/rk3588-rock-5b.dtb";
               };
 
-              services.udev.extraRules = ''
-                KERNEL=="hidraw*", ATTRS{idVendor}=="1050", MODE="0666"
-              '';
+              systemd.tmpfiles.rules = [
+                "L+ /lib/firmware/rtl_nic - - - - /run/current-system/firmware/rtl_nic"
+                "L+ /lib/firmware/arm - - - - /run/current-system/firmware/arm"
+              ];
+
+              powerManagement.cpuFreqGovernor = "schedutil";
 
               boot = {
-                kernelParams = [
-                  "console=ttyS2,1500000n8"
-                  "firmware_class.path=/extra-firmware"
-                ];
+                kernelParams = [ "console=ttyS2,1500000n8" ];
                 loader = {
                   grub.enable = false;
                   generic-extlinux-compatible.enable = true;

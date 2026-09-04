@@ -98,12 +98,6 @@
                 };
               };
 
-              systemd.tmpfiles.rules = [
-                "L+ /lib/firmware/uwe5622 - - - - /run/current-system/firmware"
-                "L+ /lib/firmware/wcnmodem.bin - - - - /run/current-system/firmware/wcnmodem.bin"
-                "L+ /lib/firmware/wifi_2355b001_1ant.ini - - - - /run/current-system/firmware/wifi_2355b001_1ant.ini"
-              ];
-
               hardware = {
                 firmware = with self'.packages; lib.singleton uwe5622-firmware;
                 deviceTree = {
@@ -141,6 +135,12 @@
                       ];
                 };
               };
+
+              systemd.tmpfiles.rules = [
+                "L+ /lib/firmware/uwe5622 - - - - /run/current-system/firmware"
+                "L+ /lib/firmware/wcnmodem.bin - - - - /run/current-system/firmware/wcnmodem.bin"
+                "L+ /lib/firmware/wifi_2355b001_1ant.ini - - - - /run/current-system/firmware/wifi_2355b001_1ant.ini"
+              ];
 
               powerManagement.cpuFreqGovernor = "schedutil";
 
