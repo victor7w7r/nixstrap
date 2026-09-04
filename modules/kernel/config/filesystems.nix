@@ -44,6 +44,7 @@
         HFS_FS = no;
         HPFS_FS = no;
         JFS_FS = no;
+        JFFS2_FS = no;
         KARMA_PARTITION = no;
         LDM_PARTITION = lib.mkForce no;
         MAC_PARTITION = no;
@@ -63,6 +64,7 @@
         SQUASHFS = no;
         TMPFS_QUOTA = no;
         UFS_FS = no;
+        UBIFS_FS = no;
         VXFS_FS = no;
         XFS_QUOTA = lib.mkForce no;
         XZ_DEC_POWERPC = no;
