@@ -21,9 +21,13 @@
             ];
             installRemoteServer = true;
             extensions = [
+              "alpinejs-snippets"
               "astro"
               "basher"
               "biome"
+              "bookmark"
+              "comment"
+              "color-highlight"
               "cargo-tom"
               "dart"
               "docker-compose"
@@ -39,22 +43,27 @@
               "log"
               "lua"
               "make"
+              "markdown-snippets"
+              "markdownlint"
               "material-icon-theme"
               "mcp-server-github"
               "nix"
               "powershell"
               "pylsp"
               "react-typescript-snippets"
+              "rlsp-yaml"
               "rust"
               "sql"
               "svelte"
+              "stylelint"
+              "todo-highlight-language-server"
               "tokyo-night"
               "vue"
-              "tailwind-theme"
               "toml"
               "tmux"
               "unocss"
               "xml"
+              "wc-language-server"
             ];
 
             userSettings = {
@@ -66,25 +75,29 @@
                 };
               };
 
+              diagnostics = {
+                button = true;
+                include_warnings = true;
+                inline = {
+                  enabled = true;
+                  update_debounce_ms = 150;
+                  padding = 4;
+                  min_column = 0;
+                  max_severity = null;
+                };
+                cargo = null;
+              };
+
               edit_predictions = {
                 mode = "eager";
                 provider = "copilot";
               };
 
-              agent_servers."auggie".type = "registry";
-
-              whitespace_map = {
-                space = "•";
-                tab = " ";
+              project_panel = {
+                auto_fold_dirs = true;
+                auto_reveal_entries = false;
+                dock = "left";
               };
-
-              load_direnv = "shell_hook";
-
-              outline_panel.button = false;
-              collaboration_panel.button = false;
-              minimap.show = "auto";
-              project_panel.dock = "left";
-              git_panel.dock = "left";
 
               agent = {
                 button = false;
@@ -100,21 +113,15 @@
                 */
               };
 
-              inlay_hints.enabled = true;
-              indent_guides.coloring = "indent_aware";
               telemetry = {
                 diagnostics = false;
                 metrics = false;
               };
-              base_keymap = "VSCode";
-              auto_update = false;
-              vim_mode = false;
-              ui_font_size = 16;
-              buffer_font_size = 12;
-              show_whitespaces = "all";
 
-              autosave = "on_focus_change";
-              cursor_blink = true;
+              whitespace_map = {
+                space = "•";
+                tab = " ";
+              };
 
               theme = {
                 mode = "system";
@@ -131,9 +138,6 @@
                 line_height = "comfortable";
                 shell = "system";
               };
-
-              title_bar.show_sign_in = false;
-              search.button = false;
 
               lsp = {
                 nixd = {
@@ -164,7 +168,33 @@
                 };
               };
 
+              agent_servers."auggie".type = "registry";
+              auto_update = false;
+              autosave = "on_focus_change";
+              base_keymap = "VSCode";
+              buffer_font_size = 12;
+              collaboration_panel.button = false;
+              colorize_brackets = true;
+              cursor_blink = true;
+              format_on_save = true;
+              git_panel.dock = "left";
+              hard_tabs = true;
               icon_theme = "Material Icon Theme";
+              indent_guides.coloring = "indent_aware";
+              inlay_hints.enabled = true;
+              jsx_tag_auto_close.enabled = true;
+              load_direnv = "shell_hook";
+              minimap.show = "auto";
+              outline_panel.button = false;
+              search.button = false;
+              show_edit_predictions = true;
+              show_whitespaces = "trailing";
+              sticky_scroll = false;
+              tab_size = 2;
+              title_bar.show_sign_in = false;
+              ui_font_size = 16;
+              vertical_scroll_margin = 15;
+              vim_mode = false;
             };
           };
         };
