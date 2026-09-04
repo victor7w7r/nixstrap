@@ -53,6 +53,7 @@
           passbolt-db = {
             image = "mariadb:10.11";
             volumes = [ "/nix/persist/passbolt/mariadb:/var/lib/mysql" ];
+            ports = [ "80:80" ];
             environment = {
               MYSQL_DATABASE = "passbolt";
               MYSQL_PASSWORD = "P4ssb0lt";
