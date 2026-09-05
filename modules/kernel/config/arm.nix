@@ -83,8 +83,8 @@
       CRYPTO_USER = yes;
       DM_CRYPT = lib.mkForce yes;
       ENCRYPTED_KEYS = lib.mkForce yes;
-      PHY_ROCKCHIP_NANENG_COMBO_PHY = yes;
       TRUSTED_KEYS = lib.mkForce yes;
+      PHY_ROCKCHIP_NANENG_COMBO_PHY = yes;
       UHID = yes;
       USB_HID = lib.mkForce yes;
 

@@ -72,6 +72,7 @@
         sed -i '/^CONFIG_SND_/d' config
         sed -i '/^CONFIG_SSB/d' config
         sed -i '/^CONFIG_TIPC/d' config
+        sed -i '/^CONFIG_TRUSTED_KEYS/d' config
         sed -i '/^CONFIG_W1*/d' config
         sed -i '/^CONFIG_X25/d' config
         sed -i '/^CONFIG_XFRM/d' config
