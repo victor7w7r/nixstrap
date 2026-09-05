@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake-file.inputs.nixpkgs-qemu9.url = "github:NixOS/nixpkgs/fcb54ddcc974cff59bdfb7c1ac9e080299763d2d";
 
   den.aspects.libvirt.nixos =
@@ -50,16 +50,38 @@
           enable = true;
           onBoot = "start";
           qemu = {
-            package = inputs'.nixpkgs-qemu9.legacyPackages.qemu_full.override {
-              cephSupport = false;
-              enableDocs = false;
-              xenSupport = false;
-              hostCpuTargets = [
-                "i386-softmmu"
-                "x86_64-softmmu"
-                "aarch64-softmmu"
-              ];
-            };
+            package =
+              (pkgs.qemu_full.override {
+                cephSupport = false;
+                enableDocs = false;
+                xenSupport = false;
+                hostCpuTargets = [
+                  "i386-softmmu"
+                  "x86_64-softmmu"
+                  "aarch64-softmmu"
+                ];
+              }).overrideAttrs
+                (
+                  final: prev: {
+                    version = inputs'.nixpkgs-qemu9.legacyPackages.qemu_full.version;
+                    src = inputs'.nixpkgs-qemu9.legacyPackages.qemu_full.src;
+                    patches =
+                      (map (patch: "${inputs.nixpkgs-qemu9}/pkgs/applications/virtualization/qemu/${patch}.patch") [
+                        "fix-qemu-ga"
+                        "provide-fallback-for-utimensat"
+                        "revert-ui-cocoa-add-clipboard-support"
+                        "revert-ui-cocoa-use-the-standard-about-panel"
+                        "remove-ui-cocoa-use-safe-area-insets"
+                      ])
+                      ++ [
+                        (pkgs.fetchpatch {
+                          url = "https://gitlab.com/qemu-project/qemu/-/commit/3e4546d5bd38a1e98d4bd2de48631abf0398a3a2.diff";
+                          sha256 = "sha256-oC+bRjEHixv1QEFO9XAm4HHOwoiT+NkhknKGPydnZ5E=";
+                          revert = true;
+                        })
+                      ];
+                  }
+                );
             verbatimConfig = ''
               user = "victor7w7r"
               group = "users"
