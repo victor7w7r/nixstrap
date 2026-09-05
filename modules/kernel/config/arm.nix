@@ -86,7 +86,7 @@
       PHY_ROCKCHIP_NANENG_COMBO_PHY = yes;
       TRUSTED_KEYS = lib.mkForce yes;
       UHID = yes;
-      USB_HID = yes;
+      USB_HID = lib.mkForce yes;
 
       ARCH_QCOM = no;
       ARCH_ROCKCHIP = yes;
