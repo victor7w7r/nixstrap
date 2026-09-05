@@ -160,7 +160,6 @@
         NET_SCH_GRED = no;
         NET_SCH_HFSC = no;
         NET_SCH_HHF = no;
-        NET_SCH_HTB = no;
         NET_SCH_MQPRIO = no;
         NET_SCH_NETEM = no;
         NET_SCH_PIE = no;
