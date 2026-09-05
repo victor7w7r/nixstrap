@@ -49,6 +49,7 @@
         sed -i '/^CONFIG_ATALK/d' config
         sed -i '/^CONFIG_ATM/d' config
         sed -i '/^CONFIG_COMEDI/d' config
+        sed -i '/^CONFIG_CRYPTO_/d' config
         sed -i '/^CONFIG_CPU_SUP_/d' config
         sed -i '/^CONFIG_DEBUG_/d' config
         sed -i '/^CONFIG_FUSION_/d' config

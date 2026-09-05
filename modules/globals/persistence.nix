@@ -2,7 +2,7 @@
 {
   flake-file.inputs.impermanence.url = "github:nix-community/impermanence";
 
-  den.default.nixos =
+  den.default = {nixos =
     {
       isPersistent,
       lib,
@@ -61,5 +61,7 @@
           ];
         };
       };
+    };
+
     };
 }

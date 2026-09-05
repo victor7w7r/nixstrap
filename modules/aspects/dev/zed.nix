@@ -2,15 +2,17 @@
   den.aspects.dev.zed =
     { user, ... }:
     {
-      nixos.environment.persistence."/nix/persist".users."${user.name}".directories = [
-        ".config/zed"
+
+    nixos.environment.persistence."/nix/persist".users."${user.name}".directories = [
         ".local/share/zed"
+        ".config/zed"
         ".vscode"
       ];
 
       provides.to-users.homeManager =
         { pkgs, ... }:
         {
+
           programs.vscode.enable = true;
           programs.zed-editor = {
             enable = true;
@@ -19,7 +21,7 @@
               nixd
               nixfmt
             ];
-            installRemoteServer = true;
+            /*installRemoteServer = true;
             extensions = [
               "alpinejs-snippets"
               "astro"
@@ -64,14 +66,16 @@
               "unocss"
               "xml"
               "wc-language-server"
-            ];
+            ];*/
 
             userSettings = {
-              context_servers = {
-                mcp-server-github = {
-                  enabled = true;
-                  remote = false;
-                  settings.github_personal_access_token = null;
+              "context_servers" = {
+                "mcp-server-github" = {
+                  "enabled" = true;
+                  "remote" = false;
+                  "settings" = {
+                    "github_personal_access_token" = null;
+                  };
                 };
               };
 
@@ -133,7 +137,9 @@
                 blinking = "terminal_controlled";
                 copy_on_select = true;
                 dock = "bottom";
-                env.TERM = "kitty";
+                env = {
+                    TERM = "kitty";
+                };
                 font_family = "JetBrainsMono Nerd Font";
                 line_height = "comfortable";
                 shell = "system";
@@ -155,12 +161,14 @@
 
               languages = {
                 Nix = {
-                  formatter.external = {
-                    command = "nixfmt";
-                    arguments = [
-                      "--quiet"
-                      "--"
-                    ];
+                  formatter = {
+                    external = {
+                        command = "nixfmt";
+                            arguments = [
+                            "--quiet"
+                            "--"
+                        ];
+                    };
                   };
                   format_on_save = "on";
                   language_servers = [ "nixd" ];
@@ -168,33 +176,53 @@
                 };
               };
 
-              agent_servers."auggie".type = "registry";
+              agent_servers = {
+                "auggie" = {
+                    type = "registry";
+                };
+              };
               auto_update = false;
               autosave = "on_focus_change";
               base_keymap = "VSCode";
               buffer_font_size = 12;
-              collaboration_panel.button = false;
+              collaboration_panel = {
+                button = false;
+              };
               colorize_brackets = true;
               cursor_blink = true;
               format_on_save = true;
-              git_panel.dock = "left";
+              git_panel = {
+                dock = "left";
+              };
               hard_tabs = true;
               icon_theme = "Material Icon Theme";
-              indent_guides.coloring = "indent_aware";
-              inlay_hints.enabled = true;
-              jsx_tag_auto_close.enabled = true;
+              indent_guides = {
+                coloring = "indent_aware";
+              };
+              inlay_hints = {
+                enabled = true;
+              };
+              jsx_tag_auto_close = {
+                enabled = true;
+              };
               load_direnv = "shell_hook";
               minimap.show = "auto";
-              outline_panel.button = false;
-              search.button = false;
-              show_edit_predictions = true;
-              show_whitespaces = "trailing";
-              sticky_scroll = false;
-              tab_size = 2;
-              title_bar.show_sign_in = false;
-              ui_font_size = 16;
-              vertical_scroll_margin = 15;
-              vim_mode = false;
+              outline_panel = {
+                button = false;
+              };
+              "search" = {
+                "button" = false;
+              };
+              "show_edit_predictions" = true;
+              "show_whitespaces" = "trailing";
+              "sticky_scroll" = false;
+              "tab_size" = 2;
+              "title_bar" = {
+                "show_sign_in" = false;
+              };
+              "ui_font_size" = 16;
+              "vertical_scroll_margin" = 15;
+              "vim_mode" = false;
             };
           };
         };
