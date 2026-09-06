@@ -22,7 +22,12 @@
     };
 
     provides.to-users.homeManager =
-      { isMain, isHandheld, ... }:
+      {
+        lib,
+        isMain,
+        isHandheld,
+        ...
+      }:
       {
         programs.plasma.panels = [
           {
@@ -320,7 +325,12 @@
                     "org.kde.plasma.volume"
                     "org.kde.plasma.clipboard"
                     "org.kde.plasma.notifications"
-                  ];
+                  ]
+                  ++ (lib.optionals isHandheld [
+                    "org.kde.plasma.keyboardindicator"
+                    "org.kde.plasma.manage-inputmethod"
+                  ]);
+
                   extraItems = [
                     "org.kde.plasma.cameraindicator"
                     "org.kde.plasma.notifications"
