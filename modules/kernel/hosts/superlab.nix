@@ -33,11 +33,11 @@
       patches =
         with kernel.patches.injector pkgs;
         rockchip
-        ++ (cachyos.lts { })
-        ++ (tachyon.common { source = inputs.tachyon-patches-lts; })
-        ++ (tachyon.lts { })
-        ++ (bunker.common { })
-        ++ (bunker.lts { })
+        #++ (cachyos.lts { })
+        #++ (tachyon.common { source = inputs.tachyon-patches-lts; })
+        #++ (tachyon.lts { })
+        #++ (bunker.common { })
+        #++ (bunker.lts { })
         ++ [ "${self}/modules/kernel/patches/files/rk3588-domain.patch" ];
     });
 }

@@ -127,7 +127,6 @@
       }
       {
         NET_ACT_CONNMARK = no;
-        NET_ACT_CSUM = no;
         NET_ACT_CT = no;
         NET_ACT_CTINFO = no;
         NET_ACT_GACT = no;
