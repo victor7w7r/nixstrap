@@ -23,7 +23,7 @@
       defconfig = "rockchip_defconfig";
       src = kernel.lib.kernel-cleaner {
         inherit pkgs;
-        src = inputs.linux-lts;
+        src = inputs.linux-lts-vanilla;
         arch = "arm64";
         defconfig = "rockchip_defconfig";
         class = "rockchip";

@@ -43,5 +43,11 @@
       url = "github:CachyOS/linux/cachyos-${kernel-versions.lts}-2";
       flake = false;
     };
+
+    linux-lts-vanilla = {
+      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${kernel-versions.lts}.tar.xz";
+      flake = false;
+    };
   };
+
 }

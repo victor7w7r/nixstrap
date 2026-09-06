@@ -1,13 +1,21 @@
 {
   den.aspects.dev.mise =
-    { lib, user, ... }:
+    { user, ... }:
     {
-      nixos.environment.persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
-        ".cache/mise"
-        ".local/share/mise"
-        ".cargo"
-        ".rustup"
-      ];
+      nixos = { lib, pkgs, ... }: {
+        environment = {
+          systemPackages = with pkgs; [
+            fvm
+            mise
+          ];
+          persistence."/nix/persist".users."${user.name}".directories = lib.mkAfter [
+            ".cache/mise"
+            ".local/share/mise"
+            ".cargo"
+            ".rustup"
+          ];
+        };
+      };
 
       provides.to-users.homeManager.programs.mise = {
         enable = true;

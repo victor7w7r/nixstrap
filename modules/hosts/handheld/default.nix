@@ -30,6 +30,7 @@
           dev.ccache
           dev.zed
           dev.tools
+          dev.mise
           gui._
           misc._
           pentest._

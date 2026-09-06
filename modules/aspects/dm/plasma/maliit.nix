@@ -11,16 +11,15 @@
       };
 
     provides.to-users.homeManager =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         programs.plasma.configFile.kwinrc.Wayland = {
           InputMethod = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
           VirtualKeyboardEnabled = true;
         };
-
         dconf.settings = {
           "org/maliit/keyboard/maliit" = {
-            enabled-languages = [
+            enabled-languages = lib.hm.gvariant.mkArray lib.hm.gvariant.type.string [
               "en"
               "es"
               "emoji"

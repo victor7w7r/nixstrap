@@ -3119,6 +3119,19 @@
         "type": "github"
       }
     },
+    "linux-lts-vanilla": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787898174,
+        "narHash": "sha256-JtkaXMcM4gCbnoG/eX0YcJTx0g19dBfROm4NHFx4Atw=",
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz"
+      }
+    },
     "linuxthemestore": {
       "flake": false,
       "locked": {
@@ -4655,6 +4668,7 @@
         "linux-config": "linux-config",
         "linux-latest": "linux-latest",
         "linux-lts": "linux-lts",
+        "linux-lts-vanilla": "linux-lts-vanilla",
         "linuxthemestore": "linuxthemestore",
         "loc": "loc",
         "logcat-color3": "logcat-color3",

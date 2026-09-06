@@ -513,6 +513,10 @@
       url = "github:CachyOS/linux/cachyos-6.18.48-2";
       flake = false;
     };
+    linux-lts-vanilla = {
+      url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz";
+      flake = false;
+    };
     linuxthemestore = {
       url = "github:debasish-patra-1987/linuxthemestore";
       flake = false;

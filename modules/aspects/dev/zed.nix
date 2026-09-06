@@ -16,9 +16,9 @@
             context_servers = {
               mcp-server-github = {
                 enabled = true;
-                "remote" = false;
-                "settings" = {
-                  "github_personal_access_token" = null;
+                remote = false;
+                settings = {
+                  github_personal_access_token = null;
                 };
               };
             };
@@ -184,21 +184,12 @@
             use_autoclose = true;
             selection_highlight = true;
             "cursor_blink" = true;
-            #"format_on_save" = true;
-            "git_panel" = {
-              "dock" = "left";
-            };
-            "hard_tabs" = true;
-            "icon_theme" = "Material Icon Theme";
-            "indent_guides" = {
-              "coloring" = "indent_aware";
-            };
-            "inlay_hints" = {
-              "enabled" = true;
-            };
-            "jsx_tag_auto_close" = {
-              "enabled" = true;
-            };
+            git_panel.dock = "left";
+            hard_tabs = true;
+            icon_theme = "Material Icon Theme";
+            indent_guides.coloring = "indent_aware";
+            inlay_hints.enabled = true;
+            jsx_tag_auto_close.enabled = true;
             load_direnv = "shell_hook";
             minimap.show = "auto";
             outline_panel.button = false;
