@@ -14,6 +14,7 @@
 
           programs.zed-editor = {
             enable = true;
+            package = pkgs.zed-editor;
             extraPackages = with pkgs; [
               bash-language-server
               nixd
@@ -100,6 +101,12 @@
               coloring = "indent_aware";
               background_coloring = "indent_aware";
             };
+            language_servers = [
+              "!eslint"
+              "!vtsls"
+              "!typescript-language-server"
+              "..."
+            ];
             inlay_hints.enabled = false;
             jsx_tag_auto_close.enabled = true;
             linked_edits = true;
@@ -112,7 +119,7 @@
             reduce_motion = "on";
             remove_trailing_whitespace_on_save = true;
             search.button = false;
-            semantic_tokens.combined = true;
+            semantic_tokens = "combined";
             selection_highlight = true;
             show_edit_predictions = true;
             show_whitespaces = "all";
@@ -196,12 +203,6 @@
               line_height = "comfortable";
               shell = "system";
             };
-            language_servers = [
-              "!eslint"
-              "!vtsls"
-              "!typescript-language-server"
-              "..."
-            ];
             lsp = {
               css-variables.settings.cssVariables = {
                 lookupFiles = [
@@ -225,11 +226,13 @@
                 ];
               };
               nixd = {
-                binary.ignore_system_version = false;
+                binary = {
+                  ignore_system_version = false;
+                  path = lib.getExe pkgs.nixd;
+                };
                 initialization_options.formatting.command = [
-                  "nixfmt"
-                  "--quiet"
-                  "--"
+                  (lib.getExe pkgs.nixfmt)
+                  "--strict"
                 ];
               };
               path-server-ls.settings = {
@@ -256,46 +259,48 @@
               };
             };
 
-            languages =
-              {
+            languages = {
+              /*
                 Dart = {
-                  format_on_save = "on";
-                  code_actions_on_format = {
-                    source.organizeImports = true;
-                    source.fixAll = true;
-                  };
+                format_on_save = "on";
+                code_actions_on_format = {
+                  source.organizeImports = true;
+                  source.fixAll = true;
                 };
-                XML.format_on_save = "on";
-                Nix = {
-                  format_on_save = "on";
-                  language_servers = [
-                    "nixd"
-                    "!nil"
-                  ];
                 };
-              }
-              // (lib.genAttrs
-                [
-                  "Astro"
-                  "CSS"
-                  "HTML"
-                  "JavaScript"
-                  "JSON"
-                  "Markdown"
-                  "MDX"
-                  "SCSS"
-                  "Svelte"
-                  "TSX"
-                  "Vue.js"
-                  "YAML"
-                ]
-                (_: {
-                  format_on_save = "on";
-                  prettier.allowed = false;
-                  formatter = [ { language_server.name = "oxfmt"; } ];
-                })
-              )
-              // [
+              */
+              XML.format_on_save = "on";
+              Nix = {
+                format_on_save = "on";
+                language_servers = [
+                  "nixd"
+                  "!nil"
+                ];
+              };
+            }
+            // (lib.genAttrs
+              [
+                "Astro"
+                "CSS"
+                "HTML"
+                "JavaScript"
+                "JSON"
+                "Markdown"
+                "MDX"
+                "SCSS"
+                "Svelte"
+                "TSX"
+                "Vue.js"
+                "YAML"
+              ]
+              (_: {
+                format_on_save = "on";
+                prettier.allowed = false;
+                formatter = [ { language_server.name = "oxfmt"; } ];
+              })
+            )
+            // (
+              [
                 "!vtsls"
                 "!typescript-language-server"
                 "tsgo"
@@ -313,14 +318,15 @@
                 ];
                 TypeScript.language_servers = options;
                 TSX.language_servers = options;
-                JavaScript = options;
-                Astro = [
+                JavaScript.language_servers = options;
+                Astro.language_servers = [
                   "astro-language-server"
                   "unocss-language-server"
                 ]
                 ++ options;
                 JSON.inlay_hints.enabled = true;
-              });
+              })
+            );
           };
         };
     };
