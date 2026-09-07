@@ -76,14 +76,17 @@
     };
 
     rockchip = { }: {
-      BLK_DEV_DM = lib.mkForce yes;
-      CRYPTO_DEV_ROCKCHIP2 = yes;
-      CRYPTO_SHA256_ARM64 = yes;
-      CRYPTO_SHA3_ARM64 = yes;
-      CRYPTO_USER = yes;
-      DM_CRYPT = lib.mkForce yes;
-      ENCRYPTED_KEYS = lib.mkForce yes;
-      TRUSTED_KEYS = lib.mkForce yes;
+      /*
+        BLK_DEV_DM = lib.mkForce yes;
+        CRYPTO_DEV_ROCKCHIP2 = yes;
+        CRYPTO_SHA256_ARM64 = yes;
+        CRYPTO_SHA3_ARM64 = yes;
+        CRYPTO_USER = yes;
+        DM_CRYPT = lib.mkForce yes;
+        ENCRYPTED_KEYS = lib.mkForce yes;
+        TRUSTED_KEYS = lib.mkForce yes;
+      */
+
       PHY_ROCKCHIP_NANENG_COMBO_PHY = yes;
       UHID = yes;
       USB_HID = lib.mkForce yes;
