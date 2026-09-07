@@ -24,6 +24,7 @@
       '';
 
       systemd = {
+      	enable = true;
         tpm2.enable = false;
         fido2.enable = true;
       };
@@ -38,7 +39,7 @@
         system = {
           device = "/dev/disk/by-partlabel/disk-main-system";
           crypttabExtraOpts = [
-            "fido2-device=/dev/hidraw0"
+            "fido2-device=auto"
             "x-systemd.device-timeout=10"
           ];
           preLVM = true;

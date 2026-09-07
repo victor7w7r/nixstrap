@@ -96,6 +96,7 @@
               ];
             };
             hard_tabs = true;
+            hover_popover_sticky = false;
             icon_theme = "Material Icon Theme";
             indent_guides = {
               coloring = "indent_aware";
@@ -203,6 +204,7 @@
               line_height = "comfortable";
               shell = "system";
             };
+
             lsp = {
               css-variables.settings.cssVariables = {
                 lookupFiles = [
@@ -259,74 +261,75 @@
               };
             };
 
-            languages = {
-              /*
-                Dart = {
-                format_on_save = "on";
-                code_actions_on_format = {
-                  source.organizeImports = true;
-                  source.fixAll = true;
-                };
-                };
-              */
-              XML.format_on_save = "on";
-              Nix = {
-                format_on_save = "on";
-                language_servers = [
-                  "nixd"
-                  "!nil"
+            languages =
+              {
+                langs = [
+                  "!vtsls"
+                  "!typescript-language-server"
+                  "tsgo"
+                  "..."
                 ];
-              };
-            }
-            // (lib.genAttrs
-              [
-                "Astro"
-                "CSS"
-                "HTML"
-                "JavaScript"
-                "JSON"
-                "Markdown"
-                "MDX"
-                "SCSS"
-                "Svelte"
-                "TSX"
-                "Vue.js"
-                "YAML"
-              ]
-              (_: {
-                format_on_save = "on";
-                prettier.allowed = false;
-                formatter = [ { language_server.name = "oxfmt"; } ];
-              })
-            )
-            // (
-              [
-                "!vtsls"
-                "!typescript-language-server"
-                "tsgo"
-                "..."
-              ]
+                formatOptions = {
+                  format_on_save = "on";
+                  prettier.allowed = false;
+                  formatter = [ { language_server.name = "oxfmt"; } ];
+                };
+              }
               |> (options: {
-                CSS.language_servers = [
-                  "vscode-css-language-server"
-                  "emmet-language-server"
-                ];
-                HTML.language_servers = [
-                  "vscode-css-language-server"
-                  "emmet-language-server"
-                  "unocss-language-server"
-                ];
-                TypeScript.language_servers = options;
-                TSX.language_servers = options;
-                JavaScript.language_servers = options;
-                Astro.language_servers = [
-                  "astro-language-server"
-                  "unocss-language-server"
-                ]
-                ++ options;
-                JSON.inlay_hints.enabled = true;
-              })
-            );
+                Astro = {
+                  formatOptions = options.formatOptions;
+                  language_servers = [
+                    "astro-language-server"
+                    "unocss-language-server"
+                  ];
+                };
+                CSS = {
+                  formatOptions = options.formatOptions;
+                  language_servers = [
+                    "vscode-css-language-server"
+                    "emmet-language-server"
+                  ];
+                };
+                Dart.format_on_save = "on";
+                XML.format_on_save = "on";
+                HTML = {
+                  formatOptions = options.formatOptions;
+                  language_servers = [
+                    "vscode-css-language-server"
+                    "emmet-language-server"
+                    "unocss-language-server"
+                  ];
+                };
+                JavaScript = {
+                  language_servers = options.langs;
+                  formatOptions = options.formatOptions;
+                };
+                JSON = {
+                  language_servers = options.langs;
+                  formatOptions = options.formatOptions;
+                };
+                Markdown.formatOptions = options.formatOptions;
+                MDX.formatOptions = options.formatOptions;
+                Nix = {
+                  format_on_save = "on";
+                  language_servers = [
+                    "nixd"
+                    "!nil"
+                  ];
+                };
+                SCSS.formatOptions = options.formatOptions;
+                Svelte.formatOptions = options.formatOptions;
+                TypeScript = {
+                  language_servers = options.langs;
+                  formatOptions = options.formatOptions;
+                };
+                TSX = {
+                  language_servers = options.langs;
+                  formatOptions = options.formatOptions;
+                };
+                "Vue.js".formatOptions = options.formatOptions;
+                YAML.formatOptions = options.formatOptions;
+              });
           };
         };
     };

@@ -27,34 +27,38 @@
             DefaultTimeoutAbortSec = "5s";
             DefaultLimitNOFILE = "2048:2097152";
           };
-          initrdBin = with pkgs; [ coreutils ];
+          initrdBin = with pkgs; [
+            coreutils
+            util-linux
+          ];
           storePaths = with pkgs; [
             "${bashInteractive}/bin/bash"
-            util-linux
             "${util-linux}/bin/mount"
             "${util-linux}/bin/umount"
             "${coreutils}/bin/sleep"
             "${systemd}/bin/udevadm"
           ];
           extraBin = with pkgs; {
-            nix = "${nix}/bin/nix";
-            ip = "${iproute2}/bin/ip";
-            curl = "${curl}/bin/curl";
-            clear = "${ncurses}/bin/clear";
-            ping = "${iputils}/bin/ping";
-            cryptsetup = "${cryptsetup}/bin/cryptsetup";
-            efibootmgr = "${pkgs.efibootmgr}/bin/efibootmgr";
-            busybox = "${busybox-sandbox-shell}/bin/busybox";
-            htop = "${htop}/bin/htop";
-            yazi = "${yazi-unwrapped}/bin/yazi";
-            find = "${findutils}/bin/find";
-            fdisk = "${util-linux}/bin/fdisk";
-            lshw = "${pkgs.lshw}/bin/lshw";
-            file = "${file}/bin/file";
             blkid = "${util-linux}/bin/blkid";
-            lsblk = "${util-linux}/bin/lsblk";
-            lspci = "${pciutils}/bin/lspci";
+            busybox = "${busybox-sandbox-shell}/bin/busybox";
+            clear = "${ncurses}/bin/clear";
+            cryptsetup = "${cryptsetup}/bin/cryptsetup";
+            curl = "${curl}/bin/curl";
+            dmesg = "${util-linux}/bin/dmesg";
+            efibootmgr = "${efibootmgr}/bin/efibootmgr";
+            fdisk = "${util-linux}/bin/fdisk";
+            file = "${file}/bin/file";
+            find = "${findutils}/bin/find";
             grep = "${gnugrep}/bin/grep";
+            htop = "${htop}/bin/htop";
+            ip = "${iproute2}/bin/ip";
+            lsblk = "${util-linux}/bin/lsblk";
+            lshw = "${lshw}/bin/lshw";
+            lspci = "${pciutils}/bin/lspci";
+            lsusb = "${usbutils}/bin/lsusb";
+            nix = "${nix}/bin/nix";
+            ping = "${iputils}/bin/ping";
+            yazi = "${yazi-unwrapped}/bin/yazi";
           };
 
           services.emergency-overlay = {
