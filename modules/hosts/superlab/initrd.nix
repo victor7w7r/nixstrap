@@ -37,12 +37,11 @@
           };
         */
         system = {
-          device = "/dev/disk/by-partlabel/disk-main-system";
+          device = "/dev/disk/by-uuid/7ee55551-ef11-4d13-8613-04f37595f6f3";
           crypttabExtraOpts = [
             "fido2-device=auto"
-            "x-systemd.device-timeout=10"
+            "x-systemd.device-timeout=45"
           ];
-          preLVM = true;
           allowDiscards = true;
         };
       };
