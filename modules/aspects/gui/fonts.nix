@@ -10,8 +10,8 @@
           noto-fonts-color-emoji
           nerd-fonts.dejavu-sans-mono
           nerd-fonts.jetbrains-mono
-          nerd-fonts.noto
           nerd-fonts.ubuntu
+          nerd-fonts.noto
           nerd-fonts.symbols-only
           #openmoji-color
           open-sans
@@ -30,6 +30,10 @@
       fonts = {
         enableDefaultPackages = true;
         fontDir.enable = true;
+        packages = with pkgs; [
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.ubuntu
+        ];
         fontconfig = {
           enable = true;
           cache32Bit = true;

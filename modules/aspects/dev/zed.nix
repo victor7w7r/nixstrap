@@ -8,9 +8,19 @@
       ];
 
       provides.to-users.homeManager =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           programs.vscode.enable = true;
+
+          programs.zed-editor = {
+            enable = true;
+            extraPackages = with pkgs; [
+              bash-language-server
+              nixd
+              nixfmt
+            ];
+            installRemoteServer = true;
+          };
 
           xdg.configFile."zed/settings.json".text = builtins.toJSON {
             auto_install_extensions = {
@@ -57,6 +67,7 @@
               todo-highlight-language-server = true;
               tokyo-night = true;
               tombi = true;
+              toml = true;
               tsgo = true;
               typescript-snippets = true;
               unocss = true;
@@ -77,6 +88,12 @@
             colorize_brackets = true;
             cursor_blink = true;
             git_panel.dock = "left";
+            file_types = {
+              "GitHub Actions" = [
+                ".github/workflows/*.yml"
+                ".github/workflows/*.yaml"
+              ];
+            };
             hard_tabs = true;
             icon_theme = "Material Icon Theme";
             indent_guides = {
@@ -87,12 +104,15 @@
             jsx_tag_auto_close.enabled = true;
             linked_edits = true;
             line_ending = "enforce_lf";
+            lsp_document_colors = "background";
             load_direnv = "shell_hook";
+            global_lsp_settings.semantic_token_rules = [ { "token_type" = "comment"; } ];
             minimap.show = "auto";
             outline_panel.button = false;
             reduce_motion = "on";
             remove_trailing_whitespace_on_save = true;
             search.button = false;
+            semantic_tokens.combined = true;
             selection_highlight = true;
             show_edit_predictions = true;
             show_whitespaces = "all";
@@ -102,7 +122,7 @@
               show_worktree_name = false;
               show_sign_in = false;
             };
-            #ui_font_family = "Ubuntu Nerd Font";
+            ui_font_family = "Ubuntu Nerd Font";
             ui_font_size = 16;
             use_autoclose = true;
             vertical_scroll_margin = 15;
@@ -131,7 +151,6 @@
 
             diagnostics = {
               button = true;
-              cargo = null;
               include_warnings = true;
               inline = {
                 enabled = true;
@@ -177,47 +196,131 @@
               line_height = "comfortable";
               shell = "system";
             };
-
-            lsp = {
-              nixd = {
-                binary = {
-                  ignore_system_version = false;
-                  path = "${pkgs.nixd}/bin/nixd";
-                };
-                initialization_options = {
-                  formatting = {
-                    command = [ "nixfmt" ];
-                  };
-                };
-              };
-            };
-
-            languages = {
-              Nix = {
-                formatter = {
-                  external = {
-                    command = "nixfmt";
-                    arguments = [
-                      "--quiet"
-                      "--"
-                    ];
-                  };
-                };
-                format_on_save = "on";
-                language_servers = [ "nixd" ];
-                tab_size = 2;
-              };
-            };
-          };
-
-          programs.zed-editor = {
-            enable = true;
-            extraPackages = with pkgs; [
-              bash-language-server
-              nixd
-              nixfmt
+            language_servers = [
+              "!eslint"
+              "!vtsls"
+              "!typescript-language-server"
+              "..."
             ];
-            installRemoteServer = true;
+            lsp = {
+              css-variables.settings.cssVariables = {
+                lookupFiles = [
+                  "**/*.css"
+                  "**/*.scss"
+                  "**/*.vue"
+                  "**/*.svelte"
+                ];
+                blacklistFolders = [
+                  "**/dist/**"
+                  "**/node_modules/**"
+                ];
+                undefinedVarFallback = "info";
+              };
+              dart.binary = {
+                path = "~/fvm/bin/fvm";
+                arguments = [
+                  "dart"
+                  "language-server"
+                  "--protocol=lsp"
+                ];
+              };
+              nixd = {
+                binary.ignore_system_version = false;
+                initialization_options.formatting.command = [
+                  "nixfmt"
+                  "--quiet"
+                  "--"
+                ];
+              };
+              path-server-ls.settings = {
+                basePath = [
+                  "\${workspaceFolder}"
+                  "\${document}"
+                ];
+                completion.triggerNextCompletion = true;
+                highlight = {
+                  enable = true;
+                  highlightDirectory = true;
+                };
+              };
+              oxlint.initialization_options.settings = {
+                configPath = null;
+                run = "onType";
+                disableNestedConfig = false;
+                fixKind = "safe_fix";
+                unusedDisableDirectives = "deny";
+              };
+              oxfmt.initialization_options.settings = {
+                "fmt.configPath" = null;
+                run = "onSave";
+              };
+            };
+
+            languages =
+              {
+                Dart = {
+                  format_on_save = "on";
+                  code_actions_on_format = {
+                    source.organizeImports = true;
+                    source.fixAll = true;
+                  };
+                };
+                XML.format_on_save = "on";
+                Nix = {
+                  format_on_save = "on";
+                  language_servers = [
+                    "nixd"
+                    "!nil"
+                  ];
+                };
+              }
+              // (lib.genAttrs
+                [
+                  "Astro"
+                  "CSS"
+                  "HTML"
+                  "JavaScript"
+                  "JSON"
+                  "Markdown"
+                  "MDX"
+                  "SCSS"
+                  "Svelte"
+                  "TSX"
+                  "Vue.js"
+                  "YAML"
+                ]
+                (_: {
+                  format_on_save = "on";
+                  prettier.allowed = false;
+                  formatter = [ { language_server.name = "oxfmt"; } ];
+                })
+              )
+              // [
+                "!vtsls"
+                "!typescript-language-server"
+                "tsgo"
+                "..."
+              ]
+              |> (options: {
+                CSS.language_servers = [
+                  "vscode-css-language-server"
+                  "emmet-language-server"
+                ];
+                HTML.language_servers = [
+                  "vscode-css-language-server"
+                  "emmet-language-server"
+                  "unocss-language-server"
+                ];
+                TypeScript.language_servers = options;
+                TSX.language_servers = options;
+                JavaScript = options;
+                Astro = [
+                  "astro-language-server"
+                  "unocss-language-server"
+                ]
+                ++ options;
+                JSON.inlay_hints.enabled = true;
+              });
           };
         };
     };
