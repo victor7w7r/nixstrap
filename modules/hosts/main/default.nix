@@ -62,6 +62,7 @@
           config,
           pkgs,
           inputs',
+          self',
           ...
         }:
         {
@@ -113,6 +114,7 @@
             thunderbolt
             rkdeveloptool
             sunxi-tools
+            self'.packages.propertree
             kdePackages.plasma-thunderbolt
             inputs'.nixpkgs-wine.legacyPackages.wineWow64Packages.staging
             freetype

@@ -19,6 +19,10 @@
         yubikey-personalization
       ];
 
+      services.udev.rules = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", MODE="0402", TAG+="uaccess"
+      '';
+
       systemd = {
         tpm2.enable = false;
         fido2.enable = true;
