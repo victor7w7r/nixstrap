@@ -145,7 +145,6 @@
             ARM_SCMI_CPUFREQ = no;
             ARM_SCPI_CPUFREQ = yes;
             CDROM = no;
-
             R8169 = yes;
             UDF_FS = lib.mkForce no;
             USB_EHCI_TEGRA = no;

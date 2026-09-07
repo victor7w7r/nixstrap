@@ -1,5 +1,5 @@
 {
-  den.aspects.superlab.initrd.nixos = {
+  den.aspects.superlab.initrd.nixos = { pkgs, ... }: {
     boot.initrd = {
       kernelModules = [
         "display_connector"
@@ -14,7 +14,15 @@
         #"rk_crypto2"
       ];
 
-      systemd.tpm2.enable = false;
+      services.udev.packages = with pkgs; [
+        libfido2
+        yubikey-personalization
+      ];
+
+      systemd = {
+        tpm2.enable = false;
+        fido2.enable = true;
+      };
 
       luks.devices = {
         /*

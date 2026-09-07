@@ -25,7 +25,7 @@
         </cputune>
         <os>
           <type arch="x86_64" machine="pc-q35-4.2">hvm</type>
-          <loader readonly="yes" type="pflash" format="raw">${inputs.osx-kvm}/OVMF_CODE.fd</loader>
+          <loader readonly="yes" type="pflash" format="raw">${inputs.osx-kvm}/OVMF_CODE_4M.fd</loader>
           <nvram template='${inputs.osx-kvm}/OVMF_VARS-1024x768.fd'>/var/lib/libvirt/qemu/nvram/Mac_VARS.fd</nvram>
           <boot dev="hd"/>
         </os>
