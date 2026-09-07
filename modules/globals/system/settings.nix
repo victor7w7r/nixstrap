@@ -88,16 +88,16 @@
           };
         */
 
-        journald.extraConfig = ''
-          Storage=persistent
-          Compress=yes
-          MaxLevelStore=debug
-          SystemMaxUse=500M
-          RuntimeMaxUse=200M
-          ForwardToConsole=no
-          MaxLevelConsole=debug
-          TTYPath=/dev/ttyS0
-        '';
+        journald.settings.Journal = {
+          Storage = "persistent";
+          Compress = "yes";
+          MaxLevelStore = "debug";
+          SystemMaxUse = "500M";
+          RuntimeMaxUse = "200M";
+          ForwardToConsole = "no";
+          MaxLevelConsole = "debug";
+          TTYPath = "/dev/ttyS0";
+        };
       };
 
       systemd = {

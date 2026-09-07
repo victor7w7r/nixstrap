@@ -249,14 +249,14 @@
                 };
               };
               oxlint.initialization_options.settings = {
-                configPath = null;
-                run = "onType";
+                configPath = "./oxlint.config.ts";
                 disableNestedConfig = false;
                 fixKind = "safe_fix";
+                run = "onType";
                 unusedDisableDirectives = "deny";
               };
               oxfmt.initialization_options.settings = {
-                "fmt.configPath" = null;
+                "fmt.configPath" = "./oxfmt.config.ts";
                 run = "onSave";
               };
             };

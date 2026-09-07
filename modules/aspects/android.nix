@@ -5,7 +5,6 @@
       {
         environment.systemPackages = with pkgs; [
           adbfs-rootless
-          adb-sync
           androguard
           android-file-transfer
           android-tools
