@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   kernel-versions,
   ...
 }:
@@ -9,7 +8,7 @@
 
   _module.args = {
     kernel-versions = {
-      latest = "7.2.2";
+      latest = "7.2.3";
       lts = "6.18.48";
     };
 
@@ -35,7 +34,7 @@
     };
 
     linux-latest = {
-      url = "github:CachyOS/linux/cachyos-${kernel-versions.latest}-1";
+      url = "github:CachyOS/linux/cachyos-${kernel-versions.latest}-2";
       flake = false;
     };
 

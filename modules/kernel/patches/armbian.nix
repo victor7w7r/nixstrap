@@ -24,7 +24,7 @@
       (pkgs.runCommand "armbian-patches" { } ''
         ${
           if isRockchip then
-            "find ${inputs.armbian}/patch/kernel/archive/rockchip64-${lib.versions.majorMinor kernel-versions.lts} -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf"
+            "find ${inputs.armbian}/patch/kernel/archive/rockchip64-${lib.versions.majorMinor kernel-versions.latest} -maxdepth 1 -name '*.patch' -printf '%f\n' | sort > series.conf"
           else
             ''
               cp ${inputs.armbian}/patch/kernel/archive/sunxi-${lib.versions.majorMinor kernel-versions.lts}/series.conf ./series.conf
@@ -40,8 +40,8 @@
       |> map (
         path:
         "${inputs.armbian}/patch/kernel/archive/${
-          if isRockchip then "rockchip64" else "sunxi"
-        }-${lib.versions.majorMinor kernel-versions.lts}/${path}"
+          if isRockchip then "rockchip64-${lib.versions.majorMinor kernel-versions.latest}" else "sunxi-${lib.versions.majorMinor kernel-versions.lts}"
+        }/${path}"
       );
 
     sunxi = pkgs: kernel.patches.armbian.patcher pkgs false;
