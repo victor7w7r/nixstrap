@@ -3088,16 +3088,16 @@
     "linux-latest": {
       "flake": false,
       "locked": {
-        "lastModified": 1787903670,
-        "narHash": "sha256-9LEuyPrIUSbE7+MNTCzwFGjLiSsLA846Glj4C4C85LY=",
+        "lastModified": 1788437658,
+        "narHash": "sha256-JJu02YuRudJozWrBQEi25psgTsjl7EQzipkdjddRtn4=",
         "owner": "CachyOS",
         "repo": "linux",
-        "rev": "11f0a985180e84707198334e5e612c24fa947f9c",
+        "rev": "e2f03349d0321aa61885daab8c5a63ff3a4402a9",
         "type": "github"
       },
       "original": {
         "owner": "CachyOS",
-        "ref": "cachyos-7.2.2-1",
+        "ref": "cachyos-7.2.3-2",
         "repo": "linux",
         "type": "github"
       }

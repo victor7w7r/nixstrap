@@ -506,7 +506,7 @@
       flake = false;
     };
     linux-latest = {
-      url = "github:CachyOS/linux/cachyos-7.2.2-1";
+      url = "github:CachyOS/linux/cachyos-7.2.3-2";
       flake = false;
     };
     linux-lts = {
